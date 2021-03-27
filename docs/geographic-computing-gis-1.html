@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 65 Geographic computing &amp; GIS | Data Science Boot Camp</title>
+  <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 65 Geographic computing &amp; GIS | Data Science Boot Camp" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="github-repo" content="databrew/intro-to-data-science" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 65 Geographic computing &amp; GIS | Data Science Boot Camp" />
+  
+  <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
+  
+
+<meta name="author" content="Databrew" />
+
+
+<meta name="date" content="2021-03-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mapping-1.html"/>
+<link rel="next" href="statistical-modeling-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science Boot Camp</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="part"><span><b>I Core theory</b></span></li>
+<li class="chapter" data-level="2" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html"><i class="fa fa-check"></i><b>2</b> Principles of data science</a><ul>
+<li class="chapter" data-level="2.1" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#what-is-data-science"><i class="fa fa-check"></i><b>2.1</b> What is data science?</a></li>
+<li class="chapter" data-level="2.2" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i><b>2.2</b> What is the data life cycle?</a></li>
+<li class="chapter" data-level="2.3" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#what-is-a-pipeline"><i class="fa fa-check"></i><b>2.3</b> What is a pipeline?</a></li>
+<li class="chapter" data-level="2.4" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i><b>2.4</b> Data science ‘in the wild’</a></li>
+<li class="chapter" data-level="2.5" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#the-reproducibility-crisis"><i class="fa fa-check"></i><b>2.5</b> The reproducibility crisis</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>3</b> Visualizing data</a><ul>
+<li class="chapter" data-level="3.1" data-path="visualizing-data.html"><a href="visualizing-data.html#bad-examples"><i class="fa fa-check"></i><b>3.1</b> Bad examples</a></li>
+<li class="chapter" data-level="3.2" data-path="visualizing-data.html"><a href="visualizing-data.html#good-exaples"><i class="fa fa-check"></i><b>3.2</b> Good exaples</a></li>
+<li class="chapter" data-level="3.3" data-path="visualizing-data.html"><a href="visualizing-data.html#edward-tufte"><i class="fa fa-check"></i><b>3.3</b> Edward Tufte</a></li>
+<li class="chapter" data-level="3.4" data-path="visualizing-data.html"><a href="visualizing-data.html#grammar-of-graphics"><i class="fa fa-check"></i><b>3.4</b> Grammar of graphics</a></li>
+<li class="chapter" data-level="3.5" data-path="visualizing-data.html"><a href="visualizing-data.html#design-principles"><i class="fa fa-check"></i><b>3.5</b> Design principles</a></li>
+<li class="chapter" data-level="3.6" data-path="visualizing-data.html"><a href="visualizing-data.html#plots-power"><i class="fa fa-check"></i><b>3.6</b> Plots &amp; power</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-about-data.html"><a href="writing-about-data.html"><i class="fa fa-check"></i><b>4</b> Writing about data</a></li>
+<li class="chapter" data-level="5" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>5</b> Data ethics</a></li>
+<li class="part"><span><b>II Getting started</b></span></li>
+<li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up RStudio</a></li>
+<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code:</a><ul>
+<li class="chapter" data-level="7.1" data-path="running-r-code.html"><a href="running-r-code.html#basic-math"><i class="fa fa-check"></i><b>7.1</b> Basic math</a></li>
+<li class="chapter" data-level="7.2" data-path="running-r-code.html"><a href="running-r-code.html#operators"><i class="fa fa-check"></i><b>7.2</b> Operators</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rstudio-workflows.html"><a href="rstudio-workflows.html"><i class="fa fa-check"></i><b>8</b> RStudio workflows</a><ul>
+<li class="chapter" data-level="8.1" data-path="rstudio-workflows.html"><a href="rstudio-workflows.html#tour-of-rstudio"><i class="fa fa-check"></i><b>8.1</b> Tour of RStudio</a></li>
+<li class="chapter" data-level="8.2" data-path="rstudio-workflows.html"><a href="rstudio-workflows.html#scripts"><i class="fa fa-check"></i><b>8.2</b> Scripts</a></li>
+<li class="chapter" data-level="8.3" data-path="rstudio-workflows.html"><a href="rstudio-workflows.html#typical-workflows"><i class="fa fa-check"></i><b>8.3</b> Typical workflows</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>9</b> Objects in R</a><ul>
+<li class="chapter" data-level="9.1" data-path="objects-in-r.html"><a href="objects-in-r.html#variables"><i class="fa fa-check"></i><b>9.1</b> Variables</a></li>
+<li class="chapter" data-level="9.2" data-path="objects-in-r.html"><a href="objects-in-r.html#vectors"><i class="fa fa-check"></i><b>9.2</b> Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>10</b> Calling functions</a></li>
+<li class="chapter" data-level="11" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>11</b> Base plots</a></li>
+<li class="chapter" data-level="12" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>12</b> Packages</a></li>
+<li class="chapter" data-level="13" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html"><i class="fa fa-check"></i><b>13</b> Basics of ggplot</a></li>
+<li class="part"><span><b>III Working with data in R</b></span></li>
+<li class="chapter" data-level="14" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>14</b> Importing data</a><ul>
+<li class="chapter" data-level="14.1" data-path="importing-data.html"><a href="importing-data.html#working-directories"><i class="fa fa-check"></i><b>14.1</b> Working directories</a></li>
+<li class="chapter" data-level="14.2" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i><b>14.2</b> Reading in data</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>15</b> Dataframes</a><ul>
+<li class="chapter" data-level="15.1" data-path="dataframes.html"><a href="dataframes.html#exploration"><i class="fa fa-check"></i><b>15.1</b> Exploration</a></li>
+<li class="chapter" data-level="15.2" data-path="dataframes.html"><a href="dataframes.html#summarization"><i class="fa fa-check"></i><b>15.2</b> Summarization</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>16</b> Data wrangling</a><ul>
+<li class="chapter" data-level="16.1" data-path="data-wrangling.html"><a href="data-wrangling.html#data-transformation"><i class="fa fa-check"></i><b>16.1</b> Data transformation</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="data-wrangling.html"><a href="data-wrangling.html#filtering"><i class="fa fa-check"></i><b>16.1.1</b> Filtering</a></li>
+<li class="chapter" data-level="16.1.2" data-path="data-wrangling.html"><a href="data-wrangling.html#grouping"><i class="fa fa-check"></i><b>16.1.2</b> Grouping</a></li>
+<li class="chapter" data-level="16.1.3" data-path="data-wrangling.html"><a href="data-wrangling.html#joining"><i class="fa fa-check"></i><b>16.1.3</b> Joining</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="data-wrangling.html"><a href="data-wrangling.html#the-tidyverse-and-tibbles"><i class="fa fa-check"></i><b>16.2</b> The tidyverse and tibbles</a></li>
+<li class="chapter" data-level="16.3" data-path="data-wrangling.html"><a href="data-wrangling.html#transformation-with-dplyr"><i class="fa fa-check"></i><b>16.3</b> Transformation with dplyr</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="data-wrangling.html"><a href="data-wrangling.html#filtering-1"><i class="fa fa-check"></i><b>16.3.1</b> Filtering</a></li>
+<li class="chapter" data-level="16.3.2" data-path="data-wrangling.html"><a href="data-wrangling.html#grouping-1"><i class="fa fa-check"></i><b>16.3.2</b> Grouping</a></li>
+<li class="chapter" data-level="16.3.3" data-path="data-wrangling.html"><a href="data-wrangling.html#mutating"><i class="fa fa-check"></i><b>16.3.3</b> Mutating</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Exploring &amp; analyzing data</b></span></li>
+<li class="chapter" data-level="17" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>17</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="17.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#exploring-distributions"><i class="fa fa-check"></i><b>17.1</b> Exploring distributions</a></li>
+<li class="chapter" data-level="17.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#variable-types-statistics"><i class="fa fa-check"></i><b>17.2</b> Variable types &amp; statistics</a></li>
+<li class="chapter" data-level="17.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#descriptive-statistics"><i class="fa fa-check"></i><b>17.3</b> Descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>18</b> Significance statistics</a><ul>
+<li class="chapter" data-level="18.1" data-path="significance-statistics.html"><a href="significance-statistics.html#thinking-about-significance"><i class="fa fa-check"></i><b>18.1</b> Thinking about significance</a></li>
+<li class="chapter" data-level="18.2" data-path="significance-statistics.html"><a href="significance-statistics.html#comparison-tests"><i class="fa fa-check"></i><b>18.2</b> Comparison tests</a></li>
+<li class="chapter" data-level="18.3" data-path="significance-statistics.html"><a href="significance-statistics.html#correlation-tests"><i class="fa fa-check"></i><b>18.3</b> Correlation tests</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="displaying-data.html"><a href="displaying-data.html"><i class="fa fa-check"></i><b>19</b> Displaying data</a><ul>
+<li class="chapter" data-level="19.1" data-path="displaying-data.html"><a href="displaying-data.html#tables"><i class="fa fa-check"></i><b>19.1</b> Tables</a></li>
+<li class="chapter" data-level="19.2" data-path="displaying-data.html"><a href="displaying-data.html#base-plots-1"><i class="fa fa-check"></i><b>19.2</b> Base plots</a></li>
+<li class="chapter" data-level="19.3" data-path="displaying-data.html"><a href="displaying-data.html#ggplot"><i class="fa fa-check"></i><b>19.3</b> ggplot</a></li>
+</ul></li>
+<li class="part"><span><b>V Creating your own dataset</b></span><ul>
+<li class="chapter" data-level="19.4" data-path="15-gis.html"><a href="#managing-project-files"><i class="fa fa-check"></i><b>19.4</b> Managing project files</a></li>
+<li class="chapter" data-level="19.5" data-path="displaying-data.html"><a href="displaying-data.html#formatting-your-own-data"><i class="fa fa-check"></i><b>19.5</b> Formatting your own data</a></li>
+<li class="chapter" data-level="19.6" data-path="displaying-data.html"><a href="displaying-data.html#reading-excel-files"><i class="fa fa-check"></i><b>19.6</b> Reading Excel files</a></li>
+<li class="chapter" data-level="19.7" data-path="displaying-data.html"><a href="displaying-data.html#reading-googlesheets"><i class="fa fa-check"></i><b>19.7</b> Reading GoogleSheets</a></li>
+<li class="chapter" data-level="19.8" data-path="displaying-data.html"><a href="displaying-data.html#reading-online-data"><i class="fa fa-check"></i><b>19.8</b> Reading online data</a></li>
+</ul></li>
+<li class="part"><span><b>VI Your R tool bag</b></span></li>
+<li class="chapter" data-level="20" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>20</b> Joining datasets</a></li>
+<li class="chapter" data-level="21" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>21</b> For loops</a></li>
+<li class="chapter" data-level="22" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>22</b> Writing functions</a></li>
+<li class="chapter" data-level="23" data-path="working-with-text.html"><a href="working-with-text.html"><i class="fa fa-check"></i><b>23</b> Working with text</a></li>
+<li class="chapter" data-level="24" data-path="working-with-dates-times.html"><a href="working-with-dates-times.html"><i class="fa fa-check"></i><b>24</b> Working with dates &amp; times</a></li>
+<li class="chapter" data-level="25" data-path="working-with-factors.html"><a href="working-with-factors.html"><i class="fa fa-check"></i><b>25</b> Working with factors</a></li>
+<li class="chapter" data-level="26" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>26</b> Cleaning messy data</a></li>
+<li class="chapter" data-level="27" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>27</b> Matrices &amp; lists</a></li>
+<li class="chapter" data-level="28" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>28</b> Pipes</a></li>
+<li class="chapter" data-level="29" data-path="exporting-data-plots.html"><a href="exporting-data-plots.html"><i class="fa fa-check"></i><b>29</b> Exporting data &amp; plots</a></li>
+<li class="part"><span><b>VII Interactive dashboards</b></span></li>
+<li class="chapter" data-level="30" data-path="intro-to-shiny-apps.html"><a href="intro-to-shiny-apps.html"><i class="fa fa-check"></i><b>30</b> Intro to Shiny apps</a></li>
+<li class="chapter" data-level="31" data-path="shiny-dashboards.html"><a href="shiny-dashboards.html"><i class="fa fa-check"></i><b>31</b> Shiny dashboards</a></li>
+<li class="chapter" data-level="32" data-path="data-entry-apps.html"><a href="data-entry-apps.html"><i class="fa fa-check"></i><b>32</b> Data entry apps</a></li>
+<li class="part"><span><b>VIII Documenting your work</b></span></li>
+<li class="chapter" data-level="33" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>33</b> R Markdown</a></li>
+<li class="chapter" data-level="34" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>34</b> Reproducible research</a></li>
+<li class="chapter" data-level="35" data-path="automated-reporting.html"><a href="automated-reporting.html"><i class="fa fa-check"></i><b>35</b> Automated reporting</a></li>
+<li class="chapter" data-level="36" data-path="formatting-standards.html"><a href="formatting-standards.html"><i class="fa fa-check"></i><b>36</b> Formatting standards</a><ul>
+<li class="chapter" data-level="36.1" data-path="formatting-standards.html"><a href="formatting-standards.html#tables-1"><i class="fa fa-check"></i><b>36.1</b> Tables</a></li>
+<li class="chapter" data-level="36.2" data-path="formatting-standards.html"><a href="formatting-standards.html#figures"><i class="fa fa-check"></i><b>36.2</b> Figures</a></li>
+<li class="chapter" data-level="36.3" data-path="formatting-standards.html"><a href="formatting-standards.html#captions"><i class="fa fa-check"></i><b>36.3</b> Captions</a></li>
+</ul></li>
+<li class="part"><span><b>IX Databases</b></span></li>
+<li class="chapter" data-level="37" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>37</b> Introduction</a><ul>
+<li class="chapter" data-level="37.1" data-path="introduction.html"><a href="introduction.html#what"><i class="fa fa-check"></i><b>37.1</b> What</a></li>
+<li class="chapter" data-level="37.2" data-path="introduction.html"><a href="introduction.html#why"><i class="fa fa-check"></i><b>37.2</b> Why</a></li>
+<li class="chapter" data-level="37.3" data-path="introduction.html"><a href="introduction.html#when"><i class="fa fa-check"></i><b>37.3</b> When</a></li>
+<li class="chapter" data-level="37.4" data-path="introduction.html"><a href="introduction.html#when-not"><i class="fa fa-check"></i><b>37.4</b> When not</a></li>
+</ul></li>
+<li class="part"><span><b>X Databases</b></span></li>
+<li class="chapter" data-level="38" data-path="platforms.html"><a href="platforms.html"><i class="fa fa-check"></i><b>38</b> Platforms:</a><ul>
+<li class="chapter" data-level="38.1" data-path="platforms.html"><a href="platforms.html#postgresql"><i class="fa fa-check"></i><b>38.1</b> PostgreSQL</a></li>
+<li class="chapter" data-level="38.2" data-path="platforms.html"><a href="platforms.html#mysql"><i class="fa fa-check"></i><b>38.2</b> mySQL</a></li>
+<li class="chapter" data-level="38.3" data-path="platforms.html"><a href="platforms.html#sqlite"><i class="fa fa-check"></i><b>38.3</b> SQLite</a></li>
+</ul></li>
+<li class="part"><span><b>XI Databases</b></span></li>
+<li class="chapter" data-level="39" data-path="alternatives.html"><a href="alternatives.html"><i class="fa fa-check"></i><b>39</b> Alternatives:</a><ul>
+<li class="chapter" data-level="39.1" data-path="alternatives.html"><a href="alternatives.html#nosql"><i class="fa fa-check"></i><b>39.1</b> NoSQL</a></li>
+</ul></li>
+<li class="part"><span><b>XII Databases</b></span></li>
+<li class="chapter" data-level="40" data-path="practices.html"><a href="practices.html"><i class="fa fa-check"></i><b>40</b> Practices</a></li>
+<li class="part"><span><b>XIII Version control and teamwork</b></span></li>
+<li class="chapter" data-level="41" data-path="what-is-version-control.html"><a href="what-is-version-control.html"><i class="fa fa-check"></i><b>41</b> What is version control?</a></li>
+<li class="chapter" data-level="42" data-path="what-is-git.html"><a href="what-is-git.html"><i class="fa fa-check"></i><b>42</b> What is Git?</a><ul>
+<li class="chapter" data-level="42.1" data-path="what-is-git.html"><a href="what-is-git.html#repositories"><i class="fa fa-check"></i><b>42.1</b> Repositories</a></li>
+<li class="chapter" data-level="42.2" data-path="what-is-git.html"><a href="what-is-git.html#github"><i class="fa fa-check"></i><b>42.2</b> Github</a></li>
+</ul></li>
+<li class="chapter" data-level="43" data-path="standard-git-operations.html"><a href="standard-git-operations.html"><i class="fa fa-check"></i><b>43</b> Standard git operations</a></li>
+<li class="chapter" data-level="44" data-path="a-git-workflow.html"><a href="a-git-workflow.html"><i class="fa fa-check"></i><b>44</b> A git workflow</a></li>
+<li class="chapter" data-level="45" data-path="other-git-platforms.html"><a href="other-git-platforms.html"><i class="fa fa-check"></i><b>45</b> Other git platforms</a></li>
+<li class="part"><span><b>XIV Documenting your work</b></span></li>
+<li class="chapter" data-level="46" data-path="r-markdown-1.html"><a href="r-markdown-1.html"><i class="fa fa-check"></i><b>46</b> R Markdown</a></li>
+<li class="chapter" data-level="47" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html"><i class="fa fa-check"></i><b>47</b> Reproducible research</a></li>
+<li class="chapter" data-level="48" data-path="automated-reporting-1.html"><a href="automated-reporting-1.html"><i class="fa fa-check"></i><b>48</b> Automated reporting</a></li>
+<li class="chapter" data-level="49" data-path="formatting-standards-1.html"><a href="formatting-standards-1.html"><i class="fa fa-check"></i><b>49</b> Formatting standards</a><ul>
+<li class="chapter" data-level="49.1" data-path="formatting-standards-1.html"><a href="formatting-standards-1.html#tables-2"><i class="fa fa-check"></i><b>49.1</b> Tables</a></li>
+<li class="chapter" data-level="49.2" data-path="formatting-standards-1.html"><a href="formatting-standards-1.html#figures-1"><i class="fa fa-check"></i><b>49.2</b> Figures</a></li>
+<li class="chapter" data-level="49.3" data-path="formatting-standards-1.html"><a href="formatting-standards-1.html#captions-1"><i class="fa fa-check"></i><b>49.3</b> Captions</a></li>
+</ul></li>
+<li class="part"><span><b>XV Version control and teamwork</b></span></li>
+<li class="chapter" data-level="50" data-path="what-is-version-control-1.html"><a href="what-is-version-control-1.html"><i class="fa fa-check"></i><b>50</b> What is version control?</a></li>
+<li class="chapter" data-level="51" data-path="what-is-git-1.html"><a href="what-is-git-1.html"><i class="fa fa-check"></i><b>51</b> What is Git?</a><ul>
+<li class="chapter" data-level="51.1" data-path="what-is-git-1.html"><a href="what-is-git-1.html#repositories-1"><i class="fa fa-check"></i><b>51.1</b> Repositories</a></li>
+<li class="chapter" data-level="51.2" data-path="what-is-git-1.html"><a href="what-is-git-1.html#github-1"><i class="fa fa-check"></i><b>51.2</b> Github</a></li>
+</ul></li>
+<li class="chapter" data-level="52" data-path="standard-git-operations-1.html"><a href="standard-git-operations-1.html"><i class="fa fa-check"></i><b>52</b> Standard git operations</a></li>
+<li class="chapter" data-level="53" data-path="a-git-workflow-1.html"><a href="a-git-workflow-1.html"><i class="fa fa-check"></i><b>53</b> A git workflow</a></li>
+<li class="chapter" data-level="54" data-path="other-git-platforms-1.html"><a href="other-git-platforms-1.html"><i class="fa fa-check"></i><b>54</b> Other git platforms</a></li>
+<li class="part"><span><b>XVI Advanced skills</b></span></li>
+<li class="chapter" data-level="55" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>55</b> Mapping</a></li>
+<li class="chapter" data-level="56" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>56</b> Geographic computing &amp; GIS</a></li>
+<li class="chapter" data-level="57" data-path="statistical-modeling.html"><a href="statistical-modeling.html"><i class="fa fa-check"></i><b>57</b> Statistical modeling</a></li>
+<li class="chapter" data-level="58" data-path="apply-family.html"><a href="apply-family.html"><i class="fa fa-check"></i><b>58</b> Apply family</a></li>
+<li class="chapter" data-level="59" data-path="iterative-statistics.html"><a href="iterative-statistics.html"><i class="fa fa-check"></i><b>59</b> Iterative statistics</a></li>
+<li class="chapter" data-level="60" data-path="iterative-simulations.html"><a href="iterative-simulations.html"><i class="fa fa-check"></i><b>60</b> Iterative simulations</a></li>
+<li class="part"><span><b>XVII Writing about data</b></span></li>
+<li class="chapter" data-level="61" data-path="types-of-writing.html"><a href="types-of-writing.html"><i class="fa fa-check"></i><b>61</b> Types of writing</a><ul>
+<li class="chapter" data-level="61.1" data-path="types-of-writing.html"><a href="types-of-writing.html#grant-proposals"><i class="fa fa-check"></i><b>61.1</b> Grant proposals</a></li>
+<li class="chapter" data-level="61.2" data-path="types-of-writing.html"><a href="types-of-writing.html#reports-and-publications"><i class="fa fa-check"></i><b>61.2</b> Reports and publications</a></li>
+<li class="chapter" data-level="61.3" data-path="types-of-writing.html"><a href="types-of-writing.html#fundraising"><i class="fa fa-check"></i><b>61.3</b> Fundraising</a></li>
+<li class="chapter" data-level="61.4" data-path="types-of-writing.html"><a href="types-of-writing.html#press-releases"><i class="fa fa-check"></i><b>61.4</b> Press releases</a></li>
+</ul></li>
+<li class="chapter" data-level="62" data-path="elements-of-style.html"><a href="elements-of-style.html"><i class="fa fa-check"></i><b>62</b> Elements of style</a></li>
+<li class="chapter" data-level="63" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html"><i class="fa fa-check"></i><b>63</b> Sections of a report</a><ul>
+<li class="chapter" data-level="63.1" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#abstract"><i class="fa fa-check"></i><b>63.1</b> Abstract</a></li>
+<li class="chapter" data-level="63.2" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#introduction-1"><i class="fa fa-check"></i><b>63.2</b> Introduction</a></li>
+<li class="chapter" data-level="63.3" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#methods"><i class="fa fa-check"></i><b>63.3</b> Methods</a></li>
+<li class="chapter" data-level="63.4" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#results"><i class="fa fa-check"></i><b>63.4</b> Results</a></li>
+<li class="chapter" data-level="63.5" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#discussion"><i class="fa fa-check"></i><b>63.5</b> Discussion</a></li>
+<li class="chapter" data-level="63.6" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#other-elements"><i class="fa fa-check"></i><b>63.6</b> Other elements</a><ul>
+<li class="chapter" data-level="63.6.1" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#acknowledgments"><i class="fa fa-check"></i><b>63.6.1</b> Acknowledgments</a></li>
+<li class="chapter" data-level="63.6.2" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#literature-cited"><i class="fa fa-check"></i><b>63.6.2</b> Literature Cited</a></li>
+<li class="chapter" data-level="63.6.3" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#tables-3"><i class="fa fa-check"></i><b>63.6.3</b> Tables</a></li>
+<li class="chapter" data-level="63.6.4" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#figures-2"><i class="fa fa-check"></i><b>63.6.4</b> Figures</a></li>
+<li class="chapter" data-level="63.6.5" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#supplementary-materials"><i class="fa fa-check"></i><b>63.6.5</b> Supplementary Materials</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>XVIII Creating websites</b></span></li>
+<li class="part"><span><b>XIX Advanced skills</b></span></li>
+<li class="chapter" data-level="64" data-path="mapping-1.html"><a href="mapping-1.html"><i class="fa fa-check"></i><b>64</b> Mapping</a></li>
+<li class="chapter" data-level="65" data-path="geographic-computing-gis-1.html"><a href="geographic-computing-gis-1.html"><i class="fa fa-check"></i><b>65</b> Geographic computing &amp; GIS</a></li>
+<li class="chapter" data-level="66" data-path="statistical-modeling-1.html"><a href="statistical-modeling-1.html"><i class="fa fa-check"></i><b>66</b> Statistical modeling</a></li>
+<li class="chapter" data-level="67" data-path="apply-family-1.html"><a href="apply-family-1.html"><i class="fa fa-check"></i><b>67</b> Apply family</a></li>
+<li class="chapter" data-level="68" data-path="iterative-statistics-1.html"><a href="iterative-statistics-1.html"><i class="fa fa-check"></i><b>68</b> Iterative statistics</a></li>
+<li class="chapter" data-level="69" data-path="iterative-simulations-1.html"><a href="iterative-simulations-1.html"><i class="fa fa-check"></i><b>69</b> Iterative simulations</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/databrew/intro-to-data-science" target="blank">Databrew LLC</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science Boot Camp</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="geographic-computing-gis-1" class="section level1">
+<h1><span class="header-section-number">Module 65</span> Geographic computing &amp; GIS</h1>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mapping-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistical-modeling-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/databrew/intro-to-data-science/edit/master/15-gis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

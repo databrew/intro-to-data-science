@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 26 for loops | Working Title: the data science canon</title>
+  <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 26 for loops | Working Title: the data science canon" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="github-repo" content="databrew/intro-to-data-science" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 26 for loops | Working Title: the data science canon" />
+  
+  <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
+  
+
+<meta name="author" content="Databrew" />
+
+
+<meta name="date" content="2021-03-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="joining-datasets.html"/>
+<link rel="next" href="writing-functions.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Working Title: the data science canon</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="part"><span><b>I Core theory</b></span></li>
+<li class="chapter" data-level="2" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html"><i class="fa fa-check"></i><b>2</b> Principles of data science</a></li>
+<li class="chapter" data-level="3" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>3</b> Visualizing data</a></li>
+<li class="chapter" data-level="4" data-path="writing-about-data.html"><a href="writing-about-data.html"><i class="fa fa-check"></i><b>4</b> Writing about data</a></li>
+<li class="chapter" data-level="5" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>5</b> Data ethics</a></li>
+<li class="part"><span><b>II Getting started</b></span></li>
+<li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up RStudio</a></li>
+<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a></li>
+<li class="chapter" data-level="8" data-path="rstudio-workflows.html"><a href="rstudio-workflows.html"><i class="fa fa-check"></i><b>8</b> RStudio workflows</a></li>
+<li class="chapter" data-level="9" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>9</b> Objects in R</a></li>
+<li class="chapter" data-level="10" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>10</b> Calling functions</a></li>
+<li class="chapter" data-level="11" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>11</b> Base plots</a></li>
+<li class="chapter" data-level="12" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>12</b> Packages</a></li>
+<li class="chapter" data-level="13" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html"><i class="fa fa-check"></i><b>13</b> Basics of ggplot</a></li>
+<li class="part"><span><b>III Working with data in R</b></span></li>
+<li class="chapter" data-level="14" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>14</b> Importing data</a></li>
+<li class="chapter" data-level="15" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>15</b> Dataframes</a></li>
+<li class="chapter" data-level="16" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>16</b> Data wrangling</a></li>
+<li class="part"><span><b>IV Exploring &amp; analyzing data</b></span></li>
+<li class="chapter" data-level="17" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>17</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="18" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>18</b> Significance statistics</a></li>
+<li class="chapter" data-level="19" data-path="displaying-data.html"><a href="displaying-data.html"><i class="fa fa-check"></i><b>19</b> Displaying data</a></li>
+<li class="part"><span><b>V Creating your own dataset</b></span></li>
+<li class="chapter" data-level="20" data-path="managing-project-files.html"><a href="managing-project-files.html"><i class="fa fa-check"></i><b>20</b> Managing project files</a></li>
+<li class="chapter" data-level="21" data-path="formatting-your-own-data.html"><a href="formatting-your-own-data.html"><i class="fa fa-check"></i><b>21</b> Formatting your own data</a></li>
+<li class="chapter" data-level="22" data-path="reading-excel-files.html"><a href="reading-excel-files.html"><i class="fa fa-check"></i><b>22</b> Reading Excel files</a></li>
+<li class="chapter" data-level="23" data-path="reading-googlesheets.html"><a href="reading-googlesheets.html"><i class="fa fa-check"></i><b>23</b> Reading GoogleSheets</a></li>
+<li class="chapter" data-level="24" data-path="reading-online-data.html"><a href="reading-online-data.html"><i class="fa fa-check"></i><b>24</b> Reading online data</a></li>
+<li class="part"><span><b>VI Your R tool bag</b></span></li>
+<li class="chapter" data-level="25" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>25</b> Joining datasets</a></li>
+<li class="chapter" data-level="26" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>26</b> <code>for</code> loops</a></li>
+<li class="chapter" data-level="27" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>27</b> Writing functions</a></li>
+<li class="chapter" data-level="28" data-path="working-with-text.html"><a href="working-with-text.html"><i class="fa fa-check"></i><b>28</b> Working with text</a></li>
+<li class="chapter" data-level="29" data-path="working-with-dates-times.html"><a href="working-with-dates-times.html"><i class="fa fa-check"></i><b>29</b> Working with dates &amp; times</a></li>
+<li class="chapter" data-level="30" data-path="working-with-factors.html"><a href="working-with-factors.html"><i class="fa fa-check"></i><b>30</b> Working with factors</a></li>
+<li class="chapter" data-level="31" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>31</b> Cleaning messy data</a></li>
+<li class="chapter" data-level="32" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>32</b> Matrices &amp; lists</a></li>
+<li class="chapter" data-level="33" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>33</b> Pipes</a></li>
+<li class="chapter" data-level="34" data-path="exporting-data-plots.html"><a href="exporting-data-plots.html"><i class="fa fa-check"></i><b>34</b> Exporting data &amp; plots</a></li>
+<li class="part"><span><b>VII Interactive dashboards</b></span></li>
+<li class="chapter" data-level="35" data-path="intro-to-shiny-apps.html"><a href="intro-to-shiny-apps.html"><i class="fa fa-check"></i><b>35</b> Intro to Shiny apps</a></li>
+<li class="chapter" data-level="36" data-path="shiny-dashboards.html"><a href="shiny-dashboards.html"><i class="fa fa-check"></i><b>36</b> Shiny dashboards</a></li>
+<li class="chapter" data-level="37" data-path="data-entry-apps.html"><a href="data-entry-apps.html"><i class="fa fa-check"></i><b>37</b> Data entry apps</a></li>
+<li class="part"><span><b>VIII Databases</b></span></li>
+<li class="chapter" data-level="38" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>38</b> Introduction</a></li>
+<li class="chapter" data-level="39" data-path="platforms.html"><a href="platforms.html"><i class="fa fa-check"></i><b>39</b> Platforms</a></li>
+<li class="chapter" data-level="40" data-path="alternatives.html"><a href="alternatives.html"><i class="fa fa-check"></i><b>40</b> Alternatives</a></li>
+<li class="chapter" data-level="41" data-path="practices.html"><a href="practices.html"><i class="fa fa-check"></i><b>41</b> Practices</a></li>
+<li class="part"><span><b>IX Documenting your work</b></span></li>
+<li class="chapter" data-level="42" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>42</b> R Markdown</a></li>
+<li class="chapter" data-level="43" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>43</b> Reproducible research</a></li>
+<li class="chapter" data-level="44" data-path="automated-reporting.html"><a href="automated-reporting.html"><i class="fa fa-check"></i><b>44</b> Automated reporting</a></li>
+<li class="chapter" data-level="45" data-path="formatting-standards.html"><a href="formatting-standards.html"><i class="fa fa-check"></i><b>45</b> Formatting standards</a></li>
+<li class="part"><span><b>X Version control and teamwork</b></span></li>
+<li class="chapter" data-level="46" data-path="what-is-version-control.html"><a href="what-is-version-control.html"><i class="fa fa-check"></i><b>46</b> What is version control?</a></li>
+<li class="chapter" data-level="47" data-path="what-is-git.html"><a href="what-is-git.html"><i class="fa fa-check"></i><b>47</b> What is Git?</a></li>
+<li class="chapter" data-level="48" data-path="standard-git-operations.html"><a href="standard-git-operations.html"><i class="fa fa-check"></i><b>48</b> Standard git operations</a></li>
+<li class="chapter" data-level="49" data-path="a-git-workflow.html"><a href="a-git-workflow.html"><i class="fa fa-check"></i><b>49</b> A git workflow</a></li>
+<li class="chapter" data-level="50" data-path="other-git-platforms.html"><a href="other-git-platforms.html"><i class="fa fa-check"></i><b>50</b> Other git platforms</a></li>
+<li class="part"><span><b>XI Writing about data</b></span></li>
+<li class="chapter" data-level="51" data-path="types-of-writing.html"><a href="types-of-writing.html"><i class="fa fa-check"></i><b>51</b> Types of writing</a></li>
+<li class="chapter" data-level="52" data-path="elements-of-style.html"><a href="elements-of-style.html"><i class="fa fa-check"></i><b>52</b> Elements of style</a></li>
+<li class="chapter" data-level="53" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html"><i class="fa fa-check"></i><b>53</b> Sections of a report</a></li>
+<li class="part"><span><b>XII Creating websites</b></span></li>
+<li class="part"><span><b>XIII Advanced skills</b></span></li>
+<li class="chapter" data-level="54" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>54</b> Mapping</a></li>
+<li class="chapter" data-level="55" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>55</b> Geographic computing &amp; GIS</a></li>
+<li class="chapter" data-level="56" data-path="statistical-modeling.html"><a href="statistical-modeling.html"><i class="fa fa-check"></i><b>56</b> Statistical modeling</a></li>
+<li class="chapter" data-level="57" data-path="apply-family.html"><a href="apply-family.html"><i class="fa fa-check"></i><b>57</b> Apply family</a></li>
+<li class="chapter" data-level="58" data-path="iterative-statistics.html"><a href="iterative-statistics.html"><i class="fa fa-check"></i><b>58</b> Iterative statistics</a></li>
+<li class="chapter" data-level="59" data-path="iterative-simulations.html"><a href="iterative-simulations.html"><i class="fa fa-check"></i><b>59</b> Iterative simulations</a></li>
+<li class="chapter" data-level="60" data-path="image-analysis.html"><a href="image-analysis.html"><i class="fa fa-check"></i><b>60</b> Image analysis</a></li>
+<li class="chapter" data-level="61" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>61</b> Machine learning</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/databrew/intro-to-data-science" target="blank">Databrew LLC</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Working Title: the data science canon</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="for-loops" class="section level1">
+<h1><span class="header-section-number">Module 26</span> <code>for</code> loops</h1>
+<div id="learning-goals" class="section level2 unnumbered">
+<h2>Learning goals</h2>
+<ul>
+<li>What <code>for</code> loops are, and how to use them yourself</li>
+<li>How to use <code>for</code> loops for multi-pane plotting<br />
+</li>
+<li>How to use <code>for</code> loops to achieve complex plots<br />
+</li>
+<li>How to use <code>for</code> loops to summarize data efficiently</li>
+</ul>
+</div>
+<div id="coming-soon" class="section level2 unnumbered">
+<h2>Coming soon</h2>
+<ul>
+<li>Instructor notes and answer keys (hidden from students)</li>
+</ul>
+</div>
+<div id="tutorial-video" class="section level2 unnumbered">
+<h2>Tutorial video</h2>
+<p><em>(coming soon!)</em></p>
+</div>
+<div id="basics" class="section level2 unnumbered">
+<h2>Basics</h2>
+<p>A <code>for</code> loop is a super powerful coding tool. In a <code>for</code> loop, <code>R</code> loops through a chunk of code for a set number of repititions.</p>
+<p>A super basic example:</p>
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+<p>Here’s an example of a pretty useless <code>for</code> loop:</p>
+<pre><code>[1] &quot;I&#39;m just repeating myself.&quot;
+[1] &quot;I&#39;m just repeating myself.&quot;
+[1] &quot;I&#39;m just repeating myself.&quot;
+[1] &quot;I&#39;m just repeating myself.&quot;
+[1] &quot;I&#39;m just repeating myself.&quot;</code></pre>
+<p><strong>This code is saying:</strong><br />
+- For each iteration of this loop, step to the next value in <code>x</code> (first example) or <code>1:5</code> (second example).<br />
+- Store that value in an object <code>i</code>,<br />
+- and run the code inside the curly brackets.
+- Repeat until the end of <code>x</code>.</p>
+<p><strong>Look at the basic structure:</strong><br />
+- In the<code>for( )</code> parenthetical, you tell R what values to step through (<code>x</code>), and how to refer to the value in each iteration (<code>i</code>).<br />
+- Within the curly brackets, you place the chunk of code you want to repeat.</p>
+<p>Another basic example, demonsrating that you can update a variable repeatedly in a loop.</p>
+<pre><code>[1] 4
+[1] 16
+[1] 256
+[1] 65536
+[1] 4294967296</code></pre>
+<p>Another silly example:</p>
+<pre><code>[1] &quot;Keri is pretty cool!&quot;
+[1] &quot;Deb is pretty cool!&quot;
+[1] &quot;Ken is pretty cool!&quot;</code></pre>
+<div id="exercise-1" class="section level3 unnumbered">
+<h3>Exercise 1</h3>
+<p>Use this space to practice the basics of <code>for loop</code> formatting.</p>
+<p>First, create a vector of names (add at least 3)</p>
+<p>Using the examples above as a guide, create a <code>for loop</code> that prints the same silly statement about each of these names.</p>
+<pre><code>[1] &quot;Lady Gaga has cooties!&quot;
+[1] &quot;David Haskell has cooties!&quot;
+[1] &quot;Tom Cruise has cooties!&quot;</code></pre>
+</div>
+</div>
+<div id="using-for-loops-with-data" class="section level2 unnumbered">
+<h2>Using <code>for</code> loops with data</h2>
+<p>These silly examples above do a poor job of demonstrating how powerful a <code>for loop</code> can be.</p>
+<div id="multi-panel-plots" class="section level3 unnumbered">
+<h3>Multi-panel plots</h3>
+<p>For example, a <code>for loop</code> can be a very efficient way of making multi-panel plots.</p>
+<p>Let’s use a <code>for loop</code> to get a quick overview of the variables included in the <code>airquality</code> dataset built into R.</p>
+<pre><code>  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+5    NA      NA 14.3   56     5   5
+6    28      NA 14.9   66     5   6</code></pre>
+<p>Looks like the first four columns would be interesting to plot.</p>
+<p><img src="figures/unnamed-chunk-10-1.png" width="925.44" /></p>
+</div>
+<div id="tricky-plot-solutions" class="section level3 unnumbered">
+<h3>Tricky plot solutions</h3>
+<p><code>for loops</code> are also useful for plotting data in tricky ways. Let’s use a different built-in dataset, that shows the performance of various car make/models.</p>
+<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>Let’s say we want to see how gas mileage is affected by the number of cylinders a car has. It would be nice to create a plot that shows the raw data as well as the mean mileage for each cylinder number.</p>
+<pre><code>[1] 6 4 8</code></pre>
+<p><img src="figures/unnamed-chunk-12-1.png" width="925.44" /></p>
+</div>
+<div id="exercise-2" class="section level3 unnumbered">
+<h3>Exercise 2</h3>
+<p>Now try to do something similar on your own with the <code>airquality</code> dataset. Use <code>for loops</code> to create a plot with Month on the x axis and Temperature on the y axis. On this plot, depict all the temperatures recorded in each month in the color grey, then superimpose the mean temperature for each month.</p>
+<p>We will provide the empty plot, you provide the <code>for loop</code>:</p>
+<p><img src="figures/unnamed-chunk-13-1.png" width="925.44" /></p>
+</div>
+</div>
+<div id="using-a-for-loop-with-more-complex-data" class="section level2 unnumbered">
+<h2>Using a <code>for loop</code> with more complex data</h2>
+<p>Here’s another good example of the power of a good <code>for loop</code>.</p>
+<p>First, read in some cool data.</p>
+<pre><code>  year month day_of_month day_of_year year_dec frac_of_year    CO2
+1 1974     5           26    145.4890 1974.399       0.3986 332.95
+2 1974     6            2    152.4970 1974.418       0.4178 332.35
+3 1974     6            9    159.5050 1974.437       0.4370 332.20
+4 1974     6           16    166.5130 1974.456       0.4562 332.37
+5 1974     6           23    173.4845 1974.475       0.4753 331.73
+6 1974     6           30    180.4925 1974.495       0.4945 331.68</code></pre>
+<p>This is the famous Keeling Curve dataset: long-term monitoring of atmospheric CO2 measured at a volcanic observatory in Hawaii.</p>
+<p>Try plotting the Keeling Curve:</p>
+<p><img src="figures/unnamed-chunk-15-1.png" width="925.44" /></p>
+<p>There are some erroneous data points! We clearly can’t have negative CO2 values. Let’s remove those and try again:</p>
+<p><img src="figures/unnamed-chunk-16-1.png" width="925.44" /></p>
+<p><strong>What’s the deal with those squiggles?</strong> Let’s investigate!</p>
+<p>Let’s look at the data a different way: <em>by focusing in on a single year.</em></p>
+<pre><code>    year month day_of_month day_of_year year_dec frac_of_year    CO2
+816 1990     1            7      6.4970 1990.018       0.0178 353.58
+817 1990     1           14     13.5050 1990.037       0.0370 353.99
+818 1990     1           21     20.5130 1990.056       0.0562 353.92
+819 1990     1           28     27.4845 1990.075       0.0753 354.39
+820 1990     2            4     34.4925 1990.094       0.0945 355.04
+821 1990     2           11     41.5005 1990.114       0.1137 355.09</code></pre>
+<pre><code>[1] 354.4538</code></pre>
+<pre><code> [1] -0.87384615 -0.46384615 -0.53384615 -0.06384615  0.58615385  0.63615385
+ [7]  0.96615385  0.72615385  1.13615385  1.33615385  1.08615385  1.67615385
+[13]  1.81615385  1.71615385  1.77615385  2.41615385  2.50615385  3.24615385
+[19]  2.79615385  2.87615385  2.92615385  2.52615385  1.79615385  1.72615385
+[25]  1.33615385  1.76615385  0.53615385 -0.16384615 -0.08384615 -0.46384615
+[31] -1.28384615 -0.99384615 -1.37384615 -2.65384615 -3.29384615 -3.59384615
+[37] -2.70384615 -2.99384615 -3.05384615 -2.91384615 -2.88384615 -2.72384615
+[43] -2.05384615 -1.74384615 -1.30384615 -1.00384615 -0.76384615 -0.55384615
+[49]  0.01615385 -0.11384615  0.37615385  0.34615385          NA</code></pre>
+<p><img src="figures/unnamed-chunk-17-1.png" width="925.44" /></p>
+<p>But this only shows one year of data! How can we include the seasonal squiggle from other years?</p>
+<p>Let’s use a <code>for loop</code>!</p>
+<p>OK – let’s redo that graph and add a <code>for loop</code> into the mix:</p>
+<pre><code> [1] &quot;1974&quot; &quot;1975&quot; &quot;1976&quot; &quot;1977&quot; &quot;1978&quot; &quot;1979&quot; &quot;1980&quot; &quot;1981&quot; &quot;1982&quot; &quot;1983&quot;
+[11] &quot;1984&quot; &quot;1985&quot; &quot;1986&quot; &quot;1987&quot; &quot;1988&quot; &quot;1989&quot; &quot;1990&quot; &quot;1991&quot; &quot;1992&quot; &quot;1993&quot;
+[21] &quot;1994&quot; &quot;1995&quot; &quot;1996&quot; &quot;1997&quot; &quot;1998&quot; &quot;1999&quot; &quot;2000&quot; &quot;2001&quot; &quot;2002&quot; &quot;2003&quot;
+[31] &quot;2004&quot; &quot;2005&quot; &quot;2006&quot; &quot;2007&quot; &quot;2008&quot; &quot;2009&quot; &quot;2010&quot; &quot;2011&quot; &quot;2012&quot; &quot;2013&quot;
+[41] &quot;2014&quot; &quot;2015&quot; &quot;2016&quot; &quot;2017&quot; &quot;2018&quot; &quot;2019&quot; &quot;2020&quot; &quot;2021&quot; NA    </code></pre>
+<p><img src="figures/unnamed-chunk-18-1.png" width="925.44" /></p>
+<p>Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?</p>
+</div>
+<div id="review-assignment" class="section level2 unnumbered">
+<h2>Review assignment</h2>
+<p>First, read in and format some other cool data. The code for doing so is provided for you here:</p>
+<p>This dataset, freely available from World Bank, shows the renewable electricity output for various countries, presented as a percentage of the nation’s total electricity output. They provide this data as a time series.</p>
+<div id="summarize-columns-with-a-for-loop" class="section level3">
+<h3><span class="header-section-number">26.0.1</span> Summarize columns with a <code>for loop</code></h3>
+<p><strong>Task 1:</strong> Use a <code>for loop</code> to find the change in renewable energy output for each nation in the dataset between 1990 and 2015. Print the difference for each nation in the console.</p>
+<pre><code> [1] &quot;year&quot;           &quot;World&quot;          &quot;Australia&quot;      &quot;Canada&quot;        
+ [5] &quot;China&quot;          &quot;Denmark&quot;        &quot;India&quot;          &quot;Japan&quot;         
+ [9] &quot;New_Zealand&quot;    &quot;Sweden&quot;         &quot;Switzerland&quot;    &quot;United_Kingdom&quot;
+[13] &quot;United_States&quot; </code></pre>
+<pre><code>[1] &quot;World : 3% change.&quot;
+[1] &quot;Australia : 4% change.&quot;
+[1] &quot;Canada : 1% change.&quot;
+[1] &quot;China : 4% change.&quot;
+[1] &quot;Denmark : 62% change.&quot;
+[1] &quot;India : -9% change.&quot;
+[1] &quot;Japan : 5% change.&quot;
+[1] &quot;New_Zealand : 0% change.&quot;
+[1] &quot;Sweden : 12% change.&quot;
+[1] &quot;Switzerland : 7% change.&quot;
+[1] &quot;United_Kingdom : 23% change.&quot;
+[1] &quot;United_States : 2% change.&quot;</code></pre>
+<p><strong>Task 2:</strong> Re-do this loop, but instead of printing the differences to the console, save them in a vector.</p>
+<pre><code>[1] &quot;World : 3% change.&quot;
+[1] &quot;Australia : 4% change.&quot;
+[1] &quot;Canada : 1% change.&quot;
+[1] &quot;China : 4% change.&quot;
+[1] &quot;Denmark : 62% change.&quot;
+[1] &quot;India : -9% change.&quot;
+[1] &quot;Japan : 5% change.&quot;
+[1] &quot;New_Zealand : 0% change.&quot;
+[1] &quot;Sweden : 12% change.&quot;
+[1] &quot;Switzerland : 7% change.&quot;
+[1] &quot;United_Kingdom : 23% change.&quot;
+[1] &quot;United_States : 2% change.&quot;</code></pre>
+<pre><code> [1]  3.49241703  3.98181045  0.63273122  3.51887728 62.33064943 -9.14624362
+ [7]  4.73004321  0.07524008 12.26263811  7.21543884 23.01128298  1.69994636</code></pre>
+</div>
+<div id="multi-pane-plots-with-for-loops" class="section level3 unnumbered">
+<h3>Multi-pane plots with <code>for loops</code></h3>
+</div>
+<div id="practice-with-a-single-plot" class="section level3 unnumbered">
+<h3>Practice with a single plot</h3>
+<p><strong>Task 3:</strong> First, get your bearings by figuring out how to use the <code>df</code> dataset to plot the time series for the United States, for the years 1990 - 2015. Label the x axis “Year” and the y axis “% Renewable”. Include the full name of the county as the <code>main</code> title for the plot.</p>
+<pre><code>  year    World Australia   Canada    China  Denmark    India     Japan
+1 1990 19.36204  9.656031 62.37872 20.40794 3.175275 24.48929 11.254738
+2 1991 19.23357 10.598201 61.41041 18.47113 2.892325 22.80740 11.856735
+3 1992 19.15840 10.066865 61.67921 17.58468 4.398464 20.75265 10.162888
+4 1993 19.78795 10.549144 61.72233 18.12526 4.730088 19.55881 11.454528
+5 1994 19.53812 10.194474 60.40045 18.08844 4.295431 21.21910  7.993026
+6 1995 19.83536  9.624143 61.00410 19.21414 5.035639 17.26054  9.416323
+  New_Zealand   Sweden Switzerland United_Kingdom United_States
+1    80.00620 51.00011    54.98254       1.828767     11.528647
+2    77.18945 44.30088    57.16370       1.656439     10.757414
+3    72.58771 52.33321    56.90938       2.005662      9.916110
+4    77.02407 52.92433    59.57279       1.777626     10.484326
+5    82.05216 43.02873    60.57322       2.139842      9.747236
+6    83.85281 47.57878    57.42996       2.066535     10.801085</code></pre>
+<p><img src="figures/unnamed-chunk-22-1.png" width="925.44" /></p>
+</div>
+<div id="now-loop-it" class="section level3 unnumbered">
+<h3>Now loop it!</h3>
+<p><strong>Task 4:</strong> Use that code as the foundation for building up a <code>for loop</code> that displays the same time series for every country in the dataset on a multi-pane graph that with 4 rows and 3 columns.</p>
+<p><img src="figures/unnamed-chunk-23-1.png" width="768" /></p>
+</div>
+<div id="now-loop-it-differently" class="section level3 unnumbered">
+<h3>Now loop it differently!</h3>
+<p><strong>Task 5:</strong> Now try a different presentation. Instead of producing 12 different plots, superimpose the time series for each country on the <em>same single plot</em>.</p>
+<p>To add some flare, highlight the USA curve by coloring it red and making it thicker.</p>
+<p><img src="figures/unnamed-chunk-24-1.png" width="925.44" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="joining-datasets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="writing-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/databrew/intro-to-data-science/edit/master/07b-for_loops.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
