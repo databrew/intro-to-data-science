@@ -18,7 +18,7 @@
 A `for` loop is a super powerful coding tool. In a `for` loop, `R` loops through a chunk of code for a set number of repititions.
 
 A super basic example:
-```{r}
+```{r,echo=TRUE}
 x <- 1:5
 for(i in x){
   print(i)
@@ -26,7 +26,7 @@ for(i in x){
 ```
 
 Here's an example of a pretty useless `for` loop:
-```{r}
+```{r,echo=TRUE}
 for(i in 1:5){
   print("I'm just repeating myself.")
 }
@@ -44,7 +44,7 @@ for(i in 1:5){
 
 
 Another basic example, demonsrating that you can update a variable repeatedly in a loop.
-```{r}
+```{r,echo=TRUE}
 x <- 2
 for(i in 1:5){
   x <- x*x
@@ -53,7 +53,7 @@ for(i in 1:5){
 ```
 
 Another silly example:
-```{r}
+```{r,echo=TRUE}
 professors <- c("Keri","Deb","Ken") 
 for(x in professors){
   print(paste0(x," is pretty cool!"))
@@ -65,14 +65,14 @@ for(x in professors){
 Use this space to practice the basics of `for loop` formatting.  
 
 First, create a vector of names (add at least 3)
-```{r}
+```{r,echo=TRUE}
 # Add your names to this vector
 famous.names <- c("Lady Gaga","David Haskell","Tom Cruise")
 ```
 
 Using the examples above as a guide, create a `for loop` that prints the same silly statement about each of these  names. 
 
-```{r}
+```{r,echo=TRUE}
 # Do your coding here
 for(i in famous.names){
   print(paste0(i," has cooties!"))
@@ -90,14 +90,14 @@ For example, a `for loop` can be a very efficient way of making multi-panel plot
 
 Let's use a `for loop` to get a quick overview of the variables included in the `airquality` dataset built into R.
 
-```{r}
+```{r,echo=TRUE}
 data(airquality)
 head(airquality)
 ```
 
 Looks like the first four columns would be interesting to plot.
 
-```{r}
+```{r,echo=TRUE}
 par(mfrow=c(2,2)) # Setup a multi-panel plot # format = c(number of rows, number of columns)
 par(mar=c(4.5,4.5,1,1)) # Set plot margins
 
@@ -114,14 +114,14 @@ par(mfrow=c(1,1)) # restore the default single-panel plot
 
 `for loops` are also useful for plotting data in tricky ways. Let's use a different built-in dataset, that shows the performance of various car make/models.
 
-```{r}
+```{r,echo=TRUE}
 data(mtcars)
 head(mtcars)
 ```
 
 Let's say we want to see how gas mileage is affected by the number of cylinders a car has. It would be nice to create a plot that shows the raw data as well as the mean mileage for each cylinder number.
 
-```{r}
+```{r,echo=TRUE}
 # Let's see how many different cylinder types there are in the data
 ucyl <- unique(mtcars$cyl) ; ucyl
 
@@ -152,7 +152,7 @@ Now try to do something similar on your own with the `airquality` dataset. Use `
 
 We will provide the empty plot, you provide the `for loop`:
 
-```{r}
+```{r,echo=TRUE}
 plot(1,type="n",
      xlim=c(3,10),ylim=c(40,100),
      xlab="Month",
@@ -173,7 +173,7 @@ Here's another good example of the power of a good `for loop`.
 
 First, read in some cool data.
 
-```{r}
+```{r,echo=TRUE}
 kc <- read.csv("./data/keeling-curve.csv") ; head(kc)
 ```
 
@@ -181,13 +181,13 @@ This is the famous Keeling Curve dataset: long-term monitoring of atmospheric CO
 
 Try plotting the Keeling Curve:
 
-```{r}
+```{r,echo=TRUE}
 plot(kc$CO2 ~ kc$year_dec,type="l",xlab="Year",ylab="Atmospheric CO2")
 ```
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
-```{r}
+```{r,echo=TRUE}
 kc <- kc[kc$CO2 >0,] 
 plot(kc$CO2 ~ kc$year_dec,type="l",xlab="Year",ylab="Atmospheric CO2")
 ```
@@ -196,7 +196,7 @@ plot(kc$CO2 ~ kc$year_dec,type="l",xlab="Year",ylab="Atmospheric CO2")
 
 Let's look at the data a different way: *by focusing in on a single year.*
 
-```{r}
+```{r,echo=TRUE}
 
 # Stage an empty plot for what you are trying to represent
 plot(1, # plot a single point
@@ -224,7 +224,7 @@ Let's use a `for loop`!
 
 OK -- let's redo that graph and add a `for loop` into the mix:
 
-```{r}
+```{r,echo=TRUE}
 # First, stage your empty plot:
 plot(1,type="n",
      xlim=c(0,365),xlab="Day of year",
@@ -264,7 +264,7 @@ Beautiful! So how do you interpret this graph? Why does the squiggle happen ever
 
 First, read in and format some other cool data. The code for doing so is provided for you here:
 
-```{r}
+```{r,echo=TRUE}
 df <- read.csv("./data/renewable-energy.csv")
 ```
 
@@ -274,7 +274,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 
 **Task 1:** Use a `for loop` to find the change in renewable energy output for each nation in the dataset between 1990 and 2015. Print the difference for each nation in the console.
 
-```{r}
+```{r,echo=TRUE}
 # Write your code here
 names(df)
 i=2
@@ -287,7 +287,7 @@ for(i in 2:ncol(df)){
 
 **Task 2:** Re-do this loop, but instead of printing the differences to the console, save them in a vector.
 
-```{r}
+```{r,echo=TRUE}
 # Write your code here
 diffs <- c()
 i=2
@@ -306,7 +306,7 @@ diffs
 
 **Task 3:** First, get your bearings by figuring out how to use the `df` dataset to plot the time series for the United States, for the years 1990 - 2015. Label the x axis "Year" and the y axis "% Renewable". Include the full name of the county as the `main` title for the plot.
 
-```{r}
+```{r,echo=TRUE}
 # Write code here
 head(df)
 dfi <- df[,c(1,13)] 
@@ -322,7 +322,7 @@ plot(x=dfi[,1],
 
 **Task 4:** Use that code as the foundation for building up a `for loop` that displays the same time series for every country in the dataset on a multi-pane graph that with 4 rows and 3 columns.
 
-```{r,fig.height=10,fig.width=8}
+```{r,fig.height=10,fig.width=8,echo=TRUE}
 
 par(mfrow=c(4,3))
 i=3
@@ -344,7 +344,7 @@ for(i in 2:ncol(df)){
 
 To add some flare, highlight the USA curve by coloring it red and making it thicker.
 
-```{r}
+```{r,echo=TRUE}
 par(mfrow=c(1,1))
 plot(1,type="n",lwd=2,
      xlim=c(1990,2015),ylim=c(0,100),

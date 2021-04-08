@@ -41,6 +41,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -80,7 +120,7 @@
 
 \title{Working Title: the data science canon}
 \author{Databrew}
-\date{2021-03-30}
+\date{2021-04-08}
 
 \begin{document}
 \maketitle
@@ -93,6 +133,8 @@
 \chapter{Welcome}\label{welcome}}
 
 Welcome to \emph{Working Title}, the data science canon by \emph{DataBrew}
+
+Here is some teacher content.
 
 \hypertarget{part-core-theory}{%
 \part{Core theory}\label{part-core-theory}}
@@ -353,6 +395,15 @@ A \texttt{for} loop is a super powerful coding tool. In a \texttt{for} loop, \te
 
 A super basic example:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{5}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in}\NormalTok{ x)\{}
+  \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 1
 [1] 2
@@ -362,6 +413,14 @@ A super basic example:
 \end{verbatim}
 
 Here's an example of a pretty useless \texttt{for} loop:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)\{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"I'm just repeating myself."}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] "I'm just repeating myself."
@@ -383,6 +442,16 @@ Here's an example of a pretty useless \texttt{for} loop:
 
 Another basic example, demonsrating that you can update a variable repeatedly in a loop.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{2}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)\{}
+\NormalTok{  x <-}\StringTok{ }\NormalTok{x}\OperatorTok{*}\NormalTok{x}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 4
 [1] 16
@@ -392,6 +461,15 @@ Another basic example, demonsrating that you can update a variable repeatedly in
 \end{verbatim}
 
 Another silly example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{professors <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Keri"}\NormalTok{,}\StringTok{"Deb"}\NormalTok{,}\StringTok{"Ken"}\NormalTok{) }
+\ControlFlowTok{for}\NormalTok{(x }\ControlFlowTok{in}\NormalTok{ professors)\{}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(x,}\StringTok{" is pretty cool!"}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] "Keri is pretty cool!"
@@ -407,7 +485,23 @@ Use this space to practice the basics of \texttt{for\ loop} formatting.
 
 First, create a vector of names (add at least 3)
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add your names to this vector}
+\NormalTok{famous.names <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Lady Gaga"}\NormalTok{,}\StringTok{"David Haskell"}\NormalTok{,}\StringTok{"Tom Cruise"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 Using the examples above as a guide, create a \texttt{for\ loop} that prints the same silly statement about each of these names.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Do your coding here}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in}\NormalTok{ famous.names)\{}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(i,}\StringTok{" has cooties!"}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] "Lady Gaga has cooties!"
@@ -429,6 +523,13 @@ For example, a \texttt{for\ loop} can be a very efficient way of making multi-pa
 
 Let's use a \texttt{for\ loop} to get a quick overview of the variables included in the \texttt{airquality} dataset built into R.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(airquality)}
+\KeywordTok{head}\NormalTok{(airquality)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
   Ozone Solar.R Wind Temp Month Day
 1    41     190  7.4   67     5   1
@@ -441,13 +542,39 @@ Let's use a \texttt{for\ loop} to get a quick overview of the variables included
 
 Looks like the first four columns would be interesting to plot.
 
-\includegraphics{figures/unnamed-chunk-10-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\CommentTok{# Setup a multi-panel plot # format = c(number of rows, number of columns)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{4.5}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\CommentTok{# Set plot margins}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{)\{}
+\NormalTok{  y <-}\StringTok{ }\NormalTok{airquality[,i]}
+\NormalTok{  var.name <-}\StringTok{ }\KeywordTok{names}\NormalTok{(airquality)[i]}
+  \KeywordTok{plot}\NormalTok{(y,}\DataTypeTok{xlab=}\StringTok{"Day"}\NormalTok{,}\DataTypeTok{ylab=}\NormalTok{var.name,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-12-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\CommentTok{# restore the default single-panel plot}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{tricky-plot-solutions}{%
 \subsection*{Tricky plot solutions}\label{tricky-plot-solutions}}
 \addcontentsline{toc}{subsection}{Tricky plot solutions}
 
 \texttt{for\ loops} are also useful for plotting data in tricky ways. Let's use a different built-in dataset, that shows the performance of various car make/models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(mtcars)}
+\KeywordTok{head}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
@@ -461,11 +588,42 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 
 Let's say we want to see how gas mileage is affected by the number of cylinders a car has. It would be nice to create a plot that shows the raw data as well as the mean mileage for each cylinder number.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Let's see how many different cylinder types there are in the data}
+\NormalTok{ucyl <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{cyl) ; ucyl}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 6 4 8
 \end{verbatim}
 
-\includegraphics{figures/unnamed-chunk-12-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Let's make an empty plot}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{type=}\StringTok{"n"}\NormalTok{, }\CommentTok{# tell R not to draw anything}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{10}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{50}\NormalTok{),}
+     \DataTypeTok{xlab=}\StringTok{"Number of cylinders"}\NormalTok{,}
+     \DataTypeTok{ylab=}\StringTok{"Gas mileage (mpg)"}\NormalTok{)}
+
+\CommentTok{# Write your for loop here to add the actual data}
+\NormalTok{i=ucyl[}\DecValTok{1}\NormalTok{] }\CommentTok{# It's always good to use a known value of i as you build up your for loop}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in}\NormalTok{ ucyl)\{}
+  
+  \CommentTok{# Subset the dataframe according to number of cylinders}
+\NormalTok{  cari <-}\StringTok{ }\NormalTok{mtcars[mtcars}\OperatorTok{$}\NormalTok{cyl}\OperatorTok{==}\NormalTok{i,]}
+  
+  \CommentTok{# Plot the raw data}
+  \KeywordTok{points}\NormalTok{(}\DataTypeTok{x=}\NormalTok{cari}\OperatorTok{$}\NormalTok{cyl,}\DataTypeTok{y=}\NormalTok{cari}\OperatorTok{$}\NormalTok{mpg,}\DataTypeTok{col=}\StringTok{"grey"}\NormalTok{)}
+  
+  \CommentTok{# Superimpose the mean on top}
+  \KeywordTok{points}\NormalTok{(}\DataTypeTok{x=}\NormalTok{i,}\DataTypeTok{y=}\KeywordTok{mean}\NormalTok{(cari}\OperatorTok{$}\NormalTok{mpg),}\DataTypeTok{col=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{pch=}\StringTok{"-"}\NormalTok{,}\DataTypeTok{cex=}\DecValTok{5}\NormalTok{,)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-14-1.pdf}
 
 \hypertarget{exercise-2}{%
 \subsection*{Exercise 2}\label{exercise-2}}
@@ -475,7 +633,23 @@ Now try to do something similar on your own with the \texttt{airquality} dataset
 
 We will provide the empty plot, you provide the \texttt{for\ loop}:
 
-\includegraphics{figures/unnamed-chunk-13-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{type=}\StringTok{"n"}\NormalTok{,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{10}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{,}\DecValTok{100}\NormalTok{),}
+     \DataTypeTok{xlab=}\StringTok{"Month"}\NormalTok{,}
+     \DataTypeTok{ylab=}\StringTok{"Yemperature"}\NormalTok{)}
+
+\CommentTok{# Write your for loop here to add the actual data}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in}\NormalTok{ airquality}\OperatorTok{$}\NormalTok{Month)\{}
+\NormalTok{  airi <-}\StringTok{ }\NormalTok{airquality[airquality}\OperatorTok{$}\NormalTok{Month}\OperatorTok{==}\NormalTok{i,]}
+  \KeywordTok{points}\NormalTok{(}\DataTypeTok{x=}\NormalTok{airi}\OperatorTok{$}\NormalTok{Month,}\DataTypeTok{y=}\NormalTok{airi}\OperatorTok{$}\NormalTok{Temp,}\DataTypeTok{pch=}\DecValTok{1}\NormalTok{,}\DataTypeTok{col=}\StringTok{"grey"}\NormalTok{)}
+  \KeywordTok{points}\NormalTok{(}\DataTypeTok{x=}\NormalTok{i,}\DataTypeTok{y=}\KeywordTok{mean}\NormalTok{(airi}\OperatorTok{$}\NormalTok{Temp),}\DataTypeTok{pch=}\StringTok{"-"}\NormalTok{,}\DataTypeTok{cex=}\DecValTok{5}\NormalTok{,}\DataTypeTok{col=}\StringTok{"black"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-15-1.pdf}
 
 \hypertarget{using-a-for-loop-with-more-complex-data}{%
 \section*{\texorpdfstring{Using a \texttt{for\ loop} with more complex data}{Using a for loop with more complex data}}\label{using-a-for-loop-with-more-complex-data}}
@@ -484,6 +658,12 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 Here's another good example of the power of a good \texttt{for\ loop}.
 
 First, read in some cool data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kc <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/keeling-curve.csv"}\NormalTok{) ; }\KeywordTok{head}\NormalTok{(kc)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
   year month day_of_month day_of_year year_dec frac_of_year    CO2
@@ -499,15 +679,42 @@ This is the famous Keeling Curve dataset: long-term monitoring of atmospheric CO
 
 Try plotting the Keeling Curve:
 
-\includegraphics{figures/unnamed-chunk-15-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(kc}\OperatorTok{$}\NormalTok{CO2 }\OperatorTok{~}\StringTok{ }\NormalTok{kc}\OperatorTok{$}\NormalTok{year_dec,}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Year"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Atmospheric CO2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-17-1.pdf}
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
-\includegraphics{figures/unnamed-chunk-16-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kc <-}\StringTok{ }\NormalTok{kc[kc}\OperatorTok{$}\NormalTok{CO2 }\OperatorTok{>}\DecValTok{0}\NormalTok{,] }
+\KeywordTok{plot}\NormalTok{(kc}\OperatorTok{$}\NormalTok{CO2 }\OperatorTok{~}\StringTok{ }\NormalTok{kc}\OperatorTok{$}\NormalTok{year_dec,}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Year"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Atmospheric CO2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-18-1.pdf}
 
 \textbf{What's the deal with those squiggles?} Let's investigate!
 
 Let's look at the data a different way: \emph{by focusing in on a single year.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Stage an empty plot for what you are trying to represent}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{, }\CommentTok{# plot a single point}
+     \DataTypeTok{type=}\StringTok{"n"}\NormalTok{,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{365}\NormalTok{),}\DataTypeTok{xlab=}\StringTok{"Day of year"}\NormalTok{,}
+     \DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{),}\DataTypeTok{ylab=}\StringTok{"CO2 anomaly"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\DecValTok{0}\NormalTok{,}\DataTypeTok{col=}\StringTok{"grey"}\NormalTok{) }\CommentTok{# add nifty horizontal line}
+
+\CommentTok{# Reduce the dataset to a single year (any year)}
+\NormalTok{kcy <-}\StringTok{ }\NormalTok{kc[kc}\OperatorTok{$}\NormalTok{year}\OperatorTok{==}\StringTok{"1990"}\NormalTok{,] ; }\KeywordTok{head}\NormalTok{(kcy)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
     year month day_of_month day_of_year year_dec frac_of_year    CO2
@@ -519,9 +726,22 @@ Let's look at the data a different way: \emph{by focusing in on a single year.}
 821 1990     2           11     41.5005 1990.114       0.1137 355.09
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Let's convert each CO2 reading to an 'anomaly' compared to the year's average.}
+\NormalTok{CO2.mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(kcy}\OperatorTok{$}\NormalTok{CO2,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{) ; CO2.mean  }\CommentTok{# Take note of how useful that 'na.rm=TRUE' input can be!}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 354.4538
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\NormalTok{kcy}\OperatorTok{$}\NormalTok{CO2 }\OperatorTok{-}\StringTok{ }\NormalTok{CO2.mean ; y }\CommentTok{# Translate each data point to an anomaly}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
  [1] -0.87384615 -0.46384615 -0.53384615 -0.06384615  0.58615385  0.63615385
@@ -535,13 +755,34 @@ Let's look at the data a different way: \emph{by focusing in on a single year.}
 [49]  0.01615385 -0.11384615  0.37615385  0.34615385          NA
 \end{verbatim}
 
-\includegraphics{figures/unnamed-chunk-17-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add points to your plot}
+\KeywordTok{points}\NormalTok{(y}\OperatorTok{~}\NormalTok{kcy}\OperatorTok{$}\NormalTok{day_of_year,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}\DataTypeTok{col=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"darkblue"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-19-1.pdf}
 
 But this only shows one year of data! How can we include the seasonal squiggle from other years?
 
 Let's use a \texttt{for\ loop}!
 
 OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First, stage your empty plot:}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{type=}\StringTok{"n"}\NormalTok{,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{365}\NormalTok{),}\DataTypeTok{xlab=}\StringTok{"Day of year"}\NormalTok{,}
+     \DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{),}\DataTypeTok{ylab=}\StringTok{"CO2 anomaly"}\NormalTok{)}
+
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\DecValTok{0}\NormalTok{,}\DataTypeTok{col=}\StringTok{"grey"}\NormalTok{)}
+
+\CommentTok{# Now we will loop through each year of data. First, get a vector of the years included in the dataset:}
+\NormalTok{years <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(kc}\OperatorTok{$}\NormalTok{year) ; years}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
  [1] "1974" "1975" "1976" "1977" "1978" "1979" "1980" "1981" "1982" "1983"
@@ -551,7 +792,31 @@ OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
 [41] "2014" "2015" "2016" "2017" "2018" "2019" "2020" "2021" NA    
 \end{verbatim}
 
-\includegraphics{figures/unnamed-chunk-18-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Now build your for loop. }
+\CommentTok{# Notice that the contents of the `for loop` are exactly the same }
+\CommentTok{# as the single plot above --  with one exception. }
+\CommentTok{# Notice the use of the symbol i}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in}\NormalTok{ years)\{}
+
+  \CommentTok{# Reduce the dataset to a single year}
+\NormalTok{  kcy <-}\StringTok{ }\NormalTok{kc[kc}\OperatorTok{$}\NormalTok{year}\OperatorTok{==}\NormalTok{i,] ; }\KeywordTok{head}\NormalTok{(kcy)}
+  
+  \CommentTok{# Let's convert each CO2 reading to an 'anomaly' compared to the year's average.}
+\NormalTok{  CO2.mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(kcy}\OperatorTok{$}\NormalTok{CO2,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{) ; CO2.mean }\CommentTok{# Get average CO2 for year}
+
+\NormalTok{  y <-}\StringTok{ }\NormalTok{kcy}\OperatorTok{$}\NormalTok{CO2 }\OperatorTok{-}\StringTok{ }\NormalTok{CO2.mean ; y }\CommentTok{# Translate each data point to an anomaly}
+
+  \CommentTok{# Add points to your plot}
+  \KeywordTok{points}\NormalTok{(y}\OperatorTok{~}\NormalTok{kcy}\OperatorTok{$}\NormalTok{day_of_year,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}\DataTypeTok{col=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"darkblue"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{3}\NormalTok{))}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-20-1.pdf}
 
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
@@ -561,6 +826,12 @@ Beautiful! So how do you interpret this graph? Why does the squiggle happen ever
 
 First, read in and format some other cool data. The code for doing so is provided for you here:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/renewable-energy.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 This dataset, freely available from World Bank, shows the renewable electricity output for various countries, presented as a percentage of the nation's total electricity output. They provide this data as a time series.
 
 \hypertarget{summarize-columns-with-a-for-loop}{%
@@ -568,12 +839,30 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 
 \textbf{Task 1:} Use a \texttt{for\ loop} to find the change in renewable energy output for each nation in the dataset between 1990 and 2015. Print the difference for each nation in the console.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Write your code here}
+\KeywordTok{names}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
  [1] "year"           "World"          "Australia"      "Canada"        
  [5] "China"          "Denmark"        "India"          "Japan"         
  [9] "New_Zealand"    "Sweden"         "Switzerland"    "United_Kingdom"
 [13] "United_States" 
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i=}\DecValTok{2}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(df))\{}
+\NormalTok{  dfi <-}\StringTok{ }\NormalTok{df[,i] ; dfi}
+\NormalTok{  diffi <-}\StringTok{ }\NormalTok{dfi[}\KeywordTok{length}\NormalTok{(dfi)] }\OperatorTok{-}\StringTok{ }\NormalTok{dfi[}\DecValTok{1}\NormalTok{] ; diffi}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\KeywordTok{names}\NormalTok{(df)[i],}\StringTok{" : "}\NormalTok{,}\KeywordTok{round}\NormalTok{(diffi),}\StringTok{"% change."}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] "World : 3% change."
@@ -592,6 +881,20 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 
 \textbf{Task 2:} Re-do this loop, but instead of printing the differences to the console, save them in a vector.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Write your code here}
+\NormalTok{diffs <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\NormalTok{i=}\DecValTok{2}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(df))\{}
+\NormalTok{  dfi <-}\StringTok{ }\NormalTok{df[,i] ; dfi}
+\NormalTok{  diffi <-}\StringTok{ }\NormalTok{dfi[}\KeywordTok{length}\NormalTok{(dfi)] }\OperatorTok{-}\StringTok{ }\NormalTok{dfi[}\DecValTok{1}\NormalTok{] ; diffi}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\KeywordTok{names}\NormalTok{(df)[i],}\StringTok{" : "}\NormalTok{,}\KeywordTok{round}\NormalTok{(diffi),}\StringTok{"% change."}\NormalTok{))}
+\NormalTok{  diffs <-}\StringTok{ }\KeywordTok{c}\NormalTok{(diffs,diffi)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] "World : 3% change."
 [1] "Australia : 4% change."
@@ -607,6 +910,12 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 [1] "United_States : 2% change."
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diffs}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
  [1]  3.49241703  3.98181045  0.63273122  3.51887728 62.33064943 -9.14624362
  [7]  4.73004321  0.07524008 12.26263811  7.21543884 23.01128298  1.69994636
@@ -621,6 +930,13 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \addcontentsline{toc}{subsection}{Practice with a single plot}
 
 \textbf{Task 3:} First, get your bearings by figuring out how to use the \texttt{df} dataset to plot the time series for the United States, for the years 1990 - 2015. Label the x axis ``Year'' and the y axis ``\% Renewable''. Include the full name of the county as the \texttt{main} title for the plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Write code here}
+\KeywordTok{head}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
   year    World Australia   Canada    China  Denmark    India     Japan
@@ -639,7 +955,19 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 6    83.85281 47.57878    57.42996       2.066535     10.801085
 \end{verbatim}
 
-\includegraphics{figures/unnamed-chunk-22-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfi <-}\StringTok{ }\NormalTok{df[,}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{13}\NormalTok{)] }
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{dfi[,}\DecValTok{1}\NormalTok{],}
+     \DataTypeTok{y=}\NormalTok{dfi[,}\DecValTok{2}\NormalTok{],}
+     \DataTypeTok{type=}\StringTok{"l"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{1990}\NormalTok{,}\DecValTok{2015}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}
+     \DataTypeTok{xlab=}\StringTok{"Year"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"% renewable"}\NormalTok{,}
+     \DataTypeTok{main=}\KeywordTok{names}\NormalTok{(dfi)[}\DecValTok{2}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-24-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsection*{Now loop it!}\label{now-loop-it}}
@@ -647,7 +975,23 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 
 \textbf{Task 4:} Use that code as the foundation for building up a \texttt{for\ loop} that displays the same time series for every country in the dataset on a multi-pane graph that with 4 rows and 3 columns.
 
-\includegraphics{figures/unnamed-chunk-23-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\NormalTok{i=}\DecValTok{3}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(df))\{}
+\NormalTok{  dfi <-}\StringTok{ }\NormalTok{df[,}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,i)] ; dfi}
+  \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{dfi[,}\DecValTok{1}\NormalTok{],}
+       \DataTypeTok{y=}\NormalTok{dfi[,}\DecValTok{2}\NormalTok{],}
+       \DataTypeTok{type=}\StringTok{"l"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}
+       \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{1990}\NormalTok{,}\DecValTok{2015}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}
+       \DataTypeTok{xlab=}\StringTok{"Year"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"% renewable"}\NormalTok{,}
+       \DataTypeTok{main=}\KeywordTok{names}\NormalTok{(dfi)[}\DecValTok{2}\NormalTok{])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-25-1.pdf}
 
 \hypertarget{now-loop-it-differently}{%
 \subsection*{Now loop it differently!}\label{now-loop-it-differently}}
@@ -657,7 +1001,23 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 
 To add some flare, highlight the USA curve by coloring it red and making it thicker.
 
-\includegraphics{figures/unnamed-chunk-24-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{type=}\StringTok{"n"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{1990}\NormalTok{,}\DecValTok{2015}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}
+     \DataTypeTok{xlab=}\StringTok{"Year"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"% Renewable"}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(df))\{}
+\NormalTok{  dfi <-}\StringTok{ }\NormalTok{df[,}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,i)] ; dfi}
+  \KeywordTok{lines}\NormalTok{(dfi[,}\DecValTok{2}\NormalTok{]}\OperatorTok{~}\NormalTok{dfi[,}\DecValTok{1}\NormalTok{],}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{col=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{5}\NormalTok{))}
+\NormalTok{\}}
+
+\KeywordTok{lines}\NormalTok{(df}\OperatorTok{$}\NormalTok{United_States}\OperatorTok{~}\NormalTok{df}\OperatorTok{$}\NormalTok{year,}\DataTypeTok{lwd=}\DecValTok{4}\NormalTok{,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-26-1.pdf}
 
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
@@ -887,6 +1247,8 @@ Spinning up a local DB
 \item
   Item 3
 \end{itemize}
+
+Here is some teacher content.
 
 \hypertarget{tutorial-video-1}{%
 \section*{Tutorial video}\label{tutorial-video-1}}
