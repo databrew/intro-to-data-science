@@ -10,6 +10,8 @@ biblio-style: apalike
 link-citations: yes
 github-repo: databrew/intro-to-data-science
 description: "Data science is just data and science. But it's better with pizza."
+params:
+  is_teacher: True
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
@@ -25,12 +27,28 @@ opts_chunk$set(comment = NA,
                fig.height = 5.9,
                fig.path = 'figures/')
 options(scipen=999)
+is_teacher <- params$is_teacher
+
 ```
+
+```{r}
+# Define function for showing teacher content
+teacher_content <- function(content = ''){
+  cat(paste0('<p style="color:#3f0000; background-color:#f5f5dc">', content, '</p>'))
+}
+```
+
 
 
 # Welcome
 
 Welcome to  *Working Title*, the data science canon by *DataBrew*
+
+
+```{r, results = 'asis', eval = is_teacher}
+teacher_content('Here is some teacher content.')
+```
+
 
 ```{r,include=FALSE}
 library(dplyr)
