@@ -1,6 +1,390 @@
 # Objects in R
 
-## Variables
-## Vectors
+```{r,echo=FALSE}
+is_teacher=FALSE
+```
+
+## Learning goals {-}
+
+* How to define variables and work with them in `R`  
+* Learn the various possible classes of data in `R`  
+* Leaern the various structures of data in `R`  
+* How to work with vectors in `R`.  
+
+```{r, results = 'asis', eval = is_teacher,echo=FALSE}
+teacher_content('Here is some teacher content.')
+```
+
+## Tutorial video {-}
+
+
+## Variables in `R` {-}
+
+So far we have strictly been using `R` as a calculator, with commands such as: 
+
+```{r}
+3 + 5
+```
+
+Of course, `R` can do much, much more than these basic computations. Your first step in uncovering the potential of `R` is learning how to use **variables**.
+
+In `R`, a variable is a convenient way of referring to an underlying value. That value can be as simple as a single number (e.g., `6`), or as complex as a spreadsheet that is many Gigabytes in size. It may be useful to think of a variable as a cup; just as cups make it easy to hold your coffee and carry it from the kitchen to the couch, variables make it easy to contain and work with data.
+
+### Declaring variables {-}
+
+To assign numbers or other types of data to a variable, you use the `<` and `-` characters to make the arrow symbol `<-`.
+
+```{r}
+x <- 3+5
+```
+
+As the direction of the `<-` arrow suggests, this command stores the result of `3 + 5` into the variable `x`.
+
+Unlike before, you did not see `8` printed to the *Console*. That is because the result was stored into `x`.
+
+
+### Calling variables {-}
+
+If you wanted R to tell you what "x" is, just type the variable name into the *Console* and run that command:
+
+```{r}
+x
+```
+
+Want to create a variable but also see its value at the same time? Here's a handy trick:
+
+```{r}
+x <- 3*12 ; x
+
+```
+
+The semicolon simulates hitting `Enter`. It says: first run `x <- 3*12`, then run `x`.
+
+You can also update variables.
+
+```{r}
+x <- x * 3 ; x
+x <- x * 3 ; x
+```
+
+You can also add variables together.
+
+```{r}
+x <- 8
+y <- 4.5
+x + y
+```
+
+### Naming variables
+
+Variables are case-sensitive! If you misspell a variable name, you will confuse `R` and get an error.  
+
+For example, ask `R` to tell you the value of capital `X`. The error message will be `Error: object 'X' not found`, which means `R` looked in its memory for an object (i.e., a variable) named `X` and could not find one.
+
+You can make variable names as complicated or simple as you want.
+
+```{r}
+supercalifragilistic.expialidocious <- 5
+supercalifragilistic.expialidocious  # still works
+```
+
+Note that periods and underscores can be used in variable names:
+
+```{r}
+my.variable <- 5 # periods can be used
+my_variable <- 5 # underscores can be used
+```
+
+However, hyphens cannot be used since that symbol is used for subtraction.
+
+Naming variables is a bit of an art. The trick is using names that are clear but are not so complicated that typing them is tedious or prone to errors.
+
+Some names need to be avoided, since `R` uses them for special purposes. For example, `data` should be avoided, as should `mean`, since both are functions built-in to `R` and `R` is liable to interpret them as such instead of as a variable containing your data.
+
+Note that `R` uses a feature called 'Tab complete' to help you type variable names. Begin typing a variable name, such as `supercalifragilistic.expialidocious` from the example above, but after the first few letters press the `Tab` key. `R` will then give you options for auto-completing your word. Press `Tab` again, or `Enter`, to accept the auto-complete. This is a handy way to avoid typos.
+
+
+#### Exercise 1 {-}
+
+A. Estimate how many bananas you've eaten in your lifetime and store that value in a variable (choose whatever name you wish).  
+
+B. Now estimate how many ice cream sandwiches you've eaten in your lifetime and store that in a different variable.  
+
+C. Now use these variables to calculate your Banana-to-ICS ratio. Store your result in a third variable, then call that variable in the Console to see your ratio.  
+
+D. Who in the class has the highest ratio? Who has the lowest?  
+
+
+
+## Types of data in `R` {-}
+
+So far we have been working exclusively with numeric data. But  there are many different data types in R. We call these “types” of data **classes**:
+
+* Decimal values like 4.5 are called **numeric** data.
+* Natural numbers like 4 are called **integers**. Integers are also numerics.
+* Boolean values (TRUE or FALSE) are called **logical** data.
+* Text (or string) values are called **character** data.
+
+In order to be combined, data have to be the same class. 
+
+R is able to compute the following commands ...
+
+```{r}
+x <- 6
+y <- 4
+x + y
+```
+
+... but not these:
+
+```{r eval=FALSE}
+x <- 6
+y <- "4"
+x + y
+```
+
+That's because the quotation marks used in naming `y` causes `R` to interpret `y` as a `character` class.
+
+To see how `R` is interpreting variables, you can use the `class()` function:
+
+```{r}
+x <- 100
+class(x)
+
+x <- "100"
+class(x)
+
+x <- 100 == 101
+class(x)
+```
+
+Another data type to be aware of is **factors**, but we will deal with them later.
+
+
+## Types of data structures in `R` {-}
+
+Data belong to different *classes*, as explained above, and they can be arranged into various *structures*. 
+
+So far we have been dealing only with variables that contain a single value, but the real value of `R` comes from assigning *entire sets* of data to a variable. 
+
+### Vectors {-}
+
+The simplest data structure in `R` is a **vector**. A vector is simply a set of values. A vector can contain only a single value, as we have been working with thus far, or it can contain many millions of values. 
+
+#### Declaring and using vectors {-}
+
+To build up a vector in `R`, use the function `c()`, which is short for "concatenate".
+
+```{r}
+x <- c(5,6,7,8)
+x
+```
+
+You can use the `c()` function to concatenate two vectors together:
+
+```{r}
+x <- c(5,6,7,8)
+y <- c(9,10,11,12)
+z <- c(x,y)
+z
+```
+
+You can also use `c()` to add values to a vector:
+
+```{r}
+x <- c(5,6,7,8)
+x <- c(x,9)
+x
+```
+
+When two vectors are of the same length, you can do arithmetic with them:
+
+```{r}
+x <- c(5,6,7,8)
+y <- c(9,10,11,12)
+
+x + y
+x - y
+x * y
+x / y
+```
+
+You can also put vectors through logical tests:
+
+```{r}
+x <- 1:5
+4 == x
+```
+
+This command is asking `R` to tell you whether each element in `x` is equal to `4`. 
+
+You can create vectors of any data class:
+
+```{r}
+x <- c("Ben","Joe","Eric") 
+x
+
+y <- c(TRUE,TRUE,FALSE)
+y
+```
+
+Note that all values within a vector *must be of the same class (i.e., data type). You can't combine numerics and characters into the same vector. If you did, `R` would try to convert the numbers to characters.  For example:
+
+```{r}
+x <- 4
+y <- "6"
+z <- c(x,y)
+z
+```
+
+
+#### Useful functions for handling vectors
+
+**`length()`** tells you the number of elements in a vector:
+
+```{r}
+x <- c(5,6)
+y <- c(9,10,11,12)
+
+length(x)
+length(y)
+```
+
+The **colon symbol `:`** creates a vector with every integer occurring between a min and max:
+
+```{r}
+x <- 1:10
+x
+```
+
+**`seq()`** allows you to build a vector using evenly spaced *sequence* of values between a min and max:
+
+```{r}
+seq(0,100,length=11)
+```
+
+In this command, you are telling `R` to give you a sequence of values from `0` to `100`, and you want the length of that vector to be `11`. `R` then figures out the spacing required between each value in order to make that happen. 
+
+Alternatively, you can prescribe the interval between values instead of the length:
+
+```{r}
+seq(0,100,by=7)
+```
+
+**`head()`** and **`tail()`** can be used to retrieve the first 6 or last 6 elements in a vector, respectively.
+
+```{r}
+x <- 1:1000
+head(x)
+tail(x)
+```
+
+You can also adjust how many elements to return:
+
+```{r}
+head(x,2)
+tail(x,10)
+```
+
+**`which()`** allows you to ask, "For which elements of a vector is the following statement true?"
+
+```{r}
+x <- 1:10
+which(x==4)
+```
+
+If no values within the vector meet the condition, a vector of length zero will be returned:
+
+```{r}
+x <- 1:10
+which(x == 11)
+```
+
+**`%in%`** is a handy operator that allows you to ask whether a value occurs *within* a vector:
+
+```{r}
+x <- 1:10
+4 %in% x
+11 %in% x
+```
+
+#### Exercise 2 {-}
+
+*NOTE: UNDER CONSTRUCTION!*
+
+
+#### Subsetting vectors {-}
+
+Since you will eventually be working with vectors that contain thousands of data points, it will be useful to have some tools for *subsetting* them -- that is, looking at only a few select elements at a time.
+
+You can subset a vector using square brackets `[ ]`.
+
+```{r}
+x <- 50:100
+x[10]
+```
+
+This command is asking `R` to return the 10th element in the vector `x`.
+
+```{r}
+x[10:20]
+```
+
+This command is asking `R` to return elements `10:20` in the vector `x`. 
+
+#### Exercise 3 {-}
+
+A. Figure out how to replicate the `head` function using your new vector subsetting skills.
+
+```{r,eval=is_teacher}
+x[1:6]
+```
+
+B. Now replicate the `tail()` function, using those same skills as well as the `length()` function you just learned.
+
+```{r,eval=is_teacher}
+x[(length(x) - 5) : length(x)]
+```
+
+### Other data structures
+
+A **vector** is the most basic data structure in `R`, and the other structures are built out of vectors.
+
+As a data scientist, the most common data structure you will be working with is a **dataframe**, which is essentially a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data. 
+
+We will explore dataframes in detail later, but here is a sneak peak at what they look like:
+
+```{r}
+df <- data.frame(x=300:310,
+           y=600:610)
+df
+```
+
+In this command, we used the `data.frame()` function to combine two vectors into a dataframe with two columns named `x` and `y`. `R` then saved this result in a new variable named `df`. When we call `df`, `R` shows us the dataframe.
+
+The great thing about dataframes is that they allow you to relate different data types to each other.
+
+```{r}
+df <- data.frame(name=c("Ben","Joe","Eric"),
+                 height.inches=c(75,73,80))
+df
+```
+
+This dataframe has one column of class `character` and another of class `numeric`.
+
+The two other most common data structures are **matrices** and **lists**, but we will wait on learning about thos. For now, focus on becoming comfortable using vectors and dataframes. 
+
+### Exercise 3 {-}
+
+*NOTE: UNDER CONSTRUCTION!*
+
+
+## Review assignment {-}
+
+*NOTE: UNDER CONSTRUCTION!*
+
+
+## Other Resources {-}
+
 
 
