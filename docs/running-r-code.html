@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-04-08" />
+<meta name="date" content="2021-04-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="setting-up-rstudio.html"/>
-<link rel="next" href="rstudio-workflows.html"/>
+<link rel="next" href="introduction-to-rstudio.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -143,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II Getting started</b></span></li>
 <li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up RStudio</a></li>
 <li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a></li>
-<li class="chapter" data-level="8" data-path="rstudio-workflows.html"><a href="rstudio-workflows.html"><i class="fa fa-check"></i><b>8</b> RStudio workflows</a></li>
+<li class="chapter" data-level="8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>8</b> Introduction to Rstudio</a></li>
 <li class="chapter" data-level="9" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>9</b> Objects in R</a></li>
 <li class="chapter" data-level="10" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>10</b> Calling functions</a></li>
 <li class="chapter" data-level="11" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>11</b> Base plots</a></li>
@@ -232,11 +232,190 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="running-r-code" class="section level1">
 <h1><span class="header-section-number">Module 7</span> Running R code</h1>
-<div id="basic-math" class="section level2">
-<h2><span class="header-section-number">7.1</span> Basic math</h2>
+<div id="learning-goals" class="section level2 unnumbered">
+<h2>Learning goals</h2>
+<ul>
+<li>Understand the difference between R and RStudio.</li>
+<li>Learn how to run code in R</li>
+<li>Learn how to use R as a calculator</li>
+<li>Learn how to use mathematical and logical operators in R</li>
+</ul>
 </div>
-<div id="operators" class="section level2">
-<h2><span class="header-section-number">7.2</span> Operators</h2>
+<div id="tutorial-video" class="section level2 unnumbered">
+<h2>Tutorial video</h2>
+</div>
+<div id="r-and-rstudio-whats-the-difference" class="section level2 unnumbered">
+<h2><code>R</code> and <code>RStudio</code>: what’s the difference?</h2>
+<p>These two things are similar, but it is important to understand how they are different.</p>
+<p>In short, <code>R</code> is a open-source (i.e., free) coding language: a powerful programming engine that can be used to do really cool things with data.</p>
+<p><code>R Studio</code>, in contrast, is a free <em>user interface</em> that helps you interact with <code>R</code>. If you think of <code>R</code> as an engine, then it helps to think of <code>RStudio</code> as the car that contains it. Like a car,<code>RStudio</code> makes it easier and more comfortable to use the engine to get where you want to go.</p>
+<p><code>R Studio</code> needs <code>R</code> in order to function, but <code>R</code> can technically be used on its own outside of <code>RStudio</code> if you want. However, just as a good car mechanic can get an engine to run without being installed within a car, using <code>R</code> on its own takes some expertise. For beginners (and everyone else, really), <code>R</code> is just so much more pleasant to use when you are operating it from within <code>RStudio</code>.</p>
+<p>That is why this book <em>always</em> uses <code>RStudio</code> when working with <code>R</code>.</p>
+</div>
+<div id="rstudios-console" class="section level2 unnumbered">
+<h2>RStudio’s <em>Console</em></h2>
+<p>When you open <code>RStudio</code>, you see several different panes within the program’s window. You will get a tour of <code>RStudio</code> in the next module. For now, look at the left half of the screen. You should see a large pane entitled the <em>Console</em>.</p>
+<p><em>NOTE: Insert screenshot here</em></p>
+<p><code>RStudio</code>’s <em>Console</em> is your window into <code>R</code>, the engine under the hood. The <em>Console</em> is where you type commands for <code>R</code> to run, and where <code>R</code> prints back the results of what you have told it to do.</p>
+</div>
+<div id="running-code-in-the-console" class="section level2 unnumbered">
+<h2>Running code in the <em>Console</em></h2>
+<p>Type your first command into the <em>Console</em>, then press <code>Enter</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="running-r-code.html#cb1-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>When you press <code>Enter</code>, R processes the command you fed it, then returns its result (<code>2</code>) just below your command.</p>
+<p>Note that spaces don’t matter. Both of the following two commands are legible to <code>R</code> and return the same thing:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="running-r-code.html#cb3-1"></a><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="running-r-code.html#cb5-1"></a><span class="dv">4</span><span class="op">+</span><span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<p>However, it is better to make your code as easy to read as possible, which usually means using spaces.</p>
+<div id="exercise-1" class="section level4 unnumbered">
+<h4>Exercise 1</h4>
+<p>Type a command in the <em>Console</em> to determine the sum of 596 and 198.</p>
+</div>
+<div id="re-running-code-in-the-console" class="section level3 unnumbered">
+<h3>Re-running code in the <em>Console</em></h3>
+<p>If you want to re-run the code you just ran, or if you want to recall the code so that you can adjust it slightly, click anywhere in the <em>Console</em> then press your keyboard’s <code>Up</code> arrow.</p>
+<p>If you keep pressing your <code>Up</code> arrow, <code>R</code> will present you with sequentially older commands.</p>
+<p>If you accidentally recalled an old command without meaning to, you can reset the <em>Console</em>’s command line by pressing <code>Escape</code>.</p>
+<div id="exercise-2" class="section level4 unnumbered">
+<h4>Exercise 2</h4>
+<p>A. Re-run the sum of 596 and 198 without re-typing it.</p>
+<p>B. Recall the command again, but this time adjust the code to find the sum of 596 and 298.</p>
+<p>C. Practice escaping an accidentally called command: recall your most recent command, then clear the <em>Console</em>’s command line.</p>
+</div>
+</div>
+<div id="incomplete-commands-in-r" class="section level3 unnumbered">
+<h3>Incomplete commands in <code>R</code></h3>
+<p><code>R</code> gets confused when you enter an incomplete command, and will wait for you to write the remainder of your command on the next line in the <em>Console</em> before doing anything.</p>
+<p>For example, try running this code in your <em>Console</em>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="running-r-code.html#cb7-1"></a><span class="dv">45</span> <span class="op">+</span></span></code></pre></div>
+<p>You will find that <code>R</code> gives you a little <code>+</code> sign on the line under your command, which means it is waiting for you to complete your command.</p>
+<p>If you want to complete your command, add a number (e.g., <code>3)</code> and hit <code>Enter</code>. You should now be given an answer (e.g., <code>48</code>).</p>
+<p>If instead you want <code>R</code> to stop waiting and stop running, hit the <code>Escape</code> key.</p>
+</div>
+<div id="getting-errors-in-r" class="section level3 unnumbered">
+<h3>Getting errors in <code>R</code></h3>
+<p><code>R</code> only understands your commands if they follow the rules of the <code>R</code> language (often referred to as its <em>syntax</em>). If <code>R</code> does not understand your code, it will throw an error and give up on trying to execute that line of code.</p>
+<p>For example, try running this code in your <em>Console</em>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="running-r-code.html#cb8-1"></a><span class="dv">4</span> <span class="op">+</span><span class="st"> </span>6p</span></code></pre></div>
+<p>You probably received a message in red font stating <code>Error: unexpected symbol in "4 + 6p"</code>. That is because R did know how to interpret the symbol <code>p</code> in this case.</p>
+<p>Get used to errors! They happen all the time, even (especially?) to professionals, and it is essential that you get used to reading your own code to find and fix its errors.</p>
+<div id="exercise-3" class="section level4 unnumbered">
+<h4>Exercise 3</h4>
+<p>Type a command in R that throws an error, then recall the command and revise so that <code>R</code> can understand it.</p>
+</div>
+</div>
+</div>
+<div id="use-r-like-a-calculator" class="section level2 unnumbered">
+<h2>Use R like a calculator</h2>
+<p>As you can tell from those commands you just ran, <code>R</code> is, at heart, a fancy calculator.</p>
+<p>Some calculations are straightforward, like addition and subtraction:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="running-r-code.html#cb9-1"></a><span class="dv">490</span> <span class="op">+</span><span class="st"> </span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>## [1] 1490</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="running-r-code.html#cb11-1"></a><span class="dv">490</span> <span class="op">-</span><span class="st"> </span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>## [1] -510</code></pre>
+<p>Division is pretty straightfoward too:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="running-r-code.html#cb13-1"></a><span class="dv">24</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<p>For multiplication, use an asterisk (<code>*</code>):</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="running-r-code.html#cb15-1"></a><span class="dv">24</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 48</code></pre>
+<p><code>R</code> is usually great about following classic rules for Order of Operations, and you can use parentheses to exert control over that order. For example, these two commands produce different results:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="running-r-code.html#cb17-1"></a><span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="running-r-code.html#cb19-1"></a>(<span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>You denote exponents like this:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="running-r-code.html#cb21-1"></a><span class="dv">2</span> <span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="running-r-code.html#cb23-1"></a><span class="dv">2</span> <span class="op">^</span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="running-r-code.html#cb25-1"></a><span class="dv">2</span> <span class="op">^</span><span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<p>Finally, note that <code>R</code> is fine with negative numbers:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="running-r-code.html#cb27-1"></a><span class="dv">9</span> <span class="op">+</span><span class="st"> </span><span class="dv">-100</span></span></code></pre></div>
+<pre><code>## [1] -91</code></pre>
+<div id="exercise-4" class="section level4 unnumbered">
+<h4>Exercise 4</h4>
+<p>A. Find the sum of the ages of everyone in your immediate family.</p>
+<p>B. Now recall that command and adjust it to determine the <em>average</em> age of the members of your family.</p>
+</div>
+</div>
+<div id="using-operators-in-r" class="section level2">
+<h2><span class="header-section-number">7.1</span> Using operators in R</h2>
+<p>You can get <code>R</code> to evaluate <em>logical</em> tests using <em>operators</em>.</p>
+<p>For example, you can ask whether two values are equal to each other.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="running-r-code.html#cb29-1"></a><span class="dv">96</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="running-r-code.html#cb31-1"></a><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><code>R</code> is telling you that the first statement is <code>FALSE</code> (<code>96</code> is not, in fact, equal to <code>95</code>) and that the second statement is <code>TRUE</code> (<code>95 + 2</code> is, in fact, equal to itself).</p>
+<p>Note the use of <em>double</em> equal signs here. You must use two of them in order for <code>R</code> to understand that you are asking for this logical test.</p>
+<p>You can also ask if two values are <em>NOT</em> equal to each other:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="running-r-code.html#cb33-1"></a><span class="dv">96</span> <span class="op">!=</span><span class="st"> </span><span class="dv">95</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="running-r-code.html#cb35-1"></a><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>This test is a bit more difficult to understand: In the first statement, <code>R</code> is telling you that it is <code>TRUE</code> that <code>96</code> is different from <code>95</code>. In the second statement, <code>R</code> is saying that it is <code>FALSE</code> that <code>95 + 2</code> is not the same as itself.</p>
+<p>Note that <code>R</code> lets you write these tests another, even more confusing way:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="running-r-code.html#cb37-1"></a><span class="op">!</span><span class="st"> </span><span class="dv">96</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="running-r-code.html#cb39-1"></a><span class="op">!</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>The first line of code is asking <code>R</code> whether it is not true that <code>96</code> and <code>95</code> are equal to each other, which is <code>TRUE</code>. The second line of code is asking <code>R</code> whether it is not true that <code>95 + 2</code> is the same as itself, which is of course <code>FALSE</code>.</p>
+<p>Other commonly used operators in <code>R</code> include greater than / less than (<code>&gt;</code> and <code>&lt;</code>), and greater/less than or equal to (<code>&gt;=</code> and <code>&lt;=</code>).</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="running-r-code.html#cb41-1"></a><span class="dv">100</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="running-r-code.html#cb43-1"></a><span class="dv">100</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div id="exercise-5" class="section level4 unnumbered">
+<h4>Exercise 5</h4>
+<p>A. Write and run a line of code that asks whether these two calculations return the same result:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="running-r-code.html#cb45-1"></a><span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb45-2"><a href="running-r-code.html#cb45-2"></a>(<span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<p>B. Now write and run a line of code that asks whether the first calculation is larger than the second:</p>
+</div>
+</div>
+<div id="use-built-in-functions-within-r" class="section level2">
+<h2><span class="header-section-number">7.2</span> Use built-in functions within R</h2>
+<p><code>R</code> has some built-in functions for common calculations, such as finding square roots and logarithms.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="running-r-code.html#cb46-1"></a><span class="kw">sqrt</span>(<span class="dv">16</span>)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="running-r-code.html#cb48-1"></a><span class="kw">log</span>(<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 1.386294</code></pre>
+<p>Note that the function <code>log()</code> is the <em>natural log</em> function (i.e., the value that <em>e</em> must be raised to in order to equal 4). To calculate a base-10 logarithm, use <code>log10( )</code>.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="running-r-code.html#cb50-1"></a><span class="kw">log</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 2.302585</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="running-r-code.html#cb52-1"></a><span class="kw">log10</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Another handy function is <code>round()</code>, for rounding numbers to a specific number of decimal places.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="running-r-code.html#cb54-1"></a><span class="dv">100</span><span class="op">/</span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 33.33333</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="running-r-code.html#cb56-1"></a><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 33</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="running-r-code.html#cb58-1"></a><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,<span class="dt">digits=</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 33.3</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="running-r-code.html#cb60-1"></a><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,<span class="dt">digits=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 33.33</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="running-r-code.html#cb62-1"></a><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,<span class="dt">digits=</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 33.333</code></pre>
+<p>Finally, <code>R</code> also comes with some built-in values, such as <em>pi</em>:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="running-r-code.html#cb64-1"></a>pi</span></code></pre></div>
+<pre><code>## [1] 3.141593</code></pre>
+<div id="exercise-6" class="section level4 unnumbered">
+<h4>Exercise 6</h4>
+<p>Find the square root of <em>pi</em> and round the answer to the 2 decimal places.</p>
+</div>
+</div>
+<div id="review-assignment" class="section level2 unnumbered">
+<h2>Review assignment:</h2>
+<p><em>NOTE: Under construction!</em></p>
+</div>
+<div id="other-resources" class="section level2">
+<h2><span class="header-section-number">7.3</span> Other Resources</h2>
+<p>Hobbes Primer, Table 1 (Math Operators, pg. 18) and Table 2 (Logical operators, pg. 22)</p>
 
 </div>
 </div>
@@ -246,7 +425,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="setting-up-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rstudio-workflows.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
