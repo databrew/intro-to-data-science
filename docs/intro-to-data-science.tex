@@ -120,7 +120,7 @@
 
 \title{Working Title: the data science canon}
 \author{Databrew}
-\date{2021-04-08}
+\date{2021-04-12}
 
 \begin{document}
 \maketitle
@@ -195,17 +195,368 @@ The politics of graphics
 \hypertarget{running-r-code}{%
 \chapter{Running R code}\label{running-r-code}}
 
-\hypertarget{basic-math}{%
-\section{Basic math}\label{basic-math}}
+\hypertarget{learning-goals}{%
+\section*{Learning goals}\label{learning-goals}}
+\addcontentsline{toc}{section}{Learning goals}
 
-\hypertarget{operators}{%
-\section{Operators}\label{operators}}
+\begin{itemize}
+\tightlist
+\item
+  Understand the difference between R and RStudio.
+\item
+  Learn how to run code in R
+\item
+  Learn how to use R as a calculator
+\item
+  Learn how to use mathematical and logical operators in R
+\end{itemize}
 
-\hypertarget{rstudio-workflows}{%
-\chapter{RStudio workflows}\label{rstudio-workflows}}
+\hypertarget{tutorial-video}{%
+\section*{Tutorial video}\label{tutorial-video}}
+\addcontentsline{toc}{section}{Tutorial video}
+
+\hypertarget{r-and-rstudio-whats-the-difference}{%
+\section*{\texorpdfstring{\texttt{R} and \texttt{RStudio}: what's the difference?}{R and RStudio: what's the difference?}}\label{r-and-rstudio-whats-the-difference}}
+\addcontentsline{toc}{section}{\texttt{R} and \texttt{RStudio}: what's the difference?}
+
+These two things are similar, but it is important to understand how they are different.
+
+In short, \texttt{R} is a open-source (i.e., free) coding language: a powerful programming engine that can be used to do really cool things with data.
+
+\texttt{R\ Studio}, in contrast, is a free \emph{user interface} that helps you interact with \texttt{R}. If you think of \texttt{R} as an engine, then it helps to think of \texttt{RStudio} as the car that contains it. Like a car,\texttt{RStudio} makes it easier and more comfortable to use the engine to get where you want to go.
+
+\texttt{R\ Studio} needs \texttt{R} in order to function, but \texttt{R} can technically be used on its own outside of \texttt{RStudio} if you want. However, just as a good car mechanic can get an engine to run without being installed within a car, using \texttt{R} on its own takes some expertise. For beginners (and everyone else, really), \texttt{R} is just so much more pleasant to use when you are operating it from within \texttt{RStudio}.
+
+That is why this book \emph{always} uses \texttt{RStudio} when working with \texttt{R}.
+
+\hypertarget{rstudios-console}{%
+\section*{\texorpdfstring{RStudio's \emph{Console}}{RStudio's Console}}\label{rstudios-console}}
+\addcontentsline{toc}{section}{RStudio's \emph{Console}}
+
+When you open \texttt{RStudio}, you see several different panes within the program's window. You will get a tour of \texttt{RStudio} in the next module. For now, look at the left half of the screen. You should see a large pane entitled the \emph{Console}.
+
+\emph{NOTE: Insert screenshot here}
+
+\texttt{RStudio}'s \emph{Console} is your window into \texttt{R}, the engine under the hood. The \emph{Console} is where you type commands for \texttt{R} to run, and where \texttt{R} prints back the results of what you have told it to do.
+
+\hypertarget{running-code-in-the-console}{%
+\section*{\texorpdfstring{Running code in the \emph{Console}}{Running code in the Console}}\label{running-code-in-the-console}}
+\addcontentsline{toc}{section}{Running code in the \emph{Console}}
+
+Type your first command into the \emph{Console}, then press \texttt{Enter}:
+
+\begin{verbatim}
+[1] 2
+\end{verbatim}
+
+When you press \texttt{Enter}, R processes the command you fed it, then returns its result (\texttt{2}) just below your command.
+
+Note that spaces don't matter. Both of the following two commands are legible to \texttt{R} and return the same thing:
+
+\begin{verbatim}
+[1] 8
+\end{verbatim}
+
+\begin{verbatim}
+[1] 8
+\end{verbatim}
+
+However, it is better to make your code as easy to read as possible, which usually means using spaces.
+
+\hypertarget{exercise-1}{%
+\subsubsection*{Exercise 1}\label{exercise-1}}
+\addcontentsline{toc}{subsubsection}{Exercise 1}
+
+Type a command in the \emph{Console} to determine the sum of 596 and 198.
+
+\hypertarget{re-running-code-in-the-console}{%
+\subsection*{\texorpdfstring{Re-running code in the \emph{Console}}{Re-running code in the Console}}\label{re-running-code-in-the-console}}
+\addcontentsline{toc}{subsection}{Re-running code in the \emph{Console}}
+
+If you want to re-run the code you just ran, or if you want to recall the code so that you can adjust it slightly, click anywhere in the \emph{Console} then press your keyboard's \texttt{Up} arrow.
+
+If you keep pressing your \texttt{Up} arrow, \texttt{R} will present you with sequentially older commands.
+
+If you accidentally recalled an old command without meaning to, you can reset the \emph{Console}'s command line by pressing \texttt{Escape}.
+
+\hypertarget{exercise-2}{%
+\subsubsection*{Exercise 2}\label{exercise-2}}
+\addcontentsline{toc}{subsubsection}{Exercise 2}
+
+A. Re-run the sum of 596 and 198 without re-typing it.
+
+B. Recall the command again, but this time adjust the code to find the sum of 596 and 298.
+
+C. Practice escaping an accidentally called command: recall your most recent command, then clear the \emph{Console}'s command line.
+
+\hypertarget{incomplete-commands-in-r}{%
+\subsection*{\texorpdfstring{Incomplete commands in \texttt{R}}{Incomplete commands in R}}\label{incomplete-commands-in-r}}
+\addcontentsline{toc}{subsection}{Incomplete commands in \texttt{R}}
+
+\texttt{R} gets confused when you enter an incomplete command, and will wait for you to write the remainder of your command on the next line in the \emph{Console} before doing anything.
+
+For example, try running this code in your \emph{Console}:
+
+You will find that \texttt{R} gives you a little \texttt{+} sign on the line under your command, which means it is waiting for you to complete your command.
+
+If you want to complete your command, add a number (e.g., \texttt{3)} and hit \texttt{Enter}. You should now be given an answer (e.g., \texttt{48}).
+
+If instead you want \texttt{R} to stop waiting and stop running, hit the \texttt{Escape} key.
+
+\hypertarget{getting-errors-in-r}{%
+\subsection*{\texorpdfstring{Getting errors in \texttt{R}}{Getting errors in R}}\label{getting-errors-in-r}}
+\addcontentsline{toc}{subsection}{Getting errors in \texttt{R}}
+
+\texttt{R} only understands your commands if they follow the rules of the \texttt{R} language (often referred to as its \emph{syntax}). If \texttt{R} does not understand your code, it will throw an error and give up on trying to execute that line of code.
+
+For example, try running this code in your \emph{Console}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \OperatorTok{+}\StringTok{ }\NormalTok{6p}
+\end{Highlighting}
+\end{Shaded}
+
+You probably received a message in red font stating \texttt{Error:\ unexpected\ symbol\ in\ "4\ +\ 6p"}. That is because R did know how to interpret the symbol \texttt{p} in this case.
+
+Get used to errors! They happen all the time, even (especially?) to professionals, and it is essential that you get used to reading your own code to find and fix its errors.
+
+\hypertarget{exercise-3}{%
+\subsubsection*{Exercise 3}\label{exercise-3}}
+\addcontentsline{toc}{subsubsection}{Exercise 3}
+
+Type a command in R that throws an error, then recall the command and revise so that \texttt{R} can understand it.
+
+\hypertarget{use-r-like-a-calculator}{%
+\section*{Use R like a calculator}\label{use-r-like-a-calculator}}
+\addcontentsline{toc}{section}{Use R like a calculator}
+
+As you can tell from those commands you just ran, \texttt{R} is, at heart, a fancy calculator.
+
+Some calculations are straightforward, like addition and subtraction:
+
+\begin{verbatim}
+[1] 1490
+\end{verbatim}
+
+\begin{verbatim}
+[1] -510
+\end{verbatim}
+
+Division is pretty straightfoward too:
+
+\begin{verbatim}
+[1] 12
+\end{verbatim}
+
+For multiplication, use an asterisk (\texttt{*}):
+
+\begin{verbatim}
+[1] 48
+\end{verbatim}
+
+\texttt{R} is usually great about following classic rules for Order of Operations, and you can use parentheses to exert control over that order. For example, these two commands produce different results:
+
+\begin{verbatim}
+[1] 9
+\end{verbatim}
+
+\begin{verbatim}
+[1] 2
+\end{verbatim}
+
+You denote exponents like this:
+
+\begin{verbatim}
+[1] 4
+\end{verbatim}
+
+\begin{verbatim}
+[1] 8
+\end{verbatim}
+
+\begin{verbatim}
+[1] 16
+\end{verbatim}
+
+Finally, note that \texttt{R} is fine with negative numbers:
+
+\begin{verbatim}
+[1] -91
+\end{verbatim}
+
+\hypertarget{exercise-4}{%
+\subsubsection*{Exercise 4}\label{exercise-4}}
+\addcontentsline{toc}{subsubsection}{Exercise 4}
+
+A. Find the sum of the ages of everyone in your immediate family.
+
+B. Now recall that command and adjust it to determine the \emph{average} age of the members of your family.
+
+\hypertarget{using-operators-in-r}{%
+\section{Using operators in R}\label{using-operators-in-r}}
+
+You can get \texttt{R} to evaluate logical tests using \emph{operators}.
+
+For example, you can ask whether two values are equal to each other.
+
+\begin{verbatim}
+[1] FALSE
+\end{verbatim}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\texttt{R} is telling you that the first statement is \texttt{FALSE} (\texttt{96} is not, in fact, equal to \texttt{95}) and that the second statement is \texttt{TRUE} (\texttt{95\ +\ 2} is, in fact, equal to itself).
+
+Note the use of \emph{double} equal signs here. You must use two of them in order for \texttt{R} to understand that you are asking for this logical test.
+
+You can also ask if two values are \emph{NOT} equal to each other:
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\begin{verbatim}
+[1] FALSE
+\end{verbatim}
+
+This test is a bit more difficult to understand: In the first statement, \texttt{R} is telling you that it is \texttt{TRUE} that \texttt{96} is different from \texttt{95}. In the second statement, \texttt{R} is saying that it is \texttt{FALSE} that \texttt{95\ +\ 2} is not the same as itself.
+
+Note that \texttt{R} lets you write these tests another, even more confusing way:
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\begin{verbatim}
+[1] FALSE
+\end{verbatim}
+
+The first line of code is asking \texttt{R} whether it is not true that \texttt{96} and \texttt{95} are equal to each other, which is \texttt{TRUE}. The second line of code is asking \texttt{R} whether it is not true that \texttt{95\ +\ 2} is the same as itself, which is of course \texttt{FALSE}.
+
+Other commonly used operators in \texttt{R} include greater than / less than (\texttt{\textgreater{}} and \texttt{\textless{}}), and greater/less than or equal to (\texttt{\textgreater{}=} and \texttt{\textless{}=}).
+
+\begin{verbatim}
+[1] FALSE
+\end{verbatim}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\hypertarget{exercise-5}{%
+\subsubsection*{Exercise 5}\label{exercise-5}}
+\addcontentsline{toc}{subsubsection}{Exercise 5}
+
+A. Write and run a line of code that asks whether these two calculations return the same result:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\OperatorTok{*}\DecValTok{7} \OperatorTok{-}\StringTok{ }\DecValTok{2}\OperatorTok{*}\DecValTok{5} \OperatorTok{/}\StringTok{ }\DecValTok{2}
+\NormalTok{(}\DecValTok{2}\OperatorTok{*}\DecValTok{7} \OperatorTok{-}\StringTok{ }\DecValTok{2}\OperatorTok{*}\DecValTok{5}\NormalTok{) }\OperatorTok{/}\StringTok{ }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+B. Now write and run a line of code that asks whether the first calculation is larger than the second:
+
+\hypertarget{use-built-in-functions-within-r}{%
+\section{Use built-in functions within R}\label{use-built-in-functions-within-r}}
+
+\texttt{R} has some built-in functions for common calculations, such as finding square roots and logarithms.
+
+\begin{verbatim}
+[1] 4
+\end{verbatim}
+
+\begin{verbatim}
+[1] 1.386294
+\end{verbatim}
+
+Note that the function \texttt{log()} is the \emph{natural log} function (i.e., the value that \emph{e} must be raised to in order to equal 4). To calculate a base-10 logarithm, use \texttt{log10(\ )}.
+
+\begin{verbatim}
+[1] 2.302585
+\end{verbatim}
+
+\begin{verbatim}
+[1] 1
+\end{verbatim}
+
+Another handy function is \texttt{round()}, for rounding numbers to a specific number of decimal places.
+
+\begin{verbatim}
+[1] 33.33333
+\end{verbatim}
+
+\begin{verbatim}
+[1] 33
+\end{verbatim}
+
+\begin{verbatim}
+[1] 33.3
+\end{verbatim}
+
+\begin{verbatim}
+[1] 33.33
+\end{verbatim}
+
+\begin{verbatim}
+[1] 33.333
+\end{verbatim}
+
+Finally, \texttt{R} also comes with some built-in values, such as \emph{pi}:
+
+\begin{verbatim}
+[1] 3.141593
+\end{verbatim}
+
+\hypertarget{exercise-6}{%
+\subsubsection*{Exercise 6}\label{exercise-6}}
+\addcontentsline{toc}{subsubsection}{Exercise 6}
+
+Find the square root of \emph{pi} and round the answer to the 2 decimal places.
+
+\hypertarget{review-assignment}{%
+\section*{Review assignment:}\label{review-assignment}}
+\addcontentsline{toc}{section}{Review assignment:}
+
+\emph{NOTE: Under construction!}
+
+\hypertarget{other-resources}{%
+\section{Other Resources}\label{other-resources}}
+
+Hobbes Primer, Table 1 (Math Operators, pg. 18) and Table 2 (Logical operators, pg. 22)
+
+\hypertarget{introduction-to-rstudio}{%
+\chapter{Introduction to Rstudio}\label{introduction-to-rstudio}}
+
+\hypertarget{learning-goals-1}{%
+\section*{Learning goals}\label{learning-goals-1}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Understand the Rstudio working environment and window panes\\
+\item
+  Creating and saving scripts
+\item
+  Customizing your rstudio
+\end{itemize}
+
+\hypertarget{tutorial-video-1}{%
+\section*{Tutorial video}\label{tutorial-video-1}}
+\addcontentsline{toc}{section}{Tutorial video}
 
 \hypertarget{tour-of-rstudio}{%
 \section{Tour of RStudio}\label{tour-of-rstudio}}
+
+\includegraphics{img/rstudio_windows.png}
+
+\hypertarget{other-tabs}{%
+\section{Other tabs}\label{other-tabs}}
 
 \hypertarget{scripts}{%
 \section{Scripts}\label{scripts}}
@@ -213,14 +564,443 @@ The politics of graphics
 \hypertarget{typical-workflows}{%
 \section{Typical workflows}\label{typical-workflows}}
 
-\hypertarget{objects-in-r}{%
-\chapter{Objects in R}\label{objects-in-r}}
+\hypertarget{other-resources-1}{%
+\section{Other Resources}\label{other-resources-1}}
 
-\hypertarget{variables}{%
-\section{Variables}\label{variables}}
+\hypertarget{variables-in-r}{%
+\chapter{\texorpdfstring{Variables in \texttt{R}}{Variables in R}}\label{variables-in-r}}
+
+\hypertarget{learning-goals-2}{%
+\section*{Learning goals}\label{learning-goals-2}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  How to define variables and work with them in \texttt{R}\\
+\item
+  Learn the various possible classes of data in \texttt{R}
+\end{itemize}
+
+\hypertarget{tutorial-video-2}{%
+\section*{Tutorial video}\label{tutorial-video-2}}
+\addcontentsline{toc}{section}{Tutorial video}
+
+\hypertarget{variables-in-r-1}{%
+\section*{\texorpdfstring{Variables in \texttt{R}}{Variables in R}}\label{variables-in-r-1}}
+\addcontentsline{toc}{section}{Variables in \texttt{R}}
+
+So far we have strictly been using \texttt{R} as a calculator, with commands such as:
+
+\begin{verbatim}
+[1] 8
+\end{verbatim}
+
+Of course, \texttt{R} can do much, much more than these basic computations. Your first step in uncovering the potential of \texttt{R} is learning how to use \textbf{variables}.
+
+In \texttt{R}, a variable is a convenient way of referring to an underlying value. That value can be as simple as a single number (e.g., \texttt{6}), or as complex as a spreadsheet that is many Gigabytes in size. It may be useful to think of a variable as a cup; just as cups make it easy to hold your coffee and carry it from the kitchen to the couch, variables make it easy to contain and work with data.
+
+\hypertarget{declaring-variables}{%
+\subsection*{Declaring variables}\label{declaring-variables}}
+\addcontentsline{toc}{subsection}{Declaring variables}
+
+To assign numbers or other types of data to a variable, you use the \texttt{\textless{}} and \texttt{-} characters to make the arrow symbol \texttt{\textless{}-}.
+
+As the direction of the \texttt{\textless{}-} arrow suggests, this command stores the result of \texttt{3\ +\ 5} into the variable \texttt{x}.
+
+Unlike before, you did not see \texttt{8} printed to the \emph{Console}. That is because the result was stored into \texttt{x}.
+
+\hypertarget{calling-variables}{%
+\subsection*{Calling variables}\label{calling-variables}}
+\addcontentsline{toc}{subsection}{Calling variables}
+
+If you wanted R to tell you what ``x'' is, just type the variable name into the \emph{Console} and run that command:
+
+\begin{verbatim}
+[1] 8
+\end{verbatim}
+
+Want to create a variable but also see its value at the same time? Here's a handy trick:
+
+\begin{verbatim}
+[1] 36
+\end{verbatim}
+
+The semicolon simulates hitting \texttt{Enter}. It says: first run \texttt{x\ \textless{}-\ 3*12}, then run \texttt{x}.
+
+You can also update variables.
+
+\begin{verbatim}
+[1] 108
+\end{verbatim}
+
+\begin{verbatim}
+[1] 324
+\end{verbatim}
+
+You can also add variables together.
+
+\begin{verbatim}
+[1] 12.5
+\end{verbatim}
+
+\hypertarget{naming-variables}{%
+\subsection{Naming variables}\label{naming-variables}}
+
+Variables are case-sensitive! If you misspell a variable name, you will confuse \texttt{R} and get an error.
+
+For example, ask \texttt{R} to tell you the value of capital \texttt{X}. The error message will be \texttt{Error:\ object\ \textquotesingle{}X\textquotesingle{}\ not\ found}, which means \texttt{R} looked in its memory for an object (i.e., a variable) named \texttt{X} and could not find one.
+
+You can make variable names as complicated or simple as you want.
+
+\begin{verbatim}
+[1] 5
+\end{verbatim}
+
+Note that periods and underscores can be used in variable names:
+
+However, hyphens cannot be used since that symbol is used for subtraction.
+
+Naming variables is a bit of an art. The trick is using names that are clear but are not so complicated that typing them is tedious or prone to errors.
+
+Some names need to be avoided, since \texttt{R} uses them for special purposes. For example, \texttt{data} should be avoided, as should \texttt{mean}, since both are functions built-in to \texttt{R} and \texttt{R} is liable to interpret them as such instead of as a variable containing your data.
+
+Note that \texttt{R} uses a feature called `Tab complete' to help you type variable names. Begin typing a variable name, such as \texttt{supercalifragilistic.expialidocious} from the example above, but after the first few letters press the \texttt{Tab} key. \texttt{R} will then give you options for auto-completing your word. Press \texttt{Tab} again, or \texttt{Enter}, to accept the auto-complete. This is a handy way to avoid typos.
+
+\hypertarget{exercise-1-1}{%
+\subsubsection*{Exercise 1}\label{exercise-1-1}}
+\addcontentsline{toc}{subsubsection}{Exercise 1}
+
+A. Estimate how many bananas you've eaten in your lifetime and store that value in a variable (choose whatever name you wish).
+
+B. Now estimate how many ice cream sandwiches you've eaten in your lifetime and store that in a different variable.
+
+C. Now use these variables to calculate your Banana-to-ICS ratio. Store your result in a third variable, then call that variable in the Console to see your ratio.
+
+D. Who in the class has the highest ratio? Who has the lowest?
+
+\hypertarget{types-of-data-in-r}{%
+\section*{\texorpdfstring{Types of data in \texttt{R}}{Types of data in R}}\label{types-of-data-in-r}}
+\addcontentsline{toc}{section}{Types of data in \texttt{R}}
+
+So far we have been working exclusively with numeric data. But there are many different data types in R. We call these ``types'' of data \textbf{classes}:
+
+\begin{itemize}
+\tightlist
+\item
+  Decimal values like 4.5 are called \textbf{numeric} data.
+\item
+  Natural numbers like 4 are called \textbf{integers}. Integers are also numerics.
+\item
+  Boolean values (TRUE or FALSE) are called \textbf{logical} data.
+\item
+  Text (or string) values are called \textbf{character} data.
+\end{itemize}
+
+In order to be combined, data have to be the same class.
+
+R is able to compute the following commands \ldots{}
+
+\begin{verbatim}
+[1] 10
+\end{verbatim}
+
+\ldots{} but not these:
+
+That's because the quotation marks used in naming \texttt{y} causes \texttt{R} to interpret \texttt{y} as a \texttt{character} class.
+
+To see how \texttt{R} is interpreting variables, you can use the \texttt{class()} function:
+
+\begin{verbatim}
+[1] "numeric"
+\end{verbatim}
+
+\begin{verbatim}
+[1] "character"
+\end{verbatim}
+
+\begin{verbatim}
+[1] "logical"
+\end{verbatim}
+
+Another data type to be aware of is \textbf{factors}, but we will deal with them later.
+
+\hypertarget{exercise-3-1}{%
+\subsection*{Exercise 3}\label{exercise-3-1}}
+\addcontentsline{toc}{subsection}{Exercise 3}
+
+\emph{NOTE: UNDER CONSTRUCTION!}
+
+\hypertarget{review-assignment-1}{%
+\section*{Review assignment}\label{review-assignment-1}}
+\addcontentsline{toc}{section}{Review assignment}
+
+\emph{NOTE: UNDER CONSTRUCTION!}
+
+\hypertarget{other-resources-2}{%
+\section*{Other Resources}\label{other-resources-2}}
+\addcontentsline{toc}{section}{Other Resources}
+
+\hypertarget{structures-for-data-in-r}{%
+\chapter{\texorpdfstring{Structures for data in \texttt{R}}{Structures for data in R}}\label{structures-for-data-in-r}}
+
+\hypertarget{learning-goals-3}{%
+\section*{Learning goals}\label{learning-goals-3}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Learn the various structures of data in \texttt{R}\\
+\item
+  How to work with vectors in \texttt{R}.
+\end{itemize}
+
+\hypertarget{tutorial-video-3}{%
+\section*{Tutorial video}\label{tutorial-video-3}}
+\addcontentsline{toc}{section}{Tutorial video}
+
+\hypertarget{types-of-data-structures-in-r}{%
+\section*{\texorpdfstring{Types of data structures in \texttt{R}}{Types of data structures in R}}\label{types-of-data-structures-in-r}}
+\addcontentsline{toc}{section}{Types of data structures in \texttt{R}}
+
+Data belong to different \emph{classes}, as explained above, and they can be arranged into various \emph{structures}.
+
+So far we have been dealing only with variables that contain a single value, but the real value of \texttt{R} comes from assigning \emph{entire sets} of data to a variable.
 
 \hypertarget{vectors}{%
-\section{Vectors}\label{vectors}}
+\section*{Vectors}\label{vectors}}
+\addcontentsline{toc}{section}{Vectors}
+
+The simplest data structure in \texttt{R} is a \textbf{vector}. A vector is simply a set of values. A vector can contain only a single value, as we have been working with thus far, or it can contain many millions of values.
+
+\hypertarget{declaring-and-using-vectors}{%
+\subsection*{Declaring and using vectors}\label{declaring-and-using-vectors}}
+\addcontentsline{toc}{subsection}{Declaring and using vectors}
+
+To build up a vector in \texttt{R}, use the function \texttt{c()}, which is short for ``concatenate''.
+
+\begin{verbatim}
+[1] 5 6 7 8
+\end{verbatim}
+
+You can use the \texttt{c()} function to concatenate two vectors together:
+
+\begin{verbatim}
+[1]  5  6  7  8  9 10 11 12
+\end{verbatim}
+
+You can also use \texttt{c()} to add values to a vector:
+
+\begin{verbatim}
+[1] 5 6 7 8 9
+\end{verbatim}
+
+When two vectors are of the same length, you can do arithmetic with them:
+
+\begin{verbatim}
+[1] 14 16 18 20
+\end{verbatim}
+
+\begin{verbatim}
+[1] -4 -4 -4 -4
+\end{verbatim}
+
+\begin{verbatim}
+[1] 45 60 77 96
+\end{verbatim}
+
+\begin{verbatim}
+[1] 0.5555556 0.6000000 0.6363636 0.6666667
+\end{verbatim}
+
+You can also put vectors through logical tests:
+
+\begin{verbatim}
+[1] FALSE FALSE FALSE  TRUE FALSE
+\end{verbatim}
+
+This command is asking \texttt{R} to tell you whether each element in \texttt{x} is equal to \texttt{4}.
+
+You can create vectors of any data class:
+
+\begin{verbatim}
+[1] "Ben"  "Joe"  "Eric"
+\end{verbatim}
+
+\begin{verbatim}
+[1]  TRUE  TRUE FALSE
+\end{verbatim}
+
+Note that all values within a vector \emph{must} be of the same class (i.e., data type). You can't combine numerics and characters into the same vector. If you did, \texttt{R} would try to convert the numbers to characters. For example:
+
+\begin{verbatim}
+[1] "4" "6"
+\end{verbatim}
+
+\hypertarget{useful-functions-for-handling-vectors}{%
+\subsection{Useful functions for handling vectors}\label{useful-functions-for-handling-vectors}}
+
+\textbf{\texttt{length()}} tells you the number of elements in a vector:
+
+\begin{verbatim}
+[1] 2
+\end{verbatim}
+
+\begin{verbatim}
+[1] 4
+\end{verbatim}
+
+The \textbf{colon symbol \texttt{:}} creates a vector with every integer occurring between a min and max:
+
+\begin{verbatim}
+ [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\textbf{\texttt{seq()}} allows you to build a vector using evenly spaced \emph{sequence} of values between a min and max:
+
+\begin{verbatim}
+ [1]   0  10  20  30  40  50  60  70  80  90 100
+\end{verbatim}
+
+In this command, you are telling \texttt{R} to give you a sequence of values from \texttt{0} to \texttt{100}, and you want the length of that vector to be \texttt{11}. \texttt{R} then figures out the spacing required between each value in order to make that happen.
+
+Alternatively, you can prescribe the interval between values instead of the length:
+
+\begin{verbatim}
+ [1]  0  7 14 21 28 35 42 49 56 63 70 77 84 91 98
+\end{verbatim}
+
+\textbf{\texttt{head()}} and \textbf{\texttt{tail()}} can be used to retrieve the first 6 or last 6 elements in a vector, respectively.
+
+\begin{verbatim}
+[1] 1 2 3 4 5 6
+\end{verbatim}
+
+\begin{verbatim}
+[1]  995  996  997  998  999 1000
+\end{verbatim}
+
+You can also adjust how many elements to return:
+
+\begin{verbatim}
+[1] 1 2
+\end{verbatim}
+
+\begin{verbatim}
+ [1]  991  992  993  994  995  996  997  998  999 1000
+\end{verbatim}
+
+\textbf{\texttt{which()}} allows you to ask, ``For which elements of a vector is the following statement true?''
+
+\begin{verbatim}
+[1] 4
+\end{verbatim}
+
+If no values within the vector meet the condition, a vector of length zero will be returned:
+
+\begin{verbatim}
+integer(0)
+\end{verbatim}
+
+\textbf{\texttt{\%in\%}} is a handy operator that allows you to ask whether a value occurs \emph{within} a vector:
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\begin{verbatim}
+[1] FALSE
+\end{verbatim}
+
+\hypertarget{exercise-2-1}{%
+\subsubsection*{Exercise 2}\label{exercise-2-1}}
+\addcontentsline{toc}{subsubsection}{Exercise 2}
+
+\emph{NOTE: UNDER CONSTRUCTION!}
+
+\hypertarget{subsetting-vectors}{%
+\subsection*{Subsetting vectors}\label{subsetting-vectors}}
+\addcontentsline{toc}{subsection}{Subsetting vectors}
+
+Since you will eventually be working with vectors that contain thousands of data points, it will be useful to have some tools for \emph{subsetting} them -- that is, looking at only a few select elements at a time.
+
+You can subset a vector using square brackets \texttt{{[}\ {]}}.
+
+\begin{verbatim}
+[1] 59
+\end{verbatim}
+
+This command is asking \texttt{R} to return the 10th element in the vector \texttt{x}.
+
+\begin{verbatim}
+ [1] 59 60 61 62 63 64 65 66 67 68 69
+\end{verbatim}
+
+This command is asking \texttt{R} to return elements \texttt{10:20} in the vector \texttt{x}.
+
+\hypertarget{exercise-3-2}{%
+\subsubsection*{Exercise 3}\label{exercise-3-2}}
+\addcontentsline{toc}{subsubsection}{Exercise 3}
+
+A. Figure out how to replicate the \texttt{head} function using your new vector subsetting skills.
+
+B. Now replicate the \texttt{tail()} function, using those same skills as well as the \texttt{length()} function you just learned.
+
+\hypertarget{dataframes-other-data-structures}{%
+\subsection{Dataframes \& other data structures}\label{dataframes-other-data-structures}}
+
+A \textbf{vector} is the most basic data structure in \texttt{R}, and the other structures are built out of vectors.
+
+As a data scientist, the most common data structure you will be working with is a \textbf{dataframe}, which is essentially a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data.
+
+We will explore dataframes in detail later, but here is a sneak peak at what they look like:
+
+\begin{verbatim}
+     x   y
+1  300 600
+2  301 601
+3  302 602
+4  303 603
+5  304 604
+6  305 605
+7  306 606
+8  307 607
+9  308 608
+10 309 609
+11 310 610
+\end{verbatim}
+
+In this command, we used the \texttt{data.frame()} function to combine two vectors into a dataframe with two columns named \texttt{x} and \texttt{y}. \texttt{R} then saved this result in a new variable named \texttt{df}. When we call \texttt{df}, \texttt{R} shows us the dataframe.
+
+The great thing about dataframes is that they allow you to relate different data types to each other.
+
+\begin{verbatim}
+  name height.inches
+1  Ben            75
+2  Joe            73
+3 Eric            80
+\end{verbatim}
+
+This dataframe has one column of class \texttt{character} and another of class \texttt{numeric}.
+
+The two other most common data structures are \textbf{matrices} and \textbf{lists}, but we will wait on learning about thos. For now, focus on becoming comfortable using vectors and dataframes.
+
+\hypertarget{exercise-3-3}{%
+\subsection*{Exercise 3}\label{exercise-3-3}}
+\addcontentsline{toc}{subsection}{Exercise 3}
+
+\emph{NOTE: UNDER CONSTRUCTION!}
+
+\hypertarget{review-assignment-2}{%
+\section*{Review assignment}\label{review-assignment-2}}
+\addcontentsline{toc}{section}{Review assignment}
+
+\emph{NOTE: UNDER CONSTRUCTION!}
+
+\hypertarget{other-resources-3}{%
+\section*{Other Resources}\label{other-resources-3}}
+\addcontentsline{toc}{section}{Other Resources}
 
 \hypertarget{calling-functions}{%
 \chapter{Calling functions}\label{calling-functions}}
@@ -355,8 +1135,8 @@ Advanced techniques
 \hypertarget{for-loops}{%
 \chapter{\texorpdfstring{\texttt{for} loops}{for loops}}\label{for-loops}}
 
-\hypertarget{learning-goals}{%
-\section*{Learning goals}\label{learning-goals}}
+\hypertarget{learning-goals-4}{%
+\section*{Learning goals}\label{learning-goals-4}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -381,8 +1161,8 @@ Advanced techniques
   Instructor notes and answer keys (hidden from students)
 \end{itemize}
 
-\hypertarget{tutorial-video}{%
-\section*{Tutorial video}\label{tutorial-video}}
+\hypertarget{tutorial-video-4}{%
+\section*{Tutorial video}\label{tutorial-video-4}}
 \addcontentsline{toc}{section}{Tutorial video}
 
 \emph{(coming soon!)}
@@ -477,8 +1257,8 @@ Another silly example:
 [1] "Ken is pretty cool!"
 \end{verbatim}
 
-\hypertarget{exercise-1}{%
-\subsection*{Exercise 1}\label{exercise-1}}
+\hypertarget{exercise-1-2}{%
+\subsection*{Exercise 1}\label{exercise-1-2}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
 Use this space to practice the basics of \texttt{for\ loop} formatting.
@@ -555,7 +1335,7 @@ Looks like the first four columns would be interesting to plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-12-1.pdf}
+\includegraphics{figures/unnamed-chunk-71-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -623,10 +1403,10 @@ Let's say we want to see how gas mileage is affected by the number of cylinders 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-14-1.pdf}
+\includegraphics{figures/unnamed-chunk-73-1.pdf}
 
-\hypertarget{exercise-2}{%
-\subsection*{Exercise 2}\label{exercise-2}}
+\hypertarget{exercise-2-2}{%
+\subsection*{Exercise 2}\label{exercise-2-2}}
 \addcontentsline{toc}{subsection}{Exercise 2}
 
 Now try to do something similar on your own with the \texttt{airquality} dataset. Use \texttt{for\ loops} to create a plot with Month on the x axis and Temperature on the y axis. On this plot, depict all the temperatures recorded in each month in the color grey, then superimpose the mean temperature for each month.
@@ -649,7 +1429,7 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-15-1.pdf}
+\includegraphics{figures/unnamed-chunk-74-1.pdf}
 
 \hypertarget{using-a-for-loop-with-more-complex-data}{%
 \section*{\texorpdfstring{Using a \texttt{for\ loop} with more complex data}{Using a for loop with more complex data}}\label{using-a-for-loop-with-more-complex-data}}
@@ -685,7 +1465,7 @@ Try plotting the Keeling Curve:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-17-1.pdf}
+\includegraphics{figures/unnamed-chunk-76-1.pdf}
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
@@ -696,7 +1476,7 @@ There are some erroneous data points! We clearly can't have negative CO2 values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-18-1.pdf}
+\includegraphics{figures/unnamed-chunk-77-1.pdf}
 
 \textbf{What's the deal with those squiggles?} Let's investigate!
 
@@ -762,7 +1542,7 @@ Let's look at the data a different way: \emph{by focusing in on a single year.}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-19-1.pdf}
+\includegraphics{figures/unnamed-chunk-78-1.pdf}
 
 But this only shows one year of data! How can we include the seasonal squiggle from other years?
 
@@ -816,12 +1596,12 @@ OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-20-1.pdf}
+\includegraphics{figures/unnamed-chunk-79-1.pdf}
 
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
-\hypertarget{review-assignment}{%
-\section*{Review assignment}\label{review-assignment}}
+\hypertarget{review-assignment-3}{%
+\section*{Review assignment}\label{review-assignment-3}}
 \addcontentsline{toc}{section}{Review assignment}
 
 First, read in and format some other cool data. The code for doing so is provided for you here:
@@ -967,7 +1747,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-24-1.pdf}
+\includegraphics{figures/unnamed-chunk-83-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsection*{Now loop it!}\label{now-loop-it}}
@@ -991,7 +1771,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-25-1.pdf}
+\includegraphics{figures/unnamed-chunk-84-1.pdf}
 
 \hypertarget{now-loop-it-differently}{%
 \subsection*{Now loop it differently!}\label{now-loop-it-differently}}
@@ -1017,7 +1797,7 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-26-1.pdf}
+\includegraphics{figures/unnamed-chunk-85-1.pdf}
 
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
@@ -1234,8 +2014,8 @@ Spinning up a local DB
 \hypertarget{template}{%
 \chapter{Template}\label{template}}
 
-\hypertarget{learning-goals-1}{%
-\section*{Learning goals}\label{learning-goals-1}}
+\hypertarget{learning-goals-5}{%
+\section*{Learning goals}\label{learning-goals-5}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -1248,10 +2028,8 @@ Spinning up a local DB
   Item 3
 \end{itemize}
 
-Here is some teacher content.
-
-\hypertarget{tutorial-video-1}{%
-\section*{Tutorial video}\label{tutorial-video-1}}
+\hypertarget{tutorial-video-5}{%
+\section*{Tutorial video}\label{tutorial-video-5}}
 \addcontentsline{toc}{section}{Tutorial video}
 
 Bangarang - Crew Briefing from Luke Padgett on Vimeo.
@@ -1260,20 +2038,20 @@ Bangarang - Crew Briefing from Luke Padgett on Vimeo.
 \section*{Basics}\label{basics-1}}
 \addcontentsline{toc}{section}{Basics}
 
-\hypertarget{exercise-1-1}{%
-\subsection*{Exercise 1}\label{exercise-1-1}}
+\hypertarget{exercise-1-3}{%
+\subsection*{Exercise 1}\label{exercise-1-3}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
-\hypertarget{review-assignment-1}{%
-\section*{Review assignment}\label{review-assignment-1}}
+\hypertarget{review-assignment-4}{%
+\section*{Review assignment}\label{review-assignment-4}}
 \addcontentsline{toc}{section}{Review assignment}
 
 Introduce data
 
 Introduce task(s)
 
-\hypertarget{other-resources}{%
-\section{Other Resources}\label{other-resources}}
+\hypertarget{other-resources-4}{%
+\section{Other Resources}\label{other-resources-4}}
 
 \url{https://desiree.rbind.io/post/2020/learnr-iframes/}
 
