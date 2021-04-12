@@ -244,26 +244,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introducing-variables" class="section level2 unnumbered">
 <h2>Introducing variables</h2>
 <p>So far we have strictly been using <code>R</code> as a calculator, with commands such as:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="variables-in-r.html#cb34-1"></a><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></span></code></pre></div>
 <pre><code>[1] 8</code></pre>
 <p>Of course, <code>R</code> can do much, much more than these basic computations. Your first step in uncovering the potential of <code>R</code> is learning how to use <strong>variables</strong>.</p>
 <p>In <code>R</code>, a variable is a convenient way of referring to an underlying value. That value can be as simple as a single number (e.g., <code>6</code>), or as complex as a spreadsheet that is many Gigabytes in size. It may be useful to think of a variable as a cup; just as cups make it easy to hold your coffee and carry it from the kitchen to the couch, variables make it easy to contain and work with data.</p>
 <div id="declaring-variables" class="section level3 unnumbered">
 <h3>Declaring variables</h3>
 <p>To assign numbers or other types of data to a variable, you use the <code>&lt;</code> and <code>-</code> characters to make the arrow symbol <code>&lt;-</code>.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="variables-in-r.html#cb36-1"></a>x &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">+</span><span class="dv">5</span></span></code></pre></div>
 <p>As the direction of the <code>&lt;-</code> arrow suggests, this command stores the result of <code>3 + 5</code> into the variable <code>x</code>.</p>
 <p>Unlike before, you did not see <code>8</code> printed to the <em>Console</em>. That is because the result was stored into <code>x</code>.</p>
 </div>
 <div id="calling-variables" class="section level3 unnumbered">
 <h3>Calling variables</h3>
 <p>If you wanted R to tell you what “x” is, just type the variable name into the <em>Console</em> and run that command:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="variables-in-r.html#cb37-1"></a>x</span></code></pre></div>
 <pre><code>[1] 8</code></pre>
 <p>Want to create a variable but also see its value at the same time? Here’s a handy trick:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="variables-in-r.html#cb39-1"></a>x &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">*</span><span class="dv">12</span> ; x</span></code></pre></div>
 <pre><code>[1] 36</code></pre>
 <p>The semicolon simulates hitting <code>Enter</code>. It says: first run <code>x &lt;- 3*12</code>, then run <code>x</code>.</p>
 <p>You can also update variables.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="variables-in-r.html#cb41-1"></a>x &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">3</span> ; x</span></code></pre></div>
 <pre><code>[1] 108</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="variables-in-r.html#cb43-1"></a>x &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">3</span> ; x</span></code></pre></div>
 <pre><code>[1] 324</code></pre>
 <p>You can also add variables together.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="variables-in-r.html#cb45-1"></a>x &lt;-<span class="st"> </span><span class="dv">8</span></span>
+<span id="cb45-2"><a href="variables-in-r.html#cb45-2"></a>y &lt;-<span class="st"> </span><span class="fl">4.5</span></span>
+<span id="cb45-3"><a href="variables-in-r.html#cb45-3"></a>x <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>[1] 12.5</code></pre>
 </div>
 <div id="naming-variables" class="section level3 unnumbered">
@@ -271,8 +280,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Variables are case-sensitive! If you misspell a variable name, you will confuse <code>R</code> and get an error.</p>
 <p>For example, ask <code>R</code> to tell you the value of capital <code>X</code>. The error message will be <code>Error: object 'X' not found</code>, which means <code>R</code> looked in its memory for an object (i.e., a variable) named <code>X</code> and could not find one.</p>
 <p>You can make variable names as complicated or simple as you want.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="variables-in-r.html#cb47-1"></a>supercalifragilistic.expialidocious &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb47-2"><a href="variables-in-r.html#cb47-2"></a>supercalifragilistic.expialidocious  <span class="co"># still works</span></span></code></pre></div>
 <pre><code>[1] 5</code></pre>
 <p>Note that periods and underscores can be used in variable names:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="variables-in-r.html#cb49-1"></a>my.variable &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co"># periods can be used</span></span>
+<span id="cb49-2"><a href="variables-in-r.html#cb49-2"></a>my_variable &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co"># underscores can be used</span></span></code></pre></div>
 <p>However, hyphens cannot be used since that symbol is used for subtraction.</p>
 <p>Naming variables is a bit of an art. The trick is using names that are clear but are not so complicated that typing them is tedious or prone to errors.</p>
 <p>Some names need to be avoided, since <code>R</code> uses them for special purposes. For example, <code>data</code> should be avoided, as should <code>mean</code>, since both are functions built-in to <code>R</code> and <code>R</code> is liable to interpret them as such instead of as a variable containing your data.</p>
@@ -297,12 +310,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>In order to be combined, data have to be the same class.</p>
 <p>R is able to compute the following commands …</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="variables-in-r.html#cb50-1"></a>x &lt;-<span class="st"> </span><span class="dv">6</span></span>
+<span id="cb50-2"><a href="variables-in-r.html#cb50-2"></a>y &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb50-3"><a href="variables-in-r.html#cb50-3"></a>x <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>[1] 10</code></pre>
 <p>… but not these:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="variables-in-r.html#cb52-1"></a>x &lt;-<span class="st"> </span><span class="dv">6</span></span>
+<span id="cb52-2"><a href="variables-in-r.html#cb52-2"></a>y &lt;-<span class="st"> &quot;4&quot;</span></span>
+<span id="cb52-3"><a href="variables-in-r.html#cb52-3"></a>x <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
 <p>That’s because the quotation marks used in naming <code>y</code> causes <code>R</code> to interpret <code>y</code> as a <code>character</code> class.</p>
 <p>To see how <code>R</code> is interpreting variables, you can use the <code>class()</code> function:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="variables-in-r.html#cb53-1"></a>x &lt;-<span class="st"> </span><span class="dv">100</span></span>
+<span id="cb53-2"><a href="variables-in-r.html#cb53-2"></a><span class="kw">class</span>(x)</span></code></pre></div>
 <pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="variables-in-r.html#cb55-1"></a>x &lt;-<span class="st"> &quot;100&quot;</span></span>
+<span id="cb55-2"><a href="variables-in-r.html#cb55-2"></a><span class="kw">class</span>(x)</span></code></pre></div>
 <pre><code>[1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="variables-in-r.html#cb57-1"></a>x &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">==</span><span class="st"> </span><span class="dv">101</span></span>
+<span id="cb57-2"><a href="variables-in-r.html#cb57-2"></a><span class="kw">class</span>(x)</span></code></pre></div>
 <pre><code>[1] &quot;logical&quot;</code></pre>
 <p>Another data type to be aware of is <strong>factors</strong>, but we will deal with them later.</p>
 <div id="exercise-3-1" class="section level3 unnumbered">

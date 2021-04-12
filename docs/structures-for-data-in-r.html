@@ -252,49 +252,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="declaring-and-using-vectors" class="section level3 unnumbered">
 <h3>Declaring and using vectors</h3>
 <p>To build up a vector in <code>R</code>, use the function <code>c()</code>, which is short for “concatenate”.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="structures-for-data-in-r.html#cb59-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb59-2"><a href="structures-for-data-in-r.html#cb59-2"></a>x</span></code></pre></div>
 <pre><code>[1] 5 6 7 8</code></pre>
 <p>You can use the <code>c()</code> function to concatenate two vectors together:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="structures-for-data-in-r.html#cb61-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb61-2"><a href="structures-for-data-in-r.html#cb61-2"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>)</span>
+<span id="cb61-3"><a href="structures-for-data-in-r.html#cb61-3"></a>z &lt;-<span class="st"> </span><span class="kw">c</span>(x,y)</span>
+<span id="cb61-4"><a href="structures-for-data-in-r.html#cb61-4"></a>z</span></code></pre></div>
 <pre><code>[1]  5  6  7  8  9 10 11 12</code></pre>
 <p>You can also use <code>c()</code> to add values to a vector:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="structures-for-data-in-r.html#cb63-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb63-2"><a href="structures-for-data-in-r.html#cb63-2"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(x,<span class="dv">9</span>)</span>
+<span id="cb63-3"><a href="structures-for-data-in-r.html#cb63-3"></a>x</span></code></pre></div>
 <pre><code>[1] 5 6 7 8 9</code></pre>
 <p>When two vectors are of the same length, you can do arithmetic with them:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="structures-for-data-in-r.html#cb65-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb65-2"><a href="structures-for-data-in-r.html#cb65-2"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>)</span>
+<span id="cb65-3"><a href="structures-for-data-in-r.html#cb65-3"></a></span>
+<span id="cb65-4"><a href="structures-for-data-in-r.html#cb65-4"></a>x <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>[1] 14 16 18 20</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="structures-for-data-in-r.html#cb67-1"></a>x <span class="op">-</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>[1] -4 -4 -4 -4</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="structures-for-data-in-r.html#cb69-1"></a>x <span class="op">*</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>[1] 45 60 77 96</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="structures-for-data-in-r.html#cb71-1"></a>x <span class="op">/</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>[1] 0.5555556 0.6000000 0.6363636 0.6666667</code></pre>
 <p>You can also put vectors through logical tests:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="structures-for-data-in-r.html#cb73-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb73-2"><a href="structures-for-data-in-r.html#cb73-2"></a><span class="dv">4</span> <span class="op">==</span><span class="st"> </span>x</span></code></pre></div>
 <pre><code>[1] FALSE FALSE FALSE  TRUE FALSE</code></pre>
 <p>This command is asking <code>R</code> to tell you whether each element in <code>x</code> is equal to <code>4</code>.</p>
 <p>You can create vectors of any data class:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="structures-for-data-in-r.html#cb75-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>) </span>
+<span id="cb75-2"><a href="structures-for-data-in-r.html#cb75-2"></a>x</span></code></pre></div>
 <pre><code>[1] &quot;Ben&quot;  &quot;Joe&quot;  &quot;Eric&quot;</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="structures-for-data-in-r.html#cb77-1"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">FALSE</span>)</span>
+<span id="cb77-2"><a href="structures-for-data-in-r.html#cb77-2"></a>y</span></code></pre></div>
 <pre><code>[1]  TRUE  TRUE FALSE</code></pre>
 <p>Note that all values within a vector <em>must</em> be of the same class (i.e., data type). You can’t combine numerics and characters into the same vector. If you did, <code>R</code> would try to convert the numbers to characters. For example:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="structures-for-data-in-r.html#cb79-1"></a>x &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb79-2"><a href="structures-for-data-in-r.html#cb79-2"></a>y &lt;-<span class="st"> &quot;6&quot;</span></span>
+<span id="cb79-3"><a href="structures-for-data-in-r.html#cb79-3"></a>z &lt;-<span class="st"> </span><span class="kw">c</span>(x,y)</span>
+<span id="cb79-4"><a href="structures-for-data-in-r.html#cb79-4"></a>z</span></code></pre></div>
 <pre><code>[1] &quot;4&quot; &quot;6&quot;</code></pre>
 </div>
 <div id="useful-functions-for-handling-vectors" class="section level3 unnumbered">
 <h3>Useful functions for handling vectors</h3>
 <p><strong><code>length()</code></strong> tells you the number of elements in a vector:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="structures-for-data-in-r.html#cb81-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<span id="cb81-2"><a href="structures-for-data-in-r.html#cb81-2"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>)</span>
+<span id="cb81-3"><a href="structures-for-data-in-r.html#cb81-3"></a></span>
+<span id="cb81-4"><a href="structures-for-data-in-r.html#cb81-4"></a><span class="kw">length</span>(x)</span></code></pre></div>
 <pre><code>[1] 2</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="structures-for-data-in-r.html#cb83-1"></a><span class="kw">length</span>(y)</span></code></pre></div>
 <pre><code>[1] 4</code></pre>
 <p>The <strong>colon symbol <code>:</code></strong> creates a vector with every integer occurring between a min and max:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="structures-for-data-in-r.html#cb85-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb85-2"><a href="structures-for-data-in-r.html#cb85-2"></a>x</span></code></pre></div>
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <p><strong><code>seq()</code></strong> allows you to build a vector using evenly spaced <em>sequence</em> of values between a min and max:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="structures-for-data-in-r.html#cb87-1"></a><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dt">length=</span><span class="dv">11</span>)</span></code></pre></div>
 <pre><code> [1]   0  10  20  30  40  50  60  70  80  90 100</code></pre>
 <p>In this command, you are telling <code>R</code> to give you a sequence of values from <code>0</code> to <code>100</code>, and you want the length of that vector to be <code>11</code>. <code>R</code> then figures out the spacing required between each value in order to make that happen.</p>
 <p>Alternatively, you can prescribe the interval between values instead of the length:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="structures-for-data-in-r.html#cb89-1"></a><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dt">by=</span><span class="dv">7</span>)</span></code></pre></div>
 <pre><code> [1]  0  7 14 21 28 35 42 49 56 63 70 77 84 91 98</code></pre>
 <p><strong><code>head()</code></strong> and <strong><code>tail()</code></strong> can be used to retrieve the first 6 or last 6 elements in a vector, respectively.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="structures-for-data-in-r.html#cb91-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">1000</span></span>
+<span id="cb91-2"><a href="structures-for-data-in-r.html#cb91-2"></a><span class="kw">head</span>(x)</span></code></pre></div>
 <pre><code>[1] 1 2 3 4 5 6</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="structures-for-data-in-r.html#cb93-1"></a><span class="kw">tail</span>(x)</span></code></pre></div>
 <pre><code>[1]  995  996  997  998  999 1000</code></pre>
 <p>You can also adjust how many elements to return:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="structures-for-data-in-r.html#cb95-1"></a><span class="kw">head</span>(x,<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 1 2</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="structures-for-data-in-r.html#cb97-1"></a><span class="kw">tail</span>(x,<span class="dv">10</span>)</span></code></pre></div>
 <pre><code> [1]  991  992  993  994  995  996  997  998  999 1000</code></pre>
 <p><strong><code>which()</code></strong> allows you to ask, “For which elements of a vector is the following statement true?”</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="structures-for-data-in-r.html#cb99-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb99-2"><a href="structures-for-data-in-r.html#cb99-2"></a><span class="kw">which</span>(x<span class="op">==</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>[1] 4</code></pre>
 <p>If no values within the vector meet the condition, a vector of length zero will be returned:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="structures-for-data-in-r.html#cb101-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb101-2"><a href="structures-for-data-in-r.html#cb101-2"></a><span class="kw">which</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">11</span>)</span></code></pre></div>
 <pre><code>integer(0)</code></pre>
 <p><strong><code>%in%</code></strong> is a handy operator that allows you to ask whether a value occurs <em>within</em> a vector:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="structures-for-data-in-r.html#cb103-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb103-2"><a href="structures-for-data-in-r.html#cb103-2"></a><span class="dv">4</span> <span class="op">%in%</span><span class="st"> </span>x</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="structures-for-data-in-r.html#cb105-1"></a><span class="dv">11</span> <span class="op">%in%</span><span class="st"> </span>x</span></code></pre></div>
 <pre><code>[1] FALSE</code></pre>
 <div id="exercise-2-1" class="section level4 unnumbered">
 <h4>Exercise 2</h4>
@@ -305,8 +352,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Subsetting vectors</h3>
 <p>Since you will eventually be working with vectors that contain thousands of data points, it will be useful to have some tools for <em>subsetting</em> them – that is, looking at only a few select elements at a time.</p>
 <p>You can subset a vector using square brackets <code>[ ]</code>.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="structures-for-data-in-r.html#cb107-1"></a>x &lt;-<span class="st"> </span><span class="dv">50</span><span class="op">:</span><span class="dv">100</span></span>
+<span id="cb107-2"><a href="structures-for-data-in-r.html#cb107-2"></a>x[<span class="dv">10</span>]</span></code></pre></div>
 <pre><code>[1] 59</code></pre>
 <p>This command is asking <code>R</code> to return the 10th element in the vector <code>x</code>.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="structures-for-data-in-r.html#cb109-1"></a>x[<span class="dv">10</span><span class="op">:</span><span class="dv">20</span>]</span></code></pre></div>
 <pre><code> [1] 59 60 61 62 63 64 65 66 67 68 69</code></pre>
 <p>This command is asking <code>R</code> to return elements <code>10:20</code> in the vector <code>x</code>.</p>
 <div id="exercise-3-2" class="section level4 unnumbered">
@@ -320,6 +370,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A <strong>vector</strong> is the most basic data structure in <code>R</code>, and the other structures are built out of vectors.</p>
 <p>As a data scientist, the most common data structure you will be working with is a <strong>dataframe</strong>, which is essentially a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data.</p>
 <p>We will explore dataframes in detail later, but here is a sneak peak at what they look like:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="structures-for-data-in-r.html#cb111-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">300</span><span class="op">:</span><span class="dv">310</span>,</span>
+<span id="cb111-2"><a href="structures-for-data-in-r.html#cb111-2"></a>           <span class="dt">y=</span><span class="dv">600</span><span class="op">:</span><span class="dv">610</span>)</span>
+<span id="cb111-3"><a href="structures-for-data-in-r.html#cb111-3"></a>df</span></code></pre></div>
 <pre><code>     x   y
 1  300 600
 2  301 601
@@ -334,6 +387,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 11 310 610</code></pre>
 <p>In this command, we used the <code>data.frame()</code> function to combine two vectors into a dataframe with two columns named <code>x</code> and <code>y</code>. <code>R</code> then saved this result in a new variable named <code>df</code>. When we call <code>df</code>, <code>R</code> shows us the dataframe.</p>
 <p>The great thing about dataframes is that they allow you to relate different data types to each other.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="structures-for-data-in-r.html#cb113-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>),</span>
+<span id="cb113-2"><a href="structures-for-data-in-r.html#cb113-2"></a>                 <span class="dt">height.inches=</span><span class="kw">c</span>(<span class="dv">75</span>,<span class="dv">73</span>,<span class="dv">80</span>))</span>
+<span id="cb113-3"><a href="structures-for-data-in-r.html#cb113-3"></a>df</span></code></pre></div>
 <pre><code>  name height.inches
 1  Ben            75
 2  Joe            73

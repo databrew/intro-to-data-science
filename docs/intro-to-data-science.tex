@@ -588,6 +588,12 @@ Hobbes Primer, Table 1 (Math Operators, pg. 18) and Table 2 (Logical operators, 
 
 So far we have strictly been using \texttt{R} as a calculator, with commands such as:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3} \OperatorTok{+}\StringTok{ }\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 8
 \end{verbatim}
@@ -602,6 +608,12 @@ In \texttt{R}, a variable is a convenient way of referring to an underlying valu
 
 To assign numbers or other types of data to a variable, you use the \texttt{\textless{}} and \texttt{-} characters to make the arrow symbol \texttt{\textless{}-}.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{3}\OperatorTok{+}\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
 As the direction of the \texttt{\textless{}-} arrow suggests, this command stores the result of \texttt{3\ +\ 5} into the variable \texttt{x}.
 
 Unlike before, you did not see \texttt{8} printed to the \emph{Console}. That is because the result was stored into \texttt{x}.
@@ -612,11 +624,23 @@ Unlike before, you did not see \texttt{8} printed to the \emph{Console}. That is
 
 If you wanted R to tell you what ``x'' is, just type the variable name into the \emph{Console} and run that command:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 8
 \end{verbatim}
 
 Want to create a variable but also see its value at the same time? Here's a handy trick:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{3}\OperatorTok{*}\DecValTok{12}\NormalTok{ ; x}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 36
@@ -626,15 +650,35 @@ The semicolon simulates hitting \texttt{Enter}. It says: first run \texttt{x\ \t
 
 You can also update variables.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\NormalTok{x }\OperatorTok{*}\StringTok{ }\DecValTok{3}\NormalTok{ ; x}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 108
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\NormalTok{x }\OperatorTok{*}\StringTok{ }\DecValTok{3}\NormalTok{ ; x}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 324
 \end{verbatim}
 
 You can also add variables together.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{8}
+\NormalTok{y <-}\StringTok{ }\FloatTok{4.5}
+\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 12.5
@@ -650,11 +694,25 @@ For example, ask \texttt{R} to tell you the value of capital \texttt{X}. The err
 
 You can make variable names as complicated or simple as you want.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{supercalifragilistic.expialidocious <-}\StringTok{ }\DecValTok{5}
+\NormalTok{supercalifragilistic.expialidocious  }\CommentTok{# still works}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 5
 \end{verbatim}
 
 Note that periods and underscores can be used in variable names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my.variable <-}\StringTok{ }\DecValTok{5} \CommentTok{# periods can be used}
+\NormalTok{my_variable <-}\StringTok{ }\DecValTok{5} \CommentTok{# underscores can be used}
+\end{Highlighting}
+\end{Shaded}
 
 However, hyphens cannot be used since that symbol is used for subtraction.
 
@@ -698,23 +756,60 @@ In order to be combined, data have to be the same class.
 
 R is able to compute the following commands \ldots{}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{6}
+\NormalTok{y <-}\StringTok{ }\DecValTok{4}
+\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 10
 \end{verbatim}
 
 \ldots{} but not these:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{6}
+\NormalTok{y <-}\StringTok{ "4"}
+\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
+
 That's because the quotation marks used in naming \texttt{y} causes \texttt{R} to interpret \texttt{y} as a \texttt{character} class.
 
 To see how \texttt{R} is interpreting variables, you can use the \texttt{class()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{100}
+\KeywordTok{class}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] "numeric"
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ "100"}
+\KeywordTok{class}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] "character"
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{100} \OperatorTok{==}\StringTok{ }\DecValTok{101}
+\KeywordTok{class}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] "logical"
@@ -773,11 +868,27 @@ The simplest data structure in \texttt{R} is a \textbf{vector}. A vector is simp
 
 To build up a vector in \texttt{R}, use the function \texttt{c()}, which is short for ``concatenate''.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 5 6 7 8
 \end{verbatim}
 
 You can use the \texttt{c()} function to concatenate two vectors together:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{)}
+\NormalTok{z <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x,y)}
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1]  5  6  7  8  9 10 11 12
@@ -785,29 +896,71 @@ You can use the \texttt{c()} function to concatenate two vectors together:
 
 You can also use \texttt{c()} to add values to a vector:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x,}\DecValTok{9}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 5 6 7 8 9
 \end{verbatim}
 
 When two vectors are of the same length, you can do arithmetic with them:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{)}
+
+\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 14 16 18 20
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{-}\StringTok{ }\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] -4 -4 -4 -4
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{*}\StringTok{ }\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 45 60 77 96
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{/}\StringTok{ }\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 0.5555556 0.6000000 0.6363636 0.6666667
 \end{verbatim}
 
 You can also put vectors through logical tests:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{5}
+\DecValTok{4} \OperatorTok{==}\StringTok{ }\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] FALSE FALSE FALSE  TRUE FALSE
@@ -817,15 +970,38 @@ This command is asking \texttt{R} to tell you whether each element in \texttt{x}
 
 You can create vectors of any data class:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{) }
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] "Ben"  "Joe"  "Eric"
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{,}\OtherTok{TRUE}\NormalTok{,}\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1]  TRUE  TRUE FALSE
 \end{verbatim}
 
 Note that all values within a vector \emph{must} be of the same class (i.e., data type). You can't combine numerics and characters into the same vector. If you did, \texttt{R} would try to convert the numbers to characters. For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{4}
+\NormalTok{y <-}\StringTok{ "6"}
+\NormalTok{z <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x,y)}
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] "4" "6"
@@ -837,9 +1013,24 @@ Note that all values within a vector \emph{must} be of the same class (i.e., dat
 
 \textbf{\texttt{length()}} tells you the number of elements in a vector:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{)}
+
+\KeywordTok{length}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 2
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 4
@@ -847,11 +1038,24 @@ Note that all values within a vector \emph{must} be of the same class (i.e., dat
 
 The \textbf{colon symbol \texttt{:}} creates a vector with every integer occurring between a min and max:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
  [1]  1  2  3  4  5  6  7  8  9 10
 \end{verbatim}
 
 \textbf{\texttt{seq()}} allows you to build a vector using evenly spaced \emph{sequence} of values between a min and max:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DataTypeTok{length=}\DecValTok{11}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
  [1]   0  10  20  30  40  50  60  70  80  90 100
@@ -861,15 +1065,34 @@ In this command, you are telling \texttt{R} to give you a sequence of values fro
 
 Alternatively, you can prescribe the interval between values instead of the length:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DataTypeTok{by=}\DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
  [1]  0  7 14 21 28 35 42 49 56 63 70 77 84 91 98
 \end{verbatim}
 
 \textbf{\texttt{head()}} and \textbf{\texttt{tail()}} can be used to retrieve the first 6 or last 6 elements in a vector, respectively.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{1000}
+\KeywordTok{head}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 1 2 3 4 5 6
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1]  995  996  997  998  999 1000
@@ -877,9 +1100,21 @@ Alternatively, you can prescribe the interval between values instead of the leng
 
 You can also adjust how many elements to return:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(x,}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 1 2
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(x,}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
  [1]  991  992  993  994  995  996  997  998  999 1000
@@ -887,11 +1122,25 @@ You can also adjust how many elements to return:
 
 \textbf{\texttt{which()}} allows you to ask, ``For which elements of a vector is the following statement true?''
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\KeywordTok{which}\NormalTok{(x}\OperatorTok{==}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 4
 \end{verbatim}
 
 If no values within the vector meet the condition, a vector of length zero will be returned:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\KeywordTok{which}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\DecValTok{11}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 integer(0)
@@ -899,9 +1148,22 @@ integer(0)
 
 \textbf{\texttt{\%in\%}} is a handy operator that allows you to ask whether a value occurs \emph{within} a vector:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\DecValTok{4} \OperatorTok{%in%}\StringTok{ }\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] TRUE
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{11} \OperatorTok{%in%}\StringTok{ }\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] FALSE
@@ -921,11 +1183,24 @@ Since you will eventually be working with vectors that contain thousands of data
 
 You can subset a vector using square brackets \texttt{{[}\ {]}}.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{50}\OperatorTok{:}\DecValTok{100}
+\NormalTok{x[}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 59
 \end{verbatim}
 
 This command is asking \texttt{R} to return the 10th element in the vector \texttt{x}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[}\DecValTok{10}\OperatorTok{:}\DecValTok{20}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
  [1] 59 60 61 62 63 64 65 66 67 68 69
@@ -951,6 +1226,14 @@ As a data scientist, the most common data structure you will be working with is 
 
 We will explore dataframes in detail later, but here is a sneak peak at what they look like:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\DecValTok{300}\OperatorTok{:}\DecValTok{310}\NormalTok{,}
+           \DataTypeTok{y=}\DecValTok{600}\OperatorTok{:}\DecValTok{610}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
      x   y
 1  300 600
@@ -969,6 +1252,14 @@ We will explore dataframes in detail later, but here is a sneak peak at what the
 In this command, we used the \texttt{data.frame()} function to combine two vectors into a dataframe with two columns named \texttt{x} and \texttt{y}. \texttt{R} then saved this result in a new variable named \texttt{df}. When we call \texttt{df}, \texttt{R} shows us the dataframe.
 
 The great thing about dataframes is that they allow you to relate different data types to each other.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name=}\KeywordTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{),}
+                 \DataTypeTok{height.inches=}\KeywordTok{c}\NormalTok{(}\DecValTok{75}\NormalTok{,}\DecValTok{73}\NormalTok{,}\DecValTok{80}\NormalTok{))}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
   name height.inches
