@@ -931,6 +931,11 @@ Note that periods and underscores can be used in variable names:
 
 However, hyphens cannot be used since that symbol is used for subtraction.
 
+Also note that variables are case-sensitive! If you name a variable \texttt{My\_variable}, \texttt{R} will not recognize it if you refer to it as \texttt{My\_Variable}.
+
+\hypertarget{naming-theory}{%
+\subsubsection{Naming theory}\label{naming-theory}}
+
 Naming variables is a bit of an art. The trick is using names that are clear but are not so complicated that typing them is tedious or prone to errors.
 
 Some names need to be avoided, since \texttt{R} uses them for special purposes. For example, \texttt{data} should be avoided, as should \texttt{mean}, since both are functions built-in to \texttt{R} and \texttt{R} is liable to interpret them as such instead of as a variable containing your data.
@@ -1290,6 +1295,18 @@ Alternatively, you can prescribe the interval between values instead of the leng
  [1]  0  7 14 21 28 35 42 49 56 63 70 77 84 91 98
 \end{verbatim}
 
+\textbf{rep()} allows you to repeat a single value a specified number of times:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rep}\NormalTok{(}\StringTok{"Hey!"}\NormalTok{,}\DataTypeTok{times=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "Hey!" "Hey!" "Hey!" "Hey!" "Hey!"
+\end{verbatim}
+
 \textbf{\texttt{head()}} and \textbf{\texttt{tail()}} can be used to retrieve the first 6 or last 6 elements in a vector, respectively.
 
 \begin{Shaded}
@@ -1333,6 +1350,42 @@ You can also adjust how many elements to return:
 
 \begin{verbatim}
  [1]  991  992  993  994  995  996  997  998  999 1000
+\end{verbatim}
+
+\textbf{sort()} allows you to order a vector from its smallest value to its largest:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\KeywordTok{sort}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1 2 3 4 5 6 7 8 9
+\end{verbatim}
+
+\textbf{rev()} lets you reverse the order of elements within a vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\KeywordTok{rev}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 3 5 7 2 9 6 1 8 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rev}\NormalTok{(}\KeywordTok{sort}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 9 8 7 6 5 4 3 2 1
 \end{verbatim}
 
 \textbf{\texttt{which()}} allows you to ask, ``For which elements of a vector is the following statement true?''
@@ -1516,24 +1569,526 @@ The two other most common data structures are \textbf{matrices} and \textbf{list
 \begin{itemize}
 \tightlist
 \item
-  Item 1\\
+  Make basic plots in \texttt{R}
 \item
-  Item 2\\
-\item
-  Item 3
+  Basic adjustments to plot formatting
 \end{itemize}
 
 \hypertarget{introduction}{%
 \section*{Introduction}\label{introduction}}
 \addcontentsline{toc}{section}{Introduction}
 
+To learn how to plot, let's first create a dataset to work with:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{country <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"USA"}\NormalTok{,}\StringTok{"Tanzania"}\NormalTok{,}\StringTok{"Japan"}\NormalTok{,}\StringTok{"Ctr. Africa Rep."}\NormalTok{,}\StringTok{"China"}\NormalTok{,}\StringTok{"Norway"}\NormalTok{,}\StringTok{"India"}\NormalTok{)}
+\NormalTok{lifespan <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{79}\NormalTok{,}\DecValTok{65}\NormalTok{,}\DecValTok{84}\NormalTok{,}\DecValTok{53}\NormalTok{,}\DecValTok{77}\NormalTok{,}\DecValTok{82}\NormalTok{,}\DecValTok{69}\NormalTok{)}
+\NormalTok{gdp <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{55335}\NormalTok{,}\DecValTok{2875}\NormalTok{,}\DecValTok{38674}\NormalTok{,}\DecValTok{623}\NormalTok{,}\DecValTok{13102}\NormalTok{,}\DecValTok{84500}\NormalTok{,}\DecValTok{6807}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+These data come from this \href{https://datasets.iisg.amsterdam/dataset.xhtml?persistentId=hdl:10622/LKYT53}{publicly available database} that compares health and economic indices across countries in 2011.
+
+The \texttt{lifespan} column presents the average life expectancy for each country.
+
+The \texttt{gdp} column presents the average GDP per capita within that country, which is a common index for the income and wealth of average citizens.
+
+Let's see if there is a relationship between life expectancy and income.
+
+\hypertarget{create-a-basic-plot}{%
+\section*{Create a basic plot}\label{create-a-basic-plot}}
+\addcontentsline{toc}{section}{Create a basic plot}
+
+The simplest way to make a basic plot in \texttt{R} is to use its built-in \texttt{plot()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-72-1.pdf}
+
+This syntax is saying this: plot column \texttt{lifespan} as a function of \texttt{gdp}. The symbol \texttt{\textasciitilde{}} denotes \emph{``as a function of''}. This frames \texttt{lifespan} as a dependent variable (y axis) that is affected by the independent variable (x axis), which in this case is \texttt{gdp}.
+
+Note that \texttt{R} uses the variable names you provided as the x- and y-axes. You can adjust these labels however you wish (see formatting section below).
+
+You can also produce this exact same plot using the following syntax:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{y=}\NormalTok{lifespan, }\DataTypeTok{x=}\NormalTok{gdp)}
+\end{Highlighting}
+\end{Shaded}
+
+Choose whichever one is most intuitive to you.
+
+\hypertarget{most-common-types-of-plots}{%
+\section*{Most common types of plots}\label{most-common-types-of-plots}}
+\addcontentsline{toc}{section}{Most common types of plots}
+
+The plot above is a \textbf{scatter plot}, and is one of the most common types of plots in data science.
+
+You can turn this into a \textbf{line plot} by adding a parameter to the \texttt{plot()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-74-1.pdf}
+
+\emph{What a mess!} Rather than connecting these values in the order you might expect, \texttt{R} connects them in the order that they are listed in their source vectors. This is why line plots tend to be more useful in scenarios such as time series, which are inherently ordered.
+
+Another common plot is the \textbf{bar plot}, which uses a different \texttt{R} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}\DataTypeTok{height=}\NormalTok{lifespan,}\DataTypeTok{names.arg=}\NormalTok{country)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-75-1.pdf}
+
+In this command, the parameter \texttt{height} determines the height of the bars, and \texttt{names.arg} provides the labels to place beneath each bar.
+
+Note that one of the bar labels did not plot, because \texttt{R} did not have enough space to print the labels in a pretty way. Rather than create overlapping text, \texttt{R} is programmed to leave some labels out. You will be able to adjust text size on your own (see next section).
+
+There are many more plot types out there, but let's stop here now.
+
 \hypertarget{exercise-1-2}{%
 \subsection*{Exercise 1}\label{exercise-1-2}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
+Produce a bar plot that shows the GDP for each country.
+
+\hypertarget{basic-plot-formatting}{%
+\section*{Basic plot formatting}\label{basic-plot-formatting}}
+\addcontentsline{toc}{section}{Basic plot formatting}
+
+You can adjust the default formatting of plots by adding other inputs to your \texttt{plot()} command. To understand all the parameters you can adjust, bring up the help page for this function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?plot}
+\end{Highlighting}
+\end{Shaded}
+
+If multiple help page options are returned, select the \emph{Generiz X-Y Plotting} page from the \texttt{base} package. This is the plot function that comes built-in to \texttt{R}.
+
+Here we demonstrate just a few of the most common formatting adjustments you are likely to use:
+
+\textbf{Set plot range} using \texttt{xlim} (for the x axis) and \texttt{ylim} (for the y axis):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{60000}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{,}\DecValTok{100}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-77-1.pdf}
+
+In this command, you are defining axis limits using a 2-element vector (i.e., \texttt{c(min,max)}).
+
+Note that it can be easier to read your code if you put each input on a new line, like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{60000}\NormalTok{),}
+     \DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{,}\DecValTok{100}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Make sure each input line within the function ends with a comma, otherwise you \texttt{R} will get confused and throw an error.
+
+\textbf{Set dot type} using the input \texttt{pch}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-79-1.pdf}
+
+\textbf{Set dot color} using the input \texttt{col} (the default is \texttt{col="black"})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-80-1.pdf}
+
+\href{http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf?utm_source=twitterfeed\&utm_medium=twitter}{Here is a great resource} for color names in \texttt{R}.
+
+\textbf{Set dot size} using the input \texttt{cex} (the default is \texttt{cex=1}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{cex=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-81-1.pdf}
+
+\textbf{Set axis labels} using the inputs \texttt{xlab} and \texttt{ylab}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp, }\DataTypeTok{xlab=}\StringTok{"Gross Domestic Product (GDP)"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Life Expectancy"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-82-1.pdf}
+
+\textbf{Set axis number size} using the input \texttt{cex.axis} (the default is \texttt{cex.axis=1}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{cex.axis=}\NormalTok{.}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-83-1.pdf}
+
+\textbf{Set axis label size} using the input \texttt{cex.label} (the default is \texttt{cex.lab=1}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{cex.lab=}\NormalTok{.}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-84-1.pdf}
+
+\textbf{Set plot margins} using the function \texttt{par(mar=c())} before you call \texttt{plot()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-85-1.pdf}
+
+In this command, the four numbers in the vector used to define \texttt{mar} correspond to the margin for the bottom, left, top, and right sides of the plot, respectively.
+
+\textbf{Create a multi-pane plot} using the function \texttt{par(mfrow=c())} before you call \texttt{plot()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-86-1.pdf}
+
+In this command, the two numbers in the vector used to define \texttt{mfrow} correspond to the number of rows and columns, respectively, on the entire plot. In this case, you have 1 row of plots with two columns.
+
+Note that you will need to reset the number of panes when you are done with your multi-pane plot!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Plot dots and lines at once} using the input \texttt{type}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{type=}\StringTok{"b"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{type=}\StringTok{"o"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-88-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Note the two slightly different formats here.
+
+\textbf{Use a logarithmic scale} for one or of your axes using the input \texttt{log}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{log=}\StringTok{"x"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-89-1.pdf}
+
+\hypertarget{exercise-2-2}{%
+\subsection*{Exercise 2}\label{exercise-2-2}}
+\addcontentsline{toc}{subsection}{Exercise 2}
+
+Produce a \emph{beautifully} formatted plot that incorporates \textbf{all} of these customization inputs explained above into a multi-paned plot.
+
+\hypertarget{plotting-with-data-frames}{%
+\section*{Plotting with data frames}\label{plotting-with-data-frames}}
+\addcontentsline{toc}{section}{Plotting with data frames}
+
+So far in this tutorial we have been using vectors to produce plots. This is nice for learning, but does not represent the real world very well. You will almost always be producing plots using dataframes.
+
+Let's turn these vectors into a dataframe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(country,lifespan,gdp)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+           country lifespan   gdp
+1              USA       79 55335
+2         Tanzania       65  2875
+3            Japan       84 38674
+4 Ctr. Africa Rep.       53   623
+5            China       77 13102
+6           Norway       82 84500
+7            India       69  6807
+\end{verbatim}
+
+To plot data within a dataframe, your \texttt{plot()} syntax changes slightly:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp, }\DataTypeTok{data=}\NormalTok{df)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-91-1.pdf}
+
+This syntax is saying this: using the dataframe named \texttt{df} as a source, plot column \texttt{lifespan} as a function of column \texttt{gdp}. The symbol \texttt{\textasciitilde{}} denotes \emph{``as a function of''}. This frames \texttt{lifespan} as a dependent variable (y axis) that is affected by the independent variable (x axis), which in this case is \texttt{gdp}.
+
+Another way to write this command is as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(df}\OperatorTok{$}\NormalTok{lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{gdp)}
+\end{Highlighting}
+\end{Shaded}
+
+In this command, the \texttt{\$} symbol is saying, ``give me the column in \texttt{df} named \texttt{lifespan}''. It is a handy way of referring to a column within a dataframe by name. You will learn more about working with dataframes in an upcoming module.
+
+\hypertarget{exercise-2-3}{%
+\subsection*{Exercise 2}\label{exercise-2-3}}
+\addcontentsline{toc}{subsection}{Exercise 2}
+
+A. Use the \texttt{df} dataframe to produce a bar plot that shows life expectancy for each country.
+
+B. Use the \texttt{df} dataframe to produce a jumbled line plot of life expectancy as a function of GDP. Reference the \texttt{plot()} documentation to figure out how to change the thickness of the line.
+
+\hypertarget{next-level-plotting}{%
+\section*{Next-level plotting}\label{next-level-plotting}}
+\addcontentsline{toc}{section}{Next-level plotting}
+
+The possibilities for data visualization in \texttt{R} are prety much limitless, and over time you will become fluent in making gorgeous plots. Here are a few common tools that can take your plots to the next level.
+
+\hypertarget{adding-lines}{%
+\subsection*{Adding lines}\label{adding-lines}}
+\addcontentsline{toc}{subsection}{Adding lines}
+
+In some cases it is useful to add reference lines to your plot. For example, what if we wanted to be able to quickly see which countries had life expectancies below 75 years?
+
+You can add a line at \texttt{lifespan\ =\ 75} using the function \texttt{abline()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(df}\OperatorTok{$}\NormalTok{lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{gdp)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\DecValTok{75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-93-1.pdf}
+
+In this command, the \texttt{h} input means ``place a horizontal line at this y value.''.
+
+Similarly, you can use \texttt{v} to specify vertical lines at certain x values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(df}\OperatorTok{$}\NormalTok{lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{gdp)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{c}\NormalTok{(}\DecValTok{25000}\NormalTok{,}\DecValTok{35000}\NormalTok{),}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-94-1.pdf}
+
+Note here that another input, \texttt{lty}, was used to change the type of line printed. (Refer to \texttt{?abline()} for more details).
+
+\hypertarget{exercise-4-1}{%
+\subsubsection*{Exercise 4}\label{exercise-4-1}}
+\addcontentsline{toc}{subsubsection}{Exercise 4}
+
+Produce a plot of life expectancy as a function of GDP per capita. Then add a line to your plot that indicates which countries have per-capita GDPs that fall below (or above) the average per-capita GDP for the whole dataset. Make your line dashed and color it red.
+
+\hypertarget{adding-text}{%
+\subsection*{Adding text}\label{adding-text}}
+\addcontentsline{toc}{subsection}{Adding text}
+
+Use the \texttt{text()} function to add labels to your plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(df}\OperatorTok{$}\NormalTok{lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{gdp)}
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x=}\DecValTok{30000}\NormalTok{,}\DataTypeTok{y=}\DecValTok{75}\NormalTok{,}\DataTypeTok{labels=}\StringTok{"My text went here"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-95-1.pdf}
+
+\hypertarget{exercise-5-1}{%
+\subsubsection*{Exercise 5}\label{exercise-5-1}}
+\addcontentsline{toc}{subsubsection}{Exercise 5}
+
+Produce a plot of life expectancy as a function of GDP per capita, then label each point by country. Make the labels small and place them \emph{to the right} of their associated dot (Hint: use \texttt{?text} for help).
+
+\hypertarget{highlighting-certain-data-points}{%
+\subsection*{Highlighting certain data points}\label{highlighting-certain-data-points}}
+\addcontentsline{toc}{subsection}{Highlighting certain data points}
+
+It can be helpful to highlight a certain data point (or group of data points) using a different dot size, format, or color.
+
+\textbf{To highlight a single data point}, here is one approach you can take: first, plot all points, \emph{then} re-plot the point of interest using the \texttt{points()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(df}\OperatorTok{$}\NormalTok{lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{gdp)}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x=}\NormalTok{df}\OperatorTok{$}\NormalTok{gdp[}\DecValTok{5}\NormalTok{],}\DataTypeTok{y=}\NormalTok{df}\OperatorTok{$}\NormalTok{lifespan[}\DecValTok{5}\NormalTok{],}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-96-1.pdf}
+
+In this example, we re-plotted the data for the fifth row in the dataframe (in this case, China).
+
+\textbf{To highlight a group of data points}, try this approach:
+
+\begin{itemize}
+\item
+  First, create a vector that will contain the color for each data point.
+\item
+  Second, determine the color for each data point using a logical test.
+\item
+  Third, use your vector of colors within your \texttt{plot()} command.
+\end{itemize}
+
+For example, let's highlight all countries whose life expectancy is greater than 75.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First}
+\NormalTok{cols <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\StringTok{"grey"}\NormalTok{,}\DataTypeTok{times=}\KeywordTok{length}\NormalTok{(lifespan)) }\CommentTok{# create a vector of colors the length of vector `lifespan`}
+\NormalTok{cols}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "grey" "grey" "grey" "grey" "grey" "grey" "grey"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Second}
+\NormalTok{change_these <-}\StringTok{ }\KeywordTok{which}\NormalTok{(lifespan }\OperatorTok{>}\StringTok{ }\DecValTok{75}\NormalTok{) }
+\NormalTok{change_these }\CommentTok{# these are the elements that we want to highlight}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1 3 5 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols[change_these] <-}\StringTok{ "red"}  \CommentTok{# change the color for these elements to a highlight color}
+
+\CommentTok{# Third}
+\KeywordTok{plot}\NormalTok{(lifespan }\OperatorTok{~}\StringTok{ }\NormalTok{gdp,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}\DataTypeTok{col=}\NormalTok{cols,}\DataTypeTok{log=}\StringTok{"x"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-97-1.pdf}
+
+\hypertarget{exercise-6-1}{%
+\subsubsection*{Exercise 6}\label{exercise-6-1}}
+\addcontentsline{toc}{subsubsection}{Exercise 6}
+
+Produce a plot of life expectancy as a function of GDP per capita, in which all countries with GDPs below \$10,000 have larger dots of a different color.
+
+\hypertarget{building-a-plot-from-the-ground-up}{%
+\subsection*{Building a plot from the ground up}\label{building-a-plot-from-the-ground-up}}
+\addcontentsline{toc}{subsection}{Building a plot from the ground up}
+
+In many applications it can be helpful to have complete control over the way your plot is built. To do so, you can build your plot from the very bottom up in multiple steps.
+
+The steps for building up your own plot are as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Stage a blank canvas}: A plot begins with a blank canvas that covers a certain range of values for \texttt{x} and \texttt{y}. To stage a blank canvas, add this parameters to your \texttt{plot()} function: \texttt{type="n",\ axes=FALSE,\ ann=FALSE,\ xlim=c(\_\_,\ \_\_),\ ylim=c(\_\_,\ \_\_)"}. These commands tell \texttt{R} to plot a blank space, not to print axes, not to print annotations like x- or y-axis labels, and to limit your canvas to a certain coordinate range. Be sure to add numbers to the \texttt{xlim()} and \texttt{ylim()}commands.
+\item
+  \textbf{Add your axes}, if you want, using the function \texttt{axis()}. The command \texttt{axis(1)} prints the x-axis, and \texttt{axis(2)} prints the y-axis. This function allows you to define where tick marks occur and other details (see \texttt{?axis}).
+\item
+  \textbf{Add axis titles} using the function \texttt{title()}.
+\item
+  \textbf{Add reference lines}, if you want, using \texttt{abline()}. Do this before adding data, since it is usually nice for data points to be superimposed \emph{on top of} your reference lines.
+\item
+  \textbf{Add your data} using either \texttt{points()} or \texttt{lines()}.
+\item
+  \textbf{Add text labels}, if you want, using \texttt{text()}.
+\end{enumerate}
+
+Here is an example of this process:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 1. Stage a blank canvas}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{4.5}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{type=}\StringTok{"n"}\NormalTok{,}\DataTypeTok{axes=}\OtherTok{FALSE}\NormalTok{,}\DataTypeTok{ann=}\OtherTok{FALSE}\NormalTok{,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100000}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{,}\DecValTok{100}\NormalTok{))}
+
+\CommentTok{# 2. Add axes}
+\KeywordTok{axis}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{at=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{20000}\NormalTok{,}\DecValTok{40000}\NormalTok{,}\DecValTok{60000}\NormalTok{,}\DecValTok{80000}\NormalTok{,}\DecValTok{100000}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\StringTok{"$0"}\NormalTok{, }\StringTok{"$20"}\NormalTok{,}\StringTok{"$40"}\NormalTok{,}\StringTok{"$60"}\NormalTok{,}\StringTok{"$80"}\NormalTok{,}\StringTok{"$100"}\NormalTok{))}
+\KeywordTok{axis}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DataTypeTok{at=}\KeywordTok{seq}\NormalTok{(}\DecValTok{40}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DataTypeTok{by=}\DecValTok{10}\NormalTok{),}\DataTypeTok{las=}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{# 3. Add axis titles}
+\KeywordTok{title}\NormalTok{(}\DataTypeTok{xlab=}\StringTok{"Gross Domestic Product (GDP, in thousands) per Capita "}\NormalTok{,}\DataTypeTok{cex.lab=}\NormalTok{.}\DecValTok{9}\NormalTok{)}
+\KeywordTok{title}\NormalTok{(}\DataTypeTok{ylab=}\StringTok{"Average Life Expectancy"}\NormalTok{,}\DataTypeTok{cex.lab=}\NormalTok{.}\DecValTok{9}\NormalTok{)}
+
+\CommentTok{# 4. Add reference lines}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\DecValTok{70}\NormalTok{,}\DataTypeTok{v=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"grey"}\NormalTok{)}
+
+\CommentTok{# 5. Add data}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x=}\NormalTok{gdp,}\DataTypeTok{y=}\NormalTok{lifespan,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}\DataTypeTok{col=}\StringTok{"firebrick"}\NormalTok{)}
+
+\CommentTok{# 6. Add text}
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x=}\NormalTok{gdp[}\DecValTok{6}\NormalTok{],}\DataTypeTok{y=}\NormalTok{lifespan[}\DecValTok{6}\NormalTok{],}\DataTypeTok{labels=}\StringTok{"Norway"}\NormalTok{,}\DataTypeTok{pos=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-98-1.pdf}
+
 \hypertarget{review-assignment-3}{%
 \section*{Review assignment}\label{review-assignment-3}}
 \addcontentsline{toc}{section}{Review assignment}
+
+\emph{NOTE: Under construction!}
 
 \hypertarget{other-resources-4}{%
 \section*{Other Resources}\label{other-resources-4}}
@@ -1866,7 +2421,7 @@ Looks like the first four columns would be interesting to plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-75-1.pdf}
+\includegraphics{figures/unnamed-chunk-106-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1934,10 +2489,10 @@ Let's say we want to see how gas mileage is affected by the number of cylinders 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-77-1.pdf}
+\includegraphics{figures/unnamed-chunk-108-1.pdf}
 
-\hypertarget{exercise-2-2}{%
-\subsection*{Exercise 2}\label{exercise-2-2}}
+\hypertarget{exercise-2-4}{%
+\subsection*{Exercise 2}\label{exercise-2-4}}
 \addcontentsline{toc}{subsection}{Exercise 2}
 
 Now try to do something similar on your own with the \texttt{airquality} dataset. Use \texttt{for\ loops} to create a plot with Month on the x axis and Temperature on the y axis. On this plot, depict all the temperatures recorded in each month in the color grey, then superimpose the mean temperature for each month.
@@ -1960,7 +2515,7 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-78-1.pdf}
+\includegraphics{figures/unnamed-chunk-109-1.pdf}
 
 \hypertarget{using-a-for-loop-with-more-complex-data}{%
 \section*{\texorpdfstring{Using a \texttt{for\ loop} with more complex data}{Using a for loop with more complex data}}\label{using-a-for-loop-with-more-complex-data}}
@@ -1996,7 +2551,7 @@ Try plotting the Keeling Curve:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-80-1.pdf}
+\includegraphics{figures/unnamed-chunk-111-1.pdf}
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
@@ -2007,7 +2562,7 @@ There are some erroneous data points! We clearly can't have negative CO2 values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-81-1.pdf}
+\includegraphics{figures/unnamed-chunk-112-1.pdf}
 
 \textbf{What's the deal with those squiggles?} Let's investigate!
 
@@ -2073,7 +2628,7 @@ Let's look at the data a different way: \emph{by focusing in on a single year.}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-82-1.pdf}
+\includegraphics{figures/unnamed-chunk-113-1.pdf}
 
 But this only shows one year of data! How can we include the seasonal squiggle from other years?
 
@@ -2127,7 +2682,7 @@ OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-83-1.pdf}
+\includegraphics{figures/unnamed-chunk-114-1.pdf}
 
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
@@ -2278,7 +2833,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-87-1.pdf}
+\includegraphics{figures/unnamed-chunk-118-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsection*{Now loop it!}\label{now-loop-it}}
@@ -2302,7 +2857,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-88-1.pdf}
+\includegraphics{figures/unnamed-chunk-119-1.pdf}
 
 \hypertarget{now-loop-it-differently}{%
 \subsection*{Now loop it differently!}\label{now-loop-it-differently}}
@@ -2328,7 +2883,7 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-89-1.pdf}
+\includegraphics{figures/unnamed-chunk-120-1.pdf}
 
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
