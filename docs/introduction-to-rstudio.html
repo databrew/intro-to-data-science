@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-04-13" />
+<meta name="date" content="2021-04-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -236,30 +236,161 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="learning-goals-1" class="section level2 unnumbered">
 <h2>Learning goals</h2>
 <ul>
-<li>Understand the Rstudio working environment and window panes<br />
+<li>Understand the difference between <code>R</code> and <code>RStudio</code>.</li>
+<li>Understand the <code>RStudio</code> working environment and window panes<br />
 </li>
-<li>Creating and saving scripts</li>
-<li>Customizing your rstudio</li>
+<li>Understand what <code>R</code> scripts are, and how to create and save them.</li>
+<li>Understand what a <em>working directory</em> is, and how to use it.</li>
+<li>Learn basic project work flow</li>
 </ul>
 </div>
-<div id="tutorial-video-1" class="section level2 unnumbered">
-<h2>Tutorial video</h2>
+<div id="r-and-rstudio-whats-the-difference" class="section level2 unnumbered">
+<h2><code>R</code> and <code>RStudio</code>: what’s the difference?</h2>
+<p>These two entities are similar, but it is important to understand how they are different.</p>
+<p>In short, <code>R</code> is a open-source (i.e., free) coding language: a powerful programming engine that can be used to do really cool things with data.</p>
+<p><code>R Studio</code>, in contrast, is a free <em>user interface</em> that helps you interact with <code>R</code>. If you think of <code>R</code> as an engine, then it helps to think of <code>RStudio</code> as the car that contains it. Like a car,<code>RStudio</code> makes it easier and more comfortable to use the engine to get where you want to go.</p>
+<p><code>R Studio</code> needs <code>R</code> in order to function, but <code>R</code> can technically be used on its own outside of <code>RStudio</code> if you want. However, just as a good car mechanic can get an engine to run without being installed within a car, using <code>R</code> on its own is a bit clunky and requires some expertise. For beginners (and everyone else, really), <code>R</code> is just so much more pleasant to use when you are operating it from within <code>RStudio</code>.</p>
+<p><code>RStudio</code> also has increasingly powerful <em>extensions</em> that make <code>R</code> even more useful and versatile in data science. These extensions allow you to use <code>R</code> to make interactive data dashboards, beautiful and reproducible data reports, presentations, websites, and even books. And new features like these are regularly being added to <code>RStudio</code> by its all-star team of data scientists.</p>
+<p>That is why this book <em>always</em> uses <code>RStudio</code> when working with <code>R</code>.</p>
 </div>
-<div id="tour-of-rstudio" class="section level2">
-<h2><span class="header-section-number">8.1</span> Tour of RStudio</h2>
+<div id="two-minute-tour-of-rstudio" class="section level2 unnumbered">
+<h2>Two-minute tour of <code>RStudio</code></h2>
+<p>When you open <code>RStudio</code> for the first time, you will see a window that looks like the screenshot below.</p>
 <p><img src="img/rstudio_windows.png" /></p>
+<div id="console" class="section level3 unnumbered">
+<h3>Console</h3>
+<p>You are already acquainted with <code>RStudio</code>’s <em>Console</em>, the window pane on the left that you use to “talk” to <code>R</code>. (See the previous module.)</p>
 </div>
-<div id="other-tabs" class="section level2">
-<h2><span class="header-section-number">8.2</span> Other tabs</h2>
+<div id="environment" class="section level3 unnumbered">
+<h3>Environment</h3>
+<p>In the top right pane, the <em>Environment</em>, <code>RStudio</code> will maintain a list of all the datasets, variables, and functions that you are using as you work. The next modules will explain what variables and functions are.</p>
+<p>This is the pane that is used the least often, and if you wish it can simplify your workspace to minimize it.</p>
 </div>
-<div id="scripts" class="section level2">
-<h2><span class="header-section-number">8.3</span> Scripts</h2>
+<div id="files-plots-packages-help" class="section level3 unnumbered">
+<h3>Files, Plots, Packages, &amp; Help</h3>
+<p>You will use the bottom right pane very often.</p>
+<ul>
+<li>The <strong>Files</strong> tab lets you see all the files within your <strong>working directory</strong>, which will be explained in the section below.<br />
+</li>
+<li>The <strong>Plots</strong> tab lets you see the plots you are producing with your code.<br />
+</li>
+<li>The <strong>Packages</strong> tab lets you see the <em>packages</em> you currently have installed on your computer. Packages are bundles of <code>R</code> functions downloaded from the internet; they will be explained in detail a few modules down the road.<br />
+</li>
+<li>The <strong>Help</strong> tab is very important! It lets you see <em>documentation</em> (i.e., user’s guides) for the functions you use in your code. Functions will also be explained in detail a few modules down the road.</li>
+</ul>
+<p>These three panes are useful, but the most useful window pane of all is actually <em>missing</em> when you first open <code>RStudio</code>. This important pane is where you work with <strong>scripts</strong>.</p>
 </div>
-<div id="typical-workflows" class="section level2">
-<h2><span class="header-section-number">8.4</span> Typical workflows</h2>
 </div>
-<div id="other-resources-1" class="section level2">
-<h2><span class="header-section-number">8.5</span> Other Resources</h2>
+<div id="scripts" class="section level2 unnumbered">
+<h2>Scripts</h2>
+<p>Before explaining what scripts are and why they are awesome, let’s start a new script.</p>
+<p><strong>To start a new script,</strong> go to the top left icon in the <code>RStudio</code> window, and click on the green plus sign with a blank page behind it:</p>
+<p><img src="img/rstudio_newscript.png" /></p>
+<p>A dropdown window will appear. Select “R Script”.</p>
+<p>A new window pane will then appear in the top left quadrant of your <code>RStudio</code> window:</p>
+<p><img src="img/rstudio_scripts.png" />
+You now have a blank script to work in!</p>
+<p>Now type some simple commands into your script:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-rstudio.html#cb1-1"></a>x &lt;-<span class="st"> </span><span class="dv">2</span> </span>
+<span id="cb1-2"><a href="introduction-to-rstudio.html#cb1-2"></a>x</span></code></pre></div>
+<p>Notice that when you press <code>Enter</code> after each line of code, nothing happens in the <em>Console</em>. In order to send this code to the Console, press <code>Enter + Command</code> at the same time (or <code>Enter + Control</code>, if you are on Windows) for each line of code.</p>
+<p>To send both lines of code to the <em>Console</em> at once, select both lines of code and hit <code>Enter + Command</code>.</p>
+<p>(To select multiple lines of code, you can (1) click and drag with your mouse or (2) hold down your <code>Shift</code> key while clicking your down arrow key. To select <em>all</em> lines of code, press <code>Command + A</code>.)</p>
+<div id="exercise-1-1" class="section level4 unnumbered">
+<h4>Exercise 1</h4>
+<p>Add a few more lines to your script, such that your script now looks like this.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction-to-rstudio.html#cb2-1"></a>x &lt;-<span class="st"> </span><span class="dv">2</span> </span>
+<span id="cb2-2"><a href="introduction-to-rstudio.html#cb2-2"></a>x</span>
+<span id="cb2-3"><a href="introduction-to-rstudio.html#cb2-3"></a></span>
+<span id="cb2-4"><a href="introduction-to-rstudio.html#cb2-4"></a>y &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">56</span></span>
+<span id="cb2-5"><a href="introduction-to-rstudio.html#cb2-5"></a></span>
+<span id="cb2-6"><a href="introduction-to-rstudio.html#cb2-6"></a>z &lt;-<span class="st"> </span>y <span class="op">/</span><span class="st"> </span><span class="dv">23</span></span>
+<span id="cb2-7"><a href="introduction-to-rstudio.html#cb2-7"></a> </span>
+<span id="cb2-8"><a href="introduction-to-rstudio.html#cb2-8"></a>x <span class="op">+</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span>z</span></code></pre></div>
+<ol style="list-style-type: upper-alpha">
+<li>Run all of these lines of code at once.<br />
+</li>
+<li>Now change the value of <code>x</code> and re-run all of the code.</li>
+</ol>
+<p>Think about how much more efficient part (B) was thanks to your script! If you had typed all of that directly into your <em>Console</em>, you would have to recall or retype each line individually.</p>
+<p>Now think about how much of a different your script would make if the number of commands was 500, instead of five!</p>
+</div>
+<div id="what-is-an-r-script-and-why-are-scripts-so-awesome" class="section level3 unnumbered">
+<h3>What is an <code>R</code> script, and why are scripts so awesome?</h3>
+<p>An <code>R</code> script is a file where you can keep a record of your code. Just as a script tells actors exactly what to say and when to say it, an <code>R</code> script tells <code>R</code> exactly what code to run, and in what order to run it.</p>
+<p>When working with R, you will almost always type your code into a script first, <em>then</em> send it to the <em>Console</em>. You can run your code immediately using <code>Enter + Command</code>, but you also have a script of what you have done so that you can run the exact same code at a later time</p>
+<p>To understand why <code>R</code> scripts are so awesome, consider a typical workflow in <em>Excel</em> of <em>GoogleSheets</em>. You open a big complicated spreadsheet, spend hours making changes, and save your changes frequently throughout your work session.</p>
+<p>The main disadvantages of this workflow are that:</p>
+<ol style="list-style-type: decimal">
+<li><p>There is no detailed record of the changes you have made. You cannot prove that you have made changes correctl. You cannot pass the original dataset to someone else and ask them to revise it in the same way you have. (Nor would you want to, since making all those changes was so time-consuming!) Nor could your take a different dataset and guarantee that you are able to apply the exact same changes that you applied to the first. In other words, your work is not reproducible.</p></li>
+<li><p>Making those changes is labor-intensive! Rather than spend time manually making changes to a single spreadsheet, it would be better to devote that energy to writing <code>R</code> code that makes those changes for you. That code could be run in this one case, but it could also be run at any later time, or easily modified to make similar changes to other spreadsheets.</p></li>
+<li><p>You are modifying your original dataset, which is always dangerous and a big No-No in data science. Each time you save your work in <em>Excel</em> or <em>GoogleSheets</em> (which automatically saves each change you make), the original spreadsheet file gets replaced by the updated version. But if you brought your dataset into <code>R</code> instead, and modified it using an <code>R</code> script, then you leave the raw data alone and keep it safe. (Sure, you can always save different versions of your Excel file, but then you run the risk of mixing up versions and getting confused.)</p></li>
+</ol>
+<p>Working with <code>R</code> scripts allows you to avoid all of these pitfalls. When you write an <code>R</code> script, you are making your work ….</p>
+<ul>
+<li><p><strong>Efficient.</strong> Once you get comfortable writing <code>R</code> code, you will be able to write scripts in a few minutes. Those scripts can modify datasets within seconds (or less) in ways that would take hours (or years) to carry out manually in <em>Excel</em> or <em>GoogleSheets</em>.</p></li>
+<li><p><strong>Reproducible.</strong> Once you have written an<code>R</code> script, you can reproduce your own work whenever you want to. You can send your script to a colleague so that they can reproduct your work as well. Reproducible wrk is defensible work.</p></li>
+<li><p><strong>Low-risk.</strong> Since your R script does not make any changes to the original data, you are keeping your data safe. It is <em>essential</em> top preserve the sancitty of raw data!</p></li>
+</ul>
+<p>Note that there is nothing fancy or special about an <code>R</code> script. An <code>R</code> script is a simple text file; that is, it only accepts basic text; you can’t add images or change font style or font size in an <code>R</code> script; just letters, numbers, and your other keyboard keys. The file’s extension, <code>.R</code> tells your computer to interpret that text as <code>R</code> code.</p>
+</div>
+<div id="commenting-your-code" class="section level3 unnumbered">
+<h3>Commenting your code</h3>
+<p>Another advantage of scripts is that you can include <em>comments</em> throughout your code to explain what you are doing and why. A <em>comment</em> is just a part of your script that is useful to you but that is ignored by <code>R</code>.</p>
+<p>To add comments to your code, use the hashtag symbol (<code>#</code>). Any text following a <code>#</code> will be ignored by <code>R</code>.</p>
+<p>Here is the script above, now with comments added:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-rstudio.html#cb3-1"></a><span class="co"># Define variable x</span></span>
+<span id="cb3-2"><a href="introduction-to-rstudio.html#cb3-2"></a>x &lt;-<span class="st"> </span><span class="dv">2</span> </span>
+<span id="cb3-3"><a href="introduction-to-rstudio.html#cb3-3"></a>x</span>
+<span id="cb3-4"><a href="introduction-to-rstudio.html#cb3-4"></a></span>
+<span id="cb3-5"><a href="introduction-to-rstudio.html#cb3-5"></a><span class="co"># Make a new variable, y, based on x</span></span>
+<span id="cb3-6"><a href="introduction-to-rstudio.html#cb3-6"></a>y &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">56</span></span>
+<span id="cb3-7"><a href="introduction-to-rstudio.html#cb3-7"></a></span>
+<span id="cb3-8"><a href="introduction-to-rstudio.html#cb3-8"></a>z &lt;-<span class="st"> </span>y <span class="op">/</span><span class="st"> </span><span class="dv">23</span> <span class="co"># Make a third variable, z, based on y</span></span>
+<span id="cb3-9"><a href="introduction-to-rstudio.html#cb3-9"></a> </span>
+<span id="cb3-10"><a href="introduction-to-rstudio.html#cb3-10"></a>x <span class="op">+</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span>z <span class="co"># Now get the sum of all three variables</span></span></code></pre></div>
+<p>Adding comments can be more work, but in the end it saves you time and makes your code more effective. Comments might not seem necessary in the moment, but it is amazing how helpful they are when you come back to your code the next day. Frequent and helpful comments make the difference between good and great code. Comment early, comment often!</p>
+<p>You can also use lines hashtags to visually organize your code. For example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction-to-rstudio.html#cb4-1"></a><span class="co">##############################################</span></span>
+<span id="cb4-2"><a href="introduction-to-rstudio.html#cb4-2"></a><span class="co"># Setup</span></span>
+<span id="cb4-3"><a href="introduction-to-rstudio.html#cb4-3"></a><span class="co">##############################################</span></span>
+<span id="cb4-4"><a href="introduction-to-rstudio.html#cb4-4"></a></span>
+<span id="cb4-5"><a href="introduction-to-rstudio.html#cb4-5"></a><span class="co"># Define variable x</span></span>
+<span id="cb4-6"><a href="introduction-to-rstudio.html#cb4-6"></a>x &lt;-<span class="st"> </span><span class="dv">2</span> </span>
+<span id="cb4-7"><a href="introduction-to-rstudio.html#cb4-7"></a>x</span>
+<span id="cb4-8"><a href="introduction-to-rstudio.html#cb4-8"></a></span>
+<span id="cb4-9"><a href="introduction-to-rstudio.html#cb4-9"></a><span class="co"># Make a new variable, y, based on x</span></span>
+<span id="cb4-10"><a href="introduction-to-rstudio.html#cb4-10"></a>y &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">56</span></span>
+<span id="cb4-11"><a href="introduction-to-rstudio.html#cb4-11"></a></span>
+<span id="cb4-12"><a href="introduction-to-rstudio.html#cb4-12"></a>z &lt;-<span class="st"> </span>y <span class="op">/</span><span class="st"> </span><span class="dv">23</span> <span class="co"># Make a third variable, z, based on y</span></span>
+<span id="cb4-13"><a href="introduction-to-rstudio.html#cb4-13"></a> </span>
+<span id="cb4-14"><a href="introduction-to-rstudio.html#cb4-14"></a></span>
+<span id="cb4-15"><a href="introduction-to-rstudio.html#cb4-15"></a><span class="co">##############################################</span></span>
+<span id="cb4-16"><a href="introduction-to-rstudio.html#cb4-16"></a><span class="co"># Get result</span></span>
+<span id="cb4-17"><a href="introduction-to-rstudio.html#cb4-17"></a><span class="co">##############################################</span></span>
+<span id="cb4-18"><a href="introduction-to-rstudio.html#cb4-18"></a></span>
+<span id="cb4-19"><a href="introduction-to-rstudio.html#cb4-19"></a>x <span class="op">+</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span>z <span class="co"># Now get the sum of all three variables</span></span></code></pre></div>
+<p>This might not seem super helpful with a 5-line script, but adding visual breaks to your code becomes immensely helpful when your code grows to be hundreds of lines long.</p>
+</div>
+<div id="saving-your-work" class="section level3 unnumbered">
+<h3>Saving your work</h3>
+<p><code>R</code> scripts are only useful if you save them! Unlike working with <em>GoogleDocs</em> or <em>GoogleSheets</em>, <code>R</code> will not automatically save your changes; you have to do that yourself. (This is inconvenient, but it is also safer; alot of coding is trial and error, and sometimes you want to be careful about what is saved.)</p>
+<p><strong>Where to save your work?</strong> The folder in which you save your <code>R</code> script will be referred to as your <em>working directory</em> (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location. We suggest making a nw folder on your Desktop and naming it <code>databoom</code>, but you can name it whatever you want and place it wherever you want.</p>
+<p><strong>How to save your script?</strong> To save the script you have opened and typed a few lines of code into, press <code>Command + S</code> (or <code>Control + S</code>). Alternatively, go to File &gt; Save. Navigate to the folder you just created and type in a file name that is simple but descriptive. We suggest making a new <code>R</code> script for each module, and naming those scripts according to each module’s name. In this case, we recommend naming your script <code>intro_to_rstudio</code>.</p>
+<p>(It is good practice to avoid spaces in your file names; it will be essential later on, so good to begin the correct habit now. Start using an underscore (<code>_</code>) instead of a space.)</p>
+</div>
+</div>
+<div id="working-directory" class="section level2 unnumbered">
+<h2>Working directory</h2>
+<p>When you work with data in <code>R</code>, <code>R</code> will need to know where in your computer to look for that data. The folder it looks in is known as your <strong>working directory</strong>.</p>
+<p>Whenever you begin a new <code>R</code> script, setting your working directory will be one of the first things you do.</p>
+</div>
+<div id="typical-workflows" class="section level2 unnumbered">
+<h2>Typical workflows</h2>
+</div>
+<div id="other-resources-1" class="section level2 unnumbered">
+<h2>Other Resources</h2>
+<p><em>NOTE: Under construction!</em></p>
 
 </div>
 </div>

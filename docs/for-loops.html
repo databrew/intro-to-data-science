@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-04-13" />
+<meta name="date" content="2021-04-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -143,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II Getting started</b></span></li>
 <li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
 <li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a></li>
-<li class="chapter" data-level="8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>8</b> Introduction to Rstudio</a></li>
+<li class="chapter" data-level="8" data-path="using-rstudio-and-r-scripts.html"><a href="using-rstudio-and-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> and <code>R</code> scripts</a></li>
 <li class="chapter" data-level="9" data-path="variables-in-r.html"><a href="variables-in-r.html"><i class="fa fa-check"></i><b>9</b> Variables in <code>R</code></a></li>
 <li class="chapter" data-level="10" data-path="structures-for-data-in-r.html"><a href="structures-for-data-in-r.html"><i class="fa fa-check"></i><b>10</b> Structures for data in <code>R</code></a></li>
 <li class="chapter" data-level="11" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
@@ -250,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Instructor notes and answer keys (hidden from students)</li>
 </ul>
 </div>
-<div id="tutorial-video-2" class="section level2 unnumbered">
+<div id="tutorial-video-1" class="section level2 unnumbered">
 <h2>Tutorial video</h2>
 <p><em>(coming soon!)</em></p>
 </div>
@@ -258,19 +258,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Basics</h2>
 <p>A <code>for</code> loop is a super powerful coding tool. In a <code>for</code> loop, <code>R</code> loops through a chunk of code for a set number of repititions.</p>
 <p>A super basic example:</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="for-loops.html#cb189-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
-<span id="cb189-2"><a href="for-loops.html#cb189-2"></a><span class="cf">for</span>(i <span class="cf">in</span> x){</span>
-<span id="cb189-3"><a href="for-loops.html#cb189-3"></a>  <span class="kw">print</span>(i)</span>
-<span id="cb189-4"><a href="for-loops.html#cb189-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="for-loops.html#cb198-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb198-2"><a href="for-loops.html#cb198-2"></a><span class="cf">for</span>(i <span class="cf">in</span> x){</span>
+<span id="cb198-3"><a href="for-loops.html#cb198-3"></a>  <span class="kw">print</span>(i)</span>
+<span id="cb198-4"><a href="for-loops.html#cb198-4"></a>}</span></code></pre></div>
 <pre><code>[1] 1
 [1] 2
 [1] 3
 [1] 4
 [1] 5</code></pre>
 <p>Here’s an example of a pretty useless <code>for</code> loop:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="for-loops.html#cb191-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</span>
-<span id="cb191-2"><a href="for-loops.html#cb191-2"></a>  <span class="kw">print</span>(<span class="st">&quot;I&#39;m just repeating myself.&quot;</span>)</span>
-<span id="cb191-3"><a href="for-loops.html#cb191-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="for-loops.html#cb200-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</span>
+<span id="cb200-2"><a href="for-loops.html#cb200-2"></a>  <span class="kw">print</span>(<span class="st">&quot;I&#39;m just repeating myself.&quot;</span>)</span>
+<span id="cb200-3"><a href="for-loops.html#cb200-3"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;I&#39;m just repeating myself.&quot;
 [1] &quot;I&#39;m just repeating myself.&quot;
 [1] &quot;I&#39;m just repeating myself.&quot;
@@ -285,35 +285,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 - In the<code>for( )</code> parenthetical, you tell R what values to step through (<code>x</code>), and how to refer to the value in each iteration (<code>i</code>).<br />
 - Within the curly brackets, you place the chunk of code you want to repeat.</p>
 <p>Another basic example, demonsrating that you can update a variable repeatedly in a loop.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="for-loops.html#cb193-1"></a>x &lt;-<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb193-2"><a href="for-loops.html#cb193-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</span>
-<span id="cb193-3"><a href="for-loops.html#cb193-3"></a>  x &lt;-<span class="st"> </span>x<span class="op">*</span>x</span>
-<span id="cb193-4"><a href="for-loops.html#cb193-4"></a>  <span class="kw">print</span>(x)</span>
-<span id="cb193-5"><a href="for-loops.html#cb193-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="for-loops.html#cb202-1"></a>x &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb202-2"><a href="for-loops.html#cb202-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</span>
+<span id="cb202-3"><a href="for-loops.html#cb202-3"></a>  x &lt;-<span class="st"> </span>x<span class="op">*</span>x</span>
+<span id="cb202-4"><a href="for-loops.html#cb202-4"></a>  <span class="kw">print</span>(x)</span>
+<span id="cb202-5"><a href="for-loops.html#cb202-5"></a>}</span></code></pre></div>
 <pre><code>[1] 4
 [1] 16
 [1] 256
 [1] 65536
 [1] 4294967296</code></pre>
 <p>Another silly example:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="for-loops.html#cb195-1"></a>professors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Keri&quot;</span>,<span class="st">&quot;Deb&quot;</span>,<span class="st">&quot;Ken&quot;</span>) </span>
-<span id="cb195-2"><a href="for-loops.html#cb195-2"></a><span class="cf">for</span>(x <span class="cf">in</span> professors){</span>
-<span id="cb195-3"><a href="for-loops.html#cb195-3"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(x,<span class="st">&quot; is pretty cool!&quot;</span>))</span>
-<span id="cb195-4"><a href="for-loops.html#cb195-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="for-loops.html#cb204-1"></a>professors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Keri&quot;</span>,<span class="st">&quot;Deb&quot;</span>,<span class="st">&quot;Ken&quot;</span>) </span>
+<span id="cb204-2"><a href="for-loops.html#cb204-2"></a><span class="cf">for</span>(x <span class="cf">in</span> professors){</span>
+<span id="cb204-3"><a href="for-loops.html#cb204-3"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(x,<span class="st">&quot; is pretty cool!&quot;</span>))</span>
+<span id="cb204-4"><a href="for-loops.html#cb204-4"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;Keri is pretty cool!&quot;
 [1] &quot;Deb is pretty cool!&quot;
 [1] &quot;Ken is pretty cool!&quot;</code></pre>
-<div id="exercise-1-3" class="section level3 unnumbered">
+<div id="exercise-1-4" class="section level3 unnumbered">
 <h3>Exercise 1</h3>
 <p>Use this space to practice the basics of <code>for loop</code> formatting.</p>
 <p>First, create a vector of names (add at least 3)</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="for-loops.html#cb197-1"></a><span class="co"># Add your names to this vector</span></span>
-<span id="cb197-2"><a href="for-loops.html#cb197-2"></a>famous.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lady Gaga&quot;</span>,<span class="st">&quot;David Haskell&quot;</span>,<span class="st">&quot;Tom Cruise&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="for-loops.html#cb206-1"></a><span class="co"># Add your names to this vector</span></span>
+<span id="cb206-2"><a href="for-loops.html#cb206-2"></a>famous.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lady Gaga&quot;</span>,<span class="st">&quot;David Haskell&quot;</span>,<span class="st">&quot;Tom Cruise&quot;</span>)</span></code></pre></div>
 <p>Using the examples above as a guide, create a <code>for loop</code> that prints the same silly statement about each of these names.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="for-loops.html#cb198-1"></a><span class="co"># Do your coding here</span></span>
-<span id="cb198-2"><a href="for-loops.html#cb198-2"></a><span class="cf">for</span>(i <span class="cf">in</span> famous.names){</span>
-<span id="cb198-3"><a href="for-loops.html#cb198-3"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(i,<span class="st">&quot; has cooties!&quot;</span>))</span>
-<span id="cb198-4"><a href="for-loops.html#cb198-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="for-loops.html#cb207-1"></a><span class="co"># Do your coding here</span></span>
+<span id="cb207-2"><a href="for-loops.html#cb207-2"></a><span class="cf">for</span>(i <span class="cf">in</span> famous.names){</span>
+<span id="cb207-3"><a href="for-loops.html#cb207-3"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(i,<span class="st">&quot; has cooties!&quot;</span>))</span>
+<span id="cb207-4"><a href="for-loops.html#cb207-4"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;Lady Gaga has cooties!&quot;
 [1] &quot;David Haskell has cooties!&quot;
 [1] &quot;Tom Cruise has cooties!&quot;</code></pre>
@@ -326,8 +326,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Multi-panel plots</h3>
 <p>For example, a <code>for loop</code> can be a very efficient way of making multi-panel plots.</p>
 <p>Let’s use a <code>for loop</code> to get a quick overview of the variables included in the <code>airquality</code> dataset built into R.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="for-loops.html#cb200-1"></a><span class="kw">data</span>(airquality)</span>
-<span id="cb200-2"><a href="for-loops.html#cb200-2"></a><span class="kw">head</span>(airquality)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="for-loops.html#cb209-1"></a><span class="kw">data</span>(airquality)</span>
+<span id="cb209-2"><a href="for-loops.html#cb209-2"></a><span class="kw">head</span>(airquality)</span></code></pre></div>
 <pre><code>  Ozone Solar.R Wind Temp Month Day
 1    41     190  7.4   67     5   1
 2    36     118  8.0   72     5   2
@@ -336,22 +336,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 5    NA      NA 14.3   56     5   5
 6    28      NA 14.9   66     5   6</code></pre>
 <p>Looks like the first four columns would be interesting to plot.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="for-loops.html#cb202-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># Setup a multi-panel plot # format = c(number of rows, number of columns)</span></span>
-<span id="cb202-2"><a href="for-loops.html#cb202-2"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># Set plot margins</span></span>
-<span id="cb202-3"><a href="for-loops.html#cb202-3"></a></span>
-<span id="cb202-4"><a href="for-loops.html#cb202-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>){</span>
-<span id="cb202-5"><a href="for-loops.html#cb202-5"></a>  y &lt;-<span class="st"> </span>airquality[,i]</span>
-<span id="cb202-6"><a href="for-loops.html#cb202-6"></a>  var.name &lt;-<span class="st"> </span><span class="kw">names</span>(airquality)[i]</span>
-<span id="cb202-7"><a href="for-loops.html#cb202-7"></a>  <span class="kw">plot</span>(y,<span class="dt">xlab=</span><span class="st">&quot;Day&quot;</span>,<span class="dt">ylab=</span>var.name,<span class="dt">pch=</span><span class="dv">16</span>)</span>
-<span id="cb202-8"><a href="for-loops.html#cb202-8"></a>}</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-106-1.png" width="925.44" /></p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="for-loops.html#cb203-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># restore the default single-panel plot</span></span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="for-loops.html#cb211-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># Setup a multi-panel plot # format = c(number of rows, number of columns)</span></span>
+<span id="cb211-2"><a href="for-loops.html#cb211-2"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># Set plot margins</span></span>
+<span id="cb211-3"><a href="for-loops.html#cb211-3"></a></span>
+<span id="cb211-4"><a href="for-loops.html#cb211-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>){</span>
+<span id="cb211-5"><a href="for-loops.html#cb211-5"></a>  y &lt;-<span class="st"> </span>airquality[,i]</span>
+<span id="cb211-6"><a href="for-loops.html#cb211-6"></a>  var.name &lt;-<span class="st"> </span><span class="kw">names</span>(airquality)[i]</span>
+<span id="cb211-7"><a href="for-loops.html#cb211-7"></a>  <span class="kw">plot</span>(y,<span class="dt">xlab=</span><span class="st">&quot;Day&quot;</span>,<span class="dt">ylab=</span>var.name,<span class="dt">pch=</span><span class="dv">16</span>)</span>
+<span id="cb211-8"><a href="for-loops.html#cb211-8"></a>}</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-116-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="for-loops.html#cb212-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># restore the default single-panel plot</span></span></code></pre></div>
 </div>
 <div id="tricky-plot-solutions" class="section level3 unnumbered">
 <h3>Tricky plot solutions</h3>
 <p><code>for loops</code> are also useful for plotting data in tricky ways. Let’s use a different built-in dataset, that shows the performance of various car make/models.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="for-loops.html#cb204-1"></a><span class="kw">data</span>(mtcars)</span>
-<span id="cb204-2"><a href="for-loops.html#cb204-2"></a><span class="kw">head</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="for-loops.html#cb213-1"></a><span class="kw">data</span>(mtcars)</span>
+<span id="cb213-2"><a href="for-loops.html#cb213-2"></a><span class="kw">head</span>(mtcars)</span></code></pre></div>
 <pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -360,53 +360,53 @@ Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
 <p>Let’s say we want to see how gas mileage is affected by the number of cylinders a car has. It would be nice to create a plot that shows the raw data as well as the mean mileage for each cylinder number.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="for-loops.html#cb206-1"></a><span class="co"># Let&#39;s see how many different cylinder types there are in the data</span></span>
-<span id="cb206-2"><a href="for-loops.html#cb206-2"></a>ucyl &lt;-<span class="st"> </span><span class="kw">unique</span>(mtcars<span class="op">$</span>cyl) ; ucyl</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="for-loops.html#cb215-1"></a><span class="co"># Let&#39;s see how many different cylinder types there are in the data</span></span>
+<span id="cb215-2"><a href="for-loops.html#cb215-2"></a>ucyl &lt;-<span class="st"> </span><span class="kw">unique</span>(mtcars<span class="op">$</span>cyl) ; ucyl</span></code></pre></div>
 <pre><code>[1] 6 4 8</code></pre>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="for-loops.html#cb208-1"></a><span class="co"># Let&#39;s make an empty plot</span></span>
-<span id="cb208-2"><a href="for-loops.html#cb208-2"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="co"># tell R not to draw anything</span></span>
-<span id="cb208-3"><a href="for-loops.html#cb208-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">10</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">50</span>),</span>
-<span id="cb208-4"><a href="for-loops.html#cb208-4"></a>     <span class="dt">xlab=</span><span class="st">&quot;Number of cylinders&quot;</span>,</span>
-<span id="cb208-5"><a href="for-loops.html#cb208-5"></a>     <span class="dt">ylab=</span><span class="st">&quot;Gas mileage (mpg)&quot;</span>)</span>
-<span id="cb208-6"><a href="for-loops.html#cb208-6"></a></span>
-<span id="cb208-7"><a href="for-loops.html#cb208-7"></a><span class="co"># Write your for loop here to add the actual data</span></span>
-<span id="cb208-8"><a href="for-loops.html#cb208-8"></a>i=ucyl[<span class="dv">1</span>] <span class="co"># It&#39;s always good to use a known value of i as you build up your for loop</span></span>
-<span id="cb208-9"><a href="for-loops.html#cb208-9"></a><span class="cf">for</span>(i <span class="cf">in</span> ucyl){</span>
-<span id="cb208-10"><a href="for-loops.html#cb208-10"></a>  </span>
-<span id="cb208-11"><a href="for-loops.html#cb208-11"></a>  <span class="co"># Subset the dataframe according to number of cylinders</span></span>
-<span id="cb208-12"><a href="for-loops.html#cb208-12"></a>  cari &lt;-<span class="st"> </span>mtcars[mtcars<span class="op">$</span>cyl<span class="op">==</span>i,]</span>
-<span id="cb208-13"><a href="for-loops.html#cb208-13"></a>  </span>
-<span id="cb208-14"><a href="for-loops.html#cb208-14"></a>  <span class="co"># Plot the raw data</span></span>
-<span id="cb208-15"><a href="for-loops.html#cb208-15"></a>  <span class="kw">points</span>(<span class="dt">x=</span>cari<span class="op">$</span>cyl,<span class="dt">y=</span>cari<span class="op">$</span>mpg,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</span>
-<span id="cb208-16"><a href="for-loops.html#cb208-16"></a>  </span>
-<span id="cb208-17"><a href="for-loops.html#cb208-17"></a>  <span class="co"># Superimpose the mean on top</span></span>
-<span id="cb208-18"><a href="for-loops.html#cb208-18"></a>  <span class="kw">points</span>(<span class="dt">x=</span>i,<span class="dt">y=</span><span class="kw">mean</span>(cari<span class="op">$</span>mpg),<span class="dt">col=</span><span class="st">&quot;black&quot;</span>,<span class="dt">pch=</span><span class="st">&quot;-&quot;</span>,<span class="dt">cex=</span><span class="dv">5</span>,)</span>
-<span id="cb208-19"><a href="for-loops.html#cb208-19"></a>}</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-108-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="for-loops.html#cb217-1"></a><span class="co"># Let&#39;s make an empty plot</span></span>
+<span id="cb217-2"><a href="for-loops.html#cb217-2"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="co"># tell R not to draw anything</span></span>
+<span id="cb217-3"><a href="for-loops.html#cb217-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">10</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">50</span>),</span>
+<span id="cb217-4"><a href="for-loops.html#cb217-4"></a>     <span class="dt">xlab=</span><span class="st">&quot;Number of cylinders&quot;</span>,</span>
+<span id="cb217-5"><a href="for-loops.html#cb217-5"></a>     <span class="dt">ylab=</span><span class="st">&quot;Gas mileage (mpg)&quot;</span>)</span>
+<span id="cb217-6"><a href="for-loops.html#cb217-6"></a></span>
+<span id="cb217-7"><a href="for-loops.html#cb217-7"></a><span class="co"># Write your for loop here to add the actual data</span></span>
+<span id="cb217-8"><a href="for-loops.html#cb217-8"></a>i=ucyl[<span class="dv">1</span>] <span class="co"># It&#39;s always good to use a known value of i as you build up your for loop</span></span>
+<span id="cb217-9"><a href="for-loops.html#cb217-9"></a><span class="cf">for</span>(i <span class="cf">in</span> ucyl){</span>
+<span id="cb217-10"><a href="for-loops.html#cb217-10"></a>  </span>
+<span id="cb217-11"><a href="for-loops.html#cb217-11"></a>  <span class="co"># Subset the dataframe according to number of cylinders</span></span>
+<span id="cb217-12"><a href="for-loops.html#cb217-12"></a>  cari &lt;-<span class="st"> </span>mtcars[mtcars<span class="op">$</span>cyl<span class="op">==</span>i,]</span>
+<span id="cb217-13"><a href="for-loops.html#cb217-13"></a>  </span>
+<span id="cb217-14"><a href="for-loops.html#cb217-14"></a>  <span class="co"># Plot the raw data</span></span>
+<span id="cb217-15"><a href="for-loops.html#cb217-15"></a>  <span class="kw">points</span>(<span class="dt">x=</span>cari<span class="op">$</span>cyl,<span class="dt">y=</span>cari<span class="op">$</span>mpg,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</span>
+<span id="cb217-16"><a href="for-loops.html#cb217-16"></a>  </span>
+<span id="cb217-17"><a href="for-loops.html#cb217-17"></a>  <span class="co"># Superimpose the mean on top</span></span>
+<span id="cb217-18"><a href="for-loops.html#cb217-18"></a>  <span class="kw">points</span>(<span class="dt">x=</span>i,<span class="dt">y=</span><span class="kw">mean</span>(cari<span class="op">$</span>mpg),<span class="dt">col=</span><span class="st">&quot;black&quot;</span>,<span class="dt">pch=</span><span class="st">&quot;-&quot;</span>,<span class="dt">cex=</span><span class="dv">5</span>,)</span>
+<span id="cb217-19"><a href="for-loops.html#cb217-19"></a>}</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-118-1.png" width="925.44" /></p>
 </div>
 <div id="exercise-2-4" class="section level3 unnumbered">
 <h3>Exercise 2</h3>
 <p>Now try to do something similar on your own with the <code>airquality</code> dataset. Use <code>for loops</code> to create a plot with Month on the x axis and Temperature on the y axis. On this plot, depict all the temperatures recorded in each month in the color grey, then superimpose the mean temperature for each month.</p>
 <p>We will provide the empty plot, you provide the <code>for loop</code>:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="for-loops.html#cb209-1"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,</span>
-<span id="cb209-2"><a href="for-loops.html#cb209-2"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">10</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">100</span>),</span>
-<span id="cb209-3"><a href="for-loops.html#cb209-3"></a>     <span class="dt">xlab=</span><span class="st">&quot;Month&quot;</span>,</span>
-<span id="cb209-4"><a href="for-loops.html#cb209-4"></a>     <span class="dt">ylab=</span><span class="st">&quot;Yemperature&quot;</span>)</span>
-<span id="cb209-5"><a href="for-loops.html#cb209-5"></a></span>
-<span id="cb209-6"><a href="for-loops.html#cb209-6"></a><span class="co"># Write your for loop here to add the actual data</span></span>
-<span id="cb209-7"><a href="for-loops.html#cb209-7"></a><span class="cf">for</span>(i <span class="cf">in</span> airquality<span class="op">$</span>Month){</span>
-<span id="cb209-8"><a href="for-loops.html#cb209-8"></a>  airi &lt;-<span class="st"> </span>airquality[airquality<span class="op">$</span>Month<span class="op">==</span>i,]</span>
-<span id="cb209-9"><a href="for-loops.html#cb209-9"></a>  <span class="kw">points</span>(<span class="dt">x=</span>airi<span class="op">$</span>Month,<span class="dt">y=</span>airi<span class="op">$</span>Temp,<span class="dt">pch=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</span>
-<span id="cb209-10"><a href="for-loops.html#cb209-10"></a>  <span class="kw">points</span>(<span class="dt">x=</span>i,<span class="dt">y=</span><span class="kw">mean</span>(airi<span class="op">$</span>Temp),<span class="dt">pch=</span><span class="st">&quot;-&quot;</span>,<span class="dt">cex=</span><span class="dv">5</span>,<span class="dt">col=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb209-11"><a href="for-loops.html#cb209-11"></a>}</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-109-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="for-loops.html#cb218-1"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,</span>
+<span id="cb218-2"><a href="for-loops.html#cb218-2"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">10</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">100</span>),</span>
+<span id="cb218-3"><a href="for-loops.html#cb218-3"></a>     <span class="dt">xlab=</span><span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb218-4"><a href="for-loops.html#cb218-4"></a>     <span class="dt">ylab=</span><span class="st">&quot;Yemperature&quot;</span>)</span>
+<span id="cb218-5"><a href="for-loops.html#cb218-5"></a></span>
+<span id="cb218-6"><a href="for-loops.html#cb218-6"></a><span class="co"># Write your for loop here to add the actual data</span></span>
+<span id="cb218-7"><a href="for-loops.html#cb218-7"></a><span class="cf">for</span>(i <span class="cf">in</span> airquality<span class="op">$</span>Month){</span>
+<span id="cb218-8"><a href="for-loops.html#cb218-8"></a>  airi &lt;-<span class="st"> </span>airquality[airquality<span class="op">$</span>Month<span class="op">==</span>i,]</span>
+<span id="cb218-9"><a href="for-loops.html#cb218-9"></a>  <span class="kw">points</span>(<span class="dt">x=</span>airi<span class="op">$</span>Month,<span class="dt">y=</span>airi<span class="op">$</span>Temp,<span class="dt">pch=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</span>
+<span id="cb218-10"><a href="for-loops.html#cb218-10"></a>  <span class="kw">points</span>(<span class="dt">x=</span>i,<span class="dt">y=</span><span class="kw">mean</span>(airi<span class="op">$</span>Temp),<span class="dt">pch=</span><span class="st">&quot;-&quot;</span>,<span class="dt">cex=</span><span class="dv">5</span>,<span class="dt">col=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb218-11"><a href="for-loops.html#cb218-11"></a>}</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-119-1.png" width="925.44" /></p>
 </div>
 </div>
 <div id="using-a-for-loop-with-more-complex-data" class="section level2 unnumbered">
 <h2>Using a <code>for loop</code> with more complex data</h2>
 <p>Here’s another good example of the power of a good <code>for loop</code>.</p>
 <p>First, read in some cool data.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="for-loops.html#cb210-1"></a>kc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/keeling-curve.csv&quot;</span>) ; <span class="kw">head</span>(kc)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="for-loops.html#cb219-1"></a>kc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/keeling-curve.csv&quot;</span>) ; <span class="kw">head</span>(kc)</span></code></pre></div>
 <pre><code>  year month day_of_month day_of_year year_dec frac_of_year    CO2
 1 1974     5           26    145.4890 1974.399       0.3986 332.95
 2 1974     6            2    152.4970 1974.418       0.4178 332.35
@@ -416,23 +416,23 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 6 1974     6           30    180.4925 1974.495       0.4945 331.68</code></pre>
 <p>This is the famous Keeling Curve dataset: long-term monitoring of atmospheric CO2 measured at a volcanic observatory in Hawaii.</p>
 <p>Try plotting the Keeling Curve:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="for-loops.html#cb212-1"></a><span class="kw">plot</span>(kc<span class="op">$</span>CO2 <span class="op">~</span><span class="st"> </span>kc<span class="op">$</span>year_dec,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Atmospheric CO2&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-111-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="for-loops.html#cb221-1"></a><span class="kw">plot</span>(kc<span class="op">$</span>CO2 <span class="op">~</span><span class="st"> </span>kc<span class="op">$</span>year_dec,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Atmospheric CO2&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-121-1.png" width="925.44" /></p>
 <p>There are some erroneous data points! We clearly can’t have negative CO2 values. Let’s remove those and try again:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="for-loops.html#cb213-1"></a>kc &lt;-<span class="st"> </span>kc[kc<span class="op">$</span>CO2 <span class="op">&gt;</span><span class="dv">0</span>,] </span>
-<span id="cb213-2"><a href="for-loops.html#cb213-2"></a><span class="kw">plot</span>(kc<span class="op">$</span>CO2 <span class="op">~</span><span class="st"> </span>kc<span class="op">$</span>year_dec,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Atmospheric CO2&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-112-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="for-loops.html#cb222-1"></a>kc &lt;-<span class="st"> </span>kc[kc<span class="op">$</span>CO2 <span class="op">&gt;</span><span class="dv">0</span>,] </span>
+<span id="cb222-2"><a href="for-loops.html#cb222-2"></a><span class="kw">plot</span>(kc<span class="op">$</span>CO2 <span class="op">~</span><span class="st"> </span>kc<span class="op">$</span>year_dec,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Atmospheric CO2&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-122-1.png" width="925.44" /></p>
 <p><strong>What’s the deal with those squiggles?</strong> Let’s investigate!</p>
 <p>Let’s look at the data a different way: <em>by focusing in on a single year.</em></p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="for-loops.html#cb214-1"></a><span class="co"># Stage an empty plot for what you are trying to represent</span></span>
-<span id="cb214-2"><a href="for-loops.html#cb214-2"></a><span class="kw">plot</span>(<span class="dv">1</span>, <span class="co"># plot a single point</span></span>
-<span id="cb214-3"><a href="for-loops.html#cb214-3"></a>     <span class="dt">type=</span><span class="st">&quot;n&quot;</span>,</span>
-<span id="cb214-4"><a href="for-loops.html#cb214-4"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">365</span>),<span class="dt">xlab=</span><span class="st">&quot;Day of year&quot;</span>,</span>
-<span id="cb214-5"><a href="for-loops.html#cb214-5"></a>     <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>),<span class="dt">ylab=</span><span class="st">&quot;CO2 anomaly&quot;</span>)</span>
-<span id="cb214-6"><a href="for-loops.html#cb214-6"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>) <span class="co"># add nifty horizontal line</span></span>
-<span id="cb214-7"><a href="for-loops.html#cb214-7"></a></span>
-<span id="cb214-8"><a href="for-loops.html#cb214-8"></a><span class="co"># Reduce the dataset to a single year (any year)</span></span>
-<span id="cb214-9"><a href="for-loops.html#cb214-9"></a>kcy &lt;-<span class="st"> </span>kc[kc<span class="op">$</span>year<span class="op">==</span><span class="st">&quot;1990&quot;</span>,] ; <span class="kw">head</span>(kcy)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="for-loops.html#cb223-1"></a><span class="co"># Stage an empty plot for what you are trying to represent</span></span>
+<span id="cb223-2"><a href="for-loops.html#cb223-2"></a><span class="kw">plot</span>(<span class="dv">1</span>, <span class="co"># plot a single point</span></span>
+<span id="cb223-3"><a href="for-loops.html#cb223-3"></a>     <span class="dt">type=</span><span class="st">&quot;n&quot;</span>,</span>
+<span id="cb223-4"><a href="for-loops.html#cb223-4"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">365</span>),<span class="dt">xlab=</span><span class="st">&quot;Day of year&quot;</span>,</span>
+<span id="cb223-5"><a href="for-loops.html#cb223-5"></a>     <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>),<span class="dt">ylab=</span><span class="st">&quot;CO2 anomaly&quot;</span>)</span>
+<span id="cb223-6"><a href="for-loops.html#cb223-6"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>) <span class="co"># add nifty horizontal line</span></span>
+<span id="cb223-7"><a href="for-loops.html#cb223-7"></a></span>
+<span id="cb223-8"><a href="for-loops.html#cb223-8"></a><span class="co"># Reduce the dataset to a single year (any year)</span></span>
+<span id="cb223-9"><a href="for-loops.html#cb223-9"></a>kcy &lt;-<span class="st"> </span>kc[kc<span class="op">$</span>year<span class="op">==</span><span class="st">&quot;1990&quot;</span>,] ; <span class="kw">head</span>(kcy)</span></code></pre></div>
 <pre><code>    year month day_of_month day_of_year year_dec frac_of_year    CO2
 816 1990     1            7      6.4970 1990.018       0.0178 353.58
 817 1990     1           14     13.5050 1990.037       0.0370 353.99
@@ -440,10 +440,10 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 819 1990     1           28     27.4845 1990.075       0.0753 354.39
 820 1990     2            4     34.4925 1990.094       0.0945 355.04
 821 1990     2           11     41.5005 1990.114       0.1137 355.09</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="for-loops.html#cb216-1"></a><span class="co"># Let&#39;s convert each CO2 reading to an &#39;anomaly&#39; compared to the year&#39;s average.</span></span>
-<span id="cb216-2"><a href="for-loops.html#cb216-2"></a>CO2.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(kcy<span class="op">$</span>CO2,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) ; CO2.mean  <span class="co"># Take note of how useful that &#39;na.rm=TRUE&#39; input can be!</span></span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="for-loops.html#cb225-1"></a><span class="co"># Let&#39;s convert each CO2 reading to an &#39;anomaly&#39; compared to the year&#39;s average.</span></span>
+<span id="cb225-2"><a href="for-loops.html#cb225-2"></a>CO2.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(kcy<span class="op">$</span>CO2,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) ; CO2.mean  <span class="co"># Take note of how useful that &#39;na.rm=TRUE&#39; input can be!</span></span></code></pre></div>
 <pre><code>[1] 354.4538</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="for-loops.html#cb218-1"></a>y &lt;-<span class="st"> </span>kcy<span class="op">$</span>CO2 <span class="op">-</span><span class="st"> </span>CO2.mean ; y <span class="co"># Translate each data point to an anomaly</span></span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="for-loops.html#cb227-1"></a>y &lt;-<span class="st"> </span>kcy<span class="op">$</span>CO2 <span class="op">-</span><span class="st"> </span>CO2.mean ; y <span class="co"># Translate each data point to an anomaly</span></span></code></pre></div>
 <pre><code> [1] -0.87384615 -0.46384615 -0.53384615 -0.06384615  0.58615385  0.63615385
  [7]  0.96615385  0.72615385  1.13615385  1.33615385  1.08615385  1.67615385
 [13]  1.81615385  1.71615385  1.77615385  2.41615385  2.50615385  3.24615385
@@ -453,68 +453,68 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 [37] -2.70384615 -2.99384615 -3.05384615 -2.91384615 -2.88384615 -2.72384615
 [43] -2.05384615 -1.74384615 -1.30384615 -1.00384615 -0.76384615 -0.55384615
 [49]  0.01615385 -0.11384615  0.37615385  0.34615385          NA</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="for-loops.html#cb220-1"></a><span class="co"># Add points to your plot</span></span>
-<span id="cb220-2"><a href="for-loops.html#cb220-2"></a><span class="kw">points</span>(y<span class="op">~</span>kcy<span class="op">$</span>day_of_year,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">3</span>))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-113-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="for-loops.html#cb229-1"></a><span class="co"># Add points to your plot</span></span>
+<span id="cb229-2"><a href="for-loops.html#cb229-2"></a><span class="kw">points</span>(y<span class="op">~</span>kcy<span class="op">$</span>day_of_year,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">3</span>))</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-123-1.png" width="925.44" /></p>
 <p>But this only shows one year of data! How can we include the seasonal squiggle from other years?</p>
 <p>Let’s use a <code>for loop</code>!</p>
 <p>OK – let’s redo that graph and add a <code>for loop</code> into the mix:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="for-loops.html#cb221-1"></a><span class="co"># First, stage your empty plot:</span></span>
-<span id="cb221-2"><a href="for-loops.html#cb221-2"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,</span>
-<span id="cb221-3"><a href="for-loops.html#cb221-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">365</span>),<span class="dt">xlab=</span><span class="st">&quot;Day of year&quot;</span>,</span>
-<span id="cb221-4"><a href="for-loops.html#cb221-4"></a>     <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>),<span class="dt">ylab=</span><span class="st">&quot;CO2 anomaly&quot;</span>)</span>
-<span id="cb221-5"><a href="for-loops.html#cb221-5"></a></span>
-<span id="cb221-6"><a href="for-loops.html#cb221-6"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</span>
-<span id="cb221-7"><a href="for-loops.html#cb221-7"></a></span>
-<span id="cb221-8"><a href="for-loops.html#cb221-8"></a><span class="co"># Now we will loop through each year of data. First, get a vector of the years included in the dataset:</span></span>
-<span id="cb221-9"><a href="for-loops.html#cb221-9"></a>years &lt;-<span class="st"> </span><span class="kw">unique</span>(kc<span class="op">$</span>year) ; years</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="for-loops.html#cb230-1"></a><span class="co"># First, stage your empty plot:</span></span>
+<span id="cb230-2"><a href="for-loops.html#cb230-2"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,</span>
+<span id="cb230-3"><a href="for-loops.html#cb230-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">365</span>),<span class="dt">xlab=</span><span class="st">&quot;Day of year&quot;</span>,</span>
+<span id="cb230-4"><a href="for-loops.html#cb230-4"></a>     <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>),<span class="dt">ylab=</span><span class="st">&quot;CO2 anomaly&quot;</span>)</span>
+<span id="cb230-5"><a href="for-loops.html#cb230-5"></a></span>
+<span id="cb230-6"><a href="for-loops.html#cb230-6"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</span>
+<span id="cb230-7"><a href="for-loops.html#cb230-7"></a></span>
+<span id="cb230-8"><a href="for-loops.html#cb230-8"></a><span class="co"># Now we will loop through each year of data. First, get a vector of the years included in the dataset:</span></span>
+<span id="cb230-9"><a href="for-loops.html#cb230-9"></a>years &lt;-<span class="st"> </span><span class="kw">unique</span>(kc<span class="op">$</span>year) ; years</span></code></pre></div>
 <pre><code> [1] &quot;1974&quot; &quot;1975&quot; &quot;1976&quot; &quot;1977&quot; &quot;1978&quot; &quot;1979&quot; &quot;1980&quot; &quot;1981&quot; &quot;1982&quot; &quot;1983&quot;
 [11] &quot;1984&quot; &quot;1985&quot; &quot;1986&quot; &quot;1987&quot; &quot;1988&quot; &quot;1989&quot; &quot;1990&quot; &quot;1991&quot; &quot;1992&quot; &quot;1993&quot;
 [21] &quot;1994&quot; &quot;1995&quot; &quot;1996&quot; &quot;1997&quot; &quot;1998&quot; &quot;1999&quot; &quot;2000&quot; &quot;2001&quot; &quot;2002&quot; &quot;2003&quot;
 [31] &quot;2004&quot; &quot;2005&quot; &quot;2006&quot; &quot;2007&quot; &quot;2008&quot; &quot;2009&quot; &quot;2010&quot; &quot;2011&quot; &quot;2012&quot; &quot;2013&quot;
 [41] &quot;2014&quot; &quot;2015&quot; &quot;2016&quot; &quot;2017&quot; &quot;2018&quot; &quot;2019&quot; &quot;2020&quot; &quot;2021&quot; NA    </code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="for-loops.html#cb223-1"></a><span class="co"># Now build your for loop. </span></span>
-<span id="cb223-2"><a href="for-loops.html#cb223-2"></a><span class="co"># Notice that the contents of the `for loop` are exactly the same </span></span>
-<span id="cb223-3"><a href="for-loops.html#cb223-3"></a><span class="co"># as the single plot above --  with one exception. </span></span>
-<span id="cb223-4"><a href="for-loops.html#cb223-4"></a><span class="co"># Notice the use of the symbol i</span></span>
-<span id="cb223-5"><a href="for-loops.html#cb223-5"></a></span>
-<span id="cb223-6"><a href="for-loops.html#cb223-6"></a><span class="cf">for</span>(i <span class="cf">in</span> years){</span>
-<span id="cb223-7"><a href="for-loops.html#cb223-7"></a></span>
-<span id="cb223-8"><a href="for-loops.html#cb223-8"></a>  <span class="co"># Reduce the dataset to a single year</span></span>
-<span id="cb223-9"><a href="for-loops.html#cb223-9"></a>  kcy &lt;-<span class="st"> </span>kc[kc<span class="op">$</span>year<span class="op">==</span>i,] ; <span class="kw">head</span>(kcy)</span>
-<span id="cb223-10"><a href="for-loops.html#cb223-10"></a>  </span>
-<span id="cb223-11"><a href="for-loops.html#cb223-11"></a>  <span class="co"># Let&#39;s convert each CO2 reading to an &#39;anomaly&#39; compared to the year&#39;s average.</span></span>
-<span id="cb223-12"><a href="for-loops.html#cb223-12"></a>  CO2.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(kcy<span class="op">$</span>CO2,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) ; CO2.mean <span class="co"># Get average CO2 for year</span></span>
-<span id="cb223-13"><a href="for-loops.html#cb223-13"></a></span>
-<span id="cb223-14"><a href="for-loops.html#cb223-14"></a>  y &lt;-<span class="st"> </span>kcy<span class="op">$</span>CO2 <span class="op">-</span><span class="st"> </span>CO2.mean ; y <span class="co"># Translate each data point to an anomaly</span></span>
-<span id="cb223-15"><a href="for-loops.html#cb223-15"></a></span>
-<span id="cb223-16"><a href="for-loops.html#cb223-16"></a>  <span class="co"># Add points to your plot</span></span>
-<span id="cb223-17"><a href="for-loops.html#cb223-17"></a>  <span class="kw">points</span>(y<span class="op">~</span>kcy<span class="op">$</span>day_of_year,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">3</span>))</span>
-<span id="cb223-18"><a href="for-loops.html#cb223-18"></a>  </span>
-<span id="cb223-19"><a href="for-loops.html#cb223-19"></a>}</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-114-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="for-loops.html#cb232-1"></a><span class="co"># Now build your for loop. </span></span>
+<span id="cb232-2"><a href="for-loops.html#cb232-2"></a><span class="co"># Notice that the contents of the `for loop` are exactly the same </span></span>
+<span id="cb232-3"><a href="for-loops.html#cb232-3"></a><span class="co"># as the single plot above --  with one exception. </span></span>
+<span id="cb232-4"><a href="for-loops.html#cb232-4"></a><span class="co"># Notice the use of the symbol i</span></span>
+<span id="cb232-5"><a href="for-loops.html#cb232-5"></a></span>
+<span id="cb232-6"><a href="for-loops.html#cb232-6"></a><span class="cf">for</span>(i <span class="cf">in</span> years){</span>
+<span id="cb232-7"><a href="for-loops.html#cb232-7"></a></span>
+<span id="cb232-8"><a href="for-loops.html#cb232-8"></a>  <span class="co"># Reduce the dataset to a single year</span></span>
+<span id="cb232-9"><a href="for-loops.html#cb232-9"></a>  kcy &lt;-<span class="st"> </span>kc[kc<span class="op">$</span>year<span class="op">==</span>i,] ; <span class="kw">head</span>(kcy)</span>
+<span id="cb232-10"><a href="for-loops.html#cb232-10"></a>  </span>
+<span id="cb232-11"><a href="for-loops.html#cb232-11"></a>  <span class="co"># Let&#39;s convert each CO2 reading to an &#39;anomaly&#39; compared to the year&#39;s average.</span></span>
+<span id="cb232-12"><a href="for-loops.html#cb232-12"></a>  CO2.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(kcy<span class="op">$</span>CO2,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) ; CO2.mean <span class="co"># Get average CO2 for year</span></span>
+<span id="cb232-13"><a href="for-loops.html#cb232-13"></a></span>
+<span id="cb232-14"><a href="for-loops.html#cb232-14"></a>  y &lt;-<span class="st"> </span>kcy<span class="op">$</span>CO2 <span class="op">-</span><span class="st"> </span>CO2.mean ; y <span class="co"># Translate each data point to an anomaly</span></span>
+<span id="cb232-15"><a href="for-loops.html#cb232-15"></a></span>
+<span id="cb232-16"><a href="for-loops.html#cb232-16"></a>  <span class="co"># Add points to your plot</span></span>
+<span id="cb232-17"><a href="for-loops.html#cb232-17"></a>  <span class="kw">points</span>(y<span class="op">~</span>kcy<span class="op">$</span>day_of_year,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">3</span>))</span>
+<span id="cb232-18"><a href="for-loops.html#cb232-18"></a>  </span>
+<span id="cb232-19"><a href="for-loops.html#cb232-19"></a>}</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-124-1.png" width="925.44" /></p>
 <p>Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?</p>
 </div>
-<div id="review-assignment-4" class="section level2 unnumbered">
+<div id="review-assignment-5" class="section level2 unnumbered">
 <h2>Review assignment</h2>
 <p>First, read in and format some other cool data. The code for doing so is provided for you here:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="for-loops.html#cb224-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/renewable-energy.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="for-loops.html#cb233-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/renewable-energy.csv&quot;</span>)</span></code></pre></div>
 <p>This dataset, freely available from World Bank, shows the renewable electricity output for various countries, presented as a percentage of the nation’s total electricity output. They provide this data as a time series.</p>
 <div id="summarize-columns-with-a-for-loop" class="section level3">
 <h3><span class="header-section-number">27.0.1</span> Summarize columns with a <code>for loop</code></h3>
 <p><strong>Task 1:</strong> Use a <code>for loop</code> to find the change in renewable energy output for each nation in the dataset between 1990 and 2015. Print the difference for each nation in the console.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="for-loops.html#cb225-1"></a><span class="co"># Write your code here</span></span>
-<span id="cb225-2"><a href="for-loops.html#cb225-2"></a><span class="kw">names</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="for-loops.html#cb234-1"></a><span class="co"># Write your code here</span></span>
+<span id="cb234-2"><a href="for-loops.html#cb234-2"></a><span class="kw">names</span>(df)</span></code></pre></div>
 <pre><code> [1] &quot;year&quot;           &quot;World&quot;          &quot;Australia&quot;      &quot;Canada&quot;        
  [5] &quot;China&quot;          &quot;Denmark&quot;        &quot;India&quot;          &quot;Japan&quot;         
  [9] &quot;New_Zealand&quot;    &quot;Sweden&quot;         &quot;Switzerland&quot;    &quot;United_Kingdom&quot;
 [13] &quot;United_States&quot; </code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="for-loops.html#cb227-1"></a>i=<span class="dv">2</span></span>
-<span id="cb227-2"><a href="for-loops.html#cb227-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
-<span id="cb227-3"><a href="for-loops.html#cb227-3"></a>  dfi &lt;-<span class="st"> </span>df[,i] ; dfi</span>
-<span id="cb227-4"><a href="for-loops.html#cb227-4"></a>  diffi &lt;-<span class="st"> </span>dfi[<span class="kw">length</span>(dfi)] <span class="op">-</span><span class="st"> </span>dfi[<span class="dv">1</span>] ; diffi</span>
-<span id="cb227-5"><a href="for-loops.html#cb227-5"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(df)[i],<span class="st">&quot; : &quot;</span>,<span class="kw">round</span>(diffi),<span class="st">&quot;% change.&quot;</span>))</span>
-<span id="cb227-6"><a href="for-loops.html#cb227-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="for-loops.html#cb236-1"></a>i=<span class="dv">2</span></span>
+<span id="cb236-2"><a href="for-loops.html#cb236-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
+<span id="cb236-3"><a href="for-loops.html#cb236-3"></a>  dfi &lt;-<span class="st"> </span>df[,i] ; dfi</span>
+<span id="cb236-4"><a href="for-loops.html#cb236-4"></a>  diffi &lt;-<span class="st"> </span>dfi[<span class="kw">length</span>(dfi)] <span class="op">-</span><span class="st"> </span>dfi[<span class="dv">1</span>] ; diffi</span>
+<span id="cb236-5"><a href="for-loops.html#cb236-5"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(df)[i],<span class="st">&quot; : &quot;</span>,<span class="kw">round</span>(diffi),<span class="st">&quot;% change.&quot;</span>))</span>
+<span id="cb236-6"><a href="for-loops.html#cb236-6"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;World : 3% change.&quot;
 [1] &quot;Australia : 4% change.&quot;
 [1] &quot;Canada : 1% change.&quot;
@@ -528,15 +528,15 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 [1] &quot;United_Kingdom : 23% change.&quot;
 [1] &quot;United_States : 2% change.&quot;</code></pre>
 <p><strong>Task 2:</strong> Re-do this loop, but instead of printing the differences to the console, save them in a vector.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="for-loops.html#cb229-1"></a><span class="co"># Write your code here</span></span>
-<span id="cb229-2"><a href="for-loops.html#cb229-2"></a>diffs &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb229-3"><a href="for-loops.html#cb229-3"></a>i=<span class="dv">2</span></span>
-<span id="cb229-4"><a href="for-loops.html#cb229-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
-<span id="cb229-5"><a href="for-loops.html#cb229-5"></a>  dfi &lt;-<span class="st"> </span>df[,i] ; dfi</span>
-<span id="cb229-6"><a href="for-loops.html#cb229-6"></a>  diffi &lt;-<span class="st"> </span>dfi[<span class="kw">length</span>(dfi)] <span class="op">-</span><span class="st"> </span>dfi[<span class="dv">1</span>] ; diffi</span>
-<span id="cb229-7"><a href="for-loops.html#cb229-7"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(df)[i],<span class="st">&quot; : &quot;</span>,<span class="kw">round</span>(diffi),<span class="st">&quot;% change.&quot;</span>))</span>
-<span id="cb229-8"><a href="for-loops.html#cb229-8"></a>  diffs &lt;-<span class="st"> </span><span class="kw">c</span>(diffs,diffi)</span>
-<span id="cb229-9"><a href="for-loops.html#cb229-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="for-loops.html#cb238-1"></a><span class="co"># Write your code here</span></span>
+<span id="cb238-2"><a href="for-loops.html#cb238-2"></a>diffs &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb238-3"><a href="for-loops.html#cb238-3"></a>i=<span class="dv">2</span></span>
+<span id="cb238-4"><a href="for-loops.html#cb238-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
+<span id="cb238-5"><a href="for-loops.html#cb238-5"></a>  dfi &lt;-<span class="st"> </span>df[,i] ; dfi</span>
+<span id="cb238-6"><a href="for-loops.html#cb238-6"></a>  diffi &lt;-<span class="st"> </span>dfi[<span class="kw">length</span>(dfi)] <span class="op">-</span><span class="st"> </span>dfi[<span class="dv">1</span>] ; diffi</span>
+<span id="cb238-7"><a href="for-loops.html#cb238-7"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(df)[i],<span class="st">&quot; : &quot;</span>,<span class="kw">round</span>(diffi),<span class="st">&quot;% change.&quot;</span>))</span>
+<span id="cb238-8"><a href="for-loops.html#cb238-8"></a>  diffs &lt;-<span class="st"> </span><span class="kw">c</span>(diffs,diffi)</span>
+<span id="cb238-9"><a href="for-loops.html#cb238-9"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;World : 3% change.&quot;
 [1] &quot;Australia : 4% change.&quot;
 [1] &quot;Canada : 1% change.&quot;
@@ -549,7 +549,7 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 [1] &quot;Switzerland : 7% change.&quot;
 [1] &quot;United_Kingdom : 23% change.&quot;
 [1] &quot;United_States : 2% change.&quot;</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="for-loops.html#cb231-1"></a>diffs</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="for-loops.html#cb240-1"></a>diffs</span></code></pre></div>
 <pre><code> [1]  3.49241703  3.98181045  0.63273122  3.51887728 62.33064943 -9.14624362
  [7]  4.73004321  0.07524008 12.26263811  7.21543884 23.01128298  1.69994636</code></pre>
 </div>
@@ -559,8 +559,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <div id="practice-with-a-single-plot" class="section level3 unnumbered">
 <h3>Practice with a single plot</h3>
 <p><strong>Task 3:</strong> First, get your bearings by figuring out how to use the <code>df</code> dataset to plot the time series for the United States, for the years 1990 - 2015. Label the x axis “Year” and the y axis “% Renewable”. Include the full name of the county as the <code>main</code> title for the plot.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="for-loops.html#cb233-1"></a><span class="co"># Write code here</span></span>
-<span id="cb233-2"><a href="for-loops.html#cb233-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="for-loops.html#cb242-1"></a><span class="co"># Write code here</span></span>
+<span id="cb242-2"><a href="for-loops.html#cb242-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>  year    World Australia   Canada    China  Denmark    India     Japan
 1 1990 19.36204  9.656031 62.37872 20.40794 3.175275 24.48929 11.254738
 2 1991 19.23357 10.598201 61.41041 18.47113 2.892325 22.80740 11.856735
@@ -575,47 +575,47 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 4    77.02407 52.92433    59.57279       1.777626     10.484326
 5    82.05216 43.02873    60.57322       2.139842      9.747236
 6    83.85281 47.57878    57.42996       2.066535     10.801085</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="for-loops.html#cb235-1"></a>dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">13</span>)] </span>
-<span id="cb235-2"><a href="for-loops.html#cb235-2"></a><span class="kw">plot</span>(<span class="dt">x=</span>dfi[,<span class="dv">1</span>],</span>
-<span id="cb235-3"><a href="for-loops.html#cb235-3"></a>     <span class="dt">y=</span>dfi[,<span class="dv">2</span>],</span>
-<span id="cb235-4"><a href="for-loops.html#cb235-4"></a>     <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb235-5"><a href="for-loops.html#cb235-5"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb235-6"><a href="for-loops.html#cb235-6"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% renewable&quot;</span>,</span>
-<span id="cb235-7"><a href="for-loops.html#cb235-7"></a>     <span class="dt">main=</span><span class="kw">names</span>(dfi)[<span class="dv">2</span>])</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-118-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="for-loops.html#cb244-1"></a>dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">13</span>)] </span>
+<span id="cb244-2"><a href="for-loops.html#cb244-2"></a><span class="kw">plot</span>(<span class="dt">x=</span>dfi[,<span class="dv">1</span>],</span>
+<span id="cb244-3"><a href="for-loops.html#cb244-3"></a>     <span class="dt">y=</span>dfi[,<span class="dv">2</span>],</span>
+<span id="cb244-4"><a href="for-loops.html#cb244-4"></a>     <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb244-5"><a href="for-loops.html#cb244-5"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb244-6"><a href="for-loops.html#cb244-6"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% renewable&quot;</span>,</span>
+<span id="cb244-7"><a href="for-loops.html#cb244-7"></a>     <span class="dt">main=</span><span class="kw">names</span>(dfi)[<span class="dv">2</span>])</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-128-1.png" width="925.44" /></p>
 </div>
 <div id="now-loop-it" class="section level3 unnumbered">
 <h3>Now loop it!</h3>
 <p><strong>Task 4:</strong> Use that code as the foundation for building up a <code>for loop</code> that displays the same time series for every country in the dataset on a multi-pane graph that with 4 rows and 3 columns.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="for-loops.html#cb236-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">3</span>))</span>
-<span id="cb236-2"><a href="for-loops.html#cb236-2"></a>i=<span class="dv">3</span></span>
-<span id="cb236-3"><a href="for-loops.html#cb236-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
-<span id="cb236-4"><a href="for-loops.html#cb236-4"></a>  dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,i)] ; dfi</span>
-<span id="cb236-5"><a href="for-loops.html#cb236-5"></a>  <span class="kw">plot</span>(<span class="dt">x=</span>dfi[,<span class="dv">1</span>],</span>
-<span id="cb236-6"><a href="for-loops.html#cb236-6"></a>       <span class="dt">y=</span>dfi[,<span class="dv">2</span>],</span>
-<span id="cb236-7"><a href="for-loops.html#cb236-7"></a>       <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb236-8"><a href="for-loops.html#cb236-8"></a>       <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb236-9"><a href="for-loops.html#cb236-9"></a>       <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% renewable&quot;</span>,</span>
-<span id="cb236-10"><a href="for-loops.html#cb236-10"></a>       <span class="dt">main=</span><span class="kw">names</span>(dfi)[<span class="dv">2</span>])</span>
-<span id="cb236-11"><a href="for-loops.html#cb236-11"></a>}</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-119-1.png" width="768" /></p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="for-loops.html#cb245-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">3</span>))</span>
+<span id="cb245-2"><a href="for-loops.html#cb245-2"></a>i=<span class="dv">3</span></span>
+<span id="cb245-3"><a href="for-loops.html#cb245-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
+<span id="cb245-4"><a href="for-loops.html#cb245-4"></a>  dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,i)] ; dfi</span>
+<span id="cb245-5"><a href="for-loops.html#cb245-5"></a>  <span class="kw">plot</span>(<span class="dt">x=</span>dfi[,<span class="dv">1</span>],</span>
+<span id="cb245-6"><a href="for-loops.html#cb245-6"></a>       <span class="dt">y=</span>dfi[,<span class="dv">2</span>],</span>
+<span id="cb245-7"><a href="for-loops.html#cb245-7"></a>       <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb245-8"><a href="for-loops.html#cb245-8"></a>       <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb245-9"><a href="for-loops.html#cb245-9"></a>       <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% renewable&quot;</span>,</span>
+<span id="cb245-10"><a href="for-loops.html#cb245-10"></a>       <span class="dt">main=</span><span class="kw">names</span>(dfi)[<span class="dv">2</span>])</span>
+<span id="cb245-11"><a href="for-loops.html#cb245-11"></a>}</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-129-1.png" width="768" /></p>
 </div>
 <div id="now-loop-it-differently" class="section level3 unnumbered">
 <h3>Now loop it differently!</h3>
 <p><strong>Task 5:</strong> Now try a different presentation. Instead of producing 12 different plots, superimpose the time series for each country on the <em>same single plot</em>.</p>
 <p>To add some flare, highlight the USA curve by coloring it red and making it thicker.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="for-loops.html#cb237-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb237-2"><a href="for-loops.html#cb237-2"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb237-3"><a href="for-loops.html#cb237-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb237-4"><a href="for-loops.html#cb237-4"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% Renewable&quot;</span>)</span>
-<span id="cb237-5"><a href="for-loops.html#cb237-5"></a></span>
-<span id="cb237-6"><a href="for-loops.html#cb237-6"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
-<span id="cb237-7"><a href="for-loops.html#cb237-7"></a>  dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,i)] ; dfi</span>
-<span id="cb237-8"><a href="for-loops.html#cb237-8"></a>  <span class="kw">lines</span>(dfi[,<span class="dv">2</span>]<span class="op">~</span>dfi[,<span class="dv">1</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;black&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">5</span>))</span>
-<span id="cb237-9"><a href="for-loops.html#cb237-9"></a>}</span>
-<span id="cb237-10"><a href="for-loops.html#cb237-10"></a></span>
-<span id="cb237-11"><a href="for-loops.html#cb237-11"></a><span class="kw">lines</span>(df<span class="op">$</span>United_States<span class="op">~</span>df<span class="op">$</span>year,<span class="dt">lwd=</span><span class="dv">4</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-120-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="for-loops.html#cb246-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb246-2"><a href="for-loops.html#cb246-2"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb246-3"><a href="for-loops.html#cb246-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb246-4"><a href="for-loops.html#cb246-4"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% Renewable&quot;</span>)</span>
+<span id="cb246-5"><a href="for-loops.html#cb246-5"></a></span>
+<span id="cb246-6"><a href="for-loops.html#cb246-6"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
+<span id="cb246-7"><a href="for-loops.html#cb246-7"></a>  dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,i)] ; dfi</span>
+<span id="cb246-8"><a href="for-loops.html#cb246-8"></a>  <span class="kw">lines</span>(dfi[,<span class="dv">2</span>]<span class="op">~</span>dfi[,<span class="dv">1</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;black&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">5</span>))</span>
+<span id="cb246-9"><a href="for-loops.html#cb246-9"></a>}</span>
+<span id="cb246-10"><a href="for-loops.html#cb246-10"></a></span>
+<span id="cb246-11"><a href="for-loops.html#cb246-11"></a><span class="kw">lines</span>(df<span class="op">$</span>United_States<span class="op">~</span>df<span class="op">$</span>year,<span class="dt">lwd=</span><span class="dv">4</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-130-1.png" width="925.44" /></p>
 
 </div>
 </div>
