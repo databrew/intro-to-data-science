@@ -36,7 +36,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Working Title: the data science canon},
+  pdftitle={DataBOOM: the canon for data science},
   pdfauthor={Databrew},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -118,7 +118,7 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{Working Title: the data science canon}
+\title{DataBOOM: the canon for data science}
 \author{Databrew}
 \date{2021-04-18}
 
@@ -132,7 +132,7 @@
 \hypertarget{welcome}{%
 \chapter{Welcome}\label{welcome}}
 
-Welcome to \emph{Working Title}, the data science canon by \emph{DataBrew}
+Welcome to \textbf{DataBOOM}, the canon for data science by \emph{DataBrew}
 
 Here is some teacher content.
 
@@ -1906,11 +1906,232 @@ The two other most common data structures are \textbf{matrices} and \textbf{list
 \hypertarget{calling-functions}{%
 \chapter{Calling functions}\label{calling-functions}}
 
+\hypertarget{learning-goals-4}{%
+\section*{Learning goals}\label{learning-goals-4}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Understand what functions are, and why they are awesome.
+\item
+  Understand how functions work.
+\item
+  Understand how to read function documentation.
+\end{itemize}
+
+\hypertarget{introducing-r-functions}{%
+\section*{\texorpdfstring{Introducing \texttt{R} functions}{Introducing R functions}}\label{introducing-r-functions}}
+\addcontentsline{toc}{section}{Introducing \texttt{R} functions}
+
+You have already worked with many \texttt{R} functions; commands like \texttt{getwd()}, \texttt{length()}, and \texttt{unique()} are all functions. You know a command is a function because it has parentheses, \texttt{()}, attached at its end.
+
+Just as \textbf{variables} are convenient names used for calling \emph{objects} such as vectors or dataframes, \textbf{functions} are convenient names for calling \emph{processes} or \emph{actions}. An \texttt{R} function is just a batch of code that performs a certain action.
+
+Variables represent data, while functions represent code.
+
+Most functions have three key components: (1) one or more inputs, (2) a process that is applied to those inputs, and (3) an output of the result. When you call a function in \texttt{R}, you are saying, ``Hey \texttt{R}, take this information, do something to it, and return the result to me.'' You supply the function with the inputs, and the function takes care of the rest.
+
+Take the function \texttt{mean()}, for example. \texttt{mean()} finds the arithmetic mean (i.e., the average) of a set of values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{) }\CommentTok{# create a vector of numbers}
+\KeywordTok{mean}\NormalTok{(x) }\CommentTok{# find their mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 4.625
+\end{verbatim}
+
+In this command, you are feeding the function \texttt{mean()} with the input \texttt{x}.
+
+\hypertarget{base-functions-in-r}{%
+\subsection*{\texorpdfstring{Base functions in \texttt{R}}{Base functions in R}}\label{base-functions-in-r}}
+\addcontentsline{toc}{subsection}{Base functions in \texttt{R}}
+
+There are hundreds of functions already built-in to \texttt{R}. These functions are called \emph{``base functions''}. Throughout these modules, we have been -- and will continue -- introducing you to the most commonly used base functions.
+
+You can access other functions through bundles of external code known as \emph{packages}, which we explain in an upcoming module.
+
+You can also write your \emph{own} functions (and you will!). We provide an entire module on how to do this.
+
+Note that not all functions require an input. The function \texttt{getwd()}, for example, does not need anything in its parentheses to find and return current your working directory.
+
+\hypertarget{saving-function-output}{%
+\subsection*{Saving function output}\label{saving-function-output}}
+\addcontentsline{toc}{subsection}{Saving function output}
+
+You will almost always want to save the result of a function in a new variable. Otherwise the function just prints its result to the \emph{Console} and \texttt{R} forgets about it.
+
+You can store a function result the same way you store any value:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{) }
+\NormalTok{x_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x) }
+\NormalTok{x_mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 4.625
+\end{verbatim}
+
+\hypertarget{function-with-multiple-inputs}{%
+\subsection*{Function with multiple inputs}\label{function-with-multiple-inputs}}
+\addcontentsline{toc}{subsection}{Function with multiple inputs}
+
+Note that \texttt{mean()} accepts a second input that is called \texttt{na.rm}. This is short for \texttt{NA.remove}. When this is set to \texttt{TRUE}, \texttt{R} will remove broken or missing values from the vector before calculating the mean.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\OtherTok{NA}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{)  }\CommentTok{# note the NA}
+\KeywordTok{mean}\NormalTok{(x,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 4.428571
+\end{verbatim}
+
+If you tried to run these commands with \texttt{na.rm} set to \texttt{FALSE}, \texttt{R} would throw an error and give up.
+
+Note that you provided the function \texttt{mean()} with two inputs, \texttt{x} and \texttt{na.rm}, and that you separated each input with a comma. This is how you pass multiple inputs to a function.
+
+\hypertarget{function-defaults}{%
+\subsection*{Function defaults}\label{function-defaults}}
+\addcontentsline{toc}{subsection}{Function defaults}
+
+Note that many functions have default values for their inputs. If you do not specify the input's value yourself, \texttt{R} will assume you just want to use the default. In the case of \texttt{mean()}, the default value for \texttt{na.rm} is \texttt{FALSE}. This means that the following code would throw an error \ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\OtherTok{NA}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{)  }\CommentTok{# note the NA}
+\KeywordTok{mean}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] NA
+\end{verbatim}
+
+Because \texttt{R} will assume you are using the default value for \texttt{na.rm}, which is \texttt{FALSE}, which means you do not want to remove missing values before trying to calculate the mean.
+
+\hypertarget{function-documentation-i.e.-getting-help}{%
+\subsection*{Function documentation (i.e., getting help)}\label{function-documentation-i.e.-getting-help}}
+\addcontentsline{toc}{subsection}{Function documentation (i.e., getting help)}
+
+Functions are designed to accept only a certain number of inputs with only certain names. To figure out what a function expects in terms of inputs, and what you can expect in terms of output, you can call up the function's help page:
+
+When you enter this command, the help documentation for \texttt{mean()} will appear in the bottom right pane of your \texttt{RStudio} window:
+
+\includegraphics{img/functions_help.png}
+
+Learning how to read this documentation is essential to becoming competent in using \texttt{R}.
+
+\textbf{Be warned:} not all documentation is easy to understand! You will come to really resent poorly written documentation and really appreciate well-written documentation; the few extra minutes taken by the function's author to write good documentation saves users around the world hours of frustration and confusion.
+
+\begin{itemize}
+\item
+  The \texttt{Title} and \texttt{Description} help you understand what this function does.
+\item
+  The \texttt{Usage} section shows you how type out the function.
+\item
+  The \texttt{Arguments} section lists out each possible argument (which in \texttt{R} lingo is another word for \emph{input} or \emph{parameter}), explains what that input is asking for, and details any formatting requirements.
+\item
+  The \texttt{Value} section describes what the function returns as output.
+\item
+  At the bottom of the help page, example code is provided to show you how the function works. You can copy and paste this code into your own script of \emph{Console} and check out the results.
+\end{itemize}
+
+Note that more complex functions may also include a \texttt{Details} section in their documentation, which gives more explanation about what the function does, what kinds of inputs it requires, and what it returns.
+
+\hypertarget{function-examples}{%
+\subsection*{Function examples}\label{function-examples}}
+\addcontentsline{toc}{subsection}{Function examples}
+
+\texttt{R} comes with a set of base functions for descriptive statistics, which provide good examples of how functions work and why they are valuable.
+
+We can use the same vector as the input for all of these functions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\OtherTok{NA}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)  }\CommentTok{# note the NA}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{mean()}} has been explained above.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 4.210526
+\end{verbatim}
+
+\textbf{\texttt{median()}} returns the median value in the supplied vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result <-}\StringTok{ }\KeywordTok{median}\NormalTok{(x,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 3
+\end{verbatim}
+
+\textbf{\texttt{sd()}} returns the standard deviation of the supplied vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(x,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2.594416
+\end{verbatim}
+
+\textbf{\texttt{summary()}} returns a vector that describes several aspects of the vector's distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(x,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  0.000   2.500   3.000   4.211   6.000   9.000       1 
+\end{verbatim}
+
+\hypertarget{review-assignment-4}{%
+\section*{Review assignment}\label{review-assignment-4}}
+\addcontentsline{toc}{section}{Review assignment}
+
+\emph{NOTE: Under construction!}
+
+\hypertarget{other-resources-4}{%
+\section*{Other Resources}\label{other-resources-4}}
+\addcontentsline{toc}{section}{Other Resources}
+
+\emph{NOTE: Under construction!}
+
 \hypertarget{base-plots}{%
 \chapter{Base plots}\label{base-plots}}
 
-\hypertarget{learning-goals-4}{%
-\section*{Learning goals}\label{learning-goals-4}}
+\hypertarget{learning-goals-5}{%
+\section*{Learning goals}\label{learning-goals-5}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -1955,7 +2176,7 @@ The simplest way to make a basic plot in \texttt{R} is to use its built-in \text
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-82-1.pdf}
+\includegraphics{figures/unnamed-chunk-94-1.pdf}
 
 This syntax is saying this: plot column \texttt{lifespan} as a function of \texttt{gdp}. The symbol \texttt{\textasciitilde{}} denotes \emph{``as a function of''}. This frames \texttt{lifespan} as a dependent variable (y axis) that is affected by the independent variable (x axis), which in this case is \texttt{gdp}.
 
@@ -1985,7 +2206,7 @@ You can turn this into a \textbf{line plot} by adding a parameter to the \texttt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-84-1.pdf}
+\includegraphics{figures/unnamed-chunk-96-1.pdf}
 
 \emph{What a mess!} Rather than connecting these values in the order you might expect, \texttt{R} connects them in the order that they are listed in their source vectors. This is why line plots tend to be more useful in scenarios such as time series, which are inherently ordered.
 
@@ -1997,11 +2218,9 @@ Another common plot is the \textbf{bar plot}, which uses a different \texttt{R} 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-85-1.pdf}
+\includegraphics{figures/unnamed-chunk-97-1.pdf}
 
 In this command, the parameter \texttt{height} determines the height of the bars, and \texttt{names.arg} provides the labels to place beneath each bar.
-
-Note that one of the bar labels did not plot, because \texttt{R} did not have enough space to print the labels in a pretty way. Rather than create overlapping text, \texttt{R} is programmed to leave some labels out. You will be able to adjust text size on your own (see next section).
 
 There are many more plot types out there, but let's stop here now.
 
@@ -2035,7 +2254,7 @@ Here we demonstrate just a few of the most common formatting adjustments you are
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-87-1.pdf}
+\includegraphics{figures/unnamed-chunk-100-1.pdf}
 
 In this command, you are defining axis limits using a 2-element vector (i.e., \texttt{c(min,max)}).
 
@@ -2059,7 +2278,7 @@ Make sure each input line within the function ends with a comma, otherwise you \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-89-1.pdf}
+\includegraphics{figures/unnamed-chunk-102-1.pdf}
 
 \textbf{Set dot color} using the input \texttt{col} (the default is \texttt{col="black"})
 
@@ -2069,7 +2288,7 @@ Make sure each input line within the function ends with a comma, otherwise you \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-90-1.pdf}
+\includegraphics{figures/unnamed-chunk-103-1.pdf}
 
 \href{http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf?utm_source=twitterfeed\&utm_medium=twitter}{Here is a great resource} for color names in \texttt{R}.
 
@@ -2081,7 +2300,7 @@ Make sure each input line within the function ends with a comma, otherwise you \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-91-1.pdf}
+\includegraphics{figures/unnamed-chunk-104-1.pdf}
 
 \textbf{Set axis labels} using the inputs \texttt{xlab} and \texttt{ylab}:
 
@@ -2091,7 +2310,7 @@ Make sure each input line within the function ends with a comma, otherwise you \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-92-1.pdf}
+\includegraphics{figures/unnamed-chunk-105-1.pdf}
 
 \textbf{Set axis number size} using the input \texttt{cex.axis} (the default is \texttt{cex.axis=1}):
 
@@ -2101,7 +2320,7 @@ Make sure each input line within the function ends with a comma, otherwise you \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-93-1.pdf}
+\includegraphics{figures/unnamed-chunk-106-1.pdf}
 
 \textbf{Set axis label size} using the input \texttt{cex.label} (the default is \texttt{cex.lab=1}):
 
@@ -2111,7 +2330,7 @@ Make sure each input line within the function ends with a comma, otherwise you \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-94-1.pdf}
+\includegraphics{figures/unnamed-chunk-107-1.pdf}
 
 \textbf{Set plot margins} using the function \texttt{par(mar=c())} before you call \texttt{plot()}:
 
@@ -2122,7 +2341,7 @@ Make sure each input line within the function ends with a comma, otherwise you \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-95-1.pdf}
+\includegraphics{figures/unnamed-chunk-108-1.pdf}
 
 In this command, the four numbers in the vector used to define \texttt{mar} correspond to the margin for the bottom, left, top, and right sides of the plot, respectively.
 
@@ -2136,7 +2355,7 @@ In this command, the four numbers in the vector used to define \texttt{mar} corr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-96-1.pdf}
+\includegraphics{figures/unnamed-chunk-109-1.pdf}
 
 In this command, the two numbers in the vector used to define \texttt{mfrow} correspond to the number of rows and columns, respectively, on the entire plot. In this case, you have 1 row of plots with two columns.
 
@@ -2158,7 +2377,7 @@ Note that you will need to reset the number of panes when you are done with your
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-98-1.pdf}
+\includegraphics{figures/unnamed-chunk-111-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2176,7 +2395,7 @@ Note the two slightly different formats here.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-99-1.pdf}
+\includegraphics{figures/unnamed-chunk-112-1.pdf}
 
 \hypertarget{exercise-2-2}{%
 \subsection*{Exercise 2}\label{exercise-2-2}}
@@ -2218,7 +2437,7 @@ To plot data within a dataframe, your \texttt{plot()} syntax changes slightly:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-101-1.pdf}
+\includegraphics{figures/unnamed-chunk-114-1.pdf}
 
 This syntax is saying this: using the dataframe named \texttt{df} as a source, plot column \texttt{lifespan} as a function of column \texttt{gdp}. The symbol \texttt{\textasciitilde{}} denotes \emph{``as a function of''}. This frames \texttt{lifespan} as a dependent variable (y axis) that is affected by the independent variable (x axis), which in this case is \texttt{gdp}.
 
@@ -2261,7 +2480,7 @@ You can add a line at \texttt{lifespan\ =\ 75} using the function \texttt{abline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-103-1.pdf}
+\includegraphics{figures/unnamed-chunk-116-1.pdf}
 
 In this command, the \texttt{h} input means ``place a horizontal line at this y value.''.
 
@@ -2274,7 +2493,7 @@ Similarly, you can use \texttt{v} to specify vertical lines at certain x values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-104-1.pdf}
+\includegraphics{figures/unnamed-chunk-117-1.pdf}
 
 Note here that another input, \texttt{lty}, was used to change the type of line printed. (Refer to \texttt{?abline()} for more details).
 
@@ -2297,7 +2516,7 @@ Use the \texttt{text()} function to add labels to your plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-105-1.pdf}
+\includegraphics{figures/unnamed-chunk-118-1.pdf}
 
 \hypertarget{exercise-5-1}{%
 \subsubsection*{Exercise 5}\label{exercise-5-1}}
@@ -2320,7 +2539,7 @@ It can be helpful to highlight a certain data point (or group of data points) us
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-106-1.pdf}
+\includegraphics{figures/unnamed-chunk-119-1.pdf}
 
 In this example, we re-plotted the data for the fifth row in the dataframe (in this case, China).
 
@@ -2370,7 +2589,7 @@ For example, let's highlight all countries whose life expectancy is greater than
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-107-1.pdf}
+\includegraphics{figures/unnamed-chunk-120-1.pdf}
 
 \hypertarget{exercise-6-1}{%
 \subsubsection*{Exercise 6}\label{exercise-6-1}}
@@ -2429,16 +2648,16 @@ Here is an example of this process:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-108-1.pdf}
+\includegraphics{figures/unnamed-chunk-121-1.pdf}
 
-\hypertarget{review-assignment-4}{%
-\section*{Review assignment}\label{review-assignment-4}}
+\hypertarget{review-assignment-5}{%
+\section*{Review assignment}\label{review-assignment-5}}
 \addcontentsline{toc}{section}{Review assignment}
 
 \emph{NOTE: Under construction!}
 
-\hypertarget{other-resources-4}{%
-\section*{Other Resources}\label{other-resources-4}}
+\hypertarget{other-resources-5}{%
+\section*{Other Resources}\label{other-resources-5}}
 \addcontentsline{toc}{section}{Other Resources}
 
 \hypertarget{packages}{%
@@ -2568,8 +2787,8 @@ Advanced techniques
 \hypertarget{for-loops}{%
 \chapter{\texorpdfstring{\texttt{for} loops}{for loops}}\label{for-loops}}
 
-\hypertarget{learning-goals-5}{%
-\section*{Learning goals}\label{learning-goals-5}}
+\hypertarget{learning-goals-6}{%
+\section*{Learning goals}\label{learning-goals-6}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -2768,7 +2987,7 @@ Looks like the first four columns would be interesting to plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-116-1.pdf}
+\includegraphics{figures/unnamed-chunk-129-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2836,7 +3055,7 @@ Let's say we want to see how gas mileage is affected by the number of cylinders 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-118-1.pdf}
+\includegraphics{figures/unnamed-chunk-131-1.pdf}
 
 \hypertarget{exercise-2-4}{%
 \subsection*{Exercise 2}\label{exercise-2-4}}
@@ -2862,7 +3081,7 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-119-1.pdf}
+\includegraphics{figures/unnamed-chunk-132-1.pdf}
 
 \hypertarget{using-a-for-loop-with-more-complex-data}{%
 \section*{\texorpdfstring{Using a \texttt{for\ loop} with more complex data}{Using a for loop with more complex data}}\label{using-a-for-loop-with-more-complex-data}}
@@ -2898,7 +3117,7 @@ Try plotting the Keeling Curve:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-121-1.pdf}
+\includegraphics{figures/unnamed-chunk-134-1.pdf}
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
@@ -2909,7 +3128,7 @@ There are some erroneous data points! We clearly can't have negative CO2 values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-122-1.pdf}
+\includegraphics{figures/unnamed-chunk-135-1.pdf}
 
 \textbf{What's the deal with those squiggles?} Let's investigate!
 
@@ -2975,7 +3194,7 @@ Let's look at the data a different way: \emph{by focusing in on a single year.}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-123-1.pdf}
+\includegraphics{figures/unnamed-chunk-136-1.pdf}
 
 But this only shows one year of data! How can we include the seasonal squiggle from other years?
 
@@ -3029,12 +3248,12 @@ OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-124-1.pdf}
+\includegraphics{figures/unnamed-chunk-137-1.pdf}
 
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
-\hypertarget{review-assignment-5}{%
-\section*{Review assignment}\label{review-assignment-5}}
+\hypertarget{review-assignment-6}{%
+\section*{Review assignment}\label{review-assignment-6}}
 \addcontentsline{toc}{section}{Review assignment}
 
 First, read in and format some other cool data. The code for doing so is provided for you here:
@@ -3180,7 +3399,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-128-1.pdf}
+\includegraphics{figures/unnamed-chunk-141-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsection*{Now loop it!}\label{now-loop-it}}
@@ -3204,7 +3423,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-129-1.pdf}
+\includegraphics{figures/unnamed-chunk-142-1.pdf}
 
 \hypertarget{now-loop-it-differently}{%
 \subsection*{Now loop it differently!}\label{now-loop-it-differently}}
@@ -3230,13 +3449,13 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-130-1.pdf}
+\includegraphics{figures/unnamed-chunk-143-1.pdf}
 
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
 
-\hypertarget{learning-goals-6}{%
-\section*{Learning goals}\label{learning-goals-6}}
+\hypertarget{learning-goals-7}{%
+\section*{Learning goals}\label{learning-goals-7}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -3257,12 +3476,12 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \subsection*{Exercise 1}\label{exercise-1-5}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
-\hypertarget{review-assignment-6}{%
-\section*{Review assignment}\label{review-assignment-6}}
+\hypertarget{review-assignment-7}{%
+\section*{Review assignment}\label{review-assignment-7}}
 \addcontentsline{toc}{section}{Review assignment}
 
-\hypertarget{other-resources-5}{%
-\section*{Other Resources}\label{other-resources-5}}
+\hypertarget{other-resources-6}{%
+\section*{Other Resources}\label{other-resources-6}}
 \addcontentsline{toc}{section}{Other Resources}
 
 \hypertarget{working-with-text}{%
@@ -3477,8 +3696,8 @@ Spinning up a local DB
 \hypertarget{template}{%
 \chapter{Template}\label{template}}
 
-\hypertarget{learning-goals-7}{%
-\section*{Learning goals}\label{learning-goals-7}}
+\hypertarget{learning-goals-8}{%
+\section*{Learning goals}\label{learning-goals-8}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -3505,16 +3724,16 @@ Bangarang - Crew Briefing from Luke Padgett on Vimeo.
 \subsection*{Exercise 1}\label{exercise-1-6}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
-\hypertarget{review-assignment-7}{%
-\section*{Review assignment}\label{review-assignment-7}}
+\hypertarget{review-assignment-8}{%
+\section*{Review assignment}\label{review-assignment-8}}
 \addcontentsline{toc}{section}{Review assignment}
 
 Introduce data
 
 Introduce task(s)
 
-\hypertarget{other-resources-6}{%
-\section*{Other Resources}\label{other-resources-6}}
+\hypertarget{other-resources-7}{%
+\section*{Other Resources}\label{other-resources-7}}
 \addcontentsline{toc}{section}{Other Resources}
 
 \url{https://desiree.rbind.io/post/2020/learnr-iframes/}
