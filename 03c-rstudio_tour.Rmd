@@ -1,7 +1,7 @@
 # Using `RStudio` and `R` scripts
 
-```{r,echo=FALSE,eval=FALSE}
-is_teacher <- FALSE
+```{r,echo=FALSE,eval=TRUE}
+is_teacher <- TRUE
 ```
 
 ## Learning goals {-}
@@ -14,6 +14,10 @@ is_teacher <- FALSE
 * Learn basic project work flow
 
 
+## Watch this tutorial {-}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/B7UmUX68KtE?start=5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## `R` and `RStudio`: what's the difference? {-}
 
 These two entities are similar, but it is important to understand how they are different.  
@@ -23,6 +27,10 @@ In short, `R` is a open-source (i.e., free) coding language: a powerful programm
 `R Studio`, in contrast, is a free *user interface* that helps you interact with `R`. If you think of `R` as an engine, then it helps to think of `RStudio` as the car that contains it. Like a car,`RStudio` makes it easier and more comfortable to use the engine to get where you want to go.   
 
 `R Studio` needs `R` in order to function, but `R` can technically be used on its own outside of `RStudio` if you want. However, just as a good car mechanic can get an engine to run without being installed within a car, using `R` on its own is a bit clunky and requires some expertise. For beginners (and everyone else, really), `R` is just so much more pleasant to use when you are operating it from within `RStudio`.  
+
+```{r, results = 'asis', eval = is_teacher}
+teacher_content('At this point it may be useful to show the students what opening R looks like on its own (not through R Studio). This helps them see why RStudio is valuable, and it will also help them understand what they did wrong when they accidentally open an .R file in R instead of RStudio -- which will happen a lot at first.')
+```
 
 `RStudio` also has increasingly powerful *extensions* that make `R` even more useful and versatile in data science. These extensions allow you to use `R` to make interactive data dashboards, beautiful and reproducible data reports, presentations, websites, and even books. And new features like these are regularly being added to `RStudio` by its all-star team of data scientists.
 
@@ -81,6 +89,9 @@ To send both lines of code to the *Console* at once, select both lines of code a
 
 (To select multiple lines of code, you can (1) click and drag with your mouse or (2) hold down your `Shift` key while clicking your down arrow key. To select *all* lines of code, press `Command + A`.)
 
+```{r, results = 'asis', eval = is_teacher}
+teacher_content('Tip: get all students to practice running code at this point. The act of typing the commands themselves helps them learn and overcome their hesitation about messing up.')
+```
 
 ### Exercise 1 {-}
 
@@ -120,6 +131,10 @@ The main disadvantages of this workflow are that:
 2. Making those changes is labor-intensive! Rather than spend time manually making changes to a single spreadsheet, it would be better to devote that energy to writing `R` code that makes those changes for you. That code could be run in this one case, but it could also be run at any later time, or easily modified to make similar changes to other spreadsheets.  
 
 3. You are modifying your original dataset, which is always dangerous and a big No-No in data science. Each time you save your work in *Excel* or *GoogleSheets* (which automatically saves each change you make), the original spreadsheet file gets replaced by the updated version. But if you brought your dataset into `R` instead, and modified it using an `R` script, then you leave the raw data alone and keep it safe. (Sure, you can always save different versions of your Excel file, but then you run the risk of mixing up versions and getting confused.)
+
+```{r, results = 'asis', eval = is_teacher}
+teacher_content('Consider telling a story from your own work life before you discovered R scripts. For example: receiving versions of Excel files named DATA-final-final-final.xlsx, because tiny changes are inevitably discovered after you try to finalize a data file. Then you work all weekend on an analysis using that data, only to discover you were using the WRONG version of the data!')
+```
 
 Working with `R` scripts allows you to avoid all of these pitfalls. When you write an `R` script, you are making your work ....
 
@@ -185,7 +200,11 @@ This might not seem necessary with a 5-line script, but adding visual breaks to 
 
 `R` scripts are only useful if you save them! Unlike working with *GoogleDocs* or *GoogleSheets*, `R` will not automatically save your changes; you have to do that yourself. (This is inconvenient, but it is also safer; most of coding is trial and error, and sometimes you want to be careful about what is saved.)
 
-**Where to save your work?** The folder in which you save your `R` script will be referred to as your *working directory* (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location. We suggest making a nw folder on your Desktop and naming it `databoom`, but you can name it whatever you want and place it wherever you want.
+```{r, results = 'asis', eval = is_teacher}
+teacher_content('Having grown up in the age of GoogleDocs, many students may not be familiar with what computer files are, and may not even know that their computer operates using directories of folders. It would be useful to open up File Explorer on your demo screen and show them how these directories work.')
+```
+
+**Where to save your work?** The folder in which you save your `R` script will be referred to as your *working directory* (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location. We suggest making a new folder on your Desktop and naming it `databoom`, but you can name it whatever you want and place it wherever you want.
 
 **How to save your script?** To save the script you have opened and typed a few lines of code into, press `Command + S` (or `Control + S`). Alternatively, go to File > Save. Navigate to the folder you just created and type in a file name that is simple but descriptive. We suggest making a new `R` script for each module, and naming those scripts according to each module's name. In this case, we recommend naming your script `intro_to_rstudio`. 
 
@@ -303,10 +322,20 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 ## Review assignment: {-}
 
-*NOTE: Under construction!*
+**Part 1** *(if not already complete)*. Create a working directory for this course. Call it whatever you like, but `databoom` could work great. Place it somewhere convenient on your computer, such as your Desktop.  
 
+**Part 2.** Within this working directory, create three new folders: (1) a `data` folder, which is where you will store the data files we will be using in subsequent modules; (2) a `modules` folder, which is where you will keep the code you use to work on the material in these modules, and (3) a `project` folder, which is where you will keep all your work associated with your summer project.  
+
+**Part 3.** Now follow the *Typical Workflow* instructions above to create a script. Save it within your `modules` folder. Name it `template.R`. Copy and paste the template `R` code provided above into this file, and save it. This is now a template that you can use to easily create new scripts for this course.
+
+**Part 4.** Now make a copy of `template.R` to stage a script that you can use in the next module. To do so, in `RStudio` go to the top banner and click `File > Save As`. Save this new script as `09_variables.R` (because the next module is called *Module 9: Variables in `R`*). 
+
+**Part 5.** Modify the code in `09-variables.R` so that you are prepared to begin the next module. Change the title, and look ahead to *Module 9* to fill in a brief description. Don't forget to add your name as the author and specify today's date.
+
+Boom!
 
 
 ## Other Resources  {-}
 
-*NOTE: Under construction!*
+[A Gentle Introduction to `R` from the `RStudio` team](https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/)
+
