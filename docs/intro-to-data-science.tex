@@ -120,7 +120,7 @@
 
 \title{DataBOOM: the canon for data science}
 \author{Databrew}
-\date{2021-04-22}
+\date{2021-04-24}
 
 \begin{document}
 \maketitle
@@ -136,131 +136,10 @@ Welcome to \textbf{DataBOOM}, the canon for data science by \emph{DataBrew}
 
 Instructor tip!Here is some teacher content.
 
-\begin{tabular}{l|l}
-\hline
-Number & Name\\
-\hline
-02a & principles\\
-\hline
-02b & visualizing data\\
-\hline
-02c & writing about data\\
-\hline
-02d & data ethics\\
-\hline
-03a & getting started\\
-\hline
-03b & running code\\
-\hline
-03c & rstudio tour\\
-\hline
-03d & objects\\
-\hline
-03da & data\\
-\hline
-03e & call functions\\
-\hline
-03f & base plots\\
-\hline
-03g & packages\\
-\hline
-03h & base ggplot\\
-\hline
-04a & importing data\\
-\hline
-04b & dataframes\\
-\hline
-04c & data wrangling\\
-\hline
-05a & EDA\\
-\hline
-05b & statistics\\
-\hline
-05c & displaying\\
-\hline
-06a & your own data\\
-\hline
-07a & joining\\
-\hline
-07b & for loops\\
-\hline
-07c & writing functions\\
-\hline
-07d & working with text\\
-\hline
-07e & working with dates\\
-\hline
-07f & working with factors\\
-\hline
-07g & cleaning messy data\\
-\hline
-07h & matrices lists\\
-\hline
-07i & pipes\\
-\hline
-07j & exporting\\
-\hline
-08a & shiny apps\\
-\hline
-08b & shiny dashboards\\
-\hline
-08c & data entry\\
-\hline
-09a & intro to databases\\
-\hline
-09b & database platforms\\
-\hline
-09c & database alternatives\\
-\hline
-09d & database practices\\
-\hline
-10a & R Markdown\\
-\hline
-10b reproducible research & NA\\
-\hline
-10c & automated reporting\\
-\hline
-10d & formatting standards\\
-\hline
-11a & version control\\
-\hline
-11b & git\\
-\hline
-11c & git operations\\
-\hline
-11d & git workflow\\
-\hline
-11e & other git platforms\\
-\hline
-12a & writing\\
-\hline
-12b & style\\
-\hline
-12c & sections\\
-\hline
-13a & websites\\
-\hline
-14 & mapping\\
-\hline
-15 & gis\\
-\hline
-16 & modeling\\
-\hline
-17 & apply\\
-\hline
-18 & iterative\\
-\hline
-19 & simulations\\
-\hline
-20 & Image analysis\\
-\hline
-21 & Machine learning\\
-\hline
-22 & module template\\
-\hline
-22 & references\\
-\hline
-\end{tabular}
+\hypertarget{making-the-most-of-this-course}{%
+\chapter{Making the most of this course}\label{making-the-most-of-this-course}}
+
+(Make sure you involve pizza.)
 
 \hypertarget{part-core-theory}{%
 \part{Core theory}\label{part-core-theory}}
@@ -2155,9 +2034,9 @@ You can store a function result the same way you store any value:
 [1] 4.625
 \end{verbatim}
 
-\hypertarget{function-with-multiple-inputs}{%
-\subsection*{Function with multiple inputs}\label{function-with-multiple-inputs}}
-\addcontentsline{toc}{subsection}{Function with multiple inputs}
+\hypertarget{functions-with-multiple-inputs}{%
+\subsection*{Functions with multiple inputs}\label{functions-with-multiple-inputs}}
+\addcontentsline{toc}{subsection}{Functions with multiple inputs}
 
 Note that \texttt{mean()} accepts a second input that is called \texttt{na.rm}. This is short for \texttt{NA.remove}. When this is set to \texttt{TRUE}, \texttt{R} will remove broken or missing values from the vector before calculating the mean.
 
@@ -2841,13 +2720,255 @@ Here is an example of this process:
 \hypertarget{packages}{%
 \chapter{Packages}\label{packages}}
 
+\hypertarget{learning-goals-6}{%
+\section*{Learning goals}\label{learning-goals-6}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Learn what \texttt{R} packages are and why they are awesome.
+\item
+  Learn how to find and read about the packages installed on your machine.
+\item
+  Learn how to install \texttt{R} packages from \texttt{CRAN}.
+\item
+  Learn how to install \texttt{R} packages from \texttt{GitHub}.
+\end{itemize}
+
+Instructor tip!Here is some teacher content.
+
+\hypertarget{introducing-r-packages}{%
+\section*{\texorpdfstring{Introducing \texttt{R} packages}{Introducing R packages}}\label{introducing-r-packages}}
+\addcontentsline{toc}{section}{Introducing \texttt{R} packages}
+
+As established in the \textbf{Calling functions} module, \texttt{R} comes with hundreds of built-in base functions and datasets ready for use. You can also write your \emph{own} functions, which we will cover in an upcoming module.
+
+You can also access thousands of other functions and datasets through bundles of external code known as \textbf{packages}. Packages are developed and shared by \texttt{R} users around the world -- a global community working together to increase \texttt{R}'s versatility and impact.
+
+Some packages are designed to be broadly useful for almost any application, such as the packages you will be learning in this course (\texttt{ggplot}, \texttt{dplyr}, \texttt{stringr}, etc.). Such packages make it easier and more efficient to do your work with \texttt{R}.
+
+Others are designed for niche problems that can be made much more doable with specialized functions or datasets. For example, the package \texttt{PBSmapping} contains shoreline, seafloor, and oceanographic datasets and custom mapping functions that make it easier for marine scientists at the Pacific Biological Station (PBS) in British Columbia, Canada, to carry out their work.
+
+\hypertarget{finding-the-packages-already-on-your-computer}{%
+\section*{Finding the packages already on your computer}\label{finding-the-packages-already-on-your-computer}}
+\addcontentsline{toc}{section}{Finding the packages already on your computer}
+
+In \texttt{RStudio}, look to the pane in the bottom right and click on the \emph{Packages} tab. You should see something like this:
+
+\includegraphics{img/rstudio_packages.png}
+This is displaying all the packages already installed in your system.
+
+If you click on one of these packages (try the \texttt{base} package, for example), you will be taken to a list of all the functions and datasets contained within it.
+
+\includegraphics{img/rstudio_base-package.png}
+
+When you click on one of these functions, you will be taken to the help page for that function. This is the equivalent of typing \texttt{?\ \textless{}function\_name\textgreater{}} into the \emph{Console}.
+
+\hypertarget{installing-a-new-package}{%
+\section*{Installing a new package}\label{installing-a-new-package}}
+\addcontentsline{toc}{section}{Installing a new package}
+
+There are a couple ways to download and install a new \texttt{R} packae on your computer. Most packages are available from an open-source repository known as \texttt{CRAN} (which stands for Comprehensive \texttt{R} Archive Network). However, an increasingly common practice is to release packages on a public repository such as \texttt{GitHub}.
+
+\hypertarget{installing-from-cran}{%
+\subsection*{\texorpdfstring{Installing from \texttt{CRAN}}{Installing from CRAN}}\label{installing-from-cran}}
+\addcontentsline{toc}{subsection}{Installing from \texttt{CRAN}}
+
+You can install \texttt{CRAN} packages one of two ways:
+
+\hypertarget{through-clicks}{%
+\subsubsection*{Through clicks:}\label{through-clicks}}
+\addcontentsline{toc}{subsubsection}{Through clicks:}
+
+In \texttt{RStudio}, in the bottom-right pane, return to the \emph{Packages} tab. Click on the ``Install'' button.
+
+\includegraphics{img/rstudio_install-package.png}
+
+You can then search for the package you wish to install then click \textbf{Install}.
+
+\hypertarget{through-code}{%
+\subsubsection*{Through code:}\label{through-code}}
+\addcontentsline{toc}{subsubsection}{Through code:}
+
+You can download packages from the \emph{Console} using the \texttt{install.packages()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{'fun'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note that the package name must be in quotation marks.
+
+\hypertarget{installing-from-github}{%
+\subsection*{\texorpdfstring{Installing from \texttt{GitHub}}{Installing from GitHub}}\label{installing-from-github}}
+\addcontentsline{toc}{subsection}{Installing from \texttt{GitHub}}
+
+To install packages from \texttt{GitHub}, you must first download a \texttt{CRAN} package that makes it easy to do so:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Most packages on \texttt{GitHub} include instructions for downloading it on its \texttt{GitHub} page.
+
+For example, visit \href{https://github.com/karthik/wesanderson}{this \texttt{GitHub} page} to see the documentation for the package \textbf{wesanderson}, which provides color palette themes based upon Wes Anderson's films. On this site, scroll down and you will find instructions for downloading the package. These instructions show you how to install this package from your \texttt{R} \emph{Console}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"karthik/wesanderson"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now go to your \emph{Packages} tab in the bottom-right pane of \texttt{RStudio}, scroll down to find the \textbf{wesanderson} package, and click on it to check out its functions.
+
+\hypertarget{loading-an-installed-package}{%
+\section*{Loading an installed package}\label{loading-an-installed-package}}
+\addcontentsline{toc}{section}{Loading an installed package}
+
+There is a difference between \emph{installed} and \emph{loaded} packages. Go back to your \emph{Packages} tab. Notice that some of the packages have a checked box next to their names, while others don't.
+
+These checked boxes indicate which packages are currently \emph{loaded}. All packages in the list are \emph{installed} on your computer, but only the checked packages are \emph{loaded}, i.e., ready for use.
+
+To load a package, use the \texttt{library()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(fun)}
+\KeywordTok{library}\NormalTok{(wesanderson)}
+\end{Highlighting}
+\end{Shaded}
+
+Now that your new packages are loaded, you can actually use their functions.
+
+\hypertarget{calling-functions-from-a-package}{%
+\section*{Calling functions from a package}\label{calling-functions-from-a-package}}
+\addcontentsline{toc}{section}{Calling functions from a package}
+
+Most functions from external packages can be used by simply typing the name of the function. For example, the package \texttt{fun} contains a function for generating a random password:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "@WGU-_3Qx,)`#B^a[k|qAK5<"
+\end{verbatim}
+
+Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fun}\OperatorTok{::}\KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "Ze>2M#i}5ISO]r+$x1:gtuFK"
+\end{verbatim}
+
+Note that this was done in the example above using the \texttt{devtools} package.
+
+\hypertarget{review-the-workflow-for-using-a-package}{%
+\section*{Review: the workflow for using a package}\label{review-the-workflow-for-using-a-package}}
+\addcontentsline{toc}{section}{Review: the workflow for using a package}
+
+To review how to use functions from a non-base package in \texttt{R}, follow these steps (examples provided:)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Install the package
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Example from CRAN}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"wesanderson"}\NormalTok{)}
+
+\CommentTok{# Example from GitHub}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"karthik/wesanderson"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Load the package
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Example}
+\KeywordTok{library}\NormalTok{(wesanderson)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Call the function.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{wes_palette}\NormalTok{(}\StringTok{"Royal1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-136-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wesanderson}\OperatorTok{::}\KeywordTok{wes_palette}\NormalTok{(}\StringTok{"Zissou1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-136-2.pdf}
+
+\emph{(This function creates a plot displaying the different colors contained within the specified palette.)}
+
+\hypertarget{a-note-on-package-dependencies}{%
+\section*{A note on package dependencies}\label{a-note-on-package-dependencies}}
+\addcontentsline{toc}{section}{A note on package dependencies}
+
+Most packages contain functions that are built using functions built from other packages. Those new functions depend on the functions from those other packages, and that's why those other packages are known as \emph{dependencies}. When you install one function, you will notice that \texttt{R} typically has to install several other packages at the same time; these are the dependencies that allow the package of interest to function.
+
+\hypertarget{a-note-on-package-versions}{%
+\section*{A note on package versions}\label{a-note-on-package-versions}}
+\addcontentsline{toc}{section}{A note on package versions}
+
+Packages are updated regularly, and sometimes new versions can break the functions that use it as a dependency. Sometimes you may have to install a new version (\emph{or sometimes an older version!}) of a dependency in order to get your package of interest to work as desired.
+
+\hypertarget{review-assignment-6}{%
+\section*{Review assignment}\label{review-assignment-6}}
+\addcontentsline{toc}{section}{Review assignment}
+
+\emph{NOTE: Under construction!}
+
+\hypertarget{other-resources-6}{%
+\section*{Other Resources}\label{other-resources-6}}
+\addcontentsline{toc}{section}{Other Resources}
+
+\emph{NOTE: Under construction!}
+
 \hypertarget{basics-of-ggplot}{%
 \chapter{Basics of ggplot}\label{basics-of-ggplot}}
 
 (Refer heavily to \url{https://ggplot2-book.org/introduction.html})
 
-\hypertarget{learning-goals-6}{%
-\section{Learning goals}\label{learning-goals-6}}
+\hypertarget{learning-goals-7}{%
+\section{Learning goals}\label{learning-goals-7}}
 
 \begin{itemize}
 \tightlist
@@ -2923,13 +3044,13 @@ Add a line of best fit
 
 Add title / subtitle / caption
 
-\hypertarget{review-assignment-6}{%
-\section{Review assignment:}\label{review-assignment-6}}
+\hypertarget{review-assignment-7}{%
+\section{Review assignment:}\label{review-assignment-7}}
 
 \emph{Note: Under construction!}
 
-\hypertarget{other-resources-6}{%
-\section{Other resources:}\label{other-resources-6}}
+\hypertarget{other-resources-7}{%
+\section{Other resources:}\label{other-resources-7}}
 
 \emph{Note: Under construction!}
 
@@ -3054,8 +3175,8 @@ Advanced techniques
 \hypertarget{for-loops}{%
 \chapter{\texorpdfstring{\texttt{for} loops}{for loops}}\label{for-loops}}
 
-\hypertarget{learning-goals-7}{%
-\section*{Learning goals}\label{learning-goals-7}}
+\hypertarget{learning-goals-8}{%
+\section*{Learning goals}\label{learning-goals-8}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -3254,7 +3375,7 @@ Looks like the first four columns would be interesting to plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-134-1.pdf}
+\includegraphics{figures/unnamed-chunk-145-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3322,7 +3443,7 @@ Let's say we want to see how gas mileage is affected by the number of cylinders 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-136-1.pdf}
+\includegraphics{figures/unnamed-chunk-147-1.pdf}
 
 \hypertarget{exercise-2-4}{%
 \subsection*{Exercise 2}\label{exercise-2-4}}
@@ -3348,7 +3469,7 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-137-1.pdf}
+\includegraphics{figures/unnamed-chunk-148-1.pdf}
 
 \hypertarget{using-a-for-loop-with-more-complex-data}{%
 \section*{\texorpdfstring{Using a \texttt{for\ loop} with more complex data}{Using a for loop with more complex data}}\label{using-a-for-loop-with-more-complex-data}}
@@ -3384,7 +3505,7 @@ Try plotting the Keeling Curve:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-139-1.pdf}
+\includegraphics{figures/unnamed-chunk-150-1.pdf}
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
@@ -3395,7 +3516,7 @@ There are some erroneous data points! We clearly can't have negative CO2 values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-140-1.pdf}
+\includegraphics{figures/unnamed-chunk-151-1.pdf}
 
 \textbf{What's the deal with those squiggles?} Let's investigate!
 
@@ -3461,7 +3582,7 @@ Let's look at the data a different way: \emph{by focusing in on a single year.}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-141-1.pdf}
+\includegraphics{figures/unnamed-chunk-152-1.pdf}
 
 But this only shows one year of data! How can we include the seasonal squiggle from other years?
 
@@ -3515,12 +3636,12 @@ OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-142-1.pdf}
+\includegraphics{figures/unnamed-chunk-153-1.pdf}
 
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
-\hypertarget{review-assignment-7}{%
-\section*{Review assignment}\label{review-assignment-7}}
+\hypertarget{review-assignment-8}{%
+\section*{Review assignment}\label{review-assignment-8}}
 \addcontentsline{toc}{section}{Review assignment}
 
 First, read in and format some other cool data. The code for doing so is provided for you here:
@@ -3666,7 +3787,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-146-1.pdf}
+\includegraphics{figures/unnamed-chunk-157-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsection*{Now loop it!}\label{now-loop-it}}
@@ -3690,7 +3811,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-147-1.pdf}
+\includegraphics{figures/unnamed-chunk-158-1.pdf}
 
 \hypertarget{now-loop-it-differently}{%
 \subsection*{Now loop it differently!}\label{now-loop-it-differently}}
@@ -3716,13 +3837,13 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-148-1.pdf}
+\includegraphics{figures/unnamed-chunk-159-1.pdf}
 
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
 
-\hypertarget{learning-goals-8}{%
-\section*{Learning goals}\label{learning-goals-8}}
+\hypertarget{learning-goals-9}{%
+\section*{Learning goals}\label{learning-goals-9}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -3745,12 +3866,12 @@ Instructor tip!Here is some teacher content.
 \subsection*{Exercise 1}\label{exercise-1-5}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
-\hypertarget{review-assignment-8}{%
-\section*{Review assignment}\label{review-assignment-8}}
+\hypertarget{review-assignment-9}{%
+\section*{Review assignment}\label{review-assignment-9}}
 \addcontentsline{toc}{section}{Review assignment}
 
-\hypertarget{other-resources-7}{%
-\section*{Other Resources}\label{other-resources-7}}
+\hypertarget{other-resources-8}{%
+\section*{Other Resources}\label{other-resources-8}}
 \addcontentsline{toc}{section}{Other Resources}
 
 \hypertarget{working-with-text}{%
@@ -3965,8 +4086,8 @@ Spinning up a local DB
 \hypertarget{template}{%
 \chapter{Template}\label{template}}
 
-\hypertarget{learning-goals-9}{%
-\section*{Learning goals}\label{learning-goals-9}}
+\hypertarget{learning-goals-10}{%
+\section*{Learning goals}\label{learning-goals-10}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -3995,16 +4116,16 @@ Bangarang - Crew Briefing from Luke Padgett on Vimeo.
 \subsection*{Exercise 1}\label{exercise-1-6}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
-\hypertarget{review-assignment-9}{%
-\section*{Review assignment}\label{review-assignment-9}}
+\hypertarget{review-assignment-10}{%
+\section*{Review assignment}\label{review-assignment-10}}
 \addcontentsline{toc}{section}{Review assignment}
 
 Introduce data
 
 Introduce task(s)
 
-\hypertarget{other-resources-8}{%
-\section*{Other Resources}\label{other-resources-8}}
+\hypertarget{other-resources-9}{%
+\section*{Other Resources}\label{other-resources-9}}
 \addcontentsline{toc}{section}{Other Resources}
 
 \url{https://desiree.rbind.io/post/2020/learnr-iframes/}
