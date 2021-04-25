@@ -120,7 +120,7 @@
 
 \title{DataBOOM: the canon for data science}
 \author{Databrew}
-\date{2021-04-24}
+\date{2021-04-25}
 
 \begin{document}
 \maketitle
@@ -2857,7 +2857,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] "@WGU-_3Qx,)`#B^a[k|qAK5<"
+[1] "8ur*.IY~3iN:pS4&zZ;nkU0H"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2869,7 +2869,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "Ze>2M#i}5ISO]r+$x1:gtuFK"
+[1] "@0T$VWPuv}'Q#>2KB6]h\"|rD"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -3849,30 +3849,471 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \begin{itemize}
 \tightlist
 \item
-  Item 1\\
+  Be able to write your own functions.
 \item
-  Item 2\\
+  Be able to \emph{source} your own functions from separate R files.
 \item
-  Item 3
+  Be able to use functions to make your work more efficient, effective, and organized.
 \end{itemize}
 
 Instructor tip!Here is some teacher content.
 
-\hypertarget{introduction-1}{%
-\section*{Introduction}\label{introduction-1}}
-\addcontentsline{toc}{section}{Introduction}
+\hypertarget{first-steps}{%
+\section*{First steps}\label{first-steps}}
+\addcontentsline{toc}{section}{First steps}
+
+You've already used dozens of functions during your learning in \texttt{R} so far. As you start applying \texttt{R} to your own projects, you will inevitably encounter a puzzle that could be solved by a custom function you write yourself. This module shows you how.
+
+As explained in the \textbf{Calling Functions} module, most functions have three key components: (1) one or more inputs, (2) a process that is applied to those inputs, and (3) an output of the result. When you define your own custom function, these are the three pieces you must be sure to include.
+
+Here is a basic example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)\{}
+\NormalTok{  y <-}\StringTok{ }\FloatTok{1.3}\OperatorTok{*}\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{10}
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now use your function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{2}\NormalTok{) }\CommentTok{# example 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 12.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{4}\NormalTok{) }\CommentTok{# example 2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 15.2
+\end{verbatim}
+
+Let's break this down.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{my\_function} is the name you are giving your function. It is the command you will use to call your function.
+\item
+  The \texttt{function()} command is what you use to define a function.
+\item
+  \texttt{x} is the variable you are using to represent your input.
+\item
+  \texttt{y\ \textless{}-\ 1.3x\ +\ 10} is the process that you are applying to your input.
+\item
+  \texttt{return(y)} is the command you use to define what the function's output will be.
+\end{itemize}
+
+Note that you are not \emph{required} to write out \texttt{x=2} in full when you are calling your function. Just providing \texttt{2} can also work:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 12.6
+\end{verbatim}
 
 \hypertarget{exercise-1-5}{%
 \subsection*{Exercise 1}\label{exercise-1-5}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
-\hypertarget{review-assignment-9}{%
-\section*{Review assignment}\label{review-assignment-9}}
-\addcontentsline{toc}{section}{Review assignment}
+Define your own basic function and run it to make sure it works.
+
+\hypertarget{next-steps}{%
+\section*{Next steps}\label{next-steps}}
+\addcontentsline{toc}{section}{Next steps}
+
+\hypertarget{multiple-inputs}{%
+\subsection*{Multiple inputs}\label{multiple-inputs}}
+\addcontentsline{toc}{subsection}{Multiple inputs}
+
+You can define a function with multiple inputs. Just separate each input with a comma.
+
+To demonstrate this, let's modify the function above to allow you to define any linear regression you wish:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,a,b)\{}
+\NormalTok{  y <-}\StringTok{ }\NormalTok{a}\OperatorTok{*}\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{b}
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now call your function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{2}\NormalTok{,}\DataTypeTok{a=}\FloatTok{1.3}\NormalTok{,}\DataTypeTok{b=}\DecValTok{10}\NormalTok{) }\CommentTok{# example 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 12.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{4}\NormalTok{,}\DataTypeTok{a=}\DecValTok{5}\NormalTok{,}\DataTypeTok{b=}\DecValTok{100}\NormalTok{) }\CommentTok{# example 2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 120
+\end{verbatim}
+
+Note that you do not need to write out the name of each input, as long as you provide inputs in the correct order.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DecValTok{2}\NormalTok{, }\FloatTok{1.3}\NormalTok{, }\DecValTok{10}\NormalTok{) }\CommentTok{# example 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 12.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{100}\NormalTok{) }\CommentTok{# example 2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 120
+\end{verbatim}
+
+But note that it is usually best practice to name each input in your function call, to prevent the possibility of any confusion or mistakes. Also, when you name each input you can provide inputs in whatever order you wish:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{2}\NormalTok{, }\DataTypeTok{a=}\FloatTok{1.3}\NormalTok{, }\DataTypeTok{b=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 12.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{a=}\FloatTok{1.3}\NormalTok{, }\DataTypeTok{b=}\DecValTok{10}\NormalTok{, }\DataTypeTok{x=}\DecValTok{2}\NormalTok{) }\CommentTok{# different inout order, same output value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 12.6
+\end{verbatim}
+
+\hypertarget{providing-defaults-for-inputs}{%
+\subsection*{Providing defaults for inputs}\label{providing-defaults-for-inputs}}
+\addcontentsline{toc}{subsection}{Providing defaults for inputs}
+
+Just as \texttt{R}'s base functions include default values for some inputs (think \texttt{na.rm=FALSE} for \texttt{mean()} and \texttt{sd()}), you can define defaults in your own functions.
+
+This version of \texttt{my\_function} includes default values for inputs \texttt{a} and \texttt{b}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,}\DataTypeTok{a=}\FloatTok{1.3}\NormalTok{,}\DataTypeTok{b=}\DecValTok{10}\NormalTok{)\{}
+\NormalTok{  y <-}\StringTok{ }\NormalTok{a}\OperatorTok{*}\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{b}
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+When you provide default values, you no longer need to specify those inputs in your function call:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 12.6
+\end{verbatim}
+
+\hypertarget{null-as-a-default}{%
+\subsubsection*{\texorpdfstring{\texttt{NULL} as a default}{NULL as a default}}\label{null-as-a-default}}
+\addcontentsline{toc}{subsubsection}{\texttt{NULL} as a default}
+
+Setting the default value for an input to \texttt{NULL} can be useful in certain use cases. For example, let's say that if \texttt{b} is not defined by the user, you want its value to be set to five times the value of \texttt{x}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,}\DataTypeTok{a=}\FloatTok{1.3}\NormalTok{,}\DataTypeTok{b=}\OtherTok{NULL}\NormalTok{)\{}
+  
+  \CommentTok{# Handle input `b`}
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(b))\{}
+\NormalTok{    b <-}\StringTok{ }\NormalTok{x}\OperatorTok{*}\DecValTok{5}
+    \KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"b was NULL! Setting its value to "}\NormalTok{, b))}
+\NormalTok{  \}}
+  
+  \CommentTok{# Now perform process}
+\NormalTok{  y <-}\StringTok{ }\NormalTok{a}\OperatorTok{*}\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{b}
+  
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+In this function, a conditional statement is used -- \texttt{if(is.null(b))\{\ ...\ \}} -- to handle the input \texttt{b} when the user does not specify a value for it. When \texttt{b} is \texttt{NULL}, the logical test \texttt{is.null(b)} will be \texttt{TRUE}, which will trigger the conditional statement and case \texttt{b} to be defined as \texttt{x*5}.
+
+Try running the function with and without providing a value for \texttt{b}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{2}\NormalTok{,}\DataTypeTok{b=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 7.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "b was NULL! Setting its value to  10"
+\end{verbatim}
+
+\begin{verbatim}
+[1] 12.6
+\end{verbatim}
+
+Conditional statements such as \texttt{if(is.null(x))\{\ ...\ \}} or \texttt{if(is.na(x))\{\ ...\ \}} will be helpful in dealing with all the possible values that a user can pass to your custom functions.
+
+\hypertarget{complex-inputs}{%
+\subsection*{Complex inputs}\label{complex-inputs}}
+\addcontentsline{toc}{subsection}{Complex inputs}
+
+You can pass vectors, dataframes, and any other data structure as inputs in your own custom functions. For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_input <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{20}
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\NormalTok{my_input,}\DataTypeTok{a=}\FloatTok{1.2}\NormalTok{,}\DataTypeTok{b=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 11.2 12.4 13.6 14.8 16.0 17.2 18.4 19.6 20.8 22.0 23.2 24.4 25.6 26.8 28.0
+[16] 29.2 30.4 31.6 32.8 34.0
+\end{verbatim}
+
+\hypertarget{complex-function-outputs}{%
+\subsection*{Complex function outputs}\label{complex-function-outputs}}
+\addcontentsline{toc}{subsection}{Complex function outputs}
+
+At some point you will want multiple objects to be returned by your function. For example, perhaps you want both \texttt{y} and \texttt{b} to be returned now that you can define \texttt{b} according to the value of \texttt{x}.
+
+Unfortunately, the \texttt{return()} command does not let you include multiple objects. \texttt{return(y,b)} will not work. To make it work, you have to place your output objects within a single object, such as a vector, dataframe, or list.
+
+Here is a modification of \texttt{my\_function()} that allows multiple outputs:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,}\DataTypeTok{a=}\FloatTok{1.3}\NormalTok{,}\DataTypeTok{b=}\OtherTok{NULL}\NormalTok{)\{}
+  
+  \CommentTok{# Handle input `b`}
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(b))\{}
+\NormalTok{    b <-}\StringTok{ }\NormalTok{x}\OperatorTok{*}\DecValTok{5}
+\NormalTok{  \}}
+  
+  \CommentTok{# Now perform process}
+\NormalTok{  y <-}\StringTok{ }\NormalTok{a}\OperatorTok{*}\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{b}
+  
+\NormalTok{  output <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"y"}\NormalTok{=y,}\StringTok{"b"}\NormalTok{=b) }
+  \KeywordTok{return}\NormalTok{(output)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now \texttt{my\_function()} works like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   y    b 
+31.5 25.0 
+\end{verbatim}
+
+To get the value of just \texttt{y} or just \texttt{b}, you can treat the output just like any other vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{5}\NormalTok{)[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   y 
+31.5 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{5}\NormalTok{)[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ b 
+25 
+\end{verbatim}
+
+\hypertarget{adding-plots}{%
+\subsection*{Adding plots}\label{adding-plots}}
+\addcontentsline{toc}{subsection}{Adding plots}
+
+Plots can be included in the function commands just as in any other context:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,}\DataTypeTok{a=}\FloatTok{1.3}\NormalTok{,}\DataTypeTok{b=}\DecValTok{10}\NormalTok{)\{}
+\NormalTok{  y <-}\StringTok{ }\NormalTok{a}\OperatorTok{*}\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{b}
+  \KeywordTok{plot}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{x, }\DataTypeTok{type=}\StringTok{"b"}\NormalTok{)}
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_input <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{20}
+\KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\NormalTok{my_input)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-178-1.pdf}
+
+\begin{verbatim}
+ [1] 11.3 12.6 13.9 15.2 16.5 17.8 19.1 20.4 21.7 23.0 24.3 25.6 26.9 28.2 29.5
+[16] 30.8 32.1 33.4 34.7 36.0
+\end{verbatim}
+
+Adding plots to functions can be super useful if you want to make multiple plots with the same formatting specifications. Rather than retyping the same long plot commands multiple times, just write a single function and call the function as many times as you wish.
+
+Let's add some fancy formatting to our plot. Note that we will modify the name of the function to make it more descriptive and helpful. The \texttt{lm} in \texttt{plot\_my\_lm} stands for \emph{linear model}, which is what is being defined with the \texttt{y=ax+b} equation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot_my_lm <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,}\DataTypeTok{a=}\FloatTok{1.3}\NormalTok{,}\DataTypeTok{b=}\DecValTok{10}\NormalTok{,}\DataTypeTok{plot_only=}\OtherTok{TRUE}\NormalTok{)\{}
+  
+  \CommentTok{# Process}
+\NormalTok{  y <-}\StringTok{ }\NormalTok{a}\OperatorTok{*}\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{b}
+  
+  \CommentTok{# Plot}
+  \KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{4.2}\NormalTok{,}\FloatTok{4.2}\NormalTok{,}\DecValTok{3}\NormalTok{,.}\DecValTok{5}\NormalTok{)) }\CommentTok{# set plot margins}
+  \KeywordTok{plot}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{x, }\DataTypeTok{type=}\StringTok{"o"}\NormalTok{,}\DataTypeTok{axes=}\OtherTok{FALSE}\NormalTok{,}\DataTypeTok{ann=}\OtherTok{FALSE}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}\DataTypeTok{col=}\StringTok{"firebrick"}\NormalTok{,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{20}\NormalTok{,}\DecValTok{20}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{20}\NormalTok{,}\DecValTok{20}\NormalTok{)) }\CommentTok{# define basic plot}
+  \KeywordTok{title}\NormalTok{(}\DataTypeTok{main=}\KeywordTok{paste}\NormalTok{(}\StringTok{"y ="}\NormalTok{,a,}\StringTok{"x +"}\NormalTok{,b)) }\CommentTok{# print a dynamic main title}
+  \KeywordTok{title}\NormalTok{(}\DataTypeTok{xlab=}\StringTok{"x"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"y"}\NormalTok{)  }\CommentTok{# print axis labelse}
+  \KeywordTok{axis}\NormalTok{(}\DecValTok{1}\NormalTok{) }\CommentTok{# print the X axis}
+  \KeywordTok{axis}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DataTypeTok{las=}\DecValTok{2}\NormalTok{) }\CommentTok{# print the Y axis and turn its labels right-side-up}
+  \KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\DecValTok{0}\NormalTok{,}\DataTypeTok{v=}\DecValTok{0}\NormalTok{,}\DataTypeTok{col=}\StringTok{"grey70"}\NormalTok{) }\CommentTok{# add grey lines indicating x=0 and y=0}
+  
+  \CommentTok{# Return}
+  \ControlFlowTok{if}\NormalTok{(plot_only}\OperatorTok{==}\OtherTok{FALSE}\NormalTok{)\{}
+    \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Note that we added a parameter, \texttt{plot\_only}. When it is set to \texttt{TRUE}, the function will not return any numbers.
+
+Now let's call this fancy function a bunch of times:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_input <-}\StringTok{ }\DecValTok{-20}\OperatorTok{:}\DecValTok{20} \CommentTok{# define a common x input value}
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\CommentTok{# stage a multi-paned plot}
+\KeywordTok{plot_my_lm}\NormalTok{(}\DataTypeTok{x=}\NormalTok{my_input,}\DataTypeTok{a=}\DecValTok{2}\NormalTok{,}\DataTypeTok{b=}\DecValTok{15}\NormalTok{)}
+\KeywordTok{plot_my_lm}\NormalTok{(}\DataTypeTok{x=}\NormalTok{my_input,}\DataTypeTok{a=}\DecValTok{1}\NormalTok{,}\DataTypeTok{b=}\DecValTok{10}\NormalTok{)}
+\KeywordTok{plot_my_lm}\NormalTok{(}\DataTypeTok{x=}\NormalTok{my_input,}\DataTypeTok{a=}\NormalTok{.}\DecValTok{5}\NormalTok{,}\DataTypeTok{b=}\DecValTok{5}\NormalTok{)}
+\KeywordTok{plot_my_lm}\NormalTok{(}\DataTypeTok{x=}\NormalTok{my_input,}\DataTypeTok{a=}\DecValTok{0}\NormalTok{,}\DataTypeTok{b=}\DecValTok{0}\NormalTok{)}
+\KeywordTok{plot_my_lm}\NormalTok{(}\DataTypeTok{x=}\NormalTok{my_input,}\DataTypeTok{a=}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DataTypeTok{b=}\OperatorTok{-}\DecValTok{5}\NormalTok{)}
+\KeywordTok{plot_my_lm}\NormalTok{(}\DataTypeTok{x=}\NormalTok{my_input,}\DataTypeTok{a=}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\DataTypeTok{b=}\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-180-1.pdf}
+
+Think about how many lines of code would have been needed to write out all of these fancy plots if you did not use a custom function! Think about how cluttered and dizzying your code would look! And think about how many opportunities for errors and inconsistencies there would have been! That is the advantage of writing your own functions: it makes your work more efficient, more organized, and less prone to errors.
+
+Another major advantage of this approach comes into play when you decide you want to tweak the formatting of your plot. Rather than going through each \texttt{plot(...)} command and modifying the inputs in each one, when you write a custom plotting function you just have to make those changes once. Again, using a custom function saves you time and removes the possibility of inconsistencies or mistakes in the plots you are creating.
+
+\hypertarget{exercise-2-5}{%
+\subsection*{Exercise 2}\label{exercise-2-5}}
+\addcontentsline{toc}{subsection}{Exercise 2}
+
+Modify the most recent version of \texttt{plot\_my\_lm} above such that you can specify the color for the plotted line as an input in the function. Then reproduce the multi-paned plot using a different color in each plot. (Here is a good reference for \href{http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf}{color options in R}).
+
+\hypertarget{review-assignment-baby-names-over-time}{%
+\section*{Review assignment: Baby names over time}\label{review-assignment-baby-names-over-time}}
+\addcontentsline{toc}{section}{Review assignment: Baby names over time}
+
+\includegraphics{img/baby_names.png}
+
+In this exercise, you will investigate annual trends in the prevalence of six names for babies born in the United States.
+
+\textbf{Step 1.} Decide upon five names of interest to you, in addition to your own. Create a vector of these six names.
+
+\textbf{Step 2.} Install and load the package \texttt{babynames}, which includes the names of each child born in the United States from 1880 to 2017, according to the Social Security Administration.
+
+\textbf{Step 3.} This package provides the dataset in a dataframe that is also named \texttt{babynames}. Familiarize yourself with this dataset using its documentation.
+
+\textbf{Step 4.} Before writing any functions, do some basic exploration with this dataset.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  How many different names have been used since 1880?\\
+\item
+  What is the most common name (proportionally) ever given to female babies?
+\item
+  To male babies?
+\item
+  What was the most common name in 2017?
+\end{enumerate}
+
+\textbf{Step 5.} Write a function that takes any name and plots its proportional prevalence from 1880 to 2017. Format the plot beautifully. Provide the name as the \texttt{main} title of the plot.
+
+\textbf{Step 6.} Include an input that allows the user to specify the y axis range. If that input is set to \texttt{NULL}, the function should just use the maximum value contained in the data itself, scaled by 1.2 to make the plot prettier. Always use \texttt{0} as the lower bound of the y axis.
+
+\textbf{Step 7.} Create a multi-pane plot containing six subplots, one for each of your names of interest.
 
 \hypertarget{other-resources-8}{%
 \section*{Other Resources}\label{other-resources-8}}
 \addcontentsline{toc}{section}{Other Resources}
+
+\emph{NOTE: Under construction!}
 
 \hypertarget{working-with-text}{%
 \chapter{Working with text}\label{working-with-text}}
@@ -3910,8 +4351,8 @@ Instructor tip!Here is some teacher content.
 \hypertarget{part-databases}{%
 \part{Databases}\label{part-databases}}
 
-\hypertarget{introduction-2}{%
-\chapter{Introduction}\label{introduction-2}}
+\hypertarget{introduction-1}{%
+\chapter{Introduction}\label{introduction-1}}
 
 \hypertarget{what}{%
 \section{What}\label{what}}
@@ -4023,8 +4464,8 @@ Spinning up a local DB
 \hypertarget{abstract}{%
 \section{Abstract}\label{abstract}}
 
-\hypertarget{introduction-3}{%
-\section{Introduction}\label{introduction-3}}
+\hypertarget{introduction-2}{%
+\section{Introduction}\label{introduction-2}}
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -4116,8 +4557,8 @@ Bangarang - Crew Briefing from Luke Padgett on Vimeo.
 \subsection*{Exercise 1}\label{exercise-1-6}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
-\hypertarget{review-assignment-10}{%
-\section*{Review assignment}\label{review-assignment-10}}
+\hypertarget{review-assignment-9}{%
+\section*{Review assignment}\label{review-assignment-9}}
 \addcontentsline{toc}{section}{Review assignment}
 
 Introduce data
