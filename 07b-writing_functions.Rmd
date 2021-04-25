@@ -19,7 +19,13 @@ teacher_content('Here is some teacher content.')
 
 You've already used dozens of functions during your learning in `R` so far. As you start applying `R` to your own projects, you will inevitably encounter a puzzle that could be solved by a custom function you write yourself. This module shows you how.  
 
-As explained in the **Calling Functions** module, most functions have three key components: (1) one or more inputs, (2) a process that is applied to those inputs, and (3) an output of the result. When you define your own custom function, these are the three pieces you must be sure to include. 
+As explained in the **Calling Functions** module, most functions have three key components:  
+
+(1) one or more inputs,   
+(2) a process that is applied to those inputs, and  
+(3) an output of the result.  
+
+When you define your own custom function, these are the three pieces you must be sure to include. 
 
 Here is a basic example:  
 
@@ -132,7 +138,7 @@ my_function <- function(x,a=1.3,b=NULL){
 }
 ```
 
-In this function, a conditional statement is used -- `if(is.null(b)){ ... }` -- to handle the input `b` when the user does not specify a value for it. When `b` is `NULL`, the logical test `is.null(b)` will be `TRUE`, which will trigger the conditional statement and case `b` to be defined as `x*5`. 
+In this function, a conditional statement is used -- `if(is.null(b)){ ... }` -- to handle the input `b` when the user does not specify a value for it. When `b` is `NULL`, the logical test `is.null(b)` will be `TRUE`, which will trigger the conditional statement and case `b` to be defined as `x*5`. Conditional statements will be convered in detail in the next modules.
 
 Try running the function with and without providing a value for `b`. 
 
@@ -247,7 +253,6 @@ plot_my_lm(x=my_input,a=.5,b=5)
 plot_my_lm(x=my_input,a=0,b=0)
 plot_my_lm(x=my_input,a=-1,b=-5)
 plot_my_lm(x=my_input,a=-2,b=15)
-
 ```
 
 Think about how many lines of code would have been needed to write out all of these fancy plots if you did not use a custom function! Think about how cluttered and dizzying your code would look! And think about how many opportunities for errors and inconsistencies there would have been!  That is the advantage of writing your own functions: it makes your work more efficient, more organized, and less prone to errors.
@@ -257,6 +262,33 @@ Another major advantage of this approach comes into play when you decide you wan
 ### Exercise 2 {-}
 
 Modify the most recent version of `plot_my_lm` above such that you can specify the color for the plotted line as an input in the function. Then reproduce the multi-paned plot using a different color in each plot. (Here is a good reference for [color options in R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)).
+
+## Sourcing functions  {-}
+
+As you advance in your coding, you will likely be writing multiple custom functions within a single `R` script. It is usually useful to group these functions into the same section of code near the top of your script. 
+
+But for even *better* script organization and simplification, you should *source* your functions from a separate `R` script. This means placing your function code in a separate `R` script and calling that file from the script in which you are carrying out your analyses. In addition to simplifying your analysis script, keeping your functions in a separate file allows them to be shared or sourced from any number of other scripts, which further organizes and simplifies your project's code and increases the reproducibility of your work.
+
+Here is how sourcing functiosn can work:  
+
+1. Open a new `R` script. Save it as `functions.R` and save it in the same working directory as the script you are using to work through this module. 
+
+2. Copy and paste the `plot_my_lm()` function into your `functions.R` script. Save that script to ensure your code is safe.
+
+3. No remove the code defining `plot_my_lm()` from your module `R` script. 
+
+4. In its place, type this command:
+
+```{r,echo=TRUE,eval=FALSE}
+source("functions.R")
+```
+
+This command tells `R` to run the code in `functions.R` and store the objects and outputs from it in its active memory. You can now call `plot_my_lm()` from your module script.  
+
+
+### Exercise 3 {-}
+
+Carry out the above instructions to ensure that you know how to source a function from a separate `R` script.
 
 
 ## Review assignment: Baby names over time {-}

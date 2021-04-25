@@ -1,0 +1,231 @@
+# Conditional statements
+
+```{r,echo=FALSE,eval=TRUE}
+is_teacher <- FALSE
+```
+
+## Learning goals {-}
+
+* Understand what conditional statements are, and why they are so awesome.
+* Be able to write your own conditional statements in `R`.
+
+```{r, results = 'asis', eval = is_teacher}
+teacher_content('Here is some teacher content.')
+```
+
+## First steps  {-}
+
+An example of a conditional statement is, *"If ______ happens, do _____. Otherwise, do _____."*  
+
+In `R` code, conditional statements work a similar way: they let a variable's value determine which process to carry out next. 
+
+Here is a basic example:  
+
+```{r, echo=TRUE}
+x <- 4
+
+if(x==3){
+  message("x is equal to 3!")
+}else{
+  message("x does NOT equal 3!")
+}
+```
+
+Let's break this `if` statement down. 
+
+- The `if` command opens up a conditional statement.
+- The parenthetical `(x==3)` is where the logical test happens. If the result of this test is `TRUE`, then the `if` statement will be processed; if not, the `else` statement will be run instead.
+- The curly brackets, `{ }` serve to contain the code that will be run, depending on the outcome of the logical test.
+- The `else` command indicates the start of the code that will be run if the logical test's result is `FALSE`.
+
+This code ran the logical test `x==3`, determined its outcome to be `FALSE`, and so it skipped the `if` code and ran the `else` code instead.  
+
+Here is another example of the same idea:
+
+```{r, echo=TRUE}
+x <- 4
+
+if(x==3){
+  y <- 100
+}else{
+  y <- 0
+}
+
+y # see what y is
+```
+
+Since `x==3` returned `FALSE`, `y` was defined as `0` instead of `100`.  
+
+Note that you do not need to define an `else` statement. If you do not, `R` will simply do nothing if the logical test is `FALSE`.
+
+```{r, echo=TRUE}
+x <- 4
+
+if(x==3){
+  message("x is equal to 3!")
+}
+```
+
+*(Nothing happened)*  
+
+You can also feed the `if` statement a logical object instead of a test. 
+
+```{r, echo=TRUE}
+x <- 4
+x_test <- x == 3
+x_test # check out the value of x_stest
+
+if(x_test){
+  message("x is equal to 3!")
+}
+```
+
+Not that, since `x_test` is a logical value (`TRUE` or `FALSE`), you do not need to write out a logical test within the `if` parenthetical. But you are free to do so if you wish:
+
+```{r, echo=TRUE}
+x <- 4
+x_test <- x == 3
+
+if(x_test == FALSE){
+  message("x is not equal to 3!")
+}
+```
+
+This `if` statement is saying that, if it is `TRUE` that `x_test` is `FALSE`, print a message saying so.  
+
+
+### Exercise 1 {-}
+
+Write out your own basic `if...else` statement and ensure that it works.  
+
+
+## Next steps {-}  
+
+### Nested conditions {-} 
+
+You can nest conditional statements within others as many times as you wish: 
+
+```{r,echo=TRUE}
+x <- 6
+
+if(x==3){
+  message("x equals 3")
+}else{
+  if(x < 3){
+    message("x is less than 3")
+  }else{  
+    message("x is greater than 3")
+  }
+}
+```
+
+Note that every open bracket, `{`, needs a corresponding closing bracket ,`}`. Most errors associated with `if` statements involve missing brackets.
+
+
+### Handling `NA`s, `NaN`'s, `Inf`s, and `NULL`s {-}
+
+`if` statements can be particularly helpful when your dataset contains missing or broken values. `R` includes base functions that help you carry out logical tests concerning missing values. These three test below can be very helpful within `if` statements. 
+
+
+**`is.finite()`** tests whether a numeric object is a real, finite number.
+
+```{r,echo=TRUE}
+x <- 0
+is.finite(x)
+
+y <- 10/x
+y
+is.finite(y)
+```
+
+Here is an `if` statement making use of `is.finite()`:
+
+```{r,echo=TRUE}
+x <- 0
+y <- 10/x
+if(is.finite(y)){
+  message("y is indeed a finite number!")
+}else{
+  message("y is not a finite number!")
+}
+```
+
+**`is.na()`** tests whether a variable contains a missing or broken object.  
+
+```{r,echo=TRUE}
+x <- "eric"
+is.na(x)
+
+y <- as.numeric(x) # try converting `x` to a numeric value
+is.na(y)
+is.finite(y)
+```
+
+`NA` stands for *"Not Available"*.  `NaN` is also a common sign of a broken value. It stands for *Not a Number*.
+
+**`is.null()`** tests whether a variable is empty. That is, it has been initiated, but it contains no data.  
+
+```{r,echo=TRUE}
+x <- c(4,7,3,1,5) # make a vector of numbers
+is.null(x)
+
+y <- c() # make an empty vector
+is.null(y)
+```
+
+
+### Joint conditions {-} 
+
+`if` statements can also accommodate joint logical tests. For example, the follow `if` statement only returns if a message if *two* tests are true:
+
+```{r,echo=TRUE}
+x <- 6
+if(is.finite(x) & x==6){
+  message("x is real and equals 6")
+}
+```
+
+The next `if` statement returns a message if either of the logical statements are true:
+
+```{r,echo=TRUE}
+x <- 6
+if(x==3 | x==6){
+  message("x is equal to either 3 or 6")
+}
+```
+
+### Exercise 2 {-}
+
+Write a nested `if` statement that produces a message reporting the hemisphere for any GPS position you provide it (a pair of latitude and longitude coordinates, in decimal degrees). The four hemisphere options are as follows: 
+
+- *Northwest* (positive latitudes and negative longitudes, e.g., USA)  
+- *Northeast* (positive latitudes and longitudes, e.g., Russia)
+- *Southwest* (negative latitudes and longitudes, e.g., Brazil)  
+- *Southeast* (negative latitudes and positive longitudes, e.g., New Zealand).  
+
+Include the ability to handle missing values (i.e., if an `NA` is provided, return a message saying that values are missing and the hemisphere cannot be determined.)
+
+Provide five examples that demonstrate the functionality for all the possible message options.
+
+
+## Review assignment {-}
+
+**Note:** This exercise will combine all the skills you've learned for `for` loops, `if` statements, *and* writing functions into a real-world data science scenario. Buckle up!
+
+
+You are working at the Center for Disease Control. Your supervisor has asked you to take a look at state-level data on infectious diseases within the United States in the last century.  Specifically, she wants you to address the following questions and requests:
+
+1. In the last 90 years, which states have had the highest average prevalence of **measles**, **pertussis** (whooping cough), and **smallpox** in proportion to their population sizes? Which have had the lowest?
+
+2. Provide beautiful plots showing trends in the prevalence of these diseases over the last century. Produce a single plot for each state, with three lines representing the time series for each disease of interest. Save each plot as a `pdf` into a folder named `state-level-summaries`. Name each `pdf` using the state's name. 
+
+To do this work, your supervisor asks you to use the `us_contagious_diseases` dataset contained within the `R` package `dslabs`, which contains disease data from 1928-2011 for all states. To make sure the numbers reflect actual patterns, she asks you to only use prevalence numbers for years in which counts were made in more than 20 weeks out of the year.
+
+
+
+
+
+## Other Resources  {-}
+
+*NOTE: Under construction!*
+
