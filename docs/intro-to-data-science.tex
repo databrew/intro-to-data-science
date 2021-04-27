@@ -118,9 +118,9 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{DataBOOM: the canon for data science}
+\title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-04-25}
+\date{2021-04-27}
 
 \begin{document}
 \maketitle
@@ -130,16 +130,89 @@
 \tableofcontents
 }
 \hypertarget{welcome}{%
-\chapter{Welcome}\label{welcome}}
+\chapter{Welcome!}\label{welcome}}
 
-Welcome to \textbf{DataBOOM}, the canon for data science by \emph{DataBrew}
+Welcome to \texttt{DataBOOM}, a curriculum designed to guide you from your very first line of code towards becoming a professional data scientist.
 
-Instructor tip!Here is some teacher content.
+\hypertarget{what-this-is-and-what-it-isnt}{%
+\section*{What this is, and what it isn't}\label{what-this-is-and-what-it-isnt}}
+\addcontentsline{toc}{section}{What this is, and what it isn't}
+
+This is not a textbook or a reference manual. It is not exhaustive or comprehensive. It is a \emph{training manual} designed to \emph{empower researchers to do impactful data science.} As such, its tutorials and exercises aim to get you, the researcher, to start writing your own code as quickly as possible and -- equally of importance -- to \emph{start thinking like a data scientist}, by which we mean tackling ambiguous problems with persistence, independence, and creative problem solving.
+
+Furthermore, this is not a fancy interactive tutorial with bells or whistles. It was purposefully designed to be simple and ``analog''. You will not be typing your code into this website and getting feedback from a robot, or setting up an account to track your progress, or getting pretty merit badges or points when you complete each module.
+
+Instead, you will be doing your work on your own machine, working with real folders and files, downloading data and moving it around, etc. -- all the things you will be doing as a data scientist in the real world.
+
+\hypertarget{who-this-is-for}{%
+\section*{Who this is for}\label{who-this-is-for}}
+\addcontentsline{toc}{section}{Who this is for}
+
+This curriculum covers everything from the absolute basics of writing code in \texttt{R} to machine learning with \texttt{tensorflow}. As such, it is designed to be useful to everyone in some way. But the target audience for these tutorials is the student who \emph{wants} to work with data but has \emph{zero} formal training in programming, computer science, or statistics.
+
+This curriculum was originally developed for the \textbf{Sewanee Data Institute for Social Good} at Sewanee: The University of the South, TN.
+
+\hypertarget{what-you-will-learn}{%
+\section*{What you will learn}\label{what-you-will-learn}}
+\addcontentsline{toc}{section}{What you will learn}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{Core theory} unit establishes the conceptual foundations and motivations for this work: what data science is, why it matters, and ethical issues surrounding it: the good, the bad, and the ugly.
+\end{itemize}
+
+The next several units comprise a \emph{core} curriculum for tackling data science problems:
+
+\begin{itemize}
+\item
+  The \textbf{Getting started} unit teaches you how to use \texttt{R} (in \texttt{RStudio}) to explore and plot data. Here you will add the first and most important tools to your toolbox: working with variables, vectors, dataframes, scripts, and file directories.
+\item
+  The \textbf{Working with data} unit teaches you how to bring in your own data and work with it in \texttt{R}. You will learn how to format data to simplify analysis and add tools for \emph{data wrangling} (i.e., transforming and re-formatting data to prepare it for plotting and analysis).
+\item
+  The \textbf{Exploring \& analyzing data} unit teaches you how to conduct basic statistics, from exploratory data analyses (e.g., producing and comparing distributions) to significance testing.
+\item
+  The \textbf{Accessing \& managing data} unit teaches you how to organize data for large projects, how to manage atypical data formats (e.g., Excel files), and how to access data from online databases.
+\item
+  The \textbf{\texttt{R} toolbag} unit equips you with the tools, tricks, and mindset for tackling the most common tasks in data science. This is where you really begin to cut your teeth on real-world data puzzles: figuring out how to use the \texttt{R} tools in your toolbag to tackle an ambiguous problem and deliver an excellent data product.
+\end{itemize}
+
+The next several units provide a suite of skills essential to any data science professional:
+
+\begin{itemize}
+\item
+  The \textbf{Interactive dashboards} unit teaches you how to make dashboards and websites for projects using \texttt{shiny} in \texttt{RStudio}.
+\item
+  The \textbf{Databases} unit teaches you how to access, create, and work with online databases using \texttt{SQL} and its alternatives.
+\item
+  The \textbf{Documenting your work} unit teaches you to use \texttt{R\ Markdown} to produce beautiful, reproducible data reports.
+\item
+  The \textbf{Version control \& teamwork} unit teaches you how to use \texttt{Git} and \texttt{GitHub} to collaborate on shared projects and work on data science teams.
+\item
+  The \textbf{Writing about data} unit teaches you to write successful grant applications and publishable research articles.
+\end{itemize}
+
+The final unit, \textbf{Advanced skills}, introduces you to a variety of advanced data science techniques, from interactive maps to iterative simulations to machine learning, that can help you begin to specialize your skillset.
 
 \hypertarget{making-the-most-of-this-course}{%
-\chapter{Making the most of this course}\label{making-the-most-of-this-course}}
+\section*{Making the most of this course}\label{making-the-most-of-this-course}}
+\addcontentsline{toc}{section}{Making the most of this course}
 
 (Make sure you involve pizza.)
+
+\hypertarget{who-we-are}{%
+\section*{Who we are}\label{who-we-are}}
+\addcontentsline{toc}{section}{Who we are}
+
+Joe Brew
+
+Ben Brew
+
+Eric Keen
+
+Isabelle Puckette
+
+Instructor tip!Here is some teacher content.
 
 \hypertarget{part-core-theory}{%
 \part{Core theory}\label{part-core-theory}}
@@ -249,7 +322,7 @@ If \texttt{R} is working properly, the number ``4'' will be printed in the next 
 
 When you open \texttt{RStudio}, you see several different panes within the program's window. You will get a tour of \texttt{RStudio} in the next module. For now, look at the left half of the screen. You should see a large pane entitled the \emph{Console}.
 
-\emph{NOTE: Insert screenshot here}
+\includegraphics{img/rstudio_firstopen.png}
 
 \texttt{RStudio}'s \emph{Console} is your window into \texttt{R}, the engine under the hood. The \emph{Console} is where you type commands for \texttt{R} to run, and where \texttt{R} prints back the results of what you have told it to do.
 
@@ -843,8 +916,8 @@ Now type some simple commands into your script:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{2} 
-\NormalTok{x}
+\DecValTok{2}  \OperatorTok{+}\StringTok{ }\DecValTok{10}
+\DecValTok{16} \OperatorTok{*}\StringTok{ }\DecValTok{32}
 \end{Highlighting}
 \end{Shaded}
 
@@ -864,14 +937,10 @@ Add a few more lines to your script, such that your script now looks like this.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{2} 
-\NormalTok{x}
-
-\NormalTok{y <-}\StringTok{ }\NormalTok{x}\OperatorTok{*}\DecValTok{56}
-
-\NormalTok{z <-}\StringTok{ }\NormalTok{y }\OperatorTok{/}\StringTok{ }\DecValTok{23}
- 
-\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y }\OperatorTok{+}\StringTok{ }\NormalTok{z}
+\DecValTok{2}  \OperatorTok{+}\StringTok{ }\DecValTok{10}
+\DecValTok{16} \OperatorTok{*}\StringTok{ }\DecValTok{32}
+\DecValTok{1080} \OperatorTok{/}\StringTok{ }\DecValTok{360}
+\DecValTok{500} \OperatorTok{-}\StringTok{ }\DecValTok{600}
 \end{Highlighting}
 \end{Shaded}
 
@@ -881,12 +950,10 @@ Add a few more lines to your script, such that your script now looks like this.
 \item
   Run all of these lines of code at once.\\
 \item
-  Now change the value of \texttt{x} and re-run all of the code.
+  Now add \texttt{10} to the first number in each row, and re-run all of the code.
 \end{enumerate}
 
-Think about how much more efficient part (B) was thanks to your script! If you had typed all of that directly into your \emph{Console}, you would have to recall or retype each line individually.
-
-Now think about how much of a different your script would make if the number of commands was 500, instead of five!
+Think about how much more efficient part (B) was thanks to your script! If you had typed all of that directly into your \emph{Console}, you would have to recall or retype each line individually. That difference builds up when your number of commands grows into the hundreds.
 
 \hypertarget{what-is-an-r-script-and-why-are-scripts-so-awesome}{%
 \subsection*{\texorpdfstring{What is an \texttt{R} script, and why are scripts so awesome?}{What is an R script, and why are scripts so awesome?}}\label{what-is-an-r-script-and-why-are-scripts-so-awesome}}
@@ -903,7 +970,7 @@ The main disadvantages of this workflow are that:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  There is no detailed record of the changes you have made. You cannot prove that you have made changes correctl. You cannot pass the original dataset to someone else and ask them to revise it in the same way you have. (Nor would you want to, since making all those changes was so time-consuming!) Nor could your take a different dataset and guarantee that you are able to apply the exact same changes that you applied to the first. In other words, your work is not reproducible.
+  There is no detailed record of the changes you have made. You cannot prove that you have made changes correctly. You cannot pass the original dataset to someone else and ask them to revise it in the same way you have. (Nor would you want to, since making all those changes was so time-consuming!) Nor could you take a different dataset and guarantee that you are able to apply the exact same changes that you applied to the first. In other words, your work is not reproducible.
 \item
   Making those changes is labor-intensive! Rather than spend time manually making changes to a single spreadsheet, it would be better to devote that energy to writing \texttt{R} code that makes those changes for you. That code could be run in this one case, but it could also be run at any later time, or easily modified to make similar changes to other spreadsheets.
 \item
@@ -918,9 +985,9 @@ Working with \texttt{R} scripts allows you to avoid all of these pitfalls. When 
 \item
   \textbf{Efficient.} Once you get comfortable writing \texttt{R} code, you will be able to write scripts in a few minutes. Those scripts can modify datasets within seconds (or less) in ways that would take hours (or years) to carry out manually in \emph{Excel} or \emph{GoogleSheets}.
 \item
-  \textbf{Reproducible.} Once you have written an\texttt{R} script, you can reproduce your own work whenever you want to. You can send your script to a colleague so that they can reproduct your work as well. Reproducible wrk is defensible work.
+  \textbf{Reproducible.} Once you have written an\texttt{R} script, you can reproduce your own work whenever you want to. You can send your script to a colleague so that they can reproduct your work as well. Reproducible work is defensible work.
 \item
-  \textbf{Low-risk.} Since your R script does not make any changes to the original data, you are keeping your data safe. It is \emph{essential} top preserve the sancitty of raw data!
+  \textbf{Low-risk.} Since your R script does not make any changes to the original data, you are keeping your data safe. It is \emph{essential} tp preserve the sanctity of raw data!
 \end{itemize}
 
 Note that there is nothing fancy or special about an \texttt{R} script. An \texttt{R} script is a simple text file; that is, it only accepts basic text; you can't add images or change font style or font size in an \texttt{R} script; just letters, numbers, and your other keyboard keys. The file's extension, \texttt{.R} tells your computer to interpret that text as \texttt{R} code.
@@ -952,7 +1019,7 @@ Here is the script above, now with comments added:
 
 Adding comments can be more work, but in the end it saves you time and makes your code more effective. Comments might not seem necessary in the moment, but it is amazing how helpful they are when you come back to your code the next day. Frequent and helpful comments make the difference between good and great code. Comment early, comment often!
 
-You can also use lines hashtags to visually organize your code. For example:
+You can also use lines of hashtags to visually organize your code. For example:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -990,9 +1057,9 @@ Instructor tip!Having grown up in the age of GoogleDocs, many students may not b
 
 \textbf{Where to save your work?} The folder in which you save your \texttt{R} script will be referred to as your \emph{working directory} (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location. We suggest making a new folder on your Desktop and naming it \texttt{databoom}, but you can name it whatever you want and place it wherever you want.
 
-\textbf{How to save your script?} To save the script you have opened and typed a few lines of code into, press \texttt{Command\ +\ S} (or \texttt{Control\ +\ S}). Alternatively, go to File \textgreater{} Save. Navigate to the folder you just created and type in a file name that is simple but descriptive. We suggest making a new \texttt{R} script for each module, and naming those scripts according to each module's name. In this case, we recommend naming your script \texttt{intro\_to\_rstudio}.
+\textbf{How to save your script?} To save the script you have opened and typed a few lines of code into, press \texttt{Command\ +\ S} (or \texttt{Control\ +\ S}). Alternatively, go to File \textgreater{} Save. Navigate to the folder you just created and type in a file name that is simple but descriptive. We suggest making a new \texttt{R} script for each module, and naming those scripts according to each module's name. In this case, we recommend naming your script \texttt{09\_intro\_to\_rstudio}.
 
-(It is good practice to avoid spaces in your file names; it will be essential later on, so good to begin the correct habit now. Start using an underscore (\texttt{\_}) instead of a space.)
+(It is good practice to avoid spaces in your file names; it will be essential later on, so good to begin the correct habit now. Start using an underscore, \texttt{\_}, instead of a space.)
 
 \hypertarget{your-working-directory}{%
 \section*{Your working directory}\label{your-working-directory}}
@@ -1145,9 +1212,9 @@ Here is a template you can use to copy and paste into each new script you create
 
 \textbf{Part 3.} Now follow the \emph{Typical Workflow} instructions above to create a script. Save it within your \texttt{modules} folder. Name it \texttt{template.R}. Copy and paste the template \texttt{R} code provided above into this file, and save it. This is now a template that you can use to easily create new scripts for this course.
 
-\textbf{Part 4.} Now make a copy of \texttt{template.R} to stage a script that you can use in the next module. To do so, in \texttt{RStudio} go to the top banner and click \texttt{File\ \textgreater{}\ Save\ As}. Save this new script as \texttt{09\_variables.R} (because the next module is called \emph{Module 9: Variables in \texttt{R}}).
+\textbf{Part 4.} Now make a copy of \texttt{template.R} to stage a script that you can use in the next module. To do so, in \texttt{RStudio} go to the top banner and click \texttt{File\ \textgreater{}\ Save\ As}. Save this new script as \texttt{10\_variables.R} (because the next module is called \emph{Module 10: Variables in \texttt{R}}).
 
-\textbf{Part 5.} Modify the code in \texttt{09-variables.R} so that you are prepared to begin the next module. Change the title, and look ahead to \emph{Module 9} to fill in a brief description. Don't forget to add your name as the author and specify today's date.
+\textbf{Part 5.} Modify the code in \texttt{10-variables.R} so that you are prepared to begin the next module. Change the title, and look ahead to \emph{Module 10} to fill in a brief description. Don't forget to add your name as the author and specify today's date.
 
 Boom!
 
@@ -2857,7 +2924,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] "I7b] H!/GS$jlyeKCqU^s9#{"
+[1] "9?pUuaRgc5Q,-i.}%hjl~)@;"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2869,7 +2936,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "G@54A~T(pr%1)!#'vW\"MiBse"
+[1] "tu/h+BD&Yi{w'$b(yTOpdcQL"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -3148,8 +3215,8 @@ Advanced techniques
 
 Advanced techniques
 
-\hypertarget{part-creating-your-own-dataset}{%
-\part{Creating your own dataset}\label{part-creating-your-own-dataset}}
+\hypertarget{part-accessing-managing-data}{%
+\part{Accessing \& managing data}\label{part-accessing-managing-data}}
 
 \hypertarget{managing-project-files}{%
 \chapter{Managing project files}\label{managing-project-files}}

@@ -79,8 +79,8 @@ You now have a blank script to work in!
 Now type some simple commands into your script:
 
 ```{r,echo=TRUE,eval=FALSE}
-x <- 2 
-x
+2  + 10
+16 * 32
 ```
 
 Notice that when you press `Enter` after each line of code, nothing happens in the *Console*. In order to send this code to the Console, press `Enter + Command` at the same time (or `Enter + Control`, if you are on Windows) for each line of code. 
@@ -98,22 +98,16 @@ teacher_content('Get all students to practice running code at this point. The ac
 Add a few more lines to your script, such that your script now looks like this.
 
 ```{r,echo=TRUE,eval=FALSE}
-x <- 2 
-x
-
-y <- x*56
-
-z <- y / 23
- 
-x + y + z
+2  + 10
+16 * 32
+1080 / 360
+500 - 600
 ```
 
 (A) Run all of these lines of code at once.  
-(B) Now change the value of `x` and re-run all of the code. 
+(B) Now add `10` to the first number in each row, and re-run all of the code. 
 
-Think about how much more efficient part (B) was thanks to your script! If you had typed all of that directly into your *Console*, you would have to recall or retype each line individually. 
-
-Now think about how much of a different your script would make if the number of commands was 500, instead of five!
+Think about how much more efficient part (B) was thanks to your script! If you had typed all of that directly into your *Console*, you would have to recall or retype each line individually. That difference builds up when your number of commands grows into the hundreds. 
 
 
 ### What is an `R` script, and why are scripts so awesome? {-}
@@ -126,7 +120,7 @@ To understand why `R` scripts are so awesome, consider a typical workflow in *Ex
 
 The main disadvantages of this workflow are that:  
 
-1. There is no detailed record of the changes you have made. You cannot prove that you have made changes correctl. You cannot pass the original dataset to someone else and ask them to revise it in the same way you have. (Nor would you want to, since making all those changes was so time-consuming!) Nor could your take a different dataset and guarantee that you are able to apply the exact same changes that you applied to the first. In other words, your work is not reproducible. 
+1. There is no detailed record of the changes you have made. You cannot prove that you have made changes correctly. You cannot pass the original dataset to someone else and ask them to revise it in the same way you have. (Nor would you want to, since making all those changes was so time-consuming!) Nor could you take a different dataset and guarantee that you are able to apply the exact same changes that you applied to the first. In other words, your work is not reproducible. 
 
 2. Making those changes is labor-intensive! Rather than spend time manually making changes to a single spreadsheet, it would be better to devote that energy to writing `R` code that makes those changes for you. That code could be run in this one case, but it could also be run at any later time, or easily modified to make similar changes to other spreadsheets.  
 
@@ -140,9 +134,9 @@ Working with `R` scripts allows you to avoid all of these pitfalls. When you wri
 
 * **Efficient.** Once you get comfortable writing `R` code, you will be able to write scripts in a few minutes. Those scripts can modify datasets within seconds (or less) in ways that would take hours (or years) to carry out manually in *Excel* or *GoogleSheets*.
 
-* **Reproducible.** Once you have written an`R` script, you can reproduce your own work whenever you want to. You can send your script to a colleague so that they can reproduct your work as well. Reproducible wrk is defensible work.
+* **Reproducible.** Once you have written an`R` script, you can reproduce your own work whenever you want to. You can send your script to a colleague so that they can reproduct your work as well. Reproducible work is defensible work.
 
-* **Low-risk.** Since your R script does not make any changes to the original data, you are keeping your data safe. It is *essential* top preserve the sancitty of raw data!
+* **Low-risk.** Since your R script does not make any changes to the original data, you are keeping your data safe. It is *essential* tp preserve the sanctity of raw data!
 
 
 Note that there is nothing fancy or special about an `R` script. An `R` script is a simple text file; that is, it only accepts basic text; you can't add images or change font style or font size in an `R` script; just letters, numbers, and your other keyboard keys. The file's extension, `.R` tells your computer to interpret that text as `R` code.
@@ -170,7 +164,7 @@ x + y + z # Now get the sum of all three variables
 
 Adding comments can be more work, but in the end it saves you time and makes your code more effective. Comments might not seem necessary in the moment, but it is amazing how helpful they are when you come back to your code the next day. Frequent and helpful comments make the difference between good and great code. Comment early, comment often!
 
-You can also use lines hashtags to visually organize your code. For example:
+You can also use lines of hashtags to visually organize your code. For example:
 
 ```{r,echo=TRUE,eval=FALSE}
 ##############################################
@@ -206,9 +200,9 @@ teacher_content('Having grown up in the age of GoogleDocs, many students may not
 
 **Where to save your work?** The folder in which you save your `R` script will be referred to as your *working directory* (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location. We suggest making a new folder on your Desktop and naming it `databoom`, but you can name it whatever you want and place it wherever you want.
 
-**How to save your script?** To save the script you have opened and typed a few lines of code into, press `Command + S` (or `Control + S`). Alternatively, go to File > Save. Navigate to the folder you just created and type in a file name that is simple but descriptive. We suggest making a new `R` script for each module, and naming those scripts according to each module's name. In this case, we recommend naming your script `intro_to_rstudio`. 
+**How to save your script?** To save the script you have opened and typed a few lines of code into, press `Command + S` (or `Control + S`). Alternatively, go to File > Save. Navigate to the folder you just created and type in a file name that is simple but descriptive. We suggest making a new `R` script for each module, and naming those scripts according to each module's name. In this case, we recommend naming your script `09_intro_to_rstudio`. 
 
-(It is good practice to avoid spaces in your file names; it will be essential later on, so good to begin the correct habit now. Start using an underscore (`_`) instead of a space.)
+(It is good practice to avoid spaces in your file names; it will be essential later on, so good to begin the correct habit now. Start using an underscore, `_`, instead of a space.)
 
 
 ## Your working directory  {-}
@@ -328,9 +322,9 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 **Part 3.** Now follow the *Typical Workflow* instructions above to create a script. Save it within your `modules` folder. Name it `template.R`. Copy and paste the template `R` code provided above into this file, and save it. This is now a template that you can use to easily create new scripts for this course.
 
-**Part 4.** Now make a copy of `template.R` to stage a script that you can use in the next module. To do so, in `RStudio` go to the top banner and click `File > Save As`. Save this new script as `09_variables.R` (because the next module is called *Module 9: Variables in `R`*). 
+**Part 4.** Now make a copy of `template.R` to stage a script that you can use in the next module. To do so, in `RStudio` go to the top banner and click `File > Save As`. Save this new script as `10_variables.R` (because the next module is called *Module 10: Variables in `R`*). 
 
-**Part 5.** Modify the code in `09-variables.R` so that you are prepared to begin the next module. Change the title, and look ahead to *Module 9* to fill in a brief description. Don't forget to add your name as the author and specify today's date.
+**Part 5.** Modify the code in `10-variables.R` so that you are prepared to begin the next module. Change the title, and look ahead to *Module 10* to fill in a brief description. Don't forget to add your name as the author and specify today's date.
 
 Boom!
 
