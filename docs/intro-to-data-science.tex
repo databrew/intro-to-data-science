@@ -2924,7 +2924,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] " pu\"&F*=c0<jCEZ^J'U2sw@L"
+[1] "x<dr_y,Nn9EiB {38k&\"(ILO"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2936,7 +2936,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "]}(6iay;\\wBUc*#+sFj`Lv'~"
+[1] "JaZ=!FX{$ jz)|frHhn^BqIp"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -4532,6 +4532,34 @@ You have not yet worked with matrices in this curriculum (you will in a few modu
 The values in this matrix should represent the number of dates in which each species pair was seen 5 times or more. For example, \texttt{result{[}1,2{]}} would be 3, since the Kiwi and Kea were seen 5+ times on only 3 dates.
 
 She asks you to use the dataframe you just created to create this matrix. Use a nested for loop to do it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Stage empty results objects}
+\NormalTok{results_matrix <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data=}\OtherTok{NA}\NormalTok{, }\DataTypeTok{nrow=}\DecValTok{4}\NormalTok{, }\DataTypeTok{ncol=}\DecValTok{4}\NormalTok{, }\DataTypeTok{dimnames=}\KeywordTok{list}\NormalTok{(uspp,uspp))}
+
+\CommentTok{# Get unique species}
+\NormalTok{uspp <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(}\KeywordTok{c}\NormalTok{(results}\OperatorTok{$}\NormalTok{A,results}\OperatorTok{$}\NormalTok{B))}
+
+\CommentTok{# Loop 1: each species (row)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(uspp))\{}
+\NormalTok{  spi <-}\StringTok{ }\NormalTok{uspp[i]}
+\NormalTok{  resultsi <-}\StringTok{ }\NormalTok{results[results}\OperatorTok{$}\NormalTok{A}\OperatorTok{==}\NormalTok{spi,] }\CommentTok{# subset data to rows where column A equals species i}
+  
+  \CommentTok{# Loop 2: each species (column)}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(uspp))\{}
+\NormalTok{    spj <-}\StringTok{ }\NormalTok{uspp[j]}
+\NormalTok{    resultsj <-}\StringTok{ }\NormalTok{resultsi[resultsi}\OperatorTok{$}\NormalTok{B}\OperatorTok{==}\NormalTok{spj,] }\CommentTok{# subset data from i loop where column B equals species j}
+    
+\NormalTok{    Xij <-}\StringTok{ }\NormalTok{resultsj}\OperatorTok{$}\NormalTok{X      }\CommentTok{# Find result}
+
+\NormalTok{    results_matrix[i,j] <-}\StringTok{ }\NormalTok{Xij     }\CommentTok{# Add result to staged object}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\NormalTok{results_matrix}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
        Kiwi Kea Kakapo Weka
