@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-04-28" />
+<meta name="date" content="2021-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,11 +238,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Learning goals</h2>
 <ul>
 <li>What <code>for</code> loops are, and how to use them yourself</li>
-<li>How to use <code>for</code> loops for multi-pane plotting<br />
-</li>
-<li>How to use <code>for</code> loops to achieve complex plots<br />
-</li>
-<li>How to use <code>for</code> loops to summarize data efficiently</li>
+<li>How to use <code>for</code> loops for plots that are tricky but super cool.</li>
+<li>How to use <code>for</code> loops to summarize subgroups in your data</li>
+<li>How to use nested <code>for</code> loops</li>
 </ul>
 </div>
 <div id="basics" class="section level2 unnumbered">
@@ -310,21 +308,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [1] &quot;Tom Cruise has cooties!&quot;</code></pre>
 </div>
 </div>
-<div id="for-loops-with-data" class="section level2 unnumbered">
-<h2><code>for</code> loops with data</h2>
-<p>These silly examples above do a poor job of demonstrating how powerful a <code>for loop</code> can be.</p>
-<div id="using-for-loops-to-summarize-data-subgroups" class="section level3 unnumbered">
-<h3>Using <code>for</code> loops to summarize data subgroups</h3>
-</div>
-<div id="nested-for-loops" class="section level3 unnumbered">
-<h3><em>Nested</em> <code>for</code> loops</h3>
-</div>
-<div id="exercise-2-5" class="section level3 unnumbered">
-<h3>Exercise 2</h3>
-</div>
-</div>
 <div id="for-loops-in-plots" class="section level2 unnumbered">
 <h2><code>for</code> loops in plots</h2>
+<p>These silly examples above do a poor job of demonstrating how powerful a <code>for loop</code> can be. You can use <code>for</code> loops with data to do really cool things with relatively simple code.</p>
+<p>Thinking in <code>for</code> loops, however, can take some getting used to. Learning how to design code with <code>for</code> loops is one of the most important milestones on your way to thinking like a data scientist.</p>
 <div id="efficient-multi-panel-plots" class="section level3 unnumbered">
 <h3>Efficient multi-panel plots</h3>
 <p>For example, a <code>for loop</code> can be a very efficient way of making multi-panel plots.</p>
@@ -342,11 +329,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="for-loops.html#cb288-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># Setup a multi-panel plot # format = c(number of rows, number of columns)</span></span>
 <span id="cb288-2"><a href="for-loops.html#cb288-2"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># Set plot margins</span></span>
 <span id="cb288-3"><a href="for-loops.html#cb288-3"></a></span>
-<span id="cb288-4"><a href="for-loops.html#cb288-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>){</span>
-<span id="cb288-5"><a href="for-loops.html#cb288-5"></a>  y &lt;-<span class="st"> </span>airquality[,i]</span>
-<span id="cb288-6"><a href="for-loops.html#cb288-6"></a>  var.name &lt;-<span class="st"> </span><span class="kw">names</span>(airquality)[i]</span>
-<span id="cb288-7"><a href="for-loops.html#cb288-7"></a>  <span class="kw">plot</span>(y,<span class="dt">xlab=</span><span class="st">&quot;Day&quot;</span>,<span class="dt">ylab=</span>var.name,<span class="dt">pch=</span><span class="dv">16</span>)</span>
-<span id="cb288-8"><a href="for-loops.html#cb288-8"></a>}</span></code></pre></div>
+<span id="cb288-4"><a href="for-loops.html#cb288-4"></a><span class="co"># Loop through the first four columns ...</span></span>
+<span id="cb288-5"><a href="for-loops.html#cb288-5"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>){</span>
+<span id="cb288-6"><a href="for-loops.html#cb288-6"></a>  y &lt;-<span class="st"> </span>airquality[,i] <span class="co"># Select data in column i</span></span>
+<span id="cb288-7"><a href="for-loops.html#cb288-7"></a>  var.name &lt;-<span class="st"> </span><span class="kw">names</span>(airquality)[i] <span class="co"># Get name of that column</span></span>
+<span id="cb288-8"><a href="for-loops.html#cb288-8"></a>  <span class="kw">plot</span>(y,<span class="dt">xlab=</span><span class="st">&quot;Day&quot;</span>,<span class="dt">ylab=</span>var.name,<span class="dt">pch=</span><span class="dv">16</span>) <span class="co"># Plot data</span></span>
+<span id="cb288-9"><a href="for-loops.html#cb288-9"></a>}</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-167-1.png" width="925.44" /></p>
 <div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="for-loops.html#cb289-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># restore the default single-panel plot</span></span></code></pre></div>
 </div>
@@ -404,8 +392,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <span id="cb295-11"><a href="for-loops.html#cb295-11"></a>}</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-170-1.png" width="925.44" /></p>
 </div>
-<div id="using-for-loops-to-layer-cyclical-data" class="section level3 unnumbered">
-<h3>Using <code>for</code> loops to layer cyclical data</h3>
+<div id="using-for-loops-to-layer-cyclical-or-repetitive-data" class="section level3 unnumbered">
+<h3>Using <code>for</code> loops to layer cyclical or repetitive data</h3>
 <p>Here’s another good example of the power of a good <code>for loop</code>.</p>
 <p>First, read in some cool data.</p>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="for-loops.html#cb296-1"></a>kc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/keeling-curve.csv&quot;</span>) ; <span class="kw">head</span>(kc)</span></code></pre></div>
@@ -500,21 +488,237 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?</p>
 </div>
 </div>
+<div id="using-for-loops-to-process-summarize-data" class="section level2 unnumbered">
+<h2>Using <code>for</code> loops to process &amp; summarize data</h2>
+<div id="using-for-loops-to-summarize-data-subgroups" class="section level3 unnumbered">
+<h3>Using <code>for</code> loops to summarize data subgroups</h3>
+<p>This is one of the most common uses of <code>for</code> loops: you want to summarize information about subgroups in your dataset.</p>
+<div id="example-use-cases" class="section level4 unnumbered">
+<h4>Example use cases</h4>
+<ul>
+<li><p>You want to summarize sample counts for each day of fieldwork.</p></li>
+<li><p>You want to summarize details for each user in your database.</p></li>
+<li><p>You want to summarize weather information for each month of the year.</p></li>
+</ul>
+</div>
+<div id="workflow" class="section level4 unnumbered">
+<h4>Workflow</h4>
+<p>All of these summaries can be achieved with the same basic workflow.</p>
+<ol style="list-style-type: decimal">
+<li><p>Determine how to define the basic unit of summarization <em>(e.g., each day of fieldwork, each user in your database, or each month of the year)</em>.</p></li>
+<li><p>Stage an empty data object (or multiple objects) in which you will store your summary.</p></li>
+<li><p>Build a <code>for</code> loop to iterate through for each unique subgroup value (e.g., each sampling date or each user or each month).</p></li>
+<li><p>In each iteration of the loop, subset your data to only the subgroup value of interest.</p></li>
+<li><p>At the end of each iteration, update your data objects with the result from that iteration.</p></li>
+<li><p>Run your `for loop!</p></li>
+<li><p>After the <code>for</code> loop, combine your data objects into a dataframe.</p></li>
+</ol>
+<p>As you are building for loops, it can be very helpful to first start thinking about what needs to happen in each iteration of the loop. So first think about what needs to happen in <em>Step 4</em>. Then you go through each step of this workflow to build a loop around that core code.</p>
+</div>
+<div id="example" class="section level4 unnumbered">
+<h4>Example</h4>
+<p>The following scenario provides a concrete example of how to do this:</p>
+<p><strong>Scenario:</strong> You participate in a survey of flightless birds in the forests of New Zealand. You conduct thirty days of fieldwork on four species of bird: the kiwi, the weka, the kakapo (<em>the world’s heaviest parrot</em>), and the kea (<em>the world’s only alpine parrot</em>).</p>
+<p>Your data look like this:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="for-loops.html#cb310-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/nz_birds.csv&quot;</span>)</span>
+<span id="cb310-2"><a href="for-loops.html#cb310-2"></a><span class="kw">nrow</span>(df)</span></code></pre></div>
+<pre><code>[1] 406</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="for-loops.html#cb312-1"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<pre><code>  day species group
+1   1    Kiwi     3
+2   1     Kea     4
+3   1  Kakapo     4
+4   1    Weka     2
+5   1    Kiwi     1
+6   1     Kea     3</code></pre>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="for-loops.html#cb314-1"></a><span class="kw">tail</span>(df)</span></code></pre></div>
+<pre><code>    day species group
+401  30    Weka     3
+402  30    Kiwi     3
+403  30    Kiwi     3
+404  30  Kakapo     3
+405  30  Kakapo     1
+406  30     Kea     2</code></pre>
+<p>Each row contains the data for a single bird group detection.</p>
+<p>Your supervisor has tasked you with writing a report of your findings, and she wants to see a table with the number of each species seen on each day of the fieldwork.</p>
+<p>You can use a <code>for</code> loop to make this table.</p>
+<p>But first think about what needs to happen in each iteration of your loop. For each date in the dataset, you want to count the number of sightings for each species.</p>
+<p>Let’s build our core code using day 10 as a practice date:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="for-loops.html#cb316-1"></a><span class="co"># Subset to day of interest</span></span>
+<span id="cb316-2"><a href="for-loops.html#cb316-2"></a>dayi &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb316-3"><a href="for-loops.html#cb316-3"></a>dfi &lt;-<span class="st"> </span>df[df<span class="op">$</span>day <span class="op">==</span><span class="st"> </span>dayi,]</span>
+<span id="cb316-4"><a href="for-loops.html#cb316-4"></a></span>
+<span id="cb316-5"><a href="for-loops.html#cb316-5"></a><span class="co"># Tally up counts for each species</span></span>
+<span id="cb316-6"><a href="for-loops.html#cb316-6"></a>kiwi &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(dfi<span class="op">$</span>species<span class="op">==</span><span class="st">&quot;Kiwi&quot;</span>))</span>
+<span id="cb316-7"><a href="for-loops.html#cb316-7"></a>weka &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(dfi<span class="op">$</span>species<span class="op">==</span><span class="st">&quot;Weka&quot;</span>))</span>
+<span id="cb316-8"><a href="for-loops.html#cb316-8"></a>kakapo &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(dfi<span class="op">$</span>species<span class="op">==</span><span class="st">&quot;Kakapo&quot;</span>))</span>
+<span id="cb316-9"><a href="for-loops.html#cb316-9"></a>kea &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(dfi<span class="op">$</span>species<span class="op">==</span><span class="st">&quot;Kea&quot;</span>))</span></code></pre></div>
+<p>Okay! So our <code>for</code> loop needs to contain that basic code, with some minor adjustments in order to save the results from all iterations of the loop instead of just one.</p>
+<p>Here is the full code for this <code>for</code> loop problem:</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="for-loops.html#cb317-1"></a><span class="co"># 1: determine the unique days in the dataset:</span></span>
+<span id="cb317-2"><a href="for-loops.html#cb317-2"></a>udays &lt;-<span class="st"> </span><span class="kw">unique</span>(df<span class="op">$</span>day)</span>
+<span id="cb317-3"><a href="for-loops.html#cb317-3"></a></span>
+<span id="cb317-4"><a href="for-loops.html#cb317-4"></a><span class="co"># 2: stage empty results vectors</span></span>
+<span id="cb317-5"><a href="for-loops.html#cb317-5"></a>kiwi &lt;-<span class="st"> </span>weka &lt;-<span class="st"> </span>kakapo &lt;-<span class="st"> </span>kea &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb317-6"><a href="for-loops.html#cb317-6"></a></span>
+<span id="cb317-7"><a href="for-loops.html#cb317-7"></a><span class="co"># (create a variable named i to help you test your code as you build it)</span></span>
+<span id="cb317-8"><a href="for-loops.html#cb317-8"></a>i=<span class="dv">1</span> </span>
+<span id="cb317-9"><a href="for-loops.html#cb317-9"></a></span>
+<span id="cb317-10"><a href="for-loops.html#cb317-10"></a><span class="co"># 3: Start for loop. Loop through each unique day</span></span>
+<span id="cb317-11"><a href="for-loops.html#cb317-11"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(udays)){</span>
+<span id="cb317-12"><a href="for-loops.html#cb317-12"></a>  </span>
+<span id="cb317-13"><a href="for-loops.html#cb317-13"></a>  <span class="co"># 4. Subset to day of interest</span></span>
+<span id="cb317-14"><a href="for-loops.html#cb317-14"></a>  dayi &lt;-<span class="st"> </span>udays[i] </span>
+<span id="cb317-15"><a href="for-loops.html#cb317-15"></a>  dfi &lt;-<span class="st"> </span>df[df<span class="op">$</span>day <span class="op">==</span><span class="st"> </span>dayi,]</span>
+<span id="cb317-16"><a href="for-loops.html#cb317-16"></a>  </span>
+<span id="cb317-17"><a href="for-loops.html#cb317-17"></a>  <span class="co"># 5. Tally up birds, add to each vector</span></span>
+<span id="cb317-18"><a href="for-loops.html#cb317-18"></a>  kiwi[i] &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(dfi<span class="op">$</span>species<span class="op">==</span><span class="st">&quot;Kiwi&quot;</span>))</span>
+<span id="cb317-19"><a href="for-loops.html#cb317-19"></a>  weka[i] &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(dfi<span class="op">$</span>species<span class="op">==</span><span class="st">&quot;Weka&quot;</span>))</span>
+<span id="cb317-20"><a href="for-loops.html#cb317-20"></a>  kakapo[i] &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(dfi<span class="op">$</span>species<span class="op">==</span><span class="st">&quot;Kakapo&quot;</span>))</span>
+<span id="cb317-21"><a href="for-loops.html#cb317-21"></a>  kea[i] &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(dfi<span class="op">$</span>species<span class="op">==</span><span class="st">&quot;Kea&quot;</span>))</span>
+<span id="cb317-22"><a href="for-loops.html#cb317-22"></a>  </span>
+<span id="cb317-23"><a href="for-loops.html#cb317-23"></a>}</span>
+<span id="cb317-24"><a href="for-loops.html#cb317-24"></a></span>
+<span id="cb317-25"><a href="for-loops.html#cb317-25"></a><span class="co"># 6. Run for loop</span></span>
+<span id="cb317-26"><a href="for-loops.html#cb317-26"></a></span>
+<span id="cb317-27"><a href="for-loops.html#cb317-27"></a><span class="co"># 7. Combine results into a dataframe</span></span>
+<span id="cb317-28"><a href="for-loops.html#cb317-28"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day=</span>udays, kiwi, weka, kakapo, kea)</span>
+<span id="cb317-29"><a href="for-loops.html#cb317-29"></a></span>
+<span id="cb317-30"><a href="for-loops.html#cb317-30"></a><span class="co"># Check it out!</span></span>
+<span id="cb317-31"><a href="for-loops.html#cb317-31"></a>results</span></code></pre></div>
+<pre><code>   day kiwi weka kakapo kea
+1    1    5    6      3   3
+2    2    1    3      1   2
+3    3    2    4      5   3
+4    4    2    3      2   0
+5    5    6    6      3   2
+6    6    6    2      3   6
+7    7    3    1      3   7
+8    8    2    6      2   2
+9    9    4    1      1   1
+10  10    2    0      3   3
+11  11    2    2      3   5
+12  12    2    3      4   4
+13  13    3    3      5   1
+14  14    7    3      4   6
+15  15    3    4      4   5
+16  16    4    2      1   4
+17  17    3    4      6   2
+18  18    3    4      1   1
+19  19    4    6      1   6
+20  20    2    6      3   1
+21  21    4    3      5   6
+22  22    4    2      5   5
+23  23    4    6      2   4
+24  24    1    2      5   2
+25  25    4    6      3   1
+26  26    4    2      3   5
+27  27    8    5      6   7
+28  28    8    1      0   2
+29  29    6    1      1   3
+30  30    4    2      3   4</code></pre>
+</div>
+</div>
+<div id="nested-for-loops" class="section level3 unnumbered">
+<h3>Nested <code>for</code> loops</h3>
+<p>Sometimes you need to summarize your data in such a specific way that you will need to use <em>nested</em> <code>for</code> loops, i.e., one <code>for</code> loop contained within another.</p>
+<p>For example, your supervisor for the New Zealand Flightless Birds Survey has now taken an interest in associations among the four bird species you have been monitoring. For example, are kiwis more abundant on the days when you detect a lot of kakapos?</p>
+<p>To answer this question, your supervisor wants to see a table with each species combination (Kiwi - Kakapo, Kiwi - Weka, … Kakapo - Kea, etc.) and the number of dates in which both species were seen more than 5 times.</p>
+<p>You can produce this table using a nested <code>for</code> loop. Here is how it’s done:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="for-loops.html#cb319-1"></a>uspp &lt;-<span class="st"> </span><span class="kw">unique</span>(df<span class="op">$</span>species) <span class="co"># get set of unique species</span></span>
+<span id="cb319-2"><a href="for-loops.html#cb319-2"></a></span>
+<span id="cb319-3"><a href="for-loops.html#cb319-3"></a>A &lt;-<span class="st"> </span>B &lt;-<span class="st"> </span><span class="kw">c</span>() <span class="co"># empty vector for names of each species in the pair</span></span>
+<span id="cb319-4"><a href="for-loops.html#cb319-4"></a>X &lt;-<span class="st"> </span><span class="kw">c</span>() <span class="co"># empty vector for number of dates in which both species were common</span></span>
+<span id="cb319-5"><a href="for-loops.html#cb319-5"></a></span>
+<span id="cb319-6"><a href="for-loops.html#cb319-6"></a>i=<span class="dv">1</span> ; j=<span class="dv">2</span></span>
+<span id="cb319-7"><a href="for-loops.html#cb319-7"></a></span>
+<span id="cb319-8"><a href="for-loops.html#cb319-8"></a><span class="co"># For loop 1</span></span>
+<span id="cb319-9"><a href="for-loops.html#cb319-9"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(uspp)){</span>
+<span id="cb319-10"><a href="for-loops.html#cb319-10"></a>  spi &lt;-<span class="st"> </span>uspp[i] <span class="co"># species i</span></span>
+<span id="cb319-11"><a href="for-loops.html#cb319-11"></a>  dfi &lt;-<span class="st"> </span>df[df<span class="op">$</span>species <span class="op">==</span><span class="st"> </span>spi,] <span class="co"># subset df to only this species</span></span>
+<span id="cb319-12"><a href="for-loops.html#cb319-12"></a>  counti &lt;-<span class="st"> </span><span class="kw">table</span>(dfi<span class="op">$</span>day) <span class="co"># get number of sightings on each day</span></span>
+<span id="cb319-13"><a href="for-loops.html#cb319-13"></a>  dayi &lt;-<span class="st"> </span><span class="kw">names</span>(counti)[<span class="kw">which</span>(counti <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>)] ; <span class="co"># get the dates on which this species was seen 5+ times</span></span>
+<span id="cb319-14"><a href="for-loops.html#cb319-14"></a>  </span>
+<span id="cb319-15"><a href="for-loops.html#cb319-15"></a>  <span class="co"># For loop 2</span></span>
+<span id="cb319-16"><a href="for-loops.html#cb319-16"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(uspp)){</span>
+<span id="cb319-17"><a href="for-loops.html#cb319-17"></a>    spj &lt;-<span class="st"> </span>uspp[j] <span class="co"># species j</span></span>
+<span id="cb319-18"><a href="for-loops.html#cb319-18"></a>    dfj &lt;-<span class="st"> </span>df[df<span class="op">$</span>species <span class="op">==</span><span class="st"> </span>spj,] <span class="co"># subset df to only this species</span></span>
+<span id="cb319-19"><a href="for-loops.html#cb319-19"></a>    countj &lt;-<span class="st"> </span><span class="kw">table</span>(dfj<span class="op">$</span>day) <span class="co"># get number of sightings on each day</span></span>
+<span id="cb319-20"><a href="for-loops.html#cb319-20"></a>    dayj &lt;-<span class="st"> </span><span class="kw">names</span>(countj)[<span class="kw">which</span>(countj <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>)] ; <span class="co"># get the dates on which this species was seen 5+ times</span></span>
+<span id="cb319-21"><a href="for-loops.html#cb319-21"></a>    </span>
+<span id="cb319-22"><a href="for-loops.html#cb319-22"></a>    dates_ij &lt;-<span class="st"> </span><span class="kw">which</span>(dayi  <span class="op">%in%</span><span class="st"> </span>dayj) <span class="co"># get the dates on which both species were seen 5+ times</span></span>
+<span id="cb319-23"><a href="for-loops.html#cb319-23"></a>    Xij &lt;-<span class="st"> </span><span class="kw">length</span>(dates_ij) <span class="co"># count the number of these dates</span></span>
+<span id="cb319-24"><a href="for-loops.html#cb319-24"></a>    </span>
+<span id="cb319-25"><a href="for-loops.html#cb319-25"></a>    <span class="co"># Add results to staged objects</span></span>
+<span id="cb319-26"><a href="for-loops.html#cb319-26"></a>    X &lt;-<span class="st"> </span><span class="kw">c</span>(X,Xij) </span>
+<span id="cb319-27"><a href="for-loops.html#cb319-27"></a>    A &lt;-<span class="st"> </span><span class="kw">c</span>(A,spi)</span>
+<span id="cb319-28"><a href="for-loops.html#cb319-28"></a>    B &lt;-<span class="st"> </span><span class="kw">c</span>(B,spj)</span>
+<span id="cb319-29"><a href="for-loops.html#cb319-29"></a>  }</span>
+<span id="cb319-30"><a href="for-loops.html#cb319-30"></a></span>
+<span id="cb319-31"><a href="for-loops.html#cb319-31"></a>}</span>
+<span id="cb319-32"><a href="for-loops.html#cb319-32"></a></span>
+<span id="cb319-33"><a href="for-loops.html#cb319-33"></a><span class="co"># Combine results into a dataframe</span></span>
+<span id="cb319-34"><a href="for-loops.html#cb319-34"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(A, B, X)</span>
+<span id="cb319-35"><a href="for-loops.html#cb319-35"></a></span>
+<span id="cb319-36"><a href="for-loops.html#cb319-36"></a><span class="co"># Check it out!</span></span>
+<span id="cb319-37"><a href="for-loops.html#cb319-37"></a>results</span></code></pre></div>
+<pre><code>        A      B  X
+1    Kiwi   Kiwi  7
+2    Kiwi    Kea  3
+3    Kiwi Kakapo  1
+4    Kiwi   Weka  3
+5     Kea   Kiwi  3
+6     Kea    Kea 10
+7     Kea Kakapo  3
+8     Kea   Weka  2
+9  Kakapo   Kiwi  1
+10 Kakapo    Kea  3
+11 Kakapo Kakapo  7
+12 Kakapo   Weka  1
+13   Weka   Kiwi  3
+14   Weka    Kea  2
+15   Weka Kakapo  1
+16   Weka   Weka  8</code></pre>
+<p>Note that the code for adding the results to the staged objects <code>X</code>, <code>A</code>, and <code>B</code> is contained within the second for loop. This is necessary for producing our results; if we put that code in the first for loop <em>after</em> the code for the nested loop, our results would not be complete.</p>
+<p>Note that each <code>for</code> loop <em>must</em> use a different variable to represent each iteration. In this example, the first loop uses <code>i</code> and the second uses <code>j</code>. If we used <code>i</code> for both loops, <code>R</code> would get very confused indeed.</p>
+<p>Also note that we used <code>i</code> and <code>j</code> in the variables specific to each loop (e.g., <code>dayi</code> and <code>dayj</code>), as a simple way to help us keep track of what each variable is representing.</p>
+</div>
+<div id="exercise-2-5" class="section level3 unnumbered">
+<h3>Exercise 2</h3>
+<p>Your supervisor is happy with your pairwise species association dataframe, and wants to use it in an analysis for a publication. However, the <code>R</code> package she wants to use requires that the data be in the format of a square <em>matrix</em> with four rows – one for each species – and four columns. Like this:</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="for-loops.html#cb321-1"></a>results_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data=</span><span class="ot">NA</span>, <span class="dt">nrow=</span><span class="dv">4</span>, <span class="dt">ncol=</span><span class="dv">4</span>, <span class="dt">dimnames=</span><span class="kw">list</span>(uspp,uspp))</span>
+<span id="cb321-2"><a href="for-loops.html#cb321-2"></a>results_matrix</span></code></pre></div>
+<pre><code>       Kiwi Kea Kakapo Weka
+Kiwi     NA  NA     NA   NA
+Kea      NA  NA     NA   NA
+Kakapo   NA  NA     NA   NA
+Weka     NA  NA     NA   NA</code></pre>
+<p>You have not yet worked with matrices in this curriculum (you will in a few modules), but for now think of them as simple dataframes with a single type of data (e.g., all numeric values, like this one). You can subset matrices just as you would a dataframe: <code>matrix[row,column]</code>.</p>
+<p>The values in this matrix should represent the number of dates in which each species pair was seen 5 times or more. For example, <code>result[1,2]</code> would be 3, since the Kiwi and Kea were seen 5+ times on only 3 dates.</p>
+<p>She asks you to use the dataframe you just created to create this matrix. Use a nested for loop to do it.</p>
+<pre><code>       Kiwi Kea Kakapo Weka
+Kiwi      7   3      1    3
+Kea       3  10      3    2
+Kakapo    1   3      7    1
+Weka      3   2      1    8</code></pre>
+<p>Boom!</p>
+</div>
+</div>
 <div id="review-assignment-8" class="section level2 unnumbered">
 <h2>Review assignment</h2>
 <p>First, read in and format some other cool data. The code for doing so is provided for you here:</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="for-loops.html#cb310-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/renewable-energy.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="for-loops.html#cb324-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/renewable-energy.csv&quot;</span>)</span></code></pre></div>
 <p>This dataset, freely available from World Bank, shows the renewable electricity output for various countries, presented as a percentage of the nation’s total electricity output. They provide this data as a time series.</p>
 <div id="summarize-columns-with-a-for-loop" class="section level3 unnumbered">
 <h3>Summarize columns with a <code>for loop</code></h3>
 <p><strong>Task 1:</strong> Use a <code>for loop</code> to find the change in renewable energy output for each nation in the dataset between 1990 and 2015. Print the difference for each nation in the console.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="for-loops.html#cb311-1"></a><span class="co"># Write your code here</span></span>
-<span id="cb311-2"><a href="for-loops.html#cb311-2"></a>i=<span class="dv">2</span></span>
-<span id="cb311-3"><a href="for-loops.html#cb311-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
-<span id="cb311-4"><a href="for-loops.html#cb311-4"></a>  dfi &lt;-<span class="st"> </span>df[,i] ; dfi</span>
-<span id="cb311-5"><a href="for-loops.html#cb311-5"></a>  diffi &lt;-<span class="st"> </span>dfi[<span class="kw">length</span>(dfi)] <span class="op">-</span><span class="st"> </span>dfi[<span class="dv">1</span>] ; diffi</span>
-<span id="cb311-6"><a href="for-loops.html#cb311-6"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(df)[i],<span class="st">&quot; : &quot;</span>,<span class="kw">round</span>(diffi),<span class="st">&quot;% change.&quot;</span>))</span>
-<span id="cb311-7"><a href="for-loops.html#cb311-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="for-loops.html#cb325-1"></a><span class="co"># Write your code here</span></span>
+<span id="cb325-2"><a href="for-loops.html#cb325-2"></a>i=<span class="dv">2</span></span>
+<span id="cb325-3"><a href="for-loops.html#cb325-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
+<span id="cb325-4"><a href="for-loops.html#cb325-4"></a>  dfi &lt;-<span class="st"> </span>df[,i] ; dfi</span>
+<span id="cb325-5"><a href="for-loops.html#cb325-5"></a>  diffi &lt;-<span class="st"> </span>dfi[<span class="kw">length</span>(dfi)] <span class="op">-</span><span class="st"> </span>dfi[<span class="dv">1</span>] ; diffi</span>
+<span id="cb325-6"><a href="for-loops.html#cb325-6"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="kw">names</span>(df)[i],<span class="st">&quot; : &quot;</span>,<span class="kw">round</span>(diffi),<span class="st">&quot;% change.&quot;</span>))</span>
+<span id="cb325-7"><a href="for-loops.html#cb325-7"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;World : 3% change.&quot;
 [1] &quot;Australia : 4% change.&quot;
 [1] &quot;Canada : 1% change.&quot;
@@ -528,15 +732,15 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 [1] &quot;United_Kingdom : 23% change.&quot;
 [1] &quot;United_States : 2% change.&quot;</code></pre>
 <p><strong>Task 2:</strong> Re-do this loop, but instead of printing the differences to the console, save them in a vector.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="for-loops.html#cb313-1"></a><span class="co"># Write your code here</span></span>
-<span id="cb313-2"><a href="for-loops.html#cb313-2"></a>diffs &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb313-3"><a href="for-loops.html#cb313-3"></a>i=<span class="dv">2</span></span>
-<span id="cb313-4"><a href="for-loops.html#cb313-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
-<span id="cb313-5"><a href="for-loops.html#cb313-5"></a>  dfi &lt;-<span class="st"> </span>df[,i] ; dfi</span>
-<span id="cb313-6"><a href="for-loops.html#cb313-6"></a>  diffi &lt;-<span class="st"> </span>dfi[<span class="kw">length</span>(dfi)] <span class="op">-</span><span class="st"> </span>dfi[<span class="dv">1</span>] ; diffi</span>
-<span id="cb313-7"><a href="for-loops.html#cb313-7"></a>  diffs &lt;-<span class="st"> </span><span class="kw">c</span>(diffs,diffi)</span>
-<span id="cb313-8"><a href="for-loops.html#cb313-8"></a>}</span>
-<span id="cb313-9"><a href="for-loops.html#cb313-9"></a>diffs</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="for-loops.html#cb327-1"></a><span class="co"># Write your code here</span></span>
+<span id="cb327-2"><a href="for-loops.html#cb327-2"></a>diffs &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb327-3"><a href="for-loops.html#cb327-3"></a>i=<span class="dv">2</span></span>
+<span id="cb327-4"><a href="for-loops.html#cb327-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
+<span id="cb327-5"><a href="for-loops.html#cb327-5"></a>  dfi &lt;-<span class="st"> </span>df[,i] ; dfi</span>
+<span id="cb327-6"><a href="for-loops.html#cb327-6"></a>  diffi &lt;-<span class="st"> </span>dfi[<span class="kw">length</span>(dfi)] <span class="op">-</span><span class="st"> </span>dfi[<span class="dv">1</span>] ; diffi</span>
+<span id="cb327-7"><a href="for-loops.html#cb327-7"></a>  diffs &lt;-<span class="st"> </span><span class="kw">c</span>(diffs,diffi)</span>
+<span id="cb327-8"><a href="for-loops.html#cb327-8"></a>}</span>
+<span id="cb327-9"><a href="for-loops.html#cb327-9"></a>diffs</span></code></pre></div>
 <pre><code> [1]  3.49241703  3.98181045  0.63273122  3.51887728 62.33064943 -9.14624362
  [7]  4.73004321  0.07524008 12.26263811  7.21543884 23.01128298  1.69994636</code></pre>
 </div>
@@ -545,48 +749,48 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <div id="practice-with-a-single-plot" class="section level4 unnumbered">
 <h4>Practice with a single plot</h4>
 <p><strong>Task 3:</strong> First, get your bearings by figuring out how to use the <code>df</code> dataset to plot the time series for the United States, for the years 1990 - 2015. Label the x axis “Year” and the y axis “% Renewable”. Include the full name of the county as the <code>main</code> title for the plot.</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="for-loops.html#cb315-1"></a><span class="co"># Write code here</span></span>
-<span id="cb315-2"><a href="for-loops.html#cb315-2"></a>dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">13</span>)] </span>
-<span id="cb315-3"><a href="for-loops.html#cb315-3"></a><span class="kw">plot</span>(<span class="dt">x=</span>dfi[,<span class="dv">1</span>],</span>
-<span id="cb315-4"><a href="for-loops.html#cb315-4"></a>     <span class="dt">y=</span>dfi[,<span class="dv">2</span>],</span>
-<span id="cb315-5"><a href="for-loops.html#cb315-5"></a>     <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb315-6"><a href="for-loops.html#cb315-6"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb315-7"><a href="for-loops.html#cb315-7"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% renewable&quot;</span>,</span>
-<span id="cb315-8"><a href="for-loops.html#cb315-8"></a>     <span class="dt">main=</span><span class="kw">names</span>(dfi)[<span class="dv">2</span>])</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-179-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="for-loops.html#cb329-1"></a><span class="co"># Write code here</span></span>
+<span id="cb329-2"><a href="for-loops.html#cb329-2"></a>dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">13</span>)] </span>
+<span id="cb329-3"><a href="for-loops.html#cb329-3"></a><span class="kw">plot</span>(<span class="dt">x=</span>dfi[,<span class="dv">1</span>],</span>
+<span id="cb329-4"><a href="for-loops.html#cb329-4"></a>     <span class="dt">y=</span>dfi[,<span class="dv">2</span>],</span>
+<span id="cb329-5"><a href="for-loops.html#cb329-5"></a>     <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb329-6"><a href="for-loops.html#cb329-6"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb329-7"><a href="for-loops.html#cb329-7"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% renewable&quot;</span>,</span>
+<span id="cb329-8"><a href="for-loops.html#cb329-8"></a>     <span class="dt">main=</span><span class="kw">names</span>(dfi)[<span class="dv">2</span>])</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-186-1.png" width="925.44" /></p>
 </div>
 <div id="now-loop-it" class="section level4 unnumbered">
 <h4>Now loop it!</h4>
 <p><strong>Task 4:</strong> Use that code as the foundation for building up a <code>for loop</code> that displays the same time series for every country in the dataset on a multi-pane graph that with 4 rows and 3 columns.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="for-loops.html#cb316-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">3</span>))</span>
-<span id="cb316-2"><a href="for-loops.html#cb316-2"></a>i=<span class="dv">3</span></span>
-<span id="cb316-3"><a href="for-loops.html#cb316-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
-<span id="cb316-4"><a href="for-loops.html#cb316-4"></a>  dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,i)] ; dfi</span>
-<span id="cb316-5"><a href="for-loops.html#cb316-5"></a>  <span class="kw">plot</span>(<span class="dt">x=</span>dfi[,<span class="dv">1</span>],</span>
-<span id="cb316-6"><a href="for-loops.html#cb316-6"></a>       <span class="dt">y=</span>dfi[,<span class="dv">2</span>],</span>
-<span id="cb316-7"><a href="for-loops.html#cb316-7"></a>       <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb316-8"><a href="for-loops.html#cb316-8"></a>       <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb316-9"><a href="for-loops.html#cb316-9"></a>       <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% renewable&quot;</span>,</span>
-<span id="cb316-10"><a href="for-loops.html#cb316-10"></a>       <span class="dt">main=</span><span class="kw">names</span>(dfi)[<span class="dv">2</span>])</span>
-<span id="cb316-11"><a href="for-loops.html#cb316-11"></a>}</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-180-1.png" width="768" /></p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="for-loops.html#cb330-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">3</span>))</span>
+<span id="cb330-2"><a href="for-loops.html#cb330-2"></a>i=<span class="dv">3</span></span>
+<span id="cb330-3"><a href="for-loops.html#cb330-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
+<span id="cb330-4"><a href="for-loops.html#cb330-4"></a>  dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,i)] ; dfi</span>
+<span id="cb330-5"><a href="for-loops.html#cb330-5"></a>  <span class="kw">plot</span>(<span class="dt">x=</span>dfi[,<span class="dv">1</span>],</span>
+<span id="cb330-6"><a href="for-loops.html#cb330-6"></a>       <span class="dt">y=</span>dfi[,<span class="dv">2</span>],</span>
+<span id="cb330-7"><a href="for-loops.html#cb330-7"></a>       <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb330-8"><a href="for-loops.html#cb330-8"></a>       <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb330-9"><a href="for-loops.html#cb330-9"></a>       <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% renewable&quot;</span>,</span>
+<span id="cb330-10"><a href="for-loops.html#cb330-10"></a>       <span class="dt">main=</span><span class="kw">names</span>(dfi)[<span class="dv">2</span>])</span>
+<span id="cb330-11"><a href="for-loops.html#cb330-11"></a>}</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-187-1.png" width="768" /></p>
 </div>
 <div id="now-loop-it-in-layers" class="section level4 unnumbered">
 <h4>Now loop it <em>in layers!</em></h4>
 <p><strong>Task 5:</strong> Now try a different presentation. Instead of producing 12 different plots, superimpose the time series for each country on the <em>same single plot</em>.</p>
 <p>To add some flare, highlight the USA curve by coloring it red and making it thicker.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="for-loops.html#cb317-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb317-2"><a href="for-loops.html#cb317-2"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb317-3"><a href="for-loops.html#cb317-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb317-4"><a href="for-loops.html#cb317-4"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% Renewable&quot;</span>)</span>
-<span id="cb317-5"><a href="for-loops.html#cb317-5"></a></span>
-<span id="cb317-6"><a href="for-loops.html#cb317-6"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
-<span id="cb317-7"><a href="for-loops.html#cb317-7"></a>  dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,i)] ; dfi</span>
-<span id="cb317-8"><a href="for-loops.html#cb317-8"></a>  <span class="kw">lines</span>(dfi[,<span class="dv">2</span>]<span class="op">~</span>dfi[,<span class="dv">1</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;black&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">5</span>))</span>
-<span id="cb317-9"><a href="for-loops.html#cb317-9"></a>}</span>
-<span id="cb317-10"><a href="for-loops.html#cb317-10"></a></span>
-<span id="cb317-11"><a href="for-loops.html#cb317-11"></a><span class="kw">lines</span>(df<span class="op">$</span>United_States<span class="op">~</span>df<span class="op">$</span>year,<span class="dt">lwd=</span><span class="dv">4</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-181-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="for-loops.html#cb331-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb331-2"><a href="for-loops.html#cb331-2"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb331-3"><a href="for-loops.html#cb331-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1990</span>,<span class="dv">2015</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb331-4"><a href="for-loops.html#cb331-4"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;% Renewable&quot;</span>)</span>
+<span id="cb331-5"><a href="for-loops.html#cb331-5"></a></span>
+<span id="cb331-6"><a href="for-loops.html#cb331-6"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(df)){</span>
+<span id="cb331-7"><a href="for-loops.html#cb331-7"></a>  dfi &lt;-<span class="st"> </span>df[,<span class="kw">c</span>(<span class="dv">1</span>,i)] ; dfi</span>
+<span id="cb331-8"><a href="for-loops.html#cb331-8"></a>  <span class="kw">lines</span>(dfi[,<span class="dv">2</span>]<span class="op">~</span>dfi[,<span class="dv">1</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;black&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">4</span>))</span>
+<span id="cb331-9"><a href="for-loops.html#cb331-9"></a>}</span>
+<span id="cb331-10"><a href="for-loops.html#cb331-10"></a></span>
+<span id="cb331-11"><a href="for-loops.html#cb331-11"></a><span class="kw">lines</span>(df<span class="op">$</span>United_States<span class="op">~</span>df<span class="op">$</span>year,<span class="dt">lwd=</span><span class="dv">4</span>,<span class="dt">col=</span><span class="st">&quot;firebrick&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-188-1.png" width="925.44" /></p>
 
 </div>
 </div>

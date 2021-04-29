@@ -3,9 +3,9 @@
 ## Learning goals {-}
 
 * What `for` loops are, and how to use them yourself
-* How to use `for` loops for multi-pane plotting  
-* How to use `for` loops to achieve complex plots  
-* How to use `for` loops to summarize data efficiently  
+* How to use `for` loops for plots that are tricky but super cool.
+* How to use `for` loops to summarize subgroups in your data 
+* How to use nested `for` loops
 
 
 ## Basics  {-}
@@ -74,21 +74,12 @@ for(i in famous.names){
 ```
 
 
-## `for` loops with data {-}
-
-These silly examples above do a poor job of demonstrating how powerful a `for loop` can be.
-
-### Using `for` loops to summarize data subgroups  {-}  
-
-
-### *Nested* `for` loops   {-}
-
-
-### Exercise 2 {-}
-
-
-
 ## `for` loops in plots {-}
+
+These silly examples above do a poor job of demonstrating how powerful a `for loop` can be.  You can use `for` loops with data to do really cool things with relatively simple code.  
+
+Thinking in `for` loops, however, can take some getting used to. Learning how to design code with `for` loops is one of the most important milestones on your way to thinking like a data scientist.
+
 
 ### Efficient multi-panel plots {-}
 
@@ -107,10 +98,11 @@ Looks like the first four columns would be interesting to plot.
 par(mfrow=c(2,2)) # Setup a multi-panel plot # format = c(number of rows, number of columns)
 par(mar=c(4.5,4.5,1,1)) # Set plot margins
 
+# Loop through the first four columns ...
 for(i in 1:4){
-  y <- airquality[,i]
-  var.name <- names(airquality)[i]
-  plot(y,xlab="Day",ylab=var.name,pch=16)
+  y <- airquality[,i] # Select data in column i
+  var.name <- names(airquality)[i] # Get name of that column
+  plot(y,xlab="Day",ylab=var.name,pch=16) # Plot data
 }
 
 par(mfrow=c(1,1)) # restore the default single-panel plot
@@ -172,7 +164,7 @@ for(i in airquality$Month){
 }
 ```
 
-### Using `for` loops to layer cyclical data  {-}
+### Using `for` loops to layer cyclical or repetitive data  {-}
 
 Here's another good example of the power of a good `for loop`.
 
@@ -270,6 +262,236 @@ for(i in years){
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
 
+## Using `for` loops to process & summarize data {-}
+
+### Using `for` loops to summarize data subgroups  {-}  
+
+This is one of the most common uses of `for` loops: you want to summarize information about subgroups in your dataset. 
+
+
+#### Example use cases {-}
+
+- You want to summarize sample counts for each day of fieldwork.   
+
+- You want to summarize details for each user in your database.  
+
+- You want to summarize weather information for each month of the year.  
+
+
+#### Workflow  {-}
+
+All of these summaries can be achieved with the same basic workflow.
+
+1. Determine how to define the basic unit of summarization *(e.g., each day of fieldwork, each user in your database, or each month of the year)*. 
+
+2. Stage an empty data object (or multiple objects) in which you will store your summary. 
+
+3. Build a `for` loop to iterate through for each unique subgroup value (e.g., each sampling date or each user or each month).
+
+4. In each iteration of the loop, subset your data to only the subgroup value of interest. 
+
+5. At the end of each iteration, update your data objects with the result from that iteration. 
+
+6. Run your `for loop!  
+
+7. After the `for` loop, combine your data objects into a dataframe.  
+
+As you are building for loops, it can be very helpful to first start thinking about what needs to happen in each iteration of the loop. So first think about what needs to happen in *Step 4*. Then you go through each step of this workflow to build a loop around that core code.
+
+#### Example  {-}
+
+The following scenario provides a concrete example of how to do this:  
+
+**Scenario:** You participate in a survey of flightless birds in the forests of New Zealand. You conduct thirty days of fieldwork on four species of bird: the kiwi, the weka, the kakapo (*the world's heaviest parrot*), and the kea (*the world's only alpine parrot*).  
+
+```{r,echo=FALSE,eval=FALSE}
+# Prep dataset
+dos <- 1:30
+spp <- c("Kiwi","Weka","Kakapo","Kea")
+grp <- 1:4
+
+df <- data.frame(day=sample(dos,size=406,replace=TRUE),
+           species=sample(spp,size=406,replace=TRUE),
+           group=sample(grp,size=406,replace=TRUE))
+
+df <- df[order(df$day),] 
+write.csv(df,file="./data/nz_birds.csv",quote=FALSE,row.names=FALSE)
+```
+
+Your data look like this: 
+
+```{r,echo=TRUE}
+df <- read.csv("./data/nz_birds.csv")
+nrow(df)
+head(df)
+tail(df)
+```
+
+Each row contains the data for a single bird group detection.
+
+Your supervisor has tasked you with writing a report of your findings, and she wants to see a table with the number of each species seen on each day of the fieldwork.   
+
+You can use a `for` loop to make this table.  
+
+But first think about what needs to happen in each iteration of your loop.  For each date in the dataset, you want to count the number of sightings for each species.  
+
+Let's build our core code using day 10 as a practice date:
+
+```{r,echo=TRUE}
+# Subset to day of interest
+dayi <- 10
+dfi <- df[df$day == dayi,]
+
+# Tally up counts for each species
+kiwi <- length(which(dfi$species=="Kiwi"))
+weka <- length(which(dfi$species=="Weka"))
+kakapo <- length(which(dfi$species=="Kakapo"))
+kea <- length(which(dfi$species=="Kea"))
+```
+
+Okay! So our `for` loop needs to contain that basic code, with some minor adjustments in order to save the results from all iterations of the loop instead of just one.  
+
+Here is the full code for this `for` loop problem:
+
+```{r,echo=TRUE}
+# 1: determine the unique days in the dataset:
+udays <- unique(df$day)
+
+# 2: stage empty results vectors
+kiwi <- weka <- kakapo <- kea <- c()
+
+# (create a variable named i to help you test your code as you build it)
+i=1 
+
+# 3: Start for loop. Loop through each unique day
+for(i in 1:length(udays)){
+  
+  # 4. Subset to day of interest
+  dayi <- udays[i] 
+  dfi <- df[df$day == dayi,]
+  
+  # 5. Tally up birds, add to each vector
+  kiwi[i] <- length(which(dfi$species=="Kiwi"))
+  weka[i] <- length(which(dfi$species=="Weka"))
+  kakapo[i] <- length(which(dfi$species=="Kakapo"))
+  kea[i] <- length(which(dfi$species=="Kea"))
+  
+}
+
+# 6. Run for loop
+
+# 7. Combine results into a dataframe
+results <- data.frame(day=udays, kiwi, weka, kakapo, kea)
+
+# Check it out!
+results
+
+```
+
+
+### Nested `for` loops   {-}
+
+Sometimes you need to summarize your data in such a specific way that you will need to use *nested* `for` loops, i.e., one `for` loop contained within another.
+
+For example, your supervisor for the New Zealand Flightless Birds Survey has now taken an interest in associations among the four bird species you have been monitoring. For example, are kiwis more abundant on the days when you detect a lot of kakapos?
+
+To answer this question, your supervisor wants to see a table with each species combination (Kiwi - Kakapo, Kiwi - Weka, ... Kakapo - Kea, etc.) and the number of dates in which both species were seen more than 5 times.
+
+You can produce this table using a nested `for` loop. Here is how it's done:
+
+```{r,echo=TRUE}
+
+uspp <- unique(df$species) # get set of unique species
+
+A <- B <- c() # empty vector for names of each species in the pair
+X <- c() # empty vector for number of dates in which both species were common
+
+i=1 ; j=2
+
+# For loop 1
+for(i in 1:length(uspp)){
+  spi <- uspp[i] # species i
+  dfi <- df[df$species == spi,] # subset df to only this species
+  counti <- table(dfi$day) # get number of sightings on each day
+  dayi <- names(counti)[which(counti >= 5)] ; # get the dates on which this species was seen 5+ times
+  
+  # For loop 2
+  for(j in 1:length(uspp)){
+    spj <- uspp[j] # species j
+    dfj <- df[df$species == spj,] # subset df to only this species
+    countj <- table(dfj$day) # get number of sightings on each day
+    dayj <- names(countj)[which(countj >= 5)] ; # get the dates on which this species was seen 5+ times
+    
+    dates_ij <- which(dayi  %in% dayj) # get the dates on which both species were seen 5+ times
+    Xij <- length(dates_ij) # count the number of these dates
+    
+    # Add results to staged objects
+    X <- c(X,Xij) 
+    A <- c(A,spi)
+    B <- c(B,spj)
+  }
+
+}
+
+# Combine results into a dataframe
+results <- data.frame(A, B, X)
+
+# Check it out!
+results
+
+```
+
+Note that the code for adding the results to the staged objects `X`, `A`, and `B` is contained within the second for loop. This is necessary for producing our results; if we put that code in the first for loop *after* the code for the nested loop, our results would not be complete.  
+
+Note that each `for` loop *must* use a different variable to represent each iteration. In this example, the first loop uses `i` and the second uses `j`.  If we used `i` for both loops, `R` would get very confused indeed. 
+
+Also note that we used `i` and `j` in the variables specific to each loop (e.g., `dayi` and `dayj`), as a simple way to help us keep track of what each variable is representing.  
+
+
+### Exercise 2 {-}
+
+Your supervisor is happy with your pairwise species association dataframe, and wants to use it in an analysis for a publication. However, the `R` package she wants to use requires that the data be in the format of a square *matrix* with four rows -- one for each species -- and four columns. Like this:
+
+```{r,echo=TRUE}
+results_matrix <- matrix(data=NA, nrow=4, ncol=4, dimnames=list(uspp,uspp))
+results_matrix
+```
+
+You have not yet worked with matrices in this curriculum (you will in a few modules), but for now think of them as simple dataframes with a single type of data (e.g., all numeric values, like this one). You can subset matrices just as you would a dataframe: `matrix[row,column]`.  
+
+The values in this matrix should represent the number of dates in which each species pair was seen 5 times or more. For example, `result[1,2]` would be 3, since the Kiwi and Kea were seen 5+ times on only 3 dates.
+
+She asks you to use the dataframe you just created to create this matrix. Use a nested for loop to do it.
+
+```{r}
+# Stage empty results objects
+results_matrix <- matrix(data=NA, nrow=4, ncol=4, dimnames=list(uspp,uspp))
+
+# Get unique species
+uspp <- unique(c(results$A,results$B))
+
+# Loop 1: each species (row)
+for(i in 1:length(uspp)){
+  spi <- uspp[i]
+  resultsi <- results[results$A==spi,] # subset data to rows where column A equals species i
+  
+  # Loop 2: each species (column)
+  for(j in 1:length(uspp)){
+    spj <- uspp[j]
+    resultsj <- resultsi[resultsi$B==spj,] # subset data from i loop where column B equals species j
+    
+    Xij <- resultsj$X      # Find result
+
+    results_matrix[i,j] <- Xij     # Add result to staged object
+  }
+}
+
+results_matrix
+```
+
+Boom! 
+
+
 ## Review assignment {-}
 
 First, read in and format some other cool data. The code for doing so is provided for you here:
@@ -361,9 +583,9 @@ plot(1,type="n",lwd=2,
 
 for(i in 2:ncol(df)){
   dfi <- df[,c(1,i)] ; dfi
-  lines(dfi[,2]~dfi[,1],lwd=2,col=adjustcolor("black",alpha.f=.5))
+  lines(dfi[,2]~dfi[,1],lwd=2,col=adjustcolor("black",alpha.f=.4))
 }
 
-lines(df$United_States~df$year,lwd=4,col="red")
+lines(df$United_States~df$year,lwd=4,col="firebrick")
 
 ```

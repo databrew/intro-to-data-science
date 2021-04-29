@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-04-28}
+\date{2021-04-29}
 
 \begin{document}
 \maketitle
@@ -2924,7 +2924,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] "9&m0cIefH:BSaAUo.v{C%V<|"
+[1] " pu\"&F*=c0<jCEZ^J'U2sw@L"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2936,7 +2936,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "ZOnt-29hLAUWR@fg[6x~B^Mr"
+[1] "]}(6iay;\\wBUc*#+sFj`Lv'~"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -3779,11 +3779,11 @@ In this exercise, you will investigate annual trends in the prevalence of six na
 \item
   What \texttt{for} loops are, and how to use them yourself
 \item
-  How to use \texttt{for} loops for multi-pane plotting\\
+  How to use \texttt{for} loops for plots that are tricky but super cool.
 \item
-  How to use \texttt{for} loops to achieve complex plots\\
+  How to use \texttt{for} loops to summarize subgroups in your data
 \item
-  How to use \texttt{for} loops to summarize data efficiently
+  How to use nested \texttt{for} loops
 \end{itemize}
 
 \hypertarget{basics}{%
@@ -3908,27 +3908,13 @@ Using the examples above as a guide, create a \texttt{for\ loop} that prints the
 [1] "Tom Cruise has cooties!"
 \end{verbatim}
 
-\hypertarget{for-loops-with-data}{%
-\section*{\texorpdfstring{\texttt{for} loops with data}{for loops with data}}\label{for-loops-with-data}}
-\addcontentsline{toc}{section}{\texttt{for} loops with data}
-
-These silly examples above do a poor job of demonstrating how powerful a \texttt{for\ loop} can be.
-
-\hypertarget{using-for-loops-to-summarize-data-subgroups}{%
-\subsection*{\texorpdfstring{Using \texttt{for} loops to summarize data subgroups}{Using for loops to summarize data subgroups}}\label{using-for-loops-to-summarize-data-subgroups}}
-\addcontentsline{toc}{subsection}{Using \texttt{for} loops to summarize data subgroups}
-
-\hypertarget{nested-for-loops}{%
-\subsection*{\texorpdfstring{\emph{Nested} \texttt{for} loops}{Nested for loops}}\label{nested-for-loops}}
-\addcontentsline{toc}{subsection}{\emph{Nested} \texttt{for} loops}
-
-\hypertarget{exercise-2-5}{%
-\subsection*{Exercise 2}\label{exercise-2-5}}
-\addcontentsline{toc}{subsection}{Exercise 2}
-
 \hypertarget{for-loops-in-plots}{%
 \section*{\texorpdfstring{\texttt{for} loops in plots}{for loops in plots}}\label{for-loops-in-plots}}
 \addcontentsline{toc}{section}{\texttt{for} loops in plots}
+
+These silly examples above do a poor job of demonstrating how powerful a \texttt{for\ loop} can be. You can use \texttt{for} loops with data to do really cool things with relatively simple code.
+
+Thinking in \texttt{for} loops, however, can take some getting used to. Learning how to design code with \texttt{for} loops is one of the most important milestones on your way to thinking like a data scientist.
 
 \hypertarget{efficient-multi-panel-plots}{%
 \subsection*{Efficient multi-panel plots}\label{efficient-multi-panel-plots}}
@@ -3962,10 +3948,11 @@ Looks like the first four columns would be interesting to plot.
 \KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\CommentTok{# Setup a multi-panel plot # format = c(number of rows, number of columns)}
 \KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{4.5}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\CommentTok{# Set plot margins}
 
+\CommentTok{# Loop through the first four columns ...}
 \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{)\{}
-\NormalTok{  y <-}\StringTok{ }\NormalTok{airquality[,i]}
-\NormalTok{  var.name <-}\StringTok{ }\KeywordTok{names}\NormalTok{(airquality)[i]}
-  \KeywordTok{plot}\NormalTok{(y,}\DataTypeTok{xlab=}\StringTok{"Day"}\NormalTok{,}\DataTypeTok{ylab=}\NormalTok{var.name,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{)}
+\NormalTok{  y <-}\StringTok{ }\NormalTok{airquality[,i] }\CommentTok{# Select data in column i}
+\NormalTok{  var.name <-}\StringTok{ }\KeywordTok{names}\NormalTok{(airquality)[i] }\CommentTok{# Get name of that column}
+  \KeywordTok{plot}\NormalTok{(y,}\DataTypeTok{xlab=}\StringTok{"Day"}\NormalTok{,}\DataTypeTok{ylab=}\NormalTok{var.name,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{) }\CommentTok{# Plot data}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -4066,9 +4053,9 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 
 \includegraphics{figures/unnamed-chunk-170-1.pdf}
 
-\hypertarget{using-for-loops-to-layer-cyclical-data}{%
-\subsection*{\texorpdfstring{Using \texttt{for} loops to layer cyclical data}{Using for loops to layer cyclical data}}\label{using-for-loops-to-layer-cyclical-data}}
-\addcontentsline{toc}{subsection}{Using \texttt{for} loops to layer cyclical data}
+\hypertarget{using-for-loops-to-layer-cyclical-or-repetitive-data}{%
+\subsection*{\texorpdfstring{Using \texttt{for} loops to layer cyclical or repetitive data}{Using for loops to layer cyclical or repetitive data}}\label{using-for-loops-to-layer-cyclical-or-repetitive-data}}
+\addcontentsline{toc}{subsection}{Using \texttt{for} loops to layer cyclical or repetitive data}
 
 Here's another good example of the power of a good \texttt{for\ loop}.
 
@@ -4239,6 +4226,323 @@ OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
 
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
+\hypertarget{using-for-loops-to-process-summarize-data}{%
+\section*{\texorpdfstring{Using \texttt{for} loops to process \& summarize data}{Using for loops to process \& summarize data}}\label{using-for-loops-to-process-summarize-data}}
+\addcontentsline{toc}{section}{Using \texttt{for} loops to process \& summarize data}
+
+\hypertarget{using-for-loops-to-summarize-data-subgroups}{%
+\subsection*{\texorpdfstring{Using \texttt{for} loops to summarize data subgroups}{Using for loops to summarize data subgroups}}\label{using-for-loops-to-summarize-data-subgroups}}
+\addcontentsline{toc}{subsection}{Using \texttt{for} loops to summarize data subgroups}
+
+This is one of the most common uses of \texttt{for} loops: you want to summarize information about subgroups in your dataset.
+
+\hypertarget{example-use-cases}{%
+\subsubsection*{Example use cases}\label{example-use-cases}}
+\addcontentsline{toc}{subsubsection}{Example use cases}
+
+\begin{itemize}
+\item
+  You want to summarize sample counts for each day of fieldwork.
+\item
+  You want to summarize details for each user in your database.
+\item
+  You want to summarize weather information for each month of the year.
+\end{itemize}
+
+\hypertarget{workflow}{%
+\subsubsection*{Workflow}\label{workflow}}
+\addcontentsline{toc}{subsubsection}{Workflow}
+
+All of these summaries can be achieved with the same basic workflow.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Determine how to define the basic unit of summarization \emph{(e.g., each day of fieldwork, each user in your database, or each month of the year)}.
+\item
+  Stage an empty data object (or multiple objects) in which you will store your summary.
+\item
+  Build a \texttt{for} loop to iterate through for each unique subgroup value (e.g., each sampling date or each user or each month).
+\item
+  In each iteration of the loop, subset your data to only the subgroup value of interest.
+\item
+  At the end of each iteration, update your data objects with the result from that iteration.
+\item
+  Run your `for loop!
+\item
+  After the \texttt{for} loop, combine your data objects into a dataframe.
+\end{enumerate}
+
+As you are building for loops, it can be very helpful to first start thinking about what needs to happen in each iteration of the loop. So first think about what needs to happen in \emph{Step 4}. Then you go through each step of this workflow to build a loop around that core code.
+
+\hypertarget{example}{%
+\subsubsection*{Example}\label{example}}
+\addcontentsline{toc}{subsubsection}{Example}
+
+The following scenario provides a concrete example of how to do this:
+
+\textbf{Scenario:} You participate in a survey of flightless birds in the forests of New Zealand. You conduct thirty days of fieldwork on four species of bird: the kiwi, the weka, the kakapo (\emph{the world's heaviest parrot}), and the kea (\emph{the world's only alpine parrot}).
+
+Your data look like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/nz_birds.csv"}\NormalTok{)}
+\KeywordTok{nrow}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 406
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  day species group
+1   1    Kiwi     3
+2   1     Kea     4
+3   1  Kakapo     4
+4   1    Weka     2
+5   1    Kiwi     1
+6   1     Kea     3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    day species group
+401  30    Weka     3
+402  30    Kiwi     3
+403  30    Kiwi     3
+404  30  Kakapo     3
+405  30  Kakapo     1
+406  30     Kea     2
+\end{verbatim}
+
+Each row contains the data for a single bird group detection.
+
+Your supervisor has tasked you with writing a report of your findings, and she wants to see a table with the number of each species seen on each day of the fieldwork.
+
+You can use a \texttt{for} loop to make this table.
+
+But first think about what needs to happen in each iteration of your loop. For each date in the dataset, you want to count the number of sightings for each species.
+
+Let's build our core code using day 10 as a practice date:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Subset to day of interest}
+\NormalTok{dayi <-}\StringTok{ }\DecValTok{10}
+\NormalTok{dfi <-}\StringTok{ }\NormalTok{df[df}\OperatorTok{$}\NormalTok{day }\OperatorTok{==}\StringTok{ }\NormalTok{dayi,]}
+
+\CommentTok{# Tally up counts for each species}
+\NormalTok{kiwi <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(dfi}\OperatorTok{$}\NormalTok{species}\OperatorTok{==}\StringTok{"Kiwi"}\NormalTok{))}
+\NormalTok{weka <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(dfi}\OperatorTok{$}\NormalTok{species}\OperatorTok{==}\StringTok{"Weka"}\NormalTok{))}
+\NormalTok{kakapo <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(dfi}\OperatorTok{$}\NormalTok{species}\OperatorTok{==}\StringTok{"Kakapo"}\NormalTok{))}
+\NormalTok{kea <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(dfi}\OperatorTok{$}\NormalTok{species}\OperatorTok{==}\StringTok{"Kea"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Okay! So our \texttt{for} loop needs to contain that basic code, with some minor adjustments in order to save the results from all iterations of the loop instead of just one.
+
+Here is the full code for this \texttt{for} loop problem:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 1: determine the unique days in the dataset:}
+\NormalTok{udays <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(df}\OperatorTok{$}\NormalTok{day)}
+
+\CommentTok{# 2: stage empty results vectors}
+\NormalTok{kiwi <-}\StringTok{ }\NormalTok{weka <-}\StringTok{ }\NormalTok{kakapo <-}\StringTok{ }\NormalTok{kea <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+
+\CommentTok{# (create a variable named i to help you test your code as you build it)}
+\NormalTok{i=}\DecValTok{1} 
+
+\CommentTok{# 3: Start for loop. Loop through each unique day}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(udays))\{}
+  
+  \CommentTok{# 4. Subset to day of interest}
+\NormalTok{  dayi <-}\StringTok{ }\NormalTok{udays[i] }
+\NormalTok{  dfi <-}\StringTok{ }\NormalTok{df[df}\OperatorTok{$}\NormalTok{day }\OperatorTok{==}\StringTok{ }\NormalTok{dayi,]}
+  
+  \CommentTok{# 5. Tally up birds, add to each vector}
+\NormalTok{  kiwi[i] <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(dfi}\OperatorTok{$}\NormalTok{species}\OperatorTok{==}\StringTok{"Kiwi"}\NormalTok{))}
+\NormalTok{  weka[i] <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(dfi}\OperatorTok{$}\NormalTok{species}\OperatorTok{==}\StringTok{"Weka"}\NormalTok{))}
+\NormalTok{  kakapo[i] <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(dfi}\OperatorTok{$}\NormalTok{species}\OperatorTok{==}\StringTok{"Kakapo"}\NormalTok{))}
+\NormalTok{  kea[i] <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(dfi}\OperatorTok{$}\NormalTok{species}\OperatorTok{==}\StringTok{"Kea"}\NormalTok{))}
+  
+\NormalTok{\}}
+
+\CommentTok{# 6. Run for loop}
+
+\CommentTok{# 7. Combine results into a dataframe}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{day=}\NormalTok{udays, kiwi, weka, kakapo, kea)}
+
+\CommentTok{# Check it out!}
+\NormalTok{results}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   day kiwi weka kakapo kea
+1    1    5    6      3   3
+2    2    1    3      1   2
+3    3    2    4      5   3
+4    4    2    3      2   0
+5    5    6    6      3   2
+6    6    6    2      3   6
+7    7    3    1      3   7
+8    8    2    6      2   2
+9    9    4    1      1   1
+10  10    2    0      3   3
+11  11    2    2      3   5
+12  12    2    3      4   4
+13  13    3    3      5   1
+14  14    7    3      4   6
+15  15    3    4      4   5
+16  16    4    2      1   4
+17  17    3    4      6   2
+18  18    3    4      1   1
+19  19    4    6      1   6
+20  20    2    6      3   1
+21  21    4    3      5   6
+22  22    4    2      5   5
+23  23    4    6      2   4
+24  24    1    2      5   2
+25  25    4    6      3   1
+26  26    4    2      3   5
+27  27    8    5      6   7
+28  28    8    1      0   2
+29  29    6    1      1   3
+30  30    4    2      3   4
+\end{verbatim}
+
+\hypertarget{nested-for-loops}{%
+\subsection*{\texorpdfstring{Nested \texttt{for} loops}{Nested for loops}}\label{nested-for-loops}}
+\addcontentsline{toc}{subsection}{Nested \texttt{for} loops}
+
+Sometimes you need to summarize your data in such a specific way that you will need to use \emph{nested} \texttt{for} loops, i.e., one \texttt{for} loop contained within another.
+
+For example, your supervisor for the New Zealand Flightless Birds Survey has now taken an interest in associations among the four bird species you have been monitoring. For example, are kiwis more abundant on the days when you detect a lot of kakapos?
+
+To answer this question, your supervisor wants to see a table with each species combination (Kiwi - Kakapo, Kiwi - Weka, \ldots{} Kakapo - Kea, etc.) and the number of dates in which both species were seen more than 5 times.
+
+You can produce this table using a nested \texttt{for} loop. Here is how it's done:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uspp <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(df}\OperatorTok{$}\NormalTok{species) }\CommentTok{# get set of unique species}
+
+\NormalTok{A <-}\StringTok{ }\NormalTok{B <-}\StringTok{ }\KeywordTok{c}\NormalTok{() }\CommentTok{# empty vector for names of each species in the pair}
+\NormalTok{X <-}\StringTok{ }\KeywordTok{c}\NormalTok{() }\CommentTok{# empty vector for number of dates in which both species were common}
+
+\NormalTok{i=}\DecValTok{1}\NormalTok{ ; j=}\DecValTok{2}
+
+\CommentTok{# For loop 1}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(uspp))\{}
+\NormalTok{  spi <-}\StringTok{ }\NormalTok{uspp[i] }\CommentTok{# species i}
+\NormalTok{  dfi <-}\StringTok{ }\NormalTok{df[df}\OperatorTok{$}\NormalTok{species }\OperatorTok{==}\StringTok{ }\NormalTok{spi,] }\CommentTok{# subset df to only this species}
+\NormalTok{  counti <-}\StringTok{ }\KeywordTok{table}\NormalTok{(dfi}\OperatorTok{$}\NormalTok{day) }\CommentTok{# get number of sightings on each day}
+\NormalTok{  dayi <-}\StringTok{ }\KeywordTok{names}\NormalTok{(counti)[}\KeywordTok{which}\NormalTok{(counti }\OperatorTok{>=}\StringTok{ }\DecValTok{5}\NormalTok{)] ; }\CommentTok{# get the dates on which this species was seen 5+ times}
+  
+  \CommentTok{# For loop 2}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(uspp))\{}
+\NormalTok{    spj <-}\StringTok{ }\NormalTok{uspp[j] }\CommentTok{# species j}
+\NormalTok{    dfj <-}\StringTok{ }\NormalTok{df[df}\OperatorTok{$}\NormalTok{species }\OperatorTok{==}\StringTok{ }\NormalTok{spj,] }\CommentTok{# subset df to only this species}
+\NormalTok{    countj <-}\StringTok{ }\KeywordTok{table}\NormalTok{(dfj}\OperatorTok{$}\NormalTok{day) }\CommentTok{# get number of sightings on each day}
+\NormalTok{    dayj <-}\StringTok{ }\KeywordTok{names}\NormalTok{(countj)[}\KeywordTok{which}\NormalTok{(countj }\OperatorTok{>=}\StringTok{ }\DecValTok{5}\NormalTok{)] ; }\CommentTok{# get the dates on which this species was seen 5+ times}
+    
+\NormalTok{    dates_ij <-}\StringTok{ }\KeywordTok{which}\NormalTok{(dayi  }\OperatorTok{%in%}\StringTok{ }\NormalTok{dayj) }\CommentTok{# get the dates on which both species were seen 5+ times}
+\NormalTok{    Xij <-}\StringTok{ }\KeywordTok{length}\NormalTok{(dates_ij) }\CommentTok{# count the number of these dates}
+    
+    \CommentTok{# Add results to staged objects}
+\NormalTok{    X <-}\StringTok{ }\KeywordTok{c}\NormalTok{(X,Xij) }
+\NormalTok{    A <-}\StringTok{ }\KeywordTok{c}\NormalTok{(A,spi)}
+\NormalTok{    B <-}\StringTok{ }\KeywordTok{c}\NormalTok{(B,spj)}
+\NormalTok{  \}}
+
+\NormalTok{\}}
+
+\CommentTok{# Combine results into a dataframe}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(A, B, X)}
+
+\CommentTok{# Check it out!}
+\NormalTok{results}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        A      B  X
+1    Kiwi   Kiwi  7
+2    Kiwi    Kea  3
+3    Kiwi Kakapo  1
+4    Kiwi   Weka  3
+5     Kea   Kiwi  3
+6     Kea    Kea 10
+7     Kea Kakapo  3
+8     Kea   Weka  2
+9  Kakapo   Kiwi  1
+10 Kakapo    Kea  3
+11 Kakapo Kakapo  7
+12 Kakapo   Weka  1
+13   Weka   Kiwi  3
+14   Weka    Kea  2
+15   Weka Kakapo  1
+16   Weka   Weka  8
+\end{verbatim}
+
+Note that the code for adding the results to the staged objects \texttt{X}, \texttt{A}, and \texttt{B} is contained within the second for loop. This is necessary for producing our results; if we put that code in the first for loop \emph{after} the code for the nested loop, our results would not be complete.
+
+Note that each \texttt{for} loop \emph{must} use a different variable to represent each iteration. In this example, the first loop uses \texttt{i} and the second uses \texttt{j}. If we used \texttt{i} for both loops, \texttt{R} would get very confused indeed.
+
+Also note that we used \texttt{i} and \texttt{j} in the variables specific to each loop (e.g., \texttt{dayi} and \texttt{dayj}), as a simple way to help us keep track of what each variable is representing.
+
+\hypertarget{exercise-2-5}{%
+\subsection*{Exercise 2}\label{exercise-2-5}}
+\addcontentsline{toc}{subsection}{Exercise 2}
+
+Your supervisor is happy with your pairwise species association dataframe, and wants to use it in an analysis for a publication. However, the \texttt{R} package she wants to use requires that the data be in the format of a square \emph{matrix} with four rows -- one for each species -- and four columns. Like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{results_matrix <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data=}\OtherTok{NA}\NormalTok{, }\DataTypeTok{nrow=}\DecValTok{4}\NormalTok{, }\DataTypeTok{ncol=}\DecValTok{4}\NormalTok{, }\DataTypeTok{dimnames=}\KeywordTok{list}\NormalTok{(uspp,uspp))}
+\NormalTok{results_matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+       Kiwi Kea Kakapo Weka
+Kiwi     NA  NA     NA   NA
+Kea      NA  NA     NA   NA
+Kakapo   NA  NA     NA   NA
+Weka     NA  NA     NA   NA
+\end{verbatim}
+
+You have not yet worked with matrices in this curriculum (you will in a few modules), but for now think of them as simple dataframes with a single type of data (e.g., all numeric values, like this one). You can subset matrices just as you would a dataframe: \texttt{matrix{[}row,column{]}}.
+
+The values in this matrix should represent the number of dates in which each species pair was seen 5 times or more. For example, \texttt{result{[}1,2{]}} would be 3, since the Kiwi and Kea were seen 5+ times on only 3 dates.
+
+She asks you to use the dataframe you just created to create this matrix. Use a nested for loop to do it.
+
+\begin{verbatim}
+       Kiwi Kea Kakapo Weka
+Kiwi      7   3      1    3
+Kea       3  10      3    2
+Kakapo    1   3      7    1
+Weka      3   2      1    8
+\end{verbatim}
+
+Boom!
+
 \hypertarget{review-assignment-8}{%
 \section*{Review assignment}\label{review-assignment-8}}
 \addcontentsline{toc}{section}{Review assignment}
@@ -4330,7 +4634,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-179-1.pdf}
+\includegraphics{figures/unnamed-chunk-186-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsubsection*{Now loop it!}\label{now-loop-it}}
@@ -4354,7 +4658,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-180-1.pdf}
+\includegraphics{figures/unnamed-chunk-187-1.pdf}
 
 \hypertarget{now-loop-it-in-layers}{%
 \subsubsection*{\texorpdfstring{Now loop it \emph{in layers!}}{Now loop it in layers!}}\label{now-loop-it-in-layers}}
@@ -4373,14 +4677,14 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 
 \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(df))\{}
 \NormalTok{  dfi <-}\StringTok{ }\NormalTok{df[,}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,i)] ; dfi}
-  \KeywordTok{lines}\NormalTok{(dfi[,}\DecValTok{2}\NormalTok{]}\OperatorTok{~}\NormalTok{dfi[,}\DecValTok{1}\NormalTok{],}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{col=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{5}\NormalTok{))}
+  \KeywordTok{lines}\NormalTok{(dfi[,}\DecValTok{2}\NormalTok{]}\OperatorTok{~}\NormalTok{dfi[,}\DecValTok{1}\NormalTok{],}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{col=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{4}\NormalTok{))}
 \NormalTok{\}}
 
-\KeywordTok{lines}\NormalTok{(df}\OperatorTok{$}\NormalTok{United_States}\OperatorTok{~}\NormalTok{df}\OperatorTok{$}\NormalTok{year,}\DataTypeTok{lwd=}\DecValTok{4}\NormalTok{,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(df}\OperatorTok{$}\NormalTok{United_States}\OperatorTok{~}\NormalTok{df}\OperatorTok{$}\NormalTok{year,}\DataTypeTok{lwd=}\DecValTok{4}\NormalTok{,}\DataTypeTok{col=}\StringTok{"firebrick"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-181-1.pdf}
+\includegraphics{figures/unnamed-chunk-188-1.pdf}
 
 \hypertarget{conditional-statements}{%
 \chapter{Conditional statements}\label{conditional-statements}}
