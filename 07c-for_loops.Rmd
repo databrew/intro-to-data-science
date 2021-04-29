@@ -7,12 +7,6 @@
 * How to use `for` loops to achieve complex plots  
 * How to use `for` loops to summarize data efficiently  
 
-## Coming soon {-}
-* Instructor notes and answer keys (hidden from students)
-
-
-## Tutorial video {-}
-*(coming soon!)*
 
 ## Basics  {-}
 A `for` loop is a super powerful coding tool. In a `for` loop, `R` loops through a chunk of code for a set number of repititions.
@@ -80,11 +74,23 @@ for(i in famous.names){
 ```
 
 
-## Using `for` loops with data {-}
+## `for` loops with data {-}
 
 These silly examples above do a poor job of demonstrating how powerful a `for loop` can be.
 
-### Multi-panel plots {-}
+### Using `for` loops to summarize data subgroups  {-}  
+
+
+### *Nested* `for` loops   {-}
+
+
+### Exercise 2 {-}
+
+
+
+## `for` loops in plots {-}
+
+### Efficient multi-panel plots {-}
 
 For example, a `for loop` can be a very efficient way of making multi-panel plots.
 
@@ -110,7 +116,7 @@ for(i in 1:4){
 par(mfrow=c(1,1)) # restore the default single-panel plot
 ```
 
-### Tricky plot solutions {-}
+### Using `for` loops to plot subgroups of data {-}
 
 `for loops` are also useful for plotting data in tricky ways. Let's use a different built-in dataset, that shows the performance of various car make/models.
 
@@ -146,7 +152,7 @@ for(i in ucyl){
 }
 ```
 
-### Exercise 2 {-}
+### Exercise 3 {-}
 
 Now try to do something similar on your own with the `airquality` dataset. Use `for loops` to create a plot with Month on the x axis and Temperature on the y axis. On this plot, depict all the temperatures recorded in each month in the color grey, then superimpose the mean temperature for each month.
 
@@ -166,8 +172,7 @@ for(i in airquality$Month){
 }
 ```
 
-
-## Using a `for loop` with more complex data {-}
+### Using `for` loops to layer cyclical data  {-}
 
 Here's another good example of the power of a good `for loop`.
 
@@ -192,9 +197,14 @@ kc <- kc[kc$CO2 >0,]
 plot(kc$CO2 ~ kc$year_dec,type="l",xlab="Year",ylab="Atmospheric CO2")
 ```
 
-**What's the deal with those squiggles?** Let's investigate!
+**What's the deal with those squiggles?**   
 
-Let's look at the data a different way: *by focusing in on a single year.*
+They seem to happen every year, cyclically. Let's investigate!
+
+
+Let's look at the data a different way: *by layering years on top of one another.*  
+
+To begin, let's plot data for only a *single* year:  
 
 ```{r,echo=TRUE}
 
@@ -270,13 +280,13 @@ df <- read.csv("./data/renewable-energy.csv")
 
 This dataset, freely available from World Bank, shows the renewable electricity output for various countries, presented as a percentage of the nation's total electricity output. They provide this data as a time series.
 
-### Summarize columns with a `for loop`
+
+### Summarize columns with a `for loop` {-}
 
 **Task 1:** Use a `for loop` to find the change in renewable energy output for each nation in the dataset between 1990 and 2015. Print the difference for each nation in the console.
 
 ```{r,echo=TRUE}
 # Write your code here
-names(df)
 i=2
 for(i in 2:ncol(df)){
   dfi <- df[,i] ; dfi
@@ -294,21 +304,20 @@ i=2
 for(i in 2:ncol(df)){
   dfi <- df[,i] ; dfi
   diffi <- dfi[length(dfi)] - dfi[1] ; diffi
-  print(paste0(names(df)[i]," : ",round(diffi),"% change."))
   diffs <- c(diffs,diffi)
 }
 diffs
 ```
 
+
 ### Multi-pane plots with `for loops` {-}
 
-### Practice with a single plot {-}
+#### Practice with a single plot {-}
 
 **Task 3:** First, get your bearings by figuring out how to use the `df` dataset to plot the time series for the United States, for the years 1990 - 2015. Label the x axis "Year" and the y axis "% Renewable". Include the full name of the county as the `main` title for the plot.
 
 ```{r,echo=TRUE}
 # Write code here
-head(df)
 dfi <- df[,c(1,13)] 
 plot(x=dfi[,1],
      y=dfi[,2],
@@ -318,7 +327,7 @@ plot(x=dfi[,1],
      main=names(dfi)[2])
 ```
 
-### Now loop it! {-}
+#### Now loop it! {-}
 
 **Task 4:** Use that code as the foundation for building up a `for loop` that displays the same time series for every country in the dataset on a multi-pane graph that with 4 rows and 3 columns.
 
@@ -338,7 +347,7 @@ for(i in 2:ncol(df)){
 
 ```
 
-### Now loop it differently! {-}
+#### Now loop it *in layers!* {-}
 
 **Task 5:** Now try a different presentation. Instead of producing 12 different plots, superimpose the time series for each country on the *same single plot*. 
 
