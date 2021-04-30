@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-04-29}
+\date{2021-04-30}
 
 \begin{document}
 \maketitle
@@ -2924,7 +2924,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] "x<dr_y,Nn9EiB {38k&\"(ILO"
+[1] "pP0'yIk#oM4c`LB[|-d2%Ueg"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2936,7 +2936,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "JaZ=!FX{$ jz)|frHhn^BqIp"
+[1] "9cW)T,5Y[NU^M&Z$zt#ok6}b"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -5254,8 +5254,949 @@ Spinning up a local DB
 \hypertarget{apply-family}{%
 \chapter{Apply family}\label{apply-family}}
 
-\hypertarget{iterative-statistics}{%
-\chapter{Iterative statistics}\label{iterative-statistics}}
+\hypertarget{randomization-statistics}{%
+\chapter{Randomization statistics}\label{randomization-statistics}}
+
+\hypertarget{learning-goals-11}{%
+\section*{Learning goals}\label{learning-goals-11}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Understand what randomization analyses are, and why they are awesome.
+\item
+  Use randomization to determine if an outcome is significantly unexpected.
+\item
+  Use randomization to compare two distributions.
+\item
+  Use randomization to ask whether two variables are correlated
+\item
+  Use randomization to determine the chances that a correlation is declining or increasing.
+\end{itemize}
+
+\hypertarget{basic-idea}{%
+\section*{Basic idea}\label{basic-idea}}
+\addcontentsline{toc}{section}{Basic idea}
+
+Classic significance statistics (i.e., p-values) are based on the frequentist framework in which you \emph{estimate} the probability of an \emph{observed} outcome to what would be \emph{expected} if a null hypothesis were true. In a t-test, for example, you are asking, ``What are the chances of observing what I have if these two sample sets were not meaningfully different?''
+
+The key word in that first sentence is \emph{estimate}. When frequentist theory was originally developed, statisticians did not have computers capable of generating vast amounts of random numbers. So they had to \emph{estimate} p-values by developing strict rules and expectations about the way data are distributed. These rules had the result of (1) placing a lot of constraints on the way statistsics could be done, (2) forcing the development of increasingly specific tests for each strange sampling scenario, (3) confusing students trying to learn statistics, and (4) requiring the use of simplistic conventions, such as the 0.05 significance threshold, in order to make statistical results somewhat intelligible.
+
+But in the age of \texttt{R}, null distributions no longer need to be theoretical, nor do p-values need to be hypothetical. We can actually \emph{calculate} p-values based on \emph{real} null distributions, thanks to the random number generators built into coding languages such as \texttt{R}. The practice of generating real null distributions based on your own specific dataset is known as \textbf{randomization}.
+
+In a randomization routine, you shuffle the variables in your dataset to generate a distribution of outcomes that would be possible according to a null hypothesis. Most null hypotheses reduce to an expectation of \emph{no meaningful difference} between two (or more) samples, which is to say that any differences between those samples are merely the product of random chance. Such randomly generated variability can be simulated easily in \texttt{R}.
+
+Randomization may seem daunting at first, and it does indeed draw upon some of the higher-order skills in your \texttt{R} toolbag (such as custom functions, \texttt{for} loops, and sometimes even the \texttt{apply()} functions), but once you become oriented you will see how intuitive and simple these analyses can be.
+
+The real advantages of randomization, however, are not for the programmer but for the reader. Randomization results are \emph{much} easier to interpret and more information-rich than frequentist p-values. The advantages are many:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Rather than trusting a black box statistical test with obscure requirements about data distributions, you are performing the test yourself and building the test using your own data. You have more control and accountability, and no more risk of choosing the wrong statistical test. Because you are using your own data to produce the null distribution, you are able to retain the quirks of your own particular dataset; the limitations and inconsistencies in your sampling will be safely propagated into the statistic and properly reflected in the ucertainty of your results.
+\item
+  The interpretation of your p-value will be more intuitive. Rather than saying that some result is or is not significant based upon an arbitrary threshold such as 0.05, you can speak about the \emph{chances} of meaningful results: ``There is a 89\% chance that these two sample sets are meaningfully different.'' ``There is a 92\% chance that this trend is increasing.'' These kinds of results are easier to interpret, and it avoids the need to make sense of p-values.
+\item
+  Finally, your statistical test returns much more than a p-value; it returns the null distribution too, which can be of enormous value in more complicated statistical analyses.
+\end{enumerate}
+
+\hypertarget{generalized-randomization-workflow}{%
+\subsection*{Generalized randomization workflow}\label{generalized-randomization-workflow}}
+\addcontentsline{toc}{subsection}{Generalized randomization workflow}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Define your \textbf{research question.}
+\item
+  Define the \textbf{null model} that you wish to compare your observations against. This involves determining which variable you will need to shuffle.
+\item
+  \textbf{Create a function} that calculates the value of interest.
+\item
+  Use that function to determine the \textbf{observed value} of interest.
+\item
+  Use a \texttt{for} loop to \textbf{build a null distribution} by shuffling your observations with \texttt{R}'s random number generators.
+\item
+  \textbf{Visualize} your results to sanity-check what you are finding.
+\item
+  Calculate your \textbf{p-value}, by asking what proportion of the null distribution falls below the observed value.
+\end{enumerate}
+
+The examples below will show you how to appy this generalized workflow. Note that we are purposefully applying randomization to scenarios in which classic statistical tests, such as t-tests and linear models, could also be used. We do so because those scenarios are relatively simple, they demonstrate the comparability of randomization to approaches you may already be familiar with, and they hint at the advantages of randomization over those other approaches. But the true value of randomization lies in its ability to carry out statistics when all other conventional tests fail; we hint at that value in the final use case.
+
+\hypertarget{common-use-cases}{%
+\section*{Common use cases}\label{common-use-cases}}
+\addcontentsline{toc}{section}{Common use cases}
+
+\hypertarget{is-outcome-x-significantly-unexpected}{%
+\subsection*{\texorpdfstring{1. Is outcome \texttt{X} significantly unexpected?}{1. Is outcome X significantly unexpected?}}\label{is-outcome-x-significantly-unexpected}}
+\addcontentsline{toc}{subsection}{1. Is outcome \texttt{X} significantly unexpected?}
+
+To practice this use case, let's use the dataset \texttt{humpback-whales.csv}: 15 years of sightings of humpback whales within a fjord system in northern British Columbia, Canada (\url{www.bcwhales.org}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Use dataset}
+\NormalTok{hw <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/humpback-whales.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Each individual whale in this dataset was identified using unique patterns on its tail, so each whale has an ID number.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(hw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 4436
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(hw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  year        sit  bhvr  id
+1 2004 2004070701   BNF  42
+2 2004 2004071401   BNF  42
+3 2004 2004071401   BNF  59
+4 2004 2004080301   BNF  30
+5 2004 2004080401 MI-FE 106
+6 2004 2004080401 MI-FE 114
+\end{verbatim}
+
+Each row shows a whale (column \texttt{id}) identified during a single sghting (column \texttt{sit}). Some sightings were of a single solo individual, but others were of groups of two or more individuals.
+
+Our interest here is in these whales' social behavior: do they have ``friendships'', i.e., certain individuals that they prefer to associate with over others, or are they just randomly swimming around and bumping into one another?
+
+Let's tackle this one step at a time.
+
+\textbf{Step 1:} Our \textbf{research question} is, \emph{Do any pairs of whales occur together an unexpectedly persistent social bonds?} Since in science we are always limited by how well we sample the population of interest, a more precise version of our research question would be this: \emph{Based on this dataset, can we conclude whether or not any pairs of whales occur together an unexpectedly large number of times?}
+
+\textbf{Step 2:} The \textbf{null model} for this question is simple random mixing: there is no pattern to which whales occur in which group. So the variable that we will need to shuffle is the \texttt{id} column. With this approach, we be able to preserve the number of times each individual is seen and the total number of observations. So the limitations and inconsistencies in our sampling of each individual will be safely propagated into our statistics and properly reflected in the uncertainty of our results.
+
+\textbf{Step 3:} So we need \textbf{a function} that returns the number of times two whales are associated. We will call this function \texttt{association\_tally()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{association_tally <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(hw,A,B)\{}
+\NormalTok{  siti <-}\StringTok{ }\NormalTok{hw}\OperatorTok{$}\NormalTok{sit[hw}\OperatorTok{$}\NormalTok{id}\OperatorTok{==}\NormalTok{A]}
+\NormalTok{  sitj <-}\StringTok{ }\NormalTok{hw}\OperatorTok{$}\NormalTok{sit[hw}\OperatorTok{$}\NormalTok{id}\OperatorTok{==}\NormalTok{B]}
+
+\NormalTok{  common_sits <-}\StringTok{ }\KeywordTok{which}\NormalTok{(siti }\OperatorTok{%in%}\StringTok{ }\NormalTok{sitj)}
+\NormalTok{  X <-}\StringTok{ }\KeywordTok{length}\NormalTok{(common_sits)}
+
+  \KeywordTok{return}\NormalTok{(X)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Step 4:} For our \textbf{observed} association tally, we will focus in on a single pair of humpback whales: IDs 59 and 11.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{obs <-}\StringTok{ }\KeywordTok{association_tally}\NormalTok{(hw,}\DataTypeTok{A=}\StringTok{"59"}\NormalTok{,}\DataTypeTok{B=}\StringTok{"11"}\NormalTok{)}
+\NormalTok{obs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 71
+\end{verbatim}
+
+That's alot of associations! Let's see if that observation is statistically significant:
+
+\textbf{Step 5:} The \textbf{\texttt{for} loop} for our null distribution will look like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nulls <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{)\{}
+\NormalTok{  hw_null <-}\StringTok{ }\NormalTok{hw }\CommentTok{# save a safe copy of the data}
+\NormalTok{  hw_null}\OperatorTok{$}\NormalTok{id <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(hw_null}\OperatorTok{$}\NormalTok{id,}\DataTypeTok{size=}\KeywordTok{nrow}\NormalTok{(hw_null),}\DataTypeTok{replace=}\OtherTok{FALSE}\NormalTok{) }\CommentTok{# shuffle the null variable}
+\NormalTok{  nulli <-}\StringTok{ }\KeywordTok{association_tally}\NormalTok{(hw_null,}\DataTypeTok{A=}\StringTok{"59"}\NormalTok{,}\DataTypeTok{B=}\StringTok{"11"}\NormalTok{) }\CommentTok{# determine null rate for this iteration}
+\NormalTok{  nulls[i] <-}\StringTok{ }\NormalTok{nulli }\CommentTok{# save result}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Note!} Here we only iterate our \texttt{for} loop 1,000 times, but most published randomizations are run for 5,000 to 10,000 iterations, just to ensure that the null distribution is adequately unbiased.
+
+\textbf{Step 6:} To \textbf{visualize these results}, use a histogram:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{4.2}\NormalTok{,}\FloatTok{4.2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(nulls,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{25}\NormalTok{,}\DataTypeTok{by=}\DecValTok{1}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,(obs}\OperatorTok{+}\DecValTok{10}\NormalTok{)),}\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{obs,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-208-1.pdf}
+
+\textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(nulls }\OperatorTok{>=}\StringTok{ }\NormalTok{obs)) }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(nulls)}
+\NormalTok{p_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+Let's do this again with a different humpback pair, IDs 16 and 118, who were seen together only 13 times. Is their association rate statistically significant?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Individual IDs}
+\NormalTok{A <-}\StringTok{ "58"}
+\NormalTok{B <-}\StringTok{ "133"}
+
+\CommentTok{# Observed association rate}
+\NormalTok{obs <-}\StringTok{ }\KeywordTok{association_tally}\NormalTok{(hw,}\DataTypeTok{A=}\NormalTok{A,}\DataTypeTok{B=}\NormalTok{B)}
+\NormalTok{obs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Generate null model}
+\NormalTok{nulls <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{)\{}
+\NormalTok{  hw_null <-}\StringTok{ }\NormalTok{hw}
+\NormalTok{  hw_null}\OperatorTok{$}\NormalTok{id <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(hw_null}\OperatorTok{$}\NormalTok{id,}\DataTypeTok{size=}\KeywordTok{nrow}\NormalTok{(hw_null),}\DataTypeTok{replace=}\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{  nulli <-}\StringTok{ }\KeywordTok{association_tally}\NormalTok{(hw_null,}\DataTypeTok{A=}\NormalTok{A,}\DataTypeTok{B=}\NormalTok{B)}
+\NormalTok{  nulls[i] <-}\StringTok{ }\NormalTok{nulli}
+\NormalTok{\}}
+
+\CommentTok{# Visualize}
+\KeywordTok{hist}\NormalTok{(nulls,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DataTypeTok{by=}\DecValTok{1}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,(obs}\OperatorTok{+}\DecValTok{7}\NormalTok{)),}\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{obs,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-210-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculate p-value}
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(nulls }\OperatorTok{>=}\StringTok{ }\NormalTok{obs)) }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(nulls)}
+\NormalTok{p_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.019
+\end{verbatim}
+
+In this case, the observed association rate is still statistically significant at the conventional 0.05 level, but there is still an off chance that this is merely the result of random mixing.
+
+\hypertarget{are-two-sample-sets-significantly-different}{%
+\subsection*{2. Are two sample sets significantly different?}\label{are-two-sample-sets-significantly-different}}
+\addcontentsline{toc}{subsection}{2. Are two sample sets significantly different?}
+
+\emph{Building off of the whale scenario:} Some of these whales have learned how to practice bubble-net feeding, a remarkable feeding strategy that requires group cooperation and special techniques for catching schooling fish such as herring. Other individuals have never been seen bubble net feeding. Are there any differences how often these two populations -- the bubble netters and the ``others'' -- use the study area?
+
+First, let's see how many of these individuals are known to bubble net feed:
+
+\begin{verbatim}
+[1] 108
+\end{verbatim}
+
+So, out of 132 individuals, 108 are known to practice bubble netting.
+
+Let's go through the steps:
+
+\textbf{1. Research question:} Is there any difference in the number of years in which bubble-netters are seen compared to other whales?
+
+\textbf{2. Null model:} In this case, the null model will be a \emph{distribution of average differences} in the number of years in which individuals from the two populations are seen. This null distribution will be centered around zero. The variable we will shuffle is which individuals are known bubble netters, keeping the size of the two populations constant in each iteration.
+
+\textbf{3. Function:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{annual_difference <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(hw,bnf_ids)\{}
+  
+\NormalTok{  bnf <-}\StringTok{ }\NormalTok{hw[hw}\OperatorTok{$}\NormalTok{id }\OperatorTok{%in%}\StringTok{ }\NormalTok{bnf_ids,] }\CommentTok{# Sightings of known BNFers}
+\NormalTok{  other <-}\StringTok{ }\NormalTok{hw[}\OperatorTok{!}\StringTok{ }\NormalTok{hw}\OperatorTok{$}\NormalTok{id }\OperatorTok{%in%}\StringTok{ }\NormalTok{bnf_ids,] }\CommentTok{# Sightings of other whales}
+  
+  \CommentTok{# Get distribution of years seen for individuals within each population}
+\NormalTok{  counts <-}\StringTok{ }\KeywordTok{table}\NormalTok{(bnf}\OperatorTok{$}\NormalTok{id,bnf}\OperatorTok{$}\NormalTok{year) }\CommentTok{# sightings of each whale (rows) in each year (columns)}
+\NormalTok{  n_bnf <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(counts,}\DecValTok{1}\NormalTok{,}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{))\}) }\CommentTok{# years seen for each individual}
+  
+\NormalTok{  counts <-}\StringTok{ }\KeywordTok{table}\NormalTok{(other}\OperatorTok{$}\NormalTok{id,other}\OperatorTok{$}\NormalTok{year) }\CommentTok{# sightings of each whale (rows) in each year (columns)}
+\NormalTok{  n_other <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(counts,}\DecValTok{1}\NormalTok{,}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{))\}) }\CommentTok{# years seen for each individual}
+  
+  \CommentTok{# Now get average difference between two distributions}
+\NormalTok{  mean_diff <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(n_bnf,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{) }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(n_other,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+  
+  \KeywordTok{return}\NormalTok{(mean_diff)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{4. Observed value:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{obs <-}\StringTok{ }\KeywordTok{annual_difference}\NormalTok{(hw,}\DataTypeTok{bnf_ids=}\NormalTok{bnf_ids)}
+\NormalTok{obs }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2.351852
+\end{verbatim}
+
+\textbf{5. Build null distribution:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nulls <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{)\{}
+\NormalTok{  bnf_null <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{unique}\NormalTok{(hw}\OperatorTok{$}\NormalTok{id),}\DataTypeTok{size=}\KeywordTok{length}\NormalTok{(bnf_ids),}\DataTypeTok{replace=}\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{  nulli <-}\StringTok{ }\KeywordTok{annual_difference}\NormalTok{(hw, }\DataTypeTok{bnf_ids=}\NormalTok{bnf_null)}
+\NormalTok{  nulls[i] <-}\StringTok{ }\NormalTok{nulli}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{6. Visualize:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(nulls,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DataTypeTok{by=}\NormalTok{.}\DecValTok{1}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{),}\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{obs,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-216-1.pdf}
+
+\textbf{7. p-value:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(nulls }\OperatorTok{>=}\StringTok{ }\NormalTok{obs)) }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(nulls)}
+\NormalTok{p_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.005
+\end{verbatim}
+
+So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.005).
+
+\hypertarget{are-two-variables-correlated}{%
+\subsection*{3. Are two variables correlated?}\label{are-two-variables-correlated}}
+\addcontentsline{toc}{subsection}{3. Are two variables correlated?}
+
+To perform a correlation analysis with randomization, let's use a classic scenario from marine conversation: We have abundance estimates for a critically endangered porpoise from four years across two decades of research. This species only has a handful of individuals left in the wild.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/porpoise-survey.csv"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  year         N
+1 2000 12.547943
+2 2000  5.932797
+3 2000 17.291144
+4 2000  2.707317
+5 2000 12.279161
+6 2000  8.945810
+\end{verbatim}
+
+Each row of this dataset is an abundance estimate from a survey that occurred within the vaquita's range during a certain year.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(df}\OperatorTok{$}\NormalTok{N }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{year,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{20}\NormalTok{),}
+     \DataTypeTok{xlab=}\StringTok{"Year"}\NormalTok{,}
+     \DataTypeTok{ylab=}\StringTok{"Total Abundance"}\NormalTok{,}
+     \DataTypeTok{col=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{6}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-220-1.pdf}
+
+Performing a simple linear regression with this dataset yields the following results:
+
+\includegraphics{figures/unnamed-chunk-221-1.pdf}
+
+The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(df_lm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+lm(formula = df$N ~ df$year)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.6841 -3.3981 -0.3879  3.0338  8.6945 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept) 173.63645  133.70824   1.299    0.198
+df$year      -0.08216    0.06657  -1.234    0.221
+
+Residual standard error: 4.221 on 82 degrees of freedom
+Multiple R-squared:  0.01824,   Adjusted R-squared:  0.006268 
+F-statistic: 1.523 on 1 and 82 DF,  p-value: 0.2206
+\end{verbatim}
+
+These results may compel some conservation skeptics to stop worrying about the porpoise. ``Yes, the population is small, but it appears stable, and there is no evidence that it is decreasing.'' This is a situation in which using a randomization regression analysis could give us more information and help us speak more precisely about the risks to which this population is exposed.
+
+Let's go through the steps:
+
+\textbf{1. Research question:} Is there a trend in porpoise abundance over time?
+
+\textbf{2. Null model:} There is no trend; the abundance estimates might as well come from any given year and the trendline would look the same.
+
+\textbf{3. Function:} Get the slope estimate for the time series.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_lm <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(df)\{}
+\NormalTok{  lmi <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(df}\OperatorTok{$}\NormalTok{N }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{year) }
+\NormalTok{  slopi <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(lmi)}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  rsqu <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(lmi)}\OperatorTok{$}\NormalTok{r.squared}
+  
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"slope"}\NormalTok{=slopi,}\StringTok{"r"}\NormalTok{=rsqu))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{4. Observed value:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{obs <-}\StringTok{ }\KeywordTok{df_lm}\NormalTok{(df)}
+\NormalTok{obs }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      slope           r 
+-0.08216195  0.01824031 
+\end{verbatim}
+
+\textbf{5. Build null distribution:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nulls <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{)\{}
+\NormalTok{  df_null <-}\StringTok{ }\NormalTok{df}
+\NormalTok{  df_null}\OperatorTok{$}\NormalTok{year <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(df_null}\OperatorTok{$}\NormalTok{year,}\DataTypeTok{size=}\KeywordTok{nrow}\NormalTok{(df_null),}\DataTypeTok{replace=}\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{  nulli <-}\StringTok{ }\KeywordTok{df_lm}\NormalTok{(df_null)}
+\NormalTok{  nulli <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{slope=}\NormalTok{nulli[}\DecValTok{1}\NormalTok{],}\DataTypeTok{r=}\NormalTok{nulli[}\DecValTok{2}\NormalTok{])}
+\NormalTok{  nulls <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(nulls,nulli)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{6. Visualize:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(nulls}\OperatorTok{$}\NormalTok{slope,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DataTypeTok{by=}\NormalTok{.}\DecValTok{01}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{),}\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{,}\DataTypeTok{border=}\StringTok{"grey70"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\OperatorTok{-}\NormalTok{.}\DecValTok{48}\NormalTok{,}\DecValTok{20}\NormalTok{,}\StringTok{"Slope }\CharTok{\textbackslash{}n}\StringTok{estimate"}\NormalTok{,}\DataTypeTok{pos=}\DecValTok{4}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{obs[}\DecValTok{1}\NormalTok{],}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(nulls}\OperatorTok{$}\NormalTok{r,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DataTypeTok{by=}\NormalTok{.}\DecValTok{001}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,.}\DecValTok{1}\NormalTok{),}\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{,}\DataTypeTok{border=}\StringTok{"grey70"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(.}\DecValTok{06}\NormalTok{,}\DecValTok{20}\NormalTok{,}\StringTok{"Correlation }\CharTok{\textbackslash{}n}\StringTok{coefficient"}\NormalTok{,}\DataTypeTok{pos=}\DecValTok{4}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{obs[}\DecValTok{2}\NormalTok{],}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-226-1.pdf}
+
+\textbf{7. p-value:}
+
+Significance of \textbf{slope}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(nulls}\OperatorTok{$}\NormalTok{slope }\OperatorTok{>=}\StringTok{ }\NormalTok{obs[}\DecValTok{1}\NormalTok{])) }\OperatorTok{/}\StringTok{ }\KeywordTok{nrow}\NormalTok{(nulls)}
+\NormalTok{p_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.91
+\end{verbatim}
+
+This indicates that the chance that the slope is lower than the null expectation is 91\%.
+
+Significance of \textbf{correlation coefficient}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(nulls}\OperatorTok{$}\NormalTok{r }\OperatorTok{>=}\StringTok{ }\NormalTok{obs[}\DecValTok{2}\NormalTok{])) }\OperatorTok{/}\StringTok{ }\KeywordTok{nrow}\NormalTok{(nulls)}
+\NormalTok{p_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.203
+\end{verbatim}
+
+This indicates that the observed regression is better than 79.7\% of scenarios that might be expected under the null expectation.
+
+\hypertarget{is-the-slope-of-a-regression-line-negative}{%
+\subsection*{4. Is the slope of a regression line negative?}\label{is-the-slope-of-a-regression-line-negative}}
+\addcontentsline{toc}{subsection}{4. Is the slope of a regression line negative?}
+
+Sometimes we have even less data about an endagered species. Let's say we go out in 2021 for another porpoise survey and come up with these estimates from the species' range:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(truncnorm) ; }\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{n2021 <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{25}\NormalTok{,}\DataTypeTok{a=}\DecValTok{0}\NormalTok{,}\DataTypeTok{mean=}\FloatTok{3.6}\NormalTok{,}\DataTypeTok{sd=}\DecValTok{3}\NormalTok{)}
+\NormalTok{n2021}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1]  4.4322877  6.8533235  4.8873741  5.1181677  1.8757801  1.9601044
+ [7]  1.9066440  0.9298865  2.1684219  0.6048407  1.2712383  3.7933765
+[13]  6.4784822  3.2691435  2.0669715  0.8664138  1.0884850 10.8475055
+[19]  4.0022647  2.1279423  2.2783564  4.9787683  1.5188393  5.3242672
+[25]  0.5290328
+\end{verbatim}
+
+We want to know what the chances are that the population has declined between 2017 and 2021.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n2017 <-}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{N[df}\OperatorTok{$}\NormalTok{year}\OperatorTok{==}\DecValTok{2017}\NormalTok{]}
+
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{type=}\StringTok{"n"}\NormalTok{,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{15}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{2015}\NormalTok{,}\DecValTok{2023}\NormalTok{),}
+     \DataTypeTok{xlab=}\StringTok{"Year"}\NormalTok{,}
+     \DataTypeTok{ylab=}\StringTok{"Total Abundance"}\NormalTok{,}
+     \DataTypeTok{col=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{6}\NormalTok{))}
+
+\KeywordTok{points}\NormalTok{(n2017 }\OperatorTok{~}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{2017}\NormalTok{,}\DataTypeTok{times=}\KeywordTok{length}\NormalTok{(n2017)))}
+\KeywordTok{points}\NormalTok{(n2021 }\OperatorTok{~}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{2021}\NormalTok{,}\DataTypeTok{times=}\KeywordTok{length}\NormalTok{(n2021)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-230-1.pdf}
+
+If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
+
+In this case, our null model will be the distribution of differences of values drawn randomly from the two years' datasets.
+
+And in this randomization application, the workflow is a bit more simplified. We don't need a core function, and we don't even need a \texttt{for} loop.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Randomly draw from the 2017 dataset 5,000 times}
+\NormalTok{r2017 <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(n2017,}\DataTypeTok{size=}\DecValTok{10000}\NormalTok{,}\DataTypeTok{replace=}\OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{# Do the same for the 2017 dataset}
+\NormalTok{r2021 <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(n2021,}\DataTypeTok{size=}\DecValTok{10000}\NormalTok{,}\DataTypeTok{replace=}\OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{# Get the difference of these two datasets}
+\NormalTok{diffs <-}\StringTok{ }\NormalTok{r2021 }\OperatorTok{-}\StringTok{ }\NormalTok{r2017}
+
+\CommentTok{# Visualize}
+\KeywordTok{hist}\NormalTok{(diffs,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{20}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DataTypeTok{by=}\DecValTok{1}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{20}\NormalTok{,}\DecValTok{20}\NormalTok{),}\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{,}\DataTypeTok{border=}\StringTok{"grey70"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\DecValTok{0}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-231-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get p_value}
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(diffs }\OperatorTok{>=}\StringTok{ }\DecValTok{0}\NormalTok{)) }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(diffs)}
+
+\CommentTok{# Convert to chances of decline}
+\NormalTok{chances_of_decline <-}\StringTok{ }\DecValTok{100}\OperatorTok{*}\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{p_value)}
+\NormalTok{chances_of_decline}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 84.43
+\end{verbatim}
+
+The chances that this population is in decline is 84.43\%.
+
+\hypertarget{review-assignment-10}{%
+\section*{Review assignment}\label{review-assignment-10}}
+\addcontentsline{toc}{section}{Review assignment}
+
+Let's return to the humpback whale scenario
+
+\hypertarget{a-do-bubble-net-feeders-have-stronger-social-bonds}{%
+\subsection*{(a) Do bubble net feeders have stronger social bonds?}\label{a-do-bubble-net-feeders-have-stronger-social-bonds}}
+\addcontentsline{toc}{subsection}{(a) Do bubble net feeders have stronger social bonds?}
+
+Above we asked whether bubble net feeders exhibit higher year-to-year site fidelity to the study area than other individuals. What about their social bonds? Do whales known to bubble net feed tend to have more stable social associations than the others?
+
+Make sure you are working with the correct data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hw <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/humpback-whales.csv"}\NormalTok{)}
+
+\CommentTok{# Establish the two populations}
+\NormalTok{bnf_indices <-}\StringTok{ }\KeywordTok{grep}\NormalTok{(}\StringTok{"BNF"}\NormalTok{,hw}\OperatorTok{$}\NormalTok{bhvr) }\CommentTok{# which detections are of BNFers}
+\NormalTok{bnf_sits <-}\StringTok{ }\NormalTok{hw[bnf_indices,] }\CommentTok{# BNF sightings}
+\NormalTok{bnf_ids <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(bnf_sits}\OperatorTok{$}\NormalTok{id) }\CommentTok{# BNF individuals}
+\KeywordTok{length}\NormalTok{(bnf_ids)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 108
+\end{verbatim}
+
+\textbf{Answer key:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Internal function for determining times seen together for a single row of a dyads dataframe}
+\NormalTok{social_X <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(dyad)\{}
+\NormalTok{    A <-}\StringTok{ }\NormalTok{dyad[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    B <-}\StringTok{ }\NormalTok{dyad[}\DecValTok{2}\NormalTok{]}
+\NormalTok{    sitA <-}\StringTok{ }\NormalTok{hw}\OperatorTok{$}\NormalTok{sit[hw}\OperatorTok{$}\NormalTok{id}\OperatorTok{==}\NormalTok{A]}
+\NormalTok{    sitB <-}\StringTok{ }\NormalTok{hw}\OperatorTok{$}\NormalTok{sit[hw}\OperatorTok{$}\NormalTok{id}\OperatorTok{==}\NormalTok{B]}
+\NormalTok{    X <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(sitA }\OperatorTok{%in%}\StringTok{ }\NormalTok{sitB))}
+    \KeywordTok{return}\NormalTok{(X)}
+\NormalTok{\}}
+
+\CommentTok{# Core function}
+\NormalTok{social_difference <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(hw,bnf_ids)\{}
+  
+\NormalTok{  bnf <-}\StringTok{ }\NormalTok{hw[hw}\OperatorTok{$}\NormalTok{id }\OperatorTok{%in%}\StringTok{ }\NormalTok{bnf_ids,] }\CommentTok{# Sightings of known BNFers}
+\NormalTok{  other <-}\StringTok{ }\NormalTok{hw[}\OperatorTok{!}\StringTok{ }\NormalTok{hw}\OperatorTok{$}\NormalTok{id }\OperatorTok{%in%}\StringTok{ }\NormalTok{bnf_ids,] }\CommentTok{# Sightings of other whales}
+\NormalTok{  other_ids <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(other}\OperatorTok{$}\NormalTok{id)}
+  
+\NormalTok{  bnfs <-}\StringTok{ }\KeywordTok{expand.grid}\NormalTok{(bnf_ids,bnf_ids) }\CommentTok{# Make a dataframe of all possible dyad combinations}
+\NormalTok{  bnfs}\OperatorTok{$}\NormalTok{X <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(bnfs,}\DecValTok{1}\NormalTok{,social_X) }\CommentTok{# Get number of times seen}
+  
+  \CommentTok{# Do same for others}
+\NormalTok{  others <-}\StringTok{ }\KeywordTok{expand.grid}\NormalTok{(other_ids, other_ids)}
+\NormalTok{  others}\OperatorTok{$}\NormalTok{X <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(others,}\DecValTok{1}\NormalTok{,social_X) }
+  
+  \CommentTok{# Now get average difference between two distributions}
+\NormalTok{  mean_diff <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(bnfs}\OperatorTok{$}\NormalTok{X,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{) }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(others}\OperatorTok{$}\NormalTok{X,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+  
+  \KeywordTok{return}\NormalTok{(mean_diff)}
+\NormalTok{\}}
+
+\CommentTok{# Observed}
+\NormalTok{obs <-}\StringTok{ }\KeywordTok{social_difference}\NormalTok{(hw,bnf_ids)}
+\NormalTok{obs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] -0.003236454
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Null distribution (only do 100 iterations for sake of time)}
+\NormalTok{nulls <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  bnf_null <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{unique}\NormalTok{(hw}\OperatorTok{$}\NormalTok{id),}\DataTypeTok{size=}\KeywordTok{length}\NormalTok{(bnf_ids),}\DataTypeTok{replace=}\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{  nulli <-}\StringTok{ }\KeywordTok{social_difference}\NormalTok{(hw, }\DataTypeTok{bnf_ids=}\NormalTok{bnf_null)}
+\NormalTok{  nulls[i] <-}\StringTok{ }\NormalTok{nulli}
+\NormalTok{\}}
+
+\CommentTok{# Visualize}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{4.2}\NormalTok{,}\FloatTok{4.2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(nulls,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{6}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DataTypeTok{by=}\NormalTok{.}\DecValTok{1}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{obs,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-233-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# p-value}
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(nulls }\OperatorTok{>=}\StringTok{ }\NormalTok{obs)) }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(nulls)}
+\NormalTok{p_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# BNFers have much more persistent bonds than other whales (p=0.00000)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{b-are-bubble-net-feeders-more-closely-related-to-each-other}{%
+\subsection*{(b) Are bubble net feeders more closely related to each other?}\label{b-are-bubble-net-feeders-more-closely-related-to-each-other}}
+\addcontentsline{toc}{subsection}{(b) Are bubble net feeders more closely related to each other?}
+
+In 2019, researchers took DNA samples from 36 individuals in this dataset. They collected the samples by flying drones through the whale's spouts and harvesting DNA from their \emph{snot}! \emph{GROSS!!!} But also \emph{super RAD!}
+
+Using these genetic samples, the researchers determined the relatedness of each pair of individuals they sampled. Those results are provided in the dataset \texttt{humpback-kinship.rds}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kinship <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/humpback-kinship.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+And here is a key providing the IDs of these 36 whales and their status as a known bubble net feeder.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bnf_status <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bnf-status.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Use these datasets within a randomization routine to determine whether known bubble netters are more closely related to each other than they are to other whales.
+
+\textbf{Answer key:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# How many BNFers are in this dataset?}
+\NormalTok{n_bnf <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(bnf_status[bnf_status}\OperatorTok{$}\NormalTok{bnf,])}
+\NormalTok{n_bnf}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 23
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Core function}
+\NormalTok{kinship_difference <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kinship,bnf_status)\{}
+  
+\NormalTok{  bnf_ids <-}\StringTok{ }\NormalTok{bnf_status}\OperatorTok{$}\NormalTok{id[bnf_status}\OperatorTok{$}\NormalTok{bnf]}
+\NormalTok{  other_ids <-}\StringTok{ }\NormalTok{bnf_status}\OperatorTok{$}\NormalTok{id[}\OperatorTok{!}\StringTok{ }\NormalTok{bnf_status}\OperatorTok{$}\NormalTok{bnf]}
+  
+\NormalTok{  bnf_rows <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{row.names}\NormalTok{(kinship) }\OperatorTok{%in%}\StringTok{ }\NormalTok{bnf_ids)}
+\NormalTok{  kin_bnf <-}\StringTok{ }\NormalTok{kinship[bnf_rows,bnf_rows]}
+\NormalTok{  kin_other <-}\StringTok{ }\NormalTok{kinship[}\OperatorTok{-}\NormalTok{bnf_rows, }\OperatorTok{-}\NormalTok{bnf_rows]}
+  
+\NormalTok{  mean_diff <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{as.matrix}\NormalTok{(kin_bnf)) }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{as.matrix}\NormalTok{(kin_other))}
+  
+  \KeywordTok{return}\NormalTok{(mean_diff)}
+\NormalTok{\}}
+
+\CommentTok{# Observed}
+\NormalTok{obs <-}\StringTok{ }\KeywordTok{kinship_difference}\NormalTok{(kinship,bnf_status)}
+\NormalTok{obs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] -0.02804407
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Null distribution }
+\NormalTok{nulls <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{)\{}
+\NormalTok{  bnf_null <-}\StringTok{ }\NormalTok{bnf_status}
+\NormalTok{  bnf_null}\OperatorTok{$}\NormalTok{bnf <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(bnf_null}\OperatorTok{$}\NormalTok{bnf,}\DataTypeTok{size=}\KeywordTok{nrow}\NormalTok{(bnf_null),}\DataTypeTok{replace=}\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{  nulli <-}\StringTok{ }\KeywordTok{kinship_difference}\NormalTok{(kinship,bnf_null)}
+\NormalTok{  nulls[i] <-}\StringTok{ }\NormalTok{nulli}
+\NormalTok{\}}
+
+\CommentTok{# Visualize}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{4.2}\NormalTok{,}\FloatTok{4.2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(nulls,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{6}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DataTypeTok{by=}\NormalTok{.}\DecValTok{002}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{.}\DecValTok{1}\NormalTok{,.}\DecValTok{05}\NormalTok{),}
+     \DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{,}\DataTypeTok{border=}\StringTok{"grey70"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{obs,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-236-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# p-value}
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(nulls }\OperatorTok{>=}\StringTok{ }\NormalTok{obs)) }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(nulls)}
+\NormalTok{p_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.37
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Weak evidence for relatedness being a factor in BNF network, but >60% chance! }
+\CommentTok{# A bit better than coin flip. Interesting!}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{c-do-social-bonds-relate-to-kinship}{%
+\section*{(c) Do social bonds relate to kinship?}\label{c-do-social-bonds-relate-to-kinship}}
+\addcontentsline{toc}{section}{(c) Do social bonds relate to kinship?}
+
+Finally, let's ask whether the strength of social bonds is generally correlated to kinship. In other words, is this population assorting according to relatedness?
+
+For your convenience, the social association rate for these 36 individuals has also been summarized in the dataset \texttt{humpback-sociality.rds}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sociality <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/humpback-sociality.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Answer key:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Core function}
+\NormalTok{kin_soc <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kinship,sociality)\{}
+\NormalTok{  ids <-}\StringTok{ }\KeywordTok{row.names}\NormalTok{(kinship) ; ids}
+  
+\NormalTok{  mr <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{()}
+\NormalTok{  i=}\DecValTok{1}\NormalTok{ ; j=}\DecValTok{10}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(ids))\{}
+\NormalTok{    idi <-}\StringTok{ }\NormalTok{ids[i] ; idi}
+\NormalTok{    kin_row <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{row.names}\NormalTok{(kinship)}\OperatorTok{==}\NormalTok{idi) ; kin_row}
+\NormalTok{    soc_row <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{row.names}\NormalTok{(sociality)}\OperatorTok{==}\NormalTok{idi) ; soc_row}
+        
+    \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(ids))\{}
+\NormalTok{      idj <-}\StringTok{ }\NormalTok{ids[j]; idj}
+      
+\NormalTok{      kin_col <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{colnames}\NormalTok{(kinship)}\OperatorTok{==}\NormalTok{idj) ; kin_col}
+\NormalTok{      soc_col <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{colnames}\NormalTok{(sociality)}\OperatorTok{==}\NormalTok{idj) ; soc_col}
+      
+\NormalTok{      mri <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{A=}\NormalTok{idi,}\DataTypeTok{B=}\NormalTok{idj,}
+                        \DataTypeTok{kinship=}\NormalTok{kinship[kin_row,kin_col],}
+                        \DataTypeTok{sociality=}\NormalTok{sociality[soc_row,soc_col])}
+\NormalTok{      mri}
+\NormalTok{      mr <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(mr,mri)}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{  mr}
+  
+  \CommentTok{# remove navelgazers}
+\NormalTok{  navels <-}\StringTok{ }\KeywordTok{which}\NormalTok{(mr}\OperatorTok{$}\NormalTok{A}\OperatorTok{==}\NormalTok{mr}\OperatorTok{$}\NormalTok{B) ; navels}
+\NormalTok{  mr <-}\StringTok{ }\NormalTok{mr[}\OperatorTok{-}\NormalTok{navels,]}
+  
+  \CommentTok{#plot(sociality~kinship,data=mr)}
+\NormalTok{  lmi <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(mr}\OperatorTok{$}\NormalTok{sociality }\OperatorTok{~}\StringTok{ }\NormalTok{mr}\OperatorTok{$}\NormalTok{kinship) }
+  \CommentTok{#abline(lmi)}
+\NormalTok{  slopi <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(lmi)}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  rsqu <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(lmi)}\OperatorTok{$}\NormalTok{r.squared}
+  
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"slope"}\NormalTok{=slopi,}\StringTok{"r"}\NormalTok{=rsqu))}
+\NormalTok{\}}
+
+\CommentTok{# Observed}
+\NormalTok{obs <-}\StringTok{ }\KeywordTok{kin_soc}\NormalTok{(kinship,sociality)}
+\NormalTok{obs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+          slope               r 
+-0.000250926843  0.000002521563 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Null distribution}
+\NormalTok{nulls <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{500}\NormalTok{)\{}
+\NormalTok{  kin_null <-}\StringTok{ }\NormalTok{kinship}
+\NormalTok{  kin_null <-}\StringTok{ }\NormalTok{kin_null[}\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(kin_null),}\DataTypeTok{size=}\KeywordTok{nrow}\NormalTok{(kin_null),}\DataTypeTok{replace=}\OtherTok{FALSE}\NormalTok{),]}
+  \KeywordTok{row.names}\NormalTok{(kin_null) <-}\StringTok{ }\KeywordTok{row.names}\NormalTok{(kinship)}
+\NormalTok{  nulli <-}\StringTok{ }\KeywordTok{kin_soc}\NormalTok{(kin_null,sociality)}
+\NormalTok{  nulli <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{slope=}\NormalTok{nulli[}\DecValTok{1}\NormalTok{],}\DataTypeTok{r=}\NormalTok{nulli[}\DecValTok{2}\NormalTok{])}
+\NormalTok{  nulls <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(nulls,nulli)}
+\NormalTok{\}}
+
+\CommentTok{# Visualize}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(nulls}\OperatorTok{$}\NormalTok{slope,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DataTypeTok{by=}\NormalTok{.}\DecValTok{0005}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{.}\DecValTok{02}\NormalTok{,.}\DecValTok{02}\NormalTok{),}\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{,}\DataTypeTok{border=}\StringTok{"grey70"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\OperatorTok{-}\NormalTok{.}\DecValTok{48}\NormalTok{,}\DecValTok{20}\NormalTok{,}\StringTok{"Slope }\CharTok{\textbackslash{}n}\StringTok{estimate"}\NormalTok{,}\DataTypeTok{pos=}\DecValTok{4}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{obs[}\DecValTok{1}\NormalTok{],}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(nulls}\OperatorTok{$}\NormalTok{r,}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DataTypeTok{by=}\NormalTok{.}\DecValTok{0001}\NormalTok{),}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,.}\DecValTok{01}\NormalTok{),}\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Null distribution"}\NormalTok{,}\DataTypeTok{border=}\StringTok{"grey70"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(.}\DecValTok{06}\NormalTok{,}\DecValTok{20}\NormalTok{,}\StringTok{"Correlation }\CharTok{\textbackslash{}n}\StringTok{coefficient"}\NormalTok{,}\DataTypeTok{pos=}\DecValTok{4}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{obs[}\DecValTok{2}\NormalTok{],}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-238-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# P-value of slope}
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(nulls}\OperatorTok{$}\NormalTok{slope }\OperatorTok{>=}\StringTok{ }\NormalTok{obs[}\DecValTok{1}\NormalTok{])) }\OperatorTok{/}\StringTok{ }\KeywordTok{nrow}\NormalTok{(nulls)}
+\NormalTok{p_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.588
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# P-value of correlation coefficient}
+\NormalTok{p_value <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(nulls}\OperatorTok{$}\NormalTok{r }\OperatorTok{>=}\StringTok{ }\NormalTok{obs[}\DecValTok{2}\NormalTok{])) }\OperatorTok{/}\StringTok{ }\KeywordTok{nrow}\NormalTok{(nulls)}
+\NormalTok{p_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.942
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# How to interpret this correlation coefficient? }
+\CommentTok{# Could it be said that the correlation is unexpectedly POOR? }
+\CommentTok{# As in, the correlation coefficient is worse than > 95% of outcomes expected under the null distribution? }
+\CommentTok{# In other words, whales of closer relatedness AVOID each other? At least a hypothesis...}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{other-resources-10}{%
+\section*{Other Resources}\label{other-resources-10}}
+\addcontentsline{toc}{section}{Other Resources}
+
+\emph{NOTE: Under construction!}
 
 \hypertarget{iterative-simulations}{%
 \chapter{Iterative simulations}\label{iterative-simulations}}
@@ -5269,8 +6210,8 @@ Spinning up a local DB
 \hypertarget{template}{%
 \chapter{Template}\label{template}}
 
-\hypertarget{learning-goals-11}{%
-\section*{Learning goals}\label{learning-goals-11}}
+\hypertarget{learning-goals-12}{%
+\section*{Learning goals}\label{learning-goals-12}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -5299,16 +6240,16 @@ Bangarang - Crew Briefing from Luke Padgett on Vimeo.
 \subsection*{Exercise 1}\label{exercise-1-7}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
-\hypertarget{review-assignment-10}{%
-\section*{Review assignment}\label{review-assignment-10}}
+\hypertarget{review-assignment-11}{%
+\section*{Review assignment}\label{review-assignment-11}}
 \addcontentsline{toc}{section}{Review assignment}
 
 Introduce data
 
 Introduce task(s)
 
-\hypertarget{other-resources-10}{%
-\section*{Other Resources}\label{other-resources-10}}
+\hypertarget{other-resources-11}{%
+\section*{Other Resources}\label{other-resources-11}}
 \addcontentsline{toc}{section}{Other Resources}
 
 \url{https://desiree.rbind.io/post/2020/learnr-iframes/}
