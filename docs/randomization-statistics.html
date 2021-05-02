@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-04-30" />
+<meta name="date" content="2021-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>IV Exploring &amp; analyzing data</b></span></li>
 <li class="chapter" data-level="18" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>18</b> Exploratory Data Analysis</a></li>
 <li class="chapter" data-level="19" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>19</b> Significance statistics</a></li>
-<li class="chapter" data-level="20" data-path="displaying-data.html"><a href="displaying-data.html"><i class="fa fa-check"></i><b>20</b> Displaying data</a></li>
+<li class="chapter" data-level="20" data-path="summarizing-datasets.html"><a href="summarizing-datasets.html"><i class="fa fa-check"></i><b>20</b> Summarizing datasets</a></li>
 <li class="part"><span><b>V Accessing &amp; managing data</b></span></li>
 <li class="chapter" data-level="21" data-path="managing-project-files.html"><a href="managing-project-files.html"><i class="fa fa-check"></i><b>21</b> Managing project files</a></li>
 <li class="chapter" data-level="22" data-path="formatting-your-own-data.html"><a href="formatting-your-own-data.html"><i class="fa fa-check"></i><b>22</b> Formatting your own data</a></li>
@@ -234,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="randomization-statistics" class="section level1">
 <h1><span class="header-section-number">Module 60</span> Randomization statistics</h1>
-<div id="learning-goals-11" class="section level2 unnumbered">
+<div id="learning-goals-12" class="section level2 unnumbered">
 <h2>Learning goals</h2>
 <ul>
 <li>Understand what randomization analyses are, and why they are awesome.</li>
@@ -276,12 +276,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="is-outcome-x-significantly-unexpected" class="section level3 unnumbered">
 <h3>1. Is outcome <code>X</code> significantly unexpected?</h3>
 <p>To practice this use case, let’s use the dataset <code>humpback-whales.csv</code>: 15 years of sightings of humpback whales within a fjord system in northern British Columbia, Canada (<a href="www.bcwhales.org">www.bcwhales.org</a>).</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="randomization-statistics.html#cb361-1"></a><span class="co"># Use dataset</span></span>
-<span id="cb361-2"><a href="randomization-statistics.html#cb361-2"></a>hw &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/humpback-whales.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="randomization-statistics.html#cb372-1"></a><span class="co"># Use dataset</span></span>
+<span id="cb372-2"><a href="randomization-statistics.html#cb372-2"></a>hw &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/humpback-whales.csv&quot;</span>)</span></code></pre></div>
 <p>Each individual whale in this dataset was identified using unique patterns on its tail, so each whale has an ID number.</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="randomization-statistics.html#cb362-1"></a><span class="kw">nrow</span>(hw)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="randomization-statistics.html#cb373-1"></a><span class="kw">nrow</span>(hw)</span></code></pre></div>
 <pre><code>[1] 4436</code></pre>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="randomization-statistics.html#cb364-1"></a><span class="kw">head</span>(hw)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="randomization-statistics.html#cb375-1"></a><span class="kw">head</span>(hw)</span></code></pre></div>
 <pre><code>  year        sit  bhvr  id
 1 2004 2004070701   BNF  42
 2 2004 2004071401   BNF  42
@@ -295,64 +295,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Step 1:</strong> Our <strong>research question</strong> is, <em>Do any pairs of whales occur together an unexpectedly persistent social bonds?</em> Since in science we are always limited by how well we sample the population of interest, a more precise version of our research question would be this: <em>Based on this dataset, can we conclude whether or not any pairs of whales occur together an unexpectedly large number of times?</em></p>
 <p><strong>Step 2:</strong> The <strong>null model</strong> for this question is simple random mixing: there is no pattern to which whales occur in which group. So the variable that we will need to shuffle is the <code>id</code> column. With this approach, we be able to preserve the number of times each individual is seen and the total number of observations. So the limitations and inconsistencies in our sampling of each individual will be safely propagated into our statistics and properly reflected in the uncertainty of our results.</p>
 <p><strong>Step 3:</strong> So we need <strong>a function</strong> that returns the number of times two whales are associated. We will call this function <code>association_tally()</code>.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="randomization-statistics.html#cb366-1"></a>association_tally &lt;-<span class="st"> </span><span class="cf">function</span>(hw,A,B){</span>
-<span id="cb366-2"><a href="randomization-statistics.html#cb366-2"></a>  siti &lt;-<span class="st"> </span>hw<span class="op">$</span>sit[hw<span class="op">$</span>id<span class="op">==</span>A]</span>
-<span id="cb366-3"><a href="randomization-statistics.html#cb366-3"></a>  sitj &lt;-<span class="st"> </span>hw<span class="op">$</span>sit[hw<span class="op">$</span>id<span class="op">==</span>B]</span>
-<span id="cb366-4"><a href="randomization-statistics.html#cb366-4"></a></span>
-<span id="cb366-5"><a href="randomization-statistics.html#cb366-5"></a>  common_sits &lt;-<span class="st"> </span><span class="kw">which</span>(siti <span class="op">%in%</span><span class="st"> </span>sitj)</span>
-<span id="cb366-6"><a href="randomization-statistics.html#cb366-6"></a>  X &lt;-<span class="st"> </span><span class="kw">length</span>(common_sits)</span>
-<span id="cb366-7"><a href="randomization-statistics.html#cb366-7"></a></span>
-<span id="cb366-8"><a href="randomization-statistics.html#cb366-8"></a>  <span class="kw">return</span>(X)</span>
-<span id="cb366-9"><a href="randomization-statistics.html#cb366-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="randomization-statistics.html#cb377-1"></a>association_tally &lt;-<span class="st"> </span><span class="cf">function</span>(hw,A,B){</span>
+<span id="cb377-2"><a href="randomization-statistics.html#cb377-2"></a>  siti &lt;-<span class="st"> </span>hw<span class="op">$</span>sit[hw<span class="op">$</span>id<span class="op">==</span>A]</span>
+<span id="cb377-3"><a href="randomization-statistics.html#cb377-3"></a>  sitj &lt;-<span class="st"> </span>hw<span class="op">$</span>sit[hw<span class="op">$</span>id<span class="op">==</span>B]</span>
+<span id="cb377-4"><a href="randomization-statistics.html#cb377-4"></a></span>
+<span id="cb377-5"><a href="randomization-statistics.html#cb377-5"></a>  common_sits &lt;-<span class="st"> </span><span class="kw">which</span>(siti <span class="op">%in%</span><span class="st"> </span>sitj)</span>
+<span id="cb377-6"><a href="randomization-statistics.html#cb377-6"></a>  X &lt;-<span class="st"> </span><span class="kw">length</span>(common_sits)</span>
+<span id="cb377-7"><a href="randomization-statistics.html#cb377-7"></a></span>
+<span id="cb377-8"><a href="randomization-statistics.html#cb377-8"></a>  <span class="kw">return</span>(X)</span>
+<span id="cb377-9"><a href="randomization-statistics.html#cb377-9"></a>}</span></code></pre></div>
 <p><strong>Step 4:</strong> For our <strong>observed</strong> association tally, we will focus in on a single pair of humpback whales: IDs 59 and 11.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="randomization-statistics.html#cb367-1"></a>obs &lt;-<span class="st"> </span><span class="kw">association_tally</span>(hw,<span class="dt">A=</span><span class="st">&quot;59&quot;</span>,<span class="dt">B=</span><span class="st">&quot;11&quot;</span>)</span>
-<span id="cb367-2"><a href="randomization-statistics.html#cb367-2"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="randomization-statistics.html#cb378-1"></a>obs &lt;-<span class="st"> </span><span class="kw">association_tally</span>(hw,<span class="dt">A=</span><span class="st">&quot;59&quot;</span>,<span class="dt">B=</span><span class="st">&quot;11&quot;</span>)</span>
+<span id="cb378-2"><a href="randomization-statistics.html#cb378-2"></a>obs</span></code></pre></div>
 <pre><code>[1] 71</code></pre>
 <p>That’s alot of associations! Let’s see if that observation is statistically significant:</p>
 <p><strong>Step 5:</strong> The <strong><code>for</code> loop</strong> for our null distribution will look like this:</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="randomization-statistics.html#cb369-1"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb369-2"><a href="randomization-statistics.html#cb369-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
-<span id="cb369-3"><a href="randomization-statistics.html#cb369-3"></a>  hw_null &lt;-<span class="st"> </span>hw <span class="co"># save a safe copy of the data</span></span>
-<span id="cb369-4"><a href="randomization-statistics.html#cb369-4"></a>  hw_null<span class="op">$</span>id &lt;-<span class="st"> </span><span class="kw">sample</span>(hw_null<span class="op">$</span>id,<span class="dt">size=</span><span class="kw">nrow</span>(hw_null),<span class="dt">replace=</span><span class="ot">FALSE</span>) <span class="co"># shuffle the null variable</span></span>
-<span id="cb369-5"><a href="randomization-statistics.html#cb369-5"></a>  nulli &lt;-<span class="st"> </span><span class="kw">association_tally</span>(hw_null,<span class="dt">A=</span><span class="st">&quot;59&quot;</span>,<span class="dt">B=</span><span class="st">&quot;11&quot;</span>) <span class="co"># determine null rate for this iteration</span></span>
-<span id="cb369-6"><a href="randomization-statistics.html#cb369-6"></a>  nulls[i] &lt;-<span class="st"> </span>nulli <span class="co"># save result</span></span>
-<span id="cb369-7"><a href="randomization-statistics.html#cb369-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="randomization-statistics.html#cb380-1"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb380-2"><a href="randomization-statistics.html#cb380-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
+<span id="cb380-3"><a href="randomization-statistics.html#cb380-3"></a>  hw_null &lt;-<span class="st"> </span>hw <span class="co"># save a safe copy of the data</span></span>
+<span id="cb380-4"><a href="randomization-statistics.html#cb380-4"></a>  hw_null<span class="op">$</span>id &lt;-<span class="st"> </span><span class="kw">sample</span>(hw_null<span class="op">$</span>id,<span class="dt">size=</span><span class="kw">nrow</span>(hw_null),<span class="dt">replace=</span><span class="ot">FALSE</span>) <span class="co"># shuffle the null variable</span></span>
+<span id="cb380-5"><a href="randomization-statistics.html#cb380-5"></a>  nulli &lt;-<span class="st"> </span><span class="kw">association_tally</span>(hw_null,<span class="dt">A=</span><span class="st">&quot;59&quot;</span>,<span class="dt">B=</span><span class="st">&quot;11&quot;</span>) <span class="co"># determine null rate for this iteration</span></span>
+<span id="cb380-6"><a href="randomization-statistics.html#cb380-6"></a>  nulls[i] &lt;-<span class="st"> </span>nulli <span class="co"># save result</span></span>
+<span id="cb380-7"><a href="randomization-statistics.html#cb380-7"></a>}</span></code></pre></div>
 <p><em>Note!</em> Here we only iterate our <code>for</code> loop 1,000 times, but most published randomizations are run for 5,000 to 10,000 iterations, just to ensure that the null distribution is adequately unbiased.</p>
 <p><strong>Step 6:</strong> To <strong>visualize these results</strong>, use a histogram:</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="randomization-statistics.html#cb370-1"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb370-2"><a href="randomization-statistics.html#cb370-2"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>,<span class="dt">by=</span><span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,(obs<span class="op">+</span><span class="dv">10</span>)),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>)</span>
-<span id="cb370-3"><a href="randomization-statistics.html#cb370-3"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-208-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="randomization-statistics.html#cb381-1"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb381-2"><a href="randomization-statistics.html#cb381-2"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>,<span class="dt">by=</span><span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,(obs<span class="op">+</span><span class="dv">10</span>)),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>)</span>
+<span id="cb381-3"><a href="randomization-statistics.html#cb381-3"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-227-1.png" width="925.44" /></p>
 <p><strong>Step 7:</strong> Finally, we <strong>calculate our p-value</strong>:</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="randomization-statistics.html#cb371-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
-<span id="cb371-2"><a href="randomization-statistics.html#cb371-2"></a>p_value</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="randomization-statistics.html#cb382-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
+<span id="cb382-2"><a href="randomization-statistics.html#cb382-2"></a>p_value</span></code></pre></div>
 <pre><code>[1] 0</code></pre>
 <p>Let’s do this again with a different humpback pair, IDs 16 and 118, who were seen together only 13 times. Is their association rate statistically significant?</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="randomization-statistics.html#cb373-1"></a><span class="co"># Individual IDs</span></span>
-<span id="cb373-2"><a href="randomization-statistics.html#cb373-2"></a>A &lt;-<span class="st"> &quot;58&quot;</span></span>
-<span id="cb373-3"><a href="randomization-statistics.html#cb373-3"></a>B &lt;-<span class="st"> &quot;133&quot;</span></span>
-<span id="cb373-4"><a href="randomization-statistics.html#cb373-4"></a></span>
-<span id="cb373-5"><a href="randomization-statistics.html#cb373-5"></a><span class="co"># Observed association rate</span></span>
-<span id="cb373-6"><a href="randomization-statistics.html#cb373-6"></a>obs &lt;-<span class="st"> </span><span class="kw">association_tally</span>(hw,<span class="dt">A=</span>A,<span class="dt">B=</span>B)</span>
-<span id="cb373-7"><a href="randomization-statistics.html#cb373-7"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="randomization-statistics.html#cb384-1"></a><span class="co"># Individual IDs</span></span>
+<span id="cb384-2"><a href="randomization-statistics.html#cb384-2"></a>A &lt;-<span class="st"> &quot;58&quot;</span></span>
+<span id="cb384-3"><a href="randomization-statistics.html#cb384-3"></a>B &lt;-<span class="st"> &quot;133&quot;</span></span>
+<span id="cb384-4"><a href="randomization-statistics.html#cb384-4"></a></span>
+<span id="cb384-5"><a href="randomization-statistics.html#cb384-5"></a><span class="co"># Observed association rate</span></span>
+<span id="cb384-6"><a href="randomization-statistics.html#cb384-6"></a>obs &lt;-<span class="st"> </span><span class="kw">association_tally</span>(hw,<span class="dt">A=</span>A,<span class="dt">B=</span>B)</span>
+<span id="cb384-7"><a href="randomization-statistics.html#cb384-7"></a>obs</span></code></pre></div>
 <pre><code>[1] 9</code></pre>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="randomization-statistics.html#cb375-1"></a><span class="co"># Generate null model</span></span>
-<span id="cb375-2"><a href="randomization-statistics.html#cb375-2"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb375-3"><a href="randomization-statistics.html#cb375-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
-<span id="cb375-4"><a href="randomization-statistics.html#cb375-4"></a>  hw_null &lt;-<span class="st"> </span>hw</span>
-<span id="cb375-5"><a href="randomization-statistics.html#cb375-5"></a>  hw_null<span class="op">$</span>id &lt;-<span class="st"> </span><span class="kw">sample</span>(hw_null<span class="op">$</span>id,<span class="dt">size=</span><span class="kw">nrow</span>(hw_null),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
-<span id="cb375-6"><a href="randomization-statistics.html#cb375-6"></a>  nulli &lt;-<span class="st"> </span><span class="kw">association_tally</span>(hw_null,<span class="dt">A=</span>A,<span class="dt">B=</span>B)</span>
-<span id="cb375-7"><a href="randomization-statistics.html#cb375-7"></a>  nulls[i] &lt;-<span class="st"> </span>nulli</span>
-<span id="cb375-8"><a href="randomization-statistics.html#cb375-8"></a>}</span>
-<span id="cb375-9"><a href="randomization-statistics.html#cb375-9"></a></span>
-<span id="cb375-10"><a href="randomization-statistics.html#cb375-10"></a><span class="co"># Visualize</span></span>
-<span id="cb375-11"><a href="randomization-statistics.html#cb375-11"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dt">by=</span><span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,(obs<span class="op">+</span><span class="dv">7</span>)),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>)</span>
-<span id="cb375-12"><a href="randomization-statistics.html#cb375-12"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-210-1.png" width="925.44" /></p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="randomization-statistics.html#cb376-1"></a><span class="co"># Calculate p-value</span></span>
-<span id="cb376-2"><a href="randomization-statistics.html#cb376-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
-<span id="cb376-3"><a href="randomization-statistics.html#cb376-3"></a>p_value</span></code></pre></div>
-<pre><code>[1] 0.02</code></pre>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="randomization-statistics.html#cb386-1"></a><span class="co"># Generate null model</span></span>
+<span id="cb386-2"><a href="randomization-statistics.html#cb386-2"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb386-3"><a href="randomization-statistics.html#cb386-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
+<span id="cb386-4"><a href="randomization-statistics.html#cb386-4"></a>  hw_null &lt;-<span class="st"> </span>hw</span>
+<span id="cb386-5"><a href="randomization-statistics.html#cb386-5"></a>  hw_null<span class="op">$</span>id &lt;-<span class="st"> </span><span class="kw">sample</span>(hw_null<span class="op">$</span>id,<span class="dt">size=</span><span class="kw">nrow</span>(hw_null),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
+<span id="cb386-6"><a href="randomization-statistics.html#cb386-6"></a>  nulli &lt;-<span class="st"> </span><span class="kw">association_tally</span>(hw_null,<span class="dt">A=</span>A,<span class="dt">B=</span>B)</span>
+<span id="cb386-7"><a href="randomization-statistics.html#cb386-7"></a>  nulls[i] &lt;-<span class="st"> </span>nulli</span>
+<span id="cb386-8"><a href="randomization-statistics.html#cb386-8"></a>}</span>
+<span id="cb386-9"><a href="randomization-statistics.html#cb386-9"></a></span>
+<span id="cb386-10"><a href="randomization-statistics.html#cb386-10"></a><span class="co"># Visualize</span></span>
+<span id="cb386-11"><a href="randomization-statistics.html#cb386-11"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dt">by=</span><span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,(obs<span class="op">+</span><span class="dv">7</span>)),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>)</span>
+<span id="cb386-12"><a href="randomization-statistics.html#cb386-12"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-229-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="randomization-statistics.html#cb387-1"></a><span class="co"># Calculate p-value</span></span>
+<span id="cb387-2"><a href="randomization-statistics.html#cb387-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
+<span id="cb387-3"><a href="randomization-statistics.html#cb387-3"></a>p_value</span></code></pre></div>
+<pre><code>[1] 0.015</code></pre>
 <p>In this case, the observed association rate is still statistically significant at the conventional 0.05 level, but there is still an off chance that this is merely the result of random mixing.</p>
 </div>
 <div id="are-two-sample-sets-significantly-different" class="section level3 unnumbered">
@@ -365,49 +365,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>1. Research question:</strong> Is there any difference in the number of years in which bubble-netters are seen compared to other whales?</p>
 <p><strong>2. Null model:</strong> In this case, the null model will be a <em>distribution of average differences</em> in the number of years in which individuals from the two populations are seen. This null distribution will be centered around zero. The variable we will shuffle is which individuals are known bubble netters, keeping the size of the two populations constant in each iteration.</p>
 <p><strong>3. Function:</strong></p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="randomization-statistics.html#cb379-1"></a>annual_difference &lt;-<span class="st"> </span><span class="cf">function</span>(hw,bnf_ids){</span>
-<span id="cb379-2"><a href="randomization-statistics.html#cb379-2"></a>  </span>
-<span id="cb379-3"><a href="randomization-statistics.html#cb379-3"></a>  bnf &lt;-<span class="st"> </span>hw[hw<span class="op">$</span>id <span class="op">%in%</span><span class="st"> </span>bnf_ids,] <span class="co"># Sightings of known BNFers</span></span>
-<span id="cb379-4"><a href="randomization-statistics.html#cb379-4"></a>  other &lt;-<span class="st"> </span>hw[<span class="op">!</span><span class="st"> </span>hw<span class="op">$</span>id <span class="op">%in%</span><span class="st"> </span>bnf_ids,] <span class="co"># Sightings of other whales</span></span>
-<span id="cb379-5"><a href="randomization-statistics.html#cb379-5"></a>  </span>
-<span id="cb379-6"><a href="randomization-statistics.html#cb379-6"></a>  <span class="co"># Get distribution of years seen for individuals within each population</span></span>
-<span id="cb379-7"><a href="randomization-statistics.html#cb379-7"></a>  counts &lt;-<span class="st"> </span><span class="kw">table</span>(bnf<span class="op">$</span>id,bnf<span class="op">$</span>year) <span class="co"># sightings of each whale (rows) in each year (columns)</span></span>
-<span id="cb379-8"><a href="randomization-statistics.html#cb379-8"></a>  n_bnf &lt;-<span class="st"> </span><span class="kw">apply</span>(counts,<span class="dv">1</span>,<span class="cf">function</span>(x){<span class="kw">length</span>(<span class="kw">which</span>(x<span class="op">&gt;</span><span class="dv">0</span>))}) <span class="co"># years seen for each individual</span></span>
-<span id="cb379-9"><a href="randomization-statistics.html#cb379-9"></a>  </span>
-<span id="cb379-10"><a href="randomization-statistics.html#cb379-10"></a>  counts &lt;-<span class="st"> </span><span class="kw">table</span>(other<span class="op">$</span>id,other<span class="op">$</span>year) <span class="co"># sightings of each whale (rows) in each year (columns)</span></span>
-<span id="cb379-11"><a href="randomization-statistics.html#cb379-11"></a>  n_other &lt;-<span class="st"> </span><span class="kw">apply</span>(counts,<span class="dv">1</span>,<span class="cf">function</span>(x){<span class="kw">length</span>(<span class="kw">which</span>(x<span class="op">&gt;</span><span class="dv">0</span>))}) <span class="co"># years seen for each individual</span></span>
-<span id="cb379-12"><a href="randomization-statistics.html#cb379-12"></a>  </span>
-<span id="cb379-13"><a href="randomization-statistics.html#cb379-13"></a>  <span class="co"># Now get average difference between two distributions</span></span>
-<span id="cb379-14"><a href="randomization-statistics.html#cb379-14"></a>  mean_diff &lt;-<span class="st"> </span><span class="kw">mean</span>(n_bnf,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(n_other,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb379-15"><a href="randomization-statistics.html#cb379-15"></a>  </span>
-<span id="cb379-16"><a href="randomization-statistics.html#cb379-16"></a>  <span class="kw">return</span>(mean_diff)</span>
-<span id="cb379-17"><a href="randomization-statistics.html#cb379-17"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="randomization-statistics.html#cb390-1"></a>annual_difference &lt;-<span class="st"> </span><span class="cf">function</span>(hw,bnf_ids){</span>
+<span id="cb390-2"><a href="randomization-statistics.html#cb390-2"></a>  </span>
+<span id="cb390-3"><a href="randomization-statistics.html#cb390-3"></a>  bnf &lt;-<span class="st"> </span>hw[hw<span class="op">$</span>id <span class="op">%in%</span><span class="st"> </span>bnf_ids,] <span class="co"># Sightings of known BNFers</span></span>
+<span id="cb390-4"><a href="randomization-statistics.html#cb390-4"></a>  other &lt;-<span class="st"> </span>hw[<span class="op">!</span><span class="st"> </span>hw<span class="op">$</span>id <span class="op">%in%</span><span class="st"> </span>bnf_ids,] <span class="co"># Sightings of other whales</span></span>
+<span id="cb390-5"><a href="randomization-statistics.html#cb390-5"></a>  </span>
+<span id="cb390-6"><a href="randomization-statistics.html#cb390-6"></a>  <span class="co"># Get distribution of years seen for individuals within each population</span></span>
+<span id="cb390-7"><a href="randomization-statistics.html#cb390-7"></a>  counts &lt;-<span class="st"> </span><span class="kw">table</span>(bnf<span class="op">$</span>id,bnf<span class="op">$</span>year) <span class="co"># sightings of each whale (rows) in each year (columns)</span></span>
+<span id="cb390-8"><a href="randomization-statistics.html#cb390-8"></a>  n_bnf &lt;-<span class="st"> </span><span class="kw">apply</span>(counts,<span class="dv">1</span>,<span class="cf">function</span>(x){<span class="kw">length</span>(<span class="kw">which</span>(x<span class="op">&gt;</span><span class="dv">0</span>))}) <span class="co"># years seen for each individual</span></span>
+<span id="cb390-9"><a href="randomization-statistics.html#cb390-9"></a>  </span>
+<span id="cb390-10"><a href="randomization-statistics.html#cb390-10"></a>  counts &lt;-<span class="st"> </span><span class="kw">table</span>(other<span class="op">$</span>id,other<span class="op">$</span>year) <span class="co"># sightings of each whale (rows) in each year (columns)</span></span>
+<span id="cb390-11"><a href="randomization-statistics.html#cb390-11"></a>  n_other &lt;-<span class="st"> </span><span class="kw">apply</span>(counts,<span class="dv">1</span>,<span class="cf">function</span>(x){<span class="kw">length</span>(<span class="kw">which</span>(x<span class="op">&gt;</span><span class="dv">0</span>))}) <span class="co"># years seen for each individual</span></span>
+<span id="cb390-12"><a href="randomization-statistics.html#cb390-12"></a>  </span>
+<span id="cb390-13"><a href="randomization-statistics.html#cb390-13"></a>  <span class="co"># Now get average difference between two distributions</span></span>
+<span id="cb390-14"><a href="randomization-statistics.html#cb390-14"></a>  mean_diff &lt;-<span class="st"> </span><span class="kw">mean</span>(n_bnf,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(n_other,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb390-15"><a href="randomization-statistics.html#cb390-15"></a>  </span>
+<span id="cb390-16"><a href="randomization-statistics.html#cb390-16"></a>  <span class="kw">return</span>(mean_diff)</span>
+<span id="cb390-17"><a href="randomization-statistics.html#cb390-17"></a>}</span></code></pre></div>
 <p><strong>4. Observed value:</strong></p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="randomization-statistics.html#cb380-1"></a>obs &lt;-<span class="st"> </span><span class="kw">annual_difference</span>(hw,<span class="dt">bnf_ids=</span>bnf_ids)</span>
-<span id="cb380-2"><a href="randomization-statistics.html#cb380-2"></a>obs </span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="randomization-statistics.html#cb391-1"></a>obs &lt;-<span class="st"> </span><span class="kw">annual_difference</span>(hw,<span class="dt">bnf_ids=</span>bnf_ids)</span>
+<span id="cb391-2"><a href="randomization-statistics.html#cb391-2"></a>obs </span></code></pre></div>
 <pre><code>[1] 2.351852</code></pre>
 <p><strong>5. Build null distribution:</strong></p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="randomization-statistics.html#cb382-1"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb382-2"><a href="randomization-statistics.html#cb382-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
-<span id="cb382-3"><a href="randomization-statistics.html#cb382-3"></a>  bnf_null &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">unique</span>(hw<span class="op">$</span>id),<span class="dt">size=</span><span class="kw">length</span>(bnf_ids),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
-<span id="cb382-4"><a href="randomization-statistics.html#cb382-4"></a>  nulli &lt;-<span class="st"> </span><span class="kw">annual_difference</span>(hw, <span class="dt">bnf_ids=</span>bnf_null)</span>
-<span id="cb382-5"><a href="randomization-statistics.html#cb382-5"></a>  nulls[i] &lt;-<span class="st"> </span>nulli</span>
-<span id="cb382-6"><a href="randomization-statistics.html#cb382-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="randomization-statistics.html#cb393-1"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb393-2"><a href="randomization-statistics.html#cb393-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
+<span id="cb393-3"><a href="randomization-statistics.html#cb393-3"></a>  bnf_null &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">unique</span>(hw<span class="op">$</span>id),<span class="dt">size=</span><span class="kw">length</span>(bnf_ids),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
+<span id="cb393-4"><a href="randomization-statistics.html#cb393-4"></a>  nulli &lt;-<span class="st"> </span><span class="kw">annual_difference</span>(hw, <span class="dt">bnf_ids=</span>bnf_null)</span>
+<span id="cb393-5"><a href="randomization-statistics.html#cb393-5"></a>  nulls[i] &lt;-<span class="st"> </span>nulli</span>
+<span id="cb393-6"><a href="randomization-statistics.html#cb393-6"></a>}</span></code></pre></div>
 <p><strong>6. Visualize:</strong></p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="randomization-statistics.html#cb383-1"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dt">by=</span>.<span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>)</span>
-<span id="cb383-2"><a href="randomization-statistics.html#cb383-2"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-216-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="randomization-statistics.html#cb394-1"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dt">by=</span>.<span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>)</span>
+<span id="cb394-2"><a href="randomization-statistics.html#cb394-2"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-235-1.png" width="925.44" /></p>
 <p><strong>7. p-value:</strong></p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="randomization-statistics.html#cb384-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
-<span id="cb384-2"><a href="randomization-statistics.html#cb384-2"></a>p_value</span></code></pre></div>
-<pre><code>[1] 0.005</code></pre>
-<p>So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.005).</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="randomization-statistics.html#cb395-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
+<span id="cb395-2"><a href="randomization-statistics.html#cb395-2"></a>p_value</span></code></pre></div>
+<pre><code>[1] 0.004</code></pre>
+<p>So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.004).</p>
 </div>
 <div id="are-two-variables-correlated" class="section level3 unnumbered">
 <h3>3. Are two variables correlated?</h3>
 <p>To perform a correlation analysis with randomization, let’s use a classic scenario from marine conversation: We have abundance estimates for a critically endangered porpoise from four years across two decades of research. This species only has a handful of individuals left in the wild.</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="randomization-statistics.html#cb386-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/porpoise-survey.csv&quot;</span>)</span>
-<span id="cb386-2"><a href="randomization-statistics.html#cb386-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="randomization-statistics.html#cb397-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/porpoise-survey.csv&quot;</span>)</span>
+<span id="cb397-2"><a href="randomization-statistics.html#cb397-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>  year         N
 1 2000 12.547943
 2 2000  5.932797
@@ -416,15 +416,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 5 2000 12.279161
 6 2000  8.945810</code></pre>
 <p>Each row of this dataset is an abundance estimate from a survey that occurred within the vaquita’s range during a certain year.</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="randomization-statistics.html#cb388-1"></a><span class="kw">plot</span>(df<span class="op">$</span>N <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>year,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">20</span>),</span>
-<span id="cb388-2"><a href="randomization-statistics.html#cb388-2"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb388-3"><a href="randomization-statistics.html#cb388-3"></a>     <span class="dt">ylab=</span><span class="st">&quot;Total Abundance&quot;</span>,</span>
-<span id="cb388-4"><a href="randomization-statistics.html#cb388-4"></a>     <span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;black&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-220-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="randomization-statistics.html#cb399-1"></a><span class="kw">plot</span>(df<span class="op">$</span>N <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>year,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">20</span>),</span>
+<span id="cb399-2"><a href="randomization-statistics.html#cb399-2"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb399-3"><a href="randomization-statistics.html#cb399-3"></a>     <span class="dt">ylab=</span><span class="st">&quot;Total Abundance&quot;</span>,</span>
+<span id="cb399-4"><a href="randomization-statistics.html#cb399-4"></a>     <span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;black&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>))</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-239-1.png" width="925.44" /></p>
 <p>Performing a simple linear regression with this dataset yields the following results:</p>
-<p><img src="figures/unnamed-chunk-221-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-240-1.png" width="925.44" /></p>
 <p>The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="randomization-statistics.html#cb389-1"></a><span class="kw">summary</span>(df_lm)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="randomization-statistics.html#cb400-1"></a><span class="kw">summary</span>(df_lm)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = df$N ~ df$year)
@@ -446,304 +446,304 @@ F-statistic: 1.523 on 1 and 82 DF,  p-value: 0.2206</code></pre>
 <p><strong>1. Research question:</strong> Is there a trend in porpoise abundance over time?</p>
 <p><strong>2. Null model:</strong> There is no trend; the abundance estimates might as well come from any given year and the trendline would look the same.</p>
 <p><strong>3. Function:</strong> Get the slope estimate for the time series.</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="randomization-statistics.html#cb391-1"></a>df_lm &lt;-<span class="st"> </span><span class="cf">function</span>(df){</span>
-<span id="cb391-2"><a href="randomization-statistics.html#cb391-2"></a>  lmi &lt;-<span class="st"> </span><span class="kw">lm</span>(df<span class="op">$</span>N <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>year) </span>
-<span id="cb391-3"><a href="randomization-statistics.html#cb391-3"></a>  slopi &lt;-<span class="st"> </span><span class="kw">summary</span>(lmi)<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</span>
-<span id="cb391-4"><a href="randomization-statistics.html#cb391-4"></a>  rsqu &lt;-<span class="st"> </span><span class="kw">summary</span>(lmi)<span class="op">$</span>r.squared</span>
-<span id="cb391-5"><a href="randomization-statistics.html#cb391-5"></a>  </span>
-<span id="cb391-6"><a href="randomization-statistics.html#cb391-6"></a>  <span class="kw">return</span>(<span class="kw">c</span>(<span class="st">&quot;slope&quot;</span>=slopi,<span class="st">&quot;r&quot;</span>=rsqu))</span>
-<span id="cb391-7"><a href="randomization-statistics.html#cb391-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="randomization-statistics.html#cb402-1"></a>df_lm &lt;-<span class="st"> </span><span class="cf">function</span>(df){</span>
+<span id="cb402-2"><a href="randomization-statistics.html#cb402-2"></a>  lmi &lt;-<span class="st"> </span><span class="kw">lm</span>(df<span class="op">$</span>N <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>year) </span>
+<span id="cb402-3"><a href="randomization-statistics.html#cb402-3"></a>  slopi &lt;-<span class="st"> </span><span class="kw">summary</span>(lmi)<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb402-4"><a href="randomization-statistics.html#cb402-4"></a>  rsqu &lt;-<span class="st"> </span><span class="kw">summary</span>(lmi)<span class="op">$</span>r.squared</span>
+<span id="cb402-5"><a href="randomization-statistics.html#cb402-5"></a>  </span>
+<span id="cb402-6"><a href="randomization-statistics.html#cb402-6"></a>  <span class="kw">return</span>(<span class="kw">c</span>(<span class="st">&quot;slope&quot;</span>=slopi,<span class="st">&quot;r&quot;</span>=rsqu))</span>
+<span id="cb402-7"><a href="randomization-statistics.html#cb402-7"></a>}</span></code></pre></div>
 <p><strong>4. Observed value:</strong></p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="randomization-statistics.html#cb392-1"></a>obs &lt;-<span class="st"> </span><span class="kw">df_lm</span>(df)</span>
-<span id="cb392-2"><a href="randomization-statistics.html#cb392-2"></a>obs </span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="randomization-statistics.html#cb403-1"></a>obs &lt;-<span class="st"> </span><span class="kw">df_lm</span>(df)</span>
+<span id="cb403-2"><a href="randomization-statistics.html#cb403-2"></a>obs </span></code></pre></div>
 <pre><code>      slope           r 
 -0.08216195  0.01824031 </code></pre>
 <p><strong>5. Build null distribution:</strong></p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="randomization-statistics.html#cb394-1"></a>nulls &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
-<span id="cb394-2"><a href="randomization-statistics.html#cb394-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
-<span id="cb394-3"><a href="randomization-statistics.html#cb394-3"></a>  df_null &lt;-<span class="st"> </span>df</span>
-<span id="cb394-4"><a href="randomization-statistics.html#cb394-4"></a>  df_null<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">sample</span>(df_null<span class="op">$</span>year,<span class="dt">size=</span><span class="kw">nrow</span>(df_null),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
-<span id="cb394-5"><a href="randomization-statistics.html#cb394-5"></a>  nulli &lt;-<span class="st"> </span><span class="kw">df_lm</span>(df_null)</span>
-<span id="cb394-6"><a href="randomization-statistics.html#cb394-6"></a>  nulli &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">slope=</span>nulli[<span class="dv">1</span>],<span class="dt">r=</span>nulli[<span class="dv">2</span>])</span>
-<span id="cb394-7"><a href="randomization-statistics.html#cb394-7"></a>  nulls &lt;-<span class="st"> </span><span class="kw">rbind</span>(nulls,nulli)</span>
-<span id="cb394-8"><a href="randomization-statistics.html#cb394-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="randomization-statistics.html#cb405-1"></a>nulls &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb405-2"><a href="randomization-statistics.html#cb405-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
+<span id="cb405-3"><a href="randomization-statistics.html#cb405-3"></a>  df_null &lt;-<span class="st"> </span>df</span>
+<span id="cb405-4"><a href="randomization-statistics.html#cb405-4"></a>  df_null<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">sample</span>(df_null<span class="op">$</span>year,<span class="dt">size=</span><span class="kw">nrow</span>(df_null),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
+<span id="cb405-5"><a href="randomization-statistics.html#cb405-5"></a>  nulli &lt;-<span class="st"> </span><span class="kw">df_lm</span>(df_null)</span>
+<span id="cb405-6"><a href="randomization-statistics.html#cb405-6"></a>  nulli &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">slope=</span>nulli[<span class="dv">1</span>],<span class="dt">r=</span>nulli[<span class="dv">2</span>])</span>
+<span id="cb405-7"><a href="randomization-statistics.html#cb405-7"></a>  nulls &lt;-<span class="st"> </span><span class="kw">rbind</span>(nulls,nulli)</span>
+<span id="cb405-8"><a href="randomization-statistics.html#cb405-8"></a>}</span></code></pre></div>
 <p><strong>6. Visualize:</strong></p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="randomization-statistics.html#cb395-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb395-2"><a href="randomization-statistics.html#cb395-2"></a><span class="kw">hist</span>(nulls<span class="op">$</span>slope,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dt">by=</span>.<span class="dv">01</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">5</span>,.<span class="dv">5</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
-<span id="cb395-3"><a href="randomization-statistics.html#cb395-3"></a><span class="kw">text</span>(<span class="op">-</span>.<span class="dv">48</span>,<span class="dv">20</span>,<span class="st">&quot;Slope </span><span class="ch">\n</span><span class="st">estimate&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>)</span>
-<span id="cb395-4"><a href="randomization-statistics.html#cb395-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs[<span class="dv">1</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb395-5"><a href="randomization-statistics.html#cb395-5"></a></span>
-<span id="cb395-6"><a href="randomization-statistics.html#cb395-6"></a><span class="kw">hist</span>(nulls<span class="op">$</span>r,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">by=</span>.<span class="dv">001</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">1</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
-<span id="cb395-7"><a href="randomization-statistics.html#cb395-7"></a><span class="kw">text</span>(.<span class="dv">06</span>,<span class="dv">20</span>,<span class="st">&quot;Correlation </span><span class="ch">\n</span><span class="st">coefficient&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>)</span>
-<span id="cb395-8"><a href="randomization-statistics.html#cb395-8"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs[<span class="dv">2</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-226-1.png" width="672" /></p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="randomization-statistics.html#cb406-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb406-2"><a href="randomization-statistics.html#cb406-2"></a><span class="kw">hist</span>(nulls<span class="op">$</span>slope,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dt">by=</span>.<span class="dv">01</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">5</span>,.<span class="dv">5</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
+<span id="cb406-3"><a href="randomization-statistics.html#cb406-3"></a><span class="kw">text</span>(<span class="op">-</span>.<span class="dv">48</span>,<span class="dv">20</span>,<span class="st">&quot;Slope </span><span class="ch">\n</span><span class="st">estimate&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>)</span>
+<span id="cb406-4"><a href="randomization-statistics.html#cb406-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs[<span class="dv">1</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb406-5"><a href="randomization-statistics.html#cb406-5"></a></span>
+<span id="cb406-6"><a href="randomization-statistics.html#cb406-6"></a><span class="kw">hist</span>(nulls<span class="op">$</span>r,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">by=</span>.<span class="dv">001</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">1</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
+<span id="cb406-7"><a href="randomization-statistics.html#cb406-7"></a><span class="kw">text</span>(.<span class="dv">06</span>,<span class="dv">20</span>,<span class="st">&quot;Correlation </span><span class="ch">\n</span><span class="st">coefficient&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>)</span>
+<span id="cb406-8"><a href="randomization-statistics.html#cb406-8"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs[<span class="dv">2</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-245-1.png" width="672" /></p>
 <p><strong>7. p-value:</strong></p>
 <p>Significance of <strong>slope</strong>:</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="randomization-statistics.html#cb396-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>slope <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">1</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
-<span id="cb396-2"><a href="randomization-statistics.html#cb396-2"></a>p_value</span></code></pre></div>
-<pre><code>[1] 0.894</code></pre>
-<p>This indicates that the chance that the slope is lower than the null expectation is 89.4%.</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="randomization-statistics.html#cb407-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>slope <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">1</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
+<span id="cb407-2"><a href="randomization-statistics.html#cb407-2"></a>p_value</span></code></pre></div>
+<pre><code>[1] 0.9</code></pre>
+<p>This indicates that the chance that the slope is lower than the null expectation is 90%.</p>
 <p>Significance of <strong>correlation coefficient</strong>:</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="randomization-statistics.html#cb398-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>r <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">2</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
-<span id="cb398-2"><a href="randomization-statistics.html#cb398-2"></a>p_value</span></code></pre></div>
-<pre><code>[1] 0.234</code></pre>
-<p>This indicates that the observed regression is better than 76.6% of scenarios that might be expected under the null expectation.</p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="randomization-statistics.html#cb409-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>r <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">2</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
+<span id="cb409-2"><a href="randomization-statistics.html#cb409-2"></a>p_value</span></code></pre></div>
+<pre><code>[1] 0.22</code></pre>
+<p>This indicates that the observed regression is better than 78% of scenarios that might be expected under the null expectation.</p>
 </div>
 <div id="is-the-slope-of-a-regression-line-negative" class="section level3 unnumbered">
 <h3>4. Is the slope of a regression line negative?</h3>
 <p>Sometimes we have even less data about an endagered species. Let’s say we go out in 2021 for another porpoise survey and come up with these estimates from the species’ range:</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="randomization-statistics.html#cb400-1"></a><span class="kw">library</span>(truncnorm) ; <span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb400-2"><a href="randomization-statistics.html#cb400-2"></a>n2021 &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">25</span>,<span class="dt">a=</span><span class="dv">0</span>,<span class="dt">mean=</span><span class="fl">3.6</span>,<span class="dt">sd=</span><span class="dv">3</span>)</span>
-<span id="cb400-3"><a href="randomization-statistics.html#cb400-3"></a>n2021</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="randomization-statistics.html#cb411-1"></a><span class="kw">library</span>(truncnorm) ; <span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb411-2"><a href="randomization-statistics.html#cb411-2"></a>n2021 &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">25</span>,<span class="dt">a=</span><span class="dv">0</span>,<span class="dt">mean=</span><span class="fl">3.6</span>,<span class="dt">sd=</span><span class="dv">3</span>)</span>
+<span id="cb411-3"><a href="randomization-statistics.html#cb411-3"></a>n2021</span></code></pre></div>
 <pre><code> [1]  4.4322877  6.8533235  4.8873741  5.1181677  1.8757801  1.9601044
  [7]  1.9066440  0.9298865  2.1684219  0.6048407  1.2712383  3.7933765
 [13]  6.4784822  3.2691435  2.0669715  0.8664138  1.0884850 10.8475055
 [19]  4.0022647  2.1279423  2.2783564  4.9787683  1.5188393  5.3242672
 [25]  0.5290328</code></pre>
 <p>We want to know what the chances are that the population has declined between 2017 and 2021.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="randomization-statistics.html#cb402-1"></a>n2017 &lt;-<span class="st"> </span>df<span class="op">$</span>N[df<span class="op">$</span>year<span class="op">==</span><span class="dv">2017</span>]</span>
-<span id="cb402-2"><a href="randomization-statistics.html#cb402-2"></a></span>
-<span id="cb402-3"><a href="randomization-statistics.html#cb402-3"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">15</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">2015</span>,<span class="dv">2023</span>),</span>
-<span id="cb402-4"><a href="randomization-statistics.html#cb402-4"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb402-5"><a href="randomization-statistics.html#cb402-5"></a>     <span class="dt">ylab=</span><span class="st">&quot;Total Abundance&quot;</span>,</span>
-<span id="cb402-6"><a href="randomization-statistics.html#cb402-6"></a>     <span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;black&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>))</span>
-<span id="cb402-7"><a href="randomization-statistics.html#cb402-7"></a></span>
-<span id="cb402-8"><a href="randomization-statistics.html#cb402-8"></a><span class="kw">points</span>(n2017 <span class="op">~</span><span class="st"> </span><span class="kw">rep</span>(<span class="dv">2017</span>,<span class="dt">times=</span><span class="kw">length</span>(n2017)))</span>
-<span id="cb402-9"><a href="randomization-statistics.html#cb402-9"></a><span class="kw">points</span>(n2021 <span class="op">~</span><span class="st"> </span><span class="kw">rep</span>(<span class="dv">2021</span>,<span class="dt">times=</span><span class="kw">length</span>(n2021)))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-230-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="randomization-statistics.html#cb413-1"></a>n2017 &lt;-<span class="st"> </span>df<span class="op">$</span>N[df<span class="op">$</span>year<span class="op">==</span><span class="dv">2017</span>]</span>
+<span id="cb413-2"><a href="randomization-statistics.html#cb413-2"></a></span>
+<span id="cb413-3"><a href="randomization-statistics.html#cb413-3"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">15</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">2015</span>,<span class="dv">2023</span>),</span>
+<span id="cb413-4"><a href="randomization-statistics.html#cb413-4"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb413-5"><a href="randomization-statistics.html#cb413-5"></a>     <span class="dt">ylab=</span><span class="st">&quot;Total Abundance&quot;</span>,</span>
+<span id="cb413-6"><a href="randomization-statistics.html#cb413-6"></a>     <span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;black&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>))</span>
+<span id="cb413-7"><a href="randomization-statistics.html#cb413-7"></a></span>
+<span id="cb413-8"><a href="randomization-statistics.html#cb413-8"></a><span class="kw">points</span>(n2017 <span class="op">~</span><span class="st"> </span><span class="kw">rep</span>(<span class="dv">2017</span>,<span class="dt">times=</span><span class="kw">length</span>(n2017)))</span>
+<span id="cb413-9"><a href="randomization-statistics.html#cb413-9"></a><span class="kw">points</span>(n2021 <span class="op">~</span><span class="st"> </span><span class="kw">rep</span>(<span class="dv">2021</span>,<span class="dt">times=</span><span class="kw">length</span>(n2021)))</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-249-1.png" width="925.44" /></p>
 <p>If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. <strong>Well, what are the chances that this population is in decline?</strong> That is a question that a simple linear model cannot tell us.</p>
 <p>In this case, our null model will be the distribution of differences of values drawn randomly from the two years’ datasets.</p>
 <p>And in this randomization application, the workflow is a bit more simplified. We don’t need a core function, and we don’t even need a <code>for</code> loop.</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="randomization-statistics.html#cb403-1"></a><span class="co"># Randomly draw from the 2017 dataset 5,000 times</span></span>
-<span id="cb403-2"><a href="randomization-statistics.html#cb403-2"></a>r2017 &lt;-<span class="st"> </span><span class="kw">sample</span>(n2017,<span class="dt">size=</span><span class="dv">10000</span>,<span class="dt">replace=</span><span class="ot">TRUE</span>)</span>
-<span id="cb403-3"><a href="randomization-statistics.html#cb403-3"></a></span>
-<span id="cb403-4"><a href="randomization-statistics.html#cb403-4"></a><span class="co"># Do the same for the 2017 dataset</span></span>
-<span id="cb403-5"><a href="randomization-statistics.html#cb403-5"></a>r2021 &lt;-<span class="st"> </span><span class="kw">sample</span>(n2021,<span class="dt">size=</span><span class="dv">10000</span>,<span class="dt">replace=</span><span class="ot">TRUE</span>)</span>
-<span id="cb403-6"><a href="randomization-statistics.html#cb403-6"></a></span>
-<span id="cb403-7"><a href="randomization-statistics.html#cb403-7"></a><span class="co"># Get the difference of these two datasets</span></span>
-<span id="cb403-8"><a href="randomization-statistics.html#cb403-8"></a>diffs &lt;-<span class="st"> </span>r2021 <span class="op">-</span><span class="st"> </span>r2017</span>
-<span id="cb403-9"><a href="randomization-statistics.html#cb403-9"></a></span>
-<span id="cb403-10"><a href="randomization-statistics.html#cb403-10"></a><span class="co"># Visualize</span></span>
-<span id="cb403-11"><a href="randomization-statistics.html#cb403-11"></a><span class="kw">hist</span>(diffs,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>,<span class="dt">by=</span><span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
-<span id="cb403-12"><a href="randomization-statistics.html#cb403-12"></a><span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">0</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-231-1.png" width="925.44" /></p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="randomization-statistics.html#cb404-1"></a><span class="co"># Get p_value</span></span>
-<span id="cb404-2"><a href="randomization-statistics.html#cb404-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(diffs <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(diffs)</span>
-<span id="cb404-3"><a href="randomization-statistics.html#cb404-3"></a></span>
-<span id="cb404-4"><a href="randomization-statistics.html#cb404-4"></a><span class="co"># Convert to chances of decline</span></span>
-<span id="cb404-5"><a href="randomization-statistics.html#cb404-5"></a>chances_of_decline &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p_value)</span>
-<span id="cb404-6"><a href="randomization-statistics.html#cb404-6"></a>chances_of_decline</span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="randomization-statistics.html#cb414-1"></a><span class="co"># Randomly draw from the 2017 dataset 5,000 times</span></span>
+<span id="cb414-2"><a href="randomization-statistics.html#cb414-2"></a>r2017 &lt;-<span class="st"> </span><span class="kw">sample</span>(n2017,<span class="dt">size=</span><span class="dv">10000</span>,<span class="dt">replace=</span><span class="ot">TRUE</span>)</span>
+<span id="cb414-3"><a href="randomization-statistics.html#cb414-3"></a></span>
+<span id="cb414-4"><a href="randomization-statistics.html#cb414-4"></a><span class="co"># Do the same for the 2017 dataset</span></span>
+<span id="cb414-5"><a href="randomization-statistics.html#cb414-5"></a>r2021 &lt;-<span class="st"> </span><span class="kw">sample</span>(n2021,<span class="dt">size=</span><span class="dv">10000</span>,<span class="dt">replace=</span><span class="ot">TRUE</span>)</span>
+<span id="cb414-6"><a href="randomization-statistics.html#cb414-6"></a></span>
+<span id="cb414-7"><a href="randomization-statistics.html#cb414-7"></a><span class="co"># Get the difference of these two datasets</span></span>
+<span id="cb414-8"><a href="randomization-statistics.html#cb414-8"></a>diffs &lt;-<span class="st"> </span>r2021 <span class="op">-</span><span class="st"> </span>r2017</span>
+<span id="cb414-9"><a href="randomization-statistics.html#cb414-9"></a></span>
+<span id="cb414-10"><a href="randomization-statistics.html#cb414-10"></a><span class="co"># Visualize</span></span>
+<span id="cb414-11"><a href="randomization-statistics.html#cb414-11"></a><span class="kw">hist</span>(diffs,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>,<span class="dt">by=</span><span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
+<span id="cb414-12"><a href="randomization-statistics.html#cb414-12"></a><span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">0</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-250-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="randomization-statistics.html#cb415-1"></a><span class="co"># Get p_value</span></span>
+<span id="cb415-2"><a href="randomization-statistics.html#cb415-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(diffs <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(diffs)</span>
+<span id="cb415-3"><a href="randomization-statistics.html#cb415-3"></a></span>
+<span id="cb415-4"><a href="randomization-statistics.html#cb415-4"></a><span class="co"># Convert to chances of decline</span></span>
+<span id="cb415-5"><a href="randomization-statistics.html#cb415-5"></a>chances_of_decline &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p_value)</span>
+<span id="cb415-6"><a href="randomization-statistics.html#cb415-6"></a>chances_of_decline</span></code></pre></div>
 <pre><code>[1] 84.43</code></pre>
 <p>The chances that this population is in decline is 84.43%.</p>
 </div>
 </div>
-<div id="review-assignment-10" class="section level2 unnumbered">
+<div id="review-assignment-11" class="section level2 unnumbered">
 <h2>Review assignment</h2>
 <p>Let’s return to the humpback whale scenario</p>
 <div id="a-do-bubble-net-feeders-have-stronger-social-bonds" class="section level3 unnumbered">
 <h3>(a) Do bubble net feeders have stronger social bonds?</h3>
 <p>Above we asked whether bubble net feeders exhibit higher year-to-year site fidelity to the study area than other individuals. What about their social bonds? Do whales known to bubble net feed tend to have more stable social associations than the others?</p>
 <p>Make sure you are working with the correct data:</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="randomization-statistics.html#cb406-1"></a>hw &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/humpback-whales.csv&quot;</span>)</span>
-<span id="cb406-2"><a href="randomization-statistics.html#cb406-2"></a></span>
-<span id="cb406-3"><a href="randomization-statistics.html#cb406-3"></a><span class="co"># Establish the two populations</span></span>
-<span id="cb406-4"><a href="randomization-statistics.html#cb406-4"></a>bnf_indices &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;BNF&quot;</span>,hw<span class="op">$</span>bhvr) <span class="co"># which detections are of BNFers</span></span>
-<span id="cb406-5"><a href="randomization-statistics.html#cb406-5"></a>bnf_sits &lt;-<span class="st"> </span>hw[bnf_indices,] <span class="co"># BNF sightings</span></span>
-<span id="cb406-6"><a href="randomization-statistics.html#cb406-6"></a>bnf_ids &lt;-<span class="st"> </span><span class="kw">unique</span>(bnf_sits<span class="op">$</span>id) <span class="co"># BNF individuals</span></span>
-<span id="cb406-7"><a href="randomization-statistics.html#cb406-7"></a><span class="kw">length</span>(bnf_ids)</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="randomization-statistics.html#cb417-1"></a>hw &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/humpback-whales.csv&quot;</span>)</span>
+<span id="cb417-2"><a href="randomization-statistics.html#cb417-2"></a></span>
+<span id="cb417-3"><a href="randomization-statistics.html#cb417-3"></a><span class="co"># Establish the two populations</span></span>
+<span id="cb417-4"><a href="randomization-statistics.html#cb417-4"></a>bnf_indices &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;BNF&quot;</span>,hw<span class="op">$</span>bhvr) <span class="co"># which detections are of BNFers</span></span>
+<span id="cb417-5"><a href="randomization-statistics.html#cb417-5"></a>bnf_sits &lt;-<span class="st"> </span>hw[bnf_indices,] <span class="co"># BNF sightings</span></span>
+<span id="cb417-6"><a href="randomization-statistics.html#cb417-6"></a>bnf_ids &lt;-<span class="st"> </span><span class="kw">unique</span>(bnf_sits<span class="op">$</span>id) <span class="co"># BNF individuals</span></span>
+<span id="cb417-7"><a href="randomization-statistics.html#cb417-7"></a><span class="kw">length</span>(bnf_ids)</span></code></pre></div>
 <pre><code>[1] 108</code></pre>
 <p><strong>Answer key:</strong></p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="randomization-statistics.html#cb408-1"></a><span class="co"># Internal function for determining times seen together for a single row of a dyads dataframe</span></span>
-<span id="cb408-2"><a href="randomization-statistics.html#cb408-2"></a>social_X &lt;-<span class="st"> </span><span class="cf">function</span>(dyad){</span>
-<span id="cb408-3"><a href="randomization-statistics.html#cb408-3"></a>    A &lt;-<span class="st"> </span>dyad[<span class="dv">1</span>]</span>
-<span id="cb408-4"><a href="randomization-statistics.html#cb408-4"></a>    B &lt;-<span class="st"> </span>dyad[<span class="dv">2</span>]</span>
-<span id="cb408-5"><a href="randomization-statistics.html#cb408-5"></a>    sitA &lt;-<span class="st"> </span>hw<span class="op">$</span>sit[hw<span class="op">$</span>id<span class="op">==</span>A]</span>
-<span id="cb408-6"><a href="randomization-statistics.html#cb408-6"></a>    sitB &lt;-<span class="st"> </span>hw<span class="op">$</span>sit[hw<span class="op">$</span>id<span class="op">==</span>B]</span>
-<span id="cb408-7"><a href="randomization-statistics.html#cb408-7"></a>    X &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(sitA <span class="op">%in%</span><span class="st"> </span>sitB))</span>
-<span id="cb408-8"><a href="randomization-statistics.html#cb408-8"></a>    <span class="kw">return</span>(X)</span>
-<span id="cb408-9"><a href="randomization-statistics.html#cb408-9"></a>}</span>
-<span id="cb408-10"><a href="randomization-statistics.html#cb408-10"></a></span>
-<span id="cb408-11"><a href="randomization-statistics.html#cb408-11"></a><span class="co"># Core function</span></span>
-<span id="cb408-12"><a href="randomization-statistics.html#cb408-12"></a>social_difference &lt;-<span class="st"> </span><span class="cf">function</span>(hw,bnf_ids){</span>
-<span id="cb408-13"><a href="randomization-statistics.html#cb408-13"></a>  </span>
-<span id="cb408-14"><a href="randomization-statistics.html#cb408-14"></a>  bnf &lt;-<span class="st"> </span>hw[hw<span class="op">$</span>id <span class="op">%in%</span><span class="st"> </span>bnf_ids,] <span class="co"># Sightings of known BNFers</span></span>
-<span id="cb408-15"><a href="randomization-statistics.html#cb408-15"></a>  other &lt;-<span class="st"> </span>hw[<span class="op">!</span><span class="st"> </span>hw<span class="op">$</span>id <span class="op">%in%</span><span class="st"> </span>bnf_ids,] <span class="co"># Sightings of other whales</span></span>
-<span id="cb408-16"><a href="randomization-statistics.html#cb408-16"></a>  other_ids &lt;-<span class="st"> </span><span class="kw">unique</span>(other<span class="op">$</span>id)</span>
-<span id="cb408-17"><a href="randomization-statistics.html#cb408-17"></a>  </span>
-<span id="cb408-18"><a href="randomization-statistics.html#cb408-18"></a>  bnfs &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(bnf_ids,bnf_ids) <span class="co"># Make a dataframe of all possible dyad combinations</span></span>
-<span id="cb408-19"><a href="randomization-statistics.html#cb408-19"></a>  bnfs<span class="op">$</span>X &lt;-<span class="st"> </span><span class="kw">apply</span>(bnfs,<span class="dv">1</span>,social_X) <span class="co"># Get number of times seen</span></span>
-<span id="cb408-20"><a href="randomization-statistics.html#cb408-20"></a>  </span>
-<span id="cb408-21"><a href="randomization-statistics.html#cb408-21"></a>  <span class="co"># Do same for others</span></span>
-<span id="cb408-22"><a href="randomization-statistics.html#cb408-22"></a>  others &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(other_ids, other_ids)</span>
-<span id="cb408-23"><a href="randomization-statistics.html#cb408-23"></a>  others<span class="op">$</span>X &lt;-<span class="st"> </span><span class="kw">apply</span>(others,<span class="dv">1</span>,social_X) </span>
-<span id="cb408-24"><a href="randomization-statistics.html#cb408-24"></a>  </span>
-<span id="cb408-25"><a href="randomization-statistics.html#cb408-25"></a>  <span class="co"># Now get average difference between two distributions</span></span>
-<span id="cb408-26"><a href="randomization-statistics.html#cb408-26"></a>  mean_diff &lt;-<span class="st"> </span><span class="kw">mean</span>(bnfs<span class="op">$</span>X,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(others<span class="op">$</span>X,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb408-27"><a href="randomization-statistics.html#cb408-27"></a>  </span>
-<span id="cb408-28"><a href="randomization-statistics.html#cb408-28"></a>  <span class="kw">return</span>(mean_diff)</span>
-<span id="cb408-29"><a href="randomization-statistics.html#cb408-29"></a>}</span>
-<span id="cb408-30"><a href="randomization-statistics.html#cb408-30"></a></span>
-<span id="cb408-31"><a href="randomization-statistics.html#cb408-31"></a><span class="co"># Observed</span></span>
-<span id="cb408-32"><a href="randomization-statistics.html#cb408-32"></a>obs &lt;-<span class="st"> </span><span class="kw">social_difference</span>(hw,bnf_ids)</span>
-<span id="cb408-33"><a href="randomization-statistics.html#cb408-33"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="randomization-statistics.html#cb419-1"></a><span class="co"># Internal function for determining times seen together for a single row of a dyads dataframe</span></span>
+<span id="cb419-2"><a href="randomization-statistics.html#cb419-2"></a>social_X &lt;-<span class="st"> </span><span class="cf">function</span>(dyad){</span>
+<span id="cb419-3"><a href="randomization-statistics.html#cb419-3"></a>    A &lt;-<span class="st"> </span>dyad[<span class="dv">1</span>]</span>
+<span id="cb419-4"><a href="randomization-statistics.html#cb419-4"></a>    B &lt;-<span class="st"> </span>dyad[<span class="dv">2</span>]</span>
+<span id="cb419-5"><a href="randomization-statistics.html#cb419-5"></a>    sitA &lt;-<span class="st"> </span>hw<span class="op">$</span>sit[hw<span class="op">$</span>id<span class="op">==</span>A]</span>
+<span id="cb419-6"><a href="randomization-statistics.html#cb419-6"></a>    sitB &lt;-<span class="st"> </span>hw<span class="op">$</span>sit[hw<span class="op">$</span>id<span class="op">==</span>B]</span>
+<span id="cb419-7"><a href="randomization-statistics.html#cb419-7"></a>    X &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(sitA <span class="op">%in%</span><span class="st"> </span>sitB))</span>
+<span id="cb419-8"><a href="randomization-statistics.html#cb419-8"></a>    <span class="kw">return</span>(X)</span>
+<span id="cb419-9"><a href="randomization-statistics.html#cb419-9"></a>}</span>
+<span id="cb419-10"><a href="randomization-statistics.html#cb419-10"></a></span>
+<span id="cb419-11"><a href="randomization-statistics.html#cb419-11"></a><span class="co"># Core function</span></span>
+<span id="cb419-12"><a href="randomization-statistics.html#cb419-12"></a>social_difference &lt;-<span class="st"> </span><span class="cf">function</span>(hw,bnf_ids){</span>
+<span id="cb419-13"><a href="randomization-statistics.html#cb419-13"></a>  </span>
+<span id="cb419-14"><a href="randomization-statistics.html#cb419-14"></a>  bnf &lt;-<span class="st"> </span>hw[hw<span class="op">$</span>id <span class="op">%in%</span><span class="st"> </span>bnf_ids,] <span class="co"># Sightings of known BNFers</span></span>
+<span id="cb419-15"><a href="randomization-statistics.html#cb419-15"></a>  other &lt;-<span class="st"> </span>hw[<span class="op">!</span><span class="st"> </span>hw<span class="op">$</span>id <span class="op">%in%</span><span class="st"> </span>bnf_ids,] <span class="co"># Sightings of other whales</span></span>
+<span id="cb419-16"><a href="randomization-statistics.html#cb419-16"></a>  other_ids &lt;-<span class="st"> </span><span class="kw">unique</span>(other<span class="op">$</span>id)</span>
+<span id="cb419-17"><a href="randomization-statistics.html#cb419-17"></a>  </span>
+<span id="cb419-18"><a href="randomization-statistics.html#cb419-18"></a>  bnfs &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(bnf_ids,bnf_ids) <span class="co"># Make a dataframe of all possible dyad combinations</span></span>
+<span id="cb419-19"><a href="randomization-statistics.html#cb419-19"></a>  bnfs<span class="op">$</span>X &lt;-<span class="st"> </span><span class="kw">apply</span>(bnfs,<span class="dv">1</span>,social_X) <span class="co"># Get number of times seen</span></span>
+<span id="cb419-20"><a href="randomization-statistics.html#cb419-20"></a>  </span>
+<span id="cb419-21"><a href="randomization-statistics.html#cb419-21"></a>  <span class="co"># Do same for others</span></span>
+<span id="cb419-22"><a href="randomization-statistics.html#cb419-22"></a>  others &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(other_ids, other_ids)</span>
+<span id="cb419-23"><a href="randomization-statistics.html#cb419-23"></a>  others<span class="op">$</span>X &lt;-<span class="st"> </span><span class="kw">apply</span>(others,<span class="dv">1</span>,social_X) </span>
+<span id="cb419-24"><a href="randomization-statistics.html#cb419-24"></a>  </span>
+<span id="cb419-25"><a href="randomization-statistics.html#cb419-25"></a>  <span class="co"># Now get average difference between two distributions</span></span>
+<span id="cb419-26"><a href="randomization-statistics.html#cb419-26"></a>  mean_diff &lt;-<span class="st"> </span><span class="kw">mean</span>(bnfs<span class="op">$</span>X,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(others<span class="op">$</span>X,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb419-27"><a href="randomization-statistics.html#cb419-27"></a>  </span>
+<span id="cb419-28"><a href="randomization-statistics.html#cb419-28"></a>  <span class="kw">return</span>(mean_diff)</span>
+<span id="cb419-29"><a href="randomization-statistics.html#cb419-29"></a>}</span>
+<span id="cb419-30"><a href="randomization-statistics.html#cb419-30"></a></span>
+<span id="cb419-31"><a href="randomization-statistics.html#cb419-31"></a><span class="co"># Observed</span></span>
+<span id="cb419-32"><a href="randomization-statistics.html#cb419-32"></a>obs &lt;-<span class="st"> </span><span class="kw">social_difference</span>(hw,bnf_ids)</span>
+<span id="cb419-33"><a href="randomization-statistics.html#cb419-33"></a>obs</span></code></pre></div>
 <pre><code>[1] -0.003236454</code></pre>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="randomization-statistics.html#cb410-1"></a><span class="co"># Null distribution (only do 100 iterations for sake of time)</span></span>
-<span id="cb410-2"><a href="randomization-statistics.html#cb410-2"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb410-3"><a href="randomization-statistics.html#cb410-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){</span>
-<span id="cb410-4"><a href="randomization-statistics.html#cb410-4"></a>  bnf_null &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">unique</span>(hw<span class="op">$</span>id),<span class="dt">size=</span><span class="kw">length</span>(bnf_ids),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
-<span id="cb410-5"><a href="randomization-statistics.html#cb410-5"></a>  nulli &lt;-<span class="st"> </span><span class="kw">social_difference</span>(hw, <span class="dt">bnf_ids=</span>bnf_null)</span>
-<span id="cb410-6"><a href="randomization-statistics.html#cb410-6"></a>  nulls[i] &lt;-<span class="st"> </span>nulli</span>
-<span id="cb410-7"><a href="randomization-statistics.html#cb410-7"></a>}</span>
-<span id="cb410-8"><a href="randomization-statistics.html#cb410-8"></a></span>
-<span id="cb410-9"><a href="randomization-statistics.html#cb410-9"></a><span class="co"># Visualize</span></span>
-<span id="cb410-10"><a href="randomization-statistics.html#cb410-10"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb410-11"><a href="randomization-statistics.html#cb410-11"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="dt">by=</span>.<span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">1</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>)</span>
-<span id="cb410-12"><a href="randomization-statistics.html#cb410-12"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-233-1.png" width="925.44" /></p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="randomization-statistics.html#cb411-1"></a><span class="co"># p-value</span></span>
-<span id="cb411-2"><a href="randomization-statistics.html#cb411-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
-<span id="cb411-3"><a href="randomization-statistics.html#cb411-3"></a>p_value</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="randomization-statistics.html#cb421-1"></a><span class="co"># Null distribution (only do 100 iterations for sake of time)</span></span>
+<span id="cb421-2"><a href="randomization-statistics.html#cb421-2"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb421-3"><a href="randomization-statistics.html#cb421-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){</span>
+<span id="cb421-4"><a href="randomization-statistics.html#cb421-4"></a>  bnf_null &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">unique</span>(hw<span class="op">$</span>id),<span class="dt">size=</span><span class="kw">length</span>(bnf_ids),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
+<span id="cb421-5"><a href="randomization-statistics.html#cb421-5"></a>  nulli &lt;-<span class="st"> </span><span class="kw">social_difference</span>(hw, <span class="dt">bnf_ids=</span>bnf_null)</span>
+<span id="cb421-6"><a href="randomization-statistics.html#cb421-6"></a>  nulls[i] &lt;-<span class="st"> </span>nulli</span>
+<span id="cb421-7"><a href="randomization-statistics.html#cb421-7"></a>}</span>
+<span id="cb421-8"><a href="randomization-statistics.html#cb421-8"></a></span>
+<span id="cb421-9"><a href="randomization-statistics.html#cb421-9"></a><span class="co"># Visualize</span></span>
+<span id="cb421-10"><a href="randomization-statistics.html#cb421-10"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb421-11"><a href="randomization-statistics.html#cb421-11"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="dt">by=</span>.<span class="dv">1</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">1</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>)</span>
+<span id="cb421-12"><a href="randomization-statistics.html#cb421-12"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-252-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="randomization-statistics.html#cb422-1"></a><span class="co"># p-value</span></span>
+<span id="cb422-2"><a href="randomization-statistics.html#cb422-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
+<span id="cb422-3"><a href="randomization-statistics.html#cb422-3"></a>p_value</span></code></pre></div>
 <pre><code>[1] 0</code></pre>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="randomization-statistics.html#cb413-1"></a><span class="co"># BNFers have much more persistent bonds than other whales (p=0.00000)</span></span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="randomization-statistics.html#cb424-1"></a><span class="co"># BNFers have much more persistent bonds than other whales (p=0.00000)</span></span></code></pre></div>
 </div>
 <div id="b-are-bubble-net-feeders-more-closely-related-to-each-other" class="section level3 unnumbered">
 <h3>(b) Are bubble net feeders more closely related to each other?</h3>
 <p>In 2019, researchers took DNA samples from 36 individuals in this dataset. They collected the samples by flying drones through the whale’s spouts and harvesting DNA from their <em>snot</em>! <em>GROSS!!!</em> But also <em>super RAD!</em></p>
 <p>Using these genetic samples, the researchers determined the relatedness of each pair of individuals they sampled. Those results are provided in the dataset <code>humpback-kinship.rds</code>.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="randomization-statistics.html#cb414-1"></a>kinship &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/humpback-kinship.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="randomization-statistics.html#cb425-1"></a>kinship &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/humpback-kinship.rds&quot;</span>)</span></code></pre></div>
 <p>And here is a key providing the IDs of these 36 whales and their status as a known bubble net feeder.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="randomization-statistics.html#cb415-1"></a>bnf_status &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bnf-status.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="randomization-statistics.html#cb426-1"></a>bnf_status &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bnf-status.rds&quot;</span>)</span></code></pre></div>
 <p>Use these datasets within a randomization routine to determine whether known bubble netters are more closely related to each other than they are to other whales.</p>
 <p><strong>Answer key:</strong></p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="randomization-statistics.html#cb416-1"></a><span class="co"># How many BNFers are in this dataset?</span></span>
-<span id="cb416-2"><a href="randomization-statistics.html#cb416-2"></a>n_bnf &lt;-<span class="st"> </span><span class="kw">nrow</span>(bnf_status[bnf_status<span class="op">$</span>bnf,])</span>
-<span id="cb416-3"><a href="randomization-statistics.html#cb416-3"></a>n_bnf</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="randomization-statistics.html#cb427-1"></a><span class="co"># How many BNFers are in this dataset?</span></span>
+<span id="cb427-2"><a href="randomization-statistics.html#cb427-2"></a>n_bnf &lt;-<span class="st"> </span><span class="kw">nrow</span>(bnf_status[bnf_status<span class="op">$</span>bnf,])</span>
+<span id="cb427-3"><a href="randomization-statistics.html#cb427-3"></a>n_bnf</span></code></pre></div>
 <pre><code>[1] 23</code></pre>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="randomization-statistics.html#cb418-1"></a><span class="co"># Core function</span></span>
-<span id="cb418-2"><a href="randomization-statistics.html#cb418-2"></a>kinship_difference &lt;-<span class="st"> </span><span class="cf">function</span>(kinship,bnf_status){</span>
-<span id="cb418-3"><a href="randomization-statistics.html#cb418-3"></a>  </span>
-<span id="cb418-4"><a href="randomization-statistics.html#cb418-4"></a>  bnf_ids &lt;-<span class="st"> </span>bnf_status<span class="op">$</span>id[bnf_status<span class="op">$</span>bnf]</span>
-<span id="cb418-5"><a href="randomization-statistics.html#cb418-5"></a>  other_ids &lt;-<span class="st"> </span>bnf_status<span class="op">$</span>id[<span class="op">!</span><span class="st"> </span>bnf_status<span class="op">$</span>bnf]</span>
-<span id="cb418-6"><a href="randomization-statistics.html#cb418-6"></a>  </span>
-<span id="cb418-7"><a href="randomization-statistics.html#cb418-7"></a>  bnf_rows &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">row.names</span>(kinship) <span class="op">%in%</span><span class="st"> </span>bnf_ids)</span>
-<span id="cb418-8"><a href="randomization-statistics.html#cb418-8"></a>  kin_bnf &lt;-<span class="st"> </span>kinship[bnf_rows,bnf_rows]</span>
-<span id="cb418-9"><a href="randomization-statistics.html#cb418-9"></a>  kin_other &lt;-<span class="st"> </span>kinship[<span class="op">-</span>bnf_rows, <span class="op">-</span>bnf_rows]</span>
-<span id="cb418-10"><a href="randomization-statistics.html#cb418-10"></a>  </span>
-<span id="cb418-11"><a href="randomization-statistics.html#cb418-11"></a>  mean_diff &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">as.matrix</span>(kin_bnf)) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(<span class="kw">as.matrix</span>(kin_other))</span>
-<span id="cb418-12"><a href="randomization-statistics.html#cb418-12"></a>  </span>
-<span id="cb418-13"><a href="randomization-statistics.html#cb418-13"></a>  <span class="kw">return</span>(mean_diff)</span>
-<span id="cb418-14"><a href="randomization-statistics.html#cb418-14"></a>}</span>
-<span id="cb418-15"><a href="randomization-statistics.html#cb418-15"></a></span>
-<span id="cb418-16"><a href="randomization-statistics.html#cb418-16"></a><span class="co"># Observed</span></span>
-<span id="cb418-17"><a href="randomization-statistics.html#cb418-17"></a>obs &lt;-<span class="st"> </span><span class="kw">kinship_difference</span>(kinship,bnf_status)</span>
-<span id="cb418-18"><a href="randomization-statistics.html#cb418-18"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="randomization-statistics.html#cb429-1"></a><span class="co"># Core function</span></span>
+<span id="cb429-2"><a href="randomization-statistics.html#cb429-2"></a>kinship_difference &lt;-<span class="st"> </span><span class="cf">function</span>(kinship,bnf_status){</span>
+<span id="cb429-3"><a href="randomization-statistics.html#cb429-3"></a>  </span>
+<span id="cb429-4"><a href="randomization-statistics.html#cb429-4"></a>  bnf_ids &lt;-<span class="st"> </span>bnf_status<span class="op">$</span>id[bnf_status<span class="op">$</span>bnf]</span>
+<span id="cb429-5"><a href="randomization-statistics.html#cb429-5"></a>  other_ids &lt;-<span class="st"> </span>bnf_status<span class="op">$</span>id[<span class="op">!</span><span class="st"> </span>bnf_status<span class="op">$</span>bnf]</span>
+<span id="cb429-6"><a href="randomization-statistics.html#cb429-6"></a>  </span>
+<span id="cb429-7"><a href="randomization-statistics.html#cb429-7"></a>  bnf_rows &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">row.names</span>(kinship) <span class="op">%in%</span><span class="st"> </span>bnf_ids)</span>
+<span id="cb429-8"><a href="randomization-statistics.html#cb429-8"></a>  kin_bnf &lt;-<span class="st"> </span>kinship[bnf_rows,bnf_rows]</span>
+<span id="cb429-9"><a href="randomization-statistics.html#cb429-9"></a>  kin_other &lt;-<span class="st"> </span>kinship[<span class="op">-</span>bnf_rows, <span class="op">-</span>bnf_rows]</span>
+<span id="cb429-10"><a href="randomization-statistics.html#cb429-10"></a>  </span>
+<span id="cb429-11"><a href="randomization-statistics.html#cb429-11"></a>  mean_diff &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">as.matrix</span>(kin_bnf)) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(<span class="kw">as.matrix</span>(kin_other))</span>
+<span id="cb429-12"><a href="randomization-statistics.html#cb429-12"></a>  </span>
+<span id="cb429-13"><a href="randomization-statistics.html#cb429-13"></a>  <span class="kw">return</span>(mean_diff)</span>
+<span id="cb429-14"><a href="randomization-statistics.html#cb429-14"></a>}</span>
+<span id="cb429-15"><a href="randomization-statistics.html#cb429-15"></a></span>
+<span id="cb429-16"><a href="randomization-statistics.html#cb429-16"></a><span class="co"># Observed</span></span>
+<span id="cb429-17"><a href="randomization-statistics.html#cb429-17"></a>obs &lt;-<span class="st"> </span><span class="kw">kinship_difference</span>(kinship,bnf_status)</span>
+<span id="cb429-18"><a href="randomization-statistics.html#cb429-18"></a>obs</span></code></pre></div>
 <pre><code>[1] -0.02804407</code></pre>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="randomization-statistics.html#cb420-1"></a><span class="co"># Null distribution </span></span>
-<span id="cb420-2"><a href="randomization-statistics.html#cb420-2"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb420-3"><a href="randomization-statistics.html#cb420-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
-<span id="cb420-4"><a href="randomization-statistics.html#cb420-4"></a>  bnf_null &lt;-<span class="st"> </span>bnf_status</span>
-<span id="cb420-5"><a href="randomization-statistics.html#cb420-5"></a>  bnf_null<span class="op">$</span>bnf &lt;-<span class="st"> </span><span class="kw">sample</span>(bnf_null<span class="op">$</span>bnf,<span class="dt">size=</span><span class="kw">nrow</span>(bnf_null),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
-<span id="cb420-6"><a href="randomization-statistics.html#cb420-6"></a>  nulli &lt;-<span class="st"> </span><span class="kw">kinship_difference</span>(kinship,bnf_null)</span>
-<span id="cb420-7"><a href="randomization-statistics.html#cb420-7"></a>  nulls[i] &lt;-<span class="st"> </span>nulli</span>
-<span id="cb420-8"><a href="randomization-statistics.html#cb420-8"></a>}</span>
-<span id="cb420-9"><a href="randomization-statistics.html#cb420-9"></a></span>
-<span id="cb420-10"><a href="randomization-statistics.html#cb420-10"></a><span class="co"># Visualize</span></span>
-<span id="cb420-11"><a href="randomization-statistics.html#cb420-11"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb420-12"><a href="randomization-statistics.html#cb420-12"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="dt">by=</span>.<span class="dv">002</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">1</span>,.<span class="dv">05</span>),</span>
-<span id="cb420-13"><a href="randomization-statistics.html#cb420-13"></a>     <span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
-<span id="cb420-14"><a href="randomization-statistics.html#cb420-14"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-236-1.png" width="925.44" /></p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="randomization-statistics.html#cb421-1"></a><span class="co"># p-value</span></span>
-<span id="cb421-2"><a href="randomization-statistics.html#cb421-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
-<span id="cb421-3"><a href="randomization-statistics.html#cb421-3"></a>p_value</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="randomization-statistics.html#cb431-1"></a><span class="co"># Null distribution </span></span>
+<span id="cb431-2"><a href="randomization-statistics.html#cb431-2"></a>nulls &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb431-3"><a href="randomization-statistics.html#cb431-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
+<span id="cb431-4"><a href="randomization-statistics.html#cb431-4"></a>  bnf_null &lt;-<span class="st"> </span>bnf_status</span>
+<span id="cb431-5"><a href="randomization-statistics.html#cb431-5"></a>  bnf_null<span class="op">$</span>bnf &lt;-<span class="st"> </span><span class="kw">sample</span>(bnf_null<span class="op">$</span>bnf,<span class="dt">size=</span><span class="kw">nrow</span>(bnf_null),<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
+<span id="cb431-6"><a href="randomization-statistics.html#cb431-6"></a>  nulli &lt;-<span class="st"> </span><span class="kw">kinship_difference</span>(kinship,bnf_null)</span>
+<span id="cb431-7"><a href="randomization-statistics.html#cb431-7"></a>  nulls[i] &lt;-<span class="st"> </span>nulli</span>
+<span id="cb431-8"><a href="randomization-statistics.html#cb431-8"></a>}</span>
+<span id="cb431-9"><a href="randomization-statistics.html#cb431-9"></a></span>
+<span id="cb431-10"><a href="randomization-statistics.html#cb431-10"></a><span class="co"># Visualize</span></span>
+<span id="cb431-11"><a href="randomization-statistics.html#cb431-11"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb431-12"><a href="randomization-statistics.html#cb431-12"></a><span class="kw">hist</span>(nulls,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="dt">by=</span>.<span class="dv">002</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">1</span>,.<span class="dv">05</span>),</span>
+<span id="cb431-13"><a href="randomization-statistics.html#cb431-13"></a>     <span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
+<span id="cb431-14"><a href="randomization-statistics.html#cb431-14"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-255-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="randomization-statistics.html#cb432-1"></a><span class="co"># p-value</span></span>
+<span id="cb432-2"><a href="randomization-statistics.html#cb432-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
+<span id="cb432-3"><a href="randomization-statistics.html#cb432-3"></a>p_value</span></code></pre></div>
 <pre><code>[1] 0.37</code></pre>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="randomization-statistics.html#cb423-1"></a><span class="co"># Weak evidence for relatedness being a factor in BNF network, but &gt;60% chance! </span></span>
-<span id="cb423-2"><a href="randomization-statistics.html#cb423-2"></a><span class="co"># A bit better than coin flip. Interesting!</span></span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="randomization-statistics.html#cb434-1"></a><span class="co"># Weak evidence for relatedness being a factor in BNF network, but &gt;60% chance! </span></span>
+<span id="cb434-2"><a href="randomization-statistics.html#cb434-2"></a><span class="co"># A bit better than coin flip. Interesting!</span></span></code></pre></div>
 </div>
 </div>
 <div id="c-do-social-bonds-relate-to-kinship" class="section level2 unnumbered">
 <h2>(c) Do social bonds relate to kinship?</h2>
 <p>Finally, let’s ask whether the strength of social bonds is generally correlated to kinship. In other words, is this population assorting according to relatedness?</p>
 <p>For your convenience, the social association rate for these 36 individuals has also been summarized in the dataset <code>humpback-sociality.rds</code>.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="randomization-statistics.html#cb424-1"></a>sociality &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/humpback-sociality.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="randomization-statistics.html#cb435-1"></a>sociality &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/humpback-sociality.rds&quot;</span>)</span></code></pre></div>
 <p><strong>Answer key:</strong></p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="randomization-statistics.html#cb425-1"></a><span class="co"># Core function</span></span>
-<span id="cb425-2"><a href="randomization-statistics.html#cb425-2"></a>kin_soc &lt;-<span class="st"> </span><span class="cf">function</span>(kinship,sociality){</span>
-<span id="cb425-3"><a href="randomization-statistics.html#cb425-3"></a>  ids &lt;-<span class="st"> </span><span class="kw">row.names</span>(kinship) ; ids</span>
-<span id="cb425-4"><a href="randomization-statistics.html#cb425-4"></a>  </span>
-<span id="cb425-5"><a href="randomization-statistics.html#cb425-5"></a>  mr &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
-<span id="cb425-6"><a href="randomization-statistics.html#cb425-6"></a>  i=<span class="dv">1</span> ; j=<span class="dv">10</span></span>
-<span id="cb425-7"><a href="randomization-statistics.html#cb425-7"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(ids)){</span>
-<span id="cb425-8"><a href="randomization-statistics.html#cb425-8"></a>    idi &lt;-<span class="st"> </span>ids[i] ; idi</span>
-<span id="cb425-9"><a href="randomization-statistics.html#cb425-9"></a>    kin_row &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">row.names</span>(kinship)<span class="op">==</span>idi) ; kin_row</span>
-<span id="cb425-10"><a href="randomization-statistics.html#cb425-10"></a>    soc_row &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">row.names</span>(sociality)<span class="op">==</span>idi) ; soc_row</span>
-<span id="cb425-11"><a href="randomization-statistics.html#cb425-11"></a>        </span>
-<span id="cb425-12"><a href="randomization-statistics.html#cb425-12"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(ids)){</span>
-<span id="cb425-13"><a href="randomization-statistics.html#cb425-13"></a>      idj &lt;-<span class="st"> </span>ids[j]; idj</span>
-<span id="cb425-14"><a href="randomization-statistics.html#cb425-14"></a>      </span>
-<span id="cb425-15"><a href="randomization-statistics.html#cb425-15"></a>      kin_col &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(kinship)<span class="op">==</span>idj) ; kin_col</span>
-<span id="cb425-16"><a href="randomization-statistics.html#cb425-16"></a>      soc_col &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(sociality)<span class="op">==</span>idj) ; soc_col</span>
-<span id="cb425-17"><a href="randomization-statistics.html#cb425-17"></a>      </span>
-<span id="cb425-18"><a href="randomization-statistics.html#cb425-18"></a>      mri &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">A=</span>idi,<span class="dt">B=</span>idj,</span>
-<span id="cb425-19"><a href="randomization-statistics.html#cb425-19"></a>                        <span class="dt">kinship=</span>kinship[kin_row,kin_col],</span>
-<span id="cb425-20"><a href="randomization-statistics.html#cb425-20"></a>                        <span class="dt">sociality=</span>sociality[soc_row,soc_col])</span>
-<span id="cb425-21"><a href="randomization-statistics.html#cb425-21"></a>      mri</span>
-<span id="cb425-22"><a href="randomization-statistics.html#cb425-22"></a>      mr &lt;-<span class="st"> </span><span class="kw">rbind</span>(mr,mri)</span>
-<span id="cb425-23"><a href="randomization-statistics.html#cb425-23"></a>    }</span>
-<span id="cb425-24"><a href="randomization-statistics.html#cb425-24"></a>  }</span>
-<span id="cb425-25"><a href="randomization-statistics.html#cb425-25"></a>  mr</span>
-<span id="cb425-26"><a href="randomization-statistics.html#cb425-26"></a>  </span>
-<span id="cb425-27"><a href="randomization-statistics.html#cb425-27"></a>  <span class="co"># remove navelgazers</span></span>
-<span id="cb425-28"><a href="randomization-statistics.html#cb425-28"></a>  navels &lt;-<span class="st"> </span><span class="kw">which</span>(mr<span class="op">$</span>A<span class="op">==</span>mr<span class="op">$</span>B) ; navels</span>
-<span id="cb425-29"><a href="randomization-statistics.html#cb425-29"></a>  mr &lt;-<span class="st"> </span>mr[<span class="op">-</span>navels,]</span>
-<span id="cb425-30"><a href="randomization-statistics.html#cb425-30"></a>  </span>
-<span id="cb425-31"><a href="randomization-statistics.html#cb425-31"></a>  <span class="co">#plot(sociality~kinship,data=mr)</span></span>
-<span id="cb425-32"><a href="randomization-statistics.html#cb425-32"></a>  lmi &lt;-<span class="st"> </span><span class="kw">lm</span>(mr<span class="op">$</span>sociality <span class="op">~</span><span class="st"> </span>mr<span class="op">$</span>kinship) </span>
-<span id="cb425-33"><a href="randomization-statistics.html#cb425-33"></a>  <span class="co">#abline(lmi)</span></span>
-<span id="cb425-34"><a href="randomization-statistics.html#cb425-34"></a>  slopi &lt;-<span class="st"> </span><span class="kw">summary</span>(lmi)<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</span>
-<span id="cb425-35"><a href="randomization-statistics.html#cb425-35"></a>  rsqu &lt;-<span class="st"> </span><span class="kw">summary</span>(lmi)<span class="op">$</span>r.squared</span>
-<span id="cb425-36"><a href="randomization-statistics.html#cb425-36"></a>  </span>
-<span id="cb425-37"><a href="randomization-statistics.html#cb425-37"></a>  <span class="kw">return</span>(<span class="kw">c</span>(<span class="st">&quot;slope&quot;</span>=slopi,<span class="st">&quot;r&quot;</span>=rsqu))</span>
-<span id="cb425-38"><a href="randomization-statistics.html#cb425-38"></a>}</span>
-<span id="cb425-39"><a href="randomization-statistics.html#cb425-39"></a></span>
-<span id="cb425-40"><a href="randomization-statistics.html#cb425-40"></a><span class="co"># Observed</span></span>
-<span id="cb425-41"><a href="randomization-statistics.html#cb425-41"></a>obs &lt;-<span class="st"> </span><span class="kw">kin_soc</span>(kinship,sociality)</span>
-<span id="cb425-42"><a href="randomization-statistics.html#cb425-42"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="randomization-statistics.html#cb436-1"></a><span class="co"># Core function</span></span>
+<span id="cb436-2"><a href="randomization-statistics.html#cb436-2"></a>kin_soc &lt;-<span class="st"> </span><span class="cf">function</span>(kinship,sociality){</span>
+<span id="cb436-3"><a href="randomization-statistics.html#cb436-3"></a>  ids &lt;-<span class="st"> </span><span class="kw">row.names</span>(kinship) ; ids</span>
+<span id="cb436-4"><a href="randomization-statistics.html#cb436-4"></a>  </span>
+<span id="cb436-5"><a href="randomization-statistics.html#cb436-5"></a>  mr &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb436-6"><a href="randomization-statistics.html#cb436-6"></a>  i=<span class="dv">1</span> ; j=<span class="dv">10</span></span>
+<span id="cb436-7"><a href="randomization-statistics.html#cb436-7"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(ids)){</span>
+<span id="cb436-8"><a href="randomization-statistics.html#cb436-8"></a>    idi &lt;-<span class="st"> </span>ids[i] ; idi</span>
+<span id="cb436-9"><a href="randomization-statistics.html#cb436-9"></a>    kin_row &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">row.names</span>(kinship)<span class="op">==</span>idi) ; kin_row</span>
+<span id="cb436-10"><a href="randomization-statistics.html#cb436-10"></a>    soc_row &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">row.names</span>(sociality)<span class="op">==</span>idi) ; soc_row</span>
+<span id="cb436-11"><a href="randomization-statistics.html#cb436-11"></a>        </span>
+<span id="cb436-12"><a href="randomization-statistics.html#cb436-12"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(ids)){</span>
+<span id="cb436-13"><a href="randomization-statistics.html#cb436-13"></a>      idj &lt;-<span class="st"> </span>ids[j]; idj</span>
+<span id="cb436-14"><a href="randomization-statistics.html#cb436-14"></a>      </span>
+<span id="cb436-15"><a href="randomization-statistics.html#cb436-15"></a>      kin_col &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(kinship)<span class="op">==</span>idj) ; kin_col</span>
+<span id="cb436-16"><a href="randomization-statistics.html#cb436-16"></a>      soc_col &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(sociality)<span class="op">==</span>idj) ; soc_col</span>
+<span id="cb436-17"><a href="randomization-statistics.html#cb436-17"></a>      </span>
+<span id="cb436-18"><a href="randomization-statistics.html#cb436-18"></a>      mri &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">A=</span>idi,<span class="dt">B=</span>idj,</span>
+<span id="cb436-19"><a href="randomization-statistics.html#cb436-19"></a>                        <span class="dt">kinship=</span>kinship[kin_row,kin_col],</span>
+<span id="cb436-20"><a href="randomization-statistics.html#cb436-20"></a>                        <span class="dt">sociality=</span>sociality[soc_row,soc_col])</span>
+<span id="cb436-21"><a href="randomization-statistics.html#cb436-21"></a>      mri</span>
+<span id="cb436-22"><a href="randomization-statistics.html#cb436-22"></a>      mr &lt;-<span class="st"> </span><span class="kw">rbind</span>(mr,mri)</span>
+<span id="cb436-23"><a href="randomization-statistics.html#cb436-23"></a>    }</span>
+<span id="cb436-24"><a href="randomization-statistics.html#cb436-24"></a>  }</span>
+<span id="cb436-25"><a href="randomization-statistics.html#cb436-25"></a>  mr</span>
+<span id="cb436-26"><a href="randomization-statistics.html#cb436-26"></a>  </span>
+<span id="cb436-27"><a href="randomization-statistics.html#cb436-27"></a>  <span class="co"># remove navelgazers</span></span>
+<span id="cb436-28"><a href="randomization-statistics.html#cb436-28"></a>  navels &lt;-<span class="st"> </span><span class="kw">which</span>(mr<span class="op">$</span>A<span class="op">==</span>mr<span class="op">$</span>B) ; navels</span>
+<span id="cb436-29"><a href="randomization-statistics.html#cb436-29"></a>  mr &lt;-<span class="st"> </span>mr[<span class="op">-</span>navels,]</span>
+<span id="cb436-30"><a href="randomization-statistics.html#cb436-30"></a>  </span>
+<span id="cb436-31"><a href="randomization-statistics.html#cb436-31"></a>  <span class="co">#plot(sociality~kinship,data=mr)</span></span>
+<span id="cb436-32"><a href="randomization-statistics.html#cb436-32"></a>  lmi &lt;-<span class="st"> </span><span class="kw">lm</span>(mr<span class="op">$</span>sociality <span class="op">~</span><span class="st"> </span>mr<span class="op">$</span>kinship) </span>
+<span id="cb436-33"><a href="randomization-statistics.html#cb436-33"></a>  <span class="co">#abline(lmi)</span></span>
+<span id="cb436-34"><a href="randomization-statistics.html#cb436-34"></a>  slopi &lt;-<span class="st"> </span><span class="kw">summary</span>(lmi)<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb436-35"><a href="randomization-statistics.html#cb436-35"></a>  rsqu &lt;-<span class="st"> </span><span class="kw">summary</span>(lmi)<span class="op">$</span>r.squared</span>
+<span id="cb436-36"><a href="randomization-statistics.html#cb436-36"></a>  </span>
+<span id="cb436-37"><a href="randomization-statistics.html#cb436-37"></a>  <span class="kw">return</span>(<span class="kw">c</span>(<span class="st">&quot;slope&quot;</span>=slopi,<span class="st">&quot;r&quot;</span>=rsqu))</span>
+<span id="cb436-38"><a href="randomization-statistics.html#cb436-38"></a>}</span>
+<span id="cb436-39"><a href="randomization-statistics.html#cb436-39"></a></span>
+<span id="cb436-40"><a href="randomization-statistics.html#cb436-40"></a><span class="co"># Observed</span></span>
+<span id="cb436-41"><a href="randomization-statistics.html#cb436-41"></a>obs &lt;-<span class="st"> </span><span class="kw">kin_soc</span>(kinship,sociality)</span>
+<span id="cb436-42"><a href="randomization-statistics.html#cb436-42"></a>obs</span></code></pre></div>
 <pre><code>          slope               r 
 -0.000250926843  0.000002521563 </code></pre>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="randomization-statistics.html#cb427-1"></a><span class="co"># Null distribution</span></span>
-<span id="cb427-2"><a href="randomization-statistics.html#cb427-2"></a>nulls &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
-<span id="cb427-3"><a href="randomization-statistics.html#cb427-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>){</span>
-<span id="cb427-4"><a href="randomization-statistics.html#cb427-4"></a>  kin_null &lt;-<span class="st"> </span>kinship</span>
-<span id="cb427-5"><a href="randomization-statistics.html#cb427-5"></a>  kin_null &lt;-<span class="st"> </span>kin_null[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(kin_null),<span class="dt">size=</span><span class="kw">nrow</span>(kin_null),<span class="dt">replace=</span><span class="ot">FALSE</span>),]</span>
-<span id="cb427-6"><a href="randomization-statistics.html#cb427-6"></a>  <span class="kw">row.names</span>(kin_null) &lt;-<span class="st"> </span><span class="kw">row.names</span>(kinship)</span>
-<span id="cb427-7"><a href="randomization-statistics.html#cb427-7"></a>  nulli &lt;-<span class="st"> </span><span class="kw">kin_soc</span>(kin_null,sociality)</span>
-<span id="cb427-8"><a href="randomization-statistics.html#cb427-8"></a>  nulli &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">slope=</span>nulli[<span class="dv">1</span>],<span class="dt">r=</span>nulli[<span class="dv">2</span>])</span>
-<span id="cb427-9"><a href="randomization-statistics.html#cb427-9"></a>  nulls &lt;-<span class="st"> </span><span class="kw">rbind</span>(nulls,nulli)</span>
-<span id="cb427-10"><a href="randomization-statistics.html#cb427-10"></a>}</span>
-<span id="cb427-11"><a href="randomization-statistics.html#cb427-11"></a></span>
-<span id="cb427-12"><a href="randomization-statistics.html#cb427-12"></a><span class="co"># Visualize</span></span>
-<span id="cb427-13"><a href="randomization-statistics.html#cb427-13"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb427-14"><a href="randomization-statistics.html#cb427-14"></a><span class="kw">hist</span>(nulls<span class="op">$</span>slope,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dt">by=</span>.<span class="dv">0005</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">02</span>,.<span class="dv">02</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
-<span id="cb427-15"><a href="randomization-statistics.html#cb427-15"></a><span class="kw">text</span>(<span class="op">-</span>.<span class="dv">48</span>,<span class="dv">20</span>,<span class="st">&quot;Slope </span><span class="ch">\n</span><span class="st">estimate&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>)</span>
-<span id="cb427-16"><a href="randomization-statistics.html#cb427-16"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs[<span class="dv">1</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb427-17"><a href="randomization-statistics.html#cb427-17"></a></span>
-<span id="cb427-18"><a href="randomization-statistics.html#cb427-18"></a><span class="kw">hist</span>(nulls<span class="op">$</span>r,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">by=</span>.<span class="dv">0001</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">01</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
-<span id="cb427-19"><a href="randomization-statistics.html#cb427-19"></a><span class="kw">text</span>(.<span class="dv">06</span>,<span class="dv">20</span>,<span class="st">&quot;Correlation </span><span class="ch">\n</span><span class="st">coefficient&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>)</span>
-<span id="cb427-20"><a href="randomization-statistics.html#cb427-20"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs[<span class="dv">2</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-238-1.png" width="925.44" /></p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="randomization-statistics.html#cb428-1"></a><span class="co"># P-value of slope</span></span>
-<span id="cb428-2"><a href="randomization-statistics.html#cb428-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>slope <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">1</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
-<span id="cb428-3"><a href="randomization-statistics.html#cb428-3"></a>p_value</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="randomization-statistics.html#cb438-1"></a><span class="co"># Null distribution</span></span>
+<span id="cb438-2"><a href="randomization-statistics.html#cb438-2"></a>nulls &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb438-3"><a href="randomization-statistics.html#cb438-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>){</span>
+<span id="cb438-4"><a href="randomization-statistics.html#cb438-4"></a>  kin_null &lt;-<span class="st"> </span>kinship</span>
+<span id="cb438-5"><a href="randomization-statistics.html#cb438-5"></a>  kin_null &lt;-<span class="st"> </span>kin_null[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(kin_null),<span class="dt">size=</span><span class="kw">nrow</span>(kin_null),<span class="dt">replace=</span><span class="ot">FALSE</span>),]</span>
+<span id="cb438-6"><a href="randomization-statistics.html#cb438-6"></a>  <span class="kw">row.names</span>(kin_null) &lt;-<span class="st"> </span><span class="kw">row.names</span>(kinship)</span>
+<span id="cb438-7"><a href="randomization-statistics.html#cb438-7"></a>  nulli &lt;-<span class="st"> </span><span class="kw">kin_soc</span>(kin_null,sociality)</span>
+<span id="cb438-8"><a href="randomization-statistics.html#cb438-8"></a>  nulli &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">slope=</span>nulli[<span class="dv">1</span>],<span class="dt">r=</span>nulli[<span class="dv">2</span>])</span>
+<span id="cb438-9"><a href="randomization-statistics.html#cb438-9"></a>  nulls &lt;-<span class="st"> </span><span class="kw">rbind</span>(nulls,nulli)</span>
+<span id="cb438-10"><a href="randomization-statistics.html#cb438-10"></a>}</span>
+<span id="cb438-11"><a href="randomization-statistics.html#cb438-11"></a></span>
+<span id="cb438-12"><a href="randomization-statistics.html#cb438-12"></a><span class="co"># Visualize</span></span>
+<span id="cb438-13"><a href="randomization-statistics.html#cb438-13"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb438-14"><a href="randomization-statistics.html#cb438-14"></a><span class="kw">hist</span>(nulls<span class="op">$</span>slope,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dt">by=</span>.<span class="dv">0005</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">02</span>,.<span class="dv">02</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
+<span id="cb438-15"><a href="randomization-statistics.html#cb438-15"></a><span class="kw">text</span>(<span class="op">-</span>.<span class="dv">48</span>,<span class="dv">20</span>,<span class="st">&quot;Slope </span><span class="ch">\n</span><span class="st">estimate&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>)</span>
+<span id="cb438-16"><a href="randomization-statistics.html#cb438-16"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs[<span class="dv">1</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb438-17"><a href="randomization-statistics.html#cb438-17"></a></span>
+<span id="cb438-18"><a href="randomization-statistics.html#cb438-18"></a><span class="kw">hist</span>(nulls<span class="op">$</span>r,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">by=</span>.<span class="dv">0001</span>),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">01</span>),<span class="dt">main=</span><span class="ot">NULL</span>,<span class="dt">xlab=</span><span class="st">&quot;Null distribution&quot;</span>,<span class="dt">border=</span><span class="st">&quot;grey70&quot;</span>)</span>
+<span id="cb438-19"><a href="randomization-statistics.html#cb438-19"></a><span class="kw">text</span>(.<span class="dv">06</span>,<span class="dv">20</span>,<span class="st">&quot;Correlation </span><span class="ch">\n</span><span class="st">coefficient&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>)</span>
+<span id="cb438-20"><a href="randomization-statistics.html#cb438-20"></a><span class="kw">abline</span>(<span class="dt">v=</span>obs[<span class="dv">2</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-257-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="randomization-statistics.html#cb439-1"></a><span class="co"># P-value of slope</span></span>
+<span id="cb439-2"><a href="randomization-statistics.html#cb439-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>slope <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">1</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
+<span id="cb439-3"><a href="randomization-statistics.html#cb439-3"></a>p_value</span></code></pre></div>
 <pre><code>[1] 0.588</code></pre>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="randomization-statistics.html#cb430-1"></a><span class="co"># P-value of correlation coefficient</span></span>
-<span id="cb430-2"><a href="randomization-statistics.html#cb430-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>r <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">2</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
-<span id="cb430-3"><a href="randomization-statistics.html#cb430-3"></a>p_value</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="randomization-statistics.html#cb441-1"></a><span class="co"># P-value of correlation coefficient</span></span>
+<span id="cb441-2"><a href="randomization-statistics.html#cb441-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>r <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">2</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
+<span id="cb441-3"><a href="randomization-statistics.html#cb441-3"></a>p_value</span></code></pre></div>
 <pre><code>[1] 0.942</code></pre>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="randomization-statistics.html#cb432-1"></a><span class="co"># How to interpret this correlation coefficient? </span></span>
-<span id="cb432-2"><a href="randomization-statistics.html#cb432-2"></a><span class="co"># Could it be said that the correlation is unexpectedly POOR? </span></span>
-<span id="cb432-3"><a href="randomization-statistics.html#cb432-3"></a><span class="co"># As in, the correlation coefficient is worse than &gt; 95% of outcomes expected under the null distribution? </span></span>
-<span id="cb432-4"><a href="randomization-statistics.html#cb432-4"></a><span class="co"># In other words, whales of closer relatedness AVOID each other? At least a hypothesis...</span></span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="randomization-statistics.html#cb443-1"></a><span class="co"># How to interpret this correlation coefficient? </span></span>
+<span id="cb443-2"><a href="randomization-statistics.html#cb443-2"></a><span class="co"># Could it be said that the correlation is unexpectedly POOR? </span></span>
+<span id="cb443-3"><a href="randomization-statistics.html#cb443-3"></a><span class="co"># As in, the correlation coefficient is worse than &gt; 95% of outcomes expected under the null distribution? </span></span>
+<span id="cb443-4"><a href="randomization-statistics.html#cb443-4"></a><span class="co"># In other words, whales of closer relatedness AVOID each other? At least a hypothesis...</span></span></code></pre></div>
 </div>
 <div id="other-resources-10" class="section level2 unnumbered">
 <h2>Other Resources</h2>

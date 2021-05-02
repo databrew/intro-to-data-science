@@ -1,1 +1,97 @@
 # Working with text
+
+## Learning goals {-}
+
+* Item 1  
+* Item 2  
+* Item 3 
+
+
+## Basics {-}
+
+### The `stringr` package {-}
+
+```{r,echo=TRUE,eval=FALSE}
+install.packages("stringr")
+library(stringr)
+```
+
+## Common tools {-}
+
+**`as.character()`**: converts a non-character object into a character string. 
+
+```{r,echo=TRUE}
+x <- c(1,2,3)
+as.character(x)
+
+x <- as.factor(c("group1","group2","group3"))
+as.character(x)
+```
+
+This can be particularly useful if you are trying to avoid problems caused by factors. One common issue occurs when `R` mistakes a set of numbers as a set of factors. Using `as.character()` can set things right:
+
+```{r,echo=TRUE}
+x <- as.factor(c(18,19,20))
+x
+
+# If you try to convert straight to numeric, it does not work:
+as.numeric(x)
+
+# So convert to character first
+as.numeric(as.character(x))
+```
+
+**`paste()`** and **`paste0()`**: description:
+
+```{r,echo=TRUE}
+
+```
+
+**`tolower()`** and **`toupper()`**: description:
+
+```{r,echo=TRUE}
+
+```
+
+**`nchar()`**: description:
+
+```{r,echo=TRUE}
+
+```
+
+**`substr()`**: description:
+
+```{r,echo=TRUE}
+
+```
+
+**`grep()`**: description:
+
+```{r,echo=TRUE}
+
+```
+
+**`gsub()`**: description:
+
+```{r,echo=TRUE}
+
+```
+
+**`stringr::str_pad()`**: description:
+
+```{r,echo=TRUE}
+
+```
+
+**`str_split()`**: description:
+
+```{r,echo=TRUE}
+
+```
+
+## Review assignment {-}
+
+```{r,echo=TRUE}
+
+```
+

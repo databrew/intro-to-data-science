@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-04-30}
+\date{2021-05-02}
 
 \begin{document}
 \maketitle
@@ -2924,7 +2924,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] "pP0'yIk#oM4c`LB[|-d2%Ueg"
+[1] "b`uioH1+&c^]JXPY9m'q,7@j"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2936,7 +2936,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "9cW)T,5Y[NU^M&Z$zt#ok6}b"
+[1] "rf0B7lk,R{8+TW:1Q=|9<>#A"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -3127,9 +3127,6 @@ Add title / subtitle / caption
 \hypertarget{importing-data}{%
 \chapter{Importing data}\label{importing-data}}
 
-\hypertarget{working-directories}{%
-\section{Working directories}\label{working-directories}}
-
 \hypertarget{reading-in-data}{%
 \section{Reading in data}\label{reading-in-data}}
 
@@ -3199,21 +3196,14 @@ Add title / subtitle / caption
 \hypertarget{correlation-tests}{%
 \section{Correlation tests}\label{correlation-tests}}
 
-\hypertarget{displaying-data}{%
-\chapter{Displaying data}\label{displaying-data}}
+\hypertarget{summarizing-datasets}{%
+\chapter{Summarizing datasets}\label{summarizing-datasets}}
+
+\hypertarget{summary-statements}{%
+\section{Summary statements}\label{summary-statements}}
 
 \hypertarget{tables}{%
 \section{Tables}\label{tables}}
-
-\hypertarget{base-plots-1}{%
-\section{Base plots}\label{base-plots-1}}
-
-Advanced techniques
-
-\hypertarget{ggplot}{%
-\section{ggplot}\label{ggplot}}
-
-Advanced techniques
 
 \hypertarget{part-accessing-managing-data}{%
 \part{Accessing \& managing data}\label{part-accessing-managing-data}}
@@ -5063,6 +5053,119 @@ To do this work, your supervisor asks you to use the \texttt{us\_contagious\_dis
 \hypertarget{working-with-text}{%
 \chapter{Working with text}\label{working-with-text}}
 
+\hypertarget{learning-goals-11}{%
+\section*{Learning goals}\label{learning-goals-11}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Item 1\\
+\item
+  Item 2\\
+\item
+  Item 3
+\end{itemize}
+
+\hypertarget{basics-1}{%
+\section*{Basics}\label{basics-1}}
+\addcontentsline{toc}{section}{Basics}
+
+\hypertarget{the-stringr-package}{%
+\subsection*{\texorpdfstring{The \texttt{stringr} package}{The stringr package}}\label{the-stringr-package}}
+\addcontentsline{toc}{subsection}{The \texttt{stringr} package}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"stringr"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(stringr)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{common-tools}{%
+\section*{Common tools}\label{common-tools}}
+\addcontentsline{toc}{section}{Common tools}
+
+\textbf{\texttt{as.character()}}: converts a non-character object into a character string.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\KeywordTok{as.character}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "1" "2" "3"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"group1"}\NormalTok{,}\StringTok{"group2"}\NormalTok{,}\StringTok{"group3"}\NormalTok{))}
+\KeywordTok{as.character}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "group1" "group2" "group3"
+\end{verbatim}
+
+This can be particularly useful if you are trying to avoid problems caused by factors. One common issue occurs when \texttt{R} mistakes a set of numbers as a set of factors. Using \texttt{as.character()} can set things right:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{18}\NormalTok{,}\DecValTok{19}\NormalTok{,}\DecValTok{20}\NormalTok{))}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 18 19 20
+Levels: 18 19 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# If you try to convert straight to numeric, it does not work:}
+\KeywordTok{as.numeric}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1 2 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# So convert to character first}
+\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 18 19 20
+\end{verbatim}
+
+\textbf{\texttt{paste()}} and \textbf{\texttt{paste0()}}: description:
+
+\textbf{\texttt{tolower()}} and \textbf{\texttt{toupper()}}: description:
+
+\textbf{\texttt{nchar()}}: description:
+
+\textbf{\texttt{substr()}}: description:
+
+\textbf{\texttt{grep()}}: description:
+
+\textbf{\texttt{gsub()}}: description:
+
+\textbf{\texttt{stringr::str\_pad()}}: description:
+
+\textbf{\texttt{str\_split()}}: description:
+
+\hypertarget{review-assignment-10}{%
+\section*{Review assignment}\label{review-assignment-10}}
+\addcontentsline{toc}{section}{Review assignment}
+
 \hypertarget{working-with-dates-times}{%
 \chapter{Working with dates \& times}\label{working-with-dates-times}}
 
@@ -5257,8 +5360,8 @@ Spinning up a local DB
 \hypertarget{randomization-statistics}{%
 \chapter{Randomization statistics}\label{randomization-statistics}}
 
-\hypertarget{learning-goals-11}{%
-\section*{Learning goals}\label{learning-goals-11}}
+\hypertarget{learning-goals-12}{%
+\section*{Learning goals}\label{learning-goals-12}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -5437,7 +5540,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-208-1.pdf}
+\includegraphics{figures/unnamed-chunk-220-1.pdf}
 
 \textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
 
@@ -5487,7 +5590,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-210-1.pdf}
+\includegraphics{figures/unnamed-chunk-222-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5498,7 +5601,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.019
+[1] 0.02
 \end{verbatim}
 
 In this case, the observed association rate is still statistically significant at the conventional 0.05 level, but there is still an off chance that this is merely the result of random mixing.
@@ -5582,7 +5685,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-216-1.pdf}
+\includegraphics{figures/unnamed-chunk-228-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -5594,10 +5697,10 @@ Let's go through the steps:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.005
+[1] 0.003
 \end{verbatim}
 
-So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.005).
+So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.003).
 
 \hypertarget{are-two-variables-correlated}{%
 \subsection*{3. Are two variables correlated?}\label{are-two-variables-correlated}}
@@ -5633,11 +5736,11 @@ Each row of this dataset is an abundance estimate from a survey that occurred wi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-220-1.pdf}
+\includegraphics{figures/unnamed-chunk-232-1.pdf}
 
 Performing a simple linear regression with this dataset yields the following results:
 
-\includegraphics{figures/unnamed-chunk-221-1.pdf}
+\includegraphics{figures/unnamed-chunk-233-1.pdf}
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
@@ -5732,7 +5835,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-226-1.pdf}
+\includegraphics{figures/unnamed-chunk-238-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -5746,10 +5849,10 @@ Significance of \textbf{slope}:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.91
+[1] 0.9
 \end{verbatim}
 
-This indicates that the chance that the slope is lower than the null expectation is 91\%.
+This indicates that the chance that the slope is lower than the null expectation is 90\%.
 
 Significance of \textbf{correlation coefficient}:
 
@@ -5761,10 +5864,10 @@ Significance of \textbf{correlation coefficient}:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.203
+[1] 0.207
 \end{verbatim}
 
-This indicates that the observed regression is better than 79.7\% of scenarios that might be expected under the null expectation.
+This indicates that the observed regression is better than 79.3\% of scenarios that might be expected under the null expectation.
 
 \hypertarget{is-the-slope-of-a-regression-line-negative}{%
 \subsection*{4. Is the slope of a regression line negative?}\label{is-the-slope-of-a-regression-line-negative}}
@@ -5804,7 +5907,7 @@ We want to know what the chances are that the population has declined between 20
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-230-1.pdf}
+\includegraphics{figures/unnamed-chunk-242-1.pdf}
 
 If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
 
@@ -5829,7 +5932,7 @@ And in this randomization application, the workflow is a bit more simplified. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-231-1.pdf}
+\includegraphics{figures/unnamed-chunk-243-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5848,8 +5951,8 @@ And in this randomization application, the workflow is a bit more simplified. We
 
 The chances that this population is in decline is 84.43\%.
 
-\hypertarget{review-assignment-10}{%
-\section*{Review assignment}\label{review-assignment-10}}
+\hypertarget{review-assignment-11}{%
+\section*{Review assignment}\label{review-assignment-11}}
 \addcontentsline{toc}{section}{Review assignment}
 
 Let's return to the humpback whale scenario
@@ -5939,7 +6042,7 @@ Make sure you are working with the correct data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-233-1.pdf}
+\includegraphics{figures/unnamed-chunk-245-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6043,7 +6146,7 @@ Use these datasets within a randomization routine to determine whether known bub
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-236-1.pdf}
+\includegraphics{figures/unnamed-chunk-248-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6157,7 +6260,7 @@ For your convenience, the social association rate for these 36 individuals has a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-238-1.pdf}
+\includegraphics{figures/unnamed-chunk-250-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6210,8 +6313,8 @@ For your convenience, the social association rate for these 36 individuals has a
 \hypertarget{template}{%
 \chapter{Template}\label{template}}
 
-\hypertarget{learning-goals-12}{%
-\section*{Learning goals}\label{learning-goals-12}}
+\hypertarget{learning-goals-13}{%
+\section*{Learning goals}\label{learning-goals-13}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -6232,16 +6335,16 @@ Instructor tip!Here is some teacher content.
 
 Bangarang - Crew Briefing from Luke Padgett on Vimeo.
 
-\hypertarget{basics-1}{%
-\section*{Basics}\label{basics-1}}
+\hypertarget{basics-2}{%
+\section*{Basics}\label{basics-2}}
 \addcontentsline{toc}{section}{Basics}
 
 \hypertarget{exercise-1-7}{%
 \subsection*{Exercise 1}\label{exercise-1-7}}
 \addcontentsline{toc}{subsection}{Exercise 1}
 
-\hypertarget{review-assignment-11}{%
-\section*{Review assignment}\label{review-assignment-11}}
+\hypertarget{review-assignment-12}{%
+\section*{Review assignment}\label{review-assignment-12}}
 \addcontentsline{toc}{section}{Review assignment}
 
 Introduce data

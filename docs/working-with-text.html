@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-04-30" />
+<meta name="date" content="2021-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>IV Exploring &amp; analyzing data</b></span></li>
 <li class="chapter" data-level="18" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>18</b> Exploratory Data Analysis</a></li>
 <li class="chapter" data-level="19" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>19</b> Significance statistics</a></li>
-<li class="chapter" data-level="20" data-path="displaying-data.html"><a href="displaying-data.html"><i class="fa fa-check"></i><b>20</b> Displaying data</a></li>
+<li class="chapter" data-level="20" data-path="summarizing-datasets.html"><a href="summarizing-datasets.html"><i class="fa fa-check"></i><b>20</b> Summarizing datasets</a></li>
 <li class="part"><span><b>V Accessing &amp; managing data</b></span></li>
 <li class="chapter" data-level="21" data-path="managing-project-files.html"><a href="managing-project-files.html"><i class="fa fa-check"></i><b>21</b> Managing project files</a></li>
 <li class="chapter" data-level="22" data-path="formatting-your-own-data.html"><a href="formatting-your-own-data.html"><i class="fa fa-check"></i><b>22</b> Formatting your own data</a></li>
@@ -234,7 +234,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="working-with-text" class="section level1">
 <h1><span class="header-section-number">Module 31</span> Working with text</h1>
+<div id="learning-goals-11" class="section level2 unnumbered">
+<h2>Learning goals</h2>
+<ul>
+<li>Item 1<br />
+</li>
+<li>Item 2<br />
+</li>
+<li>Item 3</li>
+</ul>
+</div>
+<div id="basics-1" class="section level2 unnumbered">
+<h2>Basics</h2>
+<div id="the-stringr-package" class="section level3 unnumbered">
+<h3>The <code>stringr</code> package</h3>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="working-with-text.html#cb361-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span>
+<span id="cb361-2"><a href="working-with-text.html#cb361-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
+</div>
+</div>
+<div id="common-tools" class="section level2 unnumbered">
+<h2>Common tools</h2>
+<p><strong><code>as.character()</code></strong>: converts a non-character object into a character string.</p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="working-with-text.html#cb362-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb362-2"><a href="working-with-text.html#cb362-2"></a><span class="kw">as.character</span>(x)</span></code></pre></div>
+<pre><code>[1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="working-with-text.html#cb364-1"></a>x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;group1&quot;</span>,<span class="st">&quot;group2&quot;</span>,<span class="st">&quot;group3&quot;</span>))</span>
+<span id="cb364-2"><a href="working-with-text.html#cb364-2"></a><span class="kw">as.character</span>(x)</span></code></pre></div>
+<pre><code>[1] &quot;group1&quot; &quot;group2&quot; &quot;group3&quot;</code></pre>
+<p>This can be particularly useful if you are trying to avoid problems caused by factors. One common issue occurs when <code>R</code> mistakes a set of numbers as a set of factors. Using <code>as.character()</code> can save you:</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="working-with-text.html#cb366-1"></a>x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>))</span>
+<span id="cb366-2"><a href="working-with-text.html#cb366-2"></a>x</span></code></pre></div>
+<pre><code>[1] 18 19 20
+Levels: 18 19 20</code></pre>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="working-with-text.html#cb368-1"></a><span class="co"># If you try to convert straight to numeric, it does not work:</span></span>
+<span id="cb368-2"><a href="working-with-text.html#cb368-2"></a><span class="kw">as.numeric</span>(x)</span></code></pre></div>
+<pre><code>[1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="working-with-text.html#cb370-1"></a><span class="co"># So convert to character first</span></span>
+<span id="cb370-2"><a href="working-with-text.html#cb370-2"></a><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(x))</span></code></pre></div>
+<pre><code>[1] 18 19 20</code></pre>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+<p><strong><code>function()</code></strong>: description:</p>
+</div>
+<div id="review-assignment-10" class="section level2 unnumbered">
+<h2>Review assignment</h2>
 
+</div>
 </div>
             </section>
 
