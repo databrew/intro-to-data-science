@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-05-02}
+\date{2021-05-03}
 
 \begin{document}
 \maketitle
@@ -2924,7 +2924,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] "b`uioH1+&c^]JXPY9m'q,7@j"
+[1] "+h\"a>[]iOD/g=U)rH-yGQuF4"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2936,7 +2936,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "rf0B7lk,R{8+TW:1Q=|9<>#A"
+[1] "xst$0ky./G&IHK[#Jcv7+F:l"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -3127,17 +3127,560 @@ Add title / subtitle / caption
 \hypertarget{importing-data}{%
 \chapter{Importing data}\label{importing-data}}
 
-\hypertarget{reading-in-data}{%
-\section{Reading in data}\label{reading-in-data}}
+\hypertarget{learning-goals-8}{%
+\section*{Learning goals}\label{learning-goals-8}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\hypertarget{data-format-requirements}{%
+\section{Data format requirements}\label{data-format-requirements}}
+
+\hypertarget{learning-goals-9}{%
+\section*{Learning goals}\label{learning-goals-9}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\hypertarget{read.csv}{%
+\section{\texorpdfstring{\texttt{read.csv()}}{read.csv()}}\label{read.csv}}
+
+\hypertarget{readrread_csv}{%
+\section{\texorpdfstring{\texttt{readr::read\_csv()}}{readr::read\_csv()}}\label{readrread_csv}}
+
+\hypertarget{review-exercise}{%
+\section*{Review exercise}\label{review-exercise}}
+\addcontentsline{toc}{section}{Review exercise}
 
 \hypertarget{dataframes}{%
 \chapter{Dataframes}\label{dataframes}}
 
-\hypertarget{exploration}{%
-\section{Exploration}\label{exploration}}
+\hypertarget{learning-goals-10}{%
+\section*{Learning goals}\label{learning-goals-10}}
+\addcontentsline{toc}{section}{Learning goals}
 
-\hypertarget{summarization}{%
-\section{Summarization}\label{summarization}}
+\begin{itemize}
+\tightlist
+\item
+  Practice exploring, summarizing, and filtering dataframes
+\item
+  Understand the importance of \emph{tidy} datasets
+\item
+  Understand what the \texttt{tidyverse} is and why it is awesome.
+\end{itemize}
+
+In data science, the most common data structure you will be using -- by far -- is the \textbf{dataframe}. You were introduced to this data structure in Module 10, but a more familiar and detailed orientation is worthwhile.
+
+\hypertarget{subsetting-exploring-dataframes}{%
+\section*{Subsetting \& exploring dataframes}\label{subsetting-exploring-dataframes}}
+\addcontentsline{toc}{section}{Subsetting \& exploring dataframes}
+
+A dataframe has rows of data organized into columns. Let's use a dataset on fuel mileage for all cars sold from 1985 to 2014.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(fueleconomy)}
+\KeywordTok{data}\NormalTok{(vehicles)}
+\KeywordTok{head}\NormalTok{(vehicles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 12
+     id make  model    year class   trans  drive     cyl displ fuel    hwy   cty
+  <dbl> <chr> <chr>   <dbl> <chr>   <chr>  <chr>   <dbl> <dbl> <chr> <dbl> <dbl>
+1 13309 Acura 2.2CL/~  1997 Subcom~ Autom~ Front-~     4   2.2 Regu~    26    20
+2 13310 Acura 2.2CL/~  1997 Subcom~ Manua~ Front-~     4   2.2 Regu~    28    22
+3 13311 Acura 2.2CL/~  1997 Subcom~ Autom~ Front-~     6   3   Regu~    26    18
+4 14038 Acura 2.3CL/~  1998 Subcom~ Autom~ Front-~     4   2.3 Regu~    27    19
+5 14039 Acura 2.3CL/~  1998 Subcom~ Manua~ Front-~     4   2.3 Regu~    29    21
+6 14040 Acura 2.3CL/~  1998 Subcom~ Autom~ Front-~     6   3   Regu~    26    17
+\end{verbatim}
+
+Each row pertains to a single vehicle make/model -- i.e., a single \emph{observation}. Each column pertains to a single \emph{type} of data. Columns are named in the \emph{header} of the dataframe.
+
+All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes (see module 10 for a refreshers). In addition to those functions you already know, we've added some new functions to your inventory of useful functions.
+
+\hypertarget{exploration}{%
+\subsection{Exploration}\label{exploration}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(vehicles) }\CommentTok{# head() and tail() summarize the beginning and end of the object}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 12
+     id make  model    year class   trans   drive    cyl displ fuel    hwy   cty
+  <dbl> <chr> <chr>   <dbl> <chr>   <chr>   <chr>  <dbl> <dbl> <chr> <dbl> <dbl>
+1 28868 Yugo  GV Plu~  1990 Minico~ Manual~ Front~     4   1.3 Regu~    27    21
+2  6635 Yugo  GV Plu~  1990 Subcom~ Manual~ Front~     4   1.3 Regu~    28    23
+3  3157 Yugo  GV/GVX   1987 Subcom~ Manual~ Front~     4   1.1 Regu~    29    24
+4  5497 Yugo  GV/GVX   1989 Subcom~ Manual~ Front~     4   1.1 Regu~    29    24
+5  5498 Yugo  GV/GVX   1989 Subcom~ Manual~ Front~     4   1.3 Regu~    28    23
+6  1745 Yugo  Gy/yug~  1986 Minico~ Manual~ Front~     4   1.1 Regu~    29    22
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(vehicles) }\CommentTok{# get names of columns}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "id"    "make"  "model" "year"  "class" "trans" "drive" "cyl"   "displ"
+[10] "fuel"  "hwy"   "cty"  
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(vehicles) }\CommentTok{# get number of rows}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 33442
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ncol}\NormalTok{(vehicles) }\CommentTok{# get number of columns}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 12
+\end{verbatim}
+
+Note that \texttt{length()} does not work the same on dataframes as it does with vectors. In dataframes, \texttt{length()} is the equivalent of \texttt{ncol()}; it will \emph{not} give you the number of rows in a dataset.
+
+\hypertarget{subsetting}{%
+\subsection{Subsetting}\label{subsetting}}
+
+Recall that dataframes are filtered by row and/or column using this format: \textbf{\texttt{dataframe{[}rows,columns{]}}}. To get the third element of the second column, for example, you type \texttt{dataframe{[}3,2{]}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1 x 1
+  make 
+  <chr>
+1 Acura
+\end{verbatim}
+
+Note that the comma is necessary even if you do not want to specify columns. If you try to type this \ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots{}\texttt{R} will assume you are asking for the third column, not the third row.
+
+To filter a dataframe to multiple values, you can specify vectors for the \texttt{row} and \texttt{column}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{11}\OperatorTok{:}\DecValTok{12}\NormalTok{] }\CommentTok{# can use colons}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 2
+    hwy   cty
+  <dbl> <dbl>
+1    26    20
+2    28    22
+3    26    18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{11}\OperatorTok{:}\DecValTok{12}\NormalTok{)]  }\CommentTok{# can use c()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 3
+     id   hwy   cty
+  <dbl> <dbl> <dbl>
+1 13309    26    20
+2 13310    28    22
+3 13311    26    18
+\end{verbatim}
+
+Columns can also be called according to their names. Use the \textbf{\texttt{\$}} sign to specify a column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles}\OperatorTok{$}\NormalTok{hwy[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 26 28 26 27 29
+\end{verbatim}
+
+Note that when you use a \texttt{\$}, you will not need to use a comma within your brackets. If you try to run this \ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles}\OperatorTok{$}\NormalTok{hwy[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots{}\texttt{R} will throw a fit.
+
+You can use logical tests to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{keeps <-}\StringTok{ }\KeywordTok{which}\NormalTok{(vehicles}\OperatorTok{$}\NormalTok{hwy }\OperatorTok{>}\StringTok{ }\DecValTok{100}\NormalTok{)}
+\NormalTok{keeps}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1]  6533 10613 10614 16429 16430 24487 24488 24489 28628
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[keeps,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 9 x 12
+     id make   model   year class   trans   drive    cyl displ fuel    hwy   cty
+  <dbl> <chr>  <chr>  <dbl> <chr>   <chr>   <chr>  <dbl> <dbl> <chr> <dbl> <dbl>
+1 33640 Chevr~ Spark~  2014 Subcom~ Automa~ Front~    NA    NA Elec~   109   128
+2 33396 Fiat   500e    2013 Minico~ Automa~ Front~    NA    NA Elec~   108   122
+3 34392 Fiat   500e    2014 Minico~ Automa~ Front~    NA    NA Elec~   108   122
+4 33265 Honda  Fit EV  2013 Small ~ Automa~ Front~    NA    NA Elec~   105   132
+5 33905 Honda  Fit EV  2014 Small ~ Automa~ Front~    NA    NA Elec~   105   132
+6 33558 Nissan Leaf    2013 Midsiz~ Automa~ Front~    NA    NA Elec~   102   129
+7 34699 Nissan Leaf    2014 Midsiz~ Automa~ Front~    NA    NA Elec~   101   126
+8 34918 Nissan Leaf    2015 Midsiz~ Automa~ Front~    NA    NA Elec~   101   126
+9 33307 Scion  iQ EV   2013 Minico~ Automa~ Front~    NA    NA Elec~   105   138
+\end{verbatim}
+
+But the above is a long-winded way of doing this. You can also achieve this result as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[}\KeywordTok{which}\NormalTok{(vehicles}\OperatorTok{$}\NormalTok{hwy }\OperatorTok{>}\StringTok{ }\DecValTok{100}\NormalTok{),]}
+\end{Highlighting}
+\end{Shaded}
+
+You can also get the same result without the \texttt{which()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[vehicles}\OperatorTok{$}\NormalTok{hwy }\OperatorTok{>}\StringTok{ }\DecValTok{100}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+The logical test is returning a bunch of \texttt{TRUE}s and \texttt{FALSE}s, one for each row of \texttt{vehicles}. Only the \texttt{TRUE} rows will be returned.
+
+\hypertarget{exercise-1-reading-for-errors}{%
+\subsubsection*{Exercise 1: Reading for errors}\label{exercise-1-reading-for-errors}}
+\addcontentsline{toc}{subsubsection}{Exercise 1: Reading for errors}
+
+What is wrong with these commands? Why will each of them throw an error if you run them, and how can you fix them?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 1}
+\NormalTok{vehicles[}\DecValTok{1}\NormalTok{,}\DecValTok{15}\NormalTok{,]}
+
+\CommentTok{# 2}
+\NormalTok{vecihles[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,]}
+
+\CommentTok{# 3}
+\NormalTok{vehicles}\OperatorTok{$}\NormalTok{hwy[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,]}
+
+\CommentTok{# 4}
+\NormalTok{vehicles[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}\DecValTok{1}\OperatorTok{:}\DecValTok{13}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{summarizing}{%
+\subsection*{Summarizing}\label{summarizing}}
+\addcontentsline{toc}{subsection}{Summarizing}
+
+The same summary functions that you have used for vectors work for dataframes, such as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{min}\NormalTok{(vehicles}\OperatorTok{$}\NormalTok{hwy)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{max}\NormalTok{(vehicles}\OperatorTok{$}\NormalTok{hwy)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 109
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(vehicles}\OperatorTok{$}\NormalTok{cty)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 17.491
+\end{verbatim}
+
+You can also use the \textbf{\texttt{summary()}} function, which provides summary statistics for each column in your dataframe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(vehicles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+       id            make              model                year     
+ Min.   :    1   Length:33442       Length:33442       Min.   :1984  
+ 1st Qu.: 8361   Class :character   Class :character   1st Qu.:1991  
+ Median :16724   Mode  :character   Mode  :character   Median :1999  
+ Mean   :17038                                         Mean   :1999  
+ 3rd Qu.:25265                                         3rd Qu.:2008  
+ Max.   :34932                                         Max.   :2015  
+                                                                     
+    class              trans              drive                cyl        
+ Length:33442       Length:33442       Length:33442       Min.   : 2.000  
+ Class :character   Class :character   Class :character   1st Qu.: 4.000  
+ Mode  :character   Mode  :character   Mode  :character   Median : 6.000  
+                                                          Mean   : 5.772  
+                                                          3rd Qu.: 6.000  
+                                                          Max.   :16.000  
+                                                          NA's   :58      
+     displ           fuel                hwy              cty        
+ Min.   :0.000   Length:33442       Min.   :  9.00   Min.   :  6.00  
+ 1st Qu.:2.300   Class :character   1st Qu.: 19.00   1st Qu.: 15.00  
+ Median :3.000   Mode  :character   Median : 23.00   Median : 17.00  
+ Mean   :3.353                      Mean   : 23.55   Mean   : 17.49  
+ 3rd Qu.:4.300                      3rd Qu.: 27.00   3rd Qu.: 20.00  
+ Max.   :8.400                      Max.   :109.00   Max.   :138.00  
+ NA's   :57                                                          
+\end{verbatim}
+
+The function \textbf{\texttt{unique()}} returns unique values within a column:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(vehicles}\OperatorTok{$}\NormalTok{fuel)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "Regular"                     "Premium"                    
+ [3] "Diesel"                      "Premium or E85"             
+ [5] "Electricity"                 "Gasoline or E85"            
+ [7] "Premium Gas or Electricity"  "Gasoline or natural gas"    
+ [9] "CNG"                         "Midgrade"                   
+[11] "Regular Gas and Electricity" "Gasoline or propane"        
+[13] "Premium and Electricity"    
+\end{verbatim}
+
+Finally, the \textbf{\texttt{order()}} function helps you sort a dataframe according to the values in one of its columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles_sorted <-}\StringTok{ }\NormalTok{vehicles[}\KeywordTok{order}\NormalTok{(vehicles}\OperatorTok{$}\NormalTok{hwy),  }\CommentTok{#sort dataframe by highway mileage}
+                            \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{10}\OperatorTok{:}\DecValTok{12}\NormalTok{)] }\CommentTok{# only keep certain columns}
+\KeywordTok{head}\NormalTok{(vehicles_sorted)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 6
+  make         model                   year fuel      hwy   cty
+  <chr>        <chr>                  <dbl> <chr>   <dbl> <dbl>
+1 Aston Martin Lagonda                 1985 Regular     9     7
+2 Aston Martin Lagonda                 1985 Regular     9     7
+3 Aston Martin Saloon/Vantage/Volante  1985 Regular     9     7
+4 Aston Martin Saloon/Vantage/Volante  1985 Regular     9     7
+5 Rolls-Royce  Camargue                1987 Regular     9     7
+6 Rolls-Royce  Continental             1987 Regular     9     7
+\end{verbatim}
+
+Reverse the order by wrapping \textbf{\texttt{rev()}} around the \texttt{order()} call:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles_sorted <-}\StringTok{ }\NormalTok{vehicles[}\KeywordTok{rev}\NormalTok{(}\KeywordTok{order}\NormalTok{(vehicles}\OperatorTok{$}\NormalTok{hwy)),}
+                            \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{10}\OperatorTok{:}\DecValTok{12}\NormalTok{)]}
+\KeywordTok{head}\NormalTok{(vehicles_sorted)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 6
+  make      model     year fuel          hwy   cty
+  <chr>     <chr>    <dbl> <chr>       <dbl> <dbl>
+1 Chevrolet Spark EV  2014 Electricity   109   128
+2 Fiat      500e      2014 Electricity   108   122
+3 Fiat      500e      2013 Electricity   108   122
+4 Scion     iQ EV     2013 Electricity   105   138
+5 Honda     Fit EV    2014 Electricity   105   132
+6 Honda     Fit EV    2013 Electricity   105   132
+\end{verbatim}
+
+\hypertarget{building-dataframes}{%
+\subsection*{Building dataframes}\label{building-dataframes}}
+\addcontentsline{toc}{subsection}{Building dataframes}
+
+To create a new dataframe, use the \texttt{data.frame()} function.
+
+\begin{verbatim}
+             car mgp_hwy mpg_city
+100 Acura Legend      23       15
+101 Acura Legend      22       17
+102 Acura Legend      23       16
+103 Acura Legend      21       16
+104 Acura Legend      22       17
+105 Acura Legend      23       16
+106 Acura Legend      24       16
+\end{verbatim}
+
+Note how the columns were named in the \texttt{data.frame()} call, and that each column is separated by a comma.
+
+You can also stage an empty dataframe, which sounds useless but will become very useful as you start working with \texttt{for} loops and other higher-order \texttt{R} tools.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{()}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+data frame with 0 columns and 0 rows
+\end{verbatim}
+
+To coerce an object into a format that \texttt{R} interprets as a dataframe, use \textbf{\texttt{as.dataframe()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(vehicles)}
+\NormalTok{df[}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{,}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+     id  make       model year
+1 13309 Acura 2.2CL/3.0CL 1997
+2 13310 Acura 2.2CL/3.0CL 1997
+3 13311 Acura 2.2CL/3.0CL 1997
+4 14038 Acura 2.3CL/3.0CL 1998
+\end{verbatim}
+
+You can bind multiple dataframes together using \textbf{\texttt{rbind()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df1 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name=}\KeywordTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{,}\StringTok{"Isabelle"}\NormalTok{),}\DataTypeTok{instrument=}\KeywordTok{c}\NormalTok{(}\StringTok{"Nose harp"}\NormalTok{,}\StringTok{"Concertina"}\NormalTok{,}\StringTok{"Ukelele"}\NormalTok{,}\StringTok{"Drums"}\NormalTok{))}
+\NormalTok{df1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      name instrument
+1      Ben  Nose harp
+2      Joe Concertina
+3     Eric    Ukelele
+4 Isabelle      Drums
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df2 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name=}\KeywordTok{c}\NormalTok{(}\StringTok{"Matthew"}\NormalTok{),}\DataTypeTok{instrument=}\KeywordTok{c}\NormalTok{(}\StringTok{"Washboard"}\NormalTok{))}
+\KeywordTok{rbind}\NormalTok{(df1,df2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      name instrument
+1      Ben  Nose harp
+2      Joe Concertina
+3     Eric    Ukelele
+4 Isabelle      Drums
+5  Matthew  Washboard
+\end{verbatim}
+
+Note that to be combined, two dataframes have to have the exact same number of columns and the exact same column names.
+
+The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the \emph{\texttt{R} Toolbag} modules ahead.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{() }\CommentTok{# stage empty dataframe}
+\NormalTok{df1 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name=}\KeywordTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{,}\StringTok{"Isabelle"}\NormalTok{),}\DataTypeTok{instrument=}\KeywordTok{c}\NormalTok{(}\StringTok{"Nose harp"}\NormalTok{,}\StringTok{"Concertina"}\NormalTok{,}\StringTok{"Ukelele"}\NormalTok{,}\StringTok{"Drums"}\NormalTok{))}
+\NormalTok{df <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(df,df1)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      name instrument
+1      Ben  Nose harp
+2      Joe Concertina
+3     Eric    Ukelele
+4 Isabelle      Drums
+\end{verbatim}
+
+\hypertarget{exercise-2-subsetting-and-filtering}{%
+\subsection*{Exercise 2: Subsetting and filtering}\label{exercise-2-subsetting-and-filtering}}
+\addcontentsline{toc}{subsection}{Exercise 2: Subsetting and filtering}
+
+\textbf{A. Subset one field according to a logical test}\\
+With no more than two lines of code, get the number of Honda cars in the \texttt{vehicles} dataset.
+
+\textbf{B. Subset one field according to a logical test for a different field.}\\
+In a single line of code, show the mileages of all the Toyotas in the dataset.
+
+\textbf{C. Subset a dataframe to a single subgroup}\\
+In a single line of code, determine how many differet car makes/models were produced in 1995.
+
+\textbf{D. Get the mean value for a subgroup of data}\\
+What is the average city mileage for Subaru cars in the dataset?
+
+\textbf{E. Subset a dataframe to only data from between two values}\\
+According to this dataset, how many different car makes/models have been produced with highway mileages between 30 and 40 mpg?
+
+\hypertarget{tidy-data}{%
+\section*{Tidy data}\label{tidy-data}}
+\addcontentsline{toc}{section}{Tidy data}
+
+\emph{(Joe writes the remainder of this chapter)}
+
+\url{https://r4ds.had.co.nz/tidy-data.html}
+
+\hypertarget{tibbles}{%
+\subsection*{Tibbles}\label{tibbles}}
+\addcontentsline{toc}{subsection}{Tibbles}
+
+\hypertarget{tidyverse}{%
+\subsection*{Tidyverse}\label{tidyverse}}
+\addcontentsline{toc}{subsection}{Tidyverse}
+
+\hypertarget{review-exercise-1}{%
+\section*{Review exercise}\label{review-exercise-1}}
+\addcontentsline{toc}{section}{Review exercise}
 
 \hypertarget{data-wrangling}{%
 \chapter{Data wrangling}\label{data-wrangling}}
@@ -3200,10 +3743,20 @@ Add title / subtitle / caption
 \chapter{Summarizing datasets}\label{summarizing-datasets}}
 
 \hypertarget{summary-statements}{%
-\section{Summary statements}\label{summary-statements}}
+\section*{Summary statements}\label{summary-statements}}
+\addcontentsline{toc}{section}{Summary statements}
+
+\hypertarget{histograms}{%
+\section*{Histograms}\label{histograms}}
+\addcontentsline{toc}{section}{Histograms}
+
+\hypertarget{violin-plots}{%
+\section*{Violin Plots}\label{violin-plots}}
+\addcontentsline{toc}{section}{Violin Plots}
 
 \hypertarget{tables}{%
-\section{Tables}\label{tables}}
+\section*{Tables}\label{tables}}
+\addcontentsline{toc}{section}{Tables}
 
 \hypertarget{part-accessing-managing-data}{%
 \part{Accessing \& managing data}\label{part-accessing-managing-data}}
@@ -3211,20 +3764,54 @@ Add title / subtitle / caption
 \hypertarget{managing-project-files}{%
 \chapter{Managing project files}\label{managing-project-files}}
 
+\hypertarget{learning-goals-11}{%
+\section*{Learning goals}\label{learning-goals-11}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\hypertarget{review-exercise-2}{%
+\section*{Review exercise}\label{review-exercise-2}}
+\addcontentsline{toc}{section}{Review exercise}
+
 \hypertarget{formatting-your-own-data}{%
 \chapter{Formatting your own data}\label{formatting-your-own-data}}
 
-\hypertarget{reading-excel-files}{%
-\chapter{Reading Excel files}\label{reading-excel-files}}
+\hypertarget{learning-goals-12}{%
+\section*{Learning goals}\label{learning-goals-12}}
+\addcontentsline{toc}{section}{Learning goals}
 
-\hypertarget{reading-googlesheets}{%
-\chapter{Reading GoogleSheets}\label{reading-googlesheets}}
+\hypertarget{review-exercise-3}{%
+\section*{Review exercise}\label{review-exercise-3}}
+\addcontentsline{toc}{section}{Review exercise}
 
-\hypertarget{reading-online-data}{%
-\chapter{Reading online data}\label{reading-online-data}}
+\hypertarget{excel-files-googlesheets}{%
+\chapter{Excel files \& GoogleSheets}\label{excel-files-googlesheets}}
+
+\hypertarget{learning-goals-13}{%
+\section*{Learning goals}\label{learning-goals-13}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\hypertarget{review-exercise-4}{%
+\section*{Review exercise}\label{review-exercise-4}}
+\addcontentsline{toc}{section}{Review exercise}
 
 \hypertarget{exporting-data-plots}{%
 \chapter{Exporting data \& plots}\label{exporting-data-plots}}
+
+\hypertarget{learning-goals-14}{%
+\section*{Learning goals}\label{learning-goals-14}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\hypertarget{write.csv}{%
+\section*{\texorpdfstring{\texttt{write.csv()}}{write.csv()}}\label{write.csv}}
+\addcontentsline{toc}{section}{\texttt{write.csv()}}
+
+\hypertarget{pdf-and-png}{%
+\section*{\texorpdfstring{\texttt{pdf()} and \texttt{png()}}{pdf() and png()}}\label{pdf-and-png}}
+\addcontentsline{toc}{section}{\texttt{pdf()} and \texttt{png()}}
+
+\hypertarget{review-exercise-5}{%
+\section*{Review exercise}\label{review-exercise-5}}
+\addcontentsline{toc}{section}{Review exercise}
 
 \hypertarget{part-your-r-tool-bag}{%
 \part{Your R tool bag}\label{part-your-r-tool-bag}}
@@ -3235,8 +3822,8 @@ Add title / subtitle / caption
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
 
-\hypertarget{learning-goals-8}{%
-\section*{Learning goals}\label{learning-goals-8}}
+\hypertarget{learning-goals-15}{%
+\section*{Learning goals}\label{learning-goals-15}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -3615,7 +4202,7 @@ Plots can be included in the function commands just as in any other context:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-156-1.pdf}
+\includegraphics{figures/unnamed-chunk-177-1.pdf}
 
 \begin{verbatim}
  [1] 11.3 12.6 13.9 15.2 16.5 17.8 19.1 20.4 21.7 23.0 24.3 25.6 26.9 28.2 29.5
@@ -3668,7 +4255,7 @@ Now let's call this fancy function a bunch of times:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-158-1.pdf}
+\includegraphics{figures/unnamed-chunk-179-1.pdf}
 
 Think about how many lines of code would have been needed to write out all of these fancy plots if you did not use a custom function! Think about how cluttered and dizzying your code would look! And think about how many opportunities for errors and inconsistencies there would have been! That is the advantage of writing your own functions: it makes your work more efficient, more organized, and less prone to errors.
 
@@ -3760,8 +4347,8 @@ In this exercise, you will investigate annual trends in the prevalence of six na
 \hypertarget{for-loops}{%
 \chapter{\texorpdfstring{\texttt{for} loops}{for loops}}\label{for-loops}}
 
-\hypertarget{learning-goals-9}{%
-\section*{Learning goals}\label{learning-goals-9}}
+\hypertarget{learning-goals-16}{%
+\section*{Learning goals}\label{learning-goals-16}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -3947,7 +4534,7 @@ Looks like the first four columns would be interesting to plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-167-1.pdf}
+\includegraphics{figures/unnamed-chunk-188-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4015,7 +4602,7 @@ Let's say we want to see how gas mileage is affected by the number of cylinders 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-169-1.pdf}
+\includegraphics{figures/unnamed-chunk-190-1.pdf}
 
 \hypertarget{exercise-3-5}{%
 \subsection*{Exercise 3}\label{exercise-3-5}}
@@ -4041,7 +4628,7 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-170-1.pdf}
+\includegraphics{figures/unnamed-chunk-191-1.pdf}
 
 \hypertarget{using-for-loops-to-layer-cyclical-or-repetitive-data}{%
 \subsection*{\texorpdfstring{Using \texttt{for} loops to layer cyclical or repetitive data}{Using for loops to layer cyclical or repetitive data}}\label{using-for-loops-to-layer-cyclical-or-repetitive-data}}
@@ -4077,7 +4664,7 @@ Try plotting the Keeling Curve:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-172-1.pdf}
+\includegraphics{figures/unnamed-chunk-193-1.pdf}
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
@@ -4088,7 +4675,7 @@ There are some erroneous data points! We clearly can't have negative CO2 values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-173-1.pdf}
+\includegraphics{figures/unnamed-chunk-194-1.pdf}
 
 \textbf{What's the deal with those squiggles?}
 
@@ -4158,7 +4745,7 @@ To begin, let's plot data for only a \emph{single} year:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-174-1.pdf}
+\includegraphics{figures/unnamed-chunk-195-1.pdf}
 
 But this only shows one year of data! How can we include the seasonal squiggle from other years?
 
@@ -4212,7 +4799,7 @@ OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-175-1.pdf}
+\includegraphics{figures/unnamed-chunk-196-1.pdf}
 
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
@@ -4652,7 +5239,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-186-1.pdf}
+\includegraphics{figures/unnamed-chunk-207-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsubsection*{Now loop it!}\label{now-loop-it}}
@@ -4676,7 +5263,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-187-1.pdf}
+\includegraphics{figures/unnamed-chunk-208-1.pdf}
 
 \hypertarget{now-loop-it-in-layers}{%
 \subsubsection*{\texorpdfstring{Now loop it \emph{in layers!}}{Now loop it in layers!}}\label{now-loop-it-in-layers}}
@@ -4702,13 +5289,13 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-188-1.pdf}
+\includegraphics{figures/unnamed-chunk-209-1.pdf}
 
 \hypertarget{conditional-statements}{%
 \chapter{Conditional statements}\label{conditional-statements}}
 
-\hypertarget{learning-goals-10}{%
-\section*{Learning goals}\label{learning-goals-10}}
+\hypertarget{learning-goals-17}{%
+\section*{Learning goals}\label{learning-goals-17}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -5053,27 +5640,25 @@ To do this work, your supervisor asks you to use the \texttt{us\_contagious\_dis
 \hypertarget{working-with-text}{%
 \chapter{Working with text}\label{working-with-text}}
 
-\hypertarget{learning-goals-11}{%
-\section*{Learning goals}\label{learning-goals-11}}
+\hypertarget{learning-goals-18}{%
+\section*{Learning goals}\label{learning-goals-18}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
 \tightlist
 \item
-  Item 1\\
-\item
-  Item 2\\
-\item
-  Item 3
+  Learn to apply the most common \texttt{R} tools for working with text.
 \end{itemize}
 
 \hypertarget{basics-1}{%
 \section*{Basics}\label{basics-1}}
 \addcontentsline{toc}{section}{Basics}
 
-\hypertarget{the-stringr-package}{%
-\subsection*{\texorpdfstring{The \texttt{stringr} package}{The stringr package}}\label{the-stringr-package}}
-\addcontentsline{toc}{subsection}{The \texttt{stringr} package}
+If you do not learn how to edit and transform text-based fields within datasets, you will quickly get stuck in \texttt{R}. Think of dates, GPS coordinates, user IDs, group names, plot labels, \emph{etc.} All of these forms of data can contain non-numeric text. Becoming comfortable working with text in \texttt{R} is an essential part of your \texttt{R} toolbag.
+
+Here we will present the most common functions for working with text. Remember that \texttt{R} has a special object class for text, known to as \textbf{character} class, and that character objects are often referred to as \textbf{strings}.
+
+Most of these functions come pre-installed in \texttt{R}. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the \textbf{\texttt{stringr} package}. Go ahead an install \texttt{stringr} and load it using \texttt{library()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5110,7 +5695,7 @@ To do this work, your supervisor asks you to use the \texttt{us\_contagious\_dis
 [1] "group1" "group2" "group3"
 \end{verbatim}
 
-This can be particularly useful if you are trying to avoid problems caused by factors. One common issue occurs when \texttt{R} mistakes a set of numbers as a set of factors. Using \texttt{as.character()} can set things right:
+This can be particularly useful when trying to resolve problems caused by factors. One common issue occurs when \texttt{R} mistakes a set of numbers as a set of factors. Using \texttt{as.character()} can set things right:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5146,25 +5731,240 @@ Levels: 18 19 20
 [1] 18 19 20
 \end{verbatim}
 
-\textbf{\texttt{paste()}} and \textbf{\texttt{paste0()}}: description:
+\textbf{\texttt{paste()}} and \textbf{\texttt{paste0()}} combines two ore more strings together into a single object:
 
-\textbf{\texttt{tolower()}} and \textbf{\texttt{toupper()}}: description:
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i <-}\StringTok{ }\DecValTok{10}
+\NormalTok{n <-}\StringTok{ }\DecValTok{96}
+\NormalTok{file_name <-}\StringTok{ "this_file.csv"}
 
-\textbf{\texttt{nchar()}}: description:
+\KeywordTok{paste}\NormalTok{(i,}\StringTok{"of"}\NormalTok{,n,}\StringTok{": Processing"}\NormalTok{,file_name,}\StringTok{". . . "}\NormalTok{) }\CommentTok{# paste assumes each object is separated by " ".}
+\end{Highlighting}
+\end{Shaded}
 
-\textbf{\texttt{substr()}}: description:
+\begin{verbatim}
+[1] "10 of 96 : Processing this_file.csv . . . "
+\end{verbatim}
 
-\textbf{\texttt{grep()}}: description:
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{paste0}\NormalTok{(i,}\StringTok{"of"}\NormalTok{,n,}\StringTok{": Processing"}\NormalTok{,file_name,}\StringTok{". . . "}\NormalTok{) }\CommentTok{# paste0 assumes no space between objects.}
+\end{Highlighting}
+\end{Shaded}
 
-\textbf{\texttt{gsub()}}: description:
+\begin{verbatim}
+[1] "10of96: Processingthis_file.csv. . . "
+\end{verbatim}
 
-\textbf{\texttt{stringr::str\_pad()}}: description:
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{paste0}\NormalTok{(i,}\StringTok{" of "}\NormalTok{,n,}\StringTok{": Processing "}\NormalTok{,file_name,}\StringTok{" . . . "}\NormalTok{) }\CommentTok{# this paste0 version matches the initial format}
+\end{Highlighting}
+\end{Shaded}
 
-\textbf{\texttt{str\_split()}}: description:
+\begin{verbatim}
+[1] "10 of 96: Processing this_file.csv . . . "
+\end{verbatim}
+
+You can also use \texttt{paste()} to \texttt{collapse} multiple objects into a single string.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\KeywordTok{paste}\NormalTok{(x,}\DataTypeTok{collapse=}\StringTok{"-"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "1-2-3-4-5-6-7-8-9-10"
+\end{verbatim}
+
+\textbf{\texttt{tolower()}} and \textbf{\texttt{toupper()}} forces all text in a string to lower case or upper case, respectively:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ "That Tree Is Far Away."}
+\KeywordTok{tolower}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "that tree is far away."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{toupper}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "THAT TREE IS FAR AWAY."
+\end{verbatim}
+
+\textbf{\texttt{nchar()}} returns the number of characters within a string:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ "That Tree Is Far Away."}
+\KeywordTok{nchar}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 22
+\end{verbatim}
+
+\textbf{\texttt{substr()}} trims a string according to a start and end character position:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dates <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"2021-03-01"}\NormalTok{,}\StringTok{"2021-03-02"}\NormalTok{,}\StringTok{"2021-03-03"}\NormalTok{)}
+\KeywordTok{substr}\NormalTok{(dates,}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{) }\CommentTok{# years}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "2021" "2021" "2021"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{substr}\NormalTok{(dates,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{) }\CommentTok{# months}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "03" "03" "03"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{substr}\NormalTok{(dates,}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{) }\CommentTok{# days}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "01" "02" "03"
+\end{verbatim}
+
+\textbf{\texttt{grep()}} returns the elements in a character vector that contain a given pattern:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{years <-}\StringTok{ }\DecValTok{1900}\OperatorTok{:}\DecValTok{1999}
+
+\CommentTok{# Which elements correspodn to the 1980s?}
+\NormalTok{eighties <-}\StringTok{ }\KeywordTok{grep}\NormalTok{(}\StringTok{"198"}\NormalTok{,years)}
+
+\NormalTok{years[eighties]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989
+\end{verbatim}
+
+\textbf{\texttt{gsub()}} replaces a given pattern with another in a character vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dates <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"2021-03-01"}\NormalTok{,}\StringTok{"2021-03-02"}\NormalTok{,}\StringTok{"2021-03-03"}\NormalTok{)}
+\KeywordTok{gsub}\NormalTok{(}\StringTok{"-"}\NormalTok{,}\StringTok{"/"}\NormalTok{,dates)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "2021/03/01" "2021/03/02" "2021/03/03"
+\end{verbatim}
+
+\textbf{\texttt{stringr::str\_pad()}}: standardize the lengths of strings by ``padding'' it (e.g., with zeroes) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{days <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{15}\NormalTok{)}
+\NormalTok{days}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stringr}\OperatorTok{::}\KeywordTok{str_pad}\NormalTok{(days,}\DataTypeTok{width=}\DecValTok{2}\NormalTok{,}\DataTypeTok{side=}\StringTok{"left"}\NormalTok{,}\DataTypeTok{pad=}\StringTok{"0"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "01" "02" "03" "04" "05" "06" "07" "08" "09" "10" "11" "12" "13" "14" "15"
+\end{verbatim}
+
+\textbf{\texttt{stringr::str\_split()}}: split a string into several strings at the occurrence of a specified character.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dates <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"2021-03-01"}\NormalTok{,}\StringTok{"2021-03-02"}\NormalTok{,}\StringTok{"2021-03-03"}\NormalTok{)}
+\NormalTok{splits <-}\StringTok{ }\NormalTok{stringr}\OperatorTok{::}\KeywordTok{str_split}\NormalTok{(dates,}\StringTok{"-"}\NormalTok{)}
+\NormalTok{splits}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[[1]]
+[1] "2021" "03"   "01"  
+
+[[2]]
+[1] "2021" "03"   "02"  
+
+[[3]]
+[1] "2021" "03"   "03"  
+\end{verbatim}
+
+This function returns a \emph{list} for every element in the original vector. A common need is to retrieve one item from each of the element in this list. For example, let's say you are trying to retrieve the months of each element in the \texttt{dates} vector. The list structure makes this tricky to retrieve. Here's the way to do it by drawing upon the \texttt{apply()} family of functions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(splits, }\StringTok{"[["}\NormalTok{, }\DecValTok{2}\NormalTok{) }\CommentTok{# Months}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "03" "03" "03"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# now get years and days}
+\KeywordTok{sapply}\NormalTok{(splits, }\StringTok{"[["}\NormalTok{, }\DecValTok{1}\NormalTok{) }\CommentTok{# years}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "2021" "2021" "2021"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(splits, }\StringTok{"[["}\NormalTok{, }\DecValTok{3}\NormalTok{) }\CommentTok{# days}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "01" "02" "03"
+\end{verbatim}
 
 \hypertarget{review-assignment-10}{%
 \section*{Review assignment}\label{review-assignment-10}}
 \addcontentsline{toc}{section}{Review assignment}
+
+A. For a given dataset, print informative status update for each iteration in a \texttt{for} loop.
+
+B. Modify the above to only print an update at every integer percentage point (i.e., at 1\% and 2\% but not at 1.233\%, etc.)
+
+C. Your collaborator sends you a dataset containing columns for \texttt{Date}, \texttt{Latitude}, and \texttt{Longitude}. Formatting varies in these fields. Fix it. (can use hw-raw.csv file. - Eric)
 
 \hypertarget{working-with-dates-times}{%
 \chapter{Working with dates \& times}\label{working-with-dates-times}}
@@ -5360,8 +6160,8 @@ Spinning up a local DB
 \hypertarget{randomization-statistics}{%
 \chapter{Randomization statistics}\label{randomization-statistics}}
 
-\hypertarget{learning-goals-12}{%
-\section*{Learning goals}\label{learning-goals-12}}
+\hypertarget{learning-goals-19}{%
+\section*{Learning goals}\label{learning-goals-19}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -5540,7 +6340,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-220-1.pdf}
+\includegraphics{figures/unnamed-chunk-245-1.pdf}
 
 \textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
 
@@ -5590,7 +6390,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-222-1.pdf}
+\includegraphics{figures/unnamed-chunk-247-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5685,7 +6485,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-228-1.pdf}
+\includegraphics{figures/unnamed-chunk-253-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -5697,10 +6497,10 @@ Let's go through the steps:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.003
+[1] 0.001
 \end{verbatim}
 
-So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.003).
+So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.001).
 
 \hypertarget{are-two-variables-correlated}{%
 \subsection*{3. Are two variables correlated?}\label{are-two-variables-correlated}}
@@ -5736,11 +6536,11 @@ Each row of this dataset is an abundance estimate from a survey that occurred wi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-232-1.pdf}
+\includegraphics{figures/unnamed-chunk-257-1.pdf}
 
 Performing a simple linear regression with this dataset yields the following results:
 
-\includegraphics{figures/unnamed-chunk-233-1.pdf}
+\includegraphics{figures/unnamed-chunk-258-1.pdf}
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
@@ -5835,7 +6635,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-238-1.pdf}
+\includegraphics{figures/unnamed-chunk-263-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -5849,10 +6649,10 @@ Significance of \textbf{slope}:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.9
+[1] 0.877
 \end{verbatim}
 
-This indicates that the chance that the slope is lower than the null expectation is 90\%.
+This indicates that the chance that the slope is lower than the null expectation is 87.7\%.
 
 Significance of \textbf{correlation coefficient}:
 
@@ -5864,10 +6664,10 @@ Significance of \textbf{correlation coefficient}:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.207
+[1] 0.258
 \end{verbatim}
 
-This indicates that the observed regression is better than 79.3\% of scenarios that might be expected under the null expectation.
+This indicates that the observed regression is better than 74.2\% of scenarios that might be expected under the null expectation.
 
 \hypertarget{is-the-slope-of-a-regression-line-negative}{%
 \subsection*{4. Is the slope of a regression line negative?}\label{is-the-slope-of-a-regression-line-negative}}
@@ -5907,7 +6707,7 @@ We want to know what the chances are that the population has declined between 20
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-242-1.pdf}
+\includegraphics{figures/unnamed-chunk-267-1.pdf}
 
 If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
 
@@ -5932,7 +6732,7 @@ And in this randomization application, the workflow is a bit more simplified. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-243-1.pdf}
+\includegraphics{figures/unnamed-chunk-268-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6042,7 +6842,7 @@ Make sure you are working with the correct data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-245-1.pdf}
+\includegraphics{figures/unnamed-chunk-270-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6146,7 +6946,7 @@ Use these datasets within a randomization routine to determine whether known bub
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-248-1.pdf}
+\includegraphics{figures/unnamed-chunk-273-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6260,7 +7060,7 @@ For your convenience, the social association rate for these 36 individuals has a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-250-1.pdf}
+\includegraphics{figures/unnamed-chunk-275-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6313,8 +7113,8 @@ For your convenience, the social association rate for these 36 individuals has a
 \hypertarget{template}{%
 \chapter{Template}\label{template}}
 
-\hypertarget{learning-goals-13}{%
-\section*{Learning goals}\label{learning-goals-13}}
+\hypertarget{learning-goals-20}{%
+\section*{Learning goals}\label{learning-goals-20}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}

@@ -1,8 +1,240 @@
 # Dataframes
 
-## Exploration 
+## Learning goals {-}
 
-## Summarization
+* Practice exploring, summarizing, and filtering dataframes
+* Understand the importance of *tidy* datasets
+* Understand what the `tidyverse` is and why it is awesome.
+
+In data science, the most common data structure you will be using -- by far -- is the **dataframe**. You were introduced to this data structure in Module 10, but a more familiar and detailed orientation is worthwhile. 
+
+## Subsetting & exploring dataframes {-} 
+
+A dataframe has rows of data organized into columns. Let's use a dataset on fuel mileage for all cars sold from 1985 to 2014. 
+
+```{r,echo=TRUE}
+library(fueleconomy)
+data(vehicles)
+head(vehicles)
+```
+
+Each row pertains to a single vehicle make/model -- i.e., a single *observation*. Each column pertains to a single *type* of data. Columns are named in the *header* of the dataframe. 
+
+All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes (see module 10 for a refreshers). In addition to those functions you already know, we've added some new functions to your inventory of useful functions.
+
+### Exploration
+
+```{r,echo=TRUE}
+tail(vehicles) # head() and tail() summarize the beginning and end of the object
+
+names(vehicles) # get names of columns
+
+nrow(vehicles) # get number of rows
+
+ncol(vehicles) # get number of columns
+```
+
+Note that `length()` does not work the same on dataframes as it does with vectors. In dataframes, `length()` is the equivalent of `ncol()`; it will *not* give you the number of rows in a dataset.
+
+### Subsetting
+
+Recall that dataframes are filtered by row and/or column using this format: **`dataframe[rows,columns]`**. To get the third element of the second column, for example, you type `dataframe[3,2]`.
+
+```{r,echo=TRUE}
+vehicles[3,2]
+```
+
+Note that the comma is necessary even if you do not want to specify columns. If you try to type this ...
+
+```{r,echo=TRUE,eval=FALSE}
+vehicles[3]
+```
+
+...`R` will assume you are asking for the third column, not the third row.  
+
+To filter a dataframe to multiple values, you can specify vectors for the `row` and `column`
+
+```{r,echo=TRUE}
+vehicles[1:3,11:12] # can use colons
+vehicles[1:3,c(1,11:12)]  # can use c()
+```
+
+Columns can also be called according to their names. Use the **`$`** sign to specify a column.
+
+```{r,echo=TRUE}
+vehicles$hwy[1:5]
+```
+
+Note that when you use a `$`, you will not need to use a comma within your brackets. If you try to run this ...
+
+```{r,echo=TRUE,eval=FALSE}
+vehicles$hwy[1:5,]
+```
+
+...`R` will throw a fit.  
+
+You can use logical tests to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:
+
+```{r,echo=TRUE}
+keeps <- which(vehicles$hwy > 100)
+keeps
+vehicles[keeps,]
+```
+
+But the above is a long-winded way of doing this. You can also achieve this result as follows:
+
+```{r,echo=TRUE,eval=FALSE}
+vehicles[which(vehicles$hwy > 100),]
+```
+
+You can also get the same result without the `which()` function:
+
+```{r,echo=TRUE,eval=FALSE}
+vehicles[vehicles$hwy > 100,]
+```
+
+The logical test is returning a bunch of `TRUE`s and `FALSE`s, one for each row of `vehicles`. Only the `TRUE` rows will be returned.  
+
+#### Exercise 1: Reading for errors {-}
+
+What is wrong with these commands? Why will each of them throw an error if you run them, and how can you fix them?
+
+```{r,echo=TRUE,eval=FALSE}
+# 1
+vehicles[1,15,]
+
+# 2
+vecihles[1:5,]
+
+# 3
+vehicles$hwy[1:5,]
+
+# 4
+vehicles[1:5,1:13]
+```
+
+
+### Summarizing {-}
+
+The same summary functions that you have used for vectors work for dataframes, such as:
+
+```{r,echo=TRUE}
+min(vehicles$hwy)
+max(vehicles$hwy)
+mean(vehicles$cty)
+```
+
+You can also use the **`summary()`** function, which provides summary statistics for each column in your dataframe:
+
+```{r,echo=TRUE}
+summary(vehicles)
+```
+
+The function **`unique()`** returns unique values within a column:
+
+```{r,echo=TRUE}
+unique(vehicles$fuel)
+```
+
+Finally, the **`order()`** function helps you sort a dataframe according to the values in one of its columns.
+
+```{r,echo=TRUE}
+vehicles_sorted <- vehicles[order(vehicles$hwy),  #sort dataframe by highway mileage
+                            c(2,3,4,10:12)] # only keep certain columns
+head(vehicles_sorted)
+```
+
+Reverse the order by wrapping **`rev()`** around the `order()` call:
+
+```{r,echo=TRUE}
+vehicles_sorted <- vehicles[rev(order(vehicles$hwy)),
+                            c(2,3,4,10:12)]
+head(vehicles_sorted)
+```
+
+### Building dataframes {-}
+
+To create a new dataframe, use the `data.frame()` function.
+
+```{r}
+my_vehicles <- data.frame(car=paste(vehicles$make,vehicles$model),
+                          mgp_hwy=vehicles$hwy,
+                          mpg_city=vehicles$cty)
+my_vehicles[100:106,]
+```
+
+Note how the columns were named in the `data.frame()` call, and that each column is separated by a comma.
+
+You can also stage an empty dataframe, which sounds useless but will become very useful as you start working with `for` loops and other higher-order `R` tools.  
+
+```{r,echo=TRUE}
+df <- data.frame()
+df
+```
+
+To coerce an object into a format that `R` interprets as a dataframe, use **`as.dataframe()`**: 
+
+```{r,echo=TRUE}
+df <- as.data.frame(vehicles)
+df[1:4,1:4]
+```
+
+You can bind multiple dataframes together using **`rbind()`**: 
+
+```{r,echo=TRUE}
+df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+df1
+
+df2 <- data.frame(name=c("Matthew"),instrument=c("Washboard"))
+rbind(df1,df2)
+```
+
+Note that to be combined, two dataframes have to have the exact same number of columns and the exact same column names.
+
+The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the *`R` Toolbag* modules ahead.
+
+```{r,echo=TRUE}
+df <- data.frame() # stage empty dataframe
+df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+df <- rbind(df,df1)
+df
+```
+
+### Exercise 2: Subsetting and filtering {-}
+
+**A. Subset one field according to a logical test**  
+With no more than two lines of code, get the number of Honda cars in the `vehicles` dataset.  
+
+**B. Subset one field according to a logical test for a different field.**  
+In a single line of code, show the mileages of all the Toyotas in the dataset.
+
+**C. Subset a dataframe to a single subgroup**  
+In a single line of code, determine how many differet car makes/models were produced in 1995.
+
+**D. Get the mean value for a subgroup of data**  
+What is the average city mileage for Subaru cars in the dataset?
+
+**E. Subset a dataframe to only data from between two values**  
+According to this dataset, how many different car makes/models have been produced with highway mileages between 30 and 40 mpg?
+
+
+
+
+## Tidy data  {-}
+
+*(Joe writes the remainder of this chapter)*
+
+[https://r4ds.had.co.nz/tidy-data.html](https://r4ds.had.co.nz/tidy-data.html)
+
+
+### Tibbles {-}
+
+### Tidyverse {-}
+
+
+## Review exercise {-}
+
+
 
 
 

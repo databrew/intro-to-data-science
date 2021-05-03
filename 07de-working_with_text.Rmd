@@ -2,14 +2,16 @@
 
 ## Learning goals {-}
 
-* Item 1  
-* Item 2  
-* Item 3 
+* Learn to apply the most common `R` tools for working with text.
 
 
 ## Basics {-}
 
-### The `stringr` package {-}
+If you do not learn how to edit and transform text-based fields within datasets, you will quickly get stuck in `R`. Think of dates, GPS coordinates, user IDs, group names, plot labels, *etc.* All of these forms of data can contain non-numeric text. Becoming comfortable working with text in `R` is an essential part of your `R` toolbag.
+
+Here we will present the most common functions for working with text. Remember that `R` has a special object class for text, known to as **character** class, and that character objects are often referred to as **strings**.  
+
+Most of these functions come pre-installed in `R`. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the **`stringr` package**. Go ahead an install `stringr` and load it using `library()`.  
 
 ```{r,echo=TRUE,eval=FALSE}
 install.packages("stringr")
@@ -28,7 +30,7 @@ x <- as.factor(c("group1","group2","group3"))
 as.character(x)
 ```
 
-This can be particularly useful if you are trying to avoid problems caused by factors. One common issue occurs when `R` mistakes a set of numbers as a set of factors. Using `as.character()` can set things right:
+This can be particularly useful when trying to resolve problems caused by factors. One common issue occurs when `R` mistakes a set of numbers as a set of factors. Using `as.character()` can set things right:
 
 ```{r,echo=TRUE}
 x <- as.factor(c(18,19,20))
@@ -41,57 +43,112 @@ as.numeric(x)
 as.numeric(as.character(x))
 ```
 
-**`paste()`** and **`paste0()`**: description:
+**`paste()`** and **`paste0()`** combines two ore more strings together into a single object:
 
 ```{r,echo=TRUE}
+i <- 10
+n <- 96
+file_name <- "this_file.csv"
 
+paste(i,"of",n,": Processing",file_name,". . . ") # paste assumes each object is separated by " ".
+paste0(i,"of",n,": Processing",file_name,". . . ") # paste0 assumes no space between objects.
+paste0(i," of ",n,": Processing ",file_name," . . . ") # this paste0 version matches the initial format
 ```
 
-**`tolower()`** and **`toupper()`**: description:
+You can also use `paste()` to `collapse` multiple objects into a single string.
 
 ```{r,echo=TRUE}
-
+x <- 1:10
+paste(x,collapse="-")
 ```
 
-**`nchar()`**: description:
+**`tolower()`** and **`toupper()`** forces all text in a string to lower case or upper case, respectively:
 
 ```{r,echo=TRUE}
-
+x <- "That Tree Is Far Away."
+tolower(x)
+toupper(x)
 ```
 
-**`substr()`**: description:
+**`nchar()`** returns the number of characters within a string:
 
 ```{r,echo=TRUE}
-
+x <- "That Tree Is Far Away."
+nchar(x)
 ```
 
-**`grep()`**: description:
+**`substr()`** trims a string according to a start and end character position:
 
 ```{r,echo=TRUE}
-
+dates <- c("2021-03-01","2021-03-02","2021-03-03")
+substr(dates,1,4) # years
+substr(dates,6,7) # months
+substr(dates,9,10) # days
 ```
 
-**`gsub()`**: description:
+**`grep()`** returns the elements in a character vector that contain a given pattern:
 
 ```{r,echo=TRUE}
+years <- 1900:1999
 
+# Which elements correspodn to the 1980s?
+eighties <- grep("198",years)
+
+years[eighties]
 ```
 
-**`stringr::str_pad()`**: description:
+**`gsub()`** replaces a given pattern with another in a character vector.
 
 ```{r,echo=TRUE}
-
+dates <- c("2021-03-01","2021-03-02","2021-03-03")
+gsub("-","/",dates)
 ```
 
-**`str_split()`**: description:
+**`stringr::str_pad()`**: standardize the lengths of strings by "padding" it (e.g., with zeroes) :
 
 ```{r,echo=TRUE}
+days <- as.character(1:15)
+days
+stringr::str_pad(days,width=2,side="left",pad="0")
+```
 
+**`stringr::str_split()`**: split a string into several strings at the occurrence of a specified character.
+
+```{r,echo=TRUE}
+dates <- c("2021-03-01","2021-03-02","2021-03-03")
+splits <- stringr::str_split(dates,"-")
+splits
+```
+
+This function returns a *list* for every element in the original vector. A common need is to retrieve one item from each of the element in this list. For example, let's say you are trying to retrieve the months of each element in the `dates` vector. The list structure makes this tricky to retrieve. Here's the way to do it by drawing upon the `apply()` family of functions:
+
+```{r,echo=TRUE}
+sapply(splits, "[[", 2) # Months
+
+# now get years and days
+sapply(splits, "[[", 1) # years
+sapply(splits, "[[", 3) # days
 ```
 
 ## Review assignment {-}
 
+A. For a given dataset, print informative status update for each iteration in a `for` loop.
+
 ```{r,echo=TRUE}
 
 ```
+
+B. Modify the above to only print an update at every integer percentage point (i.e., at 1% and 2% but not at 1.233%, etc.)
+
+```{r,echo=TRUE}
+
+```
+
+C. Your collaborator sends you a dataset containing columns for `Date`, `Latitude`, and `Longitude`. Formatting varies in these fields. Fix it. (can use hw-raw.csv file. - Eric)
+
+```{r,echo=TRUE}
+
+```
+
+
 
