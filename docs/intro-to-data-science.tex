@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-05-03}
+\date{2021-05-06}
 
 \begin{document}
 \maketitle
@@ -2924,7 +2924,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] "+h\"a>[]iOD/g=U)rH-yGQuF4"
+[1] "2eiaU`4:+}RZS\\o^f[m1F_5Y"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2936,7 +2936,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "xst$0ky./G&IHK[#Jcv7+F:l"
+[1] ",hufXUZsr2W]lFcN\\x{k1QbM"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -3131,28 +3131,296 @@ Add title / subtitle / caption
 \section*{Learning goals}\label{learning-goals-8}}
 \addcontentsline{toc}{section}{Learning goals}
 
-\hypertarget{data-format-requirements}{%
-\section{Data format requirements}\label{data-format-requirements}}
+\begin{itemize}
+\tightlist
+\item
+  Understand what a \texttt{.csv} file is, and why they are important in data science.
+\item
+  How to format your data for easily importing data in \texttt{R}.\\
+\item
+  How to load, or ``read'', your data into \texttt{R}.\\
+\item
+  How to set up your project directory and read data from other folders.
+\end{itemize}
 
-\hypertarget{learning-goals-9}{%
-\section*{Learning goals}\label{learning-goals-9}}
-\addcontentsline{toc}{section}{Learning goals}
+~
+
+To work with your own data in \texttt{R}, you need to load your data in \texttt{R}'s memory. This is called \textbf{reading in} your data.
+
+Reading in data is simple and easy if your data are saved as a \textbf{\texttt{.csv}}, a comma-separated file. You can find functions for reading all sorts of file types into \texttt{R}, but the quickest way to begin working with your own data in \texttt{R} is to maintain that data in \texttt{.csv}'s.
+
+\hypertarget{csv-files}{%
+\section*{\texorpdfstring{\texttt{.csv} files}{.csv files}}\label{csv-files}}
+\addcontentsline{toc}{section}{\texttt{.csv} files}
+
+When you preview a \texttt{.csv}, it looks something like this:
+
+\includegraphics{img/csv.png}
+A neat spreadsheet of rows and columns.
+
+When you open up this same dataset in a simple text editor, it looks like this:
+
+\includegraphics{img/csv_text_editor.png}
+This looks scary, but it is actually really simple. A \texttt{.csv} is a simple text file in which each row is on a new line and columns of data are separated by commas. As a simple text file, there is no fancy formatting. There are no ``Sheets'' or ``Tabs'', as you would find in GoogleSheets or Excel; it is a simple `flat' file.
+
+One of the major advantages of working with \texttt{.csv}'s is that the format is cross-platform and non-proprietary. That is, they work on Windows, Mac, Linux, and any other common type of computer, and they do not require special software to open.
+
+\hypertarget{data-format-requirements}{%
+\section*{Data format requirements}\label{data-format-requirements}}
+\addcontentsline{toc}{section}{Data format requirements}
+
+For those of us used to working in \emph{Excel} or \emph{Numbers}, it will take some adjustment to get into the habit of formatting your data for \texttt{R}. We are used to seeing spreadsheets that look something like this:
+
+\includegraphics{img/csv_dont.png}
+
+To read a \texttt{.csv} into \texttt{R} without issues or fancy code, this spreadsheet will need to be simplified to look like this:
+
+\includegraphics{img/csv_do.png}
+
+\hypertarget{workflow-for-formatting-your-data}{%
+\subsection*{Workflow for formatting your data}\label{workflow-for-formatting-your-data}}
+\addcontentsline{toc}{subsection}{Workflow for formatting your data}
+
+Below is the general worfklow for preparing your data for \texttt{R} is the following:
+
+\textbf{1. Get your data into \texttt{.csv} format.} In \emph{Excel} and \emph{Numbers}, you can use `Save As' to change the file format. In \emph{GoogleSheets}, you can `Download As' a \texttt{.csv}. This will remove any colors, thick lines, special fonts, bold or italicized font styles, and any other special formatting. All that will be left is your data, and that's the way \texttt{R} likes it.
+
+\textbf{2. Remove blank columns} before and in the middle of your data.
+
+\textbf{3. Remove elements such as graphs.}
+
+\textbf{4. Simplify your `header'.} The space above your data is your spreadsheet's header. It includes column names and metadata like title, author, measurement units, etc. It is possible to read data with complex headers into \texttt{R}, but again we are going for simplicity here, so we suggest (1) simplifying your header to contain column names only, and (2) moving metadata to a \texttt{README.txt} file that lives in the same folder as your data.
+
+\textbf{5. Simplify column names.} Remove spaces, or replace them with \texttt{.}, \texttt{-} or \texttt{\_}. Make your column names as simple and brief as possible while still being informative. Include units in the column names, as in the screenshot above. Be sure that each column has a name.
+
+\textbf{6. Remove all commas and hashtags from your dataset.} You can do this with the `Find \& Replace' feature built-into in most spreadsheet editors.
+
+\hypertarget{reading-in-data}{%
+\section*{Reading in data}\label{reading-in-data}}
+\addcontentsline{toc}{section}{Reading in data}
+
+The general workflow for reading in data is as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In \texttt{RStudio}, set your working directory.
+\item
+  Place your data file in your working directory. (See the section below if you want to keep your data somewhere else.)
+\item
+  In your \texttt{R} script, read in your data file with one of the core functions below.
+\end{enumerate}
+
+\hypertarget{core-functions-for-reading-data}{%
+\subsection*{Core functions for reading data}\label{core-functions-for-reading-data}}
+\addcontentsline{toc}{subsection}{Core functions for reading data}
+
+To become agile in reading various types of data into \texttt{R}, there are three key functions you should know:
 
 \hypertarget{read.csv}{%
-\section{\texorpdfstring{\texttt{read.csv()}}{read.csv()}}\label{read.csv}}
+\subsubsection*{\texorpdfstring{\texttt{read.csv()}}{read.csv()}}\label{read.csv}}
+\addcontentsline{toc}{subsubsection}{\texttt{read.csv()}}
+
+This is the base function for reading in a \texttt{.csv}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"super_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This function reads in your data file as a dataframe. Save your dataset into \texttt{R}'s memory using a variable (in this case, \texttt{df}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  patient_id height_in weight_lb                   comment
+1          1        74       135             not very nice
+2          2        56       112                kinda cute
+3          3        59       156 kinda cute but had a ring
+4          4        43       102                 so small!
+\end{verbatim}
+
+The \texttt{read.csv()} function has plenty of other inputs in the event that your data file is unable to follow the formatting rules outlined above (see \texttt{?read.csv()}). The three most common inputs you may want to use are \texttt{header}, \texttt{skip}, and \texttt{stringsAsFactors}.
+
+\begin{itemize}
+\item
+  Use the \textbf{\texttt{header}} input when your data does not contain column names. \emph{For example}, \texttt{header=FALSE} indicates that your datafile does not have any column names.
+\item
+  Use the \textbf{\texttt{skip}} input when you want to skip some lines of metadata at the top of your file. This is handy if you really don't want to get rid of your metadata in your header. \emph{For example,} \texttt{skip=2} skips the first two rows of the datafile before \texttt{R} begins reading data.
+\item
+  Use the \textbf{\texttt{stringsAsFactors}} input when you want to make absolutely sure that \texttt{R} interprets any non-numeric fields as characters rather than factors. We have not focused on factors yet, but it can be frustrating when \texttt{R} mistakes a column of character strings as a column factors. To avoid any possible confusion, use \texttt{stringsAsFactors=TRUE} as an input.
+\end{itemize}
+
+For example, here is how to read in this data without column names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"super_data.csv"}\NormalTok{,}\DataTypeTok{skip=}\DecValTok{1}\NormalTok{,}\DataTypeTok{header=}\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  V1 V2  V3                        V4
+1  1 74 135             not very nice
+2  2 56 112                kinda cute
+3  3 59 156 kinda cute but had a ring
+4  4 43 102                 so small!
+\end{verbatim}
+
+If you do this without setting header to FALSE, your first row of data gets used as column names and it becomes a big ole mess:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"super_data.csv"}\NormalTok{,}\DataTypeTok{skip=}\DecValTok{1}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  X1 X74 X135             not.very.nice
+1  2  56  112                kinda cute
+2  3  59  156 kinda cute but had a ring
+3  4  43  102                 so small!
+\end{verbatim}
 
 \hypertarget{readrread_csv}{%
-\section{\texorpdfstring{\texttt{readr::read\_csv()}}{readr::read\_csv()}}\label{readrread_csv}}
+\subsubsection*{\texorpdfstring{\texttt{readr::read\_csv()}}{readr::read\_csv()}}\label{readrread_csv}}
+\addcontentsline{toc}{subsubsection}{\texttt{readr::read\_csv()}}
+
+This function, from a package named \texttt{readr}, becomes useful when you begin working with (1) data within the \texttt{tidyverse}, which you will be introduced to in the next module, and/or (2) very large datasete, since it reads data much more quickly and provides progress updates along the way.
+
+When you use \texttt{read\_csv()} instead of \texttt{read.csv()}, your data are read in as a \texttt{tibble} instead of a dataframe. You will be introduced to \texttt{tibbles} in the next module on dataframes; for the time being, think of a \texttt{tibble} as a fancy version of a dataframe that can be treated exactly as a regular dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\NormalTok{readr}\OperatorTok{::}\KeywordTok{read_csv}\NormalTok{(}\StringTok{"super_data.csv"}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 4 x 4
+  patient_id height_in weight_lb comment                  
+       <dbl>     <dbl>     <dbl> <chr>                    
+1          1        74       135 not very nice            
+2          2        56       112 kinda cute               
+3          3        59       156 kinda cute but had a ring
+4          4        43       102 so small!                
+\end{verbatim}
+
+\hypertarget{readrds}{%
+\subsubsection*{\texorpdfstring{\texttt{readRDS()}}{readRDS()}}\label{readrds}}
+\addcontentsline{toc}{subsubsection}{\texttt{readRDS()}}
+
+Another niche function for reading data is \texttt{readRDS()}. This function allows you to read in \emph{R data objects}, which have the file extension \emph{.rds}. These data objects need not be in the same format as a \texttt{.csv} or even a dataframe, and that is what makes them so handy. A colleague could send you an \texttt{.rds} object of a vector, a list, a plotting function, or any other kind of \texttt{R} object, and you can read it in with \texttt{readRDS()}.
+
+For example, \texttt{super\_data.rds} contains a \texttt{tibble} version of the dataframe above. When you read in that \texttt{.rds} file, it is already formatted as a \texttt{tibble}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"super_data.rds"}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 4 x 4
+  patient_id height_in weight_lb comment                  
+       <dbl>     <dbl>     <dbl> <chr>                    
+1          1        74       135 not very nice            
+2          2        56       112 kinda cute               
+3          3        59       156 kinda cute but had a ring
+4          4        43       102 so small!                
+\end{verbatim}
+
+\hypertarget{reading-data-from-other-folders}{%
+\subsection*{Reading data from other folders}\label{reading-data-from-other-folders}}
+\addcontentsline{toc}{subsection}{Reading data from other folders}
+
+The data-reading functions above require only a single input: the \emph{path} to your data file. This \emph{path} is relative to the location of your working directory. When your data file is \emph{inside} your working directory, the path simplifies to be the same as the filename of your data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"super_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Sometimes, though, you will want to keep your data somewhere nearby but not necessarily \emph{within} your working directory. Consider the following scenario, in which three versions of the ``super\_data.csv'' dataset occur near a working directory being used for this module:
+
+\includegraphics{img/csv_wd.png}
+
+We have a version within the same directory as our \texttt{R} file (i.e., our working directory), another version within a \emph{child} folder within the directory (i.e., a subfolder), and another version in the \emph{parent} folder of the working directory.
+
+\textbf{To read a file from a \emph{child} folder,} add the prefix, \texttt{./\textless{}child\ name\textgreater{}/}, to your command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/super_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{To read a file from a \emph{parent} folder,} add the prefix, \texttt{../}, to your command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/super_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{managing-files}{%
+\subsection*{Managing files}\label{managing-files}}
+\addcontentsline{toc}{subsection}{Managing files}
+
+Now consider the following scenario, in which your project folder structure looks like this:
+
+\includegraphics{img/project_template.png}
+
+This structure can be a effective and simple way of organizing your files for a project, and we recommend using it.
+
+Here's what these child folders should contain.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{./data/} contains data, of course.
+\item
+  \texttt{./doc/} contains documents, such as manuscript drafts.
+\item
+  \texttt{./figures/} contains files for graphs and figures.
+\item
+  \texttt{./R/} contains \texttt{R} scripts, of course.
+\item
+  \texttt{./references/} contains journal articles and other resources you are using in your research.
+\end{itemize}
+
+Since your \texttt{R} code is going into the \texttt{R} child folder, that is what you should set your working directory for those \texttt{R} scripts to. In that case, \emph{how to read data from the \texttt{data} folder}, which is a separate child folder of your parent folder?
+
+Here's how:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../data/super_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{review-exercise}{%
 \section*{Review exercise}\label{review-exercise}}
 \addcontentsline{toc}{section}{Review exercise}
 
+\emph{NOTE: Under construction!}
+
 \hypertarget{dataframes}{%
 \chapter{Dataframes}\label{dataframes}}
 
-\hypertarget{learning-goals-10}{%
-\section*{Learning goals}\label{learning-goals-10}}
+\hypertarget{learning-goals-9}{%
+\section*{Learning goals}\label{learning-goals-9}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -3165,13 +3433,15 @@ Add title / subtitle / caption
   Understand what the \texttt{tidyverse} is and why it is awesome.
 \end{itemize}
 
+~
+
 In data science, the most common data structure you will be using -- by far -- is the \textbf{dataframe}. You were introduced to this data structure in Module 10, but a more familiar and detailed orientation is worthwhile.
 
 \hypertarget{subsetting-exploring-dataframes}{%
 \section*{Subsetting \& exploring dataframes}\label{subsetting-exploring-dataframes}}
 \addcontentsline{toc}{section}{Subsetting \& exploring dataframes}
 
-A dataframe has rows of data organized into columns. Let's use a dataset on fuel mileage for all cars sold from 1985 to 2014.
+To explore dataframes, let's use a dataset on fuel mileage for all cars sold from 1985 to 2014.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3193,12 +3463,13 @@ A dataframe has rows of data organized into columns. Let's use a dataset on fuel
 6 14040 Acura 2.3CL/~  1998 Subcom~ Autom~ Front-~     6   3   Regu~    26    17
 \end{verbatim}
 
-Each row pertains to a single vehicle make/model -- i.e., a single \emph{observation}. Each column pertains to a single \emph{type} of data. Columns are named in the \emph{header} of the dataframe.
+A dataframe has rows of data organized into columns. In this dataframe, each row pertains to a single vehicle make/model -- i.e., a single \emph{observation}. Each column pertains to a single \emph{type} of data. Columns are named in the \emph{header} of the dataframe.
 
 All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes (see module 10 for a refreshers). In addition to those functions you already know, we've added some new functions to your inventory of useful functions.
 
 \hypertarget{exploration}{%
-\subsection{Exploration}\label{exploration}}
+\subsection*{Exploration}\label{exploration}}
+\addcontentsline{toc}{subsection}{Exploration}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3252,7 +3523,8 @@ All the same useful exploration and subsetting functions that applied to vectors
 Note that \texttt{length()} does not work the same on dataframes as it does with vectors. In dataframes, \texttt{length()} is the equivalent of \texttt{ncol()}; it will \emph{not} give you the number of rows in a dataset.
 
 \hypertarget{subsetting}{%
-\subsection{Subsetting}\label{subsetting}}
+\subsection*{Subsetting}\label{subsetting}}
+\addcontentsline{toc}{subsection}{Subsetting}
 
 Recall that dataframes are filtered by row and/or column using this format: \textbf{\texttt{dataframe{[}rows,columns{]}}}. To get the third element of the second column, for example, you type \texttt{dataframe{[}3,2{]}}.
 
@@ -3674,13 +3946,19 @@ According to this dataset, how many different car makes/models have been produce
 \subsection*{Tibbles}\label{tibbles}}
 \addcontentsline{toc}{subsection}{Tibbles}
 
+\emph{NOTE: Under construction!}
+
 \hypertarget{tidyverse}{%
 \subsection*{Tidyverse}\label{tidyverse}}
 \addcontentsline{toc}{subsection}{Tidyverse}
 
+\emph{NOTE: Under construction!}
+
 \hypertarget{review-exercise-1}{%
 \section*{Review exercise}\label{review-exercise-1}}
 \addcontentsline{toc}{section}{Review exercise}
+
+\emph{NOTE: Under construction!}
 
 \hypertarget{data-wrangling}{%
 \chapter{Data wrangling}\label{data-wrangling}}
@@ -3688,8 +3966,8 @@ According to this dataset, how many different car makes/models have been produce
 \hypertarget{data-transformation}{%
 \section{Data transformation}\label{data-transformation}}
 
-\hypertarget{filtering}{%
-\subsection{Filtering}\label{filtering}}
+\hypertarget{more-filtering}{%
+\subsection{More filtering}\label{more-filtering}}
 
 \hypertarget{grouping}{%
 \subsection{Grouping}\label{grouping}}
@@ -3697,20 +3975,124 @@ According to this dataset, how many different car makes/models have been produce
 \hypertarget{joining}{%
 \subsection{Joining}\label{joining}}
 
-\hypertarget{the-tidyverse-and-tibbles}{%
-\section{The tidyverse and tibbles}\label{the-tidyverse-and-tibbles}}
-
-\hypertarget{transformation-with-dplyr}{%
-\section{Transformation with dplyr}\label{transformation-with-dplyr}}
-
-\hypertarget{filtering-1}{%
-\subsection{Filtering}\label{filtering-1}}
-
-\hypertarget{grouping-1}{%
-\subsection{Grouping}\label{grouping-1}}
-
 \hypertarget{mutating}{%
 \subsection{Mutating}\label{mutating}}
+
+\hypertarget{exporting-data-plots}{%
+\chapter{Exporting data \& plots}\label{exporting-data-plots}}
+
+\hypertarget{learning-goals-10}{%
+\section*{Learning goals}\label{learning-goals-10}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  How to save dataframes as \texttt{.csv}'s
+\item
+  How to save \texttt{R} data objects as \texttt{.rds}'s
+\item
+  How to save plots as \texttt{.pdf}'s and \texttt{.png}'s.
+\end{itemize}
+
+~
+
+To practice exporting data, let's use the built-in dataset from package \texttt{babynames}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"babynames"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(babynames)}
+\KeywordTok{data}\NormalTok{(babynames)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{write.csv}{%
+\section*{\texorpdfstring{\texttt{write.csv()}}{write.csv()}}\label{write.csv}}
+\addcontentsline{toc}{section}{\texttt{write.csv()}}
+
+To write a dataframe to a \texttt{.csv}, use the function \texttt{write.csv()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.csv}\NormalTok{(babynames,}\DataTypeTok{file=}\StringTok{"my_babynames.csv"}\NormalTok{,}\DataTypeTok{quote=}\OtherTok{FALSE}\NormalTok{,}\DataTypeTok{row.names=}\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This dataset will be saved as the file, \texttt{my\_babynames.csv} within your parent directory. You can set other destinations using the same rules for child paths, parent paths, and absolute paths from the module on \textbf{Importing Data}.
+
+The code above sets a couple parameters that preserves the neat formatting of your dataframe. We recommend using these inputs each time you use \texttt{write.csv()} to save a dataframe.
+
+\hypertarget{saverds}{%
+\section*{\texorpdfstring{\texttt{saveRDS()}}{saveRDS()}}\label{saverds}}
+\addcontentsline{toc}{section}{\texttt{saveRDS()}}
+
+The \texttt{saveRDS()} function saves \texttt{R} objects in the \texttt{.rds} format, which makes them easier and faster to read into \texttt{R} later on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{saveRDS}\NormalTok{(babynames,}\DataTypeTok{file=}\StringTok{"my_babynames.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pdf-and-png}{%
+\section*{\texorpdfstring{\texttt{pdf()} and \texttt{png()}}{pdf() and png()}}\label{pdf-and-png}}
+\addcontentsline{toc}{section}{\texttt{pdf()} and \texttt{png()}}
+
+Let's say you want to plot the prevalence of the name ``Barack'' in recent U.S history:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(babynames)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 5
+   year sex   name          n   prop
+  <dbl> <chr> <chr>     <int>  <dbl>
+1  1880 F     Mary       7065 0.0724
+2  1880 F     Anna       2604 0.0267
+3  1880 F     Emma       2003 0.0205
+4  1880 F     Elizabeth  1939 0.0199
+5  1880 F     Minnie     1746 0.0179
+6  1880 F     Margaret   1578 0.0162
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{baracks <-}\StringTok{ }\NormalTok{babynames[babynames}\OperatorTok{$}\NormalTok{name}\OperatorTok{==}\StringTok{"Barack"}\NormalTok{,]}
+\KeywordTok{plot}\NormalTok{(prop}\OperatorTok{~}\NormalTok{year,}\DataTypeTok{data=}\NormalTok{baracks,}
+     \DataTypeTok{type=}\StringTok{"b"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{2000}\NormalTok{,}\DecValTok{2018}\NormalTok{),}
+     \DataTypeTok{xlab=}\StringTok{"Year"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Proportion of names"}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Barack"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-173-1.pdf}
+
+To save this as a figure as a \texttt{pdf}, preface these lines of code with a \texttt{pdf()} command and add \texttt{dev.off()} below those lines. This opens up a \texttt{pdf} `device' (i.e., an engine for creating a PDF file), prints the plot to that new file, then closes the device and saves the file.
+
+Saving a pdf:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pdf}\NormalTok{(}\StringTok{"barack-years.pdf"}\NormalTok{,width}\DecValTok{-6}\NormalTok{,}\DataTypeTok{height=}\DecValTok{4}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(prop}\OperatorTok{~}\NormalTok{year,}\DataTypeTok{data=}\NormalTok{baracks,}
+     \DataTypeTok{type=}\StringTok{"b"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{2000}\NormalTok{,}\DecValTok{2018}\NormalTok{),}
+     \DataTypeTok{xlab=}\StringTok{"Year"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Proportion of names"}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Barack"}\NormalTok{)}
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Make sure you add `.pdf' to the end of your filename, and try not to run the \texttt{dev.off()} command when you have not first run the \texttt{pdf} command. If you do, \texttt{R} will think you are turning off the plotting feature in \texttt{RStudio} and you will have to restart your \texttt{R} session in order to see any more plots.
+
+\hypertarget{review-exercise-2}{%
+\section*{Review exercise}\label{review-exercise-2}}
+\addcontentsline{toc}{section}{Review exercise}
+
+\emph{NOTE: Under construction!}
 
 \hypertarget{part-exploring-analyzing-data}{%
 \part{Exploring \& analyzing data}\label{part-exploring-analyzing-data}}
@@ -3758,61 +4140,6 @@ According to this dataset, how many different car makes/models have been produce
 \section*{Tables}\label{tables}}
 \addcontentsline{toc}{section}{Tables}
 
-\hypertarget{part-accessing-managing-data}{%
-\part{Accessing \& managing data}\label{part-accessing-managing-data}}
-
-\hypertarget{managing-project-files}{%
-\chapter{Managing project files}\label{managing-project-files}}
-
-\hypertarget{learning-goals-11}{%
-\section*{Learning goals}\label{learning-goals-11}}
-\addcontentsline{toc}{section}{Learning goals}
-
-\hypertarget{review-exercise-2}{%
-\section*{Review exercise}\label{review-exercise-2}}
-\addcontentsline{toc}{section}{Review exercise}
-
-\hypertarget{formatting-your-own-data}{%
-\chapter{Formatting your own data}\label{formatting-your-own-data}}
-
-\hypertarget{learning-goals-12}{%
-\section*{Learning goals}\label{learning-goals-12}}
-\addcontentsline{toc}{section}{Learning goals}
-
-\hypertarget{review-exercise-3}{%
-\section*{Review exercise}\label{review-exercise-3}}
-\addcontentsline{toc}{section}{Review exercise}
-
-\hypertarget{excel-files-googlesheets}{%
-\chapter{Excel files \& GoogleSheets}\label{excel-files-googlesheets}}
-
-\hypertarget{learning-goals-13}{%
-\section*{Learning goals}\label{learning-goals-13}}
-\addcontentsline{toc}{section}{Learning goals}
-
-\hypertarget{review-exercise-4}{%
-\section*{Review exercise}\label{review-exercise-4}}
-\addcontentsline{toc}{section}{Review exercise}
-
-\hypertarget{exporting-data-plots}{%
-\chapter{Exporting data \& plots}\label{exporting-data-plots}}
-
-\hypertarget{learning-goals-14}{%
-\section*{Learning goals}\label{learning-goals-14}}
-\addcontentsline{toc}{section}{Learning goals}
-
-\hypertarget{write.csv}{%
-\section*{\texorpdfstring{\texttt{write.csv()}}{write.csv()}}\label{write.csv}}
-\addcontentsline{toc}{section}{\texttt{write.csv()}}
-
-\hypertarget{pdf-and-png}{%
-\section*{\texorpdfstring{\texttt{pdf()} and \texttt{png()}}{pdf() and png()}}\label{pdf-and-png}}
-\addcontentsline{toc}{section}{\texttt{pdf()} and \texttt{png()}}
-
-\hypertarget{review-exercise-5}{%
-\section*{Review exercise}\label{review-exercise-5}}
-\addcontentsline{toc}{section}{Review exercise}
-
 \hypertarget{part-your-r-tool-bag}{%
 \part{Your R tool bag}\label{part-your-r-tool-bag}}
 
@@ -3822,8 +4149,8 @@ According to this dataset, how many different car makes/models have been produce
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
 
-\hypertarget{learning-goals-15}{%
-\section*{Learning goals}\label{learning-goals-15}}
+\hypertarget{learning-goals-11}{%
+\section*{Learning goals}\label{learning-goals-11}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -4202,7 +4529,7 @@ Plots can be included in the function commands just as in any other context:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-177-1.pdf}
+\includegraphics{figures/unnamed-chunk-193-1.pdf}
 
 \begin{verbatim}
  [1] 11.3 12.6 13.9 15.2 16.5 17.8 19.1 20.4 21.7 23.0 24.3 25.6 26.9 28.2 29.5
@@ -4255,7 +4582,7 @@ Now let's call this fancy function a bunch of times:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-179-1.pdf}
+\includegraphics{figures/unnamed-chunk-195-1.pdf}
 
 Think about how many lines of code would have been needed to write out all of these fancy plots if you did not use a custom function! Think about how cluttered and dizzying your code would look! And think about how many opportunities for errors and inconsistencies there would have been! That is the advantage of writing your own functions: it makes your work more efficient, more organized, and less prone to errors.
 
@@ -4347,8 +4674,8 @@ In this exercise, you will investigate annual trends in the prevalence of six na
 \hypertarget{for-loops}{%
 \chapter{\texorpdfstring{\texttt{for} loops}{for loops}}\label{for-loops}}
 
-\hypertarget{learning-goals-16}{%
-\section*{Learning goals}\label{learning-goals-16}}
+\hypertarget{learning-goals-12}{%
+\section*{Learning goals}\label{learning-goals-12}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -4534,7 +4861,7 @@ Looks like the first four columns would be interesting to plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-188-1.pdf}
+\includegraphics{figures/unnamed-chunk-204-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4602,7 +4929,7 @@ Let's say we want to see how gas mileage is affected by the number of cylinders 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-190-1.pdf}
+\includegraphics{figures/unnamed-chunk-206-1.pdf}
 
 \hypertarget{exercise-3-5}{%
 \subsection*{Exercise 3}\label{exercise-3-5}}
@@ -4628,7 +4955,7 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-191-1.pdf}
+\includegraphics{figures/unnamed-chunk-207-1.pdf}
 
 \hypertarget{using-for-loops-to-layer-cyclical-or-repetitive-data}{%
 \subsection*{\texorpdfstring{Using \texttt{for} loops to layer cyclical or repetitive data}{Using for loops to layer cyclical or repetitive data}}\label{using-for-loops-to-layer-cyclical-or-repetitive-data}}
@@ -4664,7 +4991,7 @@ Try plotting the Keeling Curve:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-193-1.pdf}
+\includegraphics{figures/unnamed-chunk-209-1.pdf}
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
@@ -4675,7 +5002,7 @@ There are some erroneous data points! We clearly can't have negative CO2 values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-194-1.pdf}
+\includegraphics{figures/unnamed-chunk-210-1.pdf}
 
 \textbf{What's the deal with those squiggles?}
 
@@ -4745,7 +5072,7 @@ To begin, let's plot data for only a \emph{single} year:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-195-1.pdf}
+\includegraphics{figures/unnamed-chunk-211-1.pdf}
 
 But this only shows one year of data! How can we include the seasonal squiggle from other years?
 
@@ -4799,7 +5126,7 @@ OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-196-1.pdf}
+\includegraphics{figures/unnamed-chunk-212-1.pdf}
 
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
@@ -5239,7 +5566,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-207-1.pdf}
+\includegraphics{figures/unnamed-chunk-223-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsubsection*{Now loop it!}\label{now-loop-it}}
@@ -5263,7 +5590,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-208-1.pdf}
+\includegraphics{figures/unnamed-chunk-224-1.pdf}
 
 \hypertarget{now-loop-it-in-layers}{%
 \subsubsection*{\texorpdfstring{Now loop it \emph{in layers!}}{Now loop it in layers!}}\label{now-loop-it-in-layers}}
@@ -5289,13 +5616,13 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-209-1.pdf}
+\includegraphics{figures/unnamed-chunk-225-1.pdf}
 
 \hypertarget{conditional-statements}{%
 \chapter{Conditional statements}\label{conditional-statements}}
 
-\hypertarget{learning-goals-17}{%
-\section*{Learning goals}\label{learning-goals-17}}
+\hypertarget{learning-goals-13}{%
+\section*{Learning goals}\label{learning-goals-13}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -5640,8 +5967,8 @@ To do this work, your supervisor asks you to use the \texttt{us\_contagious\_dis
 \hypertarget{working-with-text}{%
 \chapter{Working with text}\label{working-with-text}}
 
-\hypertarget{learning-goals-18}{%
-\section*{Learning goals}\label{learning-goals-18}}
+\hypertarget{learning-goals-14}{%
+\section*{Learning goals}\label{learning-goals-14}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -5981,6 +6308,17 @@ C. Your collaborator sends you a dataset containing columns for \texttt{Date}, \
 \hypertarget{pipes}{%
 \chapter{Pipes}\label{pipes}}
 
+\hypertarget{excel-files-googlesheets}{%
+\chapter{Excel files \& GoogleSheets}\label{excel-files-googlesheets}}
+
+\hypertarget{learning-goals-15}{%
+\section*{Learning goals}\label{learning-goals-15}}
+\addcontentsline{toc}{section}{Learning goals}
+
+\hypertarget{review-exercise-3}{%
+\section*{Review exercise}\label{review-exercise-3}}
+\addcontentsline{toc}{section}{Review exercise}
+
 \hypertarget{part-interactive-dashboards}{%
 \part{Interactive dashboards}\label{part-interactive-dashboards}}
 
@@ -6160,8 +6498,8 @@ Spinning up a local DB
 \hypertarget{randomization-statistics}{%
 \chapter{Randomization statistics}\label{randomization-statistics}}
 
-\hypertarget{learning-goals-19}{%
-\section*{Learning goals}\label{learning-goals-19}}
+\hypertarget{learning-goals-16}{%
+\section*{Learning goals}\label{learning-goals-16}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
@@ -6340,7 +6678,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-245-1.pdf}
+\includegraphics{figures/unnamed-chunk-261-1.pdf}
 
 \textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
 
@@ -6390,7 +6728,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-247-1.pdf}
+\includegraphics{figures/unnamed-chunk-263-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6401,7 +6739,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.02
+[1] 0.021
 \end{verbatim}
 
 In this case, the observed association rate is still statistically significant at the conventional 0.05 level, but there is still an off chance that this is merely the result of random mixing.
@@ -6485,7 +6823,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-253-1.pdf}
+\includegraphics{figures/unnamed-chunk-269-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -6497,10 +6835,10 @@ Let's go through the steps:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.001
+[1] 0.002
 \end{verbatim}
 
-So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.001).
+So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.002).
 
 \hypertarget{are-two-variables-correlated}{%
 \subsection*{3. Are two variables correlated?}\label{are-two-variables-correlated}}
@@ -6536,11 +6874,11 @@ Each row of this dataset is an abundance estimate from a survey that occurred wi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-257-1.pdf}
+\includegraphics{figures/unnamed-chunk-273-1.pdf}
 
 Performing a simple linear regression with this dataset yields the following results:
 
-\includegraphics{figures/unnamed-chunk-258-1.pdf}
+\includegraphics{figures/unnamed-chunk-274-1.pdf}
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
@@ -6635,7 +6973,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-263-1.pdf}
+\includegraphics{figures/unnamed-chunk-279-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -6649,10 +6987,10 @@ Significance of \textbf{slope}:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.877
+[1] 0.899
 \end{verbatim}
 
-This indicates that the chance that the slope is lower than the null expectation is 87.7\%.
+This indicates that the chance that the slope is lower than the null expectation is 89.9\%.
 
 Significance of \textbf{correlation coefficient}:
 
@@ -6664,10 +7002,10 @@ Significance of \textbf{correlation coefficient}:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.258
+[1] 0.218
 \end{verbatim}
 
-This indicates that the observed regression is better than 74.2\% of scenarios that might be expected under the null expectation.
+This indicates that the observed regression is better than 78.2\% of scenarios that might be expected under the null expectation.
 
 \hypertarget{is-the-slope-of-a-regression-line-negative}{%
 \subsection*{4. Is the slope of a regression line negative?}\label{is-the-slope-of-a-regression-line-negative}}
@@ -6707,7 +7045,7 @@ We want to know what the chances are that the population has declined between 20
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-267-1.pdf}
+\includegraphics{figures/unnamed-chunk-283-1.pdf}
 
 If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
 
@@ -6732,7 +7070,7 @@ And in this randomization application, the workflow is a bit more simplified. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-268-1.pdf}
+\includegraphics{figures/unnamed-chunk-284-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6842,7 +7180,7 @@ Make sure you are working with the correct data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-270-1.pdf}
+\includegraphics{figures/unnamed-chunk-286-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6946,7 +7284,7 @@ Use these datasets within a randomization routine to determine whether known bub
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-273-1.pdf}
+\includegraphics{figures/unnamed-chunk-289-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7060,7 +7398,7 @@ For your convenience, the social association rate for these 36 individuals has a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-275-1.pdf}
+\includegraphics{figures/unnamed-chunk-291-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7113,8 +7451,8 @@ For your convenience, the social association rate for these 36 individuals has a
 \hypertarget{template}{%
 \chapter{Template}\label{template}}
 
-\hypertarget{learning-goals-20}{%
-\section*{Learning goals}\label{learning-goals-20}}
+\hypertarget{learning-goals-17}{%
+\section*{Learning goals}\label{learning-goals-17}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
