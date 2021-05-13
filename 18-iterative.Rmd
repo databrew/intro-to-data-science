@@ -54,7 +54,7 @@ The examples below will show you how to appy this generalized workflow. Note tha
 
 ### 1. Is outcome `X` significantly unexpected? {-}
 
-To practice this use case, let's use the dataset `humpback-whales.csv`: 15 years of sightings of humpback whales within a fjord system in northern British Columbia, Canada ([www.bcwhales.org](www.bcwhales.org)). 
+To practice this use case, let's use the dataset [`humpback-whales.csv`](https://github.com/databrew/intro-to-data-science/blob/main/data/humpback-whales.csv?raw=true): 15 years of sightings of humpback whales within a fjord system in northern British Columbia, Canada ([www.bcwhales.org](www.bcwhales.org)). 
 
 ```{r,echo=TRUE}
 # Use dataset
@@ -170,7 +170,7 @@ In this case, the observed association rate is still statistically significant a
 *Building off of the whale scenario:* Some of these whales have learned how to practice bubble-net feeding, a remarkable feeding strategy that requires group cooperation and special techniques for catching schooling fish such as herring. Other individuals have never been seen bubble net feeding. Are there any differences how often these two populations -- the bubble netters and the "others" -- use the study area?
 
 ```{r,echo=FALSE}
-# Use dataset
+# Use same dataset as above
 hw <- read.csv("./data/humpback-whales.csv")
 ```
 
@@ -251,7 +251,7 @@ So there is indeed a significant difference in the annual site fidelity in the t
 
 ### 3. Are two variables correlated? {-}
 
-To perform a correlation analysis with randomization, let's use a classic scenario from marine conversation: We have abundance estimates for a critically endangered porpoise from four years across two decades of research. This species only has a handful of individuals left in the wild.
+To perform a correlation analysis with randomization, let's use a classic scenario from marine conversation: We have abundance estimates for a critically endangered porpoise from four years across two decades of research. This species only has a handful of individuals left in the wild. ([link to dataset](https://github.com/databrew/intro-to-data-science/blob/main/data/porpoise-survey.csv?raw=true))
 
 
 ```{r,echo=FALSE,eval=FALSE}
@@ -347,7 +347,6 @@ obs
 **5. Build null distribution:**
 
 ```{r,echo=TRUE}
-
 nulls <- data.frame()
 for(i in 1:1000){
   df_null <- df
@@ -468,7 +467,7 @@ length(bnf_ids)
 
 **Answer key:** 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,eval=FALSE}
 # Internal function for determining times seen together for a single row of a dyads dataframe
 social_X <- function(dyad){
     A <- dyad[1]
@@ -529,13 +528,13 @@ p_value
 
 In 2019, researchers took DNA samples from 36 individuals in this dataset. They collected the samples by flying drones through the whale's spouts and harvesting DNA from their *snot*! *GROSS!!!* But also *super RAD!*
 
-Using these genetic samples, the researchers determined the relatedness of each pair of individuals they sampled. Those results are provided in the dataset `humpback-kinship.rds`.  
+Using these genetic samples, the researchers determined the relatedness of each pair of individuals they sampled. Those results are provided in the dataset [`humpback-kinship.rds`](https://github.com/databrew/intro-to-data-science/blob/main/data/humpback-kinship.rds?raw=true).  
 
 ```{r,echo=TRUE}
 kinship <- readRDS("./data/humpback-kinship.rds")
 ```
 
-And here is a key providing the IDs of these 36 whales and their status as a known bubble net feeder.
+And [here is a key](https://github.com/databrew/intro-to-data-science/blob/main/data/bnf-status.rds?raw=true) providing the IDs of these 36 whales and their status as a known bubble net feeder.
 
 ```{r,echo=TRUE}
 bnf_status <- readRDS("./data/bnf-status.rds")
@@ -545,7 +544,7 @@ Use these datasets within a randomization routine to determine whether known bub
 
 **Answer key:** 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,eval=FALSE}
 # How many BNFers are in this dataset?
 n_bnf <- nrow(bnf_status[bnf_status$bnf,])
 n_bnf
@@ -597,7 +596,7 @@ p_value
 
 Finally, let's ask whether the strength of social bonds is generally correlated to kinship. In other words, is this population assorting according to relatedness?  
 
-For your convenience, the social association rate for these 36 individuals has also been summarized in the dataset `humpback-sociality.rds`.  
+For your convenience, the social association rate for these 36 individuals has also been summarized in the dataset [`humpback-sociality.rds`](https://github.com/databrew/intro-to-data-science/blob/main/data/humpback-sociality.rds?raw=true).  
 
 ```{r,echo=TRUE}
 sociality <- readRDS("./data/humpback-sociality.rds")
@@ -605,7 +604,7 @@ sociality <- readRDS("./data/humpback-sociality.rds")
 
 **Answer key:** 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,eval=FALSE}
 # Core function
 kin_soc <- function(kinship,sociality){
   ids <- row.names(kinship) ; ids

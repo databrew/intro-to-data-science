@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 46 Git | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 46 Git | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="there-is-a-better-way.html"/>
 <link rel="next" href="standard-git-operations.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,23 +50,22 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -118,29 +116,6 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -253,11 +228,11 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="git" class="section level1" number="46">
+<div id="git" class="section level1">
 <h1><span class="header-section-number">Module 46</span> Git</h1>
 <p>Git is a software for “version control”: ie, tracking changes to sets of files. It is a very commonly used tool in programming, computer science, data science, and software development in general. For anyone working in data science, knowing git is a must.</p>
 <p>But <em>what is it</em>, exactly? Git is a system for tracking, organizing, sharing, and reviewing changes to software. It’s very flexible, and very powerful. And learning it can sometimes feel a bit overwhelming, because it has so many features and capabilities. But the <a href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto principle</a> (ie, the 80/20 rule) applies here: most of what you need to know to competently handle git, you can do in very little time.</p>
-<div id="why-1" class="section level2" number="46.1">
+<div id="why-1" class="section level2">
 <h2><span class="header-section-number">46.1</span> Why?</h2>
 <p>Why use git? Why not just save files with meaningful names, make changes to them, overwrite the old changes, etc.? Why not just treat code the same way we treat a MS Word document, or write code collaboratively using interactive, auto-saving tools like Google Docs?</p>
 <p>There are a number reasons:</p>
@@ -266,36 +241,36 @@ div.csl-indent {
 </li>
 <li>Second, collaborating on code is more complex than collaborating on a term paper. To combine (merge) one person’s work with another often requires very careful review. Git optimizes for this.<br />
 </li>
-<li>Third, code is rarely “done.” It’s usually a work in progress. Git takes this into account, and is set up for very structured checkpoints (commits), change suggestions (pull requests), etc.</li>
+<li>Third, code is rarely “done”. It’s usually a work in progress. Git takes this into account, and is set up for very structured checkpoints (commits), change suggestions (pull requests), etc.</li>
 <li>Finally, git is the “lingua franca” of version control. Employers often request to see a prospective employee’s github profile, and expect that programmers and developers of all types (including data scientists) be proficient in git.</li>
 </ul>
 </div>
-<div id="get-ready-for-git" class="section level2" number="46.2">
+<div id="get-ready-for-git" class="section level2">
 <h2><span class="header-section-number">46.2</span> Get ready for git</h2>
 <p>It’s time to “git” started. Rather than diving into too much theory, let’s skip right to the practice. Like this:</p>
 <p><img src="img/git.png" /></p>
 </div>
-<div id="installation" class="section level2" number="46.3">
+<div id="installation" class="section level2">
 <h2><span class="header-section-number">46.3</span> Installation</h2>
 <p>We’ll start by installing git. Go <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">here</a> and follow the instructions for your operating system.</p>
 <p>Note that we’ll be using the command line interface (CLI) and not a graphical user interface (GUI). Though a GUI is sometimes a bit easier, a CLI offers more flexibility and power.</p>
 </div>
-<div id="configuration" class="section level2" number="46.4">
+<div id="configuration" class="section level2">
 <h2><span class="header-section-number">46.4</span> Configuration</h2>
 <p>Once you’ve installed git, you’ll likely want to configure some options and preferences. Go <a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">here</a> and walk through the steps.</p>
 </div>
-<div id="github" class="section level2" number="46.5">
+<div id="github" class="section level2">
 <h2><span class="header-section-number">46.5</span> Github</h2>
 <p>Now you’ve got git. Great! Git is often used in conjunction with a third party, web-based platform. The most popular is github. Go to www.github.com and create a user account.</p>
-<div id="creating-a-repository" class="section level3" number="46.5.1">
+<div id="creating-a-repository" class="section level3">
 <h3><span class="header-section-number">46.5.1</span> Creating a repository</h3>
 <p>Once you’ve created an account and logged in, let’s create a repository. What is a repository? Basically, it’s a project in the form of a folder. Having logged into git, click the “plus” icon in the upper right and then click “New repository” (or go directly <a href="https://github.com/new">here</a>).</p>
-<p>You can fill in the “Repository name” field with whatever you’d like. For the following examples, we’ll use the word “testrepo.”</p>
-<p>Fill in the “Description” field with the word “My first git repository.”</p>
-<p>Set the repo as “Public” (unless you plan on putting any secrets here!), and then click the “Add a README file” checkbox. Finally, click “Create repository.”</p>
+<p>You can fill in the “Repository name” field with whatever you’d like. For the following examples, we’ll use the word “testrepo”.</p>
+<p>Fill in the “Description” field with the word “My first git repository”.</p>
+<p>Set the repo as “Public” (unless you plan on putting any secrets here!), and then click the “Add a README file” checkbox. Finally, click “Create repository”.</p>
 <p>Cool! You’ve now created your first git repository. It’s public url is <a href="https://github.com/" class="uri">https://github.com/</a><YOUR USERNAME>/testrepo. Others can see your code there, and you can too.</p>
 </div>
-<div id="cloning-a-repository" class="section level3" number="46.5.2">
+<div id="cloning-a-repository" class="section level3">
 <h3><span class="header-section-number">46.5.2</span> Cloning a repository</h3>
 <p>“testrepo” exists on the internet, but does not yet exist on your local machine. In order to get “testrepo” on your computer, you’ll need to do something that you’ll only do once: “clone” the repo. “Cloning” in git-speak means creating a copy of the repository locally.</p>
 <p>To clone, you’ll first open your terminal window and <code>cd</code> into a directory where you’d like to clone your repo. For example, if you want to put your <code>testrepo</code> directory into <code>~/Documents</code>, you’ll type the below into terminal:</p>
@@ -306,7 +281,7 @@ div.csl-indent {
 <p>Now, you’ve got a folder on your machine named <code>testrepo</code>. You can confirm this by writing <code>ls</code> in the terminal.
 See <code>testrepo</code> there? Great!</p>
 </div>
-<div id="writing-some-code" class="section level3" number="46.5.3">
+<div id="writing-some-code" class="section level3">
 <h3><span class="header-section-number">46.5.3</span> Writing some code</h3>
 <p>In your local <code>testrepo</code> folder, you have a “cloned” copy of the repository at <a href="https://github.com/" class="uri">https://github.com/</a><YOUR USERNAME>/testrepo. As of now, it’s a pretty uninteresting folder. The only thing in it is a file named <code>README.md</code>. A “README” file is generally an explanation of a repository’s content, purpose, etc. Like all files, a README can be tracked in git.</p>
 <p>Let’s open the README file and make a change to it. We’ll add the below line of “code”:</p>
@@ -316,7 +291,7 @@ See <code>testrepo</code> there? Great!</p>
 <pre><code>git status</code></pre>
 <p>If everything has gone well until now, git will reply by telling us that we’ve made a change to the file. We can ask git <em>what</em> change we made by typing:</p>
 <pre><code>git diff README.md</code></pre>
-<p><code>diff</code> stands for “difference,” as in "what is the difference between the code I had and the code I have. Git will spit back some color-coded lines showing the change you’ve made.</p>
+<p><code>diff</code> stands for “difference”, as in "what is the difference between the code I had and the code I have. Git will spit back some color-coded lines showing the change you’ve made.</p>
 <p>Satisfied with your change? Great, now it’s time to confirm it by doing the following:</p>
 <pre><code>git add README.md</code></pre>
 <p>This tells git that we want it to notice and track the change we made to <code>README.md</code>. Then:</p>
@@ -327,19 +302,19 @@ See <code>testrepo</code> there? Great!</p>
 <p>You did it! Now, if someone else wants to get your code, they can “clone” your repository, and they’ll have the code you’ve “pushed” there.</p>
 </div>
 </div>
-<div id="a-bit-more-practice" class="section level2" number="46.6">
+<div id="a-bit-more-practice" class="section level2">
 <h2><span class="header-section-number">46.6</span> A bit more practice</h2>
 <p>(Under construction)</p>
 </div>
-<div id="branching" class="section level2" number="46.7">
+<div id="branching" class="section level2">
 <h2><span class="header-section-number">46.7</span> Branching</h2>
 <p>(Under construction)</p>
 </div>
-<div id="pull-requests" class="section level2" number="46.8">
+<div id="pull-requests" class="section level2">
 <h2><span class="header-section-number">46.8</span> Pull requests</h2>
 <p>(Under construction)</p>
 </div>
-<div id="advanced-git" class="section level2" number="46.9">
+<div id="advanced-git" class="section level2">
 <h2><span class="header-section-number">46.9</span> Advanced git</h2>
 <p>(Under construction)</p>
 
@@ -374,7 +349,6 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
