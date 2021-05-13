@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 15 Importing data | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 15 Importing data | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="basics-of-ggplot.html"/>
 <link rel="next" href="dataframes.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,22 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -116,6 +118,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -185,28 +210,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="41" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>41</b> Reproducible research</a></li>
 <li class="chapter" data-level="42" data-path="automated-reporting.html"><a href="automated-reporting.html"><i class="fa fa-check"></i><b>42</b> Automated reporting</a></li>
 <li class="chapter" data-level="43" data-path="formatting-standards.html"><a href="formatting-standards.html"><i class="fa fa-check"></i><b>43</b> Formatting standards</a></li>
+<li class="chapter" data-level="44" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>44</b> Git</a></li>
 <li class="part"><span><b>IX Version control and teamwork</b></span></li>
-<li class="chapter" data-level="44" data-path="how-most-people-do-version-control.html"><a href="how-most-people-do-version-control.html"><i class="fa fa-check"></i><b>44</b> How most people do version control</a></li>
-<li class="chapter" data-level="45" data-path="there-is-a-better-way.html"><a href="there-is-a-better-way.html"><i class="fa fa-check"></i><b>45</b> There is a better way</a></li>
-<li class="chapter" data-level="46" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>46</b> Git</a></li>
-<li class="chapter" data-level="47" data-path="standard-git-operations.html"><a href="standard-git-operations.html"><i class="fa fa-check"></i><b>47</b> Standard git operations</a></li>
-<li class="chapter" data-level="48" data-path="a-git-workflow.html"><a href="a-git-workflow.html"><i class="fa fa-check"></i><b>48</b> A git workflow</a></li>
-<li class="chapter" data-level="49" data-path="other-git-platforms.html"><a href="other-git-platforms.html"><i class="fa fa-check"></i><b>49</b> Other git platforms</a></li>
+<li class="chapter" data-level="" data-path="how-most-people-do-version-control.html"><a href="how-most-people-do-version-control.html"><i class="fa fa-check"></i>How most people do version control</a></li>
+<li class="chapter" data-level="" data-path="there-is-a-better-way.html"><a href="there-is-a-better-way.html"><i class="fa fa-check"></i>There is a better way</a></li>
 <li class="part"><span><b>X Writing about data</b></span></li>
-<li class="chapter" data-level="50" data-path="types-of-writing.html"><a href="types-of-writing.html"><i class="fa fa-check"></i><b>50</b> Types of writing</a></li>
-<li class="chapter" data-level="51" data-path="elements-of-style.html"><a href="elements-of-style.html"><i class="fa fa-check"></i><b>51</b> Elements of style</a></li>
-<li class="chapter" data-level="52" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html"><i class="fa fa-check"></i><b>52</b> Sections of a report</a></li>
+<li class="chapter" data-level="45" data-path="types-of-writing.html"><a href="types-of-writing.html"><i class="fa fa-check"></i><b>45</b> Types of writing</a></li>
+<li class="chapter" data-level="46" data-path="elements-of-style.html"><a href="elements-of-style.html"><i class="fa fa-check"></i><b>46</b> Elements of style</a></li>
+<li class="chapter" data-level="47" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html"><i class="fa fa-check"></i><b>47</b> Sections of a report</a></li>
 <li class="part"><span><b>XI Creating websites</b></span></li>
 <li class="part"><span><b>XII Advanced skills</b></span></li>
-<li class="chapter" data-level="53" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>53</b> Mapping</a></li>
-<li class="chapter" data-level="54" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>54</b> Geographic computing &amp; GIS</a></li>
-<li class="chapter" data-level="55" data-path="statistical-modeling.html"><a href="statistical-modeling.html"><i class="fa fa-check"></i><b>55</b> Statistical modeling</a></li>
-<li class="chapter" data-level="56" data-path="apply-family.html"><a href="apply-family.html"><i class="fa fa-check"></i><b>56</b> Apply family</a></li>
-<li class="chapter" data-level="57" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>57</b> Randomization statistics</a></li>
-<li class="chapter" data-level="58" data-path="iterative-simulations.html"><a href="iterative-simulations.html"><i class="fa fa-check"></i><b>58</b> Iterative simulations</a></li>
-<li class="chapter" data-level="59" data-path="image-analysis.html"><a href="image-analysis.html"><i class="fa fa-check"></i><b>59</b> Image analysis</a></li>
-<li class="chapter" data-level="60" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>60</b> Machine learning</a></li>
-<li class="chapter" data-level="61" data-path="template.html"><a href="template.html"><i class="fa fa-check"></i><b>61</b> Template</a></li>
+<li class="chapter" data-level="48" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>48</b> Mapping</a></li>
+<li class="chapter" data-level="49" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>49</b> Geographic computing &amp; GIS</a></li>
+<li class="chapter" data-level="50" data-path="statistical-modeling.html"><a href="statistical-modeling.html"><i class="fa fa-check"></i><b>50</b> Statistical modeling</a></li>
+<li class="chapter" data-level="51" data-path="apply-family.html"><a href="apply-family.html"><i class="fa fa-check"></i><b>51</b> Apply family</a></li>
+<li class="chapter" data-level="52" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>52</b> Randomization statistics</a></li>
+<li class="chapter" data-level="53" data-path="iterative-simulations.html"><a href="iterative-simulations.html"><i class="fa fa-check"></i><b>53</b> Iterative simulations</a></li>
+<li class="chapter" data-level="54" data-path="image-analysis.html"><a href="image-analysis.html"><i class="fa fa-check"></i><b>54</b> Image analysis</a></li>
+<li class="chapter" data-level="55" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>55</b> Machine learning</a></li>
+<li class="chapter" data-level="56" data-path="template.html"><a href="template.html"><i class="fa fa-check"></i><b>56</b> Template</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/databrew/intro-to-data-science" target="blank">Databrew LLC</a></li>
@@ -228,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="importing-data" class="section level1">
+<div id="importing-data" class="section level1" number="15">
 <h1><span class="header-section-number">Module 15</span> Importing data</h1>
 <div id="learning-goals-8" class="section level2 unnumbered">
 <h2>Learning goals</h2>
@@ -236,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Understand what a <code>.csv</code> file is, and why they are important in data science.</li>
 <li>How to format your data for easily importing data in <code>R</code>.<br />
 </li>
-<li>How to load, or “read”, your data into <code>R</code>.<br />
+<li>How to load, or “read,” your data into <code>R</code>.<br />
 </li>
 <li>How to set up your project directory and read data from other folders.</li>
 </ul>
@@ -251,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 A neat spreadsheet of rows and columns.</p>
 <p>When you open up this same dataset in a simple text editor, it looks like this:</p>
 <p><img src="img/csv_text_editor.png" />
-This looks scary, but it is actually really simple. A <code>.csv</code> is a simple text file in which each row is on a new line and columns of data are separated by commas. As a simple text file, there is no fancy formatting. There are no “Sheets” or “Tabs”, as you would find in GoogleSheets or Excel; it is a simple ‘flat’ file.</p>
+This looks scary, but it is actually really simple. A <code>.csv</code> is a simple text file in which each row is on a new line and columns of data are separated by commas. As a simple text file, there is no fancy formatting. There are no “Sheets” or “Tabs,” as you would find in GoogleSheets or Excel; it is a simple ‘flat’ file.</p>
 <p>One of the major advantages of working with <code>.csv</code>’s is that the format is cross-platform and non-proprietary. That is, they work on Windows, Mac, Linux, and any other common type of computer, and they do not require special software to open.</p>
 </div>
 <div id="data-format-requirements" class="section level2 unnumbered">
@@ -266,7 +288,7 @@ This looks scary, but it is actually really simple. A <code>.csv</code> is a sim
 <p><strong>1. Get your data into <code>.csv</code> format.</strong> In <em>Excel</em> and <em>Numbers</em>, you can use ‘Save As’ to change the file format. In <em>GoogleSheets</em>, you can ‘Download As’ a <code>.csv</code>. This will remove any colors, thick lines, special fonts, bold or italicized font styles, and any other special formatting. All that will be left is your data, and that’s the way <code>R</code> likes it.</p>
 <p><strong>2. Remove blank columns</strong> before and in the middle of your data.</p>
 <p><strong>3. Remove elements such as graphs.</strong></p>
-<p><strong>4. Simplify your ‘header’.</strong> The space above your data is your spreadsheet’s header. It includes column names and metadata like title, author, measurement units, etc. It is possible to read data with complex headers into <code>R</code>, but again we are going for simplicity here, so we suggest (1) simplifying your header to contain column names only, and (2) moving metadata to a <code>README.txt</code> file that lives in the same folder as your data.</p>
+<p><strong>4. Simplify your ‘header.’</strong> The space above your data is your spreadsheet’s header. It includes column names and metadata like title, author, measurement units, etc. It is possible to read data with complex headers into <code>R</code>, but again we are going for simplicity here, so we suggest (1) simplifying your header to contain column names only, and (2) moving metadata to a <code>README.txt</code> file that lives in the same folder as your data.</p>
 <p><strong>5. Simplify column names.</strong> Remove spaces, or replace them with <code>.</code>, <code>-</code> or <code>_</code>. Make your column names as simple and brief as possible while still being informative. Include units in the column names, as in the screenshot above. Be sure that each column has a name.</p>
 <p><strong>6. Remove all commas and hashtags from your dataset.</strong> You can do this with the ‘Find &amp; Replace’ feature built-into in most spreadsheet editors.</p>
 </div>
@@ -286,9 +308,9 @@ This looks scary, but it is actually really simple. A <code>.csv</code> is a sim
 <div id="read.csv" class="section level4 unnumbered">
 <h4><code>read.csv()</code></h4>
 <p>This is the base function for reading in a <code>.csv</code>.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="importing-data.html#cb231-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="importing-data.html#cb231-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</span></code></pre></div>
 <p>This function reads in your data file as a dataframe. Save your dataset into <code>R</code>’s memory using a variable (in this case, <code>df</code>).</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="importing-data.html#cb232-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="importing-data.html#cb232-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>  patient_id height_in weight_lb                   comment
 1          1        74       135             not very nice
 2          2        56       112                kinda cute
@@ -301,16 +323,16 @@ This looks scary, but it is actually really simple. A <code>.csv</code> is a sim
 <li><p>Use the <strong><code>stringsAsFactors</code></strong> input when you want to make absolutely sure that <code>R</code> interprets any non-numeric fields as characters rather than factors. We have not focused on factors yet, but it can be frustrating when <code>R</code> mistakes a column of character strings as a column factors. To avoid any possible confusion, use <code>stringsAsFactors=TRUE</code> as an input.</p></li>
 </ul>
 <p>For example, here is how to read in this data without column names:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="importing-data.html#cb234-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>,<span class="dt">skip=</span><span class="dv">1</span>,<span class="dt">header=</span><span class="ot">FALSE</span>)</span>
-<span id="cb234-2"><a href="importing-data.html#cb234-2"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="importing-data.html#cb234-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>,<span class="at">skip=</span><span class="dv">1</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
+<span id="cb234-2"><a href="importing-data.html#cb234-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>  V1 V2  V3                        V4
 1  1 74 135             not very nice
 2  2 56 112                kinda cute
 3  3 59 156 kinda cute but had a ring
 4  4 43 102                 so small!</code></pre>
 <p>If you do this without setting header to FALSE, your first row of data gets used as column names and it becomes a big ole mess:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="importing-data.html#cb236-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>,<span class="dt">skip=</span><span class="dv">1</span>)</span>
-<span id="cb236-2"><a href="importing-data.html#cb236-2"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="importing-data.html#cb236-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>,<span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb236-2"><a href="importing-data.html#cb236-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>  X1 X74 X135             not.very.nice
 1  2  56  112                kinda cute
 2  3  59  156 kinda cute but had a ring
@@ -320,8 +342,8 @@ This looks scary, but it is actually really simple. A <code>.csv</code> is a sim
 <h4><code>readr::read_csv()</code></h4>
 <p>This function, from a package named <code>readr</code>, becomes useful when you begin working with (1) data within the <code>tidyverse</code>, which you will be introduced to in the next module, and/or (2) very large datasete, since it reads data much more quickly and provides progress updates along the way.</p>
 <p>When you use <code>read_csv()</code> instead of <code>read.csv()</code>, your data are read in as a <code>tibble</code> instead of a dataframe. You will be introduced to <code>tibbles</code> in the next module on dataframes; for the time being, think of a <code>tibble</code> as a fancy version of a dataframe that can be treated exactly as a regular dataframe.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="importing-data.html#cb238-1"></a>df &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</span>
-<span id="cb238-2"><a href="importing-data.html#cb238-2"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="importing-data.html#cb238-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</span>
+<span id="cb238-2"><a href="importing-data.html#cb238-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code># A tibble: 4 x 4
   patient_id height_in weight_lb comment                  
        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                    
@@ -334,8 +356,8 @@ This looks scary, but it is actually really simple. A <code>.csv</code> is a sim
 <h4><code>readRDS()</code></h4>
 <p>Another niche function for reading data is <code>readRDS()</code>. This function allows you to read in <em>R data objects</em>, which have the file extension <em>.rds</em>. These data objects need not be in the same format as a <code>.csv</code> or even a dataframe, and that is what makes them so handy. A colleague could send you an <code>.rds</code> object of a vector, a list, a plotting function, or any other kind of <code>R</code> object, and you can read it in with <code>readRDS()</code>.</p>
 <p>For example, <a href="https://github.com/databrew/intro-to-data-science/blob/main/super_data.rds?raw=true"><code>super_data.rds</code></a> contains a <code>tibble</code> version of the dataframe above. When you read in that <code>.rds</code> file, it is already formatted as a <code>tibble</code>:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="importing-data.html#cb240-1"></a>df &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;super_data.rds&quot;</span>)</span>
-<span id="cb240-2"><a href="importing-data.html#cb240-2"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="importing-data.html#cb240-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;super_data.rds&quot;</span>)</span>
+<span id="cb240-2"><a href="importing-data.html#cb240-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code># A tibble: 4 x 4
   patient_id height_in weight_lb comment                  
        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                    
@@ -348,14 +370,14 @@ This looks scary, but it is actually really simple. A <code>.csv</code> is a sim
 <div id="reading-data-from-other-folders" class="section level3 unnumbered">
 <h3>Reading data from other folders</h3>
 <p>The data-reading functions above require only a single input: the <em>path</em> to your data file. This <em>path</em> is relative to the location of your working directory. When your data file is <em>inside</em> your working directory, the path simplifies to be the same as the filename of your data:</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="importing-data.html#cb242-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="importing-data.html#cb242-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</span></code></pre></div>
 <p>Sometimes, though, you will want to keep your data somewhere nearby but not necessarily <em>within</em> your working directory. Consider the following scenario, in which three versions of the “super_data.csv” dataset occur near a working directory being used for this module:</p>
 <p><img src="img/csv_wd.png" /></p>
 <p>We have a version within the same directory as our <code>R</code> file (i.e., our working directory), another version within a <em>child</em> folder within the directory (i.e., a subfolder), and another version in the <em>parent</em> folder of the working directory.</p>
 <p><strong>To read a file from a <em>child</em> folder,</strong> add the prefix, <code>./&lt;child name&gt;/</code>, to your command:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="importing-data.html#cb243-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/super_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="importing-data.html#cb243-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/super_data.csv&quot;</span>)</span></code></pre></div>
 <p><strong>To read a file from a <em>parent</em> folder,</strong> add the prefix, <code>../</code>, to your command:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="importing-data.html#cb244-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/super_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="importing-data.html#cb244-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/super_data.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="managing-files" class="section level3 unnumbered">
 <h3>Managing files</h3>
@@ -372,7 +394,7 @@ This looks scary, but it is actually really simple. A <code>.csv</code> is a sim
 </ul>
 <p>Since your <code>R</code> code is going into the <code>R</code> child folder, that is what you should set your working directory for those <code>R</code> scripts to. In that case, <em>how to read data from the <code>data</code> folder</em>, which is a separate child folder of your parent folder?</p>
 <p>Here’s how:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="importing-data.html#cb245-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../data/super_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="importing-data.html#cb245-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../data/super_data.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="review-exercise" class="section level2 unnumbered">
@@ -410,6 +432,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
