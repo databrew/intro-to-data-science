@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 18 Exporting data &amp; plots | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 18 Exporting data &amp; plots | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-05-06" />
+<meta name="date" content="2021-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="data-wrangling.html"/>
 <link rel="next" href="exploratory-data-analysis.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,22 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -116,6 +118,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -186,26 +211,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="42" data-path="automated-reporting.html"><a href="automated-reporting.html"><i class="fa fa-check"></i><b>42</b> Automated reporting</a></li>
 <li class="chapter" data-level="43" data-path="formatting-standards.html"><a href="formatting-standards.html"><i class="fa fa-check"></i><b>43</b> Formatting standards</a></li>
 <li class="part"><span><b>IX Version control and teamwork</b></span></li>
-<li class="chapter" data-level="44" data-path="what-is-version-control.html"><a href="what-is-version-control.html"><i class="fa fa-check"></i><b>44</b> What is version control?</a></li>
-<li class="chapter" data-level="45" data-path="what-is-git.html"><a href="what-is-git.html"><i class="fa fa-check"></i><b>45</b> What is Git?</a></li>
-<li class="chapter" data-level="46" data-path="standard-git-operations.html"><a href="standard-git-operations.html"><i class="fa fa-check"></i><b>46</b> Standard git operations</a></li>
-<li class="chapter" data-level="47" data-path="a-git-workflow.html"><a href="a-git-workflow.html"><i class="fa fa-check"></i><b>47</b> A git workflow</a></li>
-<li class="chapter" data-level="48" data-path="other-git-platforms.html"><a href="other-git-platforms.html"><i class="fa fa-check"></i><b>48</b> Other git platforms</a></li>
+<li class="chapter" data-level="44" data-path="how-most-people-do-version-control.html"><a href="how-most-people-do-version-control.html"><i class="fa fa-check"></i><b>44</b> How most people do version control</a></li>
+<li class="chapter" data-level="45" data-path="there-is-a-better-way.html"><a href="there-is-a-better-way.html"><i class="fa fa-check"></i><b>45</b> There is a better way</a></li>
+<li class="chapter" data-level="46" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>46</b> Git</a></li>
+<li class="chapter" data-level="47" data-path="standard-git-operations.html"><a href="standard-git-operations.html"><i class="fa fa-check"></i><b>47</b> Standard git operations</a></li>
+<li class="chapter" data-level="48" data-path="a-git-workflow.html"><a href="a-git-workflow.html"><i class="fa fa-check"></i><b>48</b> A git workflow</a></li>
+<li class="chapter" data-level="49" data-path="other-git-platforms.html"><a href="other-git-platforms.html"><i class="fa fa-check"></i><b>49</b> Other git platforms</a></li>
 <li class="part"><span><b>X Writing about data</b></span></li>
-<li class="chapter" data-level="49" data-path="types-of-writing.html"><a href="types-of-writing.html"><i class="fa fa-check"></i><b>49</b> Types of writing</a></li>
-<li class="chapter" data-level="50" data-path="elements-of-style.html"><a href="elements-of-style.html"><i class="fa fa-check"></i><b>50</b> Elements of style</a></li>
-<li class="chapter" data-level="51" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html"><i class="fa fa-check"></i><b>51</b> Sections of a report</a></li>
+<li class="chapter" data-level="50" data-path="types-of-writing.html"><a href="types-of-writing.html"><i class="fa fa-check"></i><b>50</b> Types of writing</a></li>
+<li class="chapter" data-level="51" data-path="elements-of-style.html"><a href="elements-of-style.html"><i class="fa fa-check"></i><b>51</b> Elements of style</a></li>
+<li class="chapter" data-level="52" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html"><i class="fa fa-check"></i><b>52</b> Sections of a report</a></li>
 <li class="part"><span><b>XI Creating websites</b></span></li>
 <li class="part"><span><b>XII Advanced skills</b></span></li>
-<li class="chapter" data-level="52" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>52</b> Mapping</a></li>
-<li class="chapter" data-level="53" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>53</b> Geographic computing &amp; GIS</a></li>
-<li class="chapter" data-level="54" data-path="statistical-modeling.html"><a href="statistical-modeling.html"><i class="fa fa-check"></i><b>54</b> Statistical modeling</a></li>
-<li class="chapter" data-level="55" data-path="apply-family.html"><a href="apply-family.html"><i class="fa fa-check"></i><b>55</b> Apply family</a></li>
-<li class="chapter" data-level="56" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>56</b> Randomization statistics</a></li>
-<li class="chapter" data-level="57" data-path="iterative-simulations.html"><a href="iterative-simulations.html"><i class="fa fa-check"></i><b>57</b> Iterative simulations</a></li>
-<li class="chapter" data-level="58" data-path="image-analysis.html"><a href="image-analysis.html"><i class="fa fa-check"></i><b>58</b> Image analysis</a></li>
-<li class="chapter" data-level="59" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>59</b> Machine learning</a></li>
-<li class="chapter" data-level="60" data-path="template.html"><a href="template.html"><i class="fa fa-check"></i><b>60</b> Template</a></li>
+<li class="chapter" data-level="53" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>53</b> Mapping</a></li>
+<li class="chapter" data-level="54" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>54</b> Geographic computing &amp; GIS</a></li>
+<li class="chapter" data-level="55" data-path="statistical-modeling.html"><a href="statistical-modeling.html"><i class="fa fa-check"></i><b>55</b> Statistical modeling</a></li>
+<li class="chapter" data-level="56" data-path="apply-family.html"><a href="apply-family.html"><i class="fa fa-check"></i><b>56</b> Apply family</a></li>
+<li class="chapter" data-level="57" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>57</b> Randomization statistics</a></li>
+<li class="chapter" data-level="58" data-path="iterative-simulations.html"><a href="iterative-simulations.html"><i class="fa fa-check"></i><b>58</b> Iterative simulations</a></li>
+<li class="chapter" data-level="59" data-path="image-analysis.html"><a href="image-analysis.html"><i class="fa fa-check"></i><b>59</b> Image analysis</a></li>
+<li class="chapter" data-level="60" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>60</b> Machine learning</a></li>
+<li class="chapter" data-level="61" data-path="template.html"><a href="template.html"><i class="fa fa-check"></i><b>61</b> Template</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/databrew/intro-to-data-science" target="blank">Databrew LLC</a></li>
@@ -227,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exporting-data-plots" class="section level1">
+<div id="exporting-data-plots" class="section level1" number="18">
 <h1><span class="header-section-number">Module 18</span> Exporting data &amp; plots</h1>
 <div id="learning-goals-10" class="section level2 unnumbered">
 <h2>Learning goals</h2>
@@ -238,26 +264,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p> </p>
 <p>To practice exporting data, let’s use the built-in dataset from package <code>babynames</code>.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="exporting-data-plots.html#cb298-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;babynames&quot;</span>)</span>
-<span id="cb298-2"><a href="exporting-data-plots.html#cb298-2"></a><span class="kw">library</span>(babynames)</span>
-<span id="cb298-3"><a href="exporting-data-plots.html#cb298-3"></a><span class="kw">data</span>(babynames)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="exporting-data-plots.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;babynames&quot;</span>)</span>
+<span id="cb298-2"><a href="exporting-data-plots.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
+<span id="cb298-3"><a href="exporting-data-plots.html#cb298-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(babynames)</span></code></pre></div>
 </div>
 <div id="write.csv" class="section level2 unnumbered">
 <h2><code>write.csv()</code></h2>
 <p>To write a dataframe to a <code>.csv</code>, use the function <code>write.csv()</code>.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="exporting-data-plots.html#cb299-1"></a><span class="kw">write.csv</span>(babynames,<span class="dt">file=</span><span class="st">&quot;my_babynames.csv&quot;</span>,<span class="dt">quote=</span><span class="ot">FALSE</span>,<span class="dt">row.names=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="exporting-data-plots.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(babynames,<span class="at">file=</span><span class="st">&quot;my_babynames.csv&quot;</span>,<span class="at">quote=</span><span class="cn">FALSE</span>,<span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p>This dataset will be saved as the file, <code>my_babynames.csv</code> within your parent directory. You can set other destinations using the same rules for child paths, parent paths, and absolute paths from the module on <strong>Importing Data</strong>.</p>
 <p>The code above sets a couple parameters that preserves the neat formatting of your dataframe. We recommend using these inputs each time you use <code>write.csv()</code> to save a dataframe.</p>
 </div>
 <div id="saverds" class="section level2 unnumbered">
 <h2><code>saveRDS()</code></h2>
 <p>The <code>saveRDS()</code> function saves <code>R</code> objects in the <code>.rds</code> format, which makes them easier and faster to read into <code>R</code> later on.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="exporting-data-plots.html#cb300-1"></a><span class="kw">saveRDS</span>(babynames,<span class="dt">file=</span><span class="st">&quot;my_babynames.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="exporting-data-plots.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(babynames,<span class="at">file=</span><span class="st">&quot;my_babynames.rds&quot;</span>)</span></code></pre></div>
 </div>
 <div id="pdf-and-png" class="section level2 unnumbered">
 <h2><code>pdf()</code> and <code>png()</code></h2>
 <p>Let’s say you want to plot the prevalence of the name “Barack” in recent U.S history:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="exporting-data-plots.html#cb301-1"></a><span class="kw">head</span>(babynames)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="exporting-data-plots.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(babynames)</span></code></pre></div>
 <pre><code># A tibble: 6 x 5
    year sex   name          n   prop
   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
@@ -267,20 +293,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4  1880 F     Elizabeth  1939 0.0199
 5  1880 F     Minnie     1746 0.0179
 6  1880 F     Margaret   1578 0.0162</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="exporting-data-plots.html#cb303-1"></a>baracks &lt;-<span class="st"> </span>babynames[babynames<span class="op">$</span>name<span class="op">==</span><span class="st">&quot;Barack&quot;</span>,]</span>
-<span id="cb303-2"><a href="exporting-data-plots.html#cb303-2"></a><span class="kw">plot</span>(prop<span class="op">~</span>year,<span class="dt">data=</span>baracks,</span>
-<span id="cb303-3"><a href="exporting-data-plots.html#cb303-3"></a>     <span class="dt">type=</span><span class="st">&quot;b&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,</span>
-<span id="cb303-4"><a href="exporting-data-plots.html#cb303-4"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">2000</span>,<span class="dv">2018</span>),</span>
-<span id="cb303-5"><a href="exporting-data-plots.html#cb303-5"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Proportion of names&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Barack&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="exporting-data-plots.html#cb303-1" aria-hidden="true" tabindex="-1"></a>baracks <span class="ot">&lt;-</span> babynames[babynames<span class="sc">$</span>name<span class="sc">==</span><span class="st">&quot;Barack&quot;</span>,]</span>
+<span id="cb303-2"><a href="exporting-data-plots.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prop<span class="sc">~</span>year,<span class="at">data=</span>baracks,</span>
+<span id="cb303-3"><a href="exporting-data-plots.html#cb303-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">&quot;b&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb303-4"><a href="exporting-data-plots.html#cb303-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">2018</span>),</span>
+<span id="cb303-5"><a href="exporting-data-plots.html#cb303-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Proportion of names&quot;</span>,<span class="at">main=</span><span class="st">&quot;Barack&quot;</span>)</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-173-1.png" width="925.44" /></p>
 <p>To save this as a figure as a <code>pdf</code>, preface these lines of code with a <code>pdf()</code> command and add <code>dev.off()</code> below those lines. This opens up a <code>pdf</code> ‘device’ (i.e., an engine for creating a PDF file), prints the plot to that new file, then closes the device and saves the file.</p>
 <p>Saving a pdf:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="exporting-data-plots.html#cb304-1"></a><span class="kw">pdf</span>(<span class="st">&quot;barack-years.pdf&quot;</span>,width<span class="dv">-6</span>,<span class="dt">height=</span><span class="dv">4</span>)</span>
-<span id="cb304-2"><a href="exporting-data-plots.html#cb304-2"></a><span class="kw">plot</span>(prop<span class="op">~</span>year,<span class="dt">data=</span>baracks,</span>
-<span id="cb304-3"><a href="exporting-data-plots.html#cb304-3"></a>     <span class="dt">type=</span><span class="st">&quot;b&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,</span>
-<span id="cb304-4"><a href="exporting-data-plots.html#cb304-4"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">2000</span>,<span class="dv">2018</span>),</span>
-<span id="cb304-5"><a href="exporting-data-plots.html#cb304-5"></a>     <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Proportion of names&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Barack&quot;</span>)</span>
-<span id="cb304-6"><a href="exporting-data-plots.html#cb304-6"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="exporting-data-plots.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;barack-years.pdf&quot;</span>,width<span class="dv">-6</span>,<span class="at">height=</span><span class="dv">4</span>)</span>
+<span id="cb304-2"><a href="exporting-data-plots.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prop<span class="sc">~</span>year,<span class="at">data=</span>baracks,</span>
+<span id="cb304-3"><a href="exporting-data-plots.html#cb304-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">&quot;b&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb304-4"><a href="exporting-data-plots.html#cb304-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">2018</span>),</span>
+<span id="cb304-5"><a href="exporting-data-plots.html#cb304-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Proportion of names&quot;</span>,<span class="at">main=</span><span class="st">&quot;Barack&quot;</span>)</span>
+<span id="cb304-6"><a href="exporting-data-plots.html#cb304-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p>Make sure you add ‘.pdf’ to the end of your filename, and try not to run the <code>dev.off()</code> command when you have not first run the <code>pdf</code> command. If you do, <code>R</code> will think you are turning off the plotting feature in <code>RStudio</code> and you will have to restart your <code>R</code> session in order to see any more plots.</p>
 </div>
 <div id="review-exercise-2" class="section level2 unnumbered">
@@ -321,6 +347,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
