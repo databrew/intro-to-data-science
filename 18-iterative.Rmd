@@ -54,7 +54,7 @@ The examples below will show you how to appy this generalized workflow. Note tha
 
 ### 1. Is outcome `X` significantly unexpected? {-}
 
-To practice this use case, let's use the dataset [`humpback-whales.csv`](https://github.com/databrew/intro-to-data-science/blob/main/data/humpback-whales.csv?raw=true): 15 years of sightings of humpback whales within a fjord system in northern British Columbia, Canada ([www.bcwhales.org](www.bcwhales.org)). 
+To practice this use case, let's use the dataset `r xfun::embed_file('./data/humpback-whales.csv',text="humpback-whales.csv")`: 15 years of sightings of humpback whales within a fjord system in northern British Columbia, Canada ([www.bcwhales.org](www.bcwhales.org)). 
 
 ```{r,echo=TRUE}
 # Use dataset
@@ -251,7 +251,7 @@ So there is indeed a significant difference in the annual site fidelity in the t
 
 ### 3. Are two variables correlated? {-}
 
-To perform a correlation analysis with randomization, let's use a classic scenario from marine conversation: We have abundance estimates for a critically endangered porpoise from four years across two decades of research. This species only has a handful of individuals left in the wild. ([link to dataset](https://github.com/databrew/intro-to-data-science/blob/main/data/porpoise-survey.csv?raw=true))
+To perform a correlation analysis with randomization, let's use a classic scenario from marine conversation: We have abundance estimates for a critically endangered porpoise from four years across two decades of research. This species only has a handful of individuals left in the wild. (`r xfun::embed_file('./data/porpoise-survey.csv',text="porpoise-survey.csv")`)
 
 
 ```{r,echo=FALSE,eval=FALSE}
@@ -528,13 +528,13 @@ p_value
 
 In 2019, researchers took DNA samples from 36 individuals in this dataset. They collected the samples by flying drones through the whale's spouts and harvesting DNA from their *snot*! *GROSS!!!* But also *super RAD!*
 
-Using these genetic samples, the researchers determined the relatedness of each pair of individuals they sampled. Those results are provided in the dataset [`humpback-kinship.rds`](https://github.com/databrew/intro-to-data-science/blob/main/data/humpback-kinship.rds?raw=true).  
+Using these genetic samples, the researchers determined the relatedness of each pair of individuals they sampled. Those results are provided in the dataset `r xfun::embed_file('./data/humpback-kinship.rds',text="humpback-kinship.rds")`
 
 ```{r,echo=TRUE}
 kinship <- readRDS("./data/humpback-kinship.rds")
 ```
 
-And [here is a key](https://github.com/databrew/intro-to-data-science/blob/main/data/bnf-status.rds?raw=true) providing the IDs of these 36 whales and their status as a known bubble net feeder.
+And `r xfun::embed_file('./data/bnf-status.rds',text="here is a key")` providing the IDs of these 36 whales and their status as a known bubble net feeder.
 
 ```{r,echo=TRUE}
 bnf_status <- readRDS("./data/bnf-status.rds")
@@ -596,7 +596,7 @@ p_value
 
 Finally, let's ask whether the strength of social bonds is generally correlated to kinship. In other words, is this population assorting according to relatedness?  
 
-For your convenience, the social association rate for these 36 individuals has also been summarized in the dataset [`humpback-sociality.rds`](https://github.com/databrew/intro-to-data-science/blob/main/data/humpback-sociality.rds?raw=true).  
+For your convenience, the social association rate for these 36 individuals has also been summarized in the dataset `r xfun::embed_file('./data/humpback-sociality.rds',text="humpback-sociality.rds")`.
 
 ```{r,echo=TRUE}
 sociality <- readRDS("./data/humpback-sociality.rds")

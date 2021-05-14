@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-05-13" />
+<meta name="date" content="2021-05-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -255,7 +255,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="installation" class="section level2 unnumbered">
 <h2>Installation</h2>
 <p>We’ll start by installing git. Go <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">here</a> and follow the instructions for your operating system.</p>
-<p>Note that we’ll be using the command line interface (CLI) and not a graphical user interface (GUI). Though a GUI is sometimes a bit easier, a CLI offers more flexibility and power.</p>
+<div id="windows" class="section level3 unnumbered">
+<h3>Windows</h3>
+<p>On windows, once you’ve downloaded, you’ll want to select the below parameters:</p>
+<p><img src="img/git1.png" /></p>
+<p>The program will prompt you to pick a text editor. Select notepad.</p>
+<p><img src="img/git2.png" /></p>
+<p>For all other options, leave settings as default and click “next”. The program will now install.</p>
+<p>After installation, there is an option to “Launch Git Bash”. Click it.</p>
+<p><img src="img/git3.png" /></p>
+<p>This will open a “terminal” window:</p>
+<p><img src="img/git4.png" /></p>
+</div>
+<div id="mac" class="section level3 unnumbered">
+<h3>Mac</h3>
+<p>(Details on installing git on mac and opening terminal)</p>
+</div>
+</div>
+<div id="getting-to-know-git-bash" class="section level2 unnumbered">
+<h2>Getting to know git bash</h2>
+<p>The strange little black box you’re looking at is called “Git Bash”. Bash is a command line language/interface. In other words, it’s a way to interact with your computer without pointing and clicking. You type code, and the computer does things. It’ll feel a bit unfamiliar at first, but don’t worry - there are just a few commands you need to know to work with git. We’ll use the terms “bash”, “command line”, and “terminal” interchangeably (though in reality these are a bit <a href="https://superuser.com/questions/880344/what-is-the-difference-between-terminal-and-bash">different</a>).</p>
+<div id="pwd" class="section level4 unnumbered">
+<h4>pwd</h4>
+<p>Let’s start with <code>pwd</code>. This stands for “path to working directory”. Type it, press enter, and see what happens.</p>
+<p>If everything went to plan, you’ll see a path (ie, a location within your computer’s file structure). “Working directory” means the folder you are “in” right now. Just like with a point-and-click program for exploring folders, you can navigate between folders using bash / terminal.</p>
+<p>When you typed <code>pwd</code> you were asking your computer which directory (folder) you’re in. It responded. Great! Now let’s see what else is in the folder where you are.</p>
+</div>
+<div id="ls" class="section level4 unnumbered">
+<h4>ls</h4>
+<p>Type <code>ls</code>. This stands for “list” as in "list all the files in this directory. <code>ls</code> is commonly used to quickly see contents of a folder.</p>
+</div>
+<div id="cd" class="section level4 unnumbered">
+<h4>cd</h4>
+<p>You now know how to (a) see where you are and (b) see what else is there. But what about navigation? Let’s say you want to “move around” (ie, go to other folders). You do this using the <code>cd</code> command, which stands for “change directory”.</p>
+<p>After typing <code>cd</code>, you should type a space and then the name of the directory you want to navigate to. This directory can be either (a) relative or (b) full. “Relative” means relative to where you are. So, for example, if you are currently in the following folder:</p>
+<pre><code>/home/abc/folder1</code></pre>
+<p>And within that folder you have the following sub-folders:</p>
+<pre><code>foldera
+folderb
+folderc</code></pre>
+<p>You could navigate to one of them by typing the full path:</p>
+<pre><code>cd /home/abc/folder1/foldera</code></pre>
+<p>Or by typing the relative path:</p>
+<pre><code>cd foldera</code></pre>
+<p>Both of the last two commands have the same result: changing your working directory to <code>/home/abc/folder1/foldera</code>.</p>
+<p>What about if you want to navigate “up” to the <code>/home/abc</code> folder. Again, you can do this using relative or full paths. To navigate there with the full path, simply type:</p>
+<pre><code>cd /home/abc</code></pre>
+<p>To go “up” one level using a relative path, use <code>..</code>. So:</p>
+<pre><code>cd ..</code></pre>
+<p>So far so good. Now you can (a) see where you are with <code>pwd</code>, (b) list folder contents with <code>ls</code> and (c) navigate with <code>cd</code>. Those 3 command will cover 80% of what you’ll need to do to use git from the command line.</p>
+</div>
 </div>
 <div id="configuration" class="section level2 unnumbered">
 <h2>Configuration</h2>
@@ -301,7 +350,7 @@ See <code>testrepo</code> there? Great!</p>
 <p>This tells git that we are “committing” our change, it marking a checkpoint (to which we can revert later). The <code>-m</code> flag is followed by a message in quotations which will help us to navigate this checkpoint in the future.</p>
 <p>Almost there. Now that we’ve added and committed, we need to “push” our change to the remote repository (github), by running:</p>
 <pre><code>git push</code></pre>
-<p>You did it! Now, if someone else wants to get your code, they can “clone” your repository, and they’ll have the code you’ve “pushed” there.</p>
+<p>You did it! Go to <a href="https://github.com/" class="uri">https://github.com/</a><YOUR USERNAME>/testrepo and open the <code>README.md</code> file. You’ll notice that your most recent changes are there. Now, if someone else wants to get your code, they can “clone” your repository, and they’ll have the code you’ve “pushed” there.</p>
 </div>
 </div>
 <div id="a-bit-more-practice" class="section level2 unnumbered">
