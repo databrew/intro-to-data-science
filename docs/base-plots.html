@@ -243,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="base-plots.html#cb185-1"></a>country &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;Tanzania&quot;</span>,<span class="st">&quot;Japan&quot;</span>,<span class="st">&quot;Ctr. Africa Rep.&quot;</span>,<span class="st">&quot;China&quot;</span>,<span class="st">&quot;Norway&quot;</span>,<span class="st">&quot;India&quot;</span>)</span>
 <span id="cb185-2"><a href="base-plots.html#cb185-2"></a>lifespan &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">65</span>,<span class="dv">84</span>,<span class="dv">53</span>,<span class="dv">77</span>,<span class="dv">82</span>,<span class="dv">69</span>)</span>
 <span id="cb185-3"><a href="base-plots.html#cb185-3"></a>gdp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">55335</span>,<span class="dv">2875</span>,<span class="dv">38674</span>,<span class="dv">623</span>,<span class="dv">13102</span>,<span class="dv">84500</span>,<span class="dv">6807</span>)</span></code></pre></div>
-<p>These data come from this <a href="https://datasets.iisg.amsterdam/dataset.xhtml?persistentId=hdl:10622/LKYT53">publicly available database</a> that compares health and economic indices across countries in 2011.</p>
+<p>These data come from this <a href="https://datasets.iisg.amsterdam/dataset.xhtml?persistentId=hdl:10622/LKYT53" target="blank">publicly available database</a> that compares health and economic indices across countries in 2011.</p>
 <p>The <code>lifespan</code> column presents the average life expectancy for each country.</p>
 <p>The <code>gdp</code> column presents the average GDP per capita within that country, which is a common index for the income and wealth of average citizens.</p>
 <p>Let’s see if there is a relationship between life expectancy and income.</p>
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/unnamed-chunk-101-1.png" width="925.44" /></p>
 <p>In this command, the parameter <code>height</code> determines the height of the bars, and <code>names.arg</code> provides the labels to place beneath each bar.</p>
 <p>There are many more plot types out there, but let’s stop here now.</p>
-<div id="exercise-1-3" class="section level3 unnumbered">
+<div id="exercise-1-4" class="section level3 unnumbered">
 <h3>Exercise 1</h3>
 <p>Produce a bar plot that shows the GDP for each country.</p>
 </div>
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Set dot color</strong> using the input <code>col</code> (the default is <code>col="black"</code>)</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="base-plots.html#cb194-1"></a><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-107-1.png" width="925.44" /></p>
-<p><a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf?utm_source=twitterfeed&amp;utm_medium=twitter">Here is a great resource</a> for color names in <code>R</code>.</p>
+<p><a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf?utm_source=twitterfeed&amp;utm_medium=twitter" target="blank">Here is a great resource</a> for color names in <code>R</code>.</p>
 <p><strong>Set dot size</strong> using the input <code>cex</code> (the default is <code>cex=1</code>):</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="base-plots.html#cb195-1"></a><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">cex=</span><span class="dv">3</span>)</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-108-1.png" width="925.44" /></p>
@@ -333,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Use a logarithmic scale</strong> for one or of your axes using the input <code>log</code></p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="base-plots.html#cb204-1"></a><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">log=</span><span class="st">&quot;x&quot;</span>)</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-116-1.png" width="925.44" /></p>
-<div id="exercise-2-2" class="section level3 unnumbered">
+<div id="exercise-2-3" class="section level3 unnumbered">
 <h3>Exercise 2</h3>
 <p>Produce a <em>beautifully</em> formatted plot that incorporates <strong>all</strong> of these customization inputs explained above into a multi-paned plot.</p>
 </div>
@@ -359,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Another way to write this command is as follows:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="base-plots.html#cb208-1"></a><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</span></code></pre></div>
 <p>In this command, the <code>$</code> symbol is saying, “give me the column in <code>df</code> named <code>lifespan</code>”. It is a handy way of referring to a column within a dataframe by name. You will learn more about working with dataframes in an upcoming module.</p>
-<div id="exercise-2-3" class="section level3 unnumbered">
+<div id="exercise-2-4" class="section level3 unnumbered">
 <h3>Exercise 2</h3>
 <p>A. Use the <code>df</code> dataframe to produce a bar plot that shows life expectancy for each country.</p>
 <p>B. Use the <code>df</code> dataframe to produce a jumbled line plot of life expectancy as a function of GDP. Reference the <code>plot()</code> documentation to figure out how to change the thickness of the line.</p>
@@ -367,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="next-level-plotting" class="section level2 unnumbered">
 <h2>Next-level plotting</h2>
-<p>The possibilities for data visualization in <code>R</code> are prety much limitless, and over time you will become fluent in making gorgeous plots. Here are a few common tools that can take your plots to the next level.</p>
+<p>The possibilities for data visualization in <code>R</code> are pretty much limitless, and over time you will become fluent in making gorgeous plots. Here are a few common tools that can take your plots to the next level.</p>
 <div id="adding-lines" class="section level3 unnumbered">
 <h3>Adding lines</h3>
 <p>In some cases it is useful to add reference lines to your plot. For example, what if we wanted to be able to quickly see which countries had life expectancies below 75 years?</p>
@@ -470,7 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Review assignment</h2>
 <p><em>NOTE: Under construction!</em></p>
 </div>
-<div id="other-resources-5" class="section level2 unnumbered">
+<div id="other-resources-3" class="section level2 unnumbered">
 <h2>Other Resources</h2>
 
 </div>

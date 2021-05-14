@@ -58,19 +58,40 @@ for(x in professors){
 
 Use this space to practice the basics of `for loop` formatting.  
 
-First, create a vector of names (add at least 3)
+A. First, create a vector of names (add at least 3)
 ```{r,echo=TRUE}
 # Add your names to this vector
 famous.names <- c("Lady Gaga","David Haskell","Tom Cruise")
 ```
 
-Using the examples above as a guide, create a `for loop` that prints the same silly statement about each of these  names. 
+B. Using the examples above as a guide, create a `for loop` that prints the same silly statement about each of these  names. 
 
 ```{r,echo=TRUE}
 # Do your coding here
 for(i in famous.names){
   print(paste0(i," has cooties!"))
 }
+```
+
+C. It is usually best practice to write the body of your loop *first*, test it to make sure it works, *then* wrap it in a `for` loop. Use the code chunk below to practice that workflow. Complete each step in the order provided. (This may feel like hand-holding, but this practice will pay off when you dive into more complicated loops)
+
+```{r}
+# Step 1. Give 'i' an arbitrary value for the time being
+i=1 
+
+
+# Step 4. Open up your `for` loop here.
+
+
+# Step 2. Write the body of your loop
+# e.g.,   print(paste0(i," has cooties!"))
+# but write your own new silly print command
+
+# Step 3. Test the code you wrote for Step 2 (be sure to run Step 1 first).
+
+# Step 5. Close your `for` loop with an end curly bracket.
+
+
 ```
 
 
@@ -130,8 +151,11 @@ plot(1,type="n", # tell R not to draw anything
      ylab="Gas mileage (mpg)")
 
 # Write your for loop here to add the actual data
+
 i=ucyl[1] # It's always good to use a known value of i as you build up your for loop
-for(i in ucyl){
+
+for(i in ucyl){ # Usually helpful to write this line LAST. 
+                # i.e., write body of loop first, test it, then wrap it in a loop.
   
   # Subset the dataframe according to number of cylinders
   cari <- mtcars[mtcars$cyl==i,]
@@ -154,7 +178,7 @@ We will provide the empty plot, you provide the `for loop`:
 plot(1,type="n",
      xlim=c(3,10),ylim=c(40,100),
      xlab="Month",
-     ylab="Yemperature")
+     ylab="Temperature")
 
 # Write your for loop here to add the actual data
 for(i in airquality$Month){
@@ -292,7 +316,7 @@ All of these summaries can be achieved with the same basic workflow.
 
 5. At the end of each iteration, update your data objects with the result from that iteration. 
 
-6. Run your `for loop!  
+6. Run your `for` loop!  
 
 7. After the `for` loop, combine your data objects into a dataframe.  
 

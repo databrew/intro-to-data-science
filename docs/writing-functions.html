@@ -230,9 +230,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="learning-goals-11" class="section level2 unnumbered">
 <h2>Learning goals</h2>
 <ul>
-<li>Be able to write your own functions.</li>
-<li>Be able to <em>source</em> your own functions from separate R files.</li>
-<li>Be able to use functions to make your work more efficient, effective, and organized.</li>
+<li>Be able to write your own functions</li>
+<li>Be able to <em>source</em> your own functions from separate R files</li>
+<li>Be able to use functions to make your work more efficient, effective, and organized</li>
 </ul>
 <p style="color:#3f0000; background-color:#f5f5dc">
 <b>Instructor tip!</b><br>Here is some teacher content.
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note that you are not <em>required</em> to write out <code>x=2</code> in full when you are calling your function. Just providing <code>2</code> can also work:</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="writing-functions.html#cb310-1"></a><span class="kw">my_function</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 12.6</code></pre>
-<div id="exercise-1-4" class="section level3 unnumbered">
+<div id="exercise-1-5" class="section level3 unnumbered">
 <h3>Exercise 1</h3>
 <p>Define your own basic function and run it to make sure it works.</p>
 </div>
@@ -401,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb346-7"><a href="writing-functions.html#cb346-7"></a>  <span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">3</span>,.<span class="dv">5</span>)) <span class="co"># set plot margins</span></span>
 <span id="cb346-8"><a href="writing-functions.html#cb346-8"></a>  <span class="kw">plot</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>,<span class="dt">ann=</span><span class="ot">FALSE</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="st">&quot;firebrick&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>)) <span class="co"># define basic plot</span></span>
 <span id="cb346-9"><a href="writing-functions.html#cb346-9"></a>  <span class="kw">title</span>(<span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;y =&quot;</span>,a,<span class="st">&quot;x +&quot;</span>,b)) <span class="co"># print a dynamic main title</span></span>
-<span id="cb346-10"><a href="writing-functions.html#cb346-10"></a>  <span class="kw">title</span>(<span class="dt">xlab=</span><span class="st">&quot;x&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>)  <span class="co"># print axis labelse</span></span>
+<span id="cb346-10"><a href="writing-functions.html#cb346-10"></a>  <span class="kw">title</span>(<span class="dt">xlab=</span><span class="st">&quot;x&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>)  <span class="co"># print axis labels</span></span>
 <span id="cb346-11"><a href="writing-functions.html#cb346-11"></a>  <span class="kw">axis</span>(<span class="dv">1</span>) <span class="co"># print the X axis</span></span>
 <span id="cb346-12"><a href="writing-functions.html#cb346-12"></a>  <span class="kw">axis</span>(<span class="dv">2</span>,<span class="dt">las=</span><span class="dv">2</span>) <span class="co"># print the Y axis and turn its labels right-side-up</span></span>
 <span id="cb346-13"><a href="writing-functions.html#cb346-13"></a>  <span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">v=</span><span class="dv">0</span>,<span class="dt">col=</span><span class="st">&quot;grey70&quot;</span>) <span class="co"># add grey lines indicating x=0 and y=0</span></span>
@@ -426,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Think about how many lines of code would have been needed to write out all of these fancy plots if you did not use a custom function! Think about how cluttered and dizzying your code would look! And think about how many opportunities for errors and inconsistencies there would have been! That is the advantage of writing your own functions: it makes your work more efficient, more organized, and less prone to errors.</p>
 <p>Another major advantage of this approach comes into play when you decide you want to tweak the formatting of your plot. Rather than going through each <code>plot(...)</code> command and modifying the inputs in each one, when you write a custom plotting function you just have to make those changes once. Again, using a custom function saves you time and removes the possibility of inconsistencies or mistakes in the plots you are creating.</p>
 </div>
-<div id="exercise-2-4" class="section level3 unnumbered">
+<div id="exercise-2-5" class="section level3 unnumbered">
 <h3>Exercise 2</h3>
 <p>Modify the most recent version of <code>plot_my_lm</code> above such that you can specify the color for the plotted line as an input in the function. Then reproduce the multi-paned plot using a different color in each plot. (Here is a good reference for <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">color options in R</a>).</p>
 </div>
@@ -435,16 +435,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Sourcing functions</h2>
 <p>As you advance in your coding, you will likely be writing multiple custom functions within a single <code>R</code> script. It is usually useful to group these functions into the same section of code near the top of your script.</p>
 <p>But for even <em>better</em> script organization and simplification, you should <em>source</em> your functions from a separate <code>R</code> script. This means placing your function code in a separate <code>R</code> script and calling that file from the script in which you are carrying out your analyses. In addition to simplifying your analysis script, keeping your functions in a separate file allows them to be shared or sourced from any number of other scripts, which further organizes and simplifies your project’s code and increases the reproducibility of your work.</p>
-<p>Here is how sourcing functiosn can work:</p>
+<p>Here is how sourcing functions can work:</p>
 <ol style="list-style-type: decimal">
 <li><p>Open a new <code>R</code> script. Save it as <code>functions.R</code> and save it in the same working directory as the script you are using to work through this module.</p></li>
 <li><p>Copy and paste the <code>plot_my_lm()</code> function into your <code>functions.R</code> script. Save that script to ensure your code is safe.</p></li>
-<li><p>No remove the code defining <code>plot_my_lm()</code> from your module <code>R</code> script.</p></li>
+<li><p>Now remove the code defining <code>plot_my_lm()</code> from your module <code>R</code> script.</p></li>
 <li><p>In its place, type this command:</p></li>
 </ol>
 <div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="writing-functions.html#cb348-1"></a><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)</span></code></pre></div>
 <p>This command tells <code>R</code> to run the code in <code>functions.R</code> and store the objects and outputs from it in its active memory. You can now call <code>plot_my_lm()</code> from your module script.</p>
-<div id="exercise-3-4" class="section level3 unnumbered">
+<div id="exercise-3-2" class="section level3 unnumbered">
 <h3>Exercise 3</h3>
 <p>Carry out the above instructions to ensure that you know how to source a function from a separate <code>R</code> script.</p>
 </div>
@@ -468,7 +468,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Step 6.</strong> Include an input that allows the user to specify the y axis range. If that input is set to <code>NULL</code>, the function should just use the maximum value contained in the data itself, scaled by 1.2 to make the plot prettier. Always use <code>0</code> as the lower bound of the y axis.</p>
 <p><strong>Step 7.</strong> Create a multi-pane plot containing six subplots, one for each of your names of interest.</p>
 </div>
-<div id="other-resources-8" class="section level2 unnumbered">
+<div id="other-resources-6" class="section level2 unnumbered">
 <h2>Other Resources</h2>
 <p><em>NOTE: Under construction!</em></p>
 
