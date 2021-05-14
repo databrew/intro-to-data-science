@@ -52,7 +52,94 @@ It's time to "git" started. Rather than diving into too much theory, let's skip 
 
 We'll start by installing git. Go [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and follow the instructions for your operating system.
 
-Note that we'll be using the command line interface (CLI) and not a graphical user interface (GUI). Though a GUI is sometimes a bit easier, a CLI offers more flexibility and power.
+### Windows
+
+On windows, once you've downloaded, you'll want to select the below parameters:
+
+![](img/git1.png)
+
+The program will prompt you to pick a text editor. Select notepad.
+
+![](img/git2.png)
+
+For all other options, leave settings as default and click "next". The program will now install.
+
+After installation, there is an option to "Launch Git Bash". Click it.
+
+![](img/git3.png)
+
+This will open a "terminal" window:
+
+![](img/git4.png)
+
+### Mac
+
+(Details on installing git on mac and opening terminal)
+
+
+## Getting to know git bash
+
+The strange little black box you're looking at is called "Git Bash". Bash is a command line language/interface. In other words, it's a way to interact with your computer without pointing and clicking. You type code, and the computer does things. It'll feel a bit unfamiliar at first, but don't worry - there are just a few commands you need to know to work with git. We'll use the terms "bash", "command line", and "terminal" interchangeably (though in reality these are a bit [different](https://superuser.com/questions/880344/what-is-the-difference-between-terminal-and-bash)).
+
+#### pwd
+
+Let's start with `pwd`. This stands for "path to working directory". Type it, press enter, and see what happens.
+
+If everything went to plan, you'll see a path (ie, a location within your computer's file structure). "Working directory" means the folder you are "in" right now. Just like with a point-and-click program for exploring folders, you can navigate between folders using bash / terminal. 
+
+When you typed `pwd` you were asking your computer which directory (folder) you're in. It responded. Great! Now let's see what else is in the folder where you are.
+
+#### ls
+
+Type `ls`. This stands for "list" as in "list all the files in this directory. `ls` is commonly used to quickly see contents of a folder.
+
+#### cd
+
+You now know how to (a) see where you are and (b) see what else is there. But what about navigation? Let's say you want to "move around" (ie, go to other folders). You do this using the `cd` command, which stands for "change directory". 
+
+After typing `cd`, you should type a space and then the name of the directory you want to navigate to. This directory can be either (a) relative or (b) full. "Relative" means relative to where you are. So, for example, if you are currently in the following folder:
+
+```
+/home/abc/folder1
+```
+
+And within that folder you have the following sub-folders:
+
+```
+foldera
+folderb
+folderc
+```
+
+You could navigate to one of them by typing the full path:
+
+```
+cd /home/abc/folder1/foldera
+```
+
+Or by typing the relative path:
+
+```
+cd foldera
+```
+
+Both of the last two commands have the same result: changing your working directory to `/home/abc/folder1/foldera`.
+
+What about if you want to navigate "up" to the `/home/abc` folder. Again, you can do this using relative or full paths. To navigate there with the full path, simply type:
+
+```
+cd /home/abc
+```
+
+To go "up" one level using a relative path, use `..`. So:
+
+```
+cd ..
+```
+
+So far so good. Now you can (a) see where you are with `pwd`, (b) list folder contents with `ls` and (c) navigate with `cd`. Those 3 command will cover 80% of what you'll need to do to use git from the command line.
+
+
 
 
 ## Configuration  {-}
@@ -145,7 +232,7 @@ Almost there. Now that we've added and committed, we need to "push" our change t
 git push
 ```
 
-You did it! Now, if someone else wants to get your code, they can "clone" your repository, and they'll have the code you've "pushed" there.
+You did it! Go to https://github.com/<YOUR USERNAME>/testrepo and open the `README.md` file. You'll notice that your most recent changes are there. Now, if someone else wants to get your code, they can "clone" your repository, and they'll have the code you've "pushed" there.
 
 ## A bit more practice  {-}
 
