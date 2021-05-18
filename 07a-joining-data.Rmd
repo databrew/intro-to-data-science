@@ -2,3 +2,169 @@
 
 # Joining datasets
 
+#### Learning goals {-}
+
+* How to join together two related datasets efficiently in `R`
+
+
+## Joining: the basics {-}
+
+It's not unusual to have data for a project spread out across multiple datasets. The data are all related, but the fact that they are 'packaged' separately into different files can things difficult. To work with such *relational* data in `R`, you eventually need to merge -- or *join* -- them into a single dataframe. 
+
+For example, say you are studying the economics of professional basketball. In one dataframe, `df1`, you have the *net worth* of famous players, in millions USD...
+
+```{r,echo=TRUE}
+player <- c("LeBron","Mugsy","Shaq","Jordan","Hakeem","Kobe")
+worth <- c(500, 14, 400, 1600, 200, 600)
+df1 <- data.frame(player,worth)
+df1
+```
+
+...and in a second dataframe, `df2`, you have their height. 
+
+```{r,echo=TRUE}
+player <- c("Jordan","Shaq","Magic","Hakeem","Stockton","Mugsey")
+height <- c(78,85,81,84,73,63)
+df2 <- data.frame(player,height)
+df2
+```
+
+*Is there a correlation between these players' net worth and their height?* To answer this question you need to join these two datasets together. But the two datasets don't contain the exact same roster of players, and the players are not in the same order. Hmm. Is there an efficient way to join these two datasets?  
+
+*Yes!* Thanks to the family of `join()` functions from the package `dplyr`.  
+
+```{r,echo=TRUE,eval=FALSE}
+install.packages("dplyr")
+```
+
+These `join()` functions relate two dataframes together according to a common column name. In order for these functions to work, each dataframe has to have a column of the same name. In the case of `df1` and `df2`, that shared column is `player`.   
+
+There are four `join()` functions you should know how to use: 
+
+**`left_join()**` joins the two datasets together, keeping all rows in the *first* dataframe you feed it. 
+
+```{r,echo=TRUE}
+library(dplyr)
+left_join(df1,df2,by="player")
+```
+
+Notice that none of the players unique to `df2` made it into this output; only players in `df1` (i.e., the *left* of the two dataframes listed) remain. Also notice that any player from `df1` who was not in `df2` has an `NA` under the column `worth`. That is how these `join()` functions work: it fills in the data where it can, and leaves `NA`s where it can't. 
+
+**`right_join()**` keeps all rows in the *second* dataframe you feed it:
+
+```{r,echo=TRUE}
+right_join(df1,df2,by="player")
+```
+
+**`full_join()**` keeping all rows in *both* dataframes:
+
+```{r,echo=TRUE}
+full_join(df1,df2,by="player")
+```
+
+Finally, **`inner_join()`** keeps only the rows that are *common to both* dataframes:  
+
+```{r,echo=TRUE}
+inner_join(df1,df2,by="player")
+```
+
+So, to answer our research question about the relationship between player height and net worth, we can now join these data sets and make a nice plot:
+
+```{r,echo=TRUE}
+df3 <- full_join(df1,df2,by="player")
+plot(df3$worth ~ df3$height)
+```
+
+Hmm. Looks like we need more data!
+
+#### Review exercise {-}
+
+This review exercise will involve *both* the joining skills you learned above as well as many of the skills learned in prior modules. But don't worry: as with every exercise in this book, every puzzle here can be solved using the skills you have learned in prior modules.  
+
+**Scenario:** A sailing expedition in 2013 - 2015 studied the whales in the fjords of British Columbia, Canada. That research produced two datasets: 
+
+```{r,echo=TRUE}
+env <- read.csv("./data/whales-environment.csv") ; head(env)
+
+dive <-read.csv("./data/whales-dives.csv") ; head(dive)
+```
+
+Each row in these dataframes represent a close encounter with a whale (either a humpback whale, `HW`, or a fin whale, `FW`). 
+
+The `env` dataset provides details about the habitat in which the whale was found, such as `seafloor` depth and the amount of `chlorophyll` in the water (a proxy for productivity). 
+
+The `dive` dataset provides measurements of whale foraging behaviors, such as `dive.time` and the number of breaths at the surface (`blow.number`), as well as the quality of prey in the area (`prey.volume` and `prey.depth`).
+
+Note that these two dataframes are linked by the `id` column, which is a unique code for each whale encounter. 
+
+```{r,echo=TRUE}
+dive$id
+
+env$id
+```
+
+Also note that *some* ids -- but not all -- can be found in *both* dataframes. These are the encounters for which we have both foraging behavior data as well as environmental data. 
+
+**Task 1. Summarize your dataset.**  
+
+Write the necessary code and fill in the *<blank>* spaces in the data summary statement below:
+
+A total of *<blank>* whale encounters were recorded on *<blank>* separate days in the years *<blank>* - *<blank>*.  *<blank>* encounters were with humpback whales (*<blank>* % of all encounters), and *<blank>* were with fin whales (*<blank>* %). Foraging behavior was recorded in *<blank>* % of encounters (*<blank>* % of humpback whale encounters, and *<blank>* % of fin whale encounters).
+
+**Task 2. Research question: Do these two species prefer different seafloor depths?** 
+
+First, create a nicely formatted histogram that portrays the data relevant to this question.
+
+```{r}
+par(mar=c(4.5,4.5,3,1))
+hist(env$seafloor[env$species=="FW"],xlab="Seafloor depth",main=NULL,prob=TRUE,
+     xlim=c(0,800),breaks=seq(0,800,length=30),
+     border=NA,col=adjustcolor("firebrick",alpha.f=.4))
+hist(env$seafloor[env$species=="HW"],xlim=c(0,800),breaks=seq(0,800,length=30),
+          border=NA,col=adjustcolor("darkblue",alpha.f=.4),prob=TRUE,add=TRUE)
+```
+
+Provide the code to test this research question statistically, then write a results statement below.
+
+```{r}
+t.test(x=env$seafloor[env$species=="FW"],
+       y=env$seafloor[env$species=="HW"])
+```
+
+
+**Task 3. Another research question: Is prey volume correlated to chlorophyll concentration?**
+
+Whales eta krill, and krill eat phytoplankton. Chlorophyll is a proxy measurement for the amount of phytoplankton in the area. Based on these datasets, how good are krill at congregating in areas of high chlorophyll concentration? 
+
+First, prepare a plot to visualize what you will be comparing:
+
+```{r}
+hwe <- env[env$species=="HW",] ; head(hwe)
+hwd <- dive[dive$species=="HW",] ; head(hwd)
+
+nrow(hwe)
+hwe <- hwe[hwe$id %in% hwd$id,]
+nrow(hwe) ; nrow(hwd)
+
+hwe <- hwe[order(hwe$id),]
+hwd <- hwd[order(hwd$id),]
+hwd$chl <- hwe$chlorophyll
+
+par(mar=c(4.5,4.5,3,1))
+plot(hwd$prey.volume ~ hwd$chl,xlab="Chlorophyll concentration",ylab="Prey volume",pch=16,cex=.8)
+hwlm <- lm(hwd$prey.volume ~ hwd$chl)
+abline(hwlm,col="firebrick",lwd=2)
+
+```
+
+Now carry out your statistical test. 
+
+```{r}
+summary(hwlm)
+```
+
+
+
+
+
+
