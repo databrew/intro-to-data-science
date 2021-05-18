@@ -2929,7 +2929,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] "hDj]g'.k}d&o785HbC-U_@J+"
+[1] ")*eyh37l&.Y'\\P9ZKvjAcSgs"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2941,7 +2941,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "\\Aa#b:`<@ZF(zgK64cI~sE0N"
+[1] "cK|Up\"3I'A$+MkaJt1:u?_]@"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -4184,7 +4184,7 @@ For example, say you are studying the economics of professional basketball. In o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{player <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Jordan"}\NormalTok{,}\StringTok{"Shaq"}\NormalTok{,}\StringTok{"Magic"}\NormalTok{,}\StringTok{"Hakeem"}\NormalTok{,}\StringTok{"Stockton"}\NormalTok{,}\StringTok{"Mugsey"}\NormalTok{)}
+\NormalTok{player <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Jordan"}\NormalTok{,}\StringTok{"Shaq"}\NormalTok{,}\StringTok{"Magic"}\NormalTok{,}\StringTok{"Hakeem"}\NormalTok{,}\StringTok{"Stockton"}\NormalTok{,}\StringTok{"Mugsy"}\NormalTok{)}
 \NormalTok{height <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{78}\NormalTok{,}\DecValTok{85}\NormalTok{,}\DecValTok{81}\NormalTok{,}\DecValTok{84}\NormalTok{,}\DecValTok{73}\NormalTok{,}\DecValTok{63}\NormalTok{)}
 \NormalTok{df2 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(player,height)}
 \NormalTok{df2}
@@ -4198,7 +4198,7 @@ For example, say you are studying the economics of professional basketball. In o
 3    Magic     81
 4   Hakeem     84
 5 Stockton     73
-6   Mugsey     63
+6    Mugsy     63
 \end{verbatim}
 
 \emph{Is there a correlation between these players' net worth and their height?} To answer this question you need to join these two datasets together. But the two datasets don't contain the exact same roster of players, and the players are not in the same order. Hmm. Is there an efficient way to join these two datasets?
@@ -4227,7 +4227,7 @@ There are four \texttt{join()} functions you should know how to use:
 \begin{verbatim}
   player worth height
 1 LeBron   500     NA
-2  Mugsy    14     NA
+2  Mugsy    14     63
 3   Shaq   400     85
 4 Jordan  1600     78
 5 Hakeem   200     84
@@ -4246,12 +4246,12 @@ Notice that none of the players unique to \texttt{df2} made it into this output;
 
 \begin{verbatim}
     player worth height
-1     Shaq   400     85
-2   Jordan  1600     78
-3   Hakeem   200     84
-4    Magic    NA     81
-5 Stockton    NA     73
-6   Mugsey    NA     63
+1    Mugsy    14     63
+2     Shaq   400     85
+3   Jordan  1600     78
+4   Hakeem   200     84
+5    Magic    NA     81
+6 Stockton    NA     73
 \end{verbatim}
 
 **\texttt{full\_join()**} keeping all rows in \emph{both} dataframes:
@@ -4265,14 +4265,13 @@ Notice that none of the players unique to \texttt{df2} made it into this output;
 \begin{verbatim}
     player worth height
 1   LeBron   500     NA
-2    Mugsy    14     NA
+2    Mugsy    14     63
 3     Shaq   400     85
 4   Jordan  1600     78
 5   Hakeem   200     84
 6     Kobe   600     NA
 7    Magic    NA     81
 8 Stockton    NA     73
-9   Mugsey    NA     63
 \end{verbatim}
 
 Finally, \textbf{\texttt{inner\_join()}} keeps only the rows that are \emph{common to both} dataframes:
@@ -4285,9 +4284,10 @@ Finally, \textbf{\texttt{inner\_join()}} keeps only the rows that are \emph{comm
 
 \begin{verbatim}
   player worth height
-1   Shaq   400     85
-2 Jordan  1600     78
-3 Hakeem   200     84
+1  Mugsy    14     63
+2   Shaq   400     85
+3 Jordan  1600     78
+4 Hakeem   200     84
 \end{verbatim}
 
 So, to answer our research question about the relationship between player height and net worth, we can now join these data sets and make a nice plot:
@@ -8561,7 +8561,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.02
+[1] 0.012
 \end{verbatim}
 
 In this case, the observed association rate is still statistically significant at the conventional 0.05 level, but there is still an off chance that this is merely the result of random mixing.
@@ -8657,10 +8657,10 @@ Let's go through the steps:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.005
+[1] 0.001
 \end{verbatim}
 
-So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.005).
+So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.001).
 
 \hypertarget{are-two-variables-correlated}{%
 \subsection*{3. Are two variables correlated?}\label{are-two-variables-correlated}}
@@ -8809,10 +8809,10 @@ Significance of \textbf{slope}:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.896
+[1] 0.878
 \end{verbatim}
 
-This indicates that the chance that the slope is lower than the null expectation is 89.6\%.
+This indicates that the chance that the slope is lower than the null expectation is 87.8\%.
 
 Significance of \textbf{correlation coefficient}:
 
@@ -8824,10 +8824,10 @@ Significance of \textbf{correlation coefficient}:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.195
+[1] 0.225
 \end{verbatim}
 
-This indicates that the observed regression is better than 80.5\% of scenarios that might be expected under the null expectation.
+This indicates that the observed regression is better than 77.5\% of scenarios that might be expected under the null expectation.
 
 \hypertarget{is-the-slope-of-a-regression-line-negative}{%
 \subsection*{4. Is the slope of a regression line negative?}\label{is-the-slope-of-a-regression-line-negative}}

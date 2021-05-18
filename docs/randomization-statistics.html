@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="randomization-statistics.html#cb540-1"></a><span class="co"># Calculate p-value</span></span>
 <span id="cb540-2"><a href="randomization-statistics.html#cb540-2"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
 <span id="cb540-3"><a href="randomization-statistics.html#cb540-3"></a>p_value</span></code></pre></div>
-<pre><code>[1] 0.026</code></pre>
+<pre><code>[1] 0.021</code></pre>
 <p>In this case, the observed association rate is still statistically significant at the conventional 0.05 level, but there is still an off chance that this is merely the result of random mixing.</p>
 </div>
 <div id="are-two-sample-sets-significantly-different" class="section level3 unnumbered">
@@ -571,8 +571,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>7. p-value:</strong></p>
 <div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="randomization-statistics.html#cb548-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls <span class="op">&gt;=</span><span class="st"> </span>obs)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(nulls)</span>
 <span id="cb548-2"><a href="randomization-statistics.html#cb548-2"></a>p_value</span></code></pre></div>
-<pre><code>[1] 0.003</code></pre>
-<p>So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.003).</p>
+<pre><code>[1] 0.002</code></pre>
+<p>So there is indeed a significant difference in the annual site fidelity in the two populations! Bubble net feeders practice higher annual return rates than other whales (p = 0.002).</p>
 </div>
 <div id="are-two-variables-correlated" class="section level3 unnumbered">
 <h3>3. Are two variables correlated?</h3>
@@ -652,13 +652,13 @@ F-statistic: 1.523 on 1 and 82 DF,  p-value: 0.2206</code></pre>
 <p>Significance of <strong>slope</strong>:</p>
 <div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="randomization-statistics.html#cb560-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>slope <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">1</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
 <span id="cb560-2"><a href="randomization-statistics.html#cb560-2"></a>p_value</span></code></pre></div>
-<pre><code>[1] 0.913</code></pre>
-<p>This indicates that the chance that the slope is lower than the null expectation is 91.3%.</p>
+<pre><code>[1] 0.876</code></pre>
+<p>This indicates that the chance that the slope is lower than the null expectation is 87.6%.</p>
 <p>Significance of <strong>correlation coefficient</strong>:</p>
 <div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="randomization-statistics.html#cb562-1"></a>p_value &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(nulls<span class="op">$</span>r <span class="op">&gt;=</span><span class="st"> </span>obs[<span class="dv">2</span>])) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(nulls)</span>
 <span id="cb562-2"><a href="randomization-statistics.html#cb562-2"></a>p_value</span></code></pre></div>
-<pre><code>[1] 0.204</code></pre>
-<p>This indicates that the observed regression is better than 79.6% of scenarios that might be expected under the null expectation.</p>
+<pre><code>[1] 0.247</code></pre>
+<p>This indicates that the observed regression is better than 75.3% of scenarios that might be expected under the null expectation.</p>
 </div>
 <div id="is-the-slope-of-a-regression-line-negative" class="section level3 unnumbered">
 <h3>4. Is the slope of a regression line negative?</h3>
