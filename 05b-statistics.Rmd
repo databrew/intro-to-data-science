@@ -1,159 +1,481 @@
 # Significance statistics
 
-## Basics 
+#### Learning goals {-}
+
+* How to interpret p-values  
+* How to decide which statistical test to apply to your data
+* How to conduct basic significant tests in `R`
+* How to interpret the results of those tests
+
+&nbsp;
 
 
-## Variable types & statistics
+## p-values  {-}
 
-## Comparison tests
+We won't go into statistical theory here. But every statistical test, at the basic level, is asking whether the patterns we observe in our data are actually *meaningful.* Are those *observed* patterns reflecting *real* patterns, or is it possible to observe those patterns when the underlying process is purely random chance? 
 
-These distributions are different, but there IS a lot of overlap. We need a statistical test to check whether the difference between these two distributions is statistically significant.
+That is what a **p-value** tells you: the probability that the pattern you see in your data is actually the product of random, meaningless chance. The lower the p-value, the less likely it is that the pattern you are seeing is a product of chance, and the higher the chances that the pattern you are seeing is real. 
 
-This is a t-test!
+Researchers tend to use a p-value of 0.05 as the threshold for a meaningful, or **"significant"** pattern. When a statistical test returns a p-value of 0.05 or less, we consider the pattern to be statistically significant. A p-value of 0.05 means that there is a 5% chance (one in twenty) that the pattern in your data is the product of chance alone. 
 
-We use t-tests to test for differences in means when out independent variable is CATEGORICAL and our dependent variable is CONTINUOUS. In this case:
+Please note that there is nothing magical about this number -- a p-value of 0.049 is practically the sameas 0.051, but only the former would be considered significant. The 0.05 threshold is just a simple heuristic -- a way of simplifying your statistical results into a binary concept: significant or not. 
 
-* Independent variable / treatments: baseline VS pandemic (categorical)
-* Dependent variable / outcome variable: frequency of nature access (borderline continuous, can be treated categorically)
+Finally, please also note that statistical significance is a tricky thing because it is influence by *both* the patterns in your data as well as by the *amount* of data you are working with. A larger sample size is going to allow you to identify more nuanced patterns in your data, and those patterns will achieve a lower p-value thanks simply to the number of samples you have. Conversely, a pattern driven by meaningful real-world processes can be obscured by low sample sizes. If your sample size is too small, you may not be able to produce significant p-values even though the pattern is real. 
 
-```{r,eval=FALSE}
-t.test(covdat$covfreqnum, covdat$basefreqnum)
+
+
+## Tests for different data types {-}
+
+Most data come in two general forms: 
+
+**1. Categorical data** represent categories. For example, franchise ID above. As another example, let `pet` be a variable representing categorical data with a few discrete levels: dog, cat, etc. The types, or *levels*, of categorical data are also referred to as *treatments*. In `R`, categorical variables are usually referred to as *factors*.
+
+**2. Continuous data** represent numerical values. For example, the weight of French fries above. As another example, let `height` be a variable representing numerical values for people's height. Note that, for the time being, we will consider integers and count data to fall within this category.  
+
+Whenever you plot data or ask a statistical question, you are combining data types in a specific way: a bar graph, for example, compares two *categories* (i.e., the individual bars) of *numerical* data (i.e., bar height). And, by grouping the data by category, you are implying that the category to which a data point belongs has some impact on its value. In other words, the value is **dependent** upon the category. Conversely, the value is assumed to have no impact on category. Category, therefore is the **independent** variable. 
+
+Each combination of data types calls for a certain type of plot and a certain type of statistical test. 
+
+Here is an overview of what we will cover below: 
+
+```{r,asis=TRUE,echo=FALSE}
+knitr::kable(data.frame(Question=c("Comparing 2 datasets","Comparing 3 or more datasets","","Association / Relationship"),
+                        Independent=c("Categorical","Categorical","Categorical","Numerical"),
+                        Dependent=c("Numerical","","Categorical","Numerical"),
+                        Test=c("t-test","ANOVA + Tukey HSD","Chi-square","Regression"),
+                        Plot=c("Bar graph or histograms","","","Scatterplot")
+                        ))
 ```
 
-Interpret together:
 
-* Alternative hypothesis
-* p value 
-* Difference in means
-* Confidence interval
-* T: the difference between groups represented in units of standard error. 
+## Comparison tests {-} 
 
-We use an ANOVA test in cases where there are more than two groups we want to compare.
+To practice basic statistics, we will create our own fake data.  
 
-* Independent variable : Effect of the pandemic on employment status (increase, decrease, no change)
-* Dependent variable: Anxiety scores
+**Scenario:** You are the lead author on a landmark study that investigates the portion sizes in fast food restaurants. You place 50 orders of large fries from one franchise and 50 orders from another. 
 
-```{r,eval=FALSE}
-myANOVA<-aov(covdat$GAD7~covdat$emp)
-summary(myANOVA)
+We can create a fake dataset by drawing numbers from random distributions:  
+
+```{r,echo=TRUE}
+# Set starting point for random number generator
+set.seed(2)
+
+# Franchise 1
+sample1 <- rnorm(n=50, mean=1, sd=.15)
+
+# Franchise 2
+sample2 <- rnorm(n=50, mean=1.1, sd=.15)
 ```
 
-Our p-value is low, which means there are differences between groups. But the ANOVA doesn't actually tell us which two-way differences are significant. For that we need a follow up test: a Tukey's HSD test.
+Let's pretend we don't know what the *true* means of these two sample sets are. Let's pretend that all we have done is weighed and eaten a ton of french fries, and know we want to ask some research questions about our sample data. 
 
-```{r,eval=FALSE}
-TukeyHSD(myANOVA)
+First, we want to know if there a difference in the amount of food you get from these two franchises? Do the two franchises give you the same amount of food (by weight)?  This is a **comparison question**. We are asking: based on our samples, can we conclude that two things (Franchise 1 and Franchise 2) are meaningfully different?
+
+**First, Let's look at our data with some histograms.**  
+
+```{r,echo=TRUE,fig.height=8}
+par(mfrow=c(2,1))
+hist(sample1,
+     breaks=seq(0,10,by=.05),
+     col=adjustcolor("dark orange",alpha.f=.3),
+     border=NA,
+     main=NULL,xlab="French fries (kg)",xlim=c(0,2))
+
+hist(sample2,
+     breaks=seq(0,10,by=.05),
+     col=adjustcolor("darkblue",alpha.f=.3),
+     border=NA,
+     main=NULL,xlab="French fries (kg)",xlim=c(0,2))
 ```
 
-People who have experienced a change in employment have higher anxiety scores, regardless of whether they have more or fewer working hours. 
+Comparison tests ask whether two distributions are different. It is often easier to gauge that difference when you superimpose one distribution on top of another (we do this by adding `add=TRUE` as an input in the second histogram). 
 
-We usually use a bar graph to depict the relationship between a categorical independent variable and a continuous dependent variable (the cases where we typically run T-tests and Anovas). 
+```{r,echo=TRUE}
+hist(sample1,
+     breaks=seq(0,10,by=.05),
+     col=adjustcolor("dark orange",alpha.f=.3),
+     border=NA,
+     main=NULL,xlab="French fries (kg)",xlim=c(0,2))
 
-```{r,eval=FALSE}
-n <-table(covdat$emp); n
-means<-aggregate(GAD7~emp, data=covdat, FUN=mean); means
-sds<-aggregate(GAD7~emp, data=covdat, FUN=sd); sds
-sds$se<-sds$GAD7/sqrt(n); sds
-
-# basic barplot 
-bar<-barplot(height=means$GAD7, names.arg=means$emp,
-             xlab="Change in working hours", ylab="GAD7 scores", ylim=c(0,10))
-# error bars
-segments(bar, means$GAD7 - sds$se * 2, bar,
-         means$GAD7 + sds$se * 2, lwd = 1.5)
-
+hist(sample2,
+     breaks=seq(0,10,by=.05),
+     col=adjustcolor("darkblue",alpha.f=.3),
+     border=NA,
+     main=NULL,xlab="Price",xlim=c(0,2),
+     add=TRUE)
 ```
 
-If both our independent and dependent variables are BOTH CATEGORICAL, we use a different test called a Chi-squared test.
+Okay, these two distributions certainly *look* a bit different, but there is also a high degree of overlap. If we lumped these data together and randomly picked a value from the pile, it would be hard to predict which franchise the data point belongs to. 
+To add to our uncertainty, maybe the pattern we are seeing here is just a vestige of our relatively low sample size? What if we sampled another 200 restaurants? Are we confident that we would find this same pattern?
 
-* Independent variable / treatments : race (catgorical)
-* Dependent variable / outcome variable : Self reported change in nature (gain, loss, no change) (categorical)
+Better do a statistical test.  
 
-```{r,eval=FALSE}
-table(covdat$natchan) # most people experienced nature losses during the pandemic
+Since these data are normally distributed, the test to use in this scenario is the **t-test**. 
 
-# We can create a CONTINGENCY TABLE to break down these totals by a second variable (race):
-table(covdat$race, covdat$natchan)
+```{r,eval=TRUE,echo=TRUE}
+t.test(sample1, 
+       sample2)
+```
 
-# Are these differences in the proportion of people loosing/gaining 
-# nature statistically significant?
-CS<-chisq.test(table(covdat$race, covdat$natchan)) # the contingency table is your input to the chisq.test() function
-CS$p.value 
-CS$residuals 
+This function provides you with a p-value. Based on this p-value, what is your answer to the research question?  
+
+### Influence of sample size {-}
+
+To highlight the influence of sample size on your statistical results, let's re-do the analysis above, this time with a larger sample size.  
+
+```{r,echo=TRUE,collapse=TRUE}
+# Use same starting point as above
+set.seed(2)
+
+# Franchise 1
+sample1 <- rnorm(n=500, mean=1, sd=.15)
+
+# Franchise 2
+sample2 <- rnorm(n=500, mean=1.1, sd=.15)
+
+hist(sample1,
+     breaks=seq(0,10,by=.025),
+     col=adjustcolor("dark orange",alpha.f=.3),
+     border=NA,
+     main=NULL,xlab="French fries (kg)",xlim=c(0,2))
+
+hist(sample2,
+     breaks=seq(0,10,by=.025),
+     col=adjustcolor("darkblue",alpha.f=.3),
+     border=NA,
+     main=NULL,xlab="Price",xlim=c(0,2),
+     add=TRUE)
+```
+
+```{r,echo=TRUE}
+t.test(sample1, 
+       sample2)
+```       
+
+The p-value is now *much* lower! Note that we drew our samples from the *exact same* underlying distributions. But, since we drew many more samples in this second round, the *t-test* was better able to assess the significance of the differences we were seeing between the two sample sets. 
+
+
+
+### Comparing more than two groups {-} 
+
+When you are comparing numerical data in more than two categories, you need to use an **ANOVA**.
+
+Let's say you go out and sample a *third* fast food franchise:
+
+```{r,echo=TRUE}
+# Set starting point for random number generator
+set.seed(2)
+
+# Franchise 1
+sample1 <- rnorm(n=50, mean=1, sd=.15)
+
+# Franchise 2
+sample2 <- rnorm(n=50, mean=1.1, sd=.15)
+
+# Franchise 3
+sample3 <- rnorm(n=50, mean=0.9, sd=.15)
+
+hist(sample1,
+     breaks=seq(0,10,by=.025),
+     col=adjustcolor("dark orange",alpha.f=.3),
+     border=NA,
+     main=NULL,xlab="French fries (kg)",xlim=c(0,2))
+
+hist(sample2,
+     breaks=seq(0,10,by=.025),
+     col=adjustcolor("darkblue",alpha.f=.3),
+     border=NA,
+     main=NULL,xlab="Price",xlim=c(0,2),
+     add=TRUE)
+
+hist(sample3,
+     breaks=seq(0,10,by=.025),
+     col=adjustcolor("forestgreen",alpha.f=.3),
+     border=NA,
+     main=NULL,xlab="Price",xlim=c(0,2),
+     add=TRUE)
+```
+
+What a mess! This might be easier to read if we use a bar graph instead of layered histograms:  
+
+```{r}
+means <- c(mean(sample1),mean(sample2),mean(sample3))
+barplot(means,
+        names.arg=c("Franchise 1","Franchise 2","Franchise 3"),
+        ylim=c(0,1.2),col="darkblue")
+```
+
+Bar graphs are easier to read, but they do throw about a lot of information. By reducing your samples to a single number (i.e., the sample mean), you are missing out on a lot of interesting detail. Which means that, even though these bars do seem to be of different heights, we better use a statistical test to be sure that these differences are significant. 
+
+When we are comparing more than two groups, our question becomes, "Are *any* of these groups different from one another?" 
+
+In `R`, the function for conducting an ANOVA test is `aov()`: 
+
+```{r,eval=TRUE,collapse=TRUE}
+# First combine samples into a single dataframe
+df1 <- data.frame(franchise=1, fries=sample1)
+df2 <- data.frame(franchise=2, fries=sample2)
+df3 <- data.frame(franchise=3, fries=sample3)
+df_all <- rbind(df1,df2,df3)
+
+# Make sure `franchise` is treated as a categorical variable, i.e., a factor
+my_ANOVA <- aov(fries ~ as.factor(franchise), data=df_all)
+summary(my_ANOVA)
+```
+
+Our p-value is low, which means there are differences between groups. But the ANOVA doesn't actually tell us which of the pairwise (i.e., two-way) differences are significant. For that we need a follow up test: a *Tukey's HSD test*.
+
+```{r,eval=TRUE,echo=TRUE,collapse=TRUE}
+TukeyHSD(my_ANOVA)
+```
+
+According to this result, the only sample sets that are statistically different from each other are samples 2 and 3. This makes sense, given our low sample sizes and the innately small differences among the three underlying distributions.  
+
+
+### Comparing categorical counts {-}
+
+Your colleagues have taken an interest in your fast food analyses. One of them wishes to work on an extension study regarding rates of Ketchip packet hand-outs. Is one franchise more likely to give you free Ketchup with your fries than another?  
+
+You go back to your notes and realize that you do indeed have data on ketchip handouts! 
+
+```{r,echo=TRUE,collapse=TRUE}
+# (Well, let's fake the data here:)
+
+# Setup sample 1
+# Create a list of random values between 0 and 1, the same length as sample1
+set.seed(2)
+randoms <- runif(n=length(sample1),min=0,max=1)
+
+# Stage a `ketchup` vector, the same length as sample1, of all No's
+ketchup <- rep("No",times=length(sample1))
+
+# For all indices whose random number is above 0.55, change Ketchup status to Yes.
+ketchup[which(randoms > .55)] <- "Yes"
+
+df1 <- data.frame(franchise=1,ketchup)
+head(df1)
+
+# Repeat for sample 2
+set.seed(3)
+randoms <- runif(n=length(sample1),min=0,max=1)
+ketchup <- rep("No",times=length(sample2))
+ketchup[which(randoms > .65)] <- "Yes"
+df2 <- data.frame(franchise=2,ketchup)
+head(df2)
+
+# Combine into single dataframe
+study <- rbind(df1,df2)
+```
+
+So you pass these data to your colleague and she uses them to produce this summary table: 
+
+```{r,echo=TRUE,collapse=TRUE}
+table(study)
+```
+
+This 2x2 table is known as a *contingency table*. It summarizes the interaction of two *categorical* variables (Franchise ID and Ketchip status).  To test for differences in ketchup handout rates with these data, we would use a different test called a *Chi-squared test*. 
+
+```{r,eval=TRUE,echo=TRUE,collapse=TRUE}
+# Use the contingency table as input
+cst <- chisq.test(table(study))
+
+# Check out results
+cst$p.value 
+cst$residuals 
 ```
 
 How to interpret: 
 
-* Because the p-value of our test is less the 0.05, we conclude that there is a relationship between race and change in nature exposure during the pandemic.
-* positive residual = positive association: being non white is associated with having less nature
-* negative residual = negative association: being non-white lowers changes of haveing more or the same nature.
+* Sincee the p-value of our test is less the 0.05, we conclude that there is indeed a difference in the ketchup handout rates between these two franchies.  
 
-Other helpful outputs of the chi2 test include: 
+* The *positive residuals* indicate positive association: Franchise 1 is less likely to give ketchup.  
 
-* CS$expected # If there was no relationship, what counts would we expect?
-* CS$observed # our actual counts
+* The *negative residuals* indicate negative association: Franchise 2 is more likely to give out ketchup.  
 
 
-## Correlation tests
+## Tests of association {-}
 
+Another colleague of yours wants to conduct a separate follow-up study: she suspects there might be a relationship between *how many fries* are included in an order and the *perceived saltiness* of the order. Her hypothesis is that each order is given the same volume of salt. When that salt is distributed across *more* fries, the perceived saltiness of each individual fry declines. 
 
-If we want to visualize a relationship between two continuous variables, we typically plot them with a scatter-plot, and we test for a statistical relationship using linear regression. These gives us a visual and test for an association/correlation between the two variables, but can not establish that one variable is causing a change in the other. 
+You go back to your notes and realize that you do indeed have data on perceived saltiness! 
 
-For example: 
+```{r,echo=TRUE}
+# (Well, let's fake the data here:)
 
-
-
-```{r,eval=FALSE}
-# there are lots of overlapping points. Let's use a rgb scale 
-# to make dots partially transparent so that the pattern easier to see:
-plot(covdat$PHQ8~covdat$GAD7, pch=16, 
-     col=rgb(red = 0, green = .5, blue = 1, alpha = 0.25), 
-     xlab="Anxiety (GAD7)", ylab="Depression (PHQ8)")
-
-# We can use a linear regression model to try to measure the relationship 
-# between two continuous variables:
-mod<-lm(covdat$PHQ8~covdat$GAD7)
-summary(mod)
-
-# We can add a line to our plot representing the linear regression
-abline(mod, col="red2", lwd=3)
+variability <- rnorm(n=length(sample1),mean=0,sd=.2)
+saltiness <- -0.25*sample1 + .6 + variability
 ```
 
-Let's interpret the outcome of the linear regression:
+You pass your colleague the `saltiness` data associated with each sample you collected from Franchise 1. Saltiness is scored from 0 to 1.  
 
-* coefficient = 0.9 : the slope of the line. For every 1 point increase in anxiety, we would expect a 0.9 point increase in depression.
-* r2 = .68 : 68% of the variation in depression is captured by/explained by variation in anxiety 
-* p-value < 2.2e-16 : This is the probability that there is no relationship (a slope of zero) between anxiety and depression in reality given the pattern we see in our sample. Less than 0.05 - a statistically significant relationship. 
+Let's check out this data. Since we are now exploring the relationship between two numerical variables, we visualize them with a scatter plot. 
 
-We would be remiss to conclude based on this graph that being anxious makes people depressed. Instead, we conclude that people who have higher anxiety scores also tend to have higher depression scores. In other words, depression and anxiety are POSITIVELY CORRELATED. 
-
-
-
-Similarly if we plotted nature exposure on the x-axis, and found a negative correlation, we could not really conclude that spending little time in nature was causing people to be depressed, or the spending lots of time in nature was alleviating depression. CORRELATION DOES NOT EQUAL CAUSATION. 
-
-Lots of things might explain a persons level of depression, mental health history and having lost their job for example. With an observational data-set, sometimes the best that we can do is to try and carefully think of all of the other variables at play, and account for them, and to test specific hypotheses where a causal relationship is backed up by theory and previous research rather than searching our data for any patterns that emerge (this is called data-mining).  
-
-```{r,eval=FALSE}
-SimpleReg<-lm(covdat$PHQ8~covdat$covfreqnum)
-summary(SimpleReg)
-
-depmod<-lm(data=covdat, PHQ8 ~ covfreqnum + cov + famcov + emp + 
-             pc + mhh + week + gender + kids)
-summary(depmod)
+```{r,echo=TRUE}
+plot(saltiness ~ sample1,
+     ylab="French fries (kg) per order",
+     xlab="Hourly sales",
+     xlim=c(0.7,1.3),ylim=c(0,1))
 ```
 
-Interpreting Regression Summaries: 
+This plot, with French fries on the x-axis, visually implies that saltiness is a function of French Fries weight. Therefore, saltiness is treated as the dependent variable.   
 
-* Coefficient: Adding other predictors into our model reduces the effect size of the nature frequency variable because some of the variation in depression that was originally captured by variation in nature frequency is now attributed to other things that also explain differences in depression scores across our sample.
-* Holding all the other factors in our model constant, a shift up 1 point in nature frequencey score is associated with .27 decrease in mean depression scores.
-* r2: On it's own, nature frequency explains very little of the variation in depression. All of our predictors together explain 22 percent of the variation in Depression scores
-* p-value: Because we have a p-value <0.05, our data supports the hypothesis that spending time in nature more frequently is associated with lower depression. 
+Is there a significant relationship between these two variables? We can test that using a **linear regression**, also known as a *linear model*. In `R`, the function for computing a linear model is `lm()`.
+
+```{r,echo=TRUE,collapse=TRUE}
+salt_lm <- lm(saltiness ~ sample1)
+```
+
+*Huzzah!*  First, let's add this trend line to our plot: 
+
+```{r,echo=TRUE}
+plot(saltiness ~ sample1,
+     xlab="French fries (kg) per order",
+     ylab="Perceived saltiness",
+     xlim=c(0.7,1.3),ylim=c(0,1))
+abline(salt_lm,col="blue",lwd=2)
+```
+
+Let's interpret the outcome of this linear regression:
+
+```{r,echo=TRUE}
+summary(salt_lm)
+```
+
+* The `Coefficient` `Estimate` of `sample` is the slope of the trendline. If that estimate were 0.00, the linear model is indicating that there is no relationship between the dependent and independent variables.  
+
+* `Adjusted R-squared` indicates the percent of the data's variation "explained" by the trendline. Essentially, this metric compares the average distance of each data point from the trend line to their average distance from a flat line, with a slope of 0.00. 
+
+* `p-value` indicates the probability that there is no relationship (i.e., a slope of 0.00). 
 
 
+## Reporting results {-}  
+
+When you report the results of your statistical tests within your reports and figure captions, be sure to include the following information: 
+
+**t-tests:**  
+- Type of test used (i.e., t-test)  
+- Sample sizes of each category  
+- p-value  
+
+**ANOVAs:** 
+- Type of test used (i.e., ANOVA)  
+- Sample sizes of each category  
+- df (i.e., degrees of freedom)  
+- p-value  
+
+**Chi-square tests:**  
+- Type of test used (i.e., Chi-square)  
+- Sample sizes of each category  
+- df (i.e., degrees of freedom)   
+- p-value  
+
+**Linear regressions:**  
+- Type of test used (i.e., linear regression)  
+- Sample size   
+- p-value  
+- R-squared coefficient  
+
+For tips on writing these results statements, see the [Module on Writing Style for Reports](#style).
 
 
+#### Review exercise {-}
+
+To review these concepts, we will use the same dataset from the previous module: *AirBNB* hosts in Amsterdam.  
+
+```{r,echo=TRUE,collapse=TRUE}
+df <- read.csv("./data/airbnb-amsterdam.csv")
+```
+
+##### Task 1 {-} 
+Two neighborhoods in Amsterdam, "Bos en Lommer" and "Centrum-Oost", are among the most popular *AirBnB* destinations in the city. But are these two neighbourhoods equally affordable, or does one neighborhood tend to be more expensive?  
+
+**(a)** First, produce a single histogram with the price distributions of listings from these two neighborhoods superimposed upon one another.  
+
+```{r,echo=TRUE,collapse=TRUE}
+library(dplyr)
+hood1 <- df %>% filter(neighbourhood == "Bos en Lommer")
+hood2 <- df %>% filter(neighbourhood == "Centrum-Oost")
+
+hist(hood1$price,
+     breaks=seq(0,3000,by=10),
+     col=adjustcolor("dark orange",alpha.f=.3),
+     border=NA,probability=TRUE,
+     main=NULL,xlab="Price",xlim=c(0,1000))
+hist(hood2$price,
+     breaks=seq(0,3000,by=10),
+     col=adjustcolor("darkblue",alpha.f=.3),
+     border=NA,probability=TRUE,
+     main=NULL,xlab="Price",xlim=c(0,1000),
+     add=TRUE)
+```
+
+**(b)** Then conduct a statistical test to answer the task's question.  
+
+```{r,echo=TRUE}
+t.test(hood1$price,hood2$price)
+```
+
+**(c)** Now properly interpret the test, and write a complete results statement.  
 
 
+##### Task 2 {-} 
+Which neighborhood is more likely to offer a `Private room` instead of an `Entire home/apt`?
 
 
+**(a)** First, produce a single bar graph with the number of room types offered in each neighborhood. 
 
+
+**(b)** Then conduct a statistical test to answer the task's question.  
+
+```{r,echo=TRUE,collapse=TRUE}
+df1 <-data.frame(hood=hood1$neighbourhood,room=hood1$room_type)
+df2 <-data.frame(hood=hood2$neighbourhood,room=hood2$room_type)
+df_all <- rbind(df1,df2)
+df_all <- df_all %>% filter(room %in% c("Private room","Entire home/apt"))
+table(df_all)
+cst <- chisq.test(table(df_all))
+cst$p.value 
+cst$residuals 
+```
+
+**(c)** Now properly interpret the test, and write a complete results statement.  
+
+
+##### Task 3 {-} 
+Do listings with more reviews tend to be more expensive? For this analysis, focus on listings priced less than $500 and less than 400 reviews.
+
+**(a)** First, produce a single plot that properly visualizes the data. 
+
+```{r,echo=TRUE,collapse=TRUE}
+dfsub <- df[df$price <= 500,]
+dfsub <- dfsub[dfsub$number_of_reviews <= 400,]
+plot(price ~ number_of_reviews,
+     data=dfsub,
+     cex=.4,pch=16,
+     col=adjustcolor("darkblue",alpha.f=.3),
+     ylim=c(0,500))
+```
+
+**(b)** Then conduct a statistical test to answer the task's question.  
+
+```{r,echo=TRUE,collapse=TRUE}
+price_lm <- lm(dfsub$price ~ dfsub$number_of_reviews)
+```
+
+**(c)** Add this trendline to your plot.  
+
+```{r,echo=TRUE,collapse=TRUE}
+plot(price ~ number_of_reviews,
+     data=dfsub,
+     cex=.4,pch=16,
+     col=adjustcolor("darkblue",alpha.f=.3),
+     ylim=c(0,500))
+abline(price_lm,col=adjustcolor("dark orange",alpha.f=.6),lwd=4)
+```
+
+**(d)** Now properly interpret the test, and write a complete results statement.  
+
+```{r,echo=TRUE}
+summary(price_lm)
+```
 
