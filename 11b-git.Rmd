@@ -236,22 +236,61 @@ You did it! Go to https://github.com/<YOUR USERNAME>/testrepo and open the `READ
 
 ## A bit more practice  {-}
 
-(Under construction)
+### Creating another repo  {-}
+
+Let's face it: `testrepo` is a pretty lame name for a repository. How about we make a repo that's actually real and useful? We'll make one for storing all the code we're writing in this course.
+
+Go to https://github.com/<YOUR USERNAME>
 
 
+Click the "plus" icon in the upper right and then click "New repository" (or go directly [here](https://github.com/new)).
 
-## Branching  {-}
+Now, for "Repository name", write "datascience".
 
-(Under construction)
+Fill in the "Description" field with the words "Code I wrote during my intro to data science course". 
+
+Set the repo as "Public" (unless you plan on putting any secrets here!), and then click the "Add a README file" checkbox. Finally, click "Create repository".
 
 
+Cool! You've now created your first git repository. It's public url is https://github.com/<YOUR USERNAME>/datascience. Let's clone it:
 
-## Pull requests  {-}
 
-(Under construction)
+```
+git clone https://github.com/<USERNAME>/datascience
+```
 
+Now, you've got a folder on your machine named `datascience`. You can confirm this by writing `ls` in the terminal. 
+See `datascience` there? Great!
+
+Now, let's move _everything_ you have written for this course so far into `datascience`. Do this in an organized fashion. Remember to not put anything secret there.
+
+### The `.gitignore`  {-}
+
+If you `cd` into `datascience`, and then type `git status`, you might note that it's a bit "busy". That is, there are a lot of documents there! You're going to want to (i) add, (ii) commit, and (iii) push these documents, but perhaps there are some kinds of documents you _don't_ want to push.
+
+For example, maybe you want to push R code files (`.R`), but not data files (`.csv`). In this case, you can explicitly tell git that you don't want it to pay any attention to `.csv` files by creating a `.gitignore` file. A `.gitignore` file is simply a text file in a git repository that indicates to git that the contents of that file should be ignored.
+
+Let's do it. First, create an empty `.gitignore` file:
+
+```
+touch .gitignore
+```
+
+Then, open the `.gitignore` file in RStudio.
+
+Finally, add the following line to it:
+
+```
+*.csv
+```
+
+The star is a "wildcard", meaning that it stands in place of anything (such as `ducks.csv` or `data.csv` or `xyz.csv`). 
+
+With this in your repo, git now knows to ignore anything that ends with the extension `.csv`.
+
+Good? Great. Push everything to your repo. Now you can share your code with others, and your future self.
 
 
 ## Advanced git  {-}
 
-(Under construction)
+Branching, pull requests, blaming, and more - in a break-out session.
