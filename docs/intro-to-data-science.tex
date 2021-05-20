@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-05-19}
+\date{2021-05-20}
 
 \begin{document}
 \maketitle
@@ -2033,8 +2033,8 @@ Use the \texttt{data.frame()} function to create a table (i.e., a dataframe obje
 
 \emph{NOTE: UNDER CONSTRUCTION!}
 
-\hypertarget{calling-functions}{%
-\chapter{Calling functions}\label{calling-functions}}
+\hypertarget{calling_functions}{%
+\chapter{Calling functions}\label{calling_functions}}
 
 \hypertarget{learning-goals-4}{%
 \subsubsection*{Learning goals}\label{learning-goals-4}}
@@ -2934,7 +2934,7 @@ Most functions from external packages can be used by simply typing the name of t
 \end{Shaded}
 
 \begin{verbatim}
-[1] ";yv0r@ {m'5<Xt!J]>q*H`o="
+[1] "<w_D.Pu9d`'vaAWpY8UjE|r5"
 \end{verbatim}
 
 Sometimes, however, \texttt{R} can get confused if a new package contains a function that has the same name of some function from a different package. If \texttt{R} seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax \texttt{\textless{}package\_name\textgreater{}::\textless{}function\_name\textgreater{}}. For example, the following command is a fine alternative to the command above:
@@ -2946,7 +2946,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \end{Shaded}
 
 \begin{verbatim}
-[1] "}rWoti9'Q>0.`2@c)bTag&#6"
+[1] "bFkxt(UN\" T6_pqR~ED$Ph<2"
 \end{verbatim}
 
 Note that this was done in the example above using the \texttt{devtools} package.
@@ -4105,12 +4105,53 @@ Make sure you add `.pdf' to the end of your filename, and try not to run the \te
 
 \emph{NOTE: Under construction!}
 
-\hypertarget{exploratory-data-analysis}{%
-\chapter{Exploratory Data Analysis}\label{exploratory-data-analysis}}
+\hypertarget{exploring-data}{%
+\chapter{Exploring data}\label{exploring-data}}
+
+\hypertarget{learning-goals-11}{%
+\subsubsection*{Learning goals}\label{learning-goals-11}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  How to go about exploring a dataset and understanding the distribution of your data\\
+\item
+  How to produce beautiful histograms and violin plots
+\end{itemize}
+
+~
+
+Once you get your dataset into \texttt{R}, the first thing you will probably want to do is explore. Until you understand what your data look like, it is difficult to know how to analyze it. \textbf{Exploratory data analysis} is the process of becoming familiar with your data - its sample size, its distribution, its central tendencies, and its variation. This module shows you how.
+
+To practice exploring datasets, we will use one of \emph{AirBnB} listings in Amsterdam (\href{http://insideairbnb.com/get-the-data.html}{go here} and download \texttt{listings.csv.gz} under the Amsterdam section).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/airbnb-amsterdam.csv"}\NormalTok{)}
+\CommentTok{# Checkout what the data look like}
+\CommentTok{# use t() to make it easier to read (t = transpose)}
+\KeywordTok{t}\NormalTok{(}\KeywordTok{head}\NormalTok{(df,}\DecValTok{1}\NormalTok{))}
+                               \DecValTok{1}                                         
+\NormalTok{id                             }\StringTok{"2818"}                                    
+\NormalTok{name                           }\StringTok{"Quiet Garden View Room & Super Fast WiFi"}
+\NormalTok{host_id                        }\StringTok{"3159"}                                    
+\NormalTok{host_name                      }\StringTok{"Daniel"}                                  
+\NormalTok{neighbourhood_group            }\OtherTok{NA}                                        
+\NormalTok{neighbourhood                  }\StringTok{"Oostelijk Havengebied - Indische Buurt"}  
+\NormalTok{latitude                       }\StringTok{"52.36435"}                                
+\NormalTok{longitude                      }\StringTok{"4.94358"}                                 
+\NormalTok{room_type                      }\StringTok{"Private room"}                            
+\NormalTok{price                          }\StringTok{"59"}                                      
+\NormalTok{minimum_nights                 }\StringTok{"3"}                                       
+\NormalTok{number_of_reviews              }\StringTok{"278"}                                     
+\NormalTok{last_review                    }\StringTok{"2020-02-14"}                              
+\NormalTok{reviews_per_month              }\StringTok{"1.9"}                                     
+\NormalTok{calculated_host_listings_count }\StringTok{"1"}                                       
+\NormalTok{availability_}\DecValTok{365}               \StringTok{"152"}                                     
+
+\CommentTok{# How much data do we have?}
+\KeywordTok{nrow}\NormalTok{(df)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{17825}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4118,26 +4159,272 @@ Make sure you add `.pdf' to the end of your filename, and try not to run the \te
 \section*{Exploring distributions}\label{exploring-distributions}}
 \addcontentsline{toc}{section}{Exploring distributions}
 
+One of the first steps in your data exploration will be to visualize your dataset. There are two main plot types for doing so: \textbf{histograms} and \textbf{violin plots}.
+
 \hypertarget{histograms}{%
 \subsection*{Histograms}\label{histograms}}
 \addcontentsline{toc}{subsection}{Histograms}
+
+A histogram sorts your data into bins and counts the number of data points in each bin.
+
+Make histograms in \texttt{R} using the \texttt{hist()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(df}\OperatorTok{$}\NormalTok{availability_}\DecValTok{365}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-178-1.pdf}
+
+This is a histogram of the number of nights the listings are available for reservation. In a quick glance, you can see that most listings are available for only a few nights, while a small portion have a wide variety of availabilities.
+
+Think about how much more helpul this image is than a simple sample mean. To illustrate that value, let's plot the mean onto this histogram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(df}\OperatorTok{$}\NormalTok{availability_}\DecValTok{365}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=} \KeywordTok{mean}\NormalTok{(df}\OperatorTok{$}\NormalTok{availability_}\DecValTok{365}\NormalTok{),}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-179-1.pdf}
+
+The average value of this dataset is nowhere near the most common values (1 - 20 nights), nor does it capture the fact that there are some listings available for the entire year. \textbf{Punchline:} a lot of rich insight is lost when taking an average, which is why a histogram is more useful for displaying distributions than bar graphs (which only show the mean).
+
+\hypertarget{prettifying-histograms}{%
+\subsubsection*{Prettifying histograms}\label{prettifying-histograms}}
+\addcontentsline{toc}{subsubsection}{Prettifying histograms}
+
+Let's take a look at another variable: the price of lodging per night.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(df}\OperatorTok{$}\NormalTok{price)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-180-1.pdf}
+
+Not a very pretty plot. Since the range in prices is so wide, the default parameters for the \texttt{hist()} will need some tweaking.
+
+To make this histogram prettier, first let's manually set the number of ``breaks'', i.e., the cutoff values for each bin along the x-axis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculate breaks -- make each bin one day}
+\NormalTok{breaks <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\KeywordTok{max}\NormalTok{(df}\OperatorTok{$}\NormalTok{price),}\DataTypeTok{by=}\DecValTok{5}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(df}\OperatorTok{$}\NormalTok{price,}
+     \DataTypeTok{breaks=}\NormalTok{breaks)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-181-1.pdf}
+
+That's better. Let's zoom in on the most common values using \texttt{xlim()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(df}\OperatorTok{$}\NormalTok{price,}
+     \DataTypeTok{breaks=}\NormalTok{breaks,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{500}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-182-1.pdf}
+
+Finally, let's improve the labels and colors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{4.2}\NormalTok{,}\FloatTok{4.2}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(df}\OperatorTok{$}\NormalTok{price,}
+     \DataTypeTok{breaks=}\NormalTok{breaks,}
+     \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{500}\NormalTok{),}
+     \DataTypeTok{xlab=}\StringTok{"Listing price ($)"}\NormalTok{,}
+     \DataTypeTok{main=}\OtherTok{NULL}\NormalTok{,}
+     \DataTypeTok{col=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"darkblue"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{6}\NormalTok{),}
+     \DataTypeTok{border=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"white"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{1}\NormalTok{),}
+\NormalTok{     )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-183-1.pdf}
+
+Interesting spikes in the histogram. Why do you think those are occurring? That is a really interesting feature of the dataset that you might never have discovered if you had not plotted your histogram.
+
+\hypertarget{histograms-in-ggplot2}{%
+\subsubsection*{\texorpdfstring{Histograms in \texttt{ggplot2}}{Histograms in ggplot2}}\label{histograms-in-ggplot2}}
+\addcontentsline{toc}{subsubsection}{Histograms in \texttt{ggplot2}}
+
+To produce a histogram of the same data in \texttt{ggplot2}, use the following code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{price)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{500}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth=}\DecValTok{5}\NormalTok{,}
+                 \DataTypeTok{fill=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"darkblue"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{6}\NormalTok{),}
+                 \DataTypeTok{color=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"white"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{1}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-184-1.pdf}
+
+\texttt{ggplot2} allows you to add some other nice features to histograms, such as a smoothed ``density'' line:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{price)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{500}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth=}\DecValTok{5}\NormalTok{,}
+                 \DataTypeTok{fill=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"darkblue"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{6}\NormalTok{),}
+                 \DataTypeTok{color=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"white"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{1}\NormalTok{),}
+                 \KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{..density..)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{alpha=}\NormalTok{.}\DecValTok{1}\NormalTok{,}\DataTypeTok{lwd=}\FloatTok{1.5}\NormalTok{,}\DataTypeTok{col=}\KeywordTok{adjustcolor}\NormalTok{(}\StringTok{"firebrick"}\NormalTok{,}\DataTypeTok{alpha.f=}\NormalTok{.}\DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-185-1.pdf}
 
 \hypertarget{violin-plots}{%
 \subsection*{Violin Plots}\label{violin-plots}}
 \addcontentsline{toc}{subsection}{Violin Plots}
 
-\hypertarget{tables}{%
-\section{Tables \{-\}}\label{tables}}
+The second most valuable plot for exploring distributions is the \textbf{violin plot}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{room_type,}
+               \DataTypeTok{y=}\NormalTok{price)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-186-1.pdf}
+
+Violin plots are like \emph{vertical histograms}. Their width indicates where most of your data are clustered, and the shapes also take the shape of a violin -- hence the name. Their height shows you your data's range. Think of a violin plot as the beautiful child of bar graphs and histograms: the best of both worlds.
+
+A major advantage of violin plots is that they allow you two compare multiple distributions with ease. Let's adjust our \texttt{ylim()} to zoom in:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(df, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{room_type,}
+           \DataTypeTok{y=}\NormalTok{price)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{500}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-187-1.pdf}
+
+If your research question were, ``Which type of listing tends to be most affordable?'', think about how easy that is to answer using a plot like this!
 
 \hypertarget{descriptive-statistics}{%
 \section*{Descriptive statistics}\label{descriptive-statistics}}
 \addcontentsline{toc}{section}{Descriptive statistics}
 
+In the \protect\hyperlink{calling_function}{Module on Calling Functions}, you have already seen some functions for summarizing the trends and variation in your data:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{mean()}
+\item
+  \texttt{median()}
+\item
+  \texttt{sd()} (standard deviation)
+\item
+  \texttt{summary()} provides descriptive statistics for each column in a dataframe.
+\end{itemize}
+
+Here are a few more:
+
+\textbf{\texttt{var()}} provides the sample variance, which is related to standard deviation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var}\NormalTok{(df}\OperatorTok{$}\NormalTok{price)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 23766.1
+\end{verbatim}
+
+\textbf{\texttt{MeanCI()}}, from the package \texttt{DescTools}, provides 95\% confidence intervals for the most common data distributions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"DescTools"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(DescTools)}
+\KeywordTok{MeanCI}\NormalTok{(df}\OperatorTok{$}\NormalTok{price)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    mean   lwr.ci   upr.ci 
+154.4959 152.2326 156.7592 
+\end{verbatim}
+
+And here are some other useful functions that need not be introduced in detail now. You will encounter them soon.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{table()}} Counts the number of instances of each unique value in a vector.
+\item
+  \textbf{\texttt{quantile()}} Provides the quantiles of a dataset.
+\item
+  \textbf{\texttt{ecdf()}} Plots the empirical cumulative distribution function for a dataset.
+\end{itemize}
+
+\hypertarget{review-exercise-3}{%
+\subsubsection*{Review exercise}\label{review-exercise-3}}
+\addcontentsline{toc}{subsubsection}{Review exercise}
+
+For this exercise, use this dataset on the sale prices of homes in the United States. You can download that dataset directly into \texttt{R} using the following code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\NormalTok{df <-}\StringTok{ }\NormalTok{readr}\OperatorTok{::}\KeywordTok{read_csv}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/rashida048/Datasets/master/home_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{task-1}{%
+\paragraph{Task 1}\label{task-1}}
+\addcontentsline{toc}{paragraph}{Task 1}
+
+Create a beautiful histogram of home prices included in this dataset. Only show houses that sold for less than \$2 million USD.
+
+\hypertarget{task-2}{%
+\paragraph{Task 2}\label{task-2}}
+\addcontentsline{toc}{paragraph}{Task 2}
+
+Create a violin plot that shows the distribution of sale prices for homes with different numbers of bedrooms.
+
+\hypertarget{task-3}{%
+\paragraph{Task 3}\label{task-3}}
+\addcontentsline{toc}{paragraph}{Task 3}
+
+This task is a bit of review, and a bit of a preview to the next module.
+
+First, create a scatter plot that depicts the relationship between the square footage of a home's living space and its sale price. Do the same for the square footage of the home's lot. Which square footage appears to be a better predictor of sale price?
+
 \hypertarget{significance-statistics}{%
 \chapter{Significance statistics}\label{significance-statistics}}
 
-\hypertarget{learning-goals-11}{%
-\subsubsection*{Learning goals}\label{learning-goals-11}}
+\hypertarget{learning-goals-12}{%
+\subsubsection*{Learning goals}\label{learning-goals-12}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -4152,21 +4439,21 @@ Make sure you add `.pdf' to the end of your filename, and try not to run the \te
   How to interpret the results of those tests
 \end{itemize}
 
-~
-
 \hypertarget{p-values}{%
 \section*{p-values}\label{p-values}}
 \addcontentsline{toc}{section}{p-values}
 
-We won't go into statistical theory here. But every statistical test, at the basic level, is asking whether the patterns we observe in our data are actually \emph{meaningful.} Are those \emph{observed} patterns reflecting \emph{real} patterns, or is it possible to observe those patterns when the underlying process is purely random chance?
+We won't go into statistical theory here. But every statistical test, at the basic level, is asking whether the patterns we observe in our data are actually \emph{meaningful.} Are those \emph{perceived} patterns reflecting \emph{real} patterns, or is it possible to perceive those patterns when the underlying process is purely random chance?
 
-That is what a \textbf{p-value} tells you: the probability that the pattern you see in your data is actually the product of random, meaningless chance. The lower the p-value, the less likely it is that the pattern you are seeing is a product of chance, and the higher the chances that the pattern you are seeing is real.
+That is what a \textbf{p-value} tells you: the probability that the pattern you see in your data is actually the product of random, meaningless chance. The lower the p-value, the less likely it is that the pattern is a product of chance, and the higher the chances that the pattern is real.
 
 Researchers tend to use a p-value of 0.05 as the threshold for a meaningful, or \textbf{``significant''} pattern. When a statistical test returns a p-value of 0.05 or less, we consider the pattern to be statistically significant. A p-value of 0.05 means that there is a 5\% chance (one in twenty) that the pattern in your data is the product of chance alone.
 
-Please note that there is nothing magical about this number -- a p-value of 0.049 is practically the sameas 0.051, but only the former would be considered significant. The 0.05 threshold is just a simple heuristic -- a way of simplifying your statistical results into a binary concept: significant or not.
+Please note that there is nothing magical about this number -- a p-value of 0.049 is practically the same as 0.051, but only the former would be considered significant. The 0.05 threshold is just a simple heuristic -- a way of simplifying your statistical results into a binary concept: significant or not.
 
-Finally, please also note that statistical significance is a tricky thing because it is influence by \emph{both} the patterns in your data as well as by the \emph{amount} of data you are working with. A larger sample size is going to allow you to identify more nuanced patterns in your data, and those patterns will achieve a lower p-value thanks simply to the number of samples you have. Conversely, a pattern driven by meaningful real-world processes can be obscured by low sample sizes. If your sample size is too small, you may not be able to produce significant p-values even though the pattern is real.
+Finally, please also note that statistical significance is a tricky thing because it is influenced by \emph{both} the patterns in your data as well as by the \emph{amount} of data you are working with. A larger sample size is going to allow you to identify more nuanced patterns in your data, and those patterns will achieve a lower p-value thanks simply to the number of samples you have.
+
+Conversely, a pattern driven by meaningful real-world processes can be obscured by low sample sizes. If your sample size is too small, you may not be able to produce significant p-values even though the pattern is real.
 
 \hypertarget{tests-for-different-data-types}{%
 \section*{Tests for different data types}\label{tests-for-different-data-types}}
@@ -4174,9 +4461,9 @@ Finally, please also note that statistical significance is a tricky thing becaus
 
 Most data come in two general forms:
 
-\textbf{1. Categorical data} represent categories. For example, franchise ID above. As another example, let \texttt{pet} be a variable representing categorical data with a few discrete levels: dog, cat, etc. The types, or \emph{levels}, of categorical data are also referred to as \emph{treatments}. In \texttt{R}, categorical variables are usually referred to as \emph{factors}.
+\textbf{1. Categorical data} represent categories. For example, we could have a variable named \texttt{pet} with a few discrete levels: ``dog'', ``cat'', etc. The types, or \emph{levels}, of categorical data are also referred to as \emph{treatments}. In \texttt{R}, categorical variables are usually referred to as \emph{factors}.
 
-\textbf{2. Continuous data} represent numerical values. For example, the weight of French fries above. As another example, let \texttt{height} be a variable representing numerical values for people's height. Note that, for the time being, we will consider integers and count data to fall within this category.
+\textbf{2. Continuous data} represent numerical values. For example, let \texttt{height} be a variable representing numerical values for people's height. Note that, for the time being, we will consider integers and count data to fall within this category.
 
 Whenever you plot data or ask a statistical question, you are combining data types in a specific way: a bar graph, for example, compares two \emph{categories} (i.e., the individual bars) of \emph{numerical} data (i.e., bar height). And, by grouping the data by category, you are implying that the category to which a data point belongs has some impact on its value. In other words, the value is \textbf{dependent} upon the category. Conversely, the value is assumed to have no impact on category. Category, therefore is the \textbf{independent} variable.
 
@@ -4204,7 +4491,7 @@ Association / Relationship & Numerical & Numerical & Regression & Scatterplot\\
 
 To practice basic statistics, we will create our own fake data.
 
-\textbf{Scenario:} You are the lead author on a landmark study that investigates the portion sizes in fast food restaurants. You place 50 orders of large fries from one franchise and 50 orders from another.
+\textbf{Scenario:} You are the lead author on a landmark study that investigates the portion sizes in fast food restaurants. You place 50 orders of large fries from one franchise and 50 orders from another, then weigh each order.
 
 We can create a fake dataset by drawing numbers from random distributions:
 
@@ -4221,7 +4508,9 @@ We can create a fake dataset by drawing numbers from random distributions:
 \end{Highlighting}
 \end{Shaded}
 
-Let's pretend we don't know what the \emph{true} means of these two sample sets are. Let's pretend that all we have done is weighed and eaten a ton of french fries, and know we want to ask some research questions about our sample data.
+You can see that we have made these two datasets using slightly different distributions: the mean for Franchise 1 is 1.0 and the mean for Franchise 2 is 1.1. So we know the truth: that these two distributions are, in fact, slightly different. The question is whether we can \emph{conclude} that they are different given the relatively small sample sizes (n=50) we are working with.
+
+So for now, let's pretend we don't know what the \emph{true} means of these two sample sets are. Let's pretend that all we have done is weighed and eaten a ton of french fries, and now we want to ask some research questions about our sample data.
 
 First, we want to know if there a difference in the amount of food you get from these two franchises? Do the two franchises give you the same amount of food (by weight)? This is a \textbf{comparison question}. We are asking: based on our samples, can we conclude that two things (Franchise 1 and Franchise 2) are meaningfully different?
 
@@ -4244,7 +4533,7 @@ First, we want to know if there a difference in the amount of food you get from 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-179-1.pdf}
+\includegraphics{figures/unnamed-chunk-194-1.pdf}
 
 Comparison tests ask whether two distributions are different. It is often easier to gauge that difference when you superimpose one distribution on top of another (we do this by adding \texttt{add=TRUE} as an input in the second histogram).
 
@@ -4265,14 +4554,15 @@ Comparison tests ask whether two distributions are different. It is often easier
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-180-1.pdf}
+\includegraphics{figures/unnamed-chunk-195-1.pdf}
 
 Okay, these two distributions certainly \emph{look} a bit different, but there is also a high degree of overlap. If we lumped these data together and randomly picked a value from the pile, it would be hard to predict which franchise the data point belongs to.
-To add to our uncertainty, maybe the pattern we are seeing here is just a vestige of our relatively low sample size? What if we sampled another 200 restaurants? Are we confident that we would find this same pattern?
+
+To add to our uncertainty, maybe the pattern we are seeing here is just a vestige of our relatively low sample size. What if we sampled another 200 restaurants? Are we confident that we would find this same pattern?
 
 Better do a statistical test.
 
-Since these data are normally distributed, the test to use in this scenario is the \textbf{t-test}.
+Since these data are \href{https://www.mathsisfun.com/data/standard-normal-distribution.html}{normally distributed}, the test to use in this scenario is the \textbf{t-test}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4329,7 +4619,7 @@ To highlight the influence of sample size on your statistical results, let's re-
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-182-1.pdf}
+\includegraphics{figures/unnamed-chunk-197-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4398,11 +4688,49 @@ Let's say you go out and sample a \emph{third} fast food franchise:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-184-1.pdf}
+\includegraphics{figures/unnamed-chunk-199-1.pdf}
 
-What a mess! This might be easier to read if we use a bar graph instead of layered histograms:
+What a mess! This might be easier to read if we use a \textbf{bar graph} instead of layered histograms. (We will add 95\% confidence intervals for each bar using the package \texttt{DescTools} -- be sure to install this package before running this code).
 
-\includegraphics{figures/unnamed-chunk-185-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"DescTools"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get vector of bar heights}
+\NormalTok{means <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{mean}\NormalTok{(sample1),}\KeywordTok{mean}\NormalTok{(sample2),}\KeywordTok{mean}\NormalTok{(sample3))}
+
+\CommentTok{# Get vector of 95% confidence intervals}
+\KeywordTok{library}\NormalTok{(DescTools)}
+\NormalTok{lower_ci <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{MeanCI}\NormalTok{(sample1)[}\DecValTok{2}\NormalTok{],}
+              \KeywordTok{MeanCI}\NormalTok{(sample2)[}\DecValTok{2}\NormalTok{],}
+              \KeywordTok{MeanCI}\NormalTok{(sample3)[}\DecValTok{2}\NormalTok{])}
+
+\NormalTok{upper_ci <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{MeanCI}\NormalTok{(sample1)[}\DecValTok{3}\NormalTok{],}
+              \KeywordTok{MeanCI}\NormalTok{(sample2)[}\DecValTok{3}\NormalTok{],}
+              \KeywordTok{MeanCI}\NormalTok{(sample3)[}\DecValTok{3}\NormalTok{])}
+
+\CommentTok{# Create dataframe}
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name=}\KeywordTok{paste}\NormalTok{(}\StringTok{"Franchise"}\NormalTok{,}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{),}
+\NormalTok{                   means,}
+\NormalTok{                   lower_ci,}
+\NormalTok{                   upper_ci)}
+
+\CommentTok{# Most basic error bar}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{ggplot}\NormalTok{(df) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_bar}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{name, }\DataTypeTok{y=}\NormalTok{means), }\DataTypeTok{stat=}\StringTok{"identity"}\NormalTok{, }\DataTypeTok{fill=}\StringTok{"grey50"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.7}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_errorbar}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{name, }\DataTypeTok{ymin=}\NormalTok{lower_ci, }\DataTypeTok{ymax=}\NormalTok{upper_ci), }
+                   \DataTypeTok{width=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"grey30"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.9}\NormalTok{, }\DataTypeTok{size=}\FloatTok{1.3}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Mean French Fries weight (kg)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-201-1.pdf}
 
 Bar graphs are easier to read, but they do throw about a lot of information. By reducing your samples to a single number (i.e., the sample mean), you are missing out on a lot of interesting detail. Which means that, even though these bars do seem to be of different heights, we better use a statistical test to be sure that these differences are significant.
 
@@ -4448,7 +4776,7 @@ You go back to your notes and realize that you do indeed have data on ketchip ha
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# (Well, let's fake the data here:)}
+\CommentTok{# (Well, let's fake the data here)}
 
 \CommentTok{# Setup sample 1}
 \CommentTok{# Create a list of random values between 0 and 1, the same length as sample1}
@@ -4542,10 +4870,9 @@ You go back to your notes and realize that you do indeed have data on perceived 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# (Well, let's fake the data here:)}
-
+\CommentTok{# (Well, let's fake the data here)}
 \NormalTok{variability <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n=}\KeywordTok{length}\NormalTok{(sample1),}\DataTypeTok{mean=}\DecValTok{0}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{.}\DecValTok{2}\NormalTok{)}
-\NormalTok{saltiness <-}\StringTok{ }\FloatTok{-0.25}\OperatorTok{*}\NormalTok{sample1 }\OperatorTok{+}\StringTok{ }\FloatTok{.6} \OperatorTok{+}\StringTok{ }\NormalTok{variability}
+\NormalTok{saltiness <-}\StringTok{ }\FloatTok{-0.25}\OperatorTok{*}\NormalTok{sample1 }\OperatorTok{+}\StringTok{ }\FloatTok{.6} \OperatorTok{+}\StringTok{ }\NormalTok{variability }\CommentTok{# y = mx + b + e}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4562,7 +4889,7 @@ Let's check out this data. Since we are now exploring the relationship between t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-192-1.pdf}
+\includegraphics{figures/unnamed-chunk-208-1.pdf}
 
 This plot, with French fries on the x-axis, visually implies that saltiness is a function of French Fries weight. Therefore, saltiness is treated as the dependent variable.
 
@@ -4586,7 +4913,7 @@ Is there a significant relationship between these two variables? We can test tha
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-194-1.pdf}
+\includegraphics{figures/unnamed-chunk-210-1.pdf}
 
 Let's interpret the outcome of this linear regression:
 
@@ -4657,8 +4984,8 @@ When you report the results of your statistical tests within your reports and fi
 
 For tips on writing these results statements, see the \protect\hyperlink{style}{Module on Writing Style for Reports}.
 
-\hypertarget{review-exercise-3}{%
-\subsubsection*{Review exercise}\label{review-exercise-3}}
+\hypertarget{review-exercise-4}{%
+\subsubsection*{Review exercise}\label{review-exercise-4}}
 \addcontentsline{toc}{subsubsection}{Review exercise}
 
 To review these concepts, we will use the same dataset from the previous module: \emph{AirBNB} hosts in Amsterdam.
@@ -4669,8 +4996,8 @@ To review these concepts, we will use the same dataset from the previous module:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{task-1}{%
-\paragraph{Task 1}\label{task-1}}
+\hypertarget{task-1-1}{%
+\paragraph{Task 1}\label{task-1-1}}
 \addcontentsline{toc}{paragraph}{Task 1}
 
 Two neighborhoods in Amsterdam, ``Bos en Lommer'' and ``Centrum-Oost'', are among the most popular \emph{AirBnB} destinations in the city. But are these two neighbourhoods equally affordable, or does one neighborhood tend to be more expensive?
@@ -4697,7 +5024,7 @@ Two neighborhoods in Amsterdam, ``Bos en Lommer'' and ``Centrum-Oost'', are amon
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-197-1.pdf}
+\includegraphics{figures/unnamed-chunk-213-1.pdf}
 
 \textbf{(b)} Then conduct a statistical test to answer the task's question.
 
@@ -4723,8 +5050,8 @@ mean of x mean of y
 
 \textbf{(c)} Now properly interpret the test, and write a complete results statement.
 
-\hypertarget{task-2}{%
-\paragraph{Task 2}\label{task-2}}
+\hypertarget{task-2-1}{%
+\paragraph{Task 2}\label{task-2-1}}
 \addcontentsline{toc}{paragraph}{Task 2}
 
 Which neighborhood is more likely to offer a \texttt{Private\ room} instead of an \texttt{Entire\ home/apt}?
@@ -4757,8 +5084,8 @@ Which neighborhood is more likely to offer a \texttt{Private\ room} instead of a
 
 \textbf{(c)} Now properly interpret the test, and write a complete results statement.
 
-\hypertarget{task-3}{%
-\paragraph{Task 3}\label{task-3}}
+\hypertarget{task-3-1}{%
+\paragraph{Task 3}\label{task-3-1}}
 \addcontentsline{toc}{paragraph}{Task 3}
 
 Do listings with more reviews tend to be more expensive? For this analysis, focus on listings priced less than \$500 and less than 400 reviews.
@@ -4777,7 +5104,7 @@ Do listings with more reviews tend to be more expensive? For this analysis, focu
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-200-1.pdf}
+\includegraphics{figures/unnamed-chunk-216-1.pdf}
 
 \textbf{(b)} Then conduct a statistical test to answer the task's question.
 
@@ -4800,7 +5127,7 @@ Do listings with more reviews tend to be more expensive? For this analysis, focu
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-202-1.pdf}
+\includegraphics{figures/unnamed-chunk-218-1.pdf}
 
 \textbf{(d)} Now properly interpret the test, and write a complete results statement.
 
@@ -4837,8 +5164,8 @@ F-statistic: 239.6 on 1 and 17552 DF,  p-value: < 0.00000000000000022
 \hypertarget{joining-datasets}{%
 \chapter{Joining datasets}\label{joining-datasets}}
 
-\hypertarget{learning-goals-12}{%
-\subsubsection*{Learning goals}\label{learning-goals-12}}
+\hypertarget{learning-goals-13}{%
+\subsubsection*{Learning goals}\label{learning-goals-13}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -4984,12 +5311,12 @@ So, to answer our research question about the relationship between player height
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-212-1.pdf}
+\includegraphics{figures/unnamed-chunk-228-1.pdf}
 
 Hmm. Looks like we have an outlier!
 
-\hypertarget{review-exercise-4}{%
-\subsubsection*{Review exercise}\label{review-exercise-4}}
+\hypertarget{review-exercise-5}{%
+\subsubsection*{Review exercise}\label{review-exercise-5}}
 \addcontentsline{toc}{subsubsection}{Review exercise}
 
 This review exercise will involve \emph{both} the joining skills you learned above as well as many of the skills learned in prior modules. But don't worry: as with every exercise in this book, every puzzle here can be solved using the skills you have learned in prior modules.
@@ -5189,7 +5516,7 @@ First, create a nicely formatted histogram that portrays the data relevant to th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-216-1.pdf}
+\includegraphics{figures/unnamed-chunk-232-1.pdf}
 
 Provide the code to test this research question statistically, then write a results statement below.
 
@@ -5272,7 +5599,7 @@ First, prepare a plot to visualize what you will be comparing:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-218-1.pdf}
+\includegraphics{figures/unnamed-chunk-234-1.pdf}
 
 Now carry out your statistical test.
 
@@ -5303,8 +5630,8 @@ Now carry out your statistical test.
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
 
-\hypertarget{learning-goals-13}{%
-\subsubsection*{Learning goals}\label{learning-goals-13}}
+\hypertarget{learning-goals-14}{%
+\subsubsection*{Learning goals}\label{learning-goals-14}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -5683,7 +6010,7 @@ Plots can be included in the function commands just as in any other context:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-238-1.pdf}
+\includegraphics{figures/unnamed-chunk-254-1.pdf}
 
 \begin{verbatim}
  [1] 11.3 12.6 13.9 15.2 16.5 17.8 19.1 20.4 21.7 23.0 24.3 25.6 26.9 28.2 29.5
@@ -5736,7 +6063,7 @@ Now let's call this fancy function a bunch of times:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-240-1.pdf}
+\includegraphics{figures/unnamed-chunk-256-1.pdf}
 
 Think about how many lines of code would have been needed to write out all of these fancy plots if you did not use a custom function! Think about how cluttered and dizzying your code would look! And think about how many opportunities for errors and inconsistencies there would have been! That is the advantage of writing your own functions: it makes your work more efficient, more organized, and less prone to errors.
 
@@ -5828,8 +6155,8 @@ In this exercise, you will investigate annual trends in the prevalence of six na
 \hypertarget{for-loops}{%
 \chapter{\texorpdfstring{\texttt{for} loops}{for loops}}\label{for-loops}}
 
-\hypertarget{learning-goals-14}{%
-\subsubsection*{Learning goals}\label{learning-goals-14}}
+\hypertarget{learning-goals-15}{%
+\subsubsection*{Learning goals}\label{learning-goals-15}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -6017,7 +6344,7 @@ Looks like the first four columns would be interesting to plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-250-1.pdf}
+\includegraphics{figures/unnamed-chunk-266-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6088,7 +6415,7 @@ Let's say we want to see how gas mileage is affected by the number of cylinders 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-252-1.pdf}
+\includegraphics{figures/unnamed-chunk-268-1.pdf}
 
 \hypertarget{exercise-3-3}{%
 \subsection*{Exercise 3}\label{exercise-3-3}}
@@ -6114,7 +6441,7 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-253-1.pdf}
+\includegraphics{figures/unnamed-chunk-269-1.pdf}
 
 \hypertarget{using-for-loops-to-layer-cyclical-or-repetitive-data}{%
 \subsection*{\texorpdfstring{Using \texttt{for} loops to layer cyclical or repetitive data}{Using for loops to layer cyclical or repetitive data}}\label{using-for-loops-to-layer-cyclical-or-repetitive-data}}
@@ -6150,7 +6477,7 @@ Try plotting the Keeling Curve:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-255-1.pdf}
+\includegraphics{figures/unnamed-chunk-271-1.pdf}
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
@@ -6161,7 +6488,7 @@ There are some erroneous data points! We clearly can't have negative CO2 values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-256-1.pdf}
+\includegraphics{figures/unnamed-chunk-272-1.pdf}
 
 \textbf{What's the deal with those squiggles?}
 
@@ -6231,7 +6558,7 @@ To begin, let's plot data for only a \emph{single} year:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-257-1.pdf}
+\includegraphics{figures/unnamed-chunk-273-1.pdf}
 
 But this only shows one year of data! How can we include the seasonal squiggle from other years?
 
@@ -6285,7 +6612,7 @@ OK -- let's redo that graph and add a \texttt{for\ loop} into the mix:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-258-1.pdf}
+\includegraphics{figures/unnamed-chunk-274-1.pdf}
 
 Beautiful! So how do you interpret this graph? Why does the squiggle happen every year?
 
@@ -6725,7 +7052,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-269-1.pdf}
+\includegraphics{figures/unnamed-chunk-285-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsubsection*{Now loop it!}\label{now-loop-it}}
@@ -6749,7 +7076,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-270-1.pdf}
+\includegraphics{figures/unnamed-chunk-286-1.pdf}
 
 \hypertarget{now-loop-it-in-layers}{%
 \subsubsection*{\texorpdfstring{Now loop it \emph{in layers!}}{Now loop it in layers!}}\label{now-loop-it-in-layers}}
@@ -6775,13 +7102,13 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-271-1.pdf}
+\includegraphics{figures/unnamed-chunk-287-1.pdf}
 
 \hypertarget{conditional-statements}{%
 \chapter{Conditional statements}\label{conditional-statements}}
 
-\hypertarget{learning-goals-15}{%
-\subsubsection*{Learning goals}\label{learning-goals-15}}
+\hypertarget{learning-goals-16}{%
+\subsubsection*{Learning goals}\label{learning-goals-16}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -7123,11 +7450,11 @@ To do this work, your supervisor asks you to use the \texttt{us\_contagious\_dis
 
 \emph{NOTE: Under construction!}
 
-\hypertarget{working-with-text}{%
-\chapter{Working with text}\label{working-with-text}}
+\hypertarget{text}{%
+\chapter{Working with text}\label{text}}
 
-\hypertarget{learning-goals-16}{%
-\subsubsection*{Learning goals}\label{learning-goals-16}}
+\hypertarget{learning-goals-17}{%
+\subsubsection*{Learning goals}\label{learning-goals-17}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -7458,24 +7785,423 @@ C. Your collaborator sends you a dataset containing columns for \texttt{Date}, \
 \hypertarget{working-with-factors}{%
 \chapter{Working with factors}\label{working-with-factors}}
 
-\hypertarget{cleaning-messy-data}{%
-\chapter{Cleaning messy data}\label{cleaning-messy-data}}
-
 \hypertarget{matrices-lists}{%
 \chapter{Matrices \& lists}\label{matrices-lists}}
 
-\hypertarget{pipes}{%
-\chapter{Pipes}\label{pipes}}
+\hypertarget{learning-goals-18}{%
+\subsubsection*{Learning goals}\label{learning-goals-18}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  What \texttt{R} lists are, how to work with them, and when they are useful\\
+\item
+  What \texttt{R} matrices are, how to work with them, and when they are useful
+\end{itemize}
+
+~
+
+As a data scientist, you will almost always be working exclusively with \protect\hyperlink{dataframes}{dataframes}. But there are occasions when you will need other complex data structures -- \textbf{lists} and \textbf{matrices} -- to get a job done.
+
+Here we show you what these data structures are like, how to work with them, and when to use them.
+
+\hypertarget{lists}{%
+\section*{Lists}\label{lists}}
+\addcontentsline{toc}{section}{Lists}
+
+Think of lists as complicated vectors. Instead of being a set of single values, which is what a vector is, a list is a set of complex data structures. In fact, a better analogy may be that lists are like shopping carts. You can put a lot of different things in there.
+
+To see what we mean, stage an empty list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Now add a simple vector to it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}\OperatorTok{$}\NormalTok{vector <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+Now add a dataframe to it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}\OperatorTok{$}\NormalTok{dataframe <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name=}\KeywordTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{),}
+                 \DataTypeTok{height.inches=}\KeywordTok{c}\NormalTok{(}\DecValTok{75}\NormalTok{,}\DecValTok{73}\NormalTok{,}\DecValTok{80}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Now add a new list to it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}\OperatorTok{$}\NormalTok{list <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Now add a vector to that new list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}\OperatorTok{$}\NormalTok{list}\OperatorTok{$}\NormalTok{vector <-}\StringTok{ }\DecValTok{10}\OperatorTok{:}\DecValTok{20}
+\end{Highlighting}
+\end{Shaded}
+
+Okay! Nice shopping spree. Let's see what we have:
+
+\begin{verbatim}
+$vector
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+$dataframe
+  name height.inches
+1  Ben            75
+2  Joe            73
+3 Eric            80
+
+$list
+$list$vector
+ [1] 10 11 12 13 14 15 16 17 18 19 20
+\end{verbatim}
+
+This is a list: a lot of complicated data structures, all contained in a single variable.
+
+As you saw above, you can access the items in your list using the same dollar sign, \texttt{\$}, that we use to access columns in a dataframe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}\OperatorTok{$}\NormalTok{vector}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{1}  \DecValTok{2}  \DecValTok{3}  \DecValTok{4}  \DecValTok{5}  \DecValTok{6}  \DecValTok{7}  \DecValTok{8}  \DecValTok{9} \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+You can do the same with lists within your list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}\OperatorTok{$}\NormalTok{list}\OperatorTok{$}\NormalTok{vector}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{10} \DecValTok{11} \DecValTok{12} \DecValTok{13} \DecValTok{14} \DecValTok{15} \DecValTok{16} \DecValTok{17} \DecValTok{18} \DecValTok{19} \DecValTok{20}
+\end{Highlighting}
+\end{Shaded}
+
+Alternatively, you can subset lists using double brackets, \texttt{{[}{[}} \texttt{{]}{]}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{1}  \DecValTok{2}  \DecValTok{3}  \DecValTok{4}  \DecValTok{5}  \DecValTok{6}  \DecValTok{7}  \DecValTok{8}  \DecValTok{9} \DecValTok{10}
+\NormalTok{x[[}\DecValTok{3}\NormalTok{]]}
+\OperatorTok{$}\NormalTok{vector}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{10} \DecValTok{11} \DecValTok{12} \DecValTok{13} \DecValTok{14} \DecValTok{15} \DecValTok{16} \DecValTok{17} \DecValTok{18} \DecValTok{19} \DecValTok{20}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, you can create a list from scratch like so:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"vector1"}\NormalTok{=}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,}
+          \StringTok{"vector2"}\NormalTok{=}\DecValTok{11}\OperatorTok{:}\DecValTok{20}\NormalTok{)}
+\NormalTok{y}
+\OperatorTok{$}\NormalTok{vector1}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{1}  \DecValTok{2}  \DecValTok{3}  \DecValTok{4}  \DecValTok{5}  \DecValTok{6}  \DecValTok{7}  \DecValTok{8}  \DecValTok{9} \DecValTok{10}
+
+\OperatorTok{$}\NormalTok{vector2}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{11} \DecValTok{12} \DecValTok{13} \DecValTok{14} \DecValTok{15} \DecValTok{16} \DecValTok{17} \DecValTok{18} \DecValTok{19} \DecValTok{20}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{use-cases-for-lists}{%
+\subsection*{Use cases for lists}\label{use-cases-for-lists}}
+\addcontentsline{toc}{subsection}{Use cases for lists}
+
+Common use cases for lists include:
+
+\begin{itemize}
+\item
+  Keeping track of a bunch of related dataframes (i.e., by storing each dataframe as an element in a list).
+\item
+  Several \texttt{R} functions return lists as outputs. For example, when you \protect\hyperlink{text}{split up a vector of strings} using \texttt{stringr::str\_split()}, the output is a list that is the same length as your original vector.
+\item
+  Returning complex outputs from your own custom functions. Since functions can return only a single object, you can stuff a bunch of different objects into a list and return the list.
+\end{itemize}
+
+\hypertarget{matrices}{%
+\section*{Matrices}\label{matrices}}
+\addcontentsline{toc}{section}{Matrices}
+
+Matrices are like dataframes, except that they can only contain a single data type. Dataframes can have a column with text and another with numbers, but a matrix will only handle one type.
+
+Here's a simple dataframe containing two classes of data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name=}\KeywordTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{),}
+                 \DataTypeTok{height.inches=}\KeywordTok{c}\NormalTok{(}\DecValTok{75}\NormalTok{,}\DecValTok{73}\NormalTok{,}\DecValTok{80}\NormalTok{))}
+\NormalTok{df}
+\NormalTok{  name height.inches}
+\DecValTok{1}\NormalTok{  Ben            }\DecValTok{75}
+\DecValTok{2}\NormalTok{  Joe            }\DecValTok{73}
+\DecValTok{3}\NormalTok{ Eric            }\DecValTok{80}
+\end{Highlighting}
+\end{Shaded}
+
+When you coerce this dataframe into a matrix (using the function \textbf{\texttt{as.matrix()}}), the numeric data get coerced into text:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mdf <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(df)}
+\NormalTok{mdf}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+     name   height.inches
+[1,] "Ben"  "75"         
+[2,] "Joe"  "73"         
+[3,] "Eric" "80"         
+\end{verbatim}
+
+Other than that, you can treat a variable of class \texttt{matrix} similarly to a dataframe.
+
+Subsetting is the same: \texttt{matrix{[}rows,columns{]}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mdf[}\DecValTok{2}\NormalTok{,]}
+\NormalTok{         name height.inches }
+        \StringTok{"Joe"}          \StringTok{"73"} 
+\NormalTok{mdf[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"75"} \StringTok{"73"} \StringTok{"80"}
+\NormalTok{mdf[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{height.inches }
+         \StringTok{"73"} 
+\end{Highlighting}
+\end{Shaded}
+
+To build a matrix from scratch, use the \texttt{matrix()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mx <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data=}\DecValTok{1}\OperatorTok{:}\DecValTok{12}\NormalTok{, }
+             \DataTypeTok{nrow=}\DecValTok{4}\NormalTok{,}
+             \DataTypeTok{ncol=}\DecValTok{3}\NormalTok{)}
+\NormalTok{mx}
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{1}    \DecValTok{5}    \DecValTok{9}
+\NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{2}    \DecValTok{6}   \DecValTok{10}
+\NormalTok{[}\DecValTok{3}\NormalTok{,]    }\DecValTok{3}    \DecValTok{7}   \DecValTok{11}
+\NormalTok{[}\DecValTok{4}\NormalTok{,]    }\DecValTok{4}    \DecValTok{8}   \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{data} input takes a vector of data and sorts it into a matrix with rows and columns. It starts ``laying down'' your data in the first column, then wraps to the second column, etc.
+
+You can also define names for the rows and columns in a matrix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mx <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data=}\DecValTok{1}\OperatorTok{:}\DecValTok{12}\NormalTok{, }
+             \DataTypeTok{nrow=}\DecValTok{4}\NormalTok{,}
+             \DataTypeTok{ncol=}\DecValTok{3}\NormalTok{,}
+             \DataTypeTok{dimnames=}\KeywordTok{list}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"row1"}\NormalTok{,}\StringTok{"row2"}\NormalTok{,}\StringTok{"row3"}\NormalTok{,}\StringTok{"row4"}\NormalTok{),}
+                           \KeywordTok{c}\NormalTok{(}\StringTok{"col1"}\NormalTok{,}\StringTok{"col2"}\NormalTok{,}\StringTok{"col3"}\NormalTok{)))}
+\NormalTok{mx}
+\NormalTok{     col1 col2 col3}
+\NormalTok{row1    }\DecValTok{1}    \DecValTok{5}    \DecValTok{9}
+\NormalTok{row2    }\DecValTok{2}    \DecValTok{6}   \DecValTok{10}
+\NormalTok{row3    }\DecValTok{3}    \DecValTok{7}   \DecValTok{11}
+\NormalTok{row4    }\DecValTok{4}    \DecValTok{8}   \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{dimnames} input takes a list with two vectors: the first contains row names, the second contains column names.
+
+Note, however, that you cannot subset a matrix according to their column names. \texttt{mx\$col1}, for example, will not work.
+
+One more tool worth knowing for matrices is the function \texttt{diag()}, which returns the values that fall along the matrix's diagonal ({[}1,1{]}, {[}2,2{]}, {[}3,3{]}, etc.).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mx}
+\NormalTok{     col1 col2 col3}
+\NormalTok{row1    }\DecValTok{1}    \DecValTok{5}    \DecValTok{9}
+\NormalTok{row2    }\DecValTok{2}    \DecValTok{6}   \DecValTok{10}
+\NormalTok{row3    }\DecValTok{3}    \DecValTok{7}   \DecValTok{11}
+\NormalTok{row4    }\DecValTok{4}    \DecValTok{8}   \DecValTok{12}
+
+\KeywordTok{diag}\NormalTok{(mx)}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{1}  \DecValTok{6} \DecValTok{11}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{diag()} function comes in handy in most use cases for matrices in \texttt{R} (see next section).
+
+\hypertarget{use-cases-for-matrices}{%
+\subsection*{Use cases for matrices}\label{use-cases-for-matrices}}
+\addcontentsline{toc}{subsection}{Use cases for matrices}
+
+Common use cases for matrices include:
+
+\begin{itemize}
+\item
+  Matrix algebra applications (\emph{duh}), such as life history tables in biology.
+\item
+  Using certain packages whose inputs require matrix objects. Matrices are particularly common in analyses of social networks.
+\item
+  Producing images (after all, an image is just a matrix in which each value is a pixel color.)
+\end{itemize}
+
+To practice the latter use case, let's build up a simple matrix using a random number generator:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mx <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data=}\KeywordTok{round}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{10}\NormalTok{)),}
+             \DataTypeTok{nrow=}\DecValTok{10}\NormalTok{,}
+             \DataTypeTok{ncol=}\DecValTok{10}\NormalTok{)}
+\NormalTok{mx}
+\NormalTok{      [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{] [,}\DecValTok{4}\NormalTok{] [,}\DecValTok{5}\NormalTok{] [,}\DecValTok{6}\NormalTok{] [,}\DecValTok{7}\NormalTok{] [,}\DecValTok{8}\NormalTok{] [,}\DecValTok{9}\NormalTok{] [,}\DecValTok{10}\NormalTok{]}
+\NormalTok{ [}\DecValTok{1}\NormalTok{,]   }\DecValTok{57}   \DecValTok{50}   \DecValTok{49}   \DecValTok{56}   \DecValTok{45}   \DecValTok{42}   \DecValTok{26}   \DecValTok{54}   \DecValTok{52}    \DecValTok{57}
+\NormalTok{ [}\DecValTok{2}\NormalTok{,]   }\DecValTok{62}   \DecValTok{52}   \DecValTok{45}   \DecValTok{52}   \DecValTok{50}   \DecValTok{54}   \DecValTok{64}   \DecValTok{38}   \DecValTok{51}    \DecValTok{62}
+\NormalTok{ [}\DecValTok{3}\NormalTok{,]   }\DecValTok{54}   \DecValTok{41}   \DecValTok{55}   \DecValTok{31}   \DecValTok{52}   \DecValTok{43}   \DecValTok{41}   \DecValTok{44}   \DecValTok{40}    \DecValTok{39}
+\NormalTok{ [}\DecValTok{4}\NormalTok{,]   }\DecValTok{40}   \DecValTok{54}   \DecValTok{59}   \DecValTok{43}   \DecValTok{52}   \DecValTok{33}   \DecValTok{37}   \DecValTok{69}   \DecValTok{37}    \DecValTok{57}
+\NormalTok{ [}\DecValTok{5}\NormalTok{,]   }\DecValTok{48}   \DecValTok{41}   \DecValTok{48}   \DecValTok{55}   \DecValTok{49}   \DecValTok{62}   \DecValTok{41}   \DecValTok{54}   \DecValTok{75}    \DecValTok{62}
+\NormalTok{ [}\DecValTok{6}\NormalTok{,]   }\DecValTok{67}   \DecValTok{41}   \DecValTok{56}   \DecValTok{45}   \DecValTok{35}   \DecValTok{57}   \DecValTok{38}   \DecValTok{37}   \DecValTok{43}    \DecValTok{52}
+\NormalTok{ [}\DecValTok{7}\NormalTok{,]   }\DecValTok{46}   \DecValTok{40}   \DecValTok{46}   \DecValTok{47}   \DecValTok{54}   \DecValTok{51}   \DecValTok{30}   \DecValTok{76}   \DecValTok{59}    \DecValTok{46}
+\NormalTok{ [}\DecValTok{8}\NormalTok{,]   }\DecValTok{57}   \DecValTok{43}   \DecValTok{61}   \DecValTok{46}   \DecValTok{55}   \DecValTok{65}   \DecValTok{40}   \DecValTok{55}   \DecValTok{60}    \DecValTok{52}
+\NormalTok{ [}\DecValTok{9}\NormalTok{,]   }\DecValTok{62}   \DecValTok{61}   \DecValTok{56}   \DecValTok{66}   \DecValTok{45}   \DecValTok{34}   \DecValTok{48}   \DecValTok{59}   \DecValTok{66}    \DecValTok{44}
+\NormalTok{[}\DecValTok{10}\NormalTok{,]   }\DecValTok{58}   \DecValTok{46}   \DecValTok{60}   \DecValTok{43}   \DecValTok{57}   \DecValTok{51}   \DecValTok{59}   \DecValTok{61}   \DecValTok{68}    \DecValTok{45}
+\KeywordTok{heatmap}\NormalTok{(mx,}\DataTypeTok{Rowv=}\OtherTok{NA}\NormalTok{,}\DataTypeTok{Colv=}\OtherTok{NA}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-334-1.pdf}
+
+To see a real-world example of a matrix in action, here is a dataset containing rates of social associations, scaled between 0 and 0.5, among humpback whales in the fjords of British Columbia, Canada: .
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sociality <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/humpback-sociality.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's look at the first 5 rows and columns of this dataset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sociality[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\NormalTok{           id1        id2        id3        id4        id5}
+\NormalTok{id1 }\FloatTok{0.50000000} \FloatTok{0.02758621} \FloatTok{0.00000000} \FloatTok{0.00000000} \FloatTok{0.00000000}
+\NormalTok{id2 }\FloatTok{0.02758621} \FloatTok{0.50000000} \FloatTok{0.02424242} \FloatTok{0.00000000} \FloatTok{0.02439024}
+\NormalTok{id3 }\FloatTok{0.00000000} \FloatTok{0.02424242} \FloatTok{0.50000000} \FloatTok{0.00000000} \FloatTok{0.00000000}
+\NormalTok{id4 }\FloatTok{0.00000000} \FloatTok{0.00000000} \FloatTok{0.00000000} \FloatTok{0.50000000} \FloatTok{0.02631579}
+\NormalTok{id5 }\FloatTok{0.00000000} \FloatTok{0.02439024} \FloatTok{0.00000000} \FloatTok{0.02631579} \FloatTok{0.50000000}
+\end{Highlighting}
+\end{Shaded}
+
+Notice that this matrix is \emph{symmetrical}. That is, the number of rows equals the number of columns. It is an \emph{N x N} matrix.
+
+Also note that the row names and column names are the same. Each element in the matrix is the rate of association between the row's whale ID and the column's whale ID. This means that all of the values along this matrix's diagonal will be 0.5, which is the max association rate in this example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{diag}\NormalTok{(sociality)[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+\NormalTok{ id1  id2  id3  id4  id5  id6  id7  id8  id9 id10 }
+ \FloatTok{0.5}  \FloatTok{0.5}  \FloatTok{0.5}  \FloatTok{0.5}  \FloatTok{0.5}  \FloatTok{0.5}  \FloatTok{0.5}  \FloatTok{0.5}  \FloatTok{0.5}  \FloatTok{0.5} 
+\end{Highlighting}
+\end{Shaded}
+
+The fact that this matrix is symmetrical with identical rows and columns also means that all the data in the \emph{bottom} half of the matrix (i.e., \emph{below} the diagonal) are the \emph{mirror image} o the data in the top half.
+
+Look again at the first few rows and columns:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sociality[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{           id1        id2        id3}
+\NormalTok{id1 }\FloatTok{0.50000000} \FloatTok{0.02758621} \FloatTok{0.00000000}
+\NormalTok{id2 }\FloatTok{0.02758621} \FloatTok{0.50000000} \FloatTok{0.02424242}
+\NormalTok{id3 }\FloatTok{0.00000000} \FloatTok{0.02424242} \FloatTok{0.50000000}
+\end{Highlighting}
+\end{Shaded}
+
+If we don't like the fact that the diagonal has large values (after all, it doesn't make much sense to quantify how much an individual associates with itself), we can use the \texttt{diag()} function to replace those diagonal values with \texttt{NA}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{diag}\NormalTok{(sociality) <-}\StringTok{ }\OtherTok{NA}
+\NormalTok{sociality[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\NormalTok{           id1        id2        id3        id4        id5}
+\NormalTok{id1         }\OtherTok{NA} \FloatTok{0.02758621} \FloatTok{0.00000000} \FloatTok{0.00000000} \FloatTok{0.00000000}
+\NormalTok{id2 }\FloatTok{0.02758621}         \OtherTok{NA} \FloatTok{0.02424242} \FloatTok{0.00000000} \FloatTok{0.02439024}
+\NormalTok{id3 }\FloatTok{0.00000000} \FloatTok{0.02424242}         \OtherTok{NA} \FloatTok{0.00000000} \FloatTok{0.00000000}
+\NormalTok{id4 }\FloatTok{0.00000000} \FloatTok{0.00000000} \FloatTok{0.00000000}         \OtherTok{NA} \FloatTok{0.02631579}
+\NormalTok{id5 }\FloatTok{0.00000000} \FloatTok{0.02439024} \FloatTok{0.00000000} \FloatTok{0.02631579}         \OtherTok{NA}
+\end{Highlighting}
+\end{Shaded}
+
+Now that we've cancelled out the diagnoal, a heatmap of this dataset will show us which whales are involved in the strongest social associations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{heatmap}\NormalTok{(sociality,}\DataTypeTok{Rowv=}\OtherTok{NA}\NormalTok{,}\DataTypeTok{Colv=}\OtherTok{NA}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-340-1.pdf}
+
+\hypertarget{review-exercise-6}{%
+\subsubsection*{Review exercise}\label{review-exercise-6}}
+\addcontentsline{toc}{subsubsection}{Review exercise}
+
+\hypertarget{task-1-2}{%
+\paragraph{Task 1}\label{task-1-2}}
+\addcontentsline{toc}{paragraph}{Task 1}
+
+Write a function that uses \texttt{for} loop techniques to convert any matrix, such as the \texttt{sociality} matrix above, into a dataframe. This dataframe must have a row for each value in the matrix, with three columns: \texttt{row\_name}, \texttt{col\_name}, and \texttt{data}.
+
+The output of your function must be a list with two elements, \texttt{raw\_matrix} and \texttt{df} (which contains your new dataframe).
+
+Demonstrate that your function works using the \texttt{sociality} dataset above.
+
+\hypertarget{task-2-2}{%
+\paragraph{Task 2}\label{task-2-2}}
+\addcontentsline{toc}{paragraph}{Task 2}
+
+Then, write a function that reverses your work: this new function will take the \texttt{dataframe} output of your first function and revert your dataframe back into a matrix. The output of this function will also be a list with two elements, \texttt{raw\_df} and \texttt{matrix} (which contains your new dataframe).
+
+In this function, include an input option giving you the choice of setting the diagonal in your matrix to \texttt{NA}.
+
+Demonstrate that the matrix output of your second function is the same as the original \texttt{sociality} dataset, and demonstrate that the diagonal input works as well.
+
+\hypertarget{cleaning-messy-data}{%
+\chapter{Cleaning messy data}\label{cleaning-messy-data}}
+
+\hypertarget{learning-goals-19}{%
+\subsubsection*{Learning goals}\label{learning-goals-19}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+~
+
+\hypertarget{review-exercise-7}{%
+\subsubsection*{Review exercise}\label{review-exercise-7}}
+\addcontentsline{toc}{subsubsection}{Review exercise}
 
 \hypertarget{excel-files-googlesheets}{%
 \chapter{Excel files \& GoogleSheets}\label{excel-files-googlesheets}}
 
-\hypertarget{learning-goals-17}{%
-\section*{Learning goals}\label{learning-goals-17}}
+\hypertarget{learning-goals-20}{%
+\section*{Learning goals}\label{learning-goals-20}}
 \addcontentsline{toc}{section}{Learning goals}
 
-\hypertarget{review-exercise-5}{%
-\section*{Review exercise}\label{review-exercise-5}}
+\hypertarget{review-exercise-8}{%
+\section*{Review exercise}\label{review-exercise-8}}
 \addcontentsline{toc}{section}{Review exercise}
 
 \hypertarget{part-interactive-dashboards}{%
@@ -7546,8 +8272,8 @@ Spinning up a local DB
 \hypertarget{formatting-standards}{%
 \chapter{Formatting standards}\label{formatting-standards}}
 
-\hypertarget{tables-1}{%
-\section{Tables}\label{tables-1}}
+\hypertarget{tables}{%
+\section{Tables}\label{tables}}
 
 \hypertarget{figures}{%
 \section{Figures}\label{figures}}
@@ -7903,8 +8629,8 @@ Branching, pull requests, blaming, and more - in a break-out session.
 \hypertarget{sections-of-a-report}{%
 \chapter{Sections of a report}\label{sections-of-a-report}}
 
-\hypertarget{learning-goals-18}{%
-\subsubsection*{Learning goals}\label{learning-goals-18}}
+\hypertarget{learning-goals-21}{%
+\subsubsection*{Learning goals}\label{learning-goals-21}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -8250,8 +8976,8 @@ A brief statement of whom you thank for their contributions and support of your 
   See the \protect\hyperlink{style}{Module on Style} for details on how to format your references and citations.
 \end{itemize}
 
-\hypertarget{tables-2}{%
-\subsubsection*{Tables}\label{tables-2}}
+\hypertarget{tables-1}{%
+\subsubsection*{Tables}\label{tables-1}}
 \addcontentsline{toc}{subsubsection}{Tables}
 
 \begin{itemize}
@@ -8285,8 +9011,8 @@ A brief statement of whom you thank for their contributions and support of your 
 \hypertarget{style}{%
 \chapter{Formatting, structure \& style}\label{style}}
 
-\hypertarget{learning-goals-19}{%
-\subsubsection*{Learning goals}\label{learning-goals-19}}
+\hypertarget{learning-goals-22}{%
+\subsubsection*{Learning goals}\label{learning-goals-22}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -9060,8 +9786,8 @@ audience to facts, evidence, and emotional components of your case.
 \hypertarget{randomization-statistics}{%
 \chapter{Randomization statistics}\label{randomization-statistics}}
 
-\hypertarget{learning-goals-20}{%
-\subsubsection*{Learning goals}\label{learning-goals-20}}
+\hypertarget{learning-goals-23}{%
+\subsubsection*{Learning goals}\label{learning-goals-23}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -9240,7 +9966,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-307-1.pdf}
+\includegraphics{figures/unnamed-chunk-346-1.pdf}
 
 \textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
 
@@ -9290,7 +10016,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-309-1.pdf}
+\includegraphics{figures/unnamed-chunk-348-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9385,7 +10111,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-315-1.pdf}
+\includegraphics{figures/unnamed-chunk-354-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -9436,11 +10162,11 @@ Each row of this dataset is an abundance estimate from a survey that occurred wi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-319-1.pdf}
+\includegraphics{figures/unnamed-chunk-358-1.pdf}
 
 Performing a simple linear regression with this dataset yields the following results:
 
-\includegraphics{figures/unnamed-chunk-320-1.pdf}
+\includegraphics{figures/unnamed-chunk-359-1.pdf}
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
@@ -9535,7 +10261,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-325-1.pdf}
+\includegraphics{figures/unnamed-chunk-364-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -9607,7 +10333,7 @@ We want to know what the chances are that the population has declined between 20
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-329-1.pdf}
+\includegraphics{figures/unnamed-chunk-368-1.pdf}
 
 If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
 
@@ -9632,7 +10358,7 @@ And in this randomization application, the workflow is a bit more simplified. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-330-1.pdf}
+\includegraphics{figures/unnamed-chunk-369-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9930,8 +10656,8 @@ For your convenience, the social association rate for these 36 individuals has a
 \hypertarget{template}{%
 \chapter{Template}\label{template}}
 
-\hypertarget{learning-goals-21}{%
-\section*{Learning goals}\label{learning-goals-21}}
+\hypertarget{learning-goals-24}{%
+\section*{Learning goals}\label{learning-goals-24}}
 \addcontentsline{toc}{section}{Learning goals}
 
 \begin{itemize}
