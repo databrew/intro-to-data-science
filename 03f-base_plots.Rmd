@@ -17,7 +17,7 @@ teacher_content('Here is some teacher content.')
 
 To learn how to plot, let's first create a dataset to work with:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 country <- c("USA","Tanzania","Japan","Ctr. Africa Rep.","China","Norway","India")
 lifespan <- c(79,65,84,53,77,82,69)
 gdp <- c(55335,2875,38674,623,13102,84500,6807)
@@ -36,7 +36,7 @@ Let's see if there is a relationship between life expectancy and income.
 
 The simplest way to make a basic plot in `R` is to use its built-in `plot()` function:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp)
 ```
 
@@ -46,7 +46,7 @@ Note that `R` uses the variable names you provided as the x- and y-axes. You can
 
 You can also produce this exact same plot using the following syntax:
 
-```{r,eval=FALSE,echo=TRUE}
+```{r,eval=FALSE,echo=TRUE,collapse=TRUE}
 plot(y=lifespan, x=gdp)
 ```
 
@@ -58,7 +58,7 @@ The plot above is a **scatter plot**, and is one of the most common types of plo
 
 You can turn this into a **line plot** by adding a parameter to the `plot()` function:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp, type="l")
 ```
 
@@ -66,7 +66,7 @@ plot(lifespan ~ gdp, type="l")
 
 Another common plot is the **bar plot**, which uses a different `R` function:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 barplot(height=lifespan,names.arg=country)
 ```
 
@@ -87,7 +87,7 @@ Produce a bar plot that shows the GDP for each country.
 
 You can adjust the default formatting of plots by adding other inputs to your `plot()` command. To understand all the parameters you can adjust, bring up the help page for this function:
 
-```{r,eval=FALSE,echo=TRUE}
+```{r,eval=FALSE,echo=TRUE,collapse=TRUE}
 ?plot
 ```
 
@@ -96,7 +96,7 @@ If multiple help page options are returned, select the *Generiz X-Y Plotting* pa
 Here we demonstrate just a few of the most common formatting adjustments you are likely to use:
 
 **Set plot range** using `xlim` (for the x axis) and `ylim` (for the y axis):
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp,xlim=c(0,60000),ylim=c(40,100))
 ```
 
@@ -104,7 +104,7 @@ In this command, you are defining axis limits using a 2-element vector (i.e., `c
 
 Note that it can be easier to read your code if you put each input on a new line, like this:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 plot(lifespan ~ gdp,
      xlim=c(0,60000),
      ylim=c(40,100))
@@ -114,39 +114,39 @@ Make sure each input line within the function ends with a comma, otherwise you `
 
 
 **Set dot type** using the input `pch`:
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp,pch=16)
 ```
 
 **Set dot color** using the input `col` (the default is `col="black"`)
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp,col="red")
 ```
 
 [Here is a great resource](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf?utm_source=twitterfeed&utm_medium=twitter){target="blank"} for color names in `R`.
 
 **Set dot size** using the input `cex` (the default is `cex=1`):
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp,cex=3)
 ```
 
 **Set axis labels** using the inputs `xlab` and `ylab`:
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp, xlab="Gross Domestic Product (GDP)",ylab="Life Expectancy")
 ```
 
 **Set axis number size** using the input `cex.axis` (the default is `cex.axis=1`):
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp,cex.axis=.5)
 ```
 
 **Set axis label size** using the input `cex.label` (the default is `cex.lab=1`):
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp,cex.lab=.5)
 ```
 
 **Set plot margins** using the function `par(mar=c())` before you call `plot()`:
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 par(mar=c(5,5,0.5,0.5))
 plot(lifespan ~ gdp)
 ```
@@ -154,7 +154,7 @@ plot(lifespan ~ gdp)
 In this command, the four numbers in the vector used to define `mar` correspond to the margin for the bottom, left, top, and right sides of the plot, respectively.
 
 **Create a multi-pane plot** using the function `par(mfrow=c())` before you call `plot()`:
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 par(mfrow=c(1,2))
 plot(lifespan ~ gdp,col="red",pch=16)
 plot(lifespan ~ gdp,col="blue",pch=16)
@@ -164,12 +164,12 @@ In this command, the two numbers in the vector used to define `mfrow` correspond
 
 Note that you will need to reset the number of panes when you are done with your multi-pane plot!
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 par(mfrow=c(1,1))
 ```
 
 **Plot dots and lines at once** using the input `type`:
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 par(mfrow=c(1,2))
 plot(lifespan ~ gdp,type="b")
 plot(lifespan ~ gdp,type="o")
@@ -180,7 +180,7 @@ Note the two slightly different formats here.
 
 **Use a logarithmic scale** for one or of your axes using the input `log`
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp,log="x")
 ```
 
@@ -195,14 +195,14 @@ So far in this tutorial we have been using vectors to produce plots. This is nic
 
 Let's turn these vectors into a dataframe:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- data.frame(country,lifespan,gdp)
 df
 ```
 
 To plot data within a dataframe, your `plot()` syntax changes slightly:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(lifespan ~ gdp, data=df)
 ```
 
@@ -210,7 +210,7 @@ This syntax is saying this: using the dataframe named `df` as a source, plot col
 
 Another way to write this command is as follows:
 
-```{r,eval=FALSE,echo=TRUE}
+```{r,eval=FALSE,echo=TRUE,collapse=TRUE}
 plot(df$lifespan ~ df$gdp)
 ```
 
@@ -233,7 +233,7 @@ The possibilities for data visualization in `R` are pretty much limitless, and o
 In some cases it is useful to add reference lines to your plot. For example, what if we wanted to be able to quickly see which countries had life expectancies below 75 years?
 
 You can add a line at `lifespan = 75` using the function `abline()`. 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(df$lifespan ~ df$gdp)
 abline(h=75)
 ```
@@ -242,7 +242,7 @@ In this command, the `h` input means "place a horizontal line at this y value.".
 
 Similarly, you can use `v` to specify vertical lines at certain x values.  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(df$lifespan ~ df$gdp)
 abline(v=c(25000,35000),lty=3)
 ```
@@ -258,7 +258,7 @@ Produce a plot of life expectancy as a function of GDP per capita. Then add a li
 
 Use the `text()` function to add labels to your plot:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(df$lifespan ~ df$gdp)
 text(x=30000,y=75,labels="My text went here")
 ```
@@ -274,7 +274,7 @@ It can be helpful to highlight a certain data point (or group of data points) us
 
 **To highlight a single data point**, here is one approach you can take: first, plot all points, *then* re-plot the point of interest using the `points()` function:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(df$lifespan ~ df$gdp)
 points(x=df$gdp[5],y=df$lifespan[5],col="red",pch=16,cex=1.5)
 ```
@@ -291,7 +291,7 @@ In this example, we re-plotted the data for the fifth row in the dataframe (in t
 
 For example, let's highlight all countries whose life expectancy is greater than 75.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # First
 cols <- rep("grey",times=length(lifespan)) # create a vector of colors the length of vector `lifespan`
 cols
@@ -331,7 +331,7 @@ The steps for building up your own plot are as follows:
 
 Here is an example of this process:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # 1. Stage a blank canvas
 par(mar=c(4.5,4.5,1,1))
 plot(1,type="n",axes=FALSE,ann=FALSE,xlim=c(0,100000),ylim=c(40,100))

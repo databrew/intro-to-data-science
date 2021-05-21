@@ -1,6 +1,5 @@
 # Writing functions
 
-
 ```{r,echo=FALSE,eval=FALSE}
 is_teacher <- FALSE
 ```
@@ -70,7 +69,7 @@ You can define a function with multiple inputs. Just separate each input with a 
 
 To demonstrate this, let's modify the function above to allow you to define any linear regression you wish:
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 my_function <- function(x,a,b){
   y <- a*x + b
   return(y)
@@ -79,21 +78,21 @@ my_function <- function(x,a,b){
 
 Now call your function:
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 my_function(x=2,a=1.3,b=10) # example 1
 my_function(x=4,a=5,b=100) # example 2
 ```
 
 Note that you do not need to write out the name of each input, as long as you provide inputs in the correct order. 
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 my_function(2, 1.3, 10) # example 1
 my_function(4, 5, 100) # example 2
 ```
 
 But note that it is usually best practice to name each input in your function call, to prevent the possibility of any confusion or mistakes. Also, when you name each input you can provide inputs in whatever order you wish:
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 my_function(x=2, a=1.3, b=10)
 my_function(a=1.3, b=10, x=2) # different inout order, same output value
 ```
@@ -105,7 +104,7 @@ Just as `R`'s base functions include default values for some inputs (think `na.r
 
 This version of `my_function` includes default values for inputs `a` and `b`.
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 my_function <- function(x,a=1.3,b=10){
   y <- a*x + b
   return(y)
@@ -114,7 +113,7 @@ my_function <- function(x,a=1.3,b=10){
 
 When you provide default values, you no longer need to specify those inputs in your function call:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 my_function(x=2)
 ```
 
@@ -122,7 +121,7 @@ my_function(x=2)
 
 Setting the default value for an input to `NULL` can be useful in certain use cases. For example, let's say that if `b` is not defined by the user, you want its value to be set to five times the value of `x`.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 my_function <- function(x,a=1.3,b=NULL){
   
   # Handle input `b`
@@ -142,7 +141,7 @@ In this function, a conditional statement is used -- `if(is.null(b)){ ... }` -- 
 
 Try running the function with and without providing a value for `b`. 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 my_function(x=2,b=5)
 my_function(x=2)
 ```
@@ -153,7 +152,7 @@ Conditional statements such as `if(is.null(x)){ ... }` or `if(is.na(x)){ ... }` 
 
 You can pass vectors, dataframes, and any other data structure as inputs in your own custom functions. For example:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 my_input <- 1:20
 my_function(x=my_input,a=1.2,b=10)
 ```
@@ -167,7 +166,7 @@ Unfortunately, the `return()` command does not let you include multiple objects.
 
 Here is a modification of `my_function()` that allows multiple outputs:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 my_function <- function(x,a=1.3,b=NULL){
   
   # Handle input `b`
@@ -185,13 +184,13 @@ my_function <- function(x,a=1.3,b=NULL){
 
 Now `my_function()` works like this: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 my_function(x=5)
 ```
 
 To get the value of just `y` or just `b`, you can treat the output just like any other vector:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 my_function(x=5)[1]
 my_function(x=5)[2]
 ```
@@ -200,7 +199,7 @@ my_function(x=5)[2]
 
 Plots can be included in the function commands just as in any other context:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 my_function <- function(x,a=1.3,b=10){
   y <- a*x + b
   plot(y ~ x, type="b")
@@ -208,7 +207,7 @@ my_function <- function(x,a=1.3,b=10){
 }
 ```
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 my_input <- 1:20
 my_function(x=my_input)
 ```

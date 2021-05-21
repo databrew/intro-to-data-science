@@ -26,7 +26,7 @@ Most functions have three key components: (1) one or more inputs, (2) a process 
 
 Take the function `mean()`, for example. `mean()` finds the arithmetic mean (i.e., the average) of a set of values.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- c(4,6,3,2,6,8,5,3) # create a vector of numbers
 mean(x) # find their mean
 ```
@@ -49,7 +49,7 @@ You will almost always want to save the result of a function in a new variable. 
 
 You can store a function result the same way you store any value:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- c(4,6,3,2,6,8,5,3) 
 x_mean <- mean(x) 
 x_mean
@@ -59,7 +59,7 @@ x_mean
 
 Note that `mean()` accepts a second input that is called `na.rm`. This is short for `NA.remove`. When this is set to `TRUE`, `R` will remove broken or missing values from the vector before calculating the mean.
 
-```{r,echo=TRUE,eval=TRUE}
+```{r,echo=TRUE,eval=TRUE,collapse=TRUE}
 x <- c(4,6,3,2,NA,8,5,3)  # note the NA
 mean(x,na.rm=TRUE)
 ```
@@ -72,7 +72,7 @@ Note that you provided the function `mean()` with two inputs, `x` and `na.rm`, a
 
 Note that many functions have default values for their inputs. If you do not specify the input's value yourself, `R` will assume you just want to use the default. In the case of `mean()`, the default value for `na.rm` is `FALSE`. This means that the following code would throw an error ...
 
-```{r,echo=TRUE,eval=TRUE}
+```{r,echo=TRUE,eval=TRUE,collapse=TRUE}
 x <- c(4,6,3,2,NA,8,5,3)  # note the NA
 mean(x)
 ```
@@ -84,7 +84,7 @@ Because `R` will assume you are using the default value for `na.rm`, which is `F
 
 Functions are designed to accept only a certain number of inputs with only certain names. To figure out what a function expects in terms of inputs, and what you can expect in terms of output, you can call up the function's help page:
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,collapse=TRUE}
 ?mean
 ```
 
@@ -115,34 +115,34 @@ Note that more complex functions may also include a `Details` section in their d
 
 We can use the same vector as the input for all of these functions:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- c(4,6,3,2,NA,8,9,5,6,1,9,2,6,3,0,3,2,5,3,3)  # note the NA
 ```
 
 **`mean()`** has been explained above.  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 result <- mean(x,na.rm=TRUE)
 result
 ```
 
 **`median()`** returns the median value in the supplied vector:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 result <- median(x,na.rm=TRUE)
 result
 ```
 
 **`sd()`** returns the standard deviation of the supplied vector:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 result <- sd(x,na.rm=TRUE)
 result
 ```
 
 **`summary()`** returns a vector that describes several aspects of the vector's distribution:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 result <- summary(x,na.rm=TRUE)
 result
 ```

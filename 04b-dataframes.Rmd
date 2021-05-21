@@ -27,11 +27,13 @@ All the same useful exploration and subsetting functions that applied to vectors
 
 ### Exploration {-}
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 tail(vehicles) # head() and tail() summarize the beginning and end of the object
 
 names(vehicles) # get names of columns
+
 nrow(vehicles) # get number of rows
+
 ncol(vehicles) # get number of columns
 ```
 
@@ -41,13 +43,13 @@ Note that `length()` does not work the same on dataframes as it does with vector
 
 Recall that dataframes are filtered by row and/or column using this format: **`dataframe[rows,columns]`**. To get the third element of the second column, for example, you type `dataframe[3,2]`.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 vehicles[3,2]
 ```
 
 Note that the comma is necessary even if you do not want to specify columns. If you try to type this ...
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 vehicles[3]
 ```
 
@@ -55,20 +57,20 @@ vehicles[3]
 
 To filter a dataframe to multiple values, you can specify vectors for the `row` and `column`
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 vehicles[1:3,11:12] # can use colons
 vehicles[1:3,c(1,11:12)]  # can use c()
 ```
 
 Columns can also be called according to their names. Use the **`$`** sign to specify a column.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 vehicles$hwy[1:5]
 ```
 
 Note that when you use a `$`, you will not need to use a comma within your brackets. If you try to run this ...
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 vehicles$hwy[1:5,]
 ```
 
@@ -76,7 +78,7 @@ vehicles$hwy[1:5,]
 
 You can use logical tests to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 keeps <- which(vehicles$hwy > 100)
 keeps
 vehicles[keeps,]
@@ -84,13 +86,13 @@ vehicles[keeps,]
 
 But the above is a long-winded way of doing this. You can also achieve this result as follows:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 vehicles[which(vehicles$hwy > 100),]
 ```
 
 You can also get the same result without the `which()` function:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 vehicles[vehicles$hwy > 100,]
 ```
 
@@ -100,7 +102,7 @@ The logical test is returning a bunch of `TRUE`s and `FALSE`s, one for each row 
 
 What is wrong with these commands? Why will each of them throw an error if you run them, and how can you fix them?
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 # 1
 vehicles[1,15,]
 
@@ -118,7 +120,7 @@ vehicles[1:5,1:13]
 
 The same summary functions that you have used for vectors work for dataframes, such as:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 min(vehicles$hwy)
 max(vehicles$hwy)
 mean(vehicles$cty)
@@ -126,19 +128,19 @@ mean(vehicles$cty)
 
 You can also use the **`summary()`** function, which provides summary statistics for each column in your dataframe:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 summary(vehicles)
 ```
 
 The function **`unique()`** returns unique values within a column:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 unique(vehicles$fuel)
 ```
 
 Finally, the **`order()`** function helps you sort a dataframe according to the values in one of its columns.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 vehicles_sorted <- vehicles[order(vehicles$hwy),  #sort dataframe by highway mileage
                             c(2,3,4,10:12)] # only keep certain columns
 head(vehicles_sorted)
@@ -146,7 +148,7 @@ head(vehicles_sorted)
 
 Reverse the order by wrapping **`rev()`** around the `order()` call:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 vehicles_sorted <- vehicles[rev(order(vehicles$hwy)),
                             c(2,3,4,10:12)]
 head(vehicles_sorted)
@@ -156,7 +158,7 @@ head(vehicles_sorted)
 
 To create a new dataframe, use the `data.frame()` function.
 
-```{r}
+```{r,collapse=TRUE}
 my_vehicles <- data.frame(car=paste(vehicles$make,vehicles$model),
                           mgp_hwy=vehicles$hwy,
                           mpg_city=vehicles$cty)
@@ -167,21 +169,21 @@ Note how the columns were named in the `data.frame()` call, and that each column
 
 You can also stage an empty dataframe, which sounds useless but will become very useful as you start working with `for` loops and other higher-order `R` tools.  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- data.frame()
 df
 ```
 
 To coerce an object into a format that `R` interprets as a dataframe, use **`as.dataframe()`**: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- as.data.frame(vehicles)
 df[1:4,1:4]
 ```
 
 You can bind multiple dataframes together using **`rbind()`**: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),instrument=c("Nose harp","Concertina","Ukelele","Drums"))
 df1
 
@@ -193,7 +195,7 @@ Note that to be combined, two dataframes have to have the exact same number of c
 
 The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the *`R` Toolbag* modules ahead.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- data.frame() # stage empty dataframe
 df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),instrument=c("Nose harp","Concertina","Ukelele","Drums"))
 df <- rbind(df,df1)

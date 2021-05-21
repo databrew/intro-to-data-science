@@ -22,7 +22,7 @@ library(stringr)
 
 **`as.character()`**: converts a non-character object into a character string. 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- c(1,2,3)
 as.character(x)
 
@@ -32,7 +32,7 @@ as.character(x)
 
 This can be particularly useful when trying to resolve problems caused by factors. One common issue occurs when `R` mistakes a set of numbers as a set of factors. Using `as.character()` can set things right:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- as.factor(c(18,19,20))
 x
 
@@ -45,7 +45,7 @@ as.numeric(as.character(x))
 
 **`paste()`** and **`paste0()`** combines two ore more strings together into a single object:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 i <- 10
 n <- 96
 file_name <- "this_file.csv"
@@ -57,14 +57,14 @@ paste0(i," of ",n,": Processing ",file_name," . . . ") # this paste0 version mat
 
 You can also use `paste()` to `collapse` multiple objects into a single string.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 1:10
 paste(x,collapse="-")
 ```
 
 **`tolower()`** and **`toupper()`** forces all text in a string to lower case or upper case, respectively:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- "That Tree Is Far Away."
 tolower(x)
 toupper(x)
@@ -72,14 +72,14 @@ toupper(x)
 
 **`nchar()`** returns the number of characters within a string:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- "That Tree Is Far Away."
 nchar(x)
 ```
 
 **`substr()`** trims a string according to a start and end character position:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 dates <- c("2021-03-01","2021-03-02","2021-03-03")
 substr(dates,1,4) # years
 substr(dates,6,7) # months
@@ -88,7 +88,7 @@ substr(dates,9,10) # days
 
 **`grep()`** returns the elements in a character vector that contain a given pattern:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 years <- 1900:1999
 
 # Which elements correspodn to the 1980s?
@@ -99,14 +99,14 @@ years[eighties]
 
 **`gsub()`** replaces a given pattern with another in a character vector.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 dates <- c("2021-03-01","2021-03-02","2021-03-03")
 gsub("-","/",dates)
 ```
 
 **`stringr::str_pad()`**: standardize the lengths of strings by "padding" it (e.g., with zeroes) :
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 days <- as.character(1:15)
 days
 stringr::str_pad(days,width=2,side="left",pad="0")
@@ -114,7 +114,7 @@ stringr::str_pad(days,width=2,side="left",pad="0")
 
 **`stringr::str_split()`**: split a string into several strings at the occurrence of a specified character.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 dates <- c("2021-03-01","2021-03-02","2021-03-03")
 splits <- stringr::str_split(dates,"-")
 splits
@@ -122,7 +122,7 @@ splits
 
 This function returns a *list* for every element in the original vector. A common need is to retrieve one item from each of the element in this list. For example, let's say you are trying to retrieve the months of each element in the `dates` vector. The list structure makes this tricky to retrieve. Here's the way to do it by drawing upon the `apply()` family of functions:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 sapply(splits, "[[", 2) # Months
 
 # now get years and days

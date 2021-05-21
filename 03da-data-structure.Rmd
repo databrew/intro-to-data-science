@@ -30,14 +30,14 @@ The simplest data structure in `R` is a **vector**. A vector is simply a set of 
 
 To build up a vector in `R`, use the function `c()`, which is short for "concatenate".
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- c(5,6,7,8)
 x
 ```
 
 You can use the `c()` function to concatenate two vectors together:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- c(5,6,7,8)
 y <- c(9,10,11,12)
 z <- c(x,y)
@@ -46,7 +46,7 @@ z
 
 You can also use `c()` to add values to a vector:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- c(5,6,7,8)
 x <- c(x,9)
 x
@@ -54,7 +54,7 @@ x
 
 When two vectors are of the same length, you can do arithmetic with them:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- c(5,6,7,8)
 y <- c(9,10,11,12)
 
@@ -66,7 +66,7 @@ x / y
 
 You can also put vectors through logical tests:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- 1:5
 4 == x
 ```
@@ -75,7 +75,7 @@ This command is asking `R` to tell you whether each element in `x` is equal to `
 
 You can create vectors of any data class (i.e., data type).
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- c("Ben","Joe","Eric") 
 x
 
@@ -85,7 +85,7 @@ y
 
 Note that all values within a vector *must* be of the same class. You can't combine numerics and characters into the same vector. If you did, `R` would try to convert the numbers to characters.  For example:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- 4
 y <- "6"
 z <- c(x,y)
@@ -97,7 +97,7 @@ z
 
 **`length()`** tells you the number of elements in a vector:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- c(5,6)
 y <- c(9,10,11,12)
 
@@ -107,14 +107,14 @@ length(y)
 
 The **colon symbol `:`** creates a vector with every integer occurring between a min and max:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- 1:10
 x
 ```
 
 **`seq()`** allows you to build a vector using evenly spaced *sequence* of values between a min and max:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 seq(0,100,length=11)
 ```
 
@@ -122,19 +122,19 @@ In this command, you are telling `R` to give you a sequence of values from `0` t
 
 Alternatively, you can prescribe the interval between values instead of the length:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 seq(0,100,by=7)
 ```
 
 **`rep()`** allows you to repeat a single value a specified number of times:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 rep("Hey!",times=5)
 ```
 
 **`head()`** and **`tail()`** can be used to retrieve the first 6 or last 6 elements in a vector, respectively.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 x <- 1:1000
 head(x)
 tail(x)
@@ -142,21 +142,21 @@ tail(x)
 
 You can also adjust how many elements to return:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 head(x,2)
 tail(x,10)
 ```
 
 **`sort()`** allows you to order a vector from its smallest value to its largest:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- c(4,8,1,6,9,2,7,5,3)
 sort(x)
 ```
 
 **`rev()`** lets you reverse the order of elements within a vector:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- c(4,8,1,6,9,2,7,5,3)
 rev(x)
 rev(sort(x))
@@ -164,21 +164,21 @@ rev(sort(x))
 
 **`which()`** allows you to ask, "For which elements of a vector is the following statement true?"
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 1:10
 which(x==4)
 ```
 
 If no values within the vector meet the condition, a vector of length zero will be returned:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 1:10
 which(x == 11)
 ```
 
 **`%in%`** is a handy operator that allows you to ask whether a value occurs *within* a vector:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 1:10
 4 %in% x
 11 %in% x
@@ -201,14 +201,14 @@ Since you will eventually be working with vectors that contain thousands of data
 
 You can subset a vector using square brackets `[ ]`.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 50:100
 x[10]
 ```
 
 This command is asking `R` to return the 10th element in the vector `x`.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x[10:20]
 ```
 
@@ -218,13 +218,13 @@ This command is asking `R` to return elements `10:20` in the vector `x`.
 
 A. Figure out how to replicate the `head()` function using your new vector subsetting skills.
 
-```{r,eval=is_teacher,echo=is_teacher}
+```{r,eval=is_teacher,echo=is_teacher,collapse=TRUE}
 x[1:6]
 ```
 
 B. Now replicate the `tail()` function, using those same skills as well as the `length()` function you just learned.
 
-```{r,eval=is_teacher,echo=is_teacher}
+```{r,eval=is_teacher,echo=is_teacher,collapse=TRUE}
 x[(length(x) - 5) : length(x)]
 ```
 
@@ -236,7 +236,7 @@ As a data scientist, the most common data structure you will be working with is 
 
 We will explore dataframes in detail later, but here is a sneak peak at what they look like:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- data.frame(x=300:310,
            y=600:610)
 df
@@ -246,7 +246,7 @@ In this command, we used the `data.frame()` function to combine two vectors into
 
 The great thing about dataframes is that they allow you to relate different data types to each other.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- data.frame(name=c("Ben","Joe","Eric"),
                  height.inches=c(75,73,80))
 df

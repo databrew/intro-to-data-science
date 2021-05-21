@@ -21,7 +21,7 @@ In `R` code, conditional statements work a similar way: they let a variable's va
 
 Here is a basic example:  
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 x <- 4
 
 if(x==3){
@@ -42,7 +42,7 @@ This code ran the logical test `x==3`, determined its outcome to be `FALSE`, and
 
 Here is another example of the same idea:
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 x <- 4
 
 if(x==3){
@@ -58,7 +58,7 @@ Since `x==3` returned `FALSE`, `y` was defined as `0` instead of `100`.
 
 Note that you do not need to define an `else` statement. If you do not, `R` will simply do nothing if the logical test is `FALSE`.
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 x <- 4
 
 if(x==3){
@@ -70,7 +70,7 @@ if(x==3){
 
 You can also feed the `if` statement a logical object instead of a test. 
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 x <- 4
 x_test <- x == 3
 x_test # check out the value of x_stest
@@ -82,7 +82,7 @@ if(x_test){
 
 Not that, since `x_test` is a logical value (`TRUE` or `FALSE`), you do not need to write out a logical test within the `if` parenthetical. But you are free to do so if you wish:
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,collapse=TRUE}
 x <- 4
 x_test <- x == 3
 
@@ -105,7 +105,7 @@ Write out your own basic `if...else` statement and ensure that it works.
 
 You can nest conditional statements within others as many times as you wish: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 6
 
 if(x==3){
@@ -129,7 +129,7 @@ Note that every open bracket, `{`, needs a corresponding closing bracket ,`}`. M
 
 **`is.finite()`** tests whether a numeric object is a real, finite number.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 0
 is.finite(x)
 
@@ -140,7 +140,7 @@ is.finite(y)
 
 Here is an `if` statement making use of `is.finite()`:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 0
 y <- 10/x
 if(is.finite(y)){
@@ -152,7 +152,7 @@ if(is.finite(y)){
 
 **`is.na()`** tests whether a variable contains a missing or broken object.  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- "eric"
 is.na(x)
 
@@ -165,7 +165,7 @@ is.finite(y)
 
 **`is.null()`** tests whether a variable is empty. That is, it has been initiated, but it contains no data.  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- c(4,7,3,1,5) # make a vector of numbers
 is.null(x)
 
@@ -178,7 +178,7 @@ is.null(y)
 
 `if` statements can also accommodate joint logical tests. For example, the follow `if` statement only returns if a message if *two* tests are true:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 6
 if(is.finite(x) & x==6){
   message("x is real and equals 6")
@@ -187,7 +187,7 @@ if(is.finite(x) & x==6){
 
 The next `if` statement returns a message if either of the logical statements are true:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 6
 if(x==3 | x==6){
   message("x is equal to either 3 or 6")

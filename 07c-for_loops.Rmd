@@ -12,7 +12,7 @@
 A `for` loop is a super powerful coding tool. In a `for` loop, `R` loops through a chunk of code for a set number of repititions.
 
 A super basic example:
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 1:5
 for(i in x){
   print(i)
@@ -20,7 +20,7 @@ for(i in x){
 ```
 
 Here's an example of a pretty useless `for` loop:
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 for(i in 1:5){
   print("I'm just repeating myself.")
 }
@@ -38,7 +38,7 @@ for(i in 1:5){
 
 
 Another basic example, demonsrating that you can update a variable repeatedly in a loop.
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 x <- 2
 for(i in 1:5){
   x <- x*x
@@ -47,7 +47,7 @@ for(i in 1:5){
 ```
 
 Another silly example:
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 professors <- c("Keri","Deb","Ken") 
 for(x in professors){
   print(paste0(x," is pretty cool!"))
@@ -59,14 +59,14 @@ for(x in professors){
 Use this space to practice the basics of `for loop` formatting.  
 
 A. First, create a vector of names (add at least 3)
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Add your names to this vector
 famous.names <- c("Lady Gaga","David Haskell","Tom Cruise")
 ```
 
 B. Using the examples above as a guide, create a `for loop` that prints the same silly statement about each of these  names. 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Do your coding here
 for(i in famous.names){
   print(paste0(i," has cooties!"))
@@ -75,7 +75,7 @@ for(i in famous.names){
 
 C. It is usually best practice to write the body of your loop *first*, test it to make sure it works, *then* wrap it in a `for` loop. Use the code chunk below to practice that workflow. Complete each step in the order provided. (This may feel like hand-holding, but this practice will pay off when you dive into more complicated loops)
 
-```{r}
+```{r,collapse=TRUE}
 # Step 1. Give 'i' an arbitrary value for the time being
 i=1 
 
@@ -108,14 +108,14 @@ For example, a `for loop` can be a very efficient way of making multi-panel plot
 
 Let's use a `for loop` to get a quick overview of the variables included in the `airquality` dataset built into R.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 data(airquality)
 head(airquality)
 ```
 
 Looks like the first four columns would be interesting to plot.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 par(mfrow=c(2,2)) # Setup a multi-panel plot # format = c(number of rows, number of columns)
 par(mar=c(4.5,4.5,1,1)) # Set plot margins
 
@@ -133,14 +133,14 @@ par(mfrow=c(1,1)) # restore the default single-panel plot
 
 `for loops` are also useful for plotting data in tricky ways. Let's use a different built-in dataset, that shows the performance of various car make/models.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 data(mtcars)
 head(mtcars)
 ```
 
 Let's say we want to see how gas mileage is affected by the number of cylinders a car has. It would be nice to create a plot that shows the raw data as well as the mean mileage for each cylinder number.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Let's see how many different cylinder types there are in the data
 ucyl <- unique(mtcars$cyl) ; ucyl
 
@@ -174,7 +174,7 @@ Now try to do something similar on your own with the `airquality` dataset. Use `
 
 We will provide the empty plot, you provide the `for loop`:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(1,type="n",
      xlim=c(3,10),ylim=c(40,100),
      xlab="Month",
@@ -194,7 +194,7 @@ Here's another good example of the power of a good `for loop`.
 
 First, read in some cool data (`r xfun::embed_file('./data/keeling-curve.csv',text="keeling-curve.csv")`).
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 kc <- read.csv("./data/keeling-curve.csv") ; head(kc)
 ```
 
@@ -202,13 +202,13 @@ This is the famous Keeling Curve dataset: long-term monitoring of atmospheric CO
 
 Try plotting the Keeling Curve:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(kc$CO2 ~ kc$year_dec,type="l",xlab="Year",ylab="Atmospheric CO2")
 ```
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 kc <- kc[kc$CO2 >0,] 
 plot(kc$CO2 ~ kc$year_dec,type="l",xlab="Year",ylab="Atmospheric CO2")
 ```
@@ -222,7 +222,7 @@ Let's look at the data a different way: *by layering years on top of one another
 
 To begin, let's plot data for only a *single* year:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 
 # Stage an empty plot for what you are trying to represent
 plot(1, # plot a single point
@@ -250,7 +250,7 @@ Let's use a `for loop`!
 
 OK -- let's redo that graph and add a `for loop` into the mix:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # First, stage your empty plot:
 plot(1,type="n",
      xlim=c(0,365),xlab="Day of year",
@@ -328,7 +328,7 @@ The following scenario provides a concrete example of how to do this:
 
 **Scenario:** You participate in a survey of flightless birds in the forests of New Zealand. You conduct thirty days of fieldwork on four species of bird: the kiwi, the weka, the kakapo (*the world's heaviest parrot*), and the kea (*the world's only alpine parrot*).  
 
-```{r,echo=FALSE,eval=FALSE}
+```{r,echo=FALSE,eval=FALSE,collapse=TRUE}
 # Prep dataset
 dos <- 1:30
 spp <- c("Kiwi","Weka","Kakapo","Kea")
@@ -344,7 +344,7 @@ write.csv(df,file="./data/nz_birds.csv",quote=FALSE,row.names=FALSE)
 
 Your data (`r xfun::embed_file('./data/nz_birds.csv',text="nz_birds.csv")`) look like this: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- read.csv("./data/nz_birds.csv")
 nrow(df)
 head(df)
@@ -361,7 +361,7 @@ But first think about what needs to happen in each iteration of your loop.  For 
 
 Let's build our core code using day 10 as a practice date:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Subset to day of interest
 dayi <- 10
 dfi <- df[df$day == dayi,]
@@ -377,7 +377,7 @@ Okay! So our `for` loop needs to contain that basic code, with some minor adjust
 
 Here is the full code for this `for` loop problem:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # 1: determine the unique days in the dataset:
 udays <- unique(df$day)
 
@@ -423,7 +423,7 @@ To answer this question, your supervisor wants to see a table with each species 
 
 You can produce this table using a nested `for` loop. Here is how it's done:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 
 uspp <- unique(df$species) # get set of unique species
 
@@ -476,7 +476,7 @@ Also note that we used `i` and `j` in the variables specific to each loop (e.g.,
 
 Your supervisor is happy with your pairwise species association dataframe, and wants to use it in an analysis for a publication. However, the `R` package she wants to use requires that the data be in the format of a square *matrix* with four rows -- one for each species -- and four columns. Like this:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 results_matrix <- matrix(data=NA, nrow=4, ncol=4, dimnames=list(uspp,uspp))
 results_matrix
 ```
@@ -487,7 +487,7 @@ The values in this matrix should represent the number of dates in which each spe
 
 She asks you to use the dataframe you just created to create this matrix. Use a nested for loop to do it.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Stage empty results objects
 results_matrix <- matrix(data=NA, nrow=4, ncol=4, dimnames=list(uspp,uspp))
 
@@ -520,7 +520,7 @@ Boom!
 
 First, read in and format some other cool data (`r xfun::embed_file('./data/renewable-energy.csv',text="renewable-energy.csv")`). The code for doing so is provided for you here:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- read.csv("./data/renewable-energy.csv")
 ```
 
@@ -531,7 +531,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 
 **Task 1:** Use a `for loop` to find the change in renewable energy output for each nation in the dataset between 1990 and 2015. Print the difference for each nation in the console.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Write your code here
 i=2
 for(i in 2:ncol(df)){
@@ -543,7 +543,7 @@ for(i in 2:ncol(df)){
 
 **Task 2:** Re-do this loop, but instead of printing the differences to the console, save them in a vector.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Write your code here
 diffs <- c()
 i=2
@@ -562,7 +562,7 @@ diffs
 
 **Task 3:** First, get your bearings by figuring out how to use the `df` dataset to plot the time series for the United States, for the years 1990 - 2015. Label the x axis "Year" and the y axis "% Renewable". Include the full name of the county as the `main` title for the plot.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Write code here
 dfi <- df[,c(1,13)] 
 plot(x=dfi[,1],

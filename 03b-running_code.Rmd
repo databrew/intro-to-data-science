@@ -20,7 +20,7 @@ When you open `RStudio`, you see several different panes within the program's wi
 
 Type your first command into the *Console*, then press `Enter`:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 1 + 1
 ```
 
@@ -28,7 +28,7 @@ When you press `Enter`, R processes the command you fed it, then returns its res
 
 Note that spaces don't matter. Both of the following two commands are legible to `R` and return the same thing:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 4 + 4
 
 4+4
@@ -40,7 +40,7 @@ However, it is better to make your code as easy to read as possible, which usual
 
 Type a command in the *Console* to determine the sum of 596 and 198.
 
-```{r, eval = is_teacher, echo=is_teacher}
+```{r, eval = is_teacher, echo=is_teacher,collapse=TRUE}
 596 + 198
 ```
 
@@ -66,7 +66,7 @@ C. Practice escaping an accidentally called command: recall your most recent com
 
 For example, try running this code in your *Console*:
 
-```{r,eval=FALSE,echo=TRUE}
+```{r,eval=FALSE,echo=TRUE,collapse=TRUE}
 45 +
 ```
 
@@ -83,7 +83,7 @@ If instead you want `R` to stop waiting and stop running, hit the `Escape` key.
 
 For example, try running this code in your *Console*:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 4 + 6p
 ```
 
@@ -103,7 +103,7 @@ As you can tell from those commands you just ran, `R` is, at heart, a fancy calc
 
 Some calculations are straightforward, like addition and subtraction:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 490 + 1000
 
 490 - 1000
@@ -111,19 +111,19 @@ Some calculations are straightforward, like addition and subtraction:
 
 Division is pretty straightfoward too:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 24 / 2
 ```
 
 For multiplication, use an asterisk (`*`):
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 24 * 2
 ```
 
 `R` is usually great about following classic rules for Order of Operations, and you can use parentheses to exert control over that order. For example, these two commands produce different results:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 2*7 - 2*5 / 2
 
 (2*7 - 2*5) / 2
@@ -131,7 +131,7 @@ For multiplication, use an asterisk (`*`):
 
 You denote exponents like this: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 2 ^2
 2 ^3
 2 ^4
@@ -139,7 +139,7 @@ You denote exponents like this:
 
 Finally, note that `R` is fine with negative numbers:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 9 + -100
 ```
 
@@ -156,7 +156,7 @@ You can get `R` to evaluate logical tests using *operators*.
 
 For example, you can ask whether two values are equal to each other.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 96 == 95
 
 95 + 2 == 95 + 2
@@ -168,7 +168,7 @@ Note the use of *double* equal signs here. You must use two of them in order for
 
 You can also ask if two values are *NOT* equal to each other:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 96 != 95
 
 95 + 2 != 95 + 2
@@ -178,7 +178,7 @@ This test is a bit more difficult to understand: In the first statement, `R` is 
 
 Note that `R` lets you write these tests another, even more confusing way:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 ! 96 == 95
 
 ! 95 + 2 == 95 + 2
@@ -188,7 +188,7 @@ The first line of code is asking `R` whether it is not true that `96` and `95` a
 
 Other commonly used operators in `R` include greater than / less than (`>` and `<`), and greater/less than or equal to (`>=` and `<=`).
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 100 > 100
 100 >= 100
 ```
@@ -198,7 +198,7 @@ Other commonly used operators in `R` include greater than / less than (`>` and `
 
 A. Write and run a line of code that asks whether these two calculations return the same result:
 
-```{r,eval=FALSE,echo=TRUE}
+```{r,eval=FALSE,echo=TRUE,collapse=TRUE}
 2*7 - 2*5 / 2
 (2*7 - 2*5) / 2
 ```
@@ -210,7 +210,7 @@ B. Now write and run a line of code that asks whether the first calculation is l
 
 `R` has some built-in "functions" for common calculations, such as finding square roots and logarithms. Functions are packages of code that take a given value, transform it according to some internal code instructions, and provide an output. You will learn more about functions in a few modules. 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 sqrt(16)
 
 log(4)
@@ -218,14 +218,14 @@ log(4)
 
 Note that the function `log()` is the *natural log* function (i.e., the value that *e* must be raised to in order to equal 4). To calculate a base-10 logarithm, use `log10( )`.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 log(10)
 log10(10)
 ```
 
 Another handy function is `round()`, for rounding numbers to a specific number of decimal places.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 100/3
 round(100/3)
 round(100/3,digits=1)
@@ -235,7 +235,7 @@ round(100/3,digits=3)
 
 Finally, `R` also comes with some built-in values, such as *pi*:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 pi
 ```
 

@@ -63,7 +63,7 @@ hw <- read.csv("./data/humpback-whales.csv")
 
 Each individual whale in this dataset was identified using unique patterns on its tail, so each whale has an ID number.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 nrow(hw)
 head(hw)
 ```
@@ -81,7 +81,7 @@ Let's tackle this one step at a time.
 
 **Step 3:** So we need **a function** that returns the number of times two whales are associated. We will call this function `association_tally()`.  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 association_tally <- function(hw,A,B){
   siti <- hw$sit[hw$id==A]
   sitj <- hw$sit[hw$id==B]
@@ -95,7 +95,7 @@ association_tally <- function(hw,A,B){
 
 **Step 4:** For our **observed** association tally, we will focus in on a single pair of humpback whales: IDs 59 and 11.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 obs <- association_tally(hw,A="59",B="11")
 obs
 ```
@@ -105,7 +105,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 
 **Step 5:** The **`for` loop** for our null distribution will look like this:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 nulls <- c()
 for(i in 1:1000){
   hw_null <- hw # save a safe copy of the data
@@ -120,7 +120,7 @@ for(i in 1:1000){
 
 **Step 6:** To **visualize these results**, use a histogram:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 par(mar=c(4.2,4.2,1,1))
 hist(nulls,breaks=seq(0,25,by=1),xlim=c(0,(obs+10)),main=NULL,xlab="Null distribution")
 abline(v=obs,lwd=2,lty=3,col="blue")
@@ -128,14 +128,14 @@ abline(v=obs,lwd=2,lty=3,col="blue")
 
 **Step 7:** Finally, we **calculate our p-value**:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 p_value <- length(which(nulls >= obs)) / length(nulls)
 p_value
 ```
 
 Let's do this again with a different humpback pair, IDs 16 and 118, who were seen together only 13 times. Is their association rate statistically significant?
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Individual IDs
 A <- "58"
 B <- "133"
@@ -169,14 +169,14 @@ In this case, the observed association rate is still statistically significant a
 
 *Building off of the whale scenario:* Some of these whales have learned how to practice bubble-net feeding, a remarkable feeding strategy that requires group cooperation and special techniques for catching schooling fish such as herring. Other individuals have never been seen bubble net feeding. Are there any differences how often these two populations -- the bubble netters and the "others" -- use the study area?
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,collapse=TRUE}
 # Use same dataset as above
 hw <- read.csv("./data/humpback-whales.csv")
 ```
 
 First, let's see how many of these individuals are known to bubble net feed:
 
-```{r}
+```{r,collapse=TRUE}
 # Establish the two populations
 bnf_indices <- grep("BNF",hw$bhvr) # which detections are of BNFers
 bnf_sits <- hw[bnf_indices,] # BNF sightings
@@ -194,7 +194,7 @@ Let's go through the steps:
 
 **3. Function:**
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 annual_difference <- function(hw,bnf_ids){
   
   bnf <- hw[hw$id %in% bnf_ids,] # Sightings of known BNFers
@@ -216,14 +216,14 @@ annual_difference <- function(hw,bnf_ids){
 
 **4. Observed value:**  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 obs <- annual_difference(hw,bnf_ids=bnf_ids)
 obs 
 ```
 
 **5. Build null distribution:**
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 nulls <- c()
 for(i in 1:1000){
   bnf_null <- sample(unique(hw$id),size=length(bnf_ids),replace=FALSE)
@@ -234,14 +234,14 @@ for(i in 1:1000){
 
 **6. Visualize:** 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 hist(nulls,breaks=seq(-5,5,by=.1),xlim=c(-5,5),main=NULL,xlab="Null distribution")
 abline(v=obs,lwd=2,lty=3,col="blue")
 ```
 
 **7. p-value:**
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 p_value <- length(which(nulls >= obs)) / length(nulls)
 p_value
 ```
@@ -254,7 +254,7 @@ So there is indeed a significant difference in the annual site fidelity in the t
 To perform a correlation analysis with randomization, let's use a classic scenario from marine conversation: We have abundance estimates for a critically endangered porpoise from four years across two decades of research. This species only has a handful of individuals left in the wild. (`r xfun::embed_file('./data/porpoise-survey.csv',text="porpoise-survey.csv")`)
 
 
-```{r,echo=FALSE,eval=FALSE}
+```{r,echo=FALSE,eval=FALSE,collapse=TRUE}
 # Create dataset
 
 library(truncnorm)
@@ -284,14 +284,14 @@ names(df) <- c("year","N")
 write.csv(df,file="./data/porpoise-survey.csv",quote=FALSE,row.names=FALSE)
 ```
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- read.csv("./data/porpoise-survey.csv")
 head(df)
 ```
 
 Each row of this dataset is an abundance estimate from a survey that occurred within the vaquita's range during a certain year.  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 plot(df$N ~ df$year,ylim=c(0,20),
      xlab="Year",
      ylab="Total Abundance",
@@ -300,7 +300,7 @@ plot(df$N ~ df$year,ylim=c(0,20),
 
 Performing a simple linear regression with this dataset yields the following results:  
 
-```{r}
+```{r,collapse=TRUE}
 df_lm <- lm(df$N ~ df$year)
 
 plot(df$N ~ df$year,ylim=c(0,20),
@@ -313,7 +313,7 @@ abline(df_lm,col="firebrick",lty=2)
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 summary(df_lm)
 ```
 
@@ -327,7 +327,7 @@ Let's go through the steps:
 
 **3. Function:** Get the slope estimate for the time series.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df_lm <- function(df){
   lmi <- lm(df$N ~ df$year) 
   slopi <- summary(lmi)$coefficients[2,1]
@@ -339,14 +339,14 @@ df_lm <- function(df){
 
 **4. Observed value:**  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 obs <- df_lm(df)
 obs 
 ```
 
 **5. Build null distribution:**
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 nulls <- data.frame()
 for(i in 1:1000){
   df_null <- df
@@ -360,7 +360,7 @@ for(i in 1:1000){
 
 **6. Visualize:** 
 
-```{r,echo=TRUE,fig.height=5,fig.width=7}
+```{r,echo=TRUE,fig.height=5,fig.width=7,collapse=TRUE}
 par(mfrow=c(1,2))
 hist(nulls$slope,breaks=seq(-1,1,by=.01),xlim=c(-.5,.5),main=NULL,xlab="Null distribution",border="grey70")
 text(-.48,20,"Slope \nestimate",pos=4)
@@ -374,7 +374,7 @@ abline(v=obs[2],lwd=2,lty=3,col="blue")
 **7. p-value:**
 
 Significance of **slope**: 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 p_value <- length(which(nulls$slope >= obs[1])) / nrow(nulls)
 p_value
 ```
@@ -382,7 +382,7 @@ p_value
 This indicates that the chance that the slope is lower than the null expectation is `r 100*p_value`%.
 
 Significance of **correlation coefficient**:
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 p_value <- length(which(nulls$r >= obs[2])) / nrow(nulls)
 p_value
 ```
@@ -394,7 +394,7 @@ This indicates that the observed regression is better than `r 100*(1-p_value)`% 
 
 Sometimes we have even less data about an endagered species. Let's say we go out in 2021 for another porpoise survey and come up with these estimates from the species' range: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 library(truncnorm) ; set.seed(1234)
 n2021 <- rtruncnorm(n=25,a=0,mean=3.6,sd=3)
 n2021
@@ -402,7 +402,7 @@ n2021
 
 We want to know what the chances are that the population has declined between 2017 and 2021. 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 n2017 <- df$N[df$year==2017]
 
 plot(1,type="n",ylim=c(0,15),xlim=c(2015,2023),
@@ -420,7 +420,7 @@ In this case, our null model will be the distribution of differences of values d
 
 And in this randomization application, the workflow is a bit more simplified. We don't need a core function, and we don't even need a `for` loop.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 # Randomly draw from the 2017 dataset 5,000 times
 r2017 <- sample(n2017,size=10000,replace=TRUE)
 
@@ -455,7 +455,7 @@ Above we asked whether bubble net feeders exhibit higher year-to-year site fidel
 
 Make sure you are working with the correct data: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 hw <- read.csv("./data/humpback-whales.csv")
 
 # Establish the two populations
@@ -467,7 +467,7 @@ length(bnf_ids)
 
 **Answer key:** 
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 # Internal function for determining times seen together for a single row of a dyads dataframe
 social_X <- function(dyad){
     A <- dyad[1]
@@ -530,13 +530,13 @@ In 2019, researchers took DNA samples from 36 individuals in this dataset. They 
 
 Using these genetic samples, the researchers determined the relatedness of each pair of individuals they sampled. Those results are provided in the dataset `r xfun::embed_file('./data/humpback-kinship.rds',text="humpback-kinship.rds")`
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 kinship <- readRDS("./data/humpback-kinship.rds")
 ```
 
 And `r xfun::embed_file('./data/bnf-status.rds',text="here is a key")` providing the IDs of these 36 whales and their status as a known bubble net feeder.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 bnf_status <- readRDS("./data/bnf-status.rds")
 ```
 
@@ -544,7 +544,7 @@ Use these datasets within a randomization routine to determine whether known bub
 
 **Answer key:** 
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 # How many BNFers are in this dataset?
 n_bnf <- nrow(bnf_status[bnf_status$bnf,])
 n_bnf
@@ -598,13 +598,13 @@ Finally, let's ask whether the strength of social bonds is generally correlated 
 
 For your convenience, the social association rate for these 36 individuals has also been summarized in the dataset `r xfun::embed_file('./data/humpback-sociality.rds',text="humpback-sociality.rds")`.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 sociality <- readRDS("./data/humpback-sociality.rds")
 ```
 
 **Answer key:** 
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 # Core function
 kin_soc <- function(kinship,sociality){
   ids <- row.names(kinship) ; ids
@@ -683,13 +683,5 @@ p_value
 # In other words, whales of closer relatedness AVOID each other? At least a hypothesis...
 ```
 
-
-
-
-
-
-## Other Resources  {-}
-
-*NOTE: Under construction!*
 
 

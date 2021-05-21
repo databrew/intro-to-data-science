@@ -74,7 +74,7 @@ You now have a blank script to work in!
 
 Now type some simple commands into your script:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 2  + 10
 16 * 32
 ```
@@ -93,7 +93,7 @@ teacher_content('Get all students to practice running code at this point. The ac
 
 Add a few more lines to your script, such that your script now looks like this.
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 2  + 10
 16 * 32
 1080 / 360
@@ -145,7 +145,7 @@ To add comments to your code, use the hashtag symbol (`#`). Any text following a
 
 Here is the script above, now with comments added: 
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 # Define variable x
 x <- 2 
 x
@@ -162,7 +162,7 @@ Adding comments can be more work, but in the end it saves you time and makes you
 
 You can also use lines of hashtags to visually organize your code. For example:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 ##############################################
 # Setup
 ##############################################
@@ -207,7 +207,7 @@ When you work with data in `R`, `R` will need to know where in your computer to 
 
 To find out which folder `R` is currently using as your working directory, use the function `getwd()`:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 getwd()
 ```
 
@@ -224,7 +224,7 @@ There are three ways to set your working directory:
 ![](img/rstudio_setwd.png)
 This action sets your working directory to the same folder that your `R` script is in. When you do this, you will see that a command has been entered into your *Console*:
 
-```{r,echo=FALSE,eval=FALSE}
+```{r,echo=FALSE,eval=FALSE,collapse=TRUE}
 setwd("~/Desktop/databoom")
 ```
 
@@ -236,7 +236,7 @@ setwd("~/Desktop/databoom")
 
 To use this command, you must first install a new package. Run this code:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 install.packages("rstudioapi")
 library(rstudioapi)
 ```
@@ -245,7 +245,7 @@ For now, you do not need to understand what this code is doing. We will explain 
 
 You can now copy, paste, and run this code to set your working directory automatically:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 ```
 
@@ -283,7 +283,7 @@ The workflow for beginning a new data project typically goes like this:
 
 Here is a template you can use to copy and paste into each new script you create:
 
-```{r, echo=TRUE,eval=FALSE}
+```{r, echo=TRUE,eval=FALSE,collapse=TRUE}
 ################################################################################
 # < Add title here >
 ################################################################################

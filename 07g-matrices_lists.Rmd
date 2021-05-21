@@ -46,7 +46,7 @@ x$list$vector <- 10:20
 
 Okay! Nice shopping spree. Let's see what we have: 
 
-```{r}
+```{r,collapse=TRUE}
 x
 ```
 
@@ -97,7 +97,7 @@ Common use cases for lists include:
 Matrices are like dataframes, except that they can only contain a single data type. Dataframes can have a column with text and another with numbers, but a matrix will only handle one type. 
 
 Here's a simple dataframe containing two classes of data:
-```{r,echo=TRUE,collapse=TRUE}
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
 df <- data.frame(name=c("Ben","Joe","Eric"),
                  height.inches=c(75,73,80))
 df
@@ -105,7 +105,7 @@ df
 
 When you coerce this dataframe into a matrix (using the function **`as.matrix()`**), the numeric data get coerced into text: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 mdf <- as.matrix(df)
 mdf
 ```
@@ -179,7 +179,7 @@ heatmap(mx,Rowv=NA,Colv=NA)
 
 To see a real-world example of a matrix in action, here is a dataset containing rates of social associations, scaled between 0 and 0.5, among humpback whales in the fjords of British Columbia, Canada: `r xfun::embed_file('./data/humpback-sociality.rds',text="humpback-sociality.rds")`.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 sociality <- readRDS("./data/humpback-sociality.rds")
 ```
 

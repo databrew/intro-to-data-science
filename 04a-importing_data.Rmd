@@ -84,7 +84,7 @@ df <- read.csv("super_data.csv")
 
 This function reads in your data file as a dataframe. Save your dataset into `R`'s memory using a variable (in this case, `df`).  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df
 ```
 
@@ -98,14 +98,14 @@ The `read.csv()` function has plenty of other inputs in the event that your data
 
 For example, here is how to read in this data without column names:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- read.csv("super_data.csv",skip=1,header=FALSE)
 df
 ```
 
 If you do this without setting header to FALSE, your first row of data gets used as column names and it becomes a big ole mess:  
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- read.csv("super_data.csv",skip=1)
 df
 ```
@@ -117,7 +117,7 @@ This function, from a package named `readr`, becomes useful when you begin worki
 
 When you use `read_csv()` instead of `read.csv()`, your data are read in as a `tibble` instead of a dataframe. You will be introduced to `tibbles` in the next module on dataframes; for the time being, think of a `tibble` as a fancy version of a dataframe that can be treated exactly as a regular dataframe.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- readr::read_csv("super_data.csv")
 df
 ```
@@ -128,7 +128,7 @@ Another niche function for reading data is `readRDS()`.  This function allows yo
 
 For example, `r xfun::embed_file('super_data.rds',text="super_data.rds")`contains a `tibble` version of the dataframe above. When you read in that `.rds` file, it is already formatted as a `tibble`: 
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,collapse=TRUE}
 df <- readRDS("super_data.rds")
 df
 ```
@@ -137,7 +137,7 @@ df
 
 The data-reading functions above require only a single input: the *path* to your data file. This *path* is relative to the location of your working directory. When your data file is *inside* your working directory, the path simplifies to be the same as the filename of your data:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 df <- read.csv("super_data.csv")
 ```
 
@@ -149,13 +149,13 @@ We have a version within the same directory as our `R` file (i.e., our working d
 
 **To read a file from a *child* folder,** add the prefix, `./<child name>/`, to your  command: 
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 df <- read.csv("./data/super_data.csv")
 ```
 
 **To read a file from a *parent* folder,** add the prefix, `../`, to your  command: 
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 df <- read.csv("./data/super_data.csv")
 ```
 
@@ -179,7 +179,7 @@ Since your `R` code is going into the `R` child folder, that is what you should 
 
 Here's how:
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 df <- read.csv("../data/super_data.csv")
 ```
 
