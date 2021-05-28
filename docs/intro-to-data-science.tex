@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-05-21}
+\date{2021-05-28}
 
 \begin{document}
 \maketitle
@@ -170,8 +170,6 @@ The next several units comprise a \emph{core} curriculum for tackling data scien
 \item
   The \textbf{Basic \texttt{R} workflow} unit teaches you how to bring in your own data and work with it in \texttt{R}. You will learn how to format data to simplify analysis and add tools for \emph{data wrangling} (i.e., transforming and re-formatting data to prepare it for plotting and analysis). You will also learn how to conduct basic statistics, from exploratory data analyses (e.g., producing and comparing distributions) to significance testing.
 \item
-  The \textbf{Accessing \& managing data} unit teaches you how to organize data for large projects, how to manage atypical data formats (e.g., Excel files), and how to access data from online data files.
-\item
   The \textbf{Essential \texttt{R} skills} unit equips you with the tools, tricks, and mindset for tackling the most common tasks in data science. This is where you really begin to cut your teeth on real-world data puzzles: figuring out how to use the \texttt{R} tools in your toolbag to tackle an ambiguous problem and deliver an excellent data product.
 \end{itemize}
 
@@ -183,34 +181,20 @@ The next several units provide a suite of skills essential to any data science p
 \item
   The \textbf{Databases} unit teaches you how to access, create, and work with relational databases online using \texttt{SQL} and its alternatives.
 \item
-  The \textbf{Documenting your work} unit teaches you to use \texttt{R\ Markdown} to produce beautiful, reproducible data reports.
+  The \textbf{Documenting your work} unit teaches you to use \texttt{R\ Markdown} to produce beautiful, reproducible data reports. You will also learn about \emph{version control}, using \texttt{Git} and \texttt{GitHub} to collaborate on shared projects and work on data science teams.
 \item
-  The \textbf{Version control \& teamwork} unit teaches you how to use \texttt{Git} and \texttt{GitHub} to collaborate on shared projects and work on data science teams.
-\item
-  The \textbf{Communicating data} unit teaches you to produce successful grant applications, publishable research articles, and compelling presentations.
+  The \textbf{Sharing research} unit teaches you to produce publishable research articles and compelling presentations.
 \end{itemize}
 
 The final unit, \textbf{Advanced skills}, introduces you to a variety of advanced data science techniques, from interactive maps to iterative simulations to machine learning, that can help you begin to specialize your skillset.
-
-\hypertarget{making-the-most-of-this-course}{%
-\section*{Making the most of this course}\label{making-the-most-of-this-course}}
-\addcontentsline{toc}{section}{Making the most of this course}
-
-(Make sure you involve pizza.)
 
 \hypertarget{who-we-are}{%
 \section*{Who we are}\label{who-we-are}}
 \addcontentsline{toc}{section}{Who we are}
 
-Joe Brew
+\textbf{Joe Brew} is a data scientist, epidemiologist, and economist. He has worked with the Florida Department of Health (USA), the Chicago Department of Public Health (USA), the Barcelona Public Health Agency (Spain), the Tigray Regional Health Bureau (Ethiopia) and the Manhiça Health Research Center (Mozambique). He is a co-founder of \href{www.hyfe.ai}{Hyfe} and \href{www.databrew.cc}{DataBrew}. His research focuses on the economics of malaria and its elimination. He earned his BA at Sewanee: The University of the South (2008), an MA at the Institut Catholique de Paris (2009) and an MPH at the Kobenhavns Universitet (2013). He is passionate about international development, infectious disease surveillance, teaching, running, and pizza.
 
-Ben Brew
-
-Eric Keen
-
-Isabelle Puckette
-
-Instructor tip!Here is some teacher content.
+\textbf{Eric Keen} is a data scientist, marine ecologist, and educator. He is the Science Co-director at \href{www.bcwhales.org}{BCwhales}, a research biologist at \href{www.marecotel.org}{Marecotel}, a data scientist at \href{www.hyfe.ai}{Hyfe}, and a professor of Environmental Studies at Sewanee: the University of the South. He earned his BA at Sewanee (2008) and his PhD at Scripps Institution of Oceanography (2017). His \href{https://scholar.google.com/citations?hl=en\&user=SrLDYrEAAAAJ\&view_op=list_works\&sortby=pubdate}{research} focuses on the ecology and conservation of whales in developing coastal habitats. He is passionate about whales, conservation, teaching, small-scale farming, running, and bicycles. And pizza.
 
 \hypertarget{part-core-theory}{%
 \part{Core theory}\label{part-core-theory}}
@@ -687,8 +671,6 @@ In short, \texttt{R} is a open-source (i.e., free) coding language: a powerful p
 
 \texttt{R\ Studio} needs \texttt{R} in order to function, but \texttt{R} can technically be used on its own outside of \texttt{RStudio} if you want. However, just as a good car mechanic can get an engine to run without being installed within a car, using \texttt{R} on its own is a bit clunky and requires some expertise. For beginners (and everyone else, really), \texttt{R} is just so much more pleasant to use when you are operating it from within \texttt{RStudio}.
 
-Instructor tip!At this point it may be useful to show the students what opening R looks like on its own (not through R Studio). This helps them see why RStudio is valuable, and it will also help them understand what they did wrong when they accidentally open an .R file in R instead of RStudio -- which will happen a lot at first.
-
 \texttt{RStudio} also has increasingly powerful \emph{extensions} that make \texttt{R} even more useful and versatile in data science. These extensions allow you to use \texttt{R} to make interactive data dashboards, beautiful and reproducible data reports, presentations, websites, and even books. And new features like these are regularly being added to \texttt{RStudio} by its all-star team of data scientists.
 
 That is why this book \emph{always} uses \texttt{RStudio} when working with \texttt{R}.
@@ -767,8 +749,6 @@ To send both lines of code to the \emph{Console} at once, select both lines of c
 
 (To select multiple lines of code, you can (1) click and drag with your mouse or (2) hold down your \texttt{Shift} key while clicking your down arrow key. To select \emph{all} lines of code, press \texttt{Command\ +\ A}.)
 
-Instructor tip!Get all students to practice running code at this point. The act of typing the commands themselves helps them learn and overcome their hesitation about messing up.
-
 \hypertarget{exercise-1-1}{%
 \subsection*{Exercise 1}\label{exercise-1-1}}
 \addcontentsline{toc}{subsection}{Exercise 1}
@@ -816,8 +796,6 @@ The main disadvantages of this workflow are that:
 \item
   Unless you are an advanced \emph{Excel} programmer, you are probably modifying your original dataset, which is always dangerous and a big No-No in data science. Each time you save your work in \emph{Excel} or \emph{GoogleSheets} (which automatically saves each change you make), the original spreadsheet file gets replaced by the updated version. But if you brought your dataset into \texttt{R} instead, and modified it using an \texttt{R} script, then you leave the raw data alone and keep it safe. (Sure, you can always save different versions of your Excel file, but then you run the risk of mixing up versions and getting confused.)
 \end{enumerate}
-
-Instructor tip!Consider telling a story from your own work life before you discovered R scripts. For example: receiving versions of Excel files named DATA-final-final-final.xlsx, because tiny changes are inevitably discovered after you try to finalize a data file. Then you work all weekend on an analysis using that data, only to discover you were using the WRONG version of the data!
 
 Working with \texttt{R} scripts allows you to avoid all of these pitfalls. When you write an \texttt{R} script, you are making your work \ldots.
 
@@ -892,8 +870,6 @@ This might not seem necessary with a 5-line script, but adding visual breaks to 
 \addcontentsline{toc}{subsection}{Saving your work}
 
 \texttt{R} scripts are only useful if you save them! Unlike working with \emph{GoogleDocs} or \emph{GoogleSheets}, \texttt{R} will not automatically save your changes; you have to do that yourself. (This is inconvenient, but it is also safer; most of coding is trial and error, and sometimes you want to be careful about what is saved.)
-
-Instructor tip!Having grown up in the age of GoogleDocs, many students may not be familiar with what computer files are, and may not even know that their computer operates using directories of folders. It would be useful to open up File Explorer on your demo screen and show them how these directories work.
 
 \textbf{Where to save your work?} The folder in which you save your \texttt{R} script will be referred to as your \emph{working directory} (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location. We suggest making a new folder on your Desktop and naming it \texttt{databoom}, but you can name it whatever you want and place it wherever you want.
 
@@ -1075,8 +1051,6 @@ Boom!
 \item
   Learn the various possible classes of data in \texttt{R}
 \end{itemize}
-
-Instructor tip!Here is some teacher content.
 
 \hypertarget{introducing-variables}{%
 \section*{Introducing variables}\label{introducing-variables}}
@@ -1311,8 +1285,6 @@ D. Now use this code to determine the \emph{Celsius} equivalent of 212 degrees \
 \item
   How to work with vectors in \texttt{R}
 \end{itemize}
-
-Instructor tip!Here is some teacher content.
 
 \hypertarget{introducing-data-structures}{%
 \section*{Introducing data structures}\label{introducing-data-structures}}
@@ -1600,21 +1572,7 @@ This command is asking \texttt{R} to return elements \texttt{10:20} in the vecto
 
 A. Figure out how to replicate the \texttt{head()} function using your new vector subsetting skills.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x[}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{]}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{50} \DecValTok{51} \DecValTok{52} \DecValTok{53} \DecValTok{54} \DecValTok{55}
-\end{Highlighting}
-\end{Shaded}
-
 B. Now replicate the \texttt{tail()} function, using those same skills as well as the \texttt{length()} function you just learned.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x[(}\KeywordTok{length}\NormalTok{(x) }\OperatorTok{-}\StringTok{ }\DecValTok{5}\NormalTok{) }\OperatorTok{:}\StringTok{ }\KeywordTok{length}\NormalTok{(x)]}
-\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{95}  \DecValTok{96}  \DecValTok{97}  \DecValTok{98}  \DecValTok{99} \DecValTok{100}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{dataframes-other-data-structures}{%
 \subsection*{Dataframes \& other data structures}\label{dataframes-other-data-structures}}
@@ -1694,8 +1652,6 @@ Use the \texttt{data.frame()} function to create a table (i.e., a dataframe obje
 \item
   Understand how to read function documentation
 \end{itemize}
-
-Instructor tip!Here is some teacher content.
 
 \hypertarget{introducing-r-functions}{%
 \section*{\texorpdfstring{Introducing \texttt{R} functions}{Introducing R functions}}\label{introducing-r-functions}}
@@ -1874,12 +1830,6 @@ We can use the same vector as the input for all of these functions:
 
 \emph{NOTE: Under construction!}
 
-\hypertarget{other-resources-2}{%
-\section*{Other Resources}\label{other-resources-2}}
-\addcontentsline{toc}{section}{Other Resources}
-
-\emph{NOTE: Under construction!}
-
 \hypertarget{base-plots}{%
 \chapter{Base plots}\label{base-plots}}
 
@@ -1894,8 +1844,6 @@ We can use the same vector as the input for all of these functions:
 \item
   Basic adjustments to plot formatting
 \end{itemize}
-
-Instructor tip!Here is some teacher content.
 
 \hypertarget{introduction}{%
 \section*{Introduction}\label{introduction}}
@@ -2393,9 +2341,17 @@ Here is an example of this process:
 
 \emph{NOTE: Under construction!}
 
-\hypertarget{other-resources-3}{%
-\subsubsection*{Other Resources}\label{other-resources-3}}
+\hypertarget{other-resources-2}{%
+\subsubsection*{Other Resources}\label{other-resources-2}}
 \addcontentsline{toc}{subsubsection}{Other Resources}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf}{R color palette}\\
+\item
+  \href{https://www.r-graph-gallery.com/}{The R Graph Gallery}
+\end{itemize}
 
 \hypertarget{packages}{%
 \chapter{Packages}\label{packages}}
@@ -2415,8 +2371,6 @@ Here is an example of this process:
 \item
   Learn how to install \texttt{R} packages from \texttt{GitHub}
 \end{itemize}
-
-Instructor tip!Here is some teacher content.
 
 \hypertarget{introducing-r-packages}{%
 \section*{\texorpdfstring{Introducing \texttt{R} packages}{Introducing R packages}}\label{introducing-r-packages}}
@@ -2533,7 +2487,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"wJz,KL\}fh6k }\CharTok{\textbackslash{}"}\StringTok{a1(M*XFC:Di"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"@c7dv0+\{SAJ#W~<=w:&]Pj;/"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2542,7 +2496,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\OperatorTok{::}\KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"\{}\CharTok{\textbackslash{}"}\StringTok{PT#z-KY4yg68O3xa%;bl1("}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"MtW|2]}\CharTok{\textbackslash{}"}\StringTok{sh+68,&K)30Yu75EU"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2623,18 +2577,6 @@ Most packages contain functions that are built using functions built from other 
 \addcontentsline{toc}{section}{A note on package versions}
 
 Packages are updated regularly, and sometimes new versions can break the functions that use it as a dependency. Sometimes you may have to install a new version (\emph{or sometimes an older version!}) of a dependency in order to get your package of interest to work as desired.
-
-\hypertarget{review-assignment-6}{%
-\subsubsection*{Review assignment}\label{review-assignment-6}}
-\addcontentsline{toc}{subsubsection}{Review assignment}
-
-\emph{NOTE: Under construction!}
-
-\hypertarget{other-resources-4}{%
-\subsubsection*{Other Resources}\label{other-resources-4}}
-\addcontentsline{toc}{subsubsection}{Other Resources}
-
-\emph{NOTE: Under construction!}
 
 \hypertarget{basics-of-ggplot}{%
 \chapter{\texorpdfstring{Basics of \texttt{ggplot}}{Basics of ggplot}}\label{basics-of-ggplot}}
@@ -2725,14 +2667,14 @@ Add a line of best fit
 
 Add title / subtitle / caption
 
-\hypertarget{review-assignment-7}{%
-\subsubsection*{Review assignment}\label{review-assignment-7}}
+\hypertarget{review-assignment-6}{%
+\subsubsection*{Review assignment}\label{review-assignment-6}}
 \addcontentsline{toc}{subsubsection}{Review assignment}
 
 \emph{Note: Under construction!}
 
-\hypertarget{other-resources-5}{%
-\section*{Other resources}\label{other-resources-5}}
+\hypertarget{other-resources-3}{%
+\section*{Other resources}\label{other-resources-3}}
 \addcontentsline{toc}{section}{Other resources}
 
 \emph{Note: Under construction!}
@@ -3051,20 +2993,17 @@ To explore dataframes, let's use a dataset on fuel mileage for all cars sold fro
 \KeywordTok{library}\NormalTok{(fueleconomy)}
 \KeywordTok{data}\NormalTok{(vehicles)}
 \KeywordTok{head}\NormalTok{(vehicles)}
+\CommentTok{# A tibble: 6 x 12}
+\NormalTok{     id make  model    year class   trans  drive     cyl displ fuel    hwy   cty}
+  \OperatorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{   }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{   }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{  }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{   }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}
+\DecValTok{1} \DecValTok{13309}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1997}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Autom}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{26}    \DecValTok{20}
+\DecValTok{2} \DecValTok{13310}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1997}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Manua}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{28}    \DecValTok{22}
+\DecValTok{3} \DecValTok{13311}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1997}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Autom}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{6}   \DecValTok{3}\NormalTok{   Regu}\OperatorTok{~}\StringTok{    }\DecValTok{26}    \DecValTok{18}
+\DecValTok{4} \DecValTok{14038}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1998}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Autom}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{27}    \DecValTok{19}
+\DecValTok{5} \DecValTok{14039}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1998}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Manua}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{29}    \DecValTok{21}
+\DecValTok{6} \DecValTok{14040}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1998}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Autom}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{6}   \DecValTok{3}\NormalTok{   Regu}\OperatorTok{~}\StringTok{    }\DecValTok{26}    \DecValTok{17}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-# A tibble: 6 x 12
-     id make  model    year class   trans  drive     cyl displ fuel    hwy   cty
-  <dbl> <chr> <chr>   <dbl> <chr>   <chr>  <chr>   <dbl> <dbl> <chr> <dbl> <dbl>
-1 13309 Acura 2.2CL/~  1997 Subcom~ Autom~ Front-~     4   2.2 Regu~    26    20
-2 13310 Acura 2.2CL/~  1997 Subcom~ Manua~ Front-~     4   2.2 Regu~    28    22
-3 13311 Acura 2.2CL/~  1997 Subcom~ Autom~ Front-~     6   3   Regu~    26    18
-4 14038 Acura 2.3CL/~  1998 Subcom~ Autom~ Front-~     4   2.3 Regu~    27    19
-5 14039 Acura 2.3CL/~  1998 Subcom~ Manua~ Front-~     4   2.3 Regu~    29    21
-6 14040 Acura 2.3CL/~  1998 Subcom~ Autom~ Front-~     6   3   Regu~    26    17
-\end{verbatim}
 
 A dataframe has rows of data organized into columns. In this dataframe, each row pertains to a single vehicle make/model -- i.e., a single \emph{observation}. Each column pertains to a single \emph{type} of data. Columns are named in the \emph{header} of the dataframe.
 
@@ -3543,23 +3482,15 @@ Let's say you want to plot the prevalence of the name ``Barack'' in recent U.S h
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{head}\NormalTok{(babynames)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-# A tibble: 6 x 5
-   year sex   name          n   prop
-  <dbl> <chr> <chr>     <int>  <dbl>
-1  1880 F     Mary       7065 0.0724
-2  1880 F     Anna       2604 0.0267
-3  1880 F     Emma       2003 0.0205
-4  1880 F     Elizabeth  1939 0.0199
-5  1880 F     Minnie     1746 0.0179
-6  1880 F     Margaret   1578 0.0162
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\CommentTok{# A tibble: 6 x 5}
+\NormalTok{   year sex   name          n   prop}
+  \OperatorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{     }\ErrorTok{<}\NormalTok{int}\OperatorTok{>}\StringTok{  }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}
+\DecValTok{1}  \DecValTok{1880}\NormalTok{ F     Mary       }\DecValTok{7065} \FloatTok{0.0724}
+\DecValTok{2}  \DecValTok{1880}\NormalTok{ F     Anna       }\DecValTok{2604} \FloatTok{0.0267}
+\DecValTok{3}  \DecValTok{1880}\NormalTok{ F     Emma       }\DecValTok{2003} \FloatTok{0.0205}
+\DecValTok{4}  \DecValTok{1880}\NormalTok{ F     Elizabeth  }\DecValTok{1939} \FloatTok{0.0199}
+\DecValTok{5}  \DecValTok{1880}\NormalTok{ F     Minnie     }\DecValTok{1746} \FloatTok{0.0179}
+\DecValTok{6}  \DecValTok{1880}\NormalTok{ F     Margaret   }\DecValTok{1578} \FloatTok{0.0162}
 \NormalTok{baracks <-}\StringTok{ }\NormalTok{babynames[babynames}\OperatorTok{$}\NormalTok{name}\OperatorTok{==}\StringTok{"Barack"}\NormalTok{,]}
 \KeywordTok{plot}\NormalTok{(prop}\OperatorTok{~}\NormalTok{year,}\DataTypeTok{data=}\NormalTok{baracks,}
      \DataTypeTok{type=}\StringTok{"b"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}
@@ -3586,12 +3517,6 @@ Saving a pdf:
 \end{Shaded}
 
 Make sure you add `.pdf' to the end of your filename, and try not to run the \texttt{dev.off()} command when you have not first run the \texttt{pdf} command. If you do, \texttt{R} will think you are turning off the plotting feature in \texttt{RStudio} and you will have to restart your \texttt{R} session in order to see any more plots.
-
-\hypertarget{review-exercise-2}{%
-\subsubsection*{Review exercise}\label{review-exercise-2}}
-\addcontentsline{toc}{subsubsection}{Review exercise}
-
-\emph{NOTE: Under construction!}
 
 \hypertarget{exploring-data}{%
 \chapter{Exploring data}\label{exploring-data}}
@@ -3869,8 +3794,8 @@ And here are some other useful functions that need not be introduced in detail n
   \textbf{\texttt{ecdf()}} Plots the empirical cumulative distribution function for a dataset.
 \end{itemize}
 
-\hypertarget{review-exercise-3}{%
-\subsubsection*{Review exercise}\label{review-exercise-3}}
+\hypertarget{review-exercise-2}{%
+\subsubsection*{Review exercise}\label{review-exercise-2}}
 \addcontentsline{toc}{subsubsection}{Review exercise}
 
 For this exercise, use this dataset on the sale prices of homes in the United States. You can download that dataset directly into \texttt{R} using the following code:
@@ -4457,8 +4382,8 @@ When you report the results of your statistical tests within your reports and fi
 
 For tips on writing these results statements, see the \protect\hyperlink{style}{Module on Writing Style for Reports}.
 
-\hypertarget{review-exercise-4}{%
-\subsubsection*{Review exercise}\label{review-exercise-4}}
+\hypertarget{review-exercise-3}{%
+\subsubsection*{Review exercise}\label{review-exercise-3}}
 \addcontentsline{toc}{subsubsection}{Review exercise}
 
 To review these concepts, we will use the same dataset from the previous module: \emph{AirBNB} hosts in Amsterdam.
@@ -4788,8 +4713,8 @@ So, to answer our research question about the relationship between player height
 
 Hmm. Looks like we have an outlier!
 
-\hypertarget{review-exercise-5}{%
-\subsubsection*{Review exercise}\label{review-exercise-5}}
+\hypertarget{review-exercise-4}{%
+\subsubsection*{Review exercise}\label{review-exercise-4}}
 \addcontentsline{toc}{subsubsection}{Review exercise}
 
 This review exercise will involve \emph{both} the joining skills you learned above as well as many of the skills learned in prior modules. But don't worry: as with every exercise in this book, every puzzle here can be solved using the skills you have learned in prior modules.
@@ -4842,117 +4767,15 @@ Note that these two dataframes are linked by the \texttt{id} column, which is a 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dive}\OperatorTok{$}\NormalTok{id}
-\NormalTok{  [}\DecValTok{1}\NormalTok{] }\DecValTok{20140811106} \DecValTok{20140812104} \DecValTok{20140812107} \DecValTok{20140812109} \DecValTok{20140812131} \DecValTok{20140812140}
-\NormalTok{  [}\DecValTok{7}\NormalTok{] }\DecValTok{20140813105} \DecValTok{20140813107} \DecValTok{20140813111} \DecValTok{20140813117} \DecValTok{20140814101} \DecValTok{20140814102}
-\NormalTok{ [}\DecValTok{13}\NormalTok{] }\DecValTok{20140814103} \DecValTok{20140814104} \DecValTok{20140819101} \DecValTok{20140819102} \DecValTok{20140819103} \DecValTok{20140819106}
-\NormalTok{ [}\DecValTok{19}\NormalTok{] }\DecValTok{20140819112} \DecValTok{20140819115} \DecValTok{20140821102} \DecValTok{20140824102} \DecValTok{20140824110} \DecValTok{20140824112}
-\NormalTok{ [}\DecValTok{25}\NormalTok{] }\DecValTok{20140824127} \DecValTok{20140825104} \DecValTok{20140825109} \DecValTok{20140825115} \DecValTok{20140825116} \DecValTok{20140825121}
-\NormalTok{ [}\DecValTok{31}\NormalTok{] }\DecValTok{20140827101} \DecValTok{20140827106} \DecValTok{20140827110} \DecValTok{20140827111} \DecValTok{20140827122} \DecValTok{20140828109}
-\NormalTok{ [}\DecValTok{37}\NormalTok{] }\DecValTok{20140828111} \DecValTok{20140828115} \DecValTok{20140828120} \DecValTok{20140831101} \DecValTok{20140831102} \DecValTok{20140831106}
-\NormalTok{ [}\DecValTok{43}\NormalTok{] }\DecValTok{20140831107} \DecValTok{20140902202} \DecValTok{20140902203} \DecValTok{20140902208} \DecValTok{20140902210} \DecValTok{20140902212}
-\NormalTok{ [}\DecValTok{49}\NormalTok{] }\DecValTok{20140903203} \DecValTok{20140903206} \DecValTok{20140904201} \DecValTok{20140904202} \DecValTok{20140904203} \DecValTok{20140904205}
-\NormalTok{ [}\DecValTok{55}\NormalTok{] }\DecValTok{20140904208} \DecValTok{20140905202} \DecValTok{20140905212} \DecValTok{20140906204} \DecValTok{20140906205} \DecValTok{20140906212}
-\NormalTok{ [}\DecValTok{61}\NormalTok{] }\DecValTok{20140906213} \DecValTok{20140906216} \DecValTok{20140907206} \DecValTok{20140907212} \DecValTok{20140908202} \DecValTok{20140909202}
-\NormalTok{ [}\DecValTok{67}\NormalTok{] }\DecValTok{20140909204} \DecValTok{20140909205} \DecValTok{20140909211} \DecValTok{20140909215} \DecValTok{20140910211} \DecValTok{20140910215}
-\NormalTok{ [}\DecValTok{73}\NormalTok{] }\DecValTok{20140911204} \DecValTok{20150527104} \DecValTok{20150527105} \DecValTok{20150528101} \DecValTok{20150528104} \DecValTok{20150528107}
-\NormalTok{ [}\DecValTok{79}\NormalTok{] }\DecValTok{20150528109} \DecValTok{20150528110} \DecValTok{20150530108} \DecValTok{20150530114} \DecValTok{20150530115} \DecValTok{20150602101}
-\NormalTok{ [}\DecValTok{85}\NormalTok{] }\DecValTok{20150602104} \DecValTok{20150602106} \DecValTok{20150606103} \DecValTok{20150606106} \DecValTok{20150607104} \DecValTok{20150609101}
-\NormalTok{ [}\DecValTok{91}\NormalTok{] }\DecValTok{20150609102} \DecValTok{20150609105} \DecValTok{20150609107} \DecValTok{20150609111} \DecValTok{20150609112} \DecValTok{20150609113}
-\NormalTok{ [}\DecValTok{97}\NormalTok{] }\DecValTok{20150610101} \DecValTok{20150610103} \DecValTok{20150610106} \DecValTok{20150610107} \DecValTok{20150610112} \DecValTok{20150610116}
-\NormalTok{[}\DecValTok{103}\NormalTok{] }\DecValTok{20150612101} \DecValTok{20150612102} \DecValTok{20150613105} \DecValTok{20150613107} \DecValTok{20150613108} \DecValTok{20150613110}
-\NormalTok{[}\DecValTok{109}\NormalTok{] }\DecValTok{20150614101} \DecValTok{20150621201} \DecValTok{20150621202}
+\KeywordTok{head}\NormalTok{(dive}\OperatorTok{$}\NormalTok{id)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{20140811106} \DecValTok{20140812104} \DecValTok{20140812107} \DecValTok{20140812109} \DecValTok{20140812131} \DecValTok{20140812140}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{env}\OperatorTok{$}\NormalTok{id}
-\NormalTok{  [}\DecValTok{1}\NormalTok{] }\DecValTok{20140811103} \DecValTok{20140811104} \DecValTok{20140811106} \DecValTok{20140812102} \DecValTok{20140812104} \DecValTok{20140812103}
-\NormalTok{  [}\DecValTok{7}\NormalTok{] }\DecValTok{20140812107} \DecValTok{20140812108} \DecValTok{20140812109} \DecValTok{20140812111} \DecValTok{20140812112} \DecValTok{20140812114}
-\NormalTok{ [}\DecValTok{13}\NormalTok{] }\DecValTok{20140812115} \DecValTok{20140812116} \DecValTok{20140812120} \DecValTok{20140812122} \DecValTok{20140812127} \DecValTok{20140812131}
-\NormalTok{ [}\DecValTok{19}\NormalTok{] }\DecValTok{20140812130} \DecValTok{20140812140} \DecValTok{20140812141} \DecValTok{20140813102} \DecValTok{20140813107} \DecValTok{20140813105}
-\NormalTok{ [}\DecValTok{25}\NormalTok{] }\DecValTok{20140813111} \DecValTok{20140813115} \DecValTok{20140813117} \DecValTok{20140813116} \DecValTok{20140813122} \DecValTok{20140814101}
-\NormalTok{ [}\DecValTok{31}\NormalTok{] }\DecValTok{20140814102} \DecValTok{20140814103} \DecValTok{20140814104} \DecValTok{20140814105} \DecValTok{20140814106} \DecValTok{20140817101}
-\NormalTok{ [}\DecValTok{37}\NormalTok{] }\DecValTok{20140817102} \DecValTok{20140818101} \DecValTok{20140819102} \DecValTok{20140819103} \DecValTok{20140819101} \DecValTok{20140819106}
-\NormalTok{ [}\DecValTok{43}\NormalTok{] }\DecValTok{20140819108} \DecValTok{20140819110} \DecValTok{20140819113} \DecValTok{20140819112} \DecValTok{20140819111} \DecValTok{20140819115}
-\NormalTok{ [}\DecValTok{49}\NormalTok{] }\DecValTok{20140820101} \DecValTok{20140821102} \DecValTok{20140822102} \DecValTok{20140822103} \DecValTok{20140822107} \DecValTok{20140823101}
-\NormalTok{ [}\DecValTok{55}\NormalTok{] }\DecValTok{20140823106} \DecValTok{20140823109} \DecValTok{20140824102} \DecValTok{20140824103} \DecValTok{20140824105} \DecValTok{20140824110}
-\NormalTok{ [}\DecValTok{61}\NormalTok{] }\DecValTok{20140824112} \DecValTok{20140824113} \DecValTok{20140824114} \DecValTok{20140824115} \DecValTok{20140824116} \DecValTok{20140824117}
-\NormalTok{ [}\DecValTok{67}\NormalTok{] }\DecValTok{20140824118} \DecValTok{20140824121} \DecValTok{20140824122} \DecValTok{20140824123} \DecValTok{20140824124} \DecValTok{20140824125}
-\NormalTok{ [}\DecValTok{73}\NormalTok{] }\DecValTok{20140824127} \DecValTok{20140824126} \DecValTok{20140825101} \DecValTok{20140825103} \DecValTok{20140825104} \DecValTok{20140825107}
-\NormalTok{ [}\DecValTok{79}\NormalTok{] }\DecValTok{20140825108} \DecValTok{20140825109} \DecValTok{20140825112} \DecValTok{20140825111} \DecValTok{20140825110} \DecValTok{20140825113}
-\NormalTok{ [}\DecValTok{85}\NormalTok{] }\DecValTok{20140825115} \DecValTok{20140825116} \DecValTok{20140825117} \DecValTok{20140825120} \DecValTok{20140825121} \DecValTok{20140825122}
-\NormalTok{ [}\DecValTok{91}\NormalTok{] }\DecValTok{20140827101} \DecValTok{20140827102} \DecValTok{20140827104} \DecValTok{20140827105} \DecValTok{20140827106} \DecValTok{20140827107}
-\NormalTok{ [}\DecValTok{97}\NormalTok{] }\DecValTok{20140827109} \DecValTok{20140827111} \DecValTok{20140827112} \DecValTok{20140827116} \DecValTok{20140827120} \DecValTok{20140827110}
-\NormalTok{[}\DecValTok{103}\NormalTok{] }\DecValTok{20140827122} \DecValTok{20140827126} \DecValTok{20140827125} \DecValTok{20140827123} \DecValTok{20140827127} \DecValTok{20140827124}
-\NormalTok{[}\DecValTok{109}\NormalTok{] }\DecValTok{20140827128} \DecValTok{20140828107} \DecValTok{20140828109} \DecValTok{20140828108} \DecValTok{20140828110} \DecValTok{20140828111}
-\NormalTok{[}\DecValTok{115}\NormalTok{] }\DecValTok{20140828112} \DecValTok{20140828118} \DecValTok{20140828115} \DecValTok{20140828119} \DecValTok{20140828120} \DecValTok{20140828122}
-\NormalTok{[}\DecValTok{121}\NormalTok{] }\DecValTok{20140828123} \DecValTok{20140828121} \DecValTok{20140831101} \DecValTok{20140831102} \DecValTok{20140831106} \DecValTok{20140831107}
-\NormalTok{[}\DecValTok{127}\NormalTok{] }\DecValTok{20140902201} \DecValTok{20140902202} \DecValTok{20140902203} \DecValTok{20140902204} \DecValTok{20140902208} \DecValTok{20140902209}
-\NormalTok{[}\DecValTok{133}\NormalTok{] }\DecValTok{20140902210} \DecValTok{20140902212} \DecValTok{20140903204} \DecValTok{20140903203} \DecValTok{20140903206} \DecValTok{20140903207}
-\NormalTok{[}\DecValTok{139}\NormalTok{] }\DecValTok{20140903211} \DecValTok{20140903212} \DecValTok{20140904201} \DecValTok{20140904202} \DecValTok{20140904203} \DecValTok{20140904204}
-\NormalTok{[}\DecValTok{145}\NormalTok{] }\DecValTok{20140904205} \DecValTok{20140904208} \DecValTok{20140905202} \DecValTok{20140905207} \DecValTok{20140905210} \DecValTok{20140905212}
-\NormalTok{[}\DecValTok{151}\NormalTok{] }\DecValTok{20140906203} \DecValTok{20140906204} \DecValTok{20140906205} \DecValTok{20140906206} \DecValTok{20140906208} \DecValTok{20140906209}
-\NormalTok{[}\DecValTok{157}\NormalTok{] }\DecValTok{20140906212} \DecValTok{20140906213} \DecValTok{20140906214} \DecValTok{20140906216} \DecValTok{20140907205} \DecValTok{20140907206}
-\NormalTok{[}\DecValTok{163}\NormalTok{] }\DecValTok{20140907208} \DecValTok{20140907209} \DecValTok{20140907210} \DecValTok{20140907211} \DecValTok{20140907212} \DecValTok{20140908202}
-\NormalTok{[}\DecValTok{169}\NormalTok{] }\DecValTok{20140909201} \DecValTok{20140909202} \DecValTok{20140909203} \DecValTok{20140909204} \DecValTok{20140909205} \DecValTok{20140909206}
-\NormalTok{[}\DecValTok{175}\NormalTok{] }\DecValTok{20140909211} \DecValTok{20140909212} \DecValTok{20140909215} \DecValTok{20140910202} \DecValTok{20140910203} \DecValTok{20140910211}
-\NormalTok{[}\DecValTok{181}\NormalTok{] }\DecValTok{20140910215} \DecValTok{20140910210} \DecValTok{20140910219} \DecValTok{20140911203} \DecValTok{20140911204} \DecValTok{20140911205}
-\NormalTok{[}\DecValTok{187}\NormalTok{] }\DecValTok{20140911209} \DecValTok{20140911210} \DecValTok{20140911211} \DecValTok{20150526101} \DecValTok{20150527103} \DecValTok{20150527104}
-\NormalTok{[}\DecValTok{193}\NormalTok{] }\DecValTok{20150527105} \DecValTok{20150528101} \DecValTok{20150528104} \DecValTok{20150528107} \DecValTok{20150528108} \DecValTok{20150528109}
-\NormalTok{[}\DecValTok{199}\NormalTok{] }\DecValTok{20150528110} \DecValTok{20150530108} \DecValTok{20150530111} \DecValTok{20150530112} \DecValTok{20150530114} \DecValTok{20150530115}
-\NormalTok{[}\DecValTok{205}\NormalTok{] }\DecValTok{20150531102} \DecValTok{20150602101} \DecValTok{20150602104} \DecValTok{20150602106} \DecValTok{20150602109} \DecValTok{20150602110}
-\NormalTok{[}\DecValTok{211}\NormalTok{] }\DecValTok{20150606103} \DecValTok{20150606105} \DecValTok{20150606104} \DecValTok{20150606106} \DecValTok{20150607104} \DecValTok{20150607102}
-\NormalTok{[}\DecValTok{217}\NormalTok{] }\DecValTok{20150607103} \DecValTok{20150607106} \DecValTok{20150608102} \DecValTok{20150608104} \DecValTok{20150608105} \DecValTok{20150609101}
-\NormalTok{[}\DecValTok{223}\NormalTok{] }\DecValTok{20150609102} \DecValTok{20150609106} \DecValTok{20150609105} \DecValTok{20150609107} \DecValTok{20150609108} \DecValTok{20150609111}
-\NormalTok{[}\DecValTok{229}\NormalTok{] }\DecValTok{20150609113} \DecValTok{20150609112} \DecValTok{20150609115} \DecValTok{20150610101} \DecValTok{20150610103} \DecValTok{20150610106}
-\NormalTok{[}\DecValTok{235}\NormalTok{] }\DecValTok{20150610107} \DecValTok{20150610108} \DecValTok{20150610111} \DecValTok{20150610112} \DecValTok{20150610115} \DecValTok{20150610116}
-\NormalTok{[}\DecValTok{241}\NormalTok{] }\DecValTok{20150610118} \DecValTok{20150612101} \DecValTok{20150612102} \DecValTok{20150613104} \DecValTok{20150613105} \DecValTok{20150613107}
-\NormalTok{[}\DecValTok{247}\NormalTok{] }\DecValTok{20150613108} \DecValTok{20150613110} \DecValTok{20150614101} \DecValTok{20150617201} \DecValTok{20150617202} \DecValTok{20150621203}
-\NormalTok{[}\DecValTok{253}\NormalTok{] }\DecValTok{20150621202} \DecValTok{20150621201} \DecValTok{20150621204} \DecValTok{20150621205} \DecValTok{20150621206} \DecValTok{20150621207}
-\NormalTok{[}\DecValTok{259}\NormalTok{] }\DecValTok{20150621208} \DecValTok{20150621209} \DecValTok{20150621210} \DecValTok{20150621211} \DecValTok{20150621212} \DecValTok{20150621213}
-\NormalTok{[}\DecValTok{265}\NormalTok{] }\DecValTok{20150621214} \DecValTok{20150621216} \DecValTok{20150621218} \DecValTok{20150621217} \DecValTok{20150621220} \DecValTok{20150621221}
-\NormalTok{[}\DecValTok{271}\NormalTok{] }\DecValTok{20150621223} \DecValTok{20150621224} \DecValTok{20150622203} \DecValTok{20150623201} \DecValTok{20150624201} \DecValTok{20150624202}
-\NormalTok{[}\DecValTok{277}\NormalTok{] }\DecValTok{20150624204} \DecValTok{20150626201} \DecValTok{20150626202} \DecValTok{20150626203} \DecValTok{20150626206} \DecValTok{20150627204}
-\NormalTok{[}\DecValTok{283}\NormalTok{] }\DecValTok{20150627212} \DecValTok{20150627213} \DecValTok{20150628201} \DecValTok{20150628204} \DecValTok{20150629204} \DecValTok{20150629203}
-\NormalTok{[}\DecValTok{289}\NormalTok{] }\DecValTok{20150701201} \DecValTok{20150701202} \DecValTok{20150704201} \DecValTok{20150704203} \DecValTok{20150704204} \DecValTok{20150704205}
-\NormalTok{[}\DecValTok{295}\NormalTok{] }\DecValTok{20150705202} \DecValTok{20150705204} \DecValTok{20150705217} \DecValTok{20150706201} \DecValTok{20150706206} \DecValTok{20150707202}
-\NormalTok{[}\DecValTok{301}\NormalTok{] }\DecValTok{20150707201} \DecValTok{20150707203} \DecValTok{20150707205} \DecValTok{20150707206} \DecValTok{20150707207} \DecValTok{20150707208}
-\NormalTok{[}\DecValTok{307}\NormalTok{] }\DecValTok{20150707209} \DecValTok{20150707212} \DecValTok{20150707214} \DecValTok{20150707215} \DecValTok{20150707217} \DecValTok{20150707220}
-\NormalTok{[}\DecValTok{313}\NormalTok{] }\DecValTok{20150708203} \DecValTok{20150708202} \DecValTok{20150712302} \DecValTok{20150713302} \DecValTok{20150713304} \DecValTok{20150713305}
-\NormalTok{[}\DecValTok{319}\NormalTok{] }\DecValTok{20150713307} \DecValTok{20150713310} \DecValTok{20150713311} \DecValTok{20150713312} \DecValTok{20150714302} \DecValTok{20150714309}
-\NormalTok{[}\DecValTok{325}\NormalTok{] }\DecValTok{20150714316} \DecValTok{20150715301} \DecValTok{20150715309} \DecValTok{20150717304} \DecValTok{20150718302} \DecValTok{20150718304}
-\NormalTok{[}\DecValTok{331}\NormalTok{] }\DecValTok{20150718303} \DecValTok{20150718305} \DecValTok{20150718308} \DecValTok{20150718309} \DecValTok{20150718310} \DecValTok{20150718311}
-\NormalTok{[}\DecValTok{337}\NormalTok{] }\DecValTok{20150721303} \DecValTok{20150721304} \DecValTok{20150721311} \DecValTok{20150721312} \DecValTok{20150721316} \DecValTok{20150722302}
-\NormalTok{[}\DecValTok{343}\NormalTok{] }\DecValTok{20150723304} \DecValTok{20150723306} \DecValTok{20150723307} \DecValTok{20150723308} \DecValTok{20150725301} \DecValTok{20150725306}
-\NormalTok{[}\DecValTok{349}\NormalTok{] }\DecValTok{20150725307} \DecValTok{20150726302} \DecValTok{20150726311} \DecValTok{20150726316} \DecValTok{20150729307} \DecValTok{20150729308}
-\NormalTok{[}\DecValTok{355}\NormalTok{] }\DecValTok{20150729309} \DecValTok{20150729310} \DecValTok{20150729311} \DecValTok{20150731301} \DecValTok{20150731302} \DecValTok{20150802403}
-\NormalTok{[}\DecValTok{361}\NormalTok{] }\DecValTok{20150802404} \DecValTok{20150802402} \DecValTok{20150802406} \DecValTok{20150802405} \DecValTok{20150802407} \DecValTok{20150802408}
-\NormalTok{[}\DecValTok{367}\NormalTok{] }\DecValTok{20150802409} \DecValTok{20150802410} \DecValTok{20150802411} \DecValTok{20150802413} \DecValTok{20150803401} \DecValTok{20150803403}
-\NormalTok{[}\DecValTok{373}\NormalTok{] }\DecValTok{20150803411} \DecValTok{20150805402} \DecValTok{20150805407} \DecValTok{20150805408} \DecValTok{20150805412} \DecValTok{20150805413}
-\NormalTok{[}\DecValTok{379}\NormalTok{] }\DecValTok{20150805414} \DecValTok{20150805415} \DecValTok{20150805410} \DecValTok{20150806403} \DecValTok{20150806406} \DecValTok{20150806404}
-\NormalTok{[}\DecValTok{385}\NormalTok{] }\DecValTok{20150806405} \DecValTok{20150807401} \DecValTok{20150807403} \DecValTok{20150807405} \DecValTok{20150807409} \DecValTok{20150808407}
-\NormalTok{[}\DecValTok{391}\NormalTok{] }\DecValTok{20150808405} \DecValTok{20150808411} \DecValTok{20150808413} \DecValTok{20150808414} \DecValTok{20150808419} \DecValTok{20150808415}
-\NormalTok{[}\DecValTok{397}\NormalTok{] }\DecValTok{20150809404} \DecValTok{20150809409} \DecValTok{20150809410} \DecValTok{20150811403} \DecValTok{20150812401} \DecValTok{20150812408}
-\NormalTok{[}\DecValTok{403}\NormalTok{] }\DecValTok{20150812403} \DecValTok{20150812407} \DecValTok{20150812409} \DecValTok{20150812412} \DecValTok{20150812416} \DecValTok{20150812417}
-\NormalTok{[}\DecValTok{409}\NormalTok{] }\DecValTok{20150812421} \DecValTok{20150813402} \DecValTok{20150813406} \DecValTok{20150813407} \DecValTok{20150813410} \DecValTok{20150814403}
-\NormalTok{[}\DecValTok{415}\NormalTok{] }\DecValTok{20150815405} \DecValTok{20150815407} \DecValTok{20150815408} \DecValTok{20150815409} \DecValTok{20150815418} \DecValTok{20150815419}
-\NormalTok{[}\DecValTok{421}\NormalTok{] }\DecValTok{20150816403} \DecValTok{20150816404} \DecValTok{20150816405} \DecValTok{20150817405} \DecValTok{20150817404} \DecValTok{20150817406}
-\NormalTok{[}\DecValTok{427}\NormalTok{] }\DecValTok{20150817412} \DecValTok{20150817414} \DecValTok{20150817415} \DecValTok{20150817416} \DecValTok{20150817417} \DecValTok{20150817418}
-\NormalTok{[}\DecValTok{433}\NormalTok{] }\DecValTok{20150817419} \DecValTok{20150817420} \DecValTok{20150817421} \DecValTok{20150818402} \DecValTok{20150818403} \DecValTok{20150819402}
-\NormalTok{[}\DecValTok{439}\NormalTok{] }\DecValTok{20150819403} \DecValTok{20150819406} \DecValTok{20150819407} \DecValTok{20150819408} \DecValTok{20150819410} \DecValTok{20150819411}
-\NormalTok{[}\DecValTok{445}\NormalTok{] }\DecValTok{20150819413} \DecValTok{20150820411} \DecValTok{20150820414} \DecValTok{20150820418} \DecValTok{20150820420} \DecValTok{20150823402}
-\NormalTok{[}\DecValTok{451}\NormalTok{] }\DecValTok{20150829501} \DecValTok{20150829502} \DecValTok{20150829503} \DecValTok{20150831501} \DecValTok{20150831504} \DecValTok{20150831505}
-\NormalTok{[}\DecValTok{457}\NormalTok{] }\DecValTok{20150831507} \DecValTok{20150831508} \DecValTok{20150902501} \DecValTok{20150902503} \DecValTok{20150902505} \DecValTok{20150902506}
-\NormalTok{[}\DecValTok{463}\NormalTok{] }\DecValTok{20150902507} \DecValTok{20150902509} \DecValTok{20150902510} \DecValTok{20150902511} \DecValTok{20150902512} \DecValTok{20150902513}
-\NormalTok{[}\DecValTok{469}\NormalTok{] }\DecValTok{20150902514} \DecValTok{20150902515} \DecValTok{20150902516} \DecValTok{20150902517} \DecValTok{20150903502} \DecValTok{20150904501}
-\NormalTok{[}\DecValTok{475}\NormalTok{] }\DecValTok{20150904505} \DecValTok{20150905501} \DecValTok{20150905503} \DecValTok{20150905508} \DecValTok{20150905511} \DecValTok{20150908512}
-\NormalTok{[}\DecValTok{481}\NormalTok{] }\DecValTok{20150910502} \DecValTok{20150911503} \DecValTok{20150911505} \DecValTok{20150912504} \DecValTok{20150912506} \DecValTok{20150912507}
-\NormalTok{[}\DecValTok{487}\NormalTok{] }\DecValTok{20150912510} \DecValTok{20150912513} \DecValTok{20150913502} \DecValTok{20150913504} \DecValTok{20150913503} \DecValTok{20150913505}
-\NormalTok{[}\DecValTok{493}\NormalTok{] }\DecValTok{20150913506} \DecValTok{20150914501} \DecValTok{20150914503} \DecValTok{20150914509} \DecValTok{20150914508} \DecValTok{20150914511}
-\NormalTok{[}\DecValTok{499}\NormalTok{] }\DecValTok{20150915502} \DecValTok{20150915507} \DecValTok{20150915512} \DecValTok{20150916502} \DecValTok{20150919502} \DecValTok{20150920504}
-\NormalTok{[}\DecValTok{505}\NormalTok{] }\DecValTok{20150920509} \DecValTok{20150921501} \DecValTok{20150921502} \DecValTok{20150921503}
+\KeywordTok{head}\NormalTok{(env}\OperatorTok{$}\NormalTok{id)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{20140811103} \DecValTok{20140811104} \DecValTok{20140811106} \DecValTok{20140812102} \DecValTok{20140812104} \DecValTok{20140812103}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5117,8 +4940,6 @@ Now carry out your statistical test.
   Be able to use functions to make your work more efficient, effective, and organized
 \end{itemize}
 
-Instructor tip!Here is some teacher content.
-
 \hypertarget{first-steps}{%
 \section*{First steps}\label{first-steps}}
 \addcontentsline{toc}{section}{First steps}
@@ -5156,22 +4977,11 @@ Now use your function:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{2}\NormalTok{) }\CommentTok{# example 1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-[1] 12.6
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{12.6}
 \KeywordTok{my_function}\NormalTok{(}\DataTypeTok{x=}\DecValTok{4}\NormalTok{) }\CommentTok{# example 2}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{15.2}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-[1] 15.2
-\end{verbatim}
 
 Let's break this down.
 
@@ -5194,12 +5004,9 @@ Note that you are not \emph{required} to write out \texttt{x=2} in full when you
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{my_function}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{12.6}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-[1] 12.6
-\end{verbatim}
 
 \hypertarget{exercise-1-5}{%
 \subsection*{Exercise 1}\label{exercise-1-5}}
@@ -5551,12 +5358,6 @@ In this exercise, you will investigate annual trends in the prevalence of six na
 \textbf{Step 6.} Include an input that allows the user to specify the y axis range. If that input is set to \texttt{NULL}, the function should just use the maximum value contained in the data itself, scaled by 1.2 to make the plot prettier. Always use \texttt{0} as the lower bound of the y axis.
 
 \textbf{Step 7.} Create a multi-pane plot containing six subplots, one for each of your names of interest.
-
-\hypertarget{other-resources-6}{%
-\subsubsection*{Other Resources}\label{other-resources-6}}
-\addcontentsline{toc}{subsubsection}{Other Resources}
-
-\emph{NOTE: Under construction!}
 
 \hypertarget{for-loops}{%
 \chapter{\texorpdfstring{\texttt{for} loops}{for loops}}\label{for-loops}}
@@ -6280,8 +6081,8 @@ She asks you to use the dataframe you just created to create this matrix. Use a 
 
 Boom!
 
-\hypertarget{review-assignment-8}{%
-\subsubsection*{Review assignment}\label{review-assignment-8}}
+\hypertarget{review-assignment-7}{%
+\subsubsection*{Review assignment}\label{review-assignment-7}}
 \addcontentsline{toc}{subsubsection}{Review assignment}
 
 First, read in and format some other cool data (). The code for doing so is provided for you here:
@@ -6683,8 +6484,8 @@ Include the ability to handle missing values (i.e., if an \texttt{NA} is provide
 
 Provide five examples that demonstrate the functionality for all the possible message options.
 
-\hypertarget{review-assignment-9}{%
-\subsubsection*{Review assignment}\label{review-assignment-9}}
+\hypertarget{review-assignment-8}{%
+\subsubsection*{Review assignment}\label{review-assignment-8}}
 \addcontentsline{toc}{subsubsection}{Review assignment}
 
 \textbf{Note:} This exercise will combine all the skills you've learned for \texttt{for} loops, \texttt{if} statements, \emph{and} writing functions into a real-world data science scenario. Buckle up!
@@ -6700,12 +6501,6 @@ You are working at the Center for Disease Control. Your supervisor has asked you
 \end{enumerate}
 
 To do this work, your supervisor asks you to use the \texttt{us\_contagious\_diseases} dataset contained within the \texttt{R} package \texttt{dslabs}, which contains disease data from 1928-2011 for all states. To make sure the numbers reflect actual patterns, she asks you to only use prevalence numbers for years in which counts were made in more than 20 weeks out of the year.
-
-\hypertarget{other-resources-7}{%
-\subsubsection*{Other Resources}\label{other-resources-7}}
-\addcontentsline{toc}{subsubsection}{Other Resources}
-
-\emph{NOTE: Under construction!}
 
 \hypertarget{text}{%
 \chapter{Working with text}\label{text}}
@@ -6906,8 +6701,8 @@ This function returns a \emph{list} for every element in the original vector. A 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{review-assignment-10}{%
-\subsubsection*{Review assignment}\label{review-assignment-10}}
+\hypertarget{review-assignment-9}{%
+\subsubsection*{Review assignment}\label{review-assignment-9}}
 \addcontentsline{toc}{subsubsection}{Review assignment}
 
 A. For a given dataset, print informative status update for each iteration in a \texttt{for} loop.
@@ -7290,8 +7085,8 @@ Now that we've cancelled out the diagnoal, a heatmap of this dataset will show u
 
 \includegraphics{figures/unnamed-chunk-338-1.pdf}
 
-\hypertarget{review-exercise-6}{%
-\subsubsection*{Review exercise}\label{review-exercise-6}}
+\hypertarget{review-exercise-5}{%
+\subsubsection*{Review exercise}\label{review-exercise-5}}
 \addcontentsline{toc}{subsubsection}{Review exercise}
 
 \hypertarget{task-1-2}{%
@@ -7324,7 +7119,7 @@ Demonstrate that the matrix output of your second function is the same as the or
 \begin{itemize}
 \tightlist
 \item
-  This is a review exercise: learning the skills introduced in the previous modules by applying them to a universal data science scenario: cleaning up messy data.
+  This is a review exercise: learn the skills introduced in the previous modules by applying them to a universal data science scenario: cleaning up messy data.
 \end{itemize}
 
 \hypertarget{your-mission}{%
@@ -7376,7 +7171,7 @@ But this dataset was not always so pretty. Here is the link to the \textbf{origi
 
 \textbf{Your task in this review exercise is to write a script that carries out the necessary data cleaning steps to get this dataset from its original form to its tidy form.}
 
-Test your work along the way, then demonstrate its completion, using the \texttt{identical()} function. If your \texttt{my\_dives} version of the dataset is identical to the \texttt{dives} data above, the following logical test will be true:
+Test your work along the way, then demonstrate its completion, using the \texttt{identical()} function. If your \texttt{my\_dives} version of the dataset is identical to the \texttt{dives} data above, the following logical test will be \texttt{TRUE}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7390,12 +7185,8 @@ Enjoy!
 \chapter{Excel files \& GoogleSheets}\label{excel-files-googlesheets}}
 
 \hypertarget{learning-goals-20}{%
-\section*{Learning goals}\label{learning-goals-20}}
-\addcontentsline{toc}{section}{Learning goals}
-
-\hypertarget{review-exercise-7}{%
-\section*{Review exercise}\label{review-exercise-7}}
-\addcontentsline{toc}{section}{Review exercise}
+\subsubsection*{Learning goals}\label{learning-goals-20}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
 
 \hypertarget{part-interactive-dashboards}{%
 \part{Interactive dashboards}\label{part-interactive-dashboards}}
@@ -7838,8 +7629,8 @@ Good? Great. Push everything to your repo. Now you can share your code with othe
 
 Branching, pull requests, blaming, and more - in a break-out session.
 
-\hypertarget{part-writing-reports}{%
-\part{Writing reports}\label{part-writing-reports}}
+\hypertarget{part-sharing-research}{%
+\part{Sharing research}\label{part-sharing-research}}
 
 \hypertarget{sections-of-a-report}{%
 \chapter{Sections of a report}\label{sections-of-a-report}}
@@ -7993,7 +7784,7 @@ In the examples below, the problem statement is in boldface \& the objectives/ai
   ``\textbf{Few efforts explicitly quantify the consequences of including demand into conservation efforts to safeguard {[}Ecosystem Services{]} and biodiversity} (Wolff et al.~2015; Verhagen et al.~2016). \emph{We aimed to quantify differences between supply and benefit within the context of conservation planning. We addressed 3 questions: How does incorporating demand shift the spatial distribution of benefits relative to supply? How much benefit is captured by conservation efforts that target supply? How do efforts targeting supply and benefit compare in terms of their biodiversity outcomes?}'' (from \href{https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/cobi.13276}{Watson et al.~2019})
 \end{itemize}
 
-There are plenty of good and bad examples of \emph{Introductions} in scientific publications. Here are a few recommendations of excellent introductions that follow the rules above. Note how each example demonstrates how to achieve the necessary conceptual arc while maintaining a large ratio of citations to sentences (nearly every sentence has at least one citation).
+There are plenty of good and bad examples of \emph{Introductions} in scientific publications. Here are a few recommendations for excellent introductions that follow the rules above. Note how each example demonstrates how to achieve the necessary conceptual arc while maintaining a large ratio of citations to sentences (nearly every sentence has at least one citation).
 
 \begin{itemize}
 \item
@@ -8033,7 +7824,7 @@ Puckette et al.~2021) so you can track it later.
 
 \textbf{g. Repeat.} Until you begin to feel familiar with the current literature and stop being suprised by new studies.
 
-\emph{Once you reach a familiarity plateau (shoot for 80\% expertise), pause your literature review!} Anything less than 20-30 reviewed papers is highly unlikely to provide a sufficient grasp of the state of your field of study.
+\emph{Once you reach a familiarity plateau (shoot for 80\% expertise), pause your literature review!} For a peer-reviewed article submitted for publication, anything less than 30 reviewed papers is highly unlikely to provide a sufficient grasp of the state of your field of study (most studies cite many times this number).
 
 \hypertarget{organizing-and-writing-your-introduction}{%
 \paragraph{2. Organizing and writing your Introduction}\label{organizing-and-writing-your-introduction}}
@@ -8217,8 +8008,8 @@ A brief statement of whom you thank for their contributions and support of your 
   See the \protect\hyperlink{style}{Module on Style} for details on how to create and format tables.
 \end{itemize}
 
-\hypertarget{other-resources-8}{%
-\subsubsection*{Other resources}\label{other-resources-8}}
+\hypertarget{other-resources-4}{%
+\subsubsection*{Other resources}\label{other-resources-4}}
 \addcontentsline{toc}{subsubsection}{Other resources}
 
 \href{https://www.nature.com/articles/d41586-018-02404-4}{\textbf{``How to Write a First-class Paper''}, by the editors at \emph{Nature}}
@@ -8660,9 +8451,6 @@ Below we first provide standards that should apply to \emph{any} talk for \emph{
 \item
   Includes only the absolutely essential details regarding research sources, methods, and analyses.\\
 \item
-  At the same time, science and research are invoked unapologetically. The speaker is inviting the
-  audience to take a scholarly concept to heart and to let it guide their actions.\\
-\item
   Evidence is not oversold as truth. The uncertainty and ignorance inherent to science is not ignored.
 \end{itemize}
 
@@ -8675,7 +8463,7 @@ Below we first provide standards that should apply to \emph{any} talk for \emph{
 \item
   The organization of the talk takes the form of a story, taking the audience on a shared journey.\\
 \item
-  Within this framework, anecdotes and stories are used regularly as a medium for connecting the
+  Within this framework, anecdotes and stories are used as a medium for connecting the
   audience to facts, evidence, and emotional components of your case.
 \end{itemize}
 
@@ -8848,11 +8636,11 @@ Below we first provide standards that should apply to \emph{any} talk for \emph{
   The speaker actively maintains audience attention throughout, rather than just assuming
   attention is there or not responding accordingly if it clearly isn't.\\
 \item
-  The speaker establishes an active dialogue between herself and the audience, either directly
+  The speaker establishes an active dialogue between themselves and the audience, either directly
   (through responses or questions), or indirectly (through sharing moments of laughter, joy, pain,
   anger, disgust, etc.).\\
 \item
-  Speaker reiterates, clarifies, and changes course adaptively in response to her read of the
+  Speaker reiterates, clarifies, and changes course adaptively in response to their read of the
   audience.\\
 \item
   Speaker knowledgeably and concisely answers appropriate questions, if any.\\
@@ -8937,7 +8725,7 @@ Below we first provide standards that should apply to \emph{any} talk for \emph{
 \item
   Visual aids are of professional quality, not sloppy or thrown together.\\
 \item
-  Visual aids prioritize simplicity, clarity, and good design principles.\\
+  Visual aids prioritize simplicity, clarity, and good principles of design.\\
 \item
   Color palettes are sensitive to color-blind audiences.
 \end{itemize}
@@ -8973,15 +8761,15 @@ When speaking as a researcher to the public, some of these standards need to be 
   That said, make sure that those \textbf{emotional appeals are made with nuance and discretion}, without exploiting victims or the voiceless. Do not be condescending toward your audience or anyone unlikely to be in your audience.
 \end{itemize}
 
-\textbf{- Minimize the number of facts, numbers, and statistics.} If you \emph{must} use them, \emph{never} use them in isolation from the emotional aspects of your talk. Do not simply hurl facts at your audience. Within an empathic storytelling framework, anecdotes and stories are used as the primary medium for connecting the
-audience to facts, evidence, and emotional components of your case. Don't shy away from your data, but use it very carefully. Ultimately, the talk is a persuasive case for elevating the importance of research in our lives.
+\textbf{- Minimize the number of facts, numbers, and statistics.} If you \emph{must} use them, \emph{never} use them in isolation from the emotional aspects of your talk. Do not simply hurl facts at your audience. Within an empathic storytelling framework, anecdotes and stories are used as the primary medium for connecting the audience to facts, evidence, and emotional components of your case. Don't shy away from your data, but use it very carefully. Ultimately, the talk is a persuasive case for elevating the importance of research in our lives.
 
 \textbf{- End with strong call to action}, solidly grounded in the data and stories you have presented. Make sure that call to action is related to your talk in obvious and intuitive ways. Make sure it is a meaningful action by which audience members are actually able to make a difference. Finally, make sure that this call to action is expressed succinctly and memorably, as an effective and simple slogan.
 
 This is a \href{https://www.youtube.com/watch?v=mae2eugjUsU}{pretty good example} of a scientifically oriented talk to the public:
 
-\hypertarget{part-creating-websites}{%
-\part{Creating websites}\label{part-creating-websites}}
+\hypertarget{creating-websites}{%
+\chapter*{Creating websites}\label{creating-websites}}
+\addcontentsline{toc}{chapter}{Creating websites}
 
 \hypertarget{part-advanced-skills}{%
 \part{Advanced skills}\label{part-advanced-skills}}
@@ -9023,9 +8811,9 @@ This is a \href{https://www.youtube.com/watch?v=mae2eugjUsU}{pretty good example
 \section*{Basic idea}\label{basic-idea}}
 \addcontentsline{toc}{section}{Basic idea}
 
-Classic significance statistics (i.e., p-values) are based on the frequentist framework in which you \emph{estimate} the probability of an \emph{observed} outcome to what would be \emph{expected} if a null hypothesis were true. In a t-test, for example, you are asking, ``What are the chances of observing what I have if these two sample sets were not meaningfully different?''
+Classic significance statistics (i.e., p-values) are based on the frequentist framework in which you \emph{estimate} the probability of an \emph{observed} outcome based upon what would be \emph{expected} if a null hypothesis were true. In a t-test, for example, you are asking, ``What are the chances of observing what I have if these two sample sets were not meaningfully different?''
 
-The key word in that first sentence is \emph{estimate}. When frequentist theory was originally developed, statisticians did not have computers capable of generating vast amounts of random numbers. So they had to \emph{estimate} p-values by developing strict rules and expectations about the way data are distributed. These rules had the result of (1) placing a lot of constraints on the way statistsics could be done, (2) forcing the development of increasingly specific tests for each strange sampling scenario, (3) confusing students trying to learn statistics, and (4) requiring the use of simplistic conventions, such as the 0.05 significance threshold, in order to make statistical results somewhat intelligible.
+The key word in that first sentence is \emph{estimate}. When frequentist theory was originally developed, statisticians did not have computers capable of generating vast amounts of random numbers. So they had to \emph{estimate} p-values by developing strict rules and expectations about the way data are distributed. These rules had the result of (1) placing a lot of constraints on the way statistsics could be done, (2) forcing the development of increasingly specific tests for each novel sampling scenario, (3) confusing students trying to learn statistics, and (4) requiring the use of simplistic conventions, such as the 0.05 significance threshold, in order to make statistical results somewhat intelligible.
 
 But in the age of \texttt{R}, null distributions no longer need to be theoretical, nor do p-values need to be hypothetical. We can actually \emph{calculate} p-values based on \emph{real} null distributions, thanks to the random number generators built into coding languages such as \texttt{R}. The practice of generating real null distributions based on your own specific dataset is known as \textbf{randomization}.
 
@@ -9540,8 +9328,8 @@ And in this randomization application, the workflow is a bit more simplified. We
 
 The chances that this population is in decline is 84.43\%.
 
-\hypertarget{review-assignment-11}{%
-\section*{Review assignment}\label{review-assignment-11}}
+\hypertarget{review-assignment-10}{%
+\section*{Review assignment}\label{review-assignment-10}}
 \addcontentsline{toc}{section}{Review assignment}
 
 Let's return to the humpback whale scenario
@@ -9806,55 +9594,6 @@ For your convenience, the social association rate for these 36 individuals has a
 
 \hypertarget{machine-learning}{%
 \chapter{Machine learning}\label{machine-learning}}
-
-\hypertarget{template}{%
-\chapter{Template}\label{template}}
-
-\hypertarget{learning-goals-24}{%
-\section*{Learning goals}\label{learning-goals-24}}
-\addcontentsline{toc}{section}{Learning goals}
-
-\begin{itemize}
-\tightlist
-\item
-  Item 1\\
-\item
-  Item 2\\
-\item
-  Item 3
-\end{itemize}
-
-Instructor tip!Here is some teacher content.
-
-\hypertarget{tutorial-video}{%
-\section*{Tutorial video}\label{tutorial-video}}
-\addcontentsline{toc}{section}{Tutorial video}
-
-Bangarang - Crew Briefing from Luke Padgett on Vimeo.
-
-\hypertarget{basics-2}{%
-\section*{Basics}\label{basics-2}}
-\addcontentsline{toc}{section}{Basics}
-
-\hypertarget{exercise-1-8}{%
-\subsection*{Exercise 1}\label{exercise-1-8}}
-\addcontentsline{toc}{subsection}{Exercise 1}
-
-\hypertarget{review-assignment-12}{%
-\section*{Review assignment}\label{review-assignment-12}}
-\addcontentsline{toc}{section}{Review assignment}
-
-Introduce data
-
-Introduce task(s)
-
-\hypertarget{other-resources-9}{%
-\section*{Other Resources}\label{other-resources-9}}
-\addcontentsline{toc}{section}{Other Resources}
-
-\url{https://desiree.rbind.io/post/2020/learnr-iframes/}
-
-\url{https://rstudio.github.io/learnr/}
 
   \bibliography{book.bib,packages.bib}
 
