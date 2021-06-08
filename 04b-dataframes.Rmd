@@ -1,5 +1,9 @@
 # Dataframes {#dataframes}
 
+
+### Dataframes & other data structures  {-}
+
+
 #### Learning goals {-}
 
 * Practice exploring, summarizing, and filtering dataframes
@@ -7,6 +11,41 @@
 * Understand what the `tidyverse` is and why it is awesome
 
 &nbsp;
+
+
+A **vector** is the most basic data structure in `R`, and the other structures are built out of vectors.
+
+As a data scientist, the most common data structure you will be working with is a **dataframe**, which is essentially a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data. 
+
+We will explore dataframes in detail later, but here is a sneak peak at what they look like:
+
+```{r,echo=TRUE,collapse=TRUE}
+df <- data.frame(x=300:310,
+           y=600:610)
+df
+```
+
+In this command, we used the `data.frame()` function to combine two vectors into a dataframe with two columns named `x` and `y`. `R` then saved this result in a new variable named `df`. When we call `df`, `R` shows us the dataframe.
+
+The great thing about dataframes is that they allow you to relate different data types to each other.
+
+```{r,echo=TRUE,collapse=TRUE}
+df <- data.frame(name=c("Ben","Joe","Eric"),
+                 height=c(75,73,80))
+df
+```
+
+This dataframe has one column of class `character` and another of class `numeric`.
+
+The two other most common data structures are **matrices** and **lists**, but we will wait on learning about those. For now, focus on becoming comfortable using vectors and dataframes. 
+
+
+### Exercise 4 {-}
+
+Let's create a new object named `animals`. This is going to be a dataframe with 4 different columns: `species`, `height`, `color`, `veg` (whether or not the animal is a vegetarian). 
+
+### More on dataframes
+
 
 In data science, the most common data structure you will be using -- by far -- is the **dataframe**. You were introduced to this data structure in Module 10, but a more familiar and detailed orientation is worthwhile. 
 
@@ -219,6 +258,19 @@ What is the average city mileage for Subaru cars in the dataset?
 **E. Subset a dataframe to only data from between two values**  
 According to this dataset, how many different car makes/models have been produced with highway mileages between 30 and 40 mpg?
 
+
+
+
+#### Review assignment {-}
+
+
+1. Create a vector called `people` of 5 peoples names from the class.
+
+2. Show with code how many people are in your vector
+
+3. Create another vector called `height` which is the number of centimeters tall each of those 5 people are.
+
+4. 
 
 
 

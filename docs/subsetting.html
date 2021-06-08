@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 6 Using RStudio and R scripts | DataBOOM: the canon for data science</title>
+  <title>Module 10 Subsetting and filtering | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 6 Using RStudio and R scripts | DataBOOM: the canon for data science" />
+  <meta property="og:title" content="Module 10 Subsetting and filtering | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="databrew/intro-to-data-science" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 6 Using RStudio and R scripts | DataBOOM: the canon for data science" />
+  <meta name="twitter:title" content="Module 10 Subsetting and filtering | DataBOOM: the canon for data science" />
   
   <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="running-r-code.html"/>
-<link rel="next" href="variables-in-r.html"/>
+<link rel="prev" href="calling-functions.html"/>
+<link rel="next" href="base-plots.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -420,239 +420,38 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="using-rstudio-and-r-scripts" class="section level1" number="6">
-<h1><span class="header-section-number">Module 6</span> Using <code>RStudio</code> and <code>R</code> scripts</h1>
-<div id="learning-goals-1" class="section level4 unnumbered">
+<div id="subsetting" class="section level1" number="10">
+<h1><span class="header-section-number">Module 10</span> Subsetting and filtering</h1>
+<div id="learning-goals-5" class="section level4 unnumbered">
 <h4>Learning goals</h4>
 <ul>
-<li>Understand the difference between <code>R</code> and <code>RStudio</code></li>
-<li>Understand the <code>RStudio</code> working environment and window panes<br />
-</li>
-<li>Understand what <code>R</code> scripts are, and how to create and save them</li>
-<li>Understand how to add comments to your code, and why doing so is important</li>
-<li>Understand what a <em>working directory</em> is, and how to use it</li>
-<li>Learn basic project work flow</li>
+<li>Understand how to subset / filter</li>
 </ul>
 </div>
-<div id="r-and-rstudio-whats-the-difference" class="section level2 unnumbered">
-<h2><code>R</code> and <code>RStudio</code>: what’s the difference?</h2>
-<p>These two entities are similar, but it is important to understand how they are different.</p>
-<p>In short, <code>R</code> is a open-source (i.e., free) coding language: a powerful programming engine that can be used to do really cool things with data.</p>
-<p><code>R Studio</code>, in contrast, is a free <em>user interface</em> that helps you interact with <code>R</code>. If you think of <code>R</code> as an engine, then it helps to think of <code>RStudio</code> as the car that contains it. Like a car,<code>RStudio</code> makes it easier and more comfortable to use the engine to get where you want to go.</p>
-<p><code>R Studio</code> needs <code>R</code> in order to function, but <code>R</code> can technically be used on its own outside of <code>RStudio</code> if you want. However, just as a good car mechanic can get an engine to run without being installed within a car, using <code>R</code> on its own is a bit clunky and requires some expertise. For beginners (and everyone else, really), <code>R</code> is just so much more pleasant to use when you are operating it from within <code>RStudio</code>.</p>
-<p><code>RStudio</code> also has increasingly powerful <em>extensions</em> that make <code>R</code> even more useful and versatile in data science. These extensions allow you to use <code>R</code> to make interactive data dashboards, beautiful and reproducible data reports, presentations, websites, and even books. And new features like these are regularly being added to <code>RStudio</code> by its all-star team of data scientists.</p>
-<p>That is why this book <em>always</em> uses <code>RStudio</code> when working with <code>R</code>.</p>
-</div>
-<div id="two-minute-tour-of-rstudio" class="section level2 unnumbered">
-<h2>Two-minute tour of <code>RStudio</code></h2>
-<p>When you open <code>RStudio</code> for the first time, you will see a window that looks like the screenshot below.</p>
-<p><img src="img/rstudio_windows.png" /></p>
-<div id="console" class="section level3 unnumbered">
-<h3>Console</h3>
-<p>You are already acquainted with <code>RStudio</code>’s <em>Console</em>, the window pane on the left that you use to “talk” to <code>R</code>. (See the previous module.)</p>
-</div>
-<div id="environment" class="section level3 unnumbered">
-<h3>Environment</h3>
-<p>In the top right pane, the <em>Environment</em>, <code>RStudio</code> will maintain a list of all the datasets, variables, and functions that you are using as you work. The next modules will explain what variables and functions are.</p>
-<p>This is the pane that is used the least often, and if you wish it can simplify your workspace to minimize it.</p>
-</div>
-<div id="files-plots-packages-help" class="section level3 unnumbered">
-<h3>Files, Plots, Packages, &amp; Help</h3>
-<p>You will use the bottom right pane very often.</p>
-<ul>
-<li>The <strong>Files</strong> tab lets you see all the files within your <strong>working directory</strong>, which will be explained in the section below.<br />
-</li>
-<li>The <strong>Plots</strong> tab lets you see the plots you are producing with your code.<br />
-</li>
-<li>The <strong>Packages</strong> tab lets you see the <em>packages</em> you currently have installed on your computer. Packages are bundles of <code>R</code> functions downloaded from the internet; they will be explained in detail a few modules down the road.<br />
-</li>
-<li>The <strong>Help</strong> tab is very important! It lets you see <em>documentation</em> (i.e., user’s guides) for the functions you use in your code. Functions will also be explained in detail a few modules down the road.</li>
-</ul>
-<p>These three panes are useful, but the most useful window pane of all is actually <em>missing</em> when you first open <code>RStudio</code>. This important pane is where you work with <strong>scripts</strong>.</p>
-</div>
-</div>
-<div id="scripts" class="section level2 unnumbered">
-<h2>Scripts</h2>
-<p>Before explaining what scripts are and why they are awesome, let’s start a new script.</p>
-<p><strong>To start a new script,</strong> go to the top left icon in the <code>RStudio</code> window, and click on the green plus sign with a blank page behind it:</p>
-<p><img src="img/rstudio_newscript.png" /></p>
-<p>A dropdown window will appear. Select “R Script.”</p>
-<p>A new window pane will then appear in the top left quadrant of your <code>RStudio</code> window:</p>
-<p><img src="img/rstudio_scripts.png" />
-You now have a blank script to work in!</p>
-<p>Now type some simple commands into your script:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="using-rstudio-and-r-scripts.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="sc">+</span> <span class="dv">10</span></span>
-<span id="cb20-2"><a href="using-rstudio-and-r-scripts.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="sc">*</span> <span class="dv">32</span></span></code></pre></div>
-<p>Notice that when you press <code>Enter</code> after each line of code, nothing happens in the <em>Console</em>. In order to send this code to the Console, press <code>Enter + Command</code> at the same time (or <code>Enter + Control</code>, if you are on Windows) for each line of code.</p>
-<p>To send both lines of code to the <em>Console</em> at once, select both lines of code and hit <code>Enter + Command</code>.</p>
-<p>(To select multiple lines of code, you can (1) click and drag with your mouse or (2) hold down your <code>Shift</code> key while clicking your down arrow key. To select <em>all</em> lines of code, press <code>Command + A</code>.)</p>
-<div id="exercise-1-1" class="section level3 unnumbered">
-<h3>Exercise 1</h3>
-<p>Add a few more lines to your script, such that your script now looks like this.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="using-rstudio-and-r-scripts.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="sc">+</span> <span class="dv">10</span></span>
-<span id="cb21-2"><a href="using-rstudio-and-r-scripts.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="sc">*</span> <span class="dv">32</span></span>
-<span id="cb21-3"><a href="using-rstudio-and-r-scripts.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1080</span> <span class="sc">/</span> <span class="dv">360</span></span>
-<span id="cb21-4"><a href="using-rstudio-and-r-scripts.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="dv">500</span> <span class="sc">-</span> <span class="dv">600</span></span></code></pre></div>
-<ol style="list-style-type: upper-alpha">
-<li>Run all of these lines of code at once.<br />
-</li>
-<li>Now add <code>10</code> to the first number in each row, and re-run all of the code.</li>
-</ol>
-<p>Think about how much more efficient part (B) was thanks to your script! If you had typed all of that directly into your <em>Console</em>, you would have to recall or retype each line individually. That difference builds up when your number of commands grows into the hundreds.</p>
-</div>
-<div id="what-is-an-r-script-and-why-are-scripts-so-awesome" class="section level3 unnumbered">
-<h3>What is an <code>R</code> script, and why are scripts so awesome?</h3>
-<p>An <code>R</code> script is a file where you can keep a record of your code. Just as a script tells actors exactly what to say and when to say it, an <code>R</code> script tells <code>R</code> exactly what code to run, and in what order to run it.</p>
-<p>When working with R, you will almost always type your code into a script first, <em>then</em> send it to the <em>Console</em>. You can run your code immediately using <code>Enter + Command</code>, but you also have a script of what you have done so that you can run the exact same code at a later time</p>
-<p>To understand why <code>R</code> scripts are so awesome, consider a typical workflow in <em>Excel</em> of <em>GoogleSheets</em>. You open a big complicated spreadsheet, spend hours making changes, and save your changes frequently throughout your work session.</p>
-<p>The main disadvantages of this workflow are that:</p>
-<ol style="list-style-type: decimal">
-<li><p>There is no detailed record of the changes you have made. You cannot prove that you have made changes correctly. You cannot pass the original dataset to someone else and ask them to revise it in the same way you have. (Nor would you want to, since making all those changes was so time-consuming!) Nor could you take a different dataset and guarantee that you are able to apply the exact same changes that you applied to the first. In other words, your work is not reproducible.</p></li>
-<li><p>Making those changes is labor-intensive! Rather than spend time manually making changes to a single spreadsheet, it would be better to devote that energy to writing <code>R</code> code that makes those changes for you. That code could be run in this one case, but it could also be run at any later time, or easily modified to make similar changes to other spreadsheets.</p></li>
-<li><p>Unless you are an advanced <em>Excel</em> programmer, you are probably modifying your original dataset, which is always dangerous and a big No-No in data science. Each time you save your work in <em>Excel</em> or <em>GoogleSheets</em> (which automatically saves each change you make), the original spreadsheet file gets replaced by the updated version. But if you brought your dataset into <code>R</code> instead, and modified it using an <code>R</code> script, then you leave the raw data alone and keep it safe. (Sure, you can always save different versions of your Excel file, but then you run the risk of mixing up versions and getting confused.)</p></li>
-</ol>
-<p>Working with <code>R</code> scripts allows you to avoid all of these pitfalls. When you write an <code>R</code> script, you are making your work ….</p>
-<ul>
-<li><p><strong>Efficient.</strong> Once you get comfortable writing <code>R</code> code, you will be able to write scripts in a few minutes. Those scripts can modify datasets within seconds (or less) in ways that would take hours (or years) to carry out manually in <em>Excel</em> or <em>GoogleSheets</em>.</p></li>
-<li><p><strong>Reproducible.</strong> Once you have written an<code>R</code> script, you can reproduce your own work whenever you want to. You can send your script to a colleague so that they can reproduct your work as well. Reproducible work is defensible work.</p></li>
-<li><p><strong>Low-risk.</strong> Since your R script does not make any changes to the original data, you are keeping your data safe. It is <em>essential</em> to preserve the sanctity of raw data!</p></li>
-</ul>
-<p>Note that there is nothing fancy or special about an <code>R</code> script. An <code>R</code> script is a simple text file; that is, it only accepts basic text; you can’t add images or change font style or font size in an <code>R</code> script; just letters, numbers, and your other keyboard keys. The file’s extension, <code>.R</code> tells your computer to interpret that text as <code>R</code> code.</p>
-</div>
-<div id="commenting-your-code" class="section level3 unnumbered">
-<h3>Commenting your code</h3>
-<p>Another advantage of scripts is that you can include <em>comments</em> throughout your code to explain what you are doing and why. A <em>comment</em> is just a part of your script that is useful to you but that is ignored by <code>R</code>.</p>
-<p>To add comments to your code, use the hashtag symbol (<code>#</code>). Any text following a <code>#</code> will be ignored by <code>R</code>.</p>
-<p>Here is the script above, now with comments added:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="using-rstudio-and-r-scripts.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define variable x</span></span>
-<span id="cb22-2"><a href="using-rstudio-and-r-scripts.html#cb22-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> </span>
-<span id="cb22-3"><a href="using-rstudio-and-r-scripts.html#cb22-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb22-4"><a href="using-rstudio-and-r-scripts.html#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="using-rstudio-and-r-scripts.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a new variable, y, based on x</span></span>
-<span id="cb22-6"><a href="using-rstudio-and-r-scripts.html#cb22-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x<span class="sc">*</span><span class="dv">56</span></span>
-<span id="cb22-7"><a href="using-rstudio-and-r-scripts.html#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="using-rstudio-and-r-scripts.html#cb22-8" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> y <span class="sc">/</span> <span class="dv">23</span> <span class="co"># Make a third variable, z, based on y</span></span>
-<span id="cb22-9"><a href="using-rstudio-and-r-scripts.html#cb22-9" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb22-10"><a href="using-rstudio-and-r-scripts.html#cb22-10" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y <span class="sc">+</span> z <span class="co"># Now get the sum of all three variables</span></span></code></pre></div>
-<p>Adding comments can be more work, but in the end it saves you time and makes your code more effective. Comments might not seem necessary in the moment, but it is amazing how helpful they are when you come back to your code the next day. Frequent and helpful comments make the difference between good and great code. Comment early, comment often!</p>
-<p>You can also use lines of hashtags to visually organize your code. For example:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="using-rstudio-and-r-scripts.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">##############################################</span></span>
-<span id="cb23-2"><a href="using-rstudio-and-r-scripts.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup</span></span>
-<span id="cb23-3"><a href="using-rstudio-and-r-scripts.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="do">##############################################</span></span>
-<span id="cb23-4"><a href="using-rstudio-and-r-scripts.html#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="using-rstudio-and-r-scripts.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define variable x</span></span>
-<span id="cb23-6"><a href="using-rstudio-and-r-scripts.html#cb23-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> </span>
-<span id="cb23-7"><a href="using-rstudio-and-r-scripts.html#cb23-7" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb23-8"><a href="using-rstudio-and-r-scripts.html#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="using-rstudio-and-r-scripts.html#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a new variable, y, based on x</span></span>
-<span id="cb23-10"><a href="using-rstudio-and-r-scripts.html#cb23-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x<span class="sc">*</span><span class="dv">56</span></span>
-<span id="cb23-11"><a href="using-rstudio-and-r-scripts.html#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="using-rstudio-and-r-scripts.html#cb23-12" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> y <span class="sc">/</span> <span class="dv">23</span> <span class="co"># Make a third variable, z, based on y</span></span>
-<span id="cb23-13"><a href="using-rstudio-and-r-scripts.html#cb23-13" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb23-14"><a href="using-rstudio-and-r-scripts.html#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="using-rstudio-and-r-scripts.html#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="do">##############################################</span></span>
-<span id="cb23-16"><a href="using-rstudio-and-r-scripts.html#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Get result</span></span>
-<span id="cb23-17"><a href="using-rstudio-and-r-scripts.html#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="do">##############################################</span></span>
-<span id="cb23-18"><a href="using-rstudio-and-r-scripts.html#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="using-rstudio-and-r-scripts.html#cb23-19" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y <span class="sc">+</span> z <span class="co"># Now get the sum of all three variables</span></span></code></pre></div>
-<p>This might not seem necessary with a 5-line script, but adding visual breaks to your code becomes immensely helpful when your code grows to be hundreds of lines long.</p>
-</div>
-<div id="saving-your-work" class="section level3 unnumbered">
-<h3>Saving your work</h3>
-<p><code>R</code> scripts are only useful if you save them! Unlike working with <em>GoogleDocs</em> or <em>GoogleSheets</em>, <code>R</code> will not automatically save your changes; you have to do that yourself. (This is inconvenient, but it is also safer; most of coding is trial and error, and sometimes you want to be careful about what is saved.)</p>
-<p><strong>Where to save your work?</strong> The folder in which you save your <code>R</code> script will be referred to as your <em>working directory</em> (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location. We suggest making a new folder on your Desktop and naming it <code>databoom</code>, but you can name it whatever you want and place it wherever you want.</p>
-<p><strong>How to save your script?</strong> To save the script you have opened and typed a few lines of code into, press <code>Command + S</code> (or <code>Control + S</code>). Alternatively, go to File &gt; Save. Navigate to the folder you just created and type in a file name that is simple but descriptive. We suggest making a new <code>R</code> script for each module, and naming those scripts according to each module’s name. In this case, we recommend naming your script <code>09_intro_to_rstudio</code>.</p>
-<p>(It is good practice to avoid spaces in your file names; it will be essential later on, so good to begin the correct habit now. Start using an underscore, <code>_</code>, instead of a space.)</p>
-</div>
-</div>
-<div id="your-working-directory" class="section level2 unnumbered">
-<h2>Your working directory</h2>
-<p>When you work with data in <code>R</code>, <code>R</code> will need to know where in your computer to look for that data. The folder it looks in is known as your <strong>working directory</strong>.</p>
-<p>To find out which folder <code>R</code> is currently using as your working directory, use the function <code>getwd()</code>:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="using-rstudio-and-r-scripts.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
-<span id="cb24-2"><a href="using-rstudio-and-r-scripts.html#cb24-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;/home/joebrew/Documents/intro-to-data-science&quot;</span></span></code></pre></div>
-<p>Almost always, you want to set your working directory to the folder your <code>R</code> script is in.</p>
-<div id="how-to-set-your-working-directory" class="section level3 unnumbered">
-<h3>How to set your working directory</h3>
-<p>Whenever you begin a new <code>R</code> script, setting your working directory will be one of the first things you do.</p>
-<p>There are three ways to set your working directory:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Manually without code.</strong> On the top banner in <code>RStudio</code>, go to <em>Session &gt; Set Working Directory &gt; To Source File Location</em>:</li>
-</ol>
-<p><img src="img/rstudio_setwd.png" />
-This action sets your working directory to the same folder that your <code>R</code> script is in. When you do this, you will see that a command has been entered into your <em>Console</em>:</p>
-<p>(Note that the filepath may be different on your machine.) This code is using the function <code>setwd()</code>, which is also used in the next option.</p>
-<ol start="2" style="list-style-type: decimal">
-<li><p><strong>Manually with code, using <code>setwd()</code></strong>: You can manually provide the filepath you want to set as your working directory. This option allows you to set your <code>wd</code> to whatever folder you want. The character string within the <code>setwd()</code> command is the path to a folder. The formatting of this string must be exact, otherwise <code>R</code> will throw an error. Use option 1 at first to get a sense of how your computer formats its folder paths. Copy, paste, and modify the output from option 1 in order to type your path correctly.</p></li>
-<li><p><strong>Automatically with code</strong>: There is a command you can run that automatically sets your working directory to the folder that your <code>R</code> script is in. This is the most efficient and useful method, in our experience.</p></li>
-</ol>
-<p>To use this command, you must first install a new package. Run this code:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="using-rstudio-and-r-scripts.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rstudioapi&quot;</span>)</span>
-<span id="cb25-2"><a href="using-rstudio-and-r-scripts.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstudioapi)</span></code></pre></div>
-<p>For now, you do not need to understand what this code is doing. We will explain packages and the <code>library()</code> function in a later module.</p>
-<p>You can now copy, paste, and run this code to set your working directory automatically:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="using-rstudio-and-r-scripts.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span></code></pre></div>
-<p>This is a complicated line of code that you need not understand. As long as it works, it works! Confirm that <code>R</code> is using the correct working directory with the command <code>getwd()</code>.</p>
-</div>
-</div>
-<div id="typical-workflows" class="section level2 unnumbered">
-<h2>Typical workflows</h2>
-<p>Now that you know how to create a script and set your working directory, you are prepared to work on data projects in <code>RStudio</code>.</p>
-<p>The workflow for beginning a new data project typically goes like this:</p>
-<p><em>In your file explorer…</em></p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Create a folder for your project</strong> somewhere on your computer. This will become your working directory.</p></li>
-<li><p><strong>Create subfolders</strong> within your working directory, if you want. We recommend creating a <code>data</code> subfolder, for keeping data, and a <code>z</code> subfolder, for keeping miscellaneous documents. The goal is to keep your working directory visually simple and organized; ideally, the only files not within subfolders are your <code>R</code> scripts.</p></li>
-<li><p><strong>Add data</strong> to your working directory, if you have any.</p></li>
-</ol>
-<p><em>In <code>RStudio</code> …</em></p>
-<ol start="4" style="list-style-type: decimal">
-<li><p><strong>Create a new <code>R</code> script.</strong></p></li>
-<li><p><strong>Save it</strong> inside your intended working directory.</p></li>
-<li><p>At the top of your script, use comments to <strong>add a title, author info, and brief description.</strong></p></li>
-<li><p>Add the code to <strong>set your working directory.</strong></p></li>
-<li><p><strong>Begin coding!</strong></p></li>
-</ol>
-<div id="template-r-script" class="section level3 unnumbered">
-<h3>Template <code>R</code> script</h3>
-<p>Here is a template you can use to copy and paste into each new script you create:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="using-rstudio-and-r-scripts.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
-<span id="cb27-2"><a href="using-rstudio-and-r-scripts.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt; Add title here &gt;</span></span>
-<span id="cb27-3"><a href="using-rstudio-and-r-scripts.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
-<span id="cb27-4"><a href="using-rstudio-and-r-scripts.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb27-5"><a href="using-rstudio-and-r-scripts.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt; Add brief description here &gt;</span></span>
-<span id="cb27-6"><a href="using-rstudio-and-r-scripts.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb27-7"><a href="using-rstudio-and-r-scripts.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt; Author &gt;</span></span>
-<span id="cb27-8"><a href="using-rstudio-and-r-scripts.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Created on &lt;add date here &gt;</span></span>
-<span id="cb27-9"><a href="using-rstudio-and-r-scripts.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb27-10"><a href="using-rstudio-and-r-scripts.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
-<span id="cb27-11"><a href="using-rstudio-and-r-scripts.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set working directory</span></span>
-<span id="cb27-12"><a href="using-rstudio-and-r-scripts.html#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span>
-<span id="cb27-13"><a href="using-rstudio-and-r-scripts.html#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-14"><a href="using-rstudio-and-r-scripts.html#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
-<span id="cb27-15"><a href="using-rstudio-and-r-scripts.html#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
-<span id="cb27-16"><a href="using-rstudio-and-r-scripts.html#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Code goes here</span></span>
-<span id="cb27-17"><a href="using-rstudio-and-r-scripts.html#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-18"><a href="using-rstudio-and-r-scripts.html#cb27-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-19"><a href="using-rstudio-and-r-scripts.html#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-20"><a href="using-rstudio-and-r-scripts.html#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-21"><a href="using-rstudio-and-r-scripts.html#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-22"><a href="using-rstudio-and-r-scripts.html#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
-<span id="cb27-23"><a href="using-rstudio-and-r-scripts.html#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co"># (end of file)</span></span></code></pre></div>
-<div id="review-assignment-1" class="section level4 unnumbered">
-<h4>Review assignment:</h4>
-<p><strong>Part 1</strong> <em>(if not already complete)</em>. Create a working directory for this course. Call it whatever you like, but <code>databoom</code> could work great. Place it somewhere convenient on your computer, such as your Desktop.</p>
-<p><strong>Part 2.</strong> Within this working directory, create three new folders: (1) a <code>data</code> folder, which is where you will store the data files we will be using in subsequent modules; (2) a <code>modules</code> folder, which is where you will keep the code you use to work on the material in these modules, and (3) a <code>project</code> folder, which is where you will keep all your work associated with your summer project.</p>
-<p><strong>Part 3.</strong> Now follow the <em>Typical Workflow</em> instructions above to create a script. Save it within your <code>modules</code> folder. Name it <code>template.R</code>. Copy and paste the template <code>R</code> code provided above into this file, and save it. This is now a template that you can use to easily create new scripts for this course.</p>
-<p><strong>Part 4.</strong> Now make a copy of <code>template.R</code> to stage a script that you can use in the next module. To do so, in <code>RStudio</code> go to the top banner and click <code>File &gt; Save As</code>. Save this new script as <code>10_variables.R</code> (because the next module is called <em>Module 10: Variables in <code>R</code></em>).</p>
-<p><strong>Part 5.</strong> Modify the code in <code>10-variables.R</code> so that you are prepared to begin the next module. Change the title, and look ahead to <em>Module 10</em> to fill in a brief description. Don’t forget to add your name as the author and specify today’s date.</p>
-<p>Boom!</p>
-</div>
-<div id="other-resources-1" class="section level4 unnumbered">
-<h4>Other Resources</h4>
-<p><a href="https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/" target="blank">A Gentle Introduction to <code>R</code> from the <code>RStudio</code> team</a></p>
+<div id="a-quick-review-of-booleans" class="section level2 unnumbered">
+<h2>A quick review of booleans</h2>
+<p>Recall that a boolean / logical data type is either <code>TRUE</code> or <code>FALSE</code>. For example:</p>
+<pre><code>[1] FALSE</code></pre>
+<p>Recall also that you can calculate whether a condition is true or false on multiple elements of a vector. For example:</p>
+<pre><code>[1] FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
+<p>Boolean vectors are useful for subsetting, ie keeping those elements of a vector for which a condition is <code>TRUE</code>. You have already done this using indexes, for example:</p>
+<pre><code>[1] 30</code></pre>
+<p>But you can also do this using booleans. For example:</p>
+<pre><code>[1] 2 3 4</code></pre>
+<pre><code>[1] 2 3 4</code></pre>
+<pre><code>[1] 2 3 4</code></pre>
+<pre><code>[1] 2 3 4</code></pre>
+<div id="review-assignment-5" class="section level3 unnumbered">
+<h3>Review assignment</h3>
+<p>A. Create a vector named <code>nummies</code> of all numbers from 1 to 100</p>
+<p>B. Create another vector named <code>little_nummies</code> which consists of all those numbers which are less than or equal to 30</p>
+<p>C. Create a boolean vector named <code>these_are_big</code> which indicates whether each element of <code>nummies</code> is greater than or equal to 70</p>
+<p>D. Use <code>these_are_big</code> to subset <code>nummies</code> into a vector named <code>big_nummies</code></p>
+<p>E. Create a new vector named <code>these_are_not_that_big</code> which indicates whether each element of <code>nummies</code> is greater than 30 and less than 70. You’ll need to use the <code>&amp;</code> symbol.</p>
+<p>F. Create a new vector named <code>meh_nummies</code> which consists of all <code>nummies</code> which are greater than 30 and less than 70.</p>
+<p>G. How many numbers are greater than 30 and less than 70?</p>
+<p>H. What is the sum of all those numbers in <code>meh_nummies</code></p>
 
-</div>
 </div>
 </div>
 </div>
@@ -661,8 +460,8 @@ This action sets your working directory to the same folder that your <code>R</co
           </div>
         </div>
       </div>
-<a href="running-r-code.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="variables-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="calling-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="base-plots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -694,7 +493,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/databrew/intro-to-data-science/edit/master/03c-rstudio_tour.Rmd",
+"link": "https://github.com/databrew/intro-to-data-science/edit/master/03ex-subsetting.Rmd",
 "text": "Edit"
 },
 "history": {

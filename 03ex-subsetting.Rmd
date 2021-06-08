@@ -1,0 +1,69 @@
+# Subsetting and filtering {#subsetting}
+
+```{r,echo=FALSE,eval=FALSE}
+is_teacher <- FALSE
+```
+
+#### Learning goals {-}
+
+* Understand how to subset / filter
+
+
+```{r, results = 'asis', eval = is_teacher}
+teacher_content('Here is some teacher content.')
+```
+
+## A quick review of booleans {-}
+
+Recall that a boolean / logical data type is either `TRUE` or `FALSE`. For example:
+
+```{r}
+joes_age <- 35
+old_age <- 36
+joe_is_old <- joes_age >= old_age
+joe_is_old
+```
+
+Recall also that you can calculate whether a condition is true or false on multiple elements of a vector. For example:
+
+```{r}
+ages <- c(10, 20, 30, 40, 50, 60)
+old_age <- 36
+people_are_old <- ages >= old_age
+people_are_old
+```
+
+Boolean vectors are useful for subsetting, ie keeping those elements of a vector for which a condition is `TRUE`. You have already done this using indexes, for example:
+
+```{r}
+ages[3]
+```
+
+But you can also do this using booleans. For example:
+
+```{r}
+foo <- 1:4
+foo[2:4]
+foo[c(2,3,4)]
+foo[c(FALSE, TRUE, TRUE, TRUE)]
+foo[foo >= 2]
+```
+
+
+### Review assignment {-}
+
+A. Create a vector named `nummies` of all numbers from 1 to 100
+
+B. Create another vector named `little_nummies` which consists of all those numbers which are less than or equal to 30
+
+C. Create a boolean vector named `these_are_big` which indicates whether each element of `nummies` is greater than or equal to 70
+
+D. Use `these_are_big` to subset `nummies` into a vector named `big_nummies`
+
+E. Create a new vector named `these_are_not_that_big` which indicates whether each element of `nummies` is greater than 30 and less than 70. You'll need to use the `&` symbol.
+
+F. Create a new vector named `meh_nummies` which consists of all `nummies` which are greater than 30 and less than 70.
+
+G. How many numbers are greater than 30 and less than 70?
+
+H. What is the sum of all those numbers in `meh_nummies`

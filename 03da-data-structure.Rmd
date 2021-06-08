@@ -234,39 +234,6 @@ B. Now replicate the `tail()` function, using those same skills as well as the `
 x[(length(x) - 5) : length(x)]
 ```
 
-### Dataframes & other data structures  {-}
-
-A **vector** is the most basic data structure in `R`, and the other structures are built out of vectors.
-
-As a data scientist, the most common data structure you will be working with is a **dataframe**, which is essentially a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data. 
-
-We will explore dataframes in detail later, but here is a sneak peak at what they look like:
-
-```{r,echo=TRUE,collapse=TRUE}
-df <- data.frame(x=300:310,
-           y=600:610)
-df
-```
-
-In this command, we used the `data.frame()` function to combine two vectors into a dataframe with two columns named `x` and `y`. `R` then saved this result in a new variable named `df`. When we call `df`, `R` shows us the dataframe.
-
-The great thing about dataframes is that they allow you to relate different data types to each other.
-
-```{r,echo=TRUE,collapse=TRUE}
-df <- data.frame(name=c("Ben","Joe","Eric"),
-                 height.inches=c(75,73,80))
-df
-```
-
-This dataframe has one column of class `character` and another of class `numeric`.
-
-The two other most common data structures are **matrices** and **lists**, but we will wait on learning about those. For now, focus on becoming comfortable using vectors and dataframes. 
-
-
-### Exercise 3 {-}
-
-Use the `data.frame()` function to create a table (i.e., a dataframe object) listing 10 different pizza toppings and whether or not you like each one.
-
 
 #### Review assignment {-}
 
@@ -280,6 +247,19 @@ D. Get the average number of hours slept in the last week
 
 E. Check if the total number of hours in the first 3 days is less than the total number of hours in the last 4 days
 
-D. Cre
+F. Create an object named `over_under`. This should be the difference between how much you slept each night and 8 hours (ie, 1.5 means you slept 9.5 hours and -2 means you slept 8 hours)
 
+G. Write code to use `over_under` to calculate your sleep deficit / surplus this week (ie, the total hours over/under the amount of sleep you would have gotten had you slept 8 hours every night)
+
+H. Write code to get the minimum number of hours you slept this week.
+
+I. Write code to calculate how many hours of sleep you would have gotten had you sleep the minimum number of hours every night.
+
+J. Write code to calculate the average of the hours of sleep you got on the 3rd through 6th days of the week.
+
+K. Write code to calculate how many hours of sleep you would get in a year if you were to sleep the same amount every night as the average amount you slept from the 3rd to 6th days of the week.
+
+L. Write code to calculate how many hours of sleep per year someone who sleeps 8 hours a night gets.
+
+M. How many hours more/less than the 8 hours per night sleeper do you get in a year, assuming you sleep every night the average of the amount you slept on the first and last day of this week?
 
