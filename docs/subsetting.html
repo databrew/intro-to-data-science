@@ -431,15 +431,29 @@ div.csl-indent {
 <div id="a-quick-review-of-booleans" class="section level2 unnumbered">
 <h2>A quick review of booleans</h2>
 <p>Recall that a boolean / logical data type is either <code>TRUE</code> or <code>FALSE</code>. For example:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="subsetting.html#cb69-1" aria-hidden="true" tabindex="-1"></a>joes_age <span class="ot">&lt;-</span> <span class="dv">35</span></span>
+<span id="cb69-2"><a href="subsetting.html#cb69-2" aria-hidden="true" tabindex="-1"></a>old_age <span class="ot">&lt;-</span> <span class="dv">36</span></span>
+<span id="cb69-3"><a href="subsetting.html#cb69-3" aria-hidden="true" tabindex="-1"></a>joe_is_old <span class="ot">&lt;-</span> joes_age <span class="sc">&gt;=</span> old_age</span>
+<span id="cb69-4"><a href="subsetting.html#cb69-4" aria-hidden="true" tabindex="-1"></a>joe_is_old</span></code></pre></div>
 <pre><code>[1] FALSE</code></pre>
 <p>Recall also that you can calculate whether a condition is true or false on multiple elements of a vector. For example:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="subsetting.html#cb71-1" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>)</span>
+<span id="cb71-2"><a href="subsetting.html#cb71-2" aria-hidden="true" tabindex="-1"></a>old_age <span class="ot">&lt;-</span> <span class="dv">36</span></span>
+<span id="cb71-3"><a href="subsetting.html#cb71-3" aria-hidden="true" tabindex="-1"></a>people_are_old <span class="ot">&lt;-</span> ages <span class="sc">&gt;=</span> old_age</span>
+<span id="cb71-4"><a href="subsetting.html#cb71-4" aria-hidden="true" tabindex="-1"></a>people_are_old</span></code></pre></div>
 <pre><code>[1] FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
 <p>Boolean vectors are useful for subsetting, ie keeping those elements of a vector for which a condition is <code>TRUE</code>. You have already done this using indexes, for example:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="subsetting.html#cb73-1" aria-hidden="true" tabindex="-1"></a>ages[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>[1] 30</code></pre>
 <p>But you can also do this using booleans. For example:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="subsetting.html#cb75-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb75-2"><a href="subsetting.html#cb75-2" aria-hidden="true" tabindex="-1"></a>foo[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
 <pre><code>[1] 2 3 4</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="subsetting.html#cb77-1" aria-hidden="true" tabindex="-1"></a>foo[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)]</span></code></pre></div>
 <pre><code>[1] 2 3 4</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="subsetting.html#cb79-1" aria-hidden="true" tabindex="-1"></a>foo[<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)]</span></code></pre></div>
 <pre><code>[1] 2 3 4</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="subsetting.html#cb81-1" aria-hidden="true" tabindex="-1"></a>foo[foo <span class="sc">&gt;=</span> <span class="dv">2</span>]</span></code></pre></div>
 <pre><code>[1] 2 3 4</code></pre>
 <div id="review-assignment-5" class="section level3 unnumbered">
 <h3>Review assignment</h3>
