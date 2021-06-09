@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 23 Working with text | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 23 Working with text | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
@@ -33,7 +33,7 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="conditional-statements.html"/>
 <link rel="next" href="working-with-dates-times.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,29 +116,6 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -433,104 +408,104 @@ div.csl-indent {
 <p>If you do not learn how to edit and transform text-based fields within datasets, you will quickly get stuck in <code>R</code>. Think of dates, GPS coordinates, user IDs, group names, plot labels, <em>etc.</em> All of these forms of data can contain non-numeric text. Becoming comfortable working with text in <code>R</code> is an essential part of your <code>R</code> toolbag.</p>
 <p>Here we will present the most common functions for working with text. Remember that <code>R</code> has a special object class for text, known to as <strong>character</strong> class, and that character objects are often referred to as <strong>strings</strong>.</p>
 <p>Most of these functions come pre-installed in <code>R</code>. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the <strong><code>stringr</code> package</strong>. Go ahead an install <code>stringr</code> and load it using <code>library()</code>.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="text.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span>
-<span id="cb299-2"><a href="text.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="text.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span>
+<span id="cb298-2"><a href="text.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
 </div>
 <div id="common-tools" class="section level2 unnumbered">
 <h2>Common tools</h2>
 <p><strong><code>as.character()</code></strong>: converts a non-character object into a character string.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="text.html#cb300-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb300-2"><a href="text.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(x)</span>
-<span id="cb300-3"><a href="text.html#cb300-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1&quot;</span> <span class="st">&quot;2&quot;</span> <span class="st">&quot;3&quot;</span></span>
-<span id="cb300-4"><a href="text.html#cb300-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb300-5"><a href="text.html#cb300-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="st">&quot;group1&quot;</span>,<span class="st">&quot;group2&quot;</span>,<span class="st">&quot;group3&quot;</span>))</span>
-<span id="cb300-6"><a href="text.html#cb300-6" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(x)</span>
-<span id="cb300-7"><a href="text.html#cb300-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;group1&quot;</span> <span class="st">&quot;group2&quot;</span> <span class="st">&quot;group3&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="text.html#cb299-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb299-2"><a href="text.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(x)</span>
+<span id="cb299-3"><a href="text.html#cb299-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1&quot;</span> <span class="st">&quot;2&quot;</span> <span class="st">&quot;3&quot;</span></span>
+<span id="cb299-4"><a href="text.html#cb299-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-5"><a href="text.html#cb299-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="st">&quot;group1&quot;</span>,<span class="st">&quot;group2&quot;</span>,<span class="st">&quot;group3&quot;</span>))</span>
+<span id="cb299-6"><a href="text.html#cb299-6" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(x)</span>
+<span id="cb299-7"><a href="text.html#cb299-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;group1&quot;</span> <span class="st">&quot;group2&quot;</span> <span class="st">&quot;group3&quot;</span></span></code></pre></div>
 <p>This can be particularly useful when trying to resolve problems caused by factors. One common issue occurs when <code>R</code> mistakes a set of numbers as a set of factors. Using <code>as.character()</code> can set things right:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="text.html#cb301-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>))</span>
-<span id="cb301-2"><a href="text.html#cb301-2" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb301-3"><a href="text.html#cb301-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></span>
-<span id="cb301-4"><a href="text.html#cb301-4" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></span>
-<span id="cb301-5"><a href="text.html#cb301-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-6"><a href="text.html#cb301-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If you try to convert straight to numeric, it does not work:</span></span>
-<span id="cb301-7"><a href="text.html#cb301-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(x)</span>
-<span id="cb301-8"><a href="text.html#cb301-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span>
-<span id="cb301-9"><a href="text.html#cb301-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-10"><a href="text.html#cb301-10" aria-hidden="true" tabindex="-1"></a><span class="co"># So convert to character first</span></span>
-<span id="cb301-11"><a href="text.html#cb301-11" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(x))</span>
-<span id="cb301-12"><a href="text.html#cb301-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="text.html#cb300-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>))</span>
+<span id="cb300-2"><a href="text.html#cb300-2" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb300-3"><a href="text.html#cb300-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></span>
+<span id="cb300-4"><a href="text.html#cb300-4" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></span>
+<span id="cb300-5"><a href="text.html#cb300-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb300-6"><a href="text.html#cb300-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If you try to convert straight to numeric, it does not work:</span></span>
+<span id="cb300-7"><a href="text.html#cb300-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(x)</span>
+<span id="cb300-8"><a href="text.html#cb300-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span>
+<span id="cb300-9"><a href="text.html#cb300-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb300-10"><a href="text.html#cb300-10" aria-hidden="true" tabindex="-1"></a><span class="co"># So convert to character first</span></span>
+<span id="cb300-11"><a href="text.html#cb300-11" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(x))</span>
+<span id="cb300-12"><a href="text.html#cb300-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></span></code></pre></div>
 <p><strong><code>paste()</code></strong> and <strong><code>paste0()</code></strong> combines two ore more strings together into a single object:</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="text.html#cb302-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb302-2"><a href="text.html#cb302-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">96</span></span>
-<span id="cb302-3"><a href="text.html#cb302-3" aria-hidden="true" tabindex="-1"></a>file_name <span class="ot">&lt;-</span> <span class="st">&quot;this_file.csv&quot;</span></span>
-<span id="cb302-4"><a href="text.html#cb302-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-5"><a href="text.html#cb302-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>) <span class="co"># paste assumes each object is separated by &quot; &quot;.</span></span>
-<span id="cb302-6"><a href="text.html#cb302-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10 of 96 : Processing this_file.csv . . . &quot;</span></span>
-<span id="cb302-7"><a href="text.html#cb302-7" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>) <span class="co"># paste0 assumes no space between objects.</span></span>
-<span id="cb302-8"><a href="text.html#cb302-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10of96: Processingthis_file.csv. . . &quot;</span></span>
-<span id="cb302-9"><a href="text.html#cb302-9" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(i,<span class="st">&quot; of &quot;</span>,n,<span class="st">&quot;: Processing &quot;</span>,file_name,<span class="st">&quot; . . . &quot;</span>) <span class="co"># this paste0 version matches the initial format</span></span>
-<span id="cb302-10"><a href="text.html#cb302-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10 of 96: Processing this_file.csv . . . &quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="text.html#cb301-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb301-2"><a href="text.html#cb301-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">96</span></span>
+<span id="cb301-3"><a href="text.html#cb301-3" aria-hidden="true" tabindex="-1"></a>file_name <span class="ot">&lt;-</span> <span class="st">&quot;this_file.csv&quot;</span></span>
+<span id="cb301-4"><a href="text.html#cb301-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb301-5"><a href="text.html#cb301-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>) <span class="co"># paste assumes each object is separated by &quot; &quot;.</span></span>
+<span id="cb301-6"><a href="text.html#cb301-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10 of 96 : Processing this_file.csv . . . &quot;</span></span>
+<span id="cb301-7"><a href="text.html#cb301-7" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>) <span class="co"># paste0 assumes no space between objects.</span></span>
+<span id="cb301-8"><a href="text.html#cb301-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10of96: Processingthis_file.csv. . . &quot;</span></span>
+<span id="cb301-9"><a href="text.html#cb301-9" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(i,<span class="st">&quot; of &quot;</span>,n,<span class="st">&quot;: Processing &quot;</span>,file_name,<span class="st">&quot; . . . &quot;</span>) <span class="co"># this paste0 version matches the initial format</span></span>
+<span id="cb301-10"><a href="text.html#cb301-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10 of 96: Processing this_file.csv . . . &quot;</span></span></code></pre></div>
 <p>You can also use <code>paste()</code> to <code>collapse</code> multiple objects into a single string.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="text.html#cb303-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb303-2"><a href="text.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(x,<span class="at">collapse=</span><span class="st">&quot;-&quot;</span>)</span>
-<span id="cb303-3"><a href="text.html#cb303-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1-2-3-4-5-6-7-8-9-10&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="text.html#cb302-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb302-2"><a href="text.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(x,<span class="at">collapse=</span><span class="st">&quot;-&quot;</span>)</span>
+<span id="cb302-3"><a href="text.html#cb302-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1-2-3-4-5-6-7-8-9-10&quot;</span></span></code></pre></div>
 <p><strong><code>tolower()</code></strong> and <strong><code>toupper()</code></strong> forces all text in a string to lower case or upper case, respectively:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="text.html#cb304-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;That Tree Is Far Away.&quot;</span></span>
-<span id="cb304-2"><a href="text.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(x)</span>
-<span id="cb304-3"><a href="text.html#cb304-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;that tree is far away.&quot;</span></span>
-<span id="cb304-4"><a href="text.html#cb304-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(x)</span>
-<span id="cb304-5"><a href="text.html#cb304-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;THAT TREE IS FAR AWAY.&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="text.html#cb303-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;That Tree Is Far Away.&quot;</span></span>
+<span id="cb303-2"><a href="text.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(x)</span>
+<span id="cb303-3"><a href="text.html#cb303-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;that tree is far away.&quot;</span></span>
+<span id="cb303-4"><a href="text.html#cb303-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(x)</span>
+<span id="cb303-5"><a href="text.html#cb303-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;THAT TREE IS FAR AWAY.&quot;</span></span></code></pre></div>
 <p><strong><code>nchar()</code></strong> returns the number of characters within a string:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="text.html#cb305-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;That Tree Is Far Away.&quot;</span></span>
-<span id="cb305-2"><a href="text.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(x)</span>
-<span id="cb305-3"><a href="text.html#cb305-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="text.html#cb304-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;That Tree Is Far Away.&quot;</span></span>
+<span id="cb304-2"><a href="text.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(x)</span>
+<span id="cb304-3"><a href="text.html#cb304-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
 <p><strong><code>substr()</code></strong> trims a string according to a start and end character position:</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="text.html#cb306-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
-<span id="cb306-2"><a href="text.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">1</span>,<span class="dv">4</span>) <span class="co"># years</span></span>
-<span id="cb306-3"><a href="text.html#cb306-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span></span>
-<span id="cb306-4"><a href="text.html#cb306-4" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">6</span>,<span class="dv">7</span>) <span class="co"># months</span></span>
-<span id="cb306-5"><a href="text.html#cb306-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span></span>
-<span id="cb306-6"><a href="text.html#cb306-6" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">9</span>,<span class="dv">10</span>) <span class="co"># days</span></span>
-<span id="cb306-7"><a href="text.html#cb306-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="text.html#cb305-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
+<span id="cb305-2"><a href="text.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">1</span>,<span class="dv">4</span>) <span class="co"># years</span></span>
+<span id="cb305-3"><a href="text.html#cb305-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span></span>
+<span id="cb305-4"><a href="text.html#cb305-4" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">6</span>,<span class="dv">7</span>) <span class="co"># months</span></span>
+<span id="cb305-5"><a href="text.html#cb305-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span></span>
+<span id="cb305-6"><a href="text.html#cb305-6" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">9</span>,<span class="dv">10</span>) <span class="co"># days</span></span>
+<span id="cb305-7"><a href="text.html#cb305-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span></span></code></pre></div>
 <p><strong><code>grep()</code></strong> returns the elements in a character vector that contain a given pattern:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="text.html#cb307-1" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">1900</span><span class="sc">:</span><span class="dv">1999</span></span>
-<span id="cb307-2"><a href="text.html#cb307-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb307-3"><a href="text.html#cb307-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Which elements correspodn to the 1980s?</span></span>
-<span id="cb307-4"><a href="text.html#cb307-4" aria-hidden="true" tabindex="-1"></a>eighties <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;198&quot;</span>,years)</span>
-<span id="cb307-5"><a href="text.html#cb307-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb307-6"><a href="text.html#cb307-6" aria-hidden="true" tabindex="-1"></a>years[eighties]</span>
-<span id="cb307-7"><a href="text.html#cb307-7" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">1980</span> <span class="dv">1981</span> <span class="dv">1982</span> <span class="dv">1983</span> <span class="dv">1984</span> <span class="dv">1985</span> <span class="dv">1986</span> <span class="dv">1987</span> <span class="dv">1988</span> <span class="dv">1989</span></span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="text.html#cb306-1" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">1900</span><span class="sc">:</span><span class="dv">1999</span></span>
+<span id="cb306-2"><a href="text.html#cb306-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-3"><a href="text.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Which elements correspodn to the 1980s?</span></span>
+<span id="cb306-4"><a href="text.html#cb306-4" aria-hidden="true" tabindex="-1"></a>eighties <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;198&quot;</span>,years)</span>
+<span id="cb306-5"><a href="text.html#cb306-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-6"><a href="text.html#cb306-6" aria-hidden="true" tabindex="-1"></a>years[eighties]</span>
+<span id="cb306-7"><a href="text.html#cb306-7" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">1980</span> <span class="dv">1981</span> <span class="dv">1982</span> <span class="dv">1983</span> <span class="dv">1984</span> <span class="dv">1985</span> <span class="dv">1986</span> <span class="dv">1987</span> <span class="dv">1988</span> <span class="dv">1989</span></span></code></pre></div>
 <p><strong><code>gsub()</code></strong> replaces a given pattern with another in a character vector.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="text.html#cb308-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
-<span id="cb308-2"><a href="text.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">&quot;-&quot;</span>,<span class="st">&quot;/&quot;</span>,dates)</span>
-<span id="cb308-3"><a href="text.html#cb308-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021/03/01&quot;</span> <span class="st">&quot;2021/03/02&quot;</span> <span class="st">&quot;2021/03/03&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="text.html#cb307-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
+<span id="cb307-2"><a href="text.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">&quot;-&quot;</span>,<span class="st">&quot;/&quot;</span>,dates)</span>
+<span id="cb307-3"><a href="text.html#cb307-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021/03/01&quot;</span> <span class="st">&quot;2021/03/02&quot;</span> <span class="st">&quot;2021/03/03&quot;</span></span></code></pre></div>
 <p><strong><code>stringr::str_pad()</code></strong>: standardize the lengths of strings by “padding” it (e.g., with zeroes) :</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="text.html#cb309-1" aria-hidden="true" tabindex="-1"></a>days <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)</span>
-<span id="cb309-2"><a href="text.html#cb309-2" aria-hidden="true" tabindex="-1"></a>days</span>
-<span id="cb309-3"><a href="text.html#cb309-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;1&quot;</span>  <span class="st">&quot;2&quot;</span>  <span class="st">&quot;3&quot;</span>  <span class="st">&quot;4&quot;</span>  <span class="st">&quot;5&quot;</span>  <span class="st">&quot;6&quot;</span>  <span class="st">&quot;7&quot;</span>  <span class="st">&quot;8&quot;</span>  <span class="st">&quot;9&quot;</span>  <span class="st">&quot;10&quot;</span> <span class="st">&quot;11&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;13&quot;</span> <span class="st">&quot;14&quot;</span> <span class="st">&quot;15&quot;</span></span>
-<span id="cb309-4"><a href="text.html#cb309-4" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_pad</span>(days,<span class="at">width=</span><span class="dv">2</span>,<span class="at">side=</span><span class="st">&quot;left&quot;</span>,<span class="at">pad=</span><span class="st">&quot;0&quot;</span>)</span>
-<span id="cb309-5"><a href="text.html#cb309-5" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;04&quot;</span> <span class="st">&quot;05&quot;</span> <span class="st">&quot;06&quot;</span> <span class="st">&quot;07&quot;</span> <span class="st">&quot;08&quot;</span> <span class="st">&quot;09&quot;</span> <span class="st">&quot;10&quot;</span> <span class="st">&quot;11&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;13&quot;</span> <span class="st">&quot;14&quot;</span> <span class="st">&quot;15&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="text.html#cb308-1" aria-hidden="true" tabindex="-1"></a>days <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)</span>
+<span id="cb308-2"><a href="text.html#cb308-2" aria-hidden="true" tabindex="-1"></a>days</span>
+<span id="cb308-3"><a href="text.html#cb308-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;1&quot;</span>  <span class="st">&quot;2&quot;</span>  <span class="st">&quot;3&quot;</span>  <span class="st">&quot;4&quot;</span>  <span class="st">&quot;5&quot;</span>  <span class="st">&quot;6&quot;</span>  <span class="st">&quot;7&quot;</span>  <span class="st">&quot;8&quot;</span>  <span class="st">&quot;9&quot;</span>  <span class="st">&quot;10&quot;</span> <span class="st">&quot;11&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;13&quot;</span> <span class="st">&quot;14&quot;</span> <span class="st">&quot;15&quot;</span></span>
+<span id="cb308-4"><a href="text.html#cb308-4" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_pad</span>(days,<span class="at">width=</span><span class="dv">2</span>,<span class="at">side=</span><span class="st">&quot;left&quot;</span>,<span class="at">pad=</span><span class="st">&quot;0&quot;</span>)</span>
+<span id="cb308-5"><a href="text.html#cb308-5" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;04&quot;</span> <span class="st">&quot;05&quot;</span> <span class="st">&quot;06&quot;</span> <span class="st">&quot;07&quot;</span> <span class="st">&quot;08&quot;</span> <span class="st">&quot;09&quot;</span> <span class="st">&quot;10&quot;</span> <span class="st">&quot;11&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;13&quot;</span> <span class="st">&quot;14&quot;</span> <span class="st">&quot;15&quot;</span></span></code></pre></div>
 <p><strong><code>stringr::str_split()</code></strong>: split a string into several strings at the occurrence of a specified character.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="text.html#cb310-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
-<span id="cb310-2"><a href="text.html#cb310-2" aria-hidden="true" tabindex="-1"></a>splits <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(dates,<span class="st">&quot;-&quot;</span>)</span>
-<span id="cb310-3"><a href="text.html#cb310-3" aria-hidden="true" tabindex="-1"></a>splits</span>
-<span id="cb310-4"><a href="text.html#cb310-4" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
-<span id="cb310-5"><a href="text.html#cb310-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;01&quot;</span>  </span>
-<span id="cb310-6"><a href="text.html#cb310-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb310-7"><a href="text.html#cb310-7" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
-<span id="cb310-8"><a href="text.html#cb310-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;02&quot;</span>  </span>
-<span id="cb310-9"><a href="text.html#cb310-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb310-10"><a href="text.html#cb310-10" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]]</span>
-<span id="cb310-11"><a href="text.html#cb310-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;03&quot;</span>  </span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="text.html#cb309-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
+<span id="cb309-2"><a href="text.html#cb309-2" aria-hidden="true" tabindex="-1"></a>splits <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(dates,<span class="st">&quot;-&quot;</span>)</span>
+<span id="cb309-3"><a href="text.html#cb309-3" aria-hidden="true" tabindex="-1"></a>splits</span>
+<span id="cb309-4"><a href="text.html#cb309-4" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb309-5"><a href="text.html#cb309-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;01&quot;</span>  </span>
+<span id="cb309-6"><a href="text.html#cb309-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-7"><a href="text.html#cb309-7" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb309-8"><a href="text.html#cb309-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;02&quot;</span>  </span>
+<span id="cb309-9"><a href="text.html#cb309-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-10"><a href="text.html#cb309-10" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]]</span>
+<span id="cb309-11"><a href="text.html#cb309-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;03&quot;</span>  </span></code></pre></div>
 <p>This function returns a <em>list</em> for every element in the original vector. A common need is to retrieve one item from each of the element in this list. For example, let’s say you are trying to retrieve the months of each element in the <code>dates</code> vector. The list structure makes this tricky to retrieve. Here’s the way to do it by drawing upon the <code>apply()</code> family of functions:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="text.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">2</span>) <span class="co"># Months</span></span>
-<span id="cb311-2"><a href="text.html#cb311-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span></span>
-<span id="cb311-3"><a href="text.html#cb311-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb311-4"><a href="text.html#cb311-4" aria-hidden="true" tabindex="-1"></a><span class="co"># now get years and days</span></span>
-<span id="cb311-5"><a href="text.html#cb311-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">1</span>) <span class="co"># years</span></span>
-<span id="cb311-6"><a href="text.html#cb311-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span></span>
-<span id="cb311-7"><a href="text.html#cb311-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">3</span>) <span class="co"># days</span></span>
-<span id="cb311-8"><a href="text.html#cb311-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="text.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">2</span>) <span class="co"># Months</span></span>
+<span id="cb310-2"><a href="text.html#cb310-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span></span>
+<span id="cb310-3"><a href="text.html#cb310-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb310-4"><a href="text.html#cb310-4" aria-hidden="true" tabindex="-1"></a><span class="co"># now get years and days</span></span>
+<span id="cb310-5"><a href="text.html#cb310-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">1</span>) <span class="co"># years</span></span>
+<span id="cb310-6"><a href="text.html#cb310-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span></span>
+<span id="cb310-7"><a href="text.html#cb310-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">3</span>) <span class="co"># days</span></span>
+<span id="cb310-8"><a href="text.html#cb310-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span></span></code></pre></div>
 <div id="review-assignment-11" class="section level4 unnumbered">
 <h4>Review assignment</h4>
 <p>A. For a given dataset, print informative status update for each iteration in a <code>for</code> loop.</p>
@@ -569,7 +544,6 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
