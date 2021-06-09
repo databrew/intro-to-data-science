@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-06-08" />
+<meta name="date" content="2021-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -260,7 +260,7 @@ div.csl-indent {
 <li class="chapter" data-level="15" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>15</b> Dataframes</a>
 <ul>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
-<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#tidy-data"><i class="fa fa-check"></i>Tidy data</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#dplyr"><i class="fa fa-check"></i>dplyr</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="exporting-data-plots.html"><a href="exporting-data-plots.html"><i class="fa fa-check"></i><b>16</b> Exporting data &amp; plots</a>
 <ul>
@@ -434,13 +434,13 @@ div.csl-indent {
 <p>An example of a conditional statement is, <em>“If ______ happens, do _____. Otherwise, do _____.”</em></p>
 <p>In <code>R</code> code, conditional statements work a similar way: they let a variable’s value determine which process to carry out next.</p>
 <p>Here is a basic example:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="conditional-statements.html#cb269-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb269-2"><a href="conditional-statements.html#cb269-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb269-3"><a href="conditional-statements.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span>){</span>
-<span id="cb269-4"><a href="conditional-statements.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is equal to 3!&quot;</span>)</span>
-<span id="cb269-5"><a href="conditional-statements.html#cb269-5" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
-<span id="cb269-6"><a href="conditional-statements.html#cb269-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x does NOT equal 3!&quot;</span>)</span>
-<span id="cb269-7"><a href="conditional-statements.html#cb269-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="conditional-statements.html#cb285-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb285-2"><a href="conditional-statements.html#cb285-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-3"><a href="conditional-statements.html#cb285-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span>){</span>
+<span id="cb285-4"><a href="conditional-statements.html#cb285-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is equal to 3!&quot;</span>)</span>
+<span id="cb285-5"><a href="conditional-statements.html#cb285-5" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb285-6"><a href="conditional-statements.html#cb285-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x does NOT equal 3!&quot;</span>)</span>
+<span id="cb285-7"><a href="conditional-statements.html#cb285-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Let’s break this <code>if</code> statement down.</p>
 <ul>
 <li>The <code>if</code> command opens up a conditional statement.</li>
@@ -450,40 +450,40 @@ div.csl-indent {
 </ul>
 <p>This code ran the logical test <code>x==3</code>, determined its outcome to be <code>FALSE</code>, and so it skipped the <code>if</code> code and ran the <code>else</code> code instead.</p>
 <p>Here is another example of the same idea:</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="conditional-statements.html#cb270-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb270-2"><a href="conditional-statements.html#cb270-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb270-3"><a href="conditional-statements.html#cb270-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span>){</span>
-<span id="cb270-4"><a href="conditional-statements.html#cb270-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb270-5"><a href="conditional-statements.html#cb270-5" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
-<span id="cb270-6"><a href="conditional-statements.html#cb270-6" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb270-7"><a href="conditional-statements.html#cb270-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb270-8"><a href="conditional-statements.html#cb270-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb270-9"><a href="conditional-statements.html#cb270-9" aria-hidden="true" tabindex="-1"></a>y <span class="co"># see what y is</span></span>
-<span id="cb270-10"><a href="conditional-statements.html#cb270-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="conditional-statements.html#cb286-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb286-2"><a href="conditional-statements.html#cb286-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb286-3"><a href="conditional-statements.html#cb286-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span>){</span>
+<span id="cb286-4"><a href="conditional-statements.html#cb286-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb286-5"><a href="conditional-statements.html#cb286-5" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb286-6"><a href="conditional-statements.html#cb286-6" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb286-7"><a href="conditional-statements.html#cb286-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb286-8"><a href="conditional-statements.html#cb286-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb286-9"><a href="conditional-statements.html#cb286-9" aria-hidden="true" tabindex="-1"></a>y <span class="co"># see what y is</span></span>
+<span id="cb286-10"><a href="conditional-statements.html#cb286-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">0</span></span></code></pre></div>
 <p>Since <code>x==3</code> returned <code>FALSE</code>, <code>y</code> was defined as <code>0</code> instead of <code>100</code>.</p>
 <p>Note that you do not need to define an <code>else</code> statement. If you do not, <code>R</code> will simply do nothing if the logical test is <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="conditional-statements.html#cb271-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb271-2"><a href="conditional-statements.html#cb271-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb271-3"><a href="conditional-statements.html#cb271-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span>){</span>
-<span id="cb271-4"><a href="conditional-statements.html#cb271-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is equal to 3!&quot;</span>)</span>
-<span id="cb271-5"><a href="conditional-statements.html#cb271-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="conditional-statements.html#cb287-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb287-2"><a href="conditional-statements.html#cb287-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-3"><a href="conditional-statements.html#cb287-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span>){</span>
+<span id="cb287-4"><a href="conditional-statements.html#cb287-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is equal to 3!&quot;</span>)</span>
+<span id="cb287-5"><a href="conditional-statements.html#cb287-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><em>(Nothing happened)</em></p>
 <p>You can also feed the <code>if</code> statement a logical object instead of a test.</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="conditional-statements.html#cb272-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb272-2"><a href="conditional-statements.html#cb272-2" aria-hidden="true" tabindex="-1"></a>x_test <span class="ot">&lt;-</span> x <span class="sc">==</span> <span class="dv">3</span></span>
-<span id="cb272-3"><a href="conditional-statements.html#cb272-3" aria-hidden="true" tabindex="-1"></a>x_test <span class="co"># check out the value of x_stest</span></span>
-<span id="cb272-4"><a href="conditional-statements.html#cb272-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span>
-<span id="cb272-5"><a href="conditional-statements.html#cb272-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb272-6"><a href="conditional-statements.html#cb272-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x_test){</span>
-<span id="cb272-7"><a href="conditional-statements.html#cb272-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is equal to 3!&quot;</span>)</span>
-<span id="cb272-8"><a href="conditional-statements.html#cb272-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="conditional-statements.html#cb288-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb288-2"><a href="conditional-statements.html#cb288-2" aria-hidden="true" tabindex="-1"></a>x_test <span class="ot">&lt;-</span> x <span class="sc">==</span> <span class="dv">3</span></span>
+<span id="cb288-3"><a href="conditional-statements.html#cb288-3" aria-hidden="true" tabindex="-1"></a>x_test <span class="co"># check out the value of x_stest</span></span>
+<span id="cb288-4"><a href="conditional-statements.html#cb288-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb288-5"><a href="conditional-statements.html#cb288-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-6"><a href="conditional-statements.html#cb288-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x_test){</span>
+<span id="cb288-7"><a href="conditional-statements.html#cb288-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is equal to 3!&quot;</span>)</span>
+<span id="cb288-8"><a href="conditional-statements.html#cb288-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Not that, since <code>x_test</code> is a logical value (<code>TRUE</code> or <code>FALSE</code>), you do not need to write out a logical test within the <code>if</code> parenthetical. But you are free to do so if you wish:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="conditional-statements.html#cb273-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb273-2"><a href="conditional-statements.html#cb273-2" aria-hidden="true" tabindex="-1"></a>x_test <span class="ot">&lt;-</span> x <span class="sc">==</span> <span class="dv">3</span></span>
-<span id="cb273-3"><a href="conditional-statements.html#cb273-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb273-4"><a href="conditional-statements.html#cb273-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x_test <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
-<span id="cb273-5"><a href="conditional-statements.html#cb273-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is not equal to 3!&quot;</span>)</span>
-<span id="cb273-6"><a href="conditional-statements.html#cb273-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="conditional-statements.html#cb289-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb289-2"><a href="conditional-statements.html#cb289-2" aria-hidden="true" tabindex="-1"></a>x_test <span class="ot">&lt;-</span> x <span class="sc">==</span> <span class="dv">3</span></span>
+<span id="cb289-3"><a href="conditional-statements.html#cb289-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb289-4"><a href="conditional-statements.html#cb289-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x_test <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
+<span id="cb289-5"><a href="conditional-statements.html#cb289-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is not equal to 3!&quot;</span>)</span>
+<span id="cb289-6"><a href="conditional-statements.html#cb289-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>This <code>if</code> statement is saying that, if it is <code>TRUE</code> that <code>x_test</code> is <code>FALSE</code>, print a message saying so.</p>
 <div id="exercise-1-7" class="section level3 unnumbered">
 <h3>Exercise 1</h3>
@@ -495,72 +495,72 @@ div.csl-indent {
 <div id="nested-conditions" class="section level3 unnumbered">
 <h3>Nested conditions</h3>
 <p>You can nest conditional statements within others as many times as you wish:</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="conditional-statements.html#cb274-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb274-2"><a href="conditional-statements.html#cb274-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb274-3"><a href="conditional-statements.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span>){</span>
-<span id="cb274-4"><a href="conditional-statements.html#cb274-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x equals 3&quot;</span>)</span>
-<span id="cb274-5"><a href="conditional-statements.html#cb274-5" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
-<span id="cb274-6"><a href="conditional-statements.html#cb274-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">3</span>){</span>
-<span id="cb274-7"><a href="conditional-statements.html#cb274-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;x is less than 3&quot;</span>)</span>
-<span id="cb274-8"><a href="conditional-statements.html#cb274-8" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span>{  </span>
-<span id="cb274-9"><a href="conditional-statements.html#cb274-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;x is greater than 3&quot;</span>)</span>
-<span id="cb274-10"><a href="conditional-statements.html#cb274-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb274-11"><a href="conditional-statements.html#cb274-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="conditional-statements.html#cb290-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb290-2"><a href="conditional-statements.html#cb290-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb290-3"><a href="conditional-statements.html#cb290-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span>){</span>
+<span id="cb290-4"><a href="conditional-statements.html#cb290-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x equals 3&quot;</span>)</span>
+<span id="cb290-5"><a href="conditional-statements.html#cb290-5" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb290-6"><a href="conditional-statements.html#cb290-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">3</span>){</span>
+<span id="cb290-7"><a href="conditional-statements.html#cb290-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;x is less than 3&quot;</span>)</span>
+<span id="cb290-8"><a href="conditional-statements.html#cb290-8" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span>{  </span>
+<span id="cb290-9"><a href="conditional-statements.html#cb290-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;x is greater than 3&quot;</span>)</span>
+<span id="cb290-10"><a href="conditional-statements.html#cb290-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb290-11"><a href="conditional-statements.html#cb290-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Note that every open bracket, <code>{</code>, needs a corresponding closing bracket ,<code>}</code>. Most errors associated with <code>if</code> statements involve missing brackets.</p>
 </div>
 <div id="handling-nas-nans-infs-and-nulls" class="section level3 unnumbered">
 <h3>Handling <code>NA</code>s, <code>NaN</code>’s, <code>Inf</code>s, and <code>NULL</code>s</h3>
 <p><code>if</code> statements can be particularly helpful when your dataset contains missing or broken values. <code>R</code> includes base functions that help you carry out logical tests concerning missing values. These three test below can be very helpful within <code>if</code> statements.</p>
 <p><strong><code>is.finite()</code></strong> tests whether a numeric object is a real, finite number.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="conditional-statements.html#cb275-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb275-2"><a href="conditional-statements.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(x)</span>
-<span id="cb275-3"><a href="conditional-statements.html#cb275-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
-<span id="cb275-4"><a href="conditional-statements.html#cb275-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb275-5"><a href="conditional-statements.html#cb275-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">/</span>x</span>
-<span id="cb275-6"><a href="conditional-statements.html#cb275-6" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb275-7"><a href="conditional-statements.html#cb275-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">Inf</span></span>
-<span id="cb275-8"><a href="conditional-statements.html#cb275-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(y)</span>
-<span id="cb275-9"><a href="conditional-statements.html#cb275-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="conditional-statements.html#cb291-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb291-2"><a href="conditional-statements.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(x)</span>
+<span id="cb291-3"><a href="conditional-statements.html#cb291-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb291-4"><a href="conditional-statements.html#cb291-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-5"><a href="conditional-statements.html#cb291-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">/</span>x</span>
+<span id="cb291-6"><a href="conditional-statements.html#cb291-6" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb291-7"><a href="conditional-statements.html#cb291-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">Inf</span></span>
+<span id="cb291-8"><a href="conditional-statements.html#cb291-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(y)</span>
+<span id="cb291-9"><a href="conditional-statements.html#cb291-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span></code></pre></div>
 <p>Here is an <code>if</code> statement making use of <code>is.finite()</code>:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="conditional-statements.html#cb276-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb276-2"><a href="conditional-statements.html#cb276-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">/</span>x</span>
-<span id="cb276-3"><a href="conditional-statements.html#cb276-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">is.finite</span>(y)){</span>
-<span id="cb276-4"><a href="conditional-statements.html#cb276-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;y is indeed a finite number!&quot;</span>)</span>
-<span id="cb276-5"><a href="conditional-statements.html#cb276-5" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
-<span id="cb276-6"><a href="conditional-statements.html#cb276-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;y is not a finite number!&quot;</span>)</span>
-<span id="cb276-7"><a href="conditional-statements.html#cb276-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="conditional-statements.html#cb292-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb292-2"><a href="conditional-statements.html#cb292-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">/</span>x</span>
+<span id="cb292-3"><a href="conditional-statements.html#cb292-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">is.finite</span>(y)){</span>
+<span id="cb292-4"><a href="conditional-statements.html#cb292-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;y is indeed a finite number!&quot;</span>)</span>
+<span id="cb292-5"><a href="conditional-statements.html#cb292-5" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb292-6"><a href="conditional-statements.html#cb292-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;y is not a finite number!&quot;</span>)</span>
+<span id="cb292-7"><a href="conditional-statements.html#cb292-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><strong><code>is.na()</code></strong> tests whether a variable contains a missing or broken object.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="conditional-statements.html#cb277-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;eric&quot;</span></span>
-<span id="cb277-2"><a href="conditional-statements.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span>
-<span id="cb277-3"><a href="conditional-statements.html#cb277-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span>
-<span id="cb277-4"><a href="conditional-statements.html#cb277-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-5"><a href="conditional-statements.html#cb277-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x) <span class="co"># try converting `x` to a numeric value</span></span>
-<span id="cb277-6"><a href="conditional-statements.html#cb277-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(y)</span>
-<span id="cb277-7"><a href="conditional-statements.html#cb277-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
-<span id="cb277-8"><a href="conditional-statements.html#cb277-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(y)</span>
-<span id="cb277-9"><a href="conditional-statements.html#cb277-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="conditional-statements.html#cb293-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;eric&quot;</span></span>
+<span id="cb293-2"><a href="conditional-statements.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span>
+<span id="cb293-3"><a href="conditional-statements.html#cb293-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb293-4"><a href="conditional-statements.html#cb293-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb293-5"><a href="conditional-statements.html#cb293-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x) <span class="co"># try converting `x` to a numeric value</span></span>
+<span id="cb293-6"><a href="conditional-statements.html#cb293-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(y)</span>
+<span id="cb293-7"><a href="conditional-statements.html#cb293-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb293-8"><a href="conditional-statements.html#cb293-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(y)</span>
+<span id="cb293-9"><a href="conditional-statements.html#cb293-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span></code></pre></div>
 <p><code>NA</code> stands for <em>“Not Available”</em>. <code>NaN</code> is also a common sign of a broken value. It stands for <em>Not a Number</em>.</p>
 <p><strong><code>is.null()</code></strong> tests whether a variable is empty. That is, it has been initiated, but it contains no data.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="conditional-statements.html#cb278-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">5</span>) <span class="co"># make a vector of numbers</span></span>
-<span id="cb278-2"><a href="conditional-statements.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.null</span>(x)</span>
-<span id="cb278-3"><a href="conditional-statements.html#cb278-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span>
-<span id="cb278-4"><a href="conditional-statements.html#cb278-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb278-5"><a href="conditional-statements.html#cb278-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>() <span class="co"># make an empty vector</span></span>
-<span id="cb278-6"><a href="conditional-statements.html#cb278-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.null</span>(y)</span>
-<span id="cb278-7"><a href="conditional-statements.html#cb278-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="conditional-statements.html#cb294-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">5</span>) <span class="co"># make a vector of numbers</span></span>
+<span id="cb294-2"><a href="conditional-statements.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.null</span>(x)</span>
+<span id="cb294-3"><a href="conditional-statements.html#cb294-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb294-4"><a href="conditional-statements.html#cb294-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb294-5"><a href="conditional-statements.html#cb294-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>() <span class="co"># make an empty vector</span></span>
+<span id="cb294-6"><a href="conditional-statements.html#cb294-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.null</span>(y)</span>
+<span id="cb294-7"><a href="conditional-statements.html#cb294-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code></pre></div>
 </div>
 <div id="joint-conditions" class="section level3 unnumbered">
 <h3>Joint conditions</h3>
 <p><code>if</code> statements can also accommodate joint logical tests. For example, the follow <code>if</code> statement only returns if a message if <em>two</em> tests are true:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="conditional-statements.html#cb279-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb279-2"><a href="conditional-statements.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">is.finite</span>(x) <span class="sc">&amp;</span> x<span class="sc">==</span><span class="dv">6</span>){</span>
-<span id="cb279-3"><a href="conditional-statements.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is real and equals 6&quot;</span>)</span>
-<span id="cb279-4"><a href="conditional-statements.html#cb279-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="conditional-statements.html#cb295-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb295-2"><a href="conditional-statements.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">is.finite</span>(x) <span class="sc">&amp;</span> x<span class="sc">==</span><span class="dv">6</span>){</span>
+<span id="cb295-3"><a href="conditional-statements.html#cb295-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is real and equals 6&quot;</span>)</span>
+<span id="cb295-4"><a href="conditional-statements.html#cb295-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The next <code>if</code> statement returns a message if either of the logical statements are true:</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="conditional-statements.html#cb280-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb280-2"><a href="conditional-statements.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span> <span class="sc">|</span> x<span class="sc">==</span><span class="dv">6</span>){</span>
-<span id="cb280-3"><a href="conditional-statements.html#cb280-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is equal to either 3 or 6&quot;</span>)</span>
-<span id="cb280-4"><a href="conditional-statements.html#cb280-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="conditional-statements.html#cb296-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb296-2"><a href="conditional-statements.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">==</span><span class="dv">3</span> <span class="sc">|</span> x<span class="sc">==</span><span class="dv">6</span>){</span>
+<span id="cb296-3"><a href="conditional-statements.html#cb296-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is equal to either 3 or 6&quot;</span>)</span>
+<span id="cb296-4"><a href="conditional-statements.html#cb296-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="exercise-2-8" class="section level3 unnumbered">
 <h3>Exercise 2</h3>

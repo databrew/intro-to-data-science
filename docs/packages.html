@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-06-08" />
+<meta name="date" content="2021-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -260,7 +260,7 @@ div.csl-indent {
 <li class="chapter" data-level="15" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>15</b> Dataframes</a>
 <ul>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
-<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#tidy-data"><i class="fa fa-check"></i>Tidy data</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#dplyr"><i class="fa fa-check"></i>dplyr</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="exporting-data-plots.html"><a href="exporting-data-plots.html"><i class="fa fa-check"></i><b>16</b> Exporting data &amp; plots</a>
 <ul>
@@ -489,10 +489,10 @@ This is displaying all the packages already installed in your system.</p>
 <h2>Calling functions from a package</h2>
 <p>Most functions from external packages can be used by simply typing the name of the function. For example, the package <code>fun</code> contains a function for generating a random password:</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="packages.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
-<span id="cb116-2"><a href="packages.html#cb116-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;?,q^VbXw&#39;Sc&lt;`KdyIsU@u1*</span><span class="sc">\&quot;</span><span class="st">&quot;</span></span></code></pre></div>
+<span id="cb116-2"><a href="packages.html#cb116-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;A*#4}ctrLjh`]sqB|5d&lt;V9po&quot;</span></span></code></pre></div>
 <p>Sometimes, however, <code>R</code> can get confused if a new package contains a function that has the same name of some function from a different package. If <code>R</code> seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax <code>&lt;package_name&gt;::&lt;function_name&gt;</code>. For example, the following command is a fine alternative to the command above:</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="packages.html#cb117-1" aria-hidden="true" tabindex="-1"></a>fun<span class="sc">::</span><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
-<span id="cb117-2"><a href="packages.html#cb117-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2$wmxc&lt;]S;</span><span class="sc">\&quot;</span><span class="st">j</span><span class="sc">\\</span><span class="st">J,iZ* oa-L5&quot;</span></span></code></pre></div>
+<span id="cb117-2"><a href="packages.html#cb117-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Y7LMz?le-o_&lt;2Tj5/^OD@PHF&quot;</span></span></code></pre></div>
 <p>Note that this was done in the example above using the <code>devtools</code> package.</p>
 </div>
 <div id="review-the-workflow-for-using-a-package" class="section level2 unnumbered">
@@ -527,6 +527,10 @@ This is displaying all the packages already installed in your system.</p>
 <div id="a-note-on-package-versions" class="section level2 unnumbered">
 <h2>A note on package versions</h2>
 <p>Packages are updated regularly, and sometimes new versions can break the functions that use it as a dependency. Sometimes you may have to install a new version (<em>or sometimes an older version!</em>) of a dependency in order to get your package of interest to work as desired.</p>
+<p>Quick overview</p>
+<p>You install them from CRAN with install.packages(“x”).
+You use them in R with library(“x”).
+You get help on them with help(package = “x”).</p>
 </div>
 <div id="review-assigment-lets-install-some-packages" class="section level2 unnumbered">
 <h2>Review assigment: let’s install some packages</h2>
