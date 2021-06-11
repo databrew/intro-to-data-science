@@ -491,6 +491,54 @@ bn <- babynames
 
 11. How many people were born with _your_ name in 2020.
 
+
+#### Team exercises
+
+```{r}
+# Load library
+library(gsheet)
+
+# Read in data
+survey  <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767')
+
+# remake the names
+names(survey) <- c('time', 'sex', 'age','sib', 'dad_mus', 'person_mus', 'joe_mus_is', 'eyesight', 'height', 'shoe_size', 'bday', 'money_or_love', 'rps_skill', 'num_pan', 'cats_dogs', 'name')
+
+```
+
+
+1) Subset the data by those older than 20
+
+2) Subset the data by those who think Joe's mustach is "Deeply captivating"
+
+3) Subset the data by those who are taller than 175cm, prefer cats over dogs, and are average at rock, paper, scissors
+
+4) Do more people like cats or dogs?
+
+5) Create a new variable called "std_shoes" that standardizes shoe sizes by converting men's shoe size to womens (There is an approximate 1.5 size difference between Men's and Women's sizing (e.g., a men's size 7 is roughly equivalent to a women's size 8.5)
+
+6) Get the avg shoe size by sex (Male, Female, Prefer not to say) 
+
+7) Average age, height, & number of siblings, by the sex
+
+8) Do people that have ever had a mustache think there will be more pandemics on avg than those who have never had a mustache
+
+9) Do people that prefer cats have smaller feet on average than those who prefer dogs
+
+10) Create a bar chart that compares the average age of those who prefer cats vs dogs
+
+11) Create a scatter plot that shows the relationship between age and height (make it look nice!)
+
+12) Create a scatter plot that shows the relationship between height and shoe size 
+
+13) Create a bar chart that shows the average number of siblings for dad's mustache status.
+
+14) Color the barchart above and add some degree of transparency in the color. Add a title.
+
+15) Create a bar chart that shows the average shoe size by sex and cat/dog preference. 
+
+
+
 #### Group activity {-}
 
 Using the `deaths` data, we're going to answer some questions together. Start with:
