@@ -23,21 +23,136 @@ And one by Hans Rosling too: https://www.youtube.com/watch?v=FACK2knC08E
 "GG" stands for "grammar of graphics", with "grammar" meaning "the fundamental principles or rules of an art or science" [@layered-grammar]. The most well-known "grammar of graphics" was written in 2005 and laid out some abstract principles for describing statistical graphics [@10.5555/1088896]. The basic idea is that all graphs can be described using a _layered_ grammar, and that all graphs have the same general elements...
 
 - data
-- geometric objects
 - aesthetics (mapping) of variables to objects
+- geometric objects
 
 ... whereas some graphs have additional elements...
 
 - statistical transformations
-- scales
+- labs
 - facets
+- themes
+
 
 ## Practice {-}
 
-Before getting to examples, hands-on together practice.
+Titanice data set 
 
-DEPRECATED BELOW THIS LINE
+```{r}
+library(ggplot2)
+library(readr)
+library(ggthemes)
+library(dplyr)
+titanic<- read_csv("https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv")
 
+```
+
+## Scatter plot {-} 
+
+Call the plot
+
+```{r}
+ggplot()
+```
+
+Aesthetics (mapping variables to the x y plane)
+
+```{r}
+ggplot(data = titanic, aes(x = Age, y = Fare))
+```
+
+Geometry 
+
+```{r}
+ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point()
+```
+
+Statistics 
+```{r}
+ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm')
+```
+
+Labs
+```{r}
+ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm') + labs(title = 'Relationship between Age and Fare')
+```
+
+Facets 
+
+```{r}
+ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm') + labs(title = 'Relationship between Age and Fare') +
+  facet_wrap(~Sex)
+
+```
+
+Themes 
+
+```{r}
+ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm') + labs(title = 'Relationship between Age and Fare') +
+  facet_wrap(~Sex) + theme_fivethirtyeight()
+
+```
+
+## Barplot {-}
+
+Get counts for sex
+```{r}
+ggplot(data = titanic, aes(x = Sex)) + geom_bar(stat='count')
+```
+
+Explicitly set y to another variable
+```{r}
+titanic_age <- titanic %>% group_by(Sex) %>% summarise(mean_age = mean(Age, na.rm= TRUE))
+ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity')
+```
+
+Fill
+```{r}
+ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) 
+```
+
+Labs
+```{r}
+
+ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) + labs(y = 'Mean age', title = 'Average age by sex')
+
+```
+
+Add another variable
+```{r}
+titanic_em <- titanic %>% group_by(Sex, Survived) %>% summarise(mean_age= mean(Age, na.rm = TRUE))
+titanic_em <- titanic_em %>% mutate(Survived = ifelse(Survived == 1, 'Survived','Dead' ))
+ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity')
+
+```
+
+Dodge
+```{r}
+ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity', position = 'dodge') 
+```
+
+Scales
+```{r}
+ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity', position = 'dodge', alpha = 0.7) + scale_fill_manual(values = c('blue', 'grey'))
+```
+
+
+## Another example 
+
+```{r}
+library(babynames)
+bn <- babynames
+
+# subset by the name Francis
+francis <- bn %>% filter(name == 'Francis', sex == 'M')
+
+# line plot
+ggplot(data=francis, aes(x = year, y =n )) + geom_line() + labs(x = 'Year', y = 'Number of boys named Francis')
+
+# layer with points
+ggplot(data=francis, aes(x = year, y =n )) + geom_line() + geom_point() + labs(x = 'Year', y = 'Number of boys named Francis')
+
+```
 
 ## A practical example {-}
 
