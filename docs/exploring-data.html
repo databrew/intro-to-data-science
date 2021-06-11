@@ -246,6 +246,9 @@ div.csl-indent {
 <li><a href="basics-of-ggplot.html#what-is-ggplot">What is <code>ggplot</code>?</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#the-name-and-concept"><i class="fa fa-check"></i>The name and concept</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice"><i class="fa fa-check"></i>Practice</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
+<li class="chapter" data-level="13.2" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#another-example"><i class="fa fa-check"></i><b>13.2</b> Another example</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#a-practical-example"><i class="fa fa-check"></i>A practical example</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#learning-examples"><i class="fa fa-check"></i>Learning examples</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#other-resources-3"><i class="fa fa-check"></i>Other resources</a></li>
@@ -465,18 +468,18 @@ div.csl-indent {
 <p>A histogram sorts your data into bins and counts the number of data points in each bin.</p>
 <p>Make histograms in <code>R</code> using the <code>hist()</code> function:</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="exploring-data.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>availability_365)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-193-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-211-1.png" width="925.44" /></p>
 <p>This is a histogram of the number of nights the listings are available for reservation. In a quick glance, you can see that most listings are available for only a few nights, while a small portion have a wide variety of availabilities.</p>
 <p>Think about how much more helpul this image is than a simple sample mean. To illustrate that value, let’s plot the mean onto this histogram.</p>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="exploring-data.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>availability_365)</span>
 <span id="cb178-2"><a href="exploring-data.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span> <span class="fu">mean</span>(df<span class="sc">$</span>availability_365),<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-194-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-212-1.png" width="925.44" /></p>
 <p>The average value of this dataset is nowhere near the most common values (1 - 20 nights), nor does it capture the fact that there are some listings available for the entire year. <strong>Punchline:</strong> a lot of rich insight is lost when taking an average, which is why a histogram is more useful for displaying distributions than bar graphs (which only show the mean).</p>
 <div id="prettifying-histograms" class="section level4 unnumbered">
 <h4>Prettifying histograms</h4>
 <p>Let’s take a look at another variable: the price of lodging per night.</p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="exploring-data.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>price)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-195-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-213-1.png" width="925.44" /></p>
 <p>Not a very pretty plot. Since the range in prices is so wide, the default parameters for the <code>hist()</code> will need some tweaking.</p>
 <p>To make this histogram prettier, first let’s manually set the number of “breaks,” i.e., the cutoff values for each bin along the x-axis.</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="exploring-data.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate breaks -- make each bin one day</span></span>
@@ -484,12 +487,12 @@ div.csl-indent {
 <span id="cb180-3"><a href="exploring-data.html#cb180-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb180-4"><a href="exploring-data.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>price,</span>
 <span id="cb180-5"><a href="exploring-data.html#cb180-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks=</span>breaks)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-196-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-214-1.png" width="925.44" /></p>
 <p>That’s better. Let’s zoom in on the most common values using <code>xlim()</code>.</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="exploring-data.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>price,</span>
 <span id="cb181-2"><a href="exploring-data.html#cb181-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks=</span>breaks,</span>
 <span id="cb181-3"><a href="exploring-data.html#cb181-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500</span>))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-197-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-215-1.png" width="925.44" /></p>
 <p>Finally, let’s improve the labels and colors.</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="exploring-data.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,.<span class="dv">5</span>,.<span class="dv">5</span>))</span>
 <span id="cb182-2"><a href="exploring-data.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>price,</span>
@@ -500,7 +503,7 @@ div.csl-indent {
 <span id="cb182-7"><a href="exploring-data.html#cb182-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="at">alpha.f=</span>.<span class="dv">6</span>),</span>
 <span id="cb182-8"><a href="exploring-data.html#cb182-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">border=</span><span class="fu">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="at">alpha.f=</span>.<span class="dv">1</span>),</span>
 <span id="cb182-9"><a href="exploring-data.html#cb182-9" aria-hidden="true" tabindex="-1"></a>     )</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-198-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-216-1.png" width="925.44" /></p>
 <p>Interesting spikes in the histogram. Why do you think those are occurring? That is a really interesting feature of the dataset that you might never have discovered if you had not plotted your histogram.</p>
 </div>
 <div id="histograms-in-ggplot2" class="section level4 unnumbered">
@@ -512,7 +515,7 @@ div.csl-indent {
 <span id="cb183-4"><a href="exploring-data.html#cb183-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">5</span>,</span>
 <span id="cb183-5"><a href="exploring-data.html#cb183-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="fu">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="at">alpha.f=</span>.<span class="dv">6</span>),</span>
 <span id="cb183-6"><a href="exploring-data.html#cb183-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="fu">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="at">alpha.f=</span>.<span class="dv">1</span>)) </span></code></pre></div>
-<p><img src="figures/unnamed-chunk-199-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-217-1.png" width="925.44" /></p>
 <p><code>ggplot2</code> allows you to add some other nice features to histograms, such as a smoothed “density” line:</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="exploring-data.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>price)) <span class="sc">+</span> </span>
 <span id="cb184-2"><a href="exploring-data.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="sc">+</span></span>
@@ -521,7 +524,7 @@ div.csl-indent {
 <span id="cb184-5"><a href="exploring-data.html#cb184-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="fu">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="at">alpha.f=</span>.<span class="dv">1</span>),</span>
 <span id="cb184-6"><a href="exploring-data.html#cb184-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">y=</span>..density..)) <span class="sc">+</span></span>
 <span id="cb184-7"><a href="exploring-data.html#cb184-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span>.<span class="dv">1</span>,<span class="at">lwd=</span><span class="fl">1.5</span>,<span class="at">col=</span><span class="fu">adjustcolor</span>(<span class="st">&quot;firebrick&quot;</span>,<span class="at">alpha.f=</span>.<span class="dv">5</span>))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-200-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-218-1.png" width="925.44" /></p>
 </div>
 </div>
 <div id="violin-plots" class="section level3 unnumbered">
@@ -530,7 +533,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="exploring-data.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>room_type,</span>
 <span id="cb185-2"><a href="exploring-data.html#cb185-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">y=</span>price)) <span class="sc">+</span> </span>
 <span id="cb185-3"><a href="exploring-data.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-201-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-219-1.png" width="925.44" /></p>
 <p>Violin plots are like <em>vertical histograms</em>. Their width indicates where most of your data are clustered, and the shapes also take the shape of a violin – hence the name. Their height shows you your data’s range. Think of a violin plot as the beautiful child of bar graphs and histograms: the best of both worlds.</p>
 <p>A major advantage of violin plots is that they allow you two compare multiple distributions with ease. Let’s adjust our <code>ylim()</code> to zoom in:</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="exploring-data.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, </span>
@@ -538,7 +541,7 @@ div.csl-indent {
 <span id="cb186-3"><a href="exploring-data.html#cb186-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span>price)) <span class="sc">+</span> </span>
 <span id="cb186-4"><a href="exploring-data.html#cb186-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="sc">+</span></span>
 <span id="cb186-5"><a href="exploring-data.html#cb186-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-202-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-220-1.png" width="925.44" /></p>
 <p>If your research question were, “Which type of listing tends to be most affordable?” think about how easy that is to answer using a plot like this!</p>
 </div>
 </div>

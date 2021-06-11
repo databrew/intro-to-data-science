@@ -246,6 +246,9 @@ div.csl-indent {
 <li><a href="basics-of-ggplot.html#what-is-ggplot">What is <code>ggplot</code>?</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#the-name-and-concept"><i class="fa fa-check"></i>The name and concept</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice"><i class="fa fa-check"></i>Practice</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
+<li class="chapter" data-level="13.2" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#another-example"><i class="fa fa-check"></i><b>13.2</b> Another example</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#a-practical-example"><i class="fa fa-check"></i>A practical example</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#learning-examples"><i class="fa fa-check"></i>Learning examples</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#other-resources-3"><i class="fa fa-check"></i>Other resources</a></li>
@@ -776,11 +779,11 @@ sample_n() (and sample_frac())</p>
 <h4><span class="header-section-number">15.0.1.1</span> The pipe</h4>
 <p><code>%&gt;%</code> is a “pipe.” It is a way to write code without so many parenthesis. For example, what if I want to find the square root of the sum of a sample of two integers from a sequence of 10 to 20 by 2:</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="dataframes.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>), <span class="dv">2</span>)))</span>
-<span id="cb158-2"><a href="dataframes.html#cb158-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.830952</span></span></code></pre></div>
+<span id="cb158-2"><a href="dataframes.html#cb158-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code></pre></div>
 <p>The above could also be written as:</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="dataframes.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb159-2"><a href="dataframes.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> sum <span class="sc">%&gt;%</span> sqrt</span>
-<span id="cb159-3"><a href="dataframes.html#cb159-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.477226</span></span></code></pre></div>
+<span id="cb159-3"><a href="dataframes.html#cb159-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.09902</span></span></code></pre></div>
 <p>Similarly the below:</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="dataframes.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sd</span>(<span class="fu">log</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)))</span>
 <span id="cb160-2"><a href="dataframes.html#cb160-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.9280532</span></span></code></pre></div>
@@ -1011,6 +1014,32 @@ sample_n() (and sample_frac())</p>
 <li><p>For each of the 5 datasets, how many children died?</p></li>
 <li><p>Now, using the <em>full</em> dataset, calculate the child-specific death rate for each combination of class and sex (ie, “first class females,” “third class males,” etc.).</p></li>
 <li><p>What did you find? What might explain that?</p></li>
+</ol>
+</div>
+<div id="team-exercises" class="section level4 unnumbered">
+<h4>Team exercises</h4>
+<p>Before getting started, start a new script (ctrl + shift + n), name it <code>survey_exercises.R</code>, and copy-paste the following code at the top.</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a dataframe called <code>old_people</code>. This should include only people older than 20. Write code to calculate the number rows in your new dataframe.</p></li>
+<li><p>Create a dataframe called <code>captivated</code>. This should include all those people who find Joe’s moustache to be “deeply captivating.” Write code to calculate the number rows in your new dataframe.</p></li>
+<li><p>Create a dataframe called <code>special_people</code>. This should be people who are taller than 175cm, prefer cats over dogs, and consider themselves to be average at rock, paper, scissors.</p></li>
+<li><p>In the full dataset (survey), do more people like cats or dogs? What about among “special” people?</p></li>
+<li><p>Create a new variable in <code>survey</code> called “std_shoes” that standardizes shoe sizes by converting men’s shoe size to women’s (There is an approximate 1.5 size difference between Men’s and Women’s sizing (e.g., a men’s size 7 is roughly equivalent to a women’s size 8.5)</p></li>
+<li><p>Get the avg shoe size by sex (Male, Female, Prefer not to say)</p></li>
+<li><p>Get Average age, height, &amp; number of siblings, by the sex</p></li>
+<li><p>Do people that have ever had a mustache think there will be more pandemics on average than those who have never had a mustache?</p></li>
+<li><p>Do people that prefer cats have smaller feet on average than those who prefer dogs?</p></li>
+<li><p>Is eyesight associated with moustache perception?</p></li>
+<li><p>What percentage of people think they are better than average at rock scissors paper?</p></li>
+<li><p>What percentage of men and women think they are better than average at rock scissors paper?</p></li>
+<li><p>How many people think money matters more than love?</p></li>
+<li><p>Create a dataframe, grouped by whether or not people’s dads had moustaches, with variables showing each of the following: the maximum age, maximum height,minimum number of pandemics, and average number of siblings</p></li>
+<li><p>What percentage of men have terrible eyesight?</p></li>
+<li><p>How many women have a shoe size of 9 or more?</p></li>
+<li><p>Create a variable in the <code>survey</code> dataset named <code>days_old</code>. Use the <code>bday</code> variable and subtract it from <code>Sys.Date()</code>.</p></li>
+<li><p>What is the standard deviation of age?</p></li>
+<li><p>Create a one-column dataset which contains the name(s) of the person(s) with the most number of siblings (hint: use the following dplyr verbs in this order: <code>filter</code>, <code>select</code>).</p></li>
+<li><p>Tell me something interesting about this dataset.</p></li>
 </ol>
 
 </div>
