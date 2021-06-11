@@ -497,10 +497,36 @@ Using the `deaths` data, we're going to answer some questions together. Start wi
 
 ```{r,echo=TRUE,collapse=TRUE}
 library(readr)
+library(dplyr)
 df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv')
 ```
 
-```{r,echo=TRUE,collapse=TRUE}
+1. How many people are in the dataset.
+
+2. Use `summarize` to count the number of men and women.  
+
+3. Use `summarize` to count the number of people in each class.  
+
+4. Use `summarize` to count the number of men and women in each class.  
+
+5. Use `mutate` to create a variable called `died`. This should be a boolean based on the `Survived` column (in which 1 means the person survived, and 0 means the person died).
+
+6. Use `mutate` to create a variable called `child`. This should be a boolean based on the `Age` column, indicating if someone was less than 18 years old.
+
+7. Create a different dataframe for men vs. women. Name them accordingly.
+
+8. Create a different dataframe for class 1, class 2, and class 3. Name them accordingly.
+
+9. For each of the 5 datasets you've just created, what is the death rate?
+
+10. For each of the 5 datasets, how many children died?
+
+11. Now, using the _full_ dataset, calculate the child-specific death rate for each combination of class and sex (ie, "first class females", "third class males", etc.). 
+
+12. What did you find? What might explain that?
+
+```{r,echo=FALSE,collapse=TRUE, eval = FALSE}
+# class survey data
 library(gsheet)
 survey <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767')
 ```

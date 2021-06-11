@@ -509,3 +509,85 @@ abline(price_lm,col=adjustcolor("dark orange",alpha.f=.6),lwd=4)
 summary(price_lm)
 ```
 
+### Group activity using the titanic dataset
+
+```{r,echo=TRUE,collapse=TRUE}
+library(readr)
+library(dplyr)
+df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv')
+```
+
+
+1. Did women pay more than men (t-test)?
+
+```{r, echo = FALSE, eval = FALSE}
+women_fares <- df$Fare[df$Sex == 'female']
+men_fares <- df$Fare[df$Sex == 'male']
+t.test(men_fares, women_fares)
+```
+
+2. Make a variable called `rich`. It should indicate (boolean) whether someone was first class or not.
+
+```{r, echo = FALSE, eval = FALSE}
+df <- df %>%
+  mutate(rich = Pclass == 1)
+```
+
+3. How many rich people were there?
+
+4. Did rich people pay more than poor people (t.test)?
+
+```{r, echo = FALSE, eval = FALSE}
+rich_fares <- df$Fare[df$rich]
+poor_fares <- df$Fare[!df$rich]
+t.test(rich_fares, poor_fares)
+```
+
+
+5. Is there an association between being rich and sex (chi-squared test)?
+
+```{r, echo = FALSE, eval = FALSE}
+class_sex_table <- table(df$rich, df$Sex)
+prop.table(class_sex_table)
+prop.table(class_sex_table, 1)
+prop.table(class_sex_table, 2)
+chi <- chisq.test(class_sex_table)
+chi
+chi$observed
+chi$expected
+chi$p.value
+```
+
+6. Adjusting for passenger class, did women pay more than men?
+
+```{r, echo = FALSE, eval = FALSE}
+fit <- lm(Fare ~ Sex + factor(Pclass), data = df)
+summary(fit)
+```
+
+7. Use `dplyr` verbs to get the number of survivors and total people among both men and women. With the result, run a chi-squared test.
+
+```{r, echo = FALSE, eval = FALSE}
+tt <- df %>%
+  group_by(Sex) %>%
+  summarise(survivors = sum(Survived),
+            people = n())
+chi <- chisq.test(tt[,2:3])
+chi
+chi$expected
+chi$observed
+```
+
+8. Make a basic linear model in which the outcome "Survived" is a function of "Sex".
+
+```{r, echo = FALSE, eval = FALSE}
+fit <- lm(Survived ~ Sex, data = df)
+summary(fit)
+```
+
+9. Adjusting for passenger class, did women die more than men?
+
+```{r, echo = FALSE, eval = FALSE}
+fit <- lm(Survived ~ Sex + factor(Pclass), data = df)
+summary(fit)
+```

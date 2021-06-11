@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-06-09" />
+<meta name="date" content="2021-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -431,49 +431,49 @@ div.csl-indent {
 </ul>
 <p> </p>
 <p>To practice exporting data, let’s use the built-in dataset from package <code>babynames</code>.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="exporting-data-plots.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;babynames&quot;</span>)</span>
-<span id="cb172-2"><a href="exporting-data-plots.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
-<span id="cb172-3"><a href="exporting-data-plots.html#cb172-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(babynames)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="exporting-data-plots.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;babynames&quot;</span>)</span>
+<span id="cb171-2"><a href="exporting-data-plots.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
+<span id="cb171-3"><a href="exporting-data-plots.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(babynames)</span></code></pre></div>
 </div>
 <div id="write.csv" class="section level2 unnumbered">
 <h2><code>write.csv()</code></h2>
 <p>To write a dataframe to a <code>.csv</code>, use the function <code>write.csv()</code>.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="exporting-data-plots.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(babynames,<span class="at">file=</span><span class="st">&quot;my_babynames.csv&quot;</span>,<span class="at">quote=</span><span class="cn">FALSE</span>,<span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="exporting-data-plots.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(babynames,<span class="at">file=</span><span class="st">&quot;my_babynames.csv&quot;</span>,<span class="at">quote=</span><span class="cn">FALSE</span>,<span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p>This dataset will be saved as the file, <code>my_babynames.csv</code> within your parent directory. You can set other destinations using the same rules for child paths, parent paths, and absolute paths from the module on <strong>Importing Data</strong>.</p>
 <p>The code above sets a couple parameters that preserves the neat formatting of your dataframe. We recommend using these inputs each time you use <code>write.csv()</code> to save a dataframe.</p>
 </div>
 <div id="saverds" class="section level2 unnumbered">
 <h2><code>saveRDS()</code></h2>
 <p>The <code>saveRDS()</code> function saves <code>R</code> objects in the <code>.rds</code> format, which makes them easier and faster to read into <code>R</code> later on.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="exporting-data-plots.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(babynames,<span class="at">file=</span><span class="st">&quot;my_babynames.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="exporting-data-plots.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(babynames,<span class="at">file=</span><span class="st">&quot;my_babynames.rds&quot;</span>)</span></code></pre></div>
 </div>
 <div id="pdf-and-png" class="section level2 unnumbered">
 <h2><code>pdf()</code> and <code>png()</code></h2>
 <p>Let’s say you want to plot the prevalence of the name “Barack” in recent U.S history:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="exporting-data-plots.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(babynames)</span>
-<span id="cb175-2"><a href="exporting-data-plots.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 6 x 5</span></span>
-<span id="cb175-3"><a href="exporting-data-plots.html#cb175-3" aria-hidden="true" tabindex="-1"></a>   year sex   name          n   prop</span>
-<span id="cb175-4"><a href="exporting-data-plots.html#cb175-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb175-5"><a href="exporting-data-plots.html#cb175-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">1880</span> F     Mary       <span class="dv">7065</span> <span class="fl">0.0724</span></span>
-<span id="cb175-6"><a href="exporting-data-plots.html#cb175-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">1880</span> F     Anna       <span class="dv">2604</span> <span class="fl">0.0267</span></span>
-<span id="cb175-7"><a href="exporting-data-plots.html#cb175-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">1880</span> F     Emma       <span class="dv">2003</span> <span class="fl">0.0205</span></span>
-<span id="cb175-8"><a href="exporting-data-plots.html#cb175-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">1880</span> F     Elizabeth  <span class="dv">1939</span> <span class="fl">0.0199</span></span>
-<span id="cb175-9"><a href="exporting-data-plots.html#cb175-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  <span class="dv">1880</span> F     Minnie     <span class="dv">1746</span> <span class="fl">0.0179</span></span>
-<span id="cb175-10"><a href="exporting-data-plots.html#cb175-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  <span class="dv">1880</span> F     Margaret   <span class="dv">1578</span> <span class="fl">0.0162</span></span>
-<span id="cb175-11"><a href="exporting-data-plots.html#cb175-11" aria-hidden="true" tabindex="-1"></a>baracks <span class="ot">&lt;-</span> babynames[babynames<span class="sc">$</span>name<span class="sc">==</span><span class="st">&quot;Barack&quot;</span>,]</span>
-<span id="cb175-12"><a href="exporting-data-plots.html#cb175-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prop<span class="sc">~</span>year,<span class="at">data=</span>baracks,</span>
-<span id="cb175-13"><a href="exporting-data-plots.html#cb175-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">&quot;b&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb175-14"><a href="exporting-data-plots.html#cb175-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">2018</span>),</span>
-<span id="cb175-15"><a href="exporting-data-plots.html#cb175-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Proportion of names&quot;</span>,<span class="at">main=</span><span class="st">&quot;Barack&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="exporting-data-plots.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(babynames)</span>
+<span id="cb174-2"><a href="exporting-data-plots.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 6 x 5</span></span>
+<span id="cb174-3"><a href="exporting-data-plots.html#cb174-3" aria-hidden="true" tabindex="-1"></a>   year sex   name          n   prop</span>
+<span id="cb174-4"><a href="exporting-data-plots.html#cb174-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb174-5"><a href="exporting-data-plots.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">1880</span> F     Mary       <span class="dv">7065</span> <span class="fl">0.0724</span></span>
+<span id="cb174-6"><a href="exporting-data-plots.html#cb174-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">1880</span> F     Anna       <span class="dv">2604</span> <span class="fl">0.0267</span></span>
+<span id="cb174-7"><a href="exporting-data-plots.html#cb174-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">1880</span> F     Emma       <span class="dv">2003</span> <span class="fl">0.0205</span></span>
+<span id="cb174-8"><a href="exporting-data-plots.html#cb174-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">1880</span> F     Elizabeth  <span class="dv">1939</span> <span class="fl">0.0199</span></span>
+<span id="cb174-9"><a href="exporting-data-plots.html#cb174-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  <span class="dv">1880</span> F     Minnie     <span class="dv">1746</span> <span class="fl">0.0179</span></span>
+<span id="cb174-10"><a href="exporting-data-plots.html#cb174-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  <span class="dv">1880</span> F     Margaret   <span class="dv">1578</span> <span class="fl">0.0162</span></span>
+<span id="cb174-11"><a href="exporting-data-plots.html#cb174-11" aria-hidden="true" tabindex="-1"></a>baracks <span class="ot">&lt;-</span> babynames[babynames<span class="sc">$</span>name<span class="sc">==</span><span class="st">&quot;Barack&quot;</span>,]</span>
+<span id="cb174-12"><a href="exporting-data-plots.html#cb174-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prop<span class="sc">~</span>year,<span class="at">data=</span>baracks,</span>
+<span id="cb174-13"><a href="exporting-data-plots.html#cb174-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">&quot;b&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb174-14"><a href="exporting-data-plots.html#cb174-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">2018</span>),</span>
+<span id="cb174-15"><a href="exporting-data-plots.html#cb174-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Proportion of names&quot;</span>,<span class="at">main=</span><span class="st">&quot;Barack&quot;</span>)</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-189-1.png" width="925.44" /></p>
 <p>To save this as a figure as a <code>pdf</code>, preface these lines of code with a <code>pdf()</code> command and add <code>dev.off()</code> below those lines. This opens up a <code>pdf</code> ‘device’ (i.e., an engine for creating a PDF file), prints the plot to that new file, then closes the device and saves the file.</p>
 <p>Saving a pdf:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="exporting-data-plots.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;barack-years.pdf&quot;</span>,width<span class="dv">-6</span>,<span class="at">height=</span><span class="dv">4</span>)</span>
-<span id="cb176-2"><a href="exporting-data-plots.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prop<span class="sc">~</span>year,<span class="at">data=</span>baracks,</span>
-<span id="cb176-3"><a href="exporting-data-plots.html#cb176-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">&quot;b&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb176-4"><a href="exporting-data-plots.html#cb176-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">2018</span>),</span>
-<span id="cb176-5"><a href="exporting-data-plots.html#cb176-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Proportion of names&quot;</span>,<span class="at">main=</span><span class="st">&quot;Barack&quot;</span>)</span>
-<span id="cb176-6"><a href="exporting-data-plots.html#cb176-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="exporting-data-plots.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;barack-years.pdf&quot;</span>,width<span class="dv">-6</span>,<span class="at">height=</span><span class="dv">4</span>)</span>
+<span id="cb175-2"><a href="exporting-data-plots.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prop<span class="sc">~</span>year,<span class="at">data=</span>baracks,</span>
+<span id="cb175-3"><a href="exporting-data-plots.html#cb175-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">&quot;b&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb175-4"><a href="exporting-data-plots.html#cb175-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">2018</span>),</span>
+<span id="cb175-5"><a href="exporting-data-plots.html#cb175-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Year&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Proportion of names&quot;</span>,<span class="at">main=</span><span class="st">&quot;Barack&quot;</span>)</span>
+<span id="cb175-6"><a href="exporting-data-plots.html#cb175-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p>Make sure you add ‘.pdf’ to the end of your filename, and try not to run the <code>dev.off()</code> command when you have not first run the <code>pdf</code> command. If you do, <code>R</code> will think you are turning off the plotting feature in <code>RStudio</code> and you will have to restart your <code>R</code> session in order to see any more plots.</p>
 
 </div>

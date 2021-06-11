@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-06-09" />
+<meta name="date" content="2021-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -776,7 +776,7 @@ sample_n() (and sample_frac())</p>
 <h4><span class="header-section-number">15.0.1.1</span> The pipe</h4>
 <p><code>%&gt;%</code> is a “pipe.” It is a way to write code without so many parenthesis. For example, what if I want to find the square root of the sum of a sample of two integers from a sequence of 10 to 20 by 2:</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="dataframes.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>), <span class="dv">2</span>)))</span>
-<span id="cb158-2"><a href="dataframes.html#cb158-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.09902</span></span></code></pre></div>
+<span id="cb158-2"><a href="dataframes.html#cb158-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.830952</span></span></code></pre></div>
 <p>The above could also be written as:</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="dataframes.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb159-2"><a href="dataframes.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> sum <span class="sc">%&gt;%</span> sqrt</span>
@@ -996,10 +996,22 @@ sample_n() (and sample_frac())</p>
 <h4>Group activity</h4>
 <p>Using the <code>deaths</code> data, we’re going to answer some questions together. Start with:</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="dataframes.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb170-2"><a href="dataframes.html#cb170-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dataframes.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
-<span id="cb171-2"><a href="dataframes.html#cb171-2" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767&#39;</span>)</span>
-<span id="cb171-3"><a href="dataframes.html#cb171-3" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">open.connection</span>(con, <span class="st">&quot;rb&quot;</span>)<span class="sc">:</span> Timeout was reached<span class="sc">:</span> [doc<span class="sc">-</span>0g<span class="dv">-84</span><span class="sc">-</span>sheets.googleusercontent.com] Resolving timed out after <span class="dv">10000</span> milliseconds</span></code></pre></div>
+<span id="cb170-2"><a href="dataframes.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb170-3"><a href="dataframes.html#cb170-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv&#39;</span>)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>How many people are in the dataset.</p></li>
+<li><p>Use <code>summarize</code> to count the number of men and women.</p></li>
+<li><p>Use <code>summarize</code> to count the number of people in each class.</p></li>
+<li><p>Use <code>summarize</code> to count the number of men and women in each class.</p></li>
+<li><p>Use <code>mutate</code> to create a variable called <code>died</code>. This should be a boolean based on the <code>Survived</code> column (in which 1 means the person survived, and 0 means the person died).</p></li>
+<li><p>Use <code>mutate</code> to create a variable called <code>child</code>. This should be a boolean based on the <code>Age</code> column, indicating if someone was less than 18 years old.</p></li>
+<li><p>Create a different dataframe for men vs. women. Name them accordingly.</p></li>
+<li><p>Create a different dataframe for class 1, class 2, and class 3. Name them accordingly.</p></li>
+<li><p>For each of the 5 datasets you’ve just created, what is the death rate?</p></li>
+<li><p>For each of the 5 datasets, how many children died?</p></li>
+<li><p>Now, using the <em>full</em> dataset, calculate the child-specific death rate for each combination of class and sex (ie, “first class females,” “third class males,” etc.).</p></li>
+<li><p>What did you find? What might explain that?</p></li>
+</ol>
 
 </div>
 </div>
