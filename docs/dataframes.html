@@ -779,11 +779,11 @@ sample_n() (and sample_frac())</p>
 <h4><span class="header-section-number">15.0.1.1</span> The pipe</h4>
 <p><code>%&gt;%</code> is a “pipe.” It is a way to write code without so many parenthesis. For example, what if I want to find the square root of the sum of a sample of two integers from a sequence of 10 to 20 by 2:</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="dataframes.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>), <span class="dv">2</span>)))</span>
-<span id="cb158-2"><a href="dataframes.html#cb158-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code></pre></div>
+<span id="cb158-2"><a href="dataframes.html#cb158-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.477226</span></span></code></pre></div>
 <p>The above could also be written as:</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="dataframes.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb159-2"><a href="dataframes.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> sum <span class="sc">%&gt;%</span> sqrt</span>
-<span id="cb159-3"><a href="dataframes.html#cb159-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.09902</span></span></code></pre></div>
+<span id="cb159-3"><a href="dataframes.html#cb159-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.656854</span></span></code></pre></div>
 <p>Similarly the below:</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="dataframes.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sd</span>(<span class="fu">log</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)))</span>
 <span id="cb160-2"><a href="dataframes.html#cb160-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.9280532</span></span></code></pre></div>
@@ -1019,6 +1019,15 @@ sample_n() (and sample_frac())</p>
 <div id="team-exercises" class="section level4 unnumbered">
 <h4>Team exercises</h4>
 <p>Before getting started, start a new script (ctrl + shift + n), name it <code>survey_exercises.R</code>, and copy-paste the following code at the top.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dataframes.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb171-2"><a href="dataframes.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb171-3"><a href="dataframes.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb171-4"><a href="dataframes.html#cb171-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb171-5"><a href="dataframes.html#cb171-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb171-6"><a href="dataframes.html#cb171-6" aria-hidden="true" tabindex="-1"></a>survey  <span class="ot">&lt;-</span> gsheet<span class="sc">::</span><span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767&#39;</span>)</span>
+<span id="cb171-7"><a href="dataframes.html#cb171-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb171-8"><a href="dataframes.html#cb171-8" aria-hidden="true" tabindex="-1"></a><span class="co"># remake the names</span></span>
+<span id="cb171-9"><a href="dataframes.html#cb171-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(survey) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;time&#39;</span>, <span class="st">&#39;sex&#39;</span>, <span class="st">&#39;age&#39;</span>,<span class="st">&#39;sib&#39;</span>, <span class="st">&#39;dad_mus&#39;</span>, <span class="st">&#39;person_mus&#39;</span>, <span class="st">&#39;joe_mus_is&#39;</span>, <span class="st">&#39;eyesight&#39;</span>, <span class="st">&#39;height&#39;</span>, <span class="st">&#39;shoe_size&#39;</span>, <span class="st">&#39;bday&#39;</span>, <span class="st">&#39;money_or_love&#39;</span>, <span class="st">&#39;rps_skill&#39;</span>, <span class="st">&#39;num_pan&#39;</span>, <span class="st">&#39;cats_dogs&#39;</span>, <span class="st">&#39;name&#39;</span>)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>Create a dataframe called <code>old_people</code>. This should include only people older than 20. Write code to calculate the number rows in your new dataframe.</p></li>
 <li><p>Create a dataframe called <code>captivated</code>. This should include all those people who find Joe’s moustache to be “deeply captivating.” Write code to calculate the number rows in your new dataframe.</p></li>
