@@ -141,6 +141,8 @@ ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(st
 
 ```{r}
 library(babynames)
+library(dplyr)
+library(ggplot2)
 bn <- babynames
 
 # subset by the name Francis
@@ -152,7 +154,25 @@ ggplot(data=francis, aes(x = year, y =n )) + geom_line() + labs(x = 'Year', y = 
 # layer with points
 ggplot(data=francis, aes(x = year, y =n )) + geom_line() + geom_point() + labs(x = 'Year', y = 'Number of boys named Francis')
 
+ggplot(data=francis, aes(x = year, y =n )) + geom_line() + geom_point() + labs(x = 'Year', y = 'Number of boys named Francis')
+
 ```
+
+## Exercise {-}
+
+1) Create a line chart showing the number of girls named Mary over time
+
+2) Change the color of the line to blue
+
+3) Add a title to the plot "The name Mary over time"
+
+4) Create a bar chart showing the number of girls named Emma, Olivia, Ava, Sophia, and Emily in 2010
+
+5) Change the X label to "Names" and the y label to "Total"
+
+6) Change the color of the bar to grey and make it more transparent
+
+7) Create a bar chart showing the number of people named Emma, Olivia, Ava, Sophia, and Emily in 2010, colored by sex
 
 ## A practical example {-}
 
