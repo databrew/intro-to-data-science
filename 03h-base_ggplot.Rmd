@@ -38,7 +38,7 @@ And one by Hans Rosling too: https://www.youtube.com/watch?v=FACK2knC08E
 
 Titanice data set 
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 library(ggplot2)
 library(readr)
 library(ggthemes)
@@ -51,35 +51,35 @@ titanic<- read_csv("https://raw.githubusercontent.com/databrew/intro-to-data-sci
 
 Call the plot
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot()
 ```
 
 Aesthetics (mapping variables to the x y plane)
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic, aes(x = Age, y = Fare))
 ```
 
 Geometry 
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point()
 ```
 
 Statistics 
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm')
 ```
 
 Labs
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm') + labs(title = 'Relationship between Age and Fare')
 ```
 
 Facets 
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm') + labs(title = 'Relationship between Age and Fare') +
   facet_wrap(~Sex)
 
@@ -87,7 +87,7 @@ ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(meth
 
 Themes 
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm') + labs(title = 'Relationship between Age and Fare') +
   facet_wrap(~Sex) + theme_fivethirtyeight()
 
@@ -96,30 +96,30 @@ ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(meth
 ## Barplot {-}
 
 Get counts for sex
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic, aes(x = Sex)) + geom_bar(stat='count')
 ```
 
 Explicitly set y to another variable
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 titanic_age <- titanic %>% group_by(Sex) %>% summarise(mean_age = mean(Age, na.rm= TRUE))
 ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity')
 ```
 
 Fill
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) 
 ```
 
 Labs
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 
 ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) + labs(y = 'Mean age', title = 'Average age by sex')
 
 ```
 
 Add another variable
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 titanic_em <- titanic %>% group_by(Sex, Survived) %>% summarise(mean_age= mean(Age, na.rm = TRUE))
 titanic_em <- titanic_em %>% mutate(Survived = ifelse(Survived == 1, 'Survived','Dead' ))
 ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity')
@@ -127,19 +127,19 @@ ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(st
 ```
 
 Dodge
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity', position = 'dodge') 
 ```
 
 Scales
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity', position = 'dodge', alpha = 0.7) + scale_fill_manual(values = c('blue', 'grey'))
 ```
 
 
 ## Another example 
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 library(babynames)
 library(dplyr)
 library(ggplot2)
@@ -180,7 +180,7 @@ Let's get practical (we'll get back to the theory later).
 
 First, let's read in some data on health from the World Bank:
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE}
 library(readr)
 health <- read_csv('https://github.com/ZeningQu/World-Bank-Data-by-Indicators/raw/master/health/health.csv')
 ```
