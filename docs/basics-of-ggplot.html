@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 13 Basics of ggplot | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 13 Basics of ggplot | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-06-14" />
+<meta name="date" content="2021-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -116,6 +118,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -223,11 +248,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice"><i class="fa fa-check"></i>Practice</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
-<li class="chapter" data-level="13.2" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#another-example"><i class="fa fa-check"></i><b>13.2</b> Another example</a></li>
-<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
-<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#a-practical-example"><i class="fa fa-check"></i>A practical example</a></li>
-<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#learning-examples"><i class="fa fa-check"></i>Learning examples</a></li>
-<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#other-resources-3"><i class="fa fa-check"></i>Other resources</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice-1"><i class="fa fa-check"></i>Practice 1</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice-exercises-1"><i class="fa fa-check"></i>Practice exercises 1</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice-exercises-2"><i class="fa fa-check"></i>Practice exercises 2</a></li>
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
 <li class="chapter" data-level="14" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>14</b> Importing data</a>
@@ -372,7 +395,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
-<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-12"><i class="fa fa-check"></i>Review assignment</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-11"><i class="fa fa-check"></i>Review assignment</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#c-do-social-bonds-relate-to-kinship"><i class="fa fa-check"></i>(c) Do social bonds relate to kinship?</a></li>
 </ul></li>
 <li class="chapter" data-level="49" data-path="iterative-simulations.html"><a href="iterative-simulations.html"><i class="fa fa-check"></i><b>49</b> Iterative simulations</a></li>
@@ -421,7 +444,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="the-name-and-concept" class="section level2 unnumbered">
 <h2>The name and concept</h2>
-<p>“GG” stands for “grammar of graphics,” with “grammar” meaning “the fundamental principles or rules of an art or science” <span class="citation">(<a href="references.html#ref-layered-grammar" role="doc-biblioref">Wickham 2010</a>)</span>. The most well-known “grammar of graphics” was written in 2005 and laid out some abstract principles for describing statistical graphics <span class="citation">(<a href="references.html#ref-10.5555/1088896" role="doc-biblioref">Wilkinson 2005</a>)</span>. The basic idea is that all graphs can be described using a <em>layered</em> grammar, and that all graphs have the same general elements…</p>
+<p>“GG” stands for “grammar of graphics,” with “grammar” meaning “the fundamental principles or rules of an art or science” <span class="citation">(<a href="#ref-layered-grammar" role="doc-biblioref">Wickham 2010</a>)</span>. The most well-known “grammar of graphics” was written in 2005 and laid out some abstract principles for describing statistical graphics <span class="citation">(<a href="#ref-10.5555/1088896" role="doc-biblioref">Wilkinson 2005</a>)</span>. The basic idea is that all graphs can be described using a <em>layered</em> grammar, and that all graphs have the same general elements…</p>
 <ul>
 <li>data</li>
 <li>aesthetics (mapping) of variables to objects</li>
@@ -498,8 +521,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="basics-of-ggplot.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> titanic_em, <span class="fu">aes</span>(<span class="at">x=</span>Sex, <span class="at">y=</span>mean_age, <span class="at">fill =</span> Survived)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;grey&#39;</span>))</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-147-1.png" width="925.44" /></p>
 </div>
-<div id="another-example" class="section level2" number="13.2">
-<h2><span class="header-section-number">13.2</span> Another example</h2>
+<div id="practice-1" class="section level2 unnumbered">
+<h2>Practice 1</h2>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="basics-of-ggplot.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
 <span id="cb137-2"><a href="basics-of-ggplot.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb137-3"><a href="basics-of-ggplot.html#cb137-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -519,8 +542,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb139-2"><a href="basics-of-ggplot.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>francis, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span>n )) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Year&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Number of boys named Francis&#39;</span>)</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-148-3.png" width="925.44" /></p>
 </div>
-<div id="exercise" class="section level2 unnumbered">
-<h2>Exercise</h2>
+<div id="practice-exercises-1" class="section level2 unnumbered">
+<h2>Practice exercises 1</h2>
 <ol style="list-style-type: decimal">
 <li><p>Create a line chart showing the number of girls named Mary over time</p></li>
 <li><p>Change the color of the line to blue</p></li>
@@ -529,46 +552,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Change the X label to “Names” and the y label to “Total”</p></li>
 <li><p>Change the color of the bar to grey and make it more transparent</p></li>
 <li><p>Create a bar chart showing the number of people named Emma, Olivia, Ava, Sophia, and Emily in 2010, colored by sex</p></li>
+<li><p>Create a cool-looking chart showing your name over time</p></li>
 </ol>
 </div>
-<div id="a-practical-example" class="section level2 unnumbered">
-<h2>A practical example</h2>
-<p>Let’s get practical (we’ll get back to the theory later).</p>
+<div id="practice-exercises-2" class="section level2 unnumbered">
+<h2>Practice exercises 2</h2>
 <p>First, let’s read in some data on health from the World Bank:</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="basics-of-ggplot.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb140-2"><a href="basics-of-ggplot.html#cb140-2" aria-hidden="true" tabindex="-1"></a>health <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://github.com/ZeningQu/World-Bank-Data-by-Indicators/raw/master/health/health.csv&#39;</span>)</span></code></pre></div>
-<p>Canvas
-Canvas + variables (mapping)
-Canvas + variables (mapping) + geometric objects</p>
-</div>
-<div id="learning-examples" class="section level2 unnumbered">
-<h2>Learning examples</h2>
-<div id="perfecting-the-canvas" class="section level3 unnumbered">
-<h3>Perfecting the canvas</h3>
-<p>Adjust y / x limits</p>
-<p>Add a different background</p>
-<p>Change x / y labels</p>
-</div>
-<div id="aesthetic-attributes-of-the-geoms" class="section level3 unnumbered">
-<h3>Aesthetic attributes of the geoms</h3>
-<p>A scatterplot</p>
-<p>Add a line of best fit</p>
-<p>Add title / subtitle / caption</p>
-<div id="review-assignment-7" class="section level4 unnumbered">
-<h4>Review assignment</h4>
-<p><em>Note: Under construction!</em></p>
-</div>
-</div>
-</div>
-<div id="other-resources-3" class="section level2 unnumbered">
-<h2>Other resources</h2>
-<p><em>Note: Under construction!</em></p>
+<span id="cb140-2"><a href="basics-of-ggplot.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb140-3"><a href="basics-of-ggplot.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb140-4"><a href="basics-of-ggplot.html#cb140-4" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gapminder<span class="sc">::</span>gapminder</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>How many rows are in the dataset?</p></li>
+<li><p>How many clumns are in the dataset?</p></li>
+<li><p>What are the names of the columns?</p></li>
+<li><p>What is the oldest year in the dataset?</p></li>
+<li><p>What is the country/year with the greatest population in the dataset?</p></li>
+<li><p>Get the average GDP per capita for each continent in 1952.</p></li>
+<li><p>Get the average GDP per capita for each continent for the most recent year in the dataset.</p></li>
+<li><p>Average GDP is a bit misleading, since it does not take into account the relative size (in population) of the different countries (ie, China is a lot bigger than Cambodia). Look up the function <code>weighted.mean</code>. Use it to get the average life expectancy by continent for the most recent year in the dataset, weighted by population.</p></li>
+<li><p>Make a barplot of the above table (ie, average life expectancy by continent, weighted by population).</p></li>
+<li><p>Make a point plot in which the x-axis is country, and the y-axis is GDP. Add the line <code>theme(axis.text.x = element_text(angle = 90))</code> in order to make the x-axis text vertically aligned. What’s the problem with this plot? How many points are there per country?</p></li>
+<li><p>Make a new version of the above, but filter down to just the earliest year in the dataset.</p></li>
+<li><p>Make a scatterplot of life expectancy and GDP per capita, just for 1972.</p></li>
+<li><p>Make the same plot as above, but for the most recent year in the data.</p></li>
+<li><p>Make the same plot as the above, but have the size of the points reflect the population.</p></li>
+<li><p>Make the same plot as the above, but have the color of te points reflect the continent.</p></li>
+<li><p>Filter the data down to just the most recent year in the data, and make a histogram (<code>geom_histogram</code>) showing the distribution of GDP per capita.</p></li>
+<li><p>Get the average GDP per capita for each continent/year, weighted by the population of each country.</p></li>
+<li><p>Using the data created above, make a plot in which the x-axis is year, the y-axis is (weighted) average GDP per capita, and the color of the lines reflects the content.</p></li>
+<li><p>Make the same plot as the above, but facet the plot by continent.</p></li>
+<li><p>Make the same plot as the above, but remove the coloring by continent.</p></li>
+<li><p>Make a plot showing France’s population over time.</p></li>
+<li><p>Make a plot showing all European countries’ population over time, with color reflecting the name of the country.</p></li>
+<li><p>Create a variable called <code>status</code>. If GDP per capita is over 20,000, this should be “rich”; if between 5,000 and 20,000, this should be “middle”; if this is less than 5,000, this should be “poor.”</p></li>
+<li><p>Create an object with the number of rich countries per year.</p></li>
+<li><p>Create an object with the percentage of countries that were rich each year.</p></li>
+<li><p>Create a plot showing the percentage of countries which were rich each year.</p></li>
+<li><p>Create an object with the number of people living in poor countries each year.</p></li>
+<li><p>Create a chart showing the number of people living in rich, medium, and poor countries per year (line chart, coloring by <code>status</code>).</p></li>
+<li><p>Create a chart showing the life expectancy in Somalia over time.</p></li>
+<li><p>Create a chart showing GDP per capita in Somalia over time.</p></li>
+<li><p>Create a histogram of life expectancy for the most recent year in the data. Facet this chart by continent.</p></li>
+<li><p>Create a barchart showing average continent-level GDP over time, weighted for population, with one bar for each year, stacked bars with the color of the bars indicating continent (<code>geom_bar(position = 'stack')</code>).</p></li>
+<li><p>Create the same chart as above, but with bars side-by-side (<code>geom_bar(position = 'dodge')</code>)</p></li>
+<li><p>Generate 3-5 more charts / tables that show interesting things about the data.</p></li>
+<li><p>Make the above charts as aesthetically pleasing as possible.</p></li>
+</ol>
 
 </div>
 </div>
 
 
 
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-layered-grammar" class="csl-entry">
+Wickham, Hadley. 2010. <span>“A Layered Grammar of Graphics.”</span> <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. <a href="https://doi.org/10.1198/jcgs.2009.07098">https://doi.org/10.1198/jcgs.2009.07098</a>.
+</div>
+<div id="ref-10.5555/1088896" class="csl-entry">
+Wilkinson, Leland. 2005. <em>The Grammar of Graphics (Statistics and Computing)</em>. Berlin, Heidelberg: Springer-Verlag.
+</div>
+</div>
             </section>
 
           </div>
@@ -598,6 +643,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

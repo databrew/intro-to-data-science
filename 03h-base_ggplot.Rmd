@@ -96,22 +96,26 @@ ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(meth
 ## Barplot {-}
 
 Get counts for sex
+
 ```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic, aes(x = Sex)) + geom_bar(stat='count')
 ```
 
 Explicitly set y to another variable
+
 ```{r,echo=TRUE,collapse=TRUE}
 titanic_age <- titanic %>% group_by(Sex) %>% summarise(mean_age = mean(Age, na.rm= TRUE))
 ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity')
 ```
 
 Fill
+
 ```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) 
 ```
 
 Labs
+
 ```{r,echo=TRUE,collapse=TRUE}
 
 ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) + labs(y = 'Mean age', title = 'Average age by sex')
@@ -119,6 +123,7 @@ ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity
 ```
 
 Add another variable
+
 ```{r,echo=TRUE,collapse=TRUE}
 titanic_em <- titanic %>% group_by(Sex, Survived) %>% summarise(mean_age= mean(Age, na.rm = TRUE))
 titanic_em <- titanic_em %>% mutate(Survived = ifelse(Survived == 1, 'Survived','Dead' ))
@@ -127,17 +132,19 @@ ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(st
 ```
 
 Dodge
+
 ```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity', position = 'dodge') 
 ```
 
 Scales
+
 ```{r,echo=TRUE,collapse=TRUE}
 ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity', position = 'dodge', alpha = 0.7) + scale_fill_manual(values = c('blue', 'grey'))
 ```
 
 
-## Another example 
+## Practice 1 {-}
 
 ```{r,echo=TRUE,collapse=TRUE}
 library(babynames)
@@ -158,7 +165,7 @@ ggplot(data=francis, aes(x = year, y =n )) + geom_line() + geom_point() + labs(x
 
 ```
 
-## Exercise {-}
+## Practice exercises 1 {-}
 
 1) Create a line chart showing the number of girls named Mary over time
 
@@ -174,49 +181,87 @@ ggplot(data=francis, aes(x = year, y =n )) + geom_line() + geom_point() + labs(x
 
 7) Create a bar chart showing the number of people named Emma, Olivia, Ava, Sophia, and Emily in 2010, colored by sex
 
-## A practical example {-}
+8) Create a cool-looking chart showing your name over time
 
-Let's get practical (we'll get back to the theory later). 
+## Practice exercises 2 {-}
+
 
 First, let's read in some data on health from the World Bank:
 
 ```{r,echo=TRUE,collapse=TRUE}
 library(readr)
-health <- read_csv('https://github.com/ZeningQu/World-Bank-Data-by-Indicators/raw/master/health/health.csv')
+library(dplyr)
+library(gapminder)
+gm <- gapminder::gapminder
 ```
 
-Canvas
-Canvas + variables (mapping)
-Canvas + variables (mapping) + geometric objects
+1. How many rows are in the dataset?
 
-## Learning examples {-}
+2. How many clumns are in the dataset?
 
-### Perfecting the canvas {-}
+3. What are the names of the columns?
 
-Adjust y / x limits
+4. What is the oldest year in the dataset?
 
-Add a different background
+5. What is the country/year with the greatest population in the dataset?
 
-Change x / y labels
+6. Get the average GDP per capita for each continent  in 1952.
 
-### Aesthetic attributes of the geoms {-}
+7. Get the average GDP per capita for each continent for the most recent year in the dataset.
 
+8. Average GDP is a bit misleading, since it does not take into account the relative size (in population) of the different countries (ie, China is a lot bigger than Cambodia). Look up the function `weighted.mean`. Use it to get the average life expectancy by continent for the most recent year in the dataset, weighted by population.
 
-A scatterplot
+9. Make a barplot of the above table (ie, average life expectancy by continent, weighted by population).
 
+10. Make a point plot in which the x-axis is country, and the y-axis is GDP. Add the line `theme(axis.text.x = element_text(angle = 90))` in order to make the x-axis text vertically aligned. What's the problem with this plot? How many points are there per country?
 
-Add a line of best fit
+11. Make a new version of the above, but filter down to just the earliest year in the dataset.
 
+12. Make a scatterplot of life expectancy and GDP per capita, just for 1972.
 
+13. Make the same plot as above, but for the most recent year in the data.
 
-Add title / subtitle / caption
+14. Make the same plot as the above, but have the size of the points reflect the population.
 
-#### Review assignment  {-}
+15. Make the same plot as the above, but have the color of te points reflect the continent.
 
-_Note: Under construction!_
+16. Filter the data down to just the most recent year in the data, and make a histogram (`geom_histogram`) showing the distribution of GDP per capita.
 
-## Other resources  {-}
+17. Get the average GDP per capita for each continent/year, weighted by the population of each country. 
 
-_Note: Under construction!_
+18. Using the data created above, make a plot in which the x-axis is year, the y-axis is (weighted) average GDP per capita, and the color of the lines reflects the content.
 
+19. Make the same plot as the above, but facet the plot by continent.
+
+20. Make the same plot as the above, but remove the coloring by continent.
+
+21. Make a plot showing France's population over time.
+
+22. Make a plot showing all European countries' population over time, with color reflecting the name of the country.
+
+23. Create a variable called `status`. If GDP per capita is over 20,000, this should be "rich"; if between 5,000 and 20,000, this should be "middle"; if this is less than 5,000, this should be "poor".
+
+24. Create an object with the number of rich countries per year.
+
+25. Create an object with the percentage of countries that were rich each year.
+
+26. Create a plot showing the percentage of countries which were rich each year.
+
+27. Create an object with the number of people living in poor countries each year.
+
+28. Create a chart showing the number of people living in rich, medium, and poor countries per year (line chart, coloring by `status`).
+
+29. Create a chart showing the life expectancy in Somalia over time.
+
+30. Create a chart showing GDP per capita in Somalia over time.
+
+31. Create a histogram of life expectancy for the most recent year in the data. Facet this chart by continent.
+
+32. Create a barchart showing average continent-level GDP over time, weighted for population, with one bar for each year, stacked bars with the color of the bars indicating continent (`geom_bar(position = 'stack')`).
+
+33. Create the same chart as above, but with bars side-by-side (`geom_bar(position = 'dodge')`)
+
+34. Generate 3-5 more charts / tables that show interesting things about the data.
+
+35. Make the above charts as aesthetically pleasing as possible.
 

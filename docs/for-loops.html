@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 21 for loops | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 21 for loops | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-06-14" />
+<meta name="date" content="2021-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -116,6 +118,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -223,11 +248,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice"><i class="fa fa-check"></i>Practice</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
 <li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
-<li class="chapter" data-level="13.2" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#another-example"><i class="fa fa-check"></i><b>13.2</b> Another example</a></li>
-<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
-<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#a-practical-example"><i class="fa fa-check"></i>A practical example</a></li>
-<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#learning-examples"><i class="fa fa-check"></i>Learning examples</a></li>
-<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#other-resources-3"><i class="fa fa-check"></i>Other resources</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice-1"><i class="fa fa-check"></i>Practice 1</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice-exercises-1"><i class="fa fa-check"></i>Practice exercises 1</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice-exercises-2"><i class="fa fa-check"></i>Practice exercises 2</a></li>
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
 <li class="chapter" data-level="14" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>14</b> Importing data</a>
@@ -372,7 +395,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
-<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-12"><i class="fa fa-check"></i>Review assignment</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-11"><i class="fa fa-check"></i>Review assignment</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#c-do-social-bonds-relate-to-kinship"><i class="fa fa-check"></i>(c) Do social bonds relate to kinship?</a></li>
 </ul></li>
 <li class="chapter" data-level="49" data-path="iterative-simulations.html"><a href="iterative-simulations.html"><i class="fa fa-check"></i><b>49</b> Iterative simulations</a></li>
@@ -904,7 +927,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb299-27"><a href="for-loops.html#cb299-27" aria-hidden="true" tabindex="-1"></a>Kakapo    <span class="dv">1</span>   <span class="dv">3</span>      <span class="dv">7</span>    <span class="dv">1</span></span>
 <span id="cb299-28"><a href="for-loops.html#cb299-28" aria-hidden="true" tabindex="-1"></a>Weka      <span class="dv">3</span>   <span class="dv">2</span>      <span class="dv">1</span>    <span class="dv">8</span></span></code></pre></div>
 <p>Boom!</p>
-<div id="review-assignment-9" class="section level4 unnumbered">
+<div id="review-assignment-8" class="section level4 unnumbered">
 <h4>Review assignment</h4>
 <p>First, read in and format some other cool data (<a href="data:text/csv;base64,eWVhcixXb3JsZCxBdXN0cmFsaWEsQ2FuYWRhLENoaW5hLERlbm1hcmssSW5kaWEsSmFwYW4sTmV3X1plYWxhbmQsU3dlZGVuLFN3aXR6ZXJsYW5kLFVuaXRlZF9LaW5nZG9tLFVuaXRlZF9TdGF0ZXMKMTk5MCwxOS4zNjIwMzkwNTAxMTgxLDkuNjU2MDMwNjQ0MTg5MDgsNjIuMzc4NzE4ODIyNjcyOCwyMC40MDc5Mzk4OTA2NzUyLDMuMTc1Mjc1MTkwNTE2NTEsMjQuNDg5MjkzOTYxNzEyNCwxMS4yNTQ3Mzc1MTI4NTAyLDgwLjAwNjE5ODY2NzI4NjUsNTEuMDAwMTA5NjAxMDUyMiw1NC45ODI1NDI5MTUzMzMxLDEuODI4NzY3NDQ2NjE3NjgsMTEuNTI4NjQ2ODQ4ODc5NAoxOTkxLDE5LjIzMzU2Nzc3MzkwOTMsMTAuNTk4MjAxMDUyNzkzLDYxLjQxMDQxMjk5MTM2MDIsMTguNDcxMTMwNzg3Njc3NiwyLjg5MjMyNDUzMTM5OTY0LDIyLjgwNzQwMjIxMDEzODYsMTEuODU2NzM0ODY2NDg4MSw3Ny4xODk0NTIxODY0NDg4LDQ0LjMwMDg3NzczMDE0OSw1Ny4xNjM3MDE1NjgxMDM1LDEuNjU2NDM5MDQ1MDM0NzMsMTAuNzU3NDE0MjI5MDUyMwoxOTkyLDE5LjE1ODM5Njk2MTYyMSwxMC4wNjY4NjUyNTE0MzYsNjEuNjc5MjE0NDIxNDkzMSwxNy41ODQ2ODM2NzAzNzA2LDQuMzk4NDY0NDQxNDA4MDMsMjAuNzUyNjUyMTM2Mzg5NywxMC4xNjI4ODc3NjMwOTQsNzIuNTg3NzA1OTY0NjEzNiw1Mi4zMzMyMTQ1NTk4MDcsNTYuOTA5Mzg0MDAzMjkyNiwyLjAwNTY2MTU3MDgzNTM5LDkuOTE2MTEwMTE2ODk5MTUKMTk5MywxOS43ODc5NDk5NjkzNzMsMTAuNTQ5MTQzNTcxMjcxLDYxLjcyMjMyNzk4NDI1OTEsMTguMTI1MjYwMTY4NDg3OCw0LjczMDA4NzcxNDEzNDM0LDE5LjU1ODgxMzM0MDkwODEsMTEuNDU0NTI3NzQ5MjM4Nyw3Ny4wMjQwNzAwMjE4ODE4LDUyLjkyNDMyODkwMTgwMTgsNTkuNTcyNzkwMDA5ODU4NywxLjc3NzYyNTc5MDgwNzIxLDEwLjQ4NDMyNTYxMjExNDkKMTk5NCwxOS41MzgxMTg1Nzg1MDc0LDEwLjE5NDQ3Mzg1NTc5ODYsNjAuNDAwNDUxMzQ0NTg1OCwxOC4wODg0MzU3MDM5MzU5LDQuMjk1NDMxMDIxNzM1OTIsMjEuMjE5MDk5NjcxNzEsNy45OTMwMjYyNTMxNDAwMyw4Mi4wNTIxNjQ5MzA3MDUsNDMuMDI4NzMxNjA0NzY1Miw2MC41NzMyMTkxOTkwMjE3LDIuMTM5ODQxOTgwODk5ODcsOS43NDcyMzU1MjQzNDUwNgoxOTk1LDE5LjgzNTM1NjA4OTYxMjUsOS42MjQxNDI4MTk5NDE1NSw2MS4wMDQwOTgxNzc2OTQ4LDE5LjIxNDEzOTMwMTU2NzQsNS4wMzU2Mzg1MDA0NjI0OCwxNy4yNjA1MzkxMTE1NTE3LDkuNDE2MzIzMTg3MTQzMjUsODMuODUyODA5MDUxMDc4Nyw0Ny41Nzg3Nzk4NDgwMDM2LDU3LjQyOTk1NzU4ODk5ODgsMi4wNjY1MzQ1MzE5Njk0OCwxMC44MDEwODQ5ODk5NDIKMTk5NiwxOS41MDUxMDMwMjA5NzgzLDkuMjI5NzI3ODI0MDAyMjYsNjMuMTA2MDc0MjI1NjAyMSwxNy41NTIyMTA2MTk4NjIzLDMuODgwMDM0MzM5ODkwMjYsMTUuNzY3MjkzOTM2NTQxNyw5LjE0NjIwOTIyODYzNzU3LDc5LjA2Mzk2NTEyNDg4NjksMzguNDAxNTg3MTc3NDI2OCw1Mi4yMDg4NDk2MjA0NTEyLDEuNjI3NDgwMjI1NDcxMTQsMTEuNTgxNDUwMDQ4MjU3NQoxOTk3LDE5LjM4Mjk2NjU2NzE4MDIsOS41ODc2NzU3MjY1OTIxNSw2Mi4zNTA5NDE0MjI1OTQxLDE3LjUxMjQ2NjAxNzc3NjQsNi42MDk1MDAxNjkyNDI5MiwxNi4wMTUxMzA4MDc4NjUsOS44NTM3OTQ2NTk5OTI5NCw3MC4wOTM1MDgzMTMzNDcyLDQ4LjI3NzU0OTE2MDIyMTQsNTYuMDE2OTA1NDA3MTQ5MywxLjk4OTIzMTkxNDc3MTc1LDEwLjk3NzgyODEyNTc2NTkKMTk5OCwxOS4wMzYxODQxMjU3NjcyLDguNDM0MDUwMDE1NjM5NSw2MC40MDYwNTQzMTUwNjE1LDE4LjA2MTE1NjMxNjkxNjUsOS41NDY4NTg2NTc4NDU0NSwxNi43MDExMDgyODU2NDExLDkuOTI5OTQ0ODAxODEyNjMsNzUuNjQ2MDcwNDAzMDYyOSw0OS4xODI4ODgxOTg5NTMzLDU0Ljg1NjgzMTAyMjA4NTMsMi4zOTUzMjA2OTE1OTM4MSw5LjYwODU4NDk4MjQzMTM1CjE5OTksMTguNjY0NTg0MDAxMzY5Miw4LjU0NDA1MzU4ODE3ODM5LDYxLjE4MzcwNDg0MjQyODksMTYuNjgxNDY1OTI1MDEwMSwxMS4yNTEyODQ2ODY1MzY1LDE1LjI1ODA3NTc0NjE5MzUsOS4yMjQ3NDMyNjgxMzMyMiw2OS41MjQyODgwMTg2MTYsNDguMjc0MzI1NDIzOTkxNSw1OS4zNzU1OTE1NzE2NTEyLDIuNjMyNzE3MzE2OTA2MjMsOS4wNjkyMDA1ODA5NTI1OAoyMDAwLDE4LjMzMzE1NDg3MjQ3MjQsOC4zODE2MTg1NzIwMjc2LDYwLjYwMDMwMTE5MDg5MjksMTYuNjM5NDk4MTkyMTI4NiwxNS40NTUwMjQ1NDcxOTQ0LDEzLjU5MDk0ODAyNzY5MjQsOS4xMTYwNDkwMTA1NjE2MSw3MS41MDEwMDY0NDYzNTI2LDU3LjI0NjczMTA2OTgxMjksNTcuMDAwNDgzOTM5MjY1NiwyLjY2MzEwNTE3NTI5MjE1LDguMjA1OTk2OTQyMjg3MjIKMjAwMSwxNy44Njk1OTExMzEwOTQ5LDguMDk4NDU0OTUyODQ1OTYsNTguMDMyNjU2MjQ0NzAxNCwxOC45NTg1MTkxNjU3NTExLDE1LjQ5NDcxMjI5MDI4MDcsMTMuMjA3MDQzNTI5ODU3OCw4Ljk2NTQzODA3NjE2NDI3LDYzLjU1NTAzODkxNjQwNTUsNTEuNTYxNjIwMDk5NjMxOCw1OS4zOTc5NTY1OTg4MzQ4LDIuNDk3MzMyNDEyNzU0MjEsNi43ODM5OTIzMTQzMjY5NAoyMDAyLDE3Ljc4ODY1NDQwODYxMTMsNy44NjA5MTg4MjI0MDE0Niw1OS44ODY0MTkyMTA5MjI5LDE3LjYxODYyNzg5OTA0NzUsMTcuMjgwNTI1MzY0NjI0NCwxMi4wNTUxNjExNjI0NTMyLDguNzA4NzA1NjgzMjI2MzcsNjkuNDc3NDY2ODM0MDM0OCw0OC40OTY5MzI1MTUzMzc0LDU1LjIyMDM0Njc1MDE3MTgsMi44OTMxNzMzMzgxODY5Miw4LjY0NjM2MTE3NzgxNjcKMjAwMywxNy4zNzg1NTQxNjc1NTM1LDguNDQwNjk4ODY1NzQ4NTEsNTguOTE1NTY0OTYzOTg5LDE1LjAzNzA0MDMzMjIyNDcsMTcuNDkwMTQ4NTI5ODU3NSwxMy40Njk0MjQ3NTYxMjE3LDEwLjAyMjEwOTU2NzI0NDUsNjUuOTk1NTM2Njk5NjEwMSw0My4zODI2NTE2NjY4MDIxLDU0LjcyNDc3MDY0MjIwMTgsMi42ODQ5NDczMDI0MDkzMiw4Ljg4OTM3NjEyMTA4OTY0CjIwMDQsMTcuODA5NzE2Mjc5MzI4OCw4LjE4NjY1MDE5MDgzMDUsNTguNDQ2MzE3MDg4MDExNSwxNi4yMjMyNjY0MTg2MzcyLDIzLjU1NTc0MjQwNzc1NTUsMTQuNDgyNTAwNTAwNzM3Niw5Ljc5NTgyNzE2OTM0NzU5LDcyLjA2MTg0NjAzODg2NCw0NC45NDkzMzE3ODYxNDUyLDU0LjQxMzIxNTM3NjE4NDEsMy42MTMwMzIxNjYzODgwOSw4LjYzMDE4NTUzMTYxOTQ1CjIwMDUsMTcuOTc1MDkwMjQxODU1Miw4LjgwMzcwNjYzOTQ1NjYyLDYwLjAyOTQyNjc0MjU1OTUsMTYuMTc1MDI0OTc1MzQ0NiwyNy4wNzA1NzMzMDQ2NDA1LDE2LjYxOTAxODA3NTcyMzUsOC40MDcxMTM3MzIwNTI5Nyw2NC4yMzYxNzU3NTg3MDQyLDUxLjI5NDE2MjIyMDE4NzUsNTUuODU4MzgxMzUyODUyNiw0LjI4MzQ4MTYxMjIzNTkyLDguNTc4NDY1NTM0NDU4OTgKMjAwNiwxOC4xMTYyMzE5ODczNDgsOS4yOTkzMDc3NzI2MjYzLDU5LjU0NDI4ODIyMDM1NDUsMTUuNTkyNzgzNDE1MjI1OCwyMC4xNzI3NjUzNDE2OTM5LDE3LjU0MDQyNDcxODAwOTIsOS40NDkwOTgyMjU5OTk1MSw2NC40Nzg2OTM2Mzc5MDY1LDQ5LjYwMDc5ODQwMzE5MzYsNTEuNzI2ODU3MjE2NDI4NSw0LjYwMjA4OTMxNzAzMjI2LDkuMjQ0NjMxMTgzNDA1MTQKMjAwNywxNy44ODEzOTY3MTg2NzQsOC42NDgwNzI0NjcxNjc5NCw2MC4yOTYyNzIyNTc0MDU2LDE1LjI2MzM0NzEzNjc3NiwyNi4yMTA3MDMwMjE2NzA2LDE3Ljg2NDA4NTY4NjIxOTUsOC4yMDE3ODY4OTg2NzczOCw2NS41NzQ5MzIwMDQ2NjI1LDUyLjAyNjkwNDQ0MzUzMzYsNTQuOTA2MDA0MDAzNjcyNSw1LjAxMDI5MzM4MDQyNzU2LDguMzY3NzYzOTM2MTU1MDgKMjAwOCwxOC41NTQ3NDc1ODU4Njg4LDguMTE1MjU3NTU2MzcxOTUsNjEuNDcyNTI3NDAyOTYyLDE3LjczNzQ0NDA2NDg1MzgsMjcuNTcyNjQ1ODM3ODg1MSwxNi41MDk4MzM3MzcwNTU4LDguNzg5MzI2NjEwNTQ4NjEsNjQuMjUxNjcwNDI5NDA4Nyw1NC4zMDkwNDUwNTg1MDgsNTUuNjc5MDM4MTI4NzY2Niw1LjY3NzA1MjIwNDg2OTY4LDkuMDAzNTQxMzQ3MTg1NTcKMjAwOSwxOS4zMzQxODE4MjE4NDgzLDcuNDk3OTM0MjU5MDUzOTksNjIuODUwMzQ3MzMzMjg0MSwxNy44NjM3OTgxOTg3Mzc1LDI3LjY1ODUyMTgzNzEyMTcsMTUuNjYwMDU1MjQ4OTgwMiw5LjE0NTcxNjUwODA2MDQyLDcxLjcwNzM2MTk3NzMwODgsNTguNDE5OTU4NDE5OTU4NCw1NS41NDQyMjMyOTg3ODY2LDYuNzY2ODA4NDYyNzMyMjksMTAuMjkxODQ1MDcxMTE1NwoyMDEwLDE5LjU2MDk5NzU0NTA4MTUsOC42MTE4Nzk2Mjg0MjAyMyw2MS4zOTY3NTY4NDI2OTEsMTguNjIyODI2MDUyNzcyMywzMS45ODIzOTkyNTg5MTYyLDE2LjA0Mzc0NDQzNTQ1OTUsMTAuNTMxNzc3MTYzMzg3Myw3My4xODA1NjI5Nzg3OTkyLDU1LjMwMTc2NDc4NTEyNzMsNTYuNzI5NTQ2NDE3OTczNyw2LjgxMjgxMzQyNjQwNzg4LDEwLjEyMDM1NTE0NzIzOTcKMjAxMSwxOS45MzI4MjUwMTUyMDg0LDEwLjQyNjY1MjI3ODE5NjMsNjIuMzM4MjUwMTMxMjIyOSwxNi43NjE3NzA0MzI3NTAzLDQwLjI1Mzc2ODIwMjMzMzMsMTcuMzE2OTYyODU2NTI2LDExLjQ2Mjg0NDYwMTU1NjQsNzYuMDQwMjg1MDUyNzE2OCw1NS45NDQ2MDA0NzY1MjY0LDU0LjA5Mjk5MDcxMzY0OTcsOS40ODkwNTMxMDA3NzQxMywxMi4yMjU3MTM1MTYzOTMyCjIwMTIsMjAuOTAxNTM2NDA1NDI3MSwxMC41OTI2NTMzNjAzMDcxLDYzLjIzMDU2MTE3MDg3NywxOS45NjYyNDg5Mzc3NTYzLDQ4LjMyNzQxNjA0NTA4LDE1LjczMjk3MzM2MDkxMywxMS4xOTQyNDczODIyNDg1LDcxLjg2NjUyODEwNDEwMjcsNTkuMDY3NzQ5NzY1Njc1Nyw1OS40NzQ2MTEwOTQ4MDQ4LDExLjQyMzk2MDE3NjU2MSwxMi4wMDczOTcwNjM0NjUxCjIwMTMsMjEuNzEwMzQ1ODQ0MjM1NiwxMy4yNjQxMDgzODgzMTY3LDYzLjI5ODAzMzA1NTQ5MDgsMjAuMjk2MjI3MzgwMjU2Nyw0NS45NjAzMzczMzQxMzkzLDE3LjM0OTMxMzgyNjI0OTksMTIuMjA1MjkxNzk0Mjc0MSw3NC4yNTgxMTIyMzA3NDc5LDU0LjAzMzQ5NjQ4MTEwNTEsNTkuMTkzODMwMDM0OTI0MywxNC45ODg0ODAxMzc3MzIsMTIuNjM3OTE5MTIyMjgxMwoyMDE0LDIyLjQwNzI1ODQ1MjYwMTMsMTQuOTA2NzEyMjA5NTgzMyw2Mi44MjQ5OTIyMTU3NTUzLDIyLjYwOTE1Mzc4Mjk1MzUsNTUuOTAwNDQ3NDI3MjkzMSwxNi4yNTM4Mzk4MTUzNDg4LDE0LjA1OTM1OTM1NzU1NTMsNzkuMjAyMzkwNTI5ODI0Miw1NS44Mzc2ODU3NjUyNjgyLDU4LjAxNTQ2MzE4MjIyMDIsMTkuMjYyODUzNjgzMTk2NSwxMi45NTM4MjcwOTAyOTI2CjIwMTUsMjIuODU0NDU2MDgxNTk3OSwxMy42Mzc4NDEwOTQ2NzQxLDYzLjAxMTQ1MDA0MDI1NCwyMy45MjY4MTcxNzM2NjMsNjUuNTA1OTI0NjIwODU4OCwxNS4zNDMwNTAzNDU0Nzk4LDE1Ljk4NDc4MDcyMzAyMTksODAuMDgxNDM4NzUxMjcyNSw2My4yNjI3NDc3MTM1MzIzLDYyLjE5Nzk4MTc1NDA4ODcsMjQuODQwMDUwNDIyNzY2NCwxMy4yMjg1OTMyMTA5NjcyCg==" download="renewable-energy.csv">renewable-energy.csv</a>). The code for doing so is provided for you here:</p>
 <div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="for-loops.html#cb300-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/renewable-energy.csv&quot;</span>)</span></code></pre></div>
@@ -1027,6 +1050,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
