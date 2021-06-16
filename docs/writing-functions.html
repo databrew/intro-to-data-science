@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-06-15" />
+<meta name="date" content="2021-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -395,7 +395,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
-<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-11"><i class="fa fa-check"></i>Review assignment</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-10"><i class="fa fa-check"></i>Review assignment</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#c-do-social-bonds-relate-to-kinship"><i class="fa fa-check"></i>(c) Do social bonds relate to kinship?</a></li>
 </ul></li>
 <li class="chapter" data-level="49" data-path="iterative-simulations.html"><a href="iterative-simulations.html"><i class="fa fa-check"></i><b>49</b> Iterative simulations</a></li>
@@ -647,7 +647,7 @@ div.csl-indent {
 <p>In this exercise, you will investigate annual trends in the prevalence of six names for babies born in the United States.</p>
 <p><strong>Step 1.</strong> Decide upon five names of interest to you, in addition to your own. Create a vector of these six names.</p>
 <p><strong>Step 2.</strong> Install and load the package <code>babynames</code>, which includes the names of each child born in the United States from 1880 to 2017, according to the Social Security Administration.</p>
-<p><strong>Step 3.</strong> This package provides the dataset in a dataframe that is also named <code>babynames</code>. Familiarize yourself with this dataset using its documentation.</p>
+<p><strong>Step 3.</strong> Make an object named <code>bn</code> like this: <code>bn &lt;- babynames::babynames</code>.</p>
 <p><strong>Step 4.</strong> Before writing any functions, do some basic exploration with this dataset.</p>
 <ol style="list-style-type: lower-alpha">
 <li>How many different names have been used since 1880?<br />
@@ -656,9 +656,15 @@ div.csl-indent {
 <li>To male babies?</li>
 <li>What was the most common name in 2017?</li>
 </ol>
-<p><strong>Step 5.</strong> Write a function that takes any name and plots its proportional prevalence from 1880 to 2017. Format the plot beautifully. Provide the name as the <code>main</code> title of the plot.</p>
+<p><strong>Step 5.</strong> Write a function that takes any name and plots its proportional prevalence from 1880 to 2017. Format the plot beautifully. Provide the name as the title of the plot.</p>
 <p><strong>Step 6.</strong> Include an input that allows the user to specify the y axis range. If that input is set to <code>NULL</code>, the function should just use the maximum value contained in the data itself, scaled by 1.2 to make the plot prettier. Always use <code>0</code> as the lower bound of the y axis.</p>
 <p><strong>Step 7.</strong> Create a multi-pane plot containing six subplots, one for each of your names of interest.</p>
+<p><strong>Step 8.</strong> Create a function called <code>first_letter</code>. This should take any vector as an argument and return the first letter only. You will need to use the <code>substr</code> function (look it up).</p>
+<p><strong>Step 9.</strong> Use your <code>first_letter</code> function to make a new variable in the babynames dataset called <code>fl</code>. This should be the first letter of all names.</p>
+<p><strong>Step 10.</strong> What was the most popular first letter of boys names in 1900?</p>
+<p><strong>Step 11.</strong> What was the least popular first letter of girls names in 2017?</p>
+<p><strong>Step 12.</strong> Make a function called <code>letter_plot</code>. This should take two arguments, <code>letter</code> and <code>m_or_f</code>, and then create a plot showing the popularity of that letter for the letter/sex combination inputted over time.</p>
+<p><strong>Step 13.</strong> Make a function called <code>letter_compare</code>. This should take two arguments: <code>y</code> (the year) and <code>return_table</code> (logical/boolean, whether or not to return a table). If <code>return_table</code> is <code>FALSE</code>, the function should return a plot. Otherwise, a table. In either case, it should show the popularity of all letters for the year in question.</p>
 
 </div>
 </div>

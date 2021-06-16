@@ -300,7 +300,7 @@ In this exercise, you will investigate annual trends in the prevalence of six na
 
 **Step 2.** Install and load the package `babynames`, which includes the names of each child born in the United States from 1880 to 2017, according to the Social Security Administration.    
 
-**Step 3.** This package provides the dataset in a dataframe that is also named `babynames`. Familiarize yourself with this dataset using its documentation.  
+**Step 3.** Make an object named `bn` like this: `bn <- babynames::babynames`.
 
 **Step 4.** Before writing any functions, do some basic exploration with this dataset.  
 
@@ -310,11 +310,23 @@ In this exercise, you will investigate annual trends in the prevalence of six na
 (d) What was the most common name in 2017?
 
 
-**Step 5.** Write a function that takes any name and plots its proportional prevalence from 1880 to 2017. Format the plot beautifully. Provide the name as the `main` title of the plot.  
+**Step 5.** Write a function that takes any name and plots its proportional prevalence from 1880 to 2017. Format the plot beautifully. Provide the name as the title of the plot.  
 
 **Step 6.** Include an input that allows the user to specify the y axis range. If that input is set to `NULL`, the function should just use the maximum value contained in the data itself, scaled by 1.2 to make the plot prettier. Always use `0` as the lower bound of the y axis.  
 
 **Step 7.** Create a multi-pane plot containing six subplots, one for each of your names of interest.  
+
+**Step 8.** Create a function called `first_letter`. This should take any vector as an argument and return the first letter only. You will need to use the `substr` function (look it up).
+
+**Step 9.** Use your `first_letter` function to make a new variable in the babynames dataset called `fl`. This should be the first letter of all names.
+
+**Step 10.** What was the most popular first letter of boys names in 1900?
+
+**Step 11.** What was the least popular first letter of girls names in 2017?
+
+**Step 12.** Make a function called `letter_plot`. This should take two arguments, `letter` and `m_or_f`, and then create a plot showing the popularity of that letter for the letter/sex combination inputted over time.
+
+**Step 13.** Make a function called `letter_compare`. This should take two  arguments: `y` (the year) and `return_table` (logical/boolean, whether or not to return a table). If `return_table` is `FALSE`, the function should return a plot. Otherwise, a table. In either case, it should show the popularity of all letters for the year in question.
 
 
 
