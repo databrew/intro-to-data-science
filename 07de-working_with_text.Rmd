@@ -7,133 +7,127 @@
 
 ## Basics {-}
 
-If you do not learn how to edit and transform text-based fields within datasets, you will quickly get stuck in `R`. Think of dates, GPS coordinates, user IDs, group names, plot labels, *etc.* All of these forms of data can contain non-numeric text. Becoming comfortable working with text in `R` is an essential part of your `R` toolbag.
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+library(gsheet)
+survey <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767')
+names(survey) <- c('time', 'sex', 'age','sib', 'dad_mus', 'person_mus', 'joe_mus_is', 'eyesight', 'height', 'shoe_size', 'bday', 'money_or_love', 'rps_skill', 'num_pan', 'cats_dogs', 'first_name', 'last_name')
 
-Here we will present the most common functions for working with text. Remember that `R` has a special object class for text, known to as **character** class, and that character objects are often referred to as **strings**.  
-
-Most of these functions come pre-installed in `R`. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the **`stringr` package**. Go ahead an install `stringr` and load it using `library()`.  
-
-```{r,echo=TRUE,eval=FALSE}
-install.packages("stringr")
-library(stringr)
 ```
 
-## Common tools {-}
+#### paste0 {-}
 
-**`as.character()`**: converts a non-character object into a character string. 
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 
-```{r,echo=TRUE,collapse=TRUE}
-x <- c(1,2,3)
-as.character(x)
+# combine first name and last name 
+paste0(survey$first_name,' ', survey$last_name)
+paste0(survey$first_name, ' ', survey$sex)
 
-x <- as.factor(c("group1","group2","group3"))
-as.character(x)
+# Make a sentence
+paste0('First name is ', survey$first_name,' and last name is  ', survey$last_name)
+
+# combine first and last name to make new variable called full_name
+survey <- survey %>% mutate(full_name = paste0(survey$first_name, '_', survey$last_name ))
+
+
 ```
 
-This can be particularly useful when trying to resolve problems caused by factors. One common issue occurs when `R` mistakes a set of numbers as a set of factors. Using `as.character()` can set things right:
+#### tolower & toupper {-}
 
-```{r,echo=TRUE,collapse=TRUE}
-x <- as.factor(c(18,19,20))
-x
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 
-# If you try to convert straight to numeric, it does not work:
-as.numeric(x)
+# combine first name and last name 
+tolower(survey$money_or_love)
+toupper(survey$money_or_love)
 
-# So convert to character first
-as.numeric(as.character(x))
+# overwrite money_or_love
+survey <- survey %>% mutate(money_or_love = tolower(money_or_love))
+
 ```
 
-**`paste()`** and **`paste0()`** combines two ore more strings together into a single object:
+#### nchar {-}
 
-```{r,echo=TRUE,collapse=TRUE}
-i <- 10
-n <- 96
-file_name <- "this_file.csv"
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+# count how many characters are in each observations in sex
+nchar(survey$eyesight)
 
-paste(i,"of",n,": Processing",file_name,". . . ") # paste assumes each object is separated by " ".
-paste0(i,"of",n,": Processing",file_name,". . . ") # paste0 assumes no space between objects.
-paste0(i," of ",n,": Processing ",file_name," . . . ") # this paste0 version matches the initial format
+# create a boolean vector of the number of observations with 32 characters
+nchar(survey$eyesight) ==42
+
+# get number of observations with character 42
+length(which(nchar(survey$eyesight) ==42))
+sum(nchar(survey$eyesight) == 42)
+
 ```
 
-You can also use `paste()` to `collapse` multiple objects into a single string.
+##### substr {-}
 
-```{r,echo=TRUE,collapse=TRUE}
-x <- 1:10
-paste(x,collapse="-")
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+# grab only the first letter fo sex
+substr(survey$sex, start = 1, stop = 1)
+
+# remove the "s" from cats and dogs
+substr(survey$cats_dogs, start = 1, stop = 3)
 ```
 
-**`tolower()`** and **`toupper()`** forces all text in a string to lower case or upper case, respectively:
+#### gsub {-}
 
-```{r,echo=TRUE,collapse=TRUE}
-x <- "That Tree Is Far Away."
-tolower(x)
-toupper(x)
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+
+# replace "Deeply captivating" with "captivating
+gsub('Deeply captivating', 'captivating', survey$joe_mus_is)
+
+# remove long strings
+gsub('(glasses or contacts, but I can get by without them)','', survey$eyesight, fixed = TRUE)
+
+# overwrite variable
+survey <- survey %>% mutate(eyesight = gsub('(glasses or contacts, but I can get by without them)','', eyesight, fixed = TRUE))
+
 ```
 
-**`nchar()`** returns the number of characters within a string:
+#### grepl {-}
 
-```{r,echo=TRUE,collapse=TRUE}
-x <- "That Tree Is Far Away."
-nchar(x)
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+# how many times does Brew show up in full_name
+grepl('Brew', survey$full_name)
+
+# Born in may
+grepl('05', survey$bday)
+
+# Born in 2000
+grepl('2000', survey$bday)
+
+# filter data by those born in 2000
+survey %>% filter(grepl('2000', bday))
+
 ```
 
-**`substr()`** trims a string according to a start and end character position:
 
-```{r,echo=TRUE,collapse=TRUE}
-dates <- c("2021-03-01","2021-03-02","2021-03-03")
-substr(dates,1,4) # years
-substr(dates,6,7) # months
-substr(dates,9,10) # days
-```
+#### Exercise {-} 
 
-**`grep()`** returns the elements in a character vector that contain a given pattern:
+1) Create a new variable called first_name_sex that combines the first name and the sex of each individual
 
-```{r,echo=TRUE,collapse=TRUE}
-years <- 1900:1999
+2) Create a new variable called backwards_name that combines last name and first name 
 
-# Which elements correspodn to the 1980s?
-eighties <- grep("198",years)
+3) Make the backwards_name variable capitalized
 
-years[eighties]
-```
+4) Replace "both" in the money_or_love variable with "Money & Love"
 
-**`gsub()`** replaces a given pattern with another in a character vector.
+5) Get only the first character dad_mus variable 
 
-```{r,echo=TRUE,collapse=TRUE}
-dates <- c("2021-03-01","2021-03-02","2021-03-03")
-gsub("-","/",dates)
-```
+6) How many total characters are in the column eyesight
 
-**`stringr::str_pad()`**: standardize the lengths of strings by "padding" it (e.g., with zeroes) :
+7) How many characters did Joe write for the eyesight question
 
-```{r,echo=TRUE,collapse=TRUE}
-days <- as.character(1:15)
-days
-stringr::str_pad(days,width=2,side="left",pad="0")
-```
+8) How many people in the data were born on the 4th day of the month
 
-**`stringr::str_split()`**: split a string into several strings at the occurrence of a specified character.
+9) Create a new variables called month_born that has only the month of from the bday variable 
 
-```{r,echo=TRUE,collapse=TRUE}
-dates <- c("2021-03-01","2021-03-02","2021-03-03")
-splits <- stringr::str_split(dates,"-")
-splits
-```
+10) Do the same thing for year 
 
-This function returns a *list* for every element in the original vector. A common need is to retrieve one item from each of the element in this list. For example, let's say you are trying to retrieve the months of each element in the `dates` vector. The list structure makes this tricky to retrieve. Here's the way to do it by drawing upon the `apply()` family of functions:
+11) Filter the data set by those born and 2001 and prefer being money
 
-```{r,echo=TRUE,collapse=TRUE}
-sapply(splits, "[[", 2) # Months
 
-# now get years and days
-sapply(splits, "[[", 1) # years
-sapply(splits, "[[", 3) # days
-```
-
-#### Exercises {-}
-
-Let' start by reading in some data
-
+## Large exercise 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 
 library(dplyr)
@@ -144,7 +138,7 @@ shake <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-scie
 
 All good? Great. Let's go.
 
-1. How may rows in the data? Whhhaaatttt?
+1. How may rows in the data?
 
 2. Create a dataframe named `spoken`. This should be those lines which are spoken by an actor/actress (figure it out).
 
@@ -154,11 +148,9 @@ All good? Great. Let's go.
 
 5. What is the most common first word spoken?
 
-
 6. Create a boolean column named "King". This should indicate whether or not the word "King" was spoken in any given line.
 
 7. Improve the above by making sure that it includes both lower and uppercase variations of "king".
-
 
 8. Figure out which play has the word "king" mentioned most?
 
