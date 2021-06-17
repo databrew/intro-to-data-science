@@ -170,3 +170,109 @@ All good? Great. Let's go.
 15. What is the lines(s) of the character who says the least words?
 
 16. Make a table of plays with one row per play and variables being: (a) number of lines, (b) number of words, (c) number of characters, (d) number of letters, (e) number of mentions of "Brew".
+
+
+
+#### Exercises (Trump tweets)  {-}
+
+Let's run the below to get started.
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+
+library(dplyr)
+library(readr)
+library(tidytext)
+trump <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/trumptweets.csv')
+
+```
+
+1. In the current format, one row of data is equal to one <what>?
+
+2. Create a variable called `line`. This should be 1, 2, 3, 4, etc.
+
+3. Create a variable called `text`. This should be an exact copy of `content`.
+
+4. Use the `unnest_tokens` function to reshape the data for better text processing.
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+simple <- trump %>%
+  select(-mentions, -hashtags, -geo, -content, -link, -id) %>%
+  unnest_tokens(word, text)
+```
+
+5. What format is the data in now (ie, one row is equal to <what>)?
+
+6. Take a minute to read about the `tidytext` package at https://www.tidytextmining.com/tidytext.html.
+
+7. What is the most common word used by Trump?
+
+8. Use `substr` to create a `year` variable.
+
+9. What is the most common word used by Trump each year?
+
+10. Create a variable named `month` using `substr`.
+
+11. What is the most common word used by Trump each month?
+
+12. Create a dataframe with one word per row, and a column called `freq` saying how many times that word was used.
+
+13. Load up the `wordcloud` library.
+
+14. Subset the dataframe created in number 12 to only include the top 100 words.
+
+15. Create a wordcloud of Trump's top 100 words.
+
+16. Are you ready to do some sentiment analysis? Great.
+
+17. Create a dataframe named `sentiments` by running the following: `sentiments <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sentiments.csv')`
+
+```{r, eval = FALSE, echo = FALSE}
+sentiments <- get_sentiments("nrc")
+uns <- sort(unique(sentiments$sentiment))
+sentiments <- sentiments %>%
+  group_by(word) %>%
+  summarise(anger = length(which(sentiment == 'anger')),
+            anticipation = length(which(sentiment == 'anticipation')),
+            disgust = length(which(sentiment == 'disgust')),
+            fear = length(which(sentiment == 'fear')),
+            joy = length(which(sentiment == 'joy')),
+            negative = length(which(sentiment == 'negative')),
+            positive = length(which(sentiment == 'positive')),
+            sadness = length(which(sentiment == 'sadness')),
+            surprise = length(which(sentiment == 'surprise')),
+            trust = length(which(sentiment == 'trust')))
+write_csv(out, 'data/sentiments.csv')
+```
+
+18. What is the `sentiments` dataset?
+
+19. Create another dataset named `polarity` by running the following: `polarity <- get_sentiments("afinn")`
+
+20. Use `left_join` to combine polarity and sentiments into one dataset named `emotions`.
+
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+emotions <- left_join(sentiments, polarity) %>% filter(!duplicated(word))
+```
+
+21. Use `left_join` to combine the `trump` data and the `emotions` data.
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+simple <- left_join(simple, emotions)
+```
+
+22. Have a look at the `simple` (Trump) data. What do you see?
+
+23. Get an overall polarity score (using the `value` variable) for the entire dataset. Is it positive or negative?
+
+24. How many words were emotionally associated with "anger" in 2015?
+
+25. What percentage of words were associated with "fear" by year?
+
+26. What is the average sentiment polarity by year?
+
+27. What is Trump's most positive tweet?
+
+28. What month was Trump's most negative month?
+
+29. What percentage of Trump tweets have more sadness than joy by year/month?
