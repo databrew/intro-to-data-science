@@ -194,6 +194,86 @@ if(x==3 | x==6){
 }
 ```
 
+
+#### `NULL` as a default {-}
+
+Setting the default value for an input to `NULL` can be useful in certain use cases. For example, let's say that if `b` is not defined by the user, you want its value to be set to five times the value of `x`.
+
+```{r,echo=TRUE,collapse=TRUE}
+my_function <- function(x,a=1.3,b=NULL){
+  
+  # Handle input `b`
+  if(is.null(b)){
+    b <- x*5
+    print(paste("b was NULL! Setting its value to ", b))
+  }
+  
+  # Now perform process
+  y <- a*x + b
+  
+  return(y)
+}
+```
+
+In this function, a conditional statement is used -- `if(is.null(b)){ ... }` -- to handle the input `b` when the user does not specify a value for it. When `b` is `NULL`, the logical test `is.null(b)` will be `TRUE`, which will trigger the conditional statement and case `b` to be defined as `x*5`. Conditional statements will be convered in detail in the next modules.
+
+Try running the function with and without providing a value for `b`. 
+
+```{r,echo=TRUE,collapse=TRUE}
+my_function(x=2,b=5)
+my_function(x=2)
+```
+
+Conditional statements such as `if(is.null(x)){ ... }` or `if(is.na(x)){ ... }` will be helpful in dealing with all the possible values that a user can pass to your custom functions. 
+
+### Complex inputs {-}
+
+You can pass vectors, dataframes, and any other data structure as inputs in your own custom functions. For example:
+
+```{r,echo=TRUE,collapse=TRUE}
+my_input <- 1:20
+my_function(x=my_input,a=1.2,b=10)
+```
+
+
+### Complex function outputs {-}
+
+At some point you will want multiple objects to be returned by your function. For example, perhaps you want both `y` and `b` to be returned now that you can define `b` according to the value of `x`. 
+
+Unfortunately, the `return()` command does not let you include multiple objects. `return(y,b)` will not work. To make it work, you have to place your output objects within a single object, such as a vector, dataframe, or list. 
+
+Here is a modification of `my_function()` that allows multiple outputs:
+
+```{r,echo=TRUE,collapse=TRUE}
+my_function <- function(x,a=1.3,b=NULL){
+  
+  # Handle input `b`
+  if(is.null(b)){
+    b <- x*5
+  }
+  
+  # Now perform process
+  y <- a*x + b
+  
+  output <- c("y"=y,"b"=b) 
+  return(output)
+}
+```
+
+Now `my_function()` works like this: 
+
+```{r,echo=TRUE,collapse=TRUE}
+my_function(x=5)
+```
+
+To get the value of just `y` or just `b`, you can treat the output just like any other vector:
+
+```{r,echo=TRUE,collapse=TRUE}
+my_function(x=5)[1]
+my_function(x=5)[2]
+```
+
+
 ### Exercise 2 {-}
 
 Write a nested `if` statement that produces a message reporting the hemisphere for any GPS position you provide it (a pair of latitude and longitude coordinates, in decimal degrees). The four hemisphere options are as follows: 
