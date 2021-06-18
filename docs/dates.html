@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 2 Principles of data science | DataBOOM: the canon for data science</title>
+  <title>Module 25 Working with dates &amp; times | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 2 Principles of data science | DataBOOM: the canon for data science" />
+  <meta property="og:title" content="Module 25 Working with dates &amp; times | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="databrew/intro-to-data-science" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 2 Principles of data science | DataBOOM: the canon for data science" />
+  <meta name="twitter:title" content="Module 25 Working with dates &amp; times | DataBOOM: the canon for data science" />
   
   <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="index.html"/>
-<link rel="next" href="dataviz.html"/>
+<link rel="prev" href="trump.html"/>
+<link rel="next" href="working-with-factors.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,119 +432,109 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="principles-of-data-science" class="section level1" number="2">
-<h1><span class="header-section-number">Module 2</span> Principles of data science</h1>
-<div id="what-is-data-science" class="section level2 unnumbered">
-<h2>What is data science?</h2>
-<p>Data science is an interdisciplinary field. Some have argued that it is not a field unto itself, but rather <a href="https://www.statisticsviews.com/article/nate-silver-what-i-need-from-statisticians/">an extension of statistics</a>. In this course, however, we’ll take the majority view that data science is its own field: a new field, which combines statistics, mathematics, and computer science.</p>
-<p>But we’ll go one step outward. Data science is not just the combination of those academic disciplines which form its core; its also something more. Good data science involves domain knowledge (ie, familiarity with the problem being solved), effective communication, an iterative mentality (ie, creating feedback loops for rapid hypothesis testing), a bias to real-world effects rather than theoretical frameworks, and a willingness/desire to work in the real world.</p>
-<p>There are a lot of Venn diagrams and figures out there, trying to show what data science is. For example…</p>
-<p><img src="img/venn1.png" /></p>
-<p>… or …</p>
-<p><img src="img/venn2.png" /></p>
-<p>… or …</p>
-<p><img src="img/venn3.jpg" /></p>
-<p>… or …</p>
-<p><img src="img/venn4.png" /></p>
-<p>… or …</p>
-<p><img src="img/venn5.jpg" /></p>
-<p>Our take? These are useful, interesting, and to some degree accurate <em>but</em> data science is too new, and too fluid, to be fixed into some static definition. 15 years ago, data science was “dashboards” and “predictive analytics.” 10 years ago, data science was “big data” and “data mining.” Since then, machine learning and artificial intelligence have taken up an ever-larger chunk of what most people consider data science. And in 5 or 10 years? Who knows.</p>
-<p>So, to keep our definition accurate, we’ll keep it broad. Data science is simply “doing science with data.” And for our purposes, the only difference between our definition and the definition of science itself is not in the word “data” (since nowadays all scientists are, to some degree, “data scientists”), but rather in the word “doing.” Data science is about <em>doing</em> stuff with data. And that’s what this course is going to be about. <em>DOING</em>.</p>
-</div>
-<div id="data-scientist-vs-data-analysist-vs-data-engineer" class="section level2 unnumbered">
-<h2>Data scientist vs data analysist vs data engineer</h2>
-<p>There is a lot of fuss out there about what constitutes data science and what doesn’t. Our definition is broad enough to encompass lots of things. So, we consider an “analyst” working in business intelligence to be a data scientist; and so too do we think that a data scientist could be an engineer who is processing large amounts of data to extract basic trends. Again, data scientists are those who <em>do science with data</em>. That’s a lot of people.</p>
-</div>
-<div id="what-is-the-data-life-cycle" class="section level2 unnumbered">
-<h2>What is the data life cycle?</h2>
-<p>There is a misperception about data science work that it is largely or even exclusively interpretative: that is, a data scientist looks at a big set of data, a light bulb goes off in her head, she has some insight, and then acts on that insight.</p>
-<p>The reality is data science is much more than that. And most of data science is a combination of (a) getting data ready for analysis, (b) hypothesis testing, and (c) figuring out what to do with the results of a and b. That is, data science in practice is generally not some artesenal genius staring at a table of numbers until “insight” magically occurs, but rather a lot of work, a lot of structured theories which can be confirmed or falsified, and a lot of imagination applied to the task of implementation. Good, effective data scientists, in practice, are often not those with the most cutting-edge algorithm, but rather those who are able to get the right data and ask the right questions.</p>
-<p>In other words, data goes through a whole <em>lifecycle</em> of which analysis is just a small part. What is the data lifecycle?</p>
-<p>Here’s how we conceptualize it:</p>
-<ol start="0" style="list-style-type: decimal">
-<li>Observation<br />
-</li>
-<li>Problem identification and definition<br />
-</li>
-<li>Question formation<br />
-</li>
-<li>Hypothesis generation<br />
-</li>
-<li>Data collection<br />
-</li>
-<li>Data processing<br />
-</li>
-<li>Model building / hypothesis testing<br />
-</li>
-<li>Operationalization<br />
-</li>
-<li>Communication / dissemination<br />
-</li>
-<li>Action<br />
-</li>
-<li>Observation</li>
-</ol>
-<p>Does the above look a lot like the sceintific method? That’s because it basically is. The main differences are (a) “data processing” (which in reality takes up most of any data scientist’s time), (b) the bias towards action, and (c) the iterative / looped nature of the lifecycle.</p>
-</div>
-<div id="data-science-in-the-wild" class="section level2 unnumbered">
-<h2>Data science ‘in the wild’</h2>
-<p>Enough theory - let’s talk about what data scientists are actually doing in the real world.</p>
-<p>Data scientists are working on a ton of problems. Some examples include:</p>
+<div id="dates" class="section level1" number="25">
+<h1><span class="header-section-number">Module 25</span> Working with dates &amp; times</h1>
+<div id="learning-goals-19" class="section level4 unnumbered">
+<h4>Learning goals</h4>
 <ul>
-<li>Targeted advertising<br />
-</li>
-<li>Dynamic airline pricing<br />
-</li>
-<li>Social media feed optimization<br />
-</li>
-<li>Making video games more fun / addictive<br />
-</li>
-<li>Identifying and filtering inappropriate content on the internet<br />
-</li>
-<li>Search autocomplete<br />
-</li>
-<li>Automating identification of credit card fraud<br />
-</li>
-<li>Facial recognition<br />
-</li>
-<li>Voice recognition<br />
-</li>
-<li>Filtering spam<br />
-</li>
-<li>Autocorrect<br />
-</li>
-<li>Virtual assistants<br />
-</li>
-<li>Preventive maintenance at nuclear facilities<br />
-</li>
-<li>Identifying tax evaders<br />
-</li>
-<li>Identifying disease through imagery<br />
-</li>
-<li>Improving chemotherapy dosage<br />
-</li>
-<li>Quantifying the likelihood of recedivism to prevent over-incarceration<br />
-</li>
-<li>Surveilling emergency rooms to predict disease outbreaks<br />
-</li>
-<li>Improve matchmaking systems (liver transplants, love, etc.)<br />
-</li>
-<li>Detecting fake news<br />
-</li>
-<li>Predictive policing</li>
+<li>Be able to read dates, and convert objects to dates</li>
+<li>Be able to convert dates, extract useful information, and modify them</li>
+<li>Use date times</li>
+<li>Gain familiarity with the lubridate package</li>
 </ul>
 </div>
-<div id="why-r" class="section level2 unnumbered">
-<h2>Why R?</h2>
-<p>This course if largely about learning to <em>do</em>, and will largely use R. R is not the only tool in the data scientists’ toolbox, but it’s a good one, is extremely popular, has a larger community and user base, and can be applied to many fields.</p>
-<p>What are some of the other tools and languages used by data scientists? There are plenty (and we won’t cover them here). But the main reason we choose R for this course is the fact that it is open-source and free. This matters because…</p>
+<div id="first-steps-2" class="section level2 unnumbered">
+<h2>First steps</h2>
+<p>Hadley Wickham’s <a href="https://r4ds.had.co.nz/dates-and-times.html">tutorial on dates</a> starts with 3 simple questions:</p>
+<ul>
+<li>Does every year have 365 days?</li>
+<li>Does every day have 24 hours?</li>
+<li>Does every minute have 60 seconds?</li>
+</ul>
+<p>"I’m sure you know that not every year has 365 days, but do you know the full rule for determining if a year is a leap year?
+(It has three parts.) You might have remembered that many parts of the world use daylight savings time (DST), so that some days have 23 hours, and others have 25.
+You might not have known that some minutes have 61 seconds because every now and then leap seconds are added because the Earth’s rotation is gradually slowing down.</p>
+<p>Dates and times are hard because they have to reconcile two physical phenomena (the rotation of the Earth and its orbit around the sun) with a whole raft of geopolitical phenomena including months, time zones, and DST.
+This chapter won’t teach you every last detail about dates and times, but it will give you a solid grounding of practical skills that will help you with common data analysis challenges."</p>
 </div>
-<div id="the-reproducibility-crisis" class="section level2 unnumbered">
-<h2>The reproducibility crisis</h2>
-<p>There is a crisis in science (and data science): the reproducitibility crisis (also known as the replication crisis). This refers to the fact that many scientific studies have been impossible to reproduce, calling into question the validity of those studies’ findings. This is a big deal: if a significant part of science is <em>wrong</em> then what do we know, how can we be sure what we know is right, and how can we separate the wheat from the chaff?</p>
-<p>Because of this crisis, there has emerged a much needed move to make all science “reproducible.” This means making sure that someone else can copy what you did, and get the same results. This is important for identifying scientific fraud, of course, but also for helping us to overcome human bias, mistakes, wishful thinking, etc. Reproducibility is not just a “nice-to-have”; in modern science (and data science), it’s a “must.”</p>
-<p>Good data science must be reproducible. And reproducible science means using tools that others can easily use, and methods that others can easily copy. Programming languages like R and Python are ideal for this.</p>
-<p>In this course, we’ll focus on <em>reproducible research</em>, <em>literate programming</em>, <em>documentation</em>, and other components of data science (and research in general) which ensure that (a) our methods and findings can be easily sanity-tested by others, and (b) we set ourselves and our projects’ up for future collaborations, hand-offs, and expansion.</p>
+<div id="lubridate" class="section level2 unnumbered">
+<h2>Lubridate</h2>
+<p>Let’s install the <code>lubridate</code> package.</p>
+</div>
+<div id="getting-familiar-with-the-date-type" class="section level2 unnumbered">
+<h2>Getting familiar with the <code>date</code> type</h2>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="dates.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb330-2"><a href="dates.html#cb330-2" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">today</span>()</span>
+<span id="cb330-3"><a href="dates.html#cb330-3" aria-hidden="true" tabindex="-1"></a>my_birthday <span class="ot">&lt;-</span> <span class="st">&#39;1985-11-07&#39;</span></span>
+<span id="cb330-4"><a href="dates.html#cb330-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(today)</span>
+<span id="cb330-5"><a href="dates.html#cb330-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_birthday)</span>
+<span id="cb330-6"><a href="dates.html#cb330-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb330-7"><a href="dates.html#cb330-7" aria-hidden="true" tabindex="-1"></a><span class="co"># This causes an errors</span></span>
+<span id="cb330-8"><a href="dates.html#cb330-8" aria-hidden="true" tabindex="-1"></a><span class="co"># today - my_birthday</span></span>
+<span id="cb330-9"><a href="dates.html#cb330-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb330-10"><a href="dates.html#cb330-10" aria-hidden="true" tabindex="-1"></a><span class="co"># This does not</span></span>
+<span id="cb330-11"><a href="dates.html#cb330-11" aria-hidden="true" tabindex="-1"></a>my_birthday <span class="ot">&lt;-</span> <span class="fu">as_date</span>(my_birthday)</span>
+<span id="cb330-12"><a href="dates.html#cb330-12" aria-hidden="true" tabindex="-1"></a>today <span class="sc">-</span> my_birthday</span></code></pre></div>
+</div>
+<div id="converting-dates-from-strings" class="section level2 unnumbered">
+<h2>Converting dates from strings</h2>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="dates.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">&quot;2017-01-31&quot;</span>)</span>
+<span id="cb331-2"><a href="dates.html#cb331-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;January 31st, 2017&quot;</span>)</span>
+<span id="cb331-3"><a href="dates.html#cb331-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">&quot;31-Jan-2017&quot;</span>)</span></code></pre></div>
+<p>What does the <code>tzone</code> argument to <code>today()</code> do? Why is it important?</p>
+<p>Use the appropriate lubridate function to parse each of the following dates:</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="dates.html#cb332-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="st">&quot;January 1, 2010&quot;</span></span>
+<span id="cb332-2"><a href="dates.html#cb332-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="st">&quot;2015-Mar-07&quot;</span></span>
+<span id="cb332-3"><a href="dates.html#cb332-3" aria-hidden="true" tabindex="-1"></a>d3 <span class="ot">&lt;-</span> <span class="st">&quot;06-Jun-2017&quot;</span></span>
+<span id="cb332-4"><a href="dates.html#cb332-4" aria-hidden="true" tabindex="-1"></a>d4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;August 19 (2015)&quot;</span>, <span class="st">&quot;July 1 (2015)&quot;</span>)</span>
+<span id="cb332-5"><a href="dates.html#cb332-5" aria-hidden="true" tabindex="-1"></a>d5 <span class="ot">&lt;-</span> <span class="st">&quot;12/30/14&quot;</span> <span class="co"># Dec 30, 2014</span></span></code></pre></div>
+</div>
+<div id="getting-familiar-with-the-datetime-type" class="section level2 unnumbered">
+<h2>Getting familiar with the <code>datetime</code> type</h2>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="dates.html#cb333-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">now</span>() </span>
+<span id="cb333-2"><a href="dates.html#cb333-2" aria-hidden="true" tabindex="-1"></a>n <span class="sc">+</span> <span class="fu">seconds</span>(<span class="dv">1</span>)</span>
+<span id="cb333-3"><a href="dates.html#cb333-3" aria-hidden="true" tabindex="-1"></a>n <span class="sc">-</span> <span class="fu">hours</span>(<span class="dv">5</span>)</span>
+<span id="cb333-4"><a href="dates.html#cb333-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(n)</span>
+<span id="cb333-5"><a href="dates.html#cb333-5" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(n)</span>
+<span id="cb333-6"><a href="dates.html#cb333-6" aria-hidden="true" tabindex="-1"></a><span class="fu">as_date</span>(n)</span>
+<span id="cb333-7"><a href="dates.html#cb333-7" aria-hidden="true" tabindex="-1"></a>later <span class="ot">&lt;-</span> <span class="fu">now</span>()</span></code></pre></div>
+</div>
+<div id="extracting-components-from-date-and-datetime-objects" class="section level2 unnumbered">
+<h2>Extracting components from date and datetime objects</h2>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="dates.html#cb334-1" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2016-07-08 12:34:56&quot;</span>)</span>
+<span id="cb334-2"><a href="dates.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(datetime)</span>
+<span id="cb334-3"><a href="dates.html#cb334-3" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(datetime)</span>
+<span id="cb334-4"><a href="dates.html#cb334-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mday</span>(datetime)</span>
+<span id="cb334-5"><a href="dates.html#cb334-5" aria-hidden="true" tabindex="-1"></a><span class="fu">yday</span>(datetime)</span>
+<span id="cb334-6"><a href="dates.html#cb334-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(datetime)</span>
+<span id="cb334-7"><a href="dates.html#cb334-7" aria-hidden="true" tabindex="-1"></a><span class="fu">weekdays</span>(datetime)</span></code></pre></div>
+</div>
+<div id="cough-data-exercise" class="section level2 unnumbered">
+<h2>Cough data exercise</h2>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="dates.html#cb335-1" aria-hidden="true" tabindex="-1"></a>coughs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/coughs.csv&#39;</span>)</span></code></pre></div>
+</div>
+<div id="weather-data-exercise" class="section level2 unnumbered">
+<h2>Weather data exercise</h2>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="dates.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(weatherr)</span>
+<span id="cb336-2"><a href="dates.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidygeocoder)</span>
+<span id="cb336-3"><a href="dates.html#cb336-3" aria-hidden="true" tabindex="-1"></a>sewanee_location <span class="ot">&lt;-</span> <span class="fu">geo</span>(<span class="at">address =</span> <span class="st">&#39;735 University Avenue, Sewanee TN&#39;</span>)</span>
+<span id="cb336-4"><a href="dates.html#cb336-4" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> <span class="fu">locationforecast</span>(<span class="at">lon =</span> sewanee_location<span class="sc">$</span>long,</span>
+<span id="cb336-5"><a href="dates.html#cb336-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">lat =</span> sewanee_location<span class="sc">$</span>lat)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Plot the forecasted temperature</li>
+</ol>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="dates.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fc,</span>
+<span id="cb337-2"><a href="dates.html#cb337-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> time,</span>
+<span id="cb337-3"><a href="dates.html#cb337-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> temperature)) <span class="sc">+</span></span>
+<span id="cb337-4"><a href="dates.html#cb337-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Get average cloudiness by day.</p></li>
+<li><p>Plot average cloudiness by day.</p></li>
+<li><p>Plot humidity.</p></li>
+<li><p>Get the maximum temperature by hour (without date). Plot it.</p></li>
+<li><p>Make a variable called <code>date</code>. This should just be the date (without the time)</p></li>
+<li><p>Plot wind direction over time, with the line color showing the date.</p></li>
+</ol>
 
 </div>
 </div>
@@ -553,8 +543,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dataviz.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="trump.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-factors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -586,7 +576,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/databrew/intro-to-data-science/edit/master/02a-principles.Rmd",
+"link": "https://github.com/databrew/intro-to-data-science/edit/master/07e-working_with_dates.Rmd",
 "text": "Edit"
 },
 "history": {

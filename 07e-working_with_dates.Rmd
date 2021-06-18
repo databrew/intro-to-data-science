@@ -1,2 +1,148 @@
-# Working with dates & times
+# Working with dates & times {#dates}
+
+
+```{r,echo=FALSE,eval=FALSE}
+is_teacher <- FALSE
+```
+
+#### Learning goals {-}
+
+* Be able to read dates, and convert objects to dates
+* Be able to convert dates, extract useful information, and modify them
+* Use date times
+* Gain familiarity with the lubridate package
+
+```{r, results = 'asis', eval = is_teacher}
+teacher_content('Here is some teacher content.')
+```
+
+## First steps  {-}
+
+Hadley Wickham's [tutorial on dates](https://r4ds.had.co.nz/dates-and-times.html) starts with 3 simple questions:
+
+
+-   Does every year have 365 days?
+-   Does every day have 24 hours?
+-   Does every minute have 60 seconds?
+
+"I'm sure you know that not every year has 365 days, but do you know the full rule for determining if a year is a leap year?
+(It has three parts.) You might have remembered that many parts of the world use daylight savings time (DST), so that some days have 23 hours, and others have 25.
+You might not have known that some minutes have 61 seconds because every now and then leap seconds are added because the Earth's rotation is gradually slowing down.
+
+Dates and times are hard because they have to reconcile two physical phenomena (the rotation of the Earth and its orbit around the sun) with a whole raft of geopolitical phenomena including months, time zones, and DST.
+This chapter won't teach you every last detail about dates and times, but it will give you a solid grounding of practical skills that will help you with common data analysis challenges."
+
+## Lubridate  {-}
+
+Let's install the `lubridate` package.
+
+## Getting familiar with the `date` type  {-}
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+library(lubridate)
+today <- today()
+my_birthday <- '1985-11-07'
+str(today)
+str(my_birthday)
+
+# This causes an errors
+# today - my_birthday
+
+# This does not
+my_birthday <- as_date(my_birthday)
+today - my_birthday
+```
+
+## Converting dates from strings  {-}
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+ymd("2017-01-31")
+mdy("January 31st, 2017")
+dmy("31-Jan-2017")
+```
+
+What does the `tzone` argument to `today()` do? Why is it important?
+
+Use the appropriate lubridate function to parse each of the following dates:
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+d1 <- "January 1, 2010"
+d2 <- "2015-Mar-07"
+d3 <- "06-Jun-2017"
+d4 <- c("August 19 (2015)", "July 1 (2015)")
+d5 <- "12/30/14" # Dec 30, 2014
+```
+
+## Getting familiar with the `datetime` type  {-}
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+n <- now() 
+n + seconds(1)
+n - hours(5)
+hour(n)
+minute(n)
+as_date(n)
+later <- now()
+```
+
+
+## Extracting components from date and datetime objects  {-}
+
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+datetime <- ymd_hms("2016-07-08 12:34:56")
+year(datetime)
+month(datetime)
+mday(datetime)
+yday(datetime)
+wday(datetime)
+weekdays(datetime)
+```
+
+
+## Cough data exercise  {-}
+
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+coughs <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/coughs.csv')
+```
+
+## Moon data exercise {-}
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+moon <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/full_moon.csv')
+```
+
+## Weather data exercise {-}
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+library(weatherr)
+library(tidygeocoder)
+sewanee_location <- geo(address = '735 University Avenue, Sewanee TN')
+fc <- locationforecast(lon = sewanee_location$long,
+                       lat = sewanee_location$lat)
+
+```
+
+1. Plot the forecasted temperature
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+ggplot(data = fc,
+       aes(x = time,
+           y = temperature)) +
+  geom_point()
+```
+
+2. Get average cloudiness by day.
+
+3. Plot average cloudiness by day.
+
+4. Plot humidity.
+
+5. Get the maximum temperature by hour (without date). Plot it.
+
+6. Make a variable called `date`. This should just be the date (without the time)
+
+7. Plot wind direction over time, with the line color showing the date.
+
 
