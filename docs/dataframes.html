@@ -788,11 +788,11 @@ sample_n() (and sample_frac())</p>
 <h4><span class="header-section-number">15.0.1.1</span> The pipe</h4>
 <p><code>%&gt;%</code> is a “pipe.” It is a way to write code without so many parenthesis. For example, what if I want to find the square root of the sum of a sample of two integers from a sequence of 10 to 20 by 2:</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="dataframes.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>), <span class="dv">2</span>)))</span>
-<span id="cb177-2"><a href="dataframes.html#cb177-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.477226</span></span></code></pre></div>
+<span id="cb177-2"><a href="dataframes.html#cb177-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">6.164414</span></span></code></pre></div>
 <p>The above could also be written as:</p>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="dataframes.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb178-2"><a href="dataframes.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> sum <span class="sc">%&gt;%</span> sqrt</span>
-<span id="cb178-3"><a href="dataframes.html#cb178-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.09902</span></span></code></pre></div>
+<span id="cb178-3"><a href="dataframes.html#cb178-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.477226</span></span></code></pre></div>
 <p>Similarly the below:</p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="dataframes.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sd</span>(<span class="fu">log</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)))</span>
 <span id="cb179-2"><a href="dataframes.html#cb179-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.9280532</span></span></code></pre></div>
