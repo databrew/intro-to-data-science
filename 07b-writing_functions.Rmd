@@ -247,6 +247,71 @@ In this exercise, you will investigate annual trends in the prevalence of six na
 
 16. Do trees get bigger as they get older?
 
+## Using dplyr and ggplot in custom functions
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+gm <- gapminder
+
+```
+
+Previously we analyzed and explored the dataset by using dplyr and ggplot. A lot of our analysis used the same code, just applied to different variables and aspects of the data. 
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+# plot the gdp per capita for china over time
+china_gdp <- gm %>% filter(country == 'China')
+ggplot(china_gdp, aes(year, gdpPercap)) + 
+  geom_line() +
+  labs(x = 'Year', y = 'GDP per capita', title = "China GDP per capita over time")
+
+# now india 
+india_gdp <- gm %>% filter(country == 'India') 
+ggplot(india_gdp, aes(year, gdpPercap)) + 
+  geom_line() +
+  labs(x = 'Year', y = 'GDP per capita', title = "India GDP per capita over time")
+
+```
+
+If we want to do this for every country we will be reusing the same code over and over again. Lets write a function
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+plot_gdp <- function(country_name){
+  plot_data <- gm %>% filter(country == country_name) 
+  ggplot(plot_data, aes(year, gdpPercap)) + 
+    geom_line() +
+    labs(x = 'Year', y = 'GDP per capita', title = paste0(country_name, ' GDP per capita over time'))
+}
+plot_gdp(country_name = 'China')
+plot_gdp(country_name = 'India')
+plot_gdp(country_name = 'Angola')
+```
+
+
+Lets take it a step further and add a plotting variable 
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+plot_gdp <- function(country_name, plot_var){
+  plot_data <- gm %>% filter(country == country_name) 
+  ggplot(plot_data, aes_string('year', plot_var)) + 
+    geom_line() +
+    labs(x = 'Year', y = plot_var, title = paste0(country_name,' ', plot_var ,' over time'))
+}
+plot_gdp(country_name = 'China', plot_var = 'pop')
+plot_gdp(country_name = 'India', plot_var = 'lifeExp')
+plot_gdp(country_name = 'Angola',plot_var = 'gdpPercap')
+```
+
+## Exercise {-}
+
+1) Create a function that filters by a continent and year and creates a barplot of the population for all the countries in that continent 
+
+2) Add a color argument to the function called color_bars that fills the bar chart with that color 
+
+3) Add a title argument to the function that's called plot_title that combines the name and year into the title of the plot
+
+4) Add a final argument for that specifies the numerical variable you are plotting on the y axis (up until now it was just population)
 
 ## Sourcing functions  {-}
 
