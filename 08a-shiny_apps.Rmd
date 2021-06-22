@@ -42,7 +42,46 @@ The key difference between the UI and Server is that the UI takes inputs (slider
 
 ## An easy example
 
-We already have the skeleton of a working app, so lets keep it! 
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+
+library(shiny)
+library(dplyr)
+library(gapminder)
+library(ggplot2)
+
+gm <- gapminder
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+
+    # Application title
+    titlePanel("Shiny example"),
+
+    # Sidebar with a slider input for number of bins 
+    sidebarLayout(
+        sidebarPanel(
+            
+        ),
+
+        # Show a plot of the generated distribution
+        mainPanel(
+          
+        )
+    )
+)
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+
+```
+
+
+We Add an input 
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 
@@ -70,7 +109,7 @@ ui <- fluidPage(
 
         # Show a plot of the generated distribution
         mainPanel(
-           plotOutput("country_pop_plot")
+            
         )
     )
 )
@@ -92,10 +131,9 @@ shinyApp(ui = ui, server = server)
 
 ```
 
-# add another input (for year)
+Add a plot
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-
 
 library(shiny)
 library(dplyr)
@@ -121,6 +159,83 @@ ui <- fluidPage(
 
         # Show a plot of the generated distribution
         mainPanel(
+            plotOutput("country_plot")
+        )
+    )
+)
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+
+    output$country_plot <- renderPlot({
+        cn <- input$country_name
+        
+        pd <- gm %>% dplyr::filter(country == cn)
+        ggplot(pd, aes(year, pop)) +
+            geom_point() +
+            geom_line() +
+            labs()
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+
+```
+
+Adding more inputs to adjust the chart
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+
+
+library(shiny)
+library(dplyr)
+library(gapminder)
+library(ggplot2)
+
+gm <- gapminder
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+
+    # Application title
+    titlePanel("Shiny example"),
+
+    # Sidebar with a slider input for number of bins
+    sidebarLayout(
+        sidebarPanel(
+            selectInput(inputId = "country_name",
+                        label = "Choose a country",
+                        choices = unique(gm$country),
+                        selected = 'Mexico'),
+
+            selectInput(inputId = "line_color",
+                        label = "Choose a color for the line",
+                        choices = c('green', 'blue','red', 'orange'),
+                        selected = 'green'),
+            selectInput(inputId = "point_color",
+                        label = "Choose a color for the points",
+                        choices = c('green', 'blue','red', 'orange'),
+                        selected = 'green'),
+            sliderInput(inputId = "line_size",
+                        label = "Change the thickness of the line",
+                        min = 1,
+                        max = 10,
+                        value =2),
+            sliderInput(inputId = "point_size",
+                        label = "Change the point size",
+                        min = 1,
+                        max = 10,
+                        value =5),
+            sliderInput(inputId = 'alpha_value',
+                        label = 'Change transparency of line and points',
+                        min= 0,
+                        max=1,
+                        value =0.5)
+
+        ),
+
+        # Show a plot of the generated distribution
+        mainPanel(
            plotOutput("country_plot")
         )
     )
@@ -131,21 +246,38 @@ server <- function(input, output) {
 
     output$country_plot <- renderPlot({
         cn <- input$country_name
+        lc <- input$line_color
+        ps <- input$point_size
+        ls <- input$line_size
+        pc <- input$point_color
+        av <- input$alpha_value
         pd <- gm %>% dplyr::filter(country == cn)
-        ggplot(pd, aes(year, pop)) + 
-            geom_point() +
-            geom_line()
+        ggplot(pd, aes(year, pop)) +
+            geom_point(color = pc, size = ps, alpha=av) +
+            geom_line(color = lc, size = ls, alpha=av) +
+            labs(title = cn)
     })
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
 
 ```
 
 
+## Exercise {-}
 
+1) Go to github.com and create a new repository called shiny_example.
 
+2) Clone that repository to your Documents folder. 
+
+3) Create a new shiny app inside in shiny_example called covid_data
+
+4) Remove the default inputs and outputs from the UI and Server functions in the app.R file 
+
+5) In the side panel (UI) create an input that allows the user to choose a continent. 
+
+6) In the main panel, create a plot output
 
 
 
