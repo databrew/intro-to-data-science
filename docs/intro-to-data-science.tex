@@ -124,7 +124,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-06-21}
+\date{2021-06-22}
 
 \begin{document}
 \maketitle
@@ -2838,7 +2838,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"\&}\SpecialCharTok{\textbackslash{}"}\StringTok{7I,bTcEDmdkUh:sf5\textasciitilde{}\#qY\textquotesingle{}"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"P!AlxG?:J@4|TQ\textquotesingle{}y[K.*et0\_"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2847,7 +2847,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\SpecialCharTok{::}\FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"g!VYspQh9icK}\SpecialCharTok{\textbackslash{}"}\StringTok{=$@n LB0\^{}:d"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"fQnT,\textless{}E}\SpecialCharTok{\textbackslash{}"}\StringTok{WF|\}$7*\%VwMk?\&Ya"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4199,7 +4199,7 @@ The above could also be written as:
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{sample}\NormalTok{(}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sum }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sqrt}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{4.690416}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{6.164414}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9012,7 +9012,46 @@ The key difference between the UI and Server is that the UI takes inputs (slider
 \hypertarget{an-easy-example}{%
 \section{An easy example}\label{an-easy-example}}
 
-We already have the skeleton of a working app, so lets keep it!
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{library}\NormalTok{(shiny)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(gapminder)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{gm }\OtherTok{\textless{}{-}}\NormalTok{ gapminder}
+
+\CommentTok{\# Define UI for application that draws a histogram}
+\NormalTok{ui }\OtherTok{\textless{}{-}} \FunctionTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{\# Application title}
+    \FunctionTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
+
+    \CommentTok{\# Sidebar with a slider input for number of bins }
+    \FunctionTok{sidebarLayout}\NormalTok{(}
+        \FunctionTok{sidebarPanel}\NormalTok{(}
+            
+\NormalTok{        ),}
+
+        \CommentTok{\# Show a plot of the generated distribution}
+        \FunctionTok{mainPanel}\NormalTok{(}
+          
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{\# Define server logic required to draw a histogram}
+\NormalTok{server }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+\NormalTok{\}}
+
+\CommentTok{\# Run the application }
+\FunctionTok{shinyApp}\NormalTok{(}\AttributeTok{ui =}\NormalTok{ ui, }\AttributeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+Add an input that allows the user to choose a country to plot.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9041,7 +9080,7 @@ We already have the skeleton of a working app, so lets keep it!
 
         \CommentTok{\# Show a plot of the generated distribution}
         \FunctionTok{mainPanel}\NormalTok{(}
-           \FunctionTok{plotOutput}\NormalTok{(}\StringTok{"country\_pop\_plot"}\NormalTok{)}
+            
 \NormalTok{        )}
 \NormalTok{    )}
 \NormalTok{)}
@@ -9049,13 +9088,7 @@ We already have the skeleton of a working app, so lets keep it!
 \CommentTok{\# Define server logic required to draw a histogram}
 \NormalTok{server }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(input, output) \{}
 
-\NormalTok{    output}\SpecialCharTok{$}\NormalTok{country\_pop\_plot }\OtherTok{\textless{}{-}} \FunctionTok{renderPlot}\NormalTok{(\{}
-\NormalTok{        cn }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{country\_name}
-\NormalTok{        pd }\OtherTok{\textless{}{-}}\NormalTok{ gm }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(country }\SpecialCharTok{==}\NormalTok{ cn)}
-        \FunctionTok{ggplot}\NormalTok{(pd, }\FunctionTok{aes}\NormalTok{(year, pop)) }\SpecialCharTok{+} 
-            \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
-            \FunctionTok{geom\_line}\NormalTok{()}
-\NormalTok{    \})}
+   
 \NormalTok{\}}
 
 \CommentTok{\# Run the application }
@@ -9063,12 +9096,10 @@ We already have the skeleton of a working app, so lets keep it!
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{add-another-input-for-year}{%
-\chapter{add another input (for year)}\label{add-another-input-for-year}}
+Add a plot in the \texttt{plotOutput} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-
 
 \FunctionTok{library}\NormalTok{(shiny)}
 \FunctionTok{library}\NormalTok{(dplyr)}
@@ -9090,6 +9121,84 @@ We already have the skeleton of a working app, so lets keep it!
                         \AttributeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
                         \AttributeTok{choices =} \FunctionTok{unique}\NormalTok{(gm}\SpecialCharTok{$}\NormalTok{country),}
                         \AttributeTok{selected =} \StringTok{\textquotesingle{}Mexico\textquotesingle{}}\NormalTok{)}
+\NormalTok{        ),}
+
+        \CommentTok{\# Show a plot of the generated distribution}
+        \FunctionTok{mainPanel}\NormalTok{(}
+            \FunctionTok{plotOutput}\NormalTok{(}\StringTok{"country\_plot"}\NormalTok{)}
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{\# Define server logic required to draw a histogram}
+\NormalTok{server }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+\NormalTok{    output}\SpecialCharTok{$}\NormalTok{country\_plot }\OtherTok{\textless{}{-}} \FunctionTok{renderPlot}\NormalTok{(\{}
+\NormalTok{        cn }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{country\_name}
+        
+\NormalTok{        pd }\OtherTok{\textless{}{-}}\NormalTok{ gm }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(country }\SpecialCharTok{==}\NormalTok{ cn)}
+        \FunctionTok{ggplot}\NormalTok{(pd, }\FunctionTok{aes}\NormalTok{(year, pop)) }\SpecialCharTok{+}
+            \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+            \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+            \FunctionTok{labs}\NormalTok{()}
+\NormalTok{    \})}
+\NormalTok{\}}
+
+\CommentTok{\# Run the application }
+\FunctionTok{shinyApp}\NormalTok{(}\AttributeTok{ui =}\NormalTok{ ui, }\AttributeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+Adding more inputs to adjust the way the chart looks.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{library}\NormalTok{(shiny)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(gapminder)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{gm }\OtherTok{\textless{}{-}}\NormalTok{ gapminder}
+
+\CommentTok{\# Define UI for application that draws a histogram}
+\NormalTok{ui }\OtherTok{\textless{}{-}} \FunctionTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{\# Application title}
+    \FunctionTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
+
+    \CommentTok{\# Sidebar with a slider input for number of bins}
+    \FunctionTok{sidebarLayout}\NormalTok{(}
+        \FunctionTok{sidebarPanel}\NormalTok{(}
+            \FunctionTok{selectInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"country\_name"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
+                        \AttributeTok{choices =} \FunctionTok{unique}\NormalTok{(gm}\SpecialCharTok{$}\NormalTok{country),}
+                        \AttributeTok{selected =} \StringTok{\textquotesingle{}Mexico\textquotesingle{}}\NormalTok{),}
+
+            \FunctionTok{selectInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"line\_color"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Choose a color for the line"}\NormalTok{,}
+                        \AttributeTok{choices =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{),}
+                        \AttributeTok{selected =} \StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{),}
+            \FunctionTok{selectInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"point\_color"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Choose a color for the points"}\NormalTok{,}
+                        \AttributeTok{choices =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{),}
+                        \AttributeTok{selected =} \StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{),}
+            \FunctionTok{sliderInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"line\_size"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Change the thickness of the line"}\NormalTok{,}
+                        \AttributeTok{min =} \DecValTok{1}\NormalTok{,}
+                        \AttributeTok{max =} \DecValTok{10}\NormalTok{,}
+                        \AttributeTok{value =}\DecValTok{2}\NormalTok{),}
+            \FunctionTok{sliderInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"point\_size"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Change the point size"}\NormalTok{,}
+                        \AttributeTok{min =} \DecValTok{1}\NormalTok{,}
+                        \AttributeTok{max =} \DecValTok{10}\NormalTok{,}
+                        \AttributeTok{value =}\DecValTok{5}\NormalTok{),}
+            \FunctionTok{sliderInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{\textquotesingle{}alpha\_value\textquotesingle{}}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{\textquotesingle{}Change transparency of line and points\textquotesingle{}}\NormalTok{,}
+                        \AttributeTok{min=} \DecValTok{0}\NormalTok{,}
+                        \AttributeTok{max=}\DecValTok{1}\NormalTok{,}
+                        \AttributeTok{value =}\FloatTok{0.5}\NormalTok{)}
+
 \NormalTok{        ),}
 
         \CommentTok{\# Show a plot of the generated distribution}
@@ -9104,17 +9213,203 @@ We already have the skeleton of a working app, so lets keep it!
 
 \NormalTok{    output}\SpecialCharTok{$}\NormalTok{country\_plot }\OtherTok{\textless{}{-}} \FunctionTok{renderPlot}\NormalTok{(\{}
 \NormalTok{        cn }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{country\_name}
+\NormalTok{        lc }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{line\_color}
+\NormalTok{        ps }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{point\_size}
+\NormalTok{        ls }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{line\_size}
+\NormalTok{        pc }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{point\_color}
+\NormalTok{        av }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{alpha\_value}
 \NormalTok{        pd }\OtherTok{\textless{}{-}}\NormalTok{ gm }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(country }\SpecialCharTok{==}\NormalTok{ cn)}
-        \FunctionTok{ggplot}\NormalTok{(pd, }\FunctionTok{aes}\NormalTok{(year, pop)) }\SpecialCharTok{+} 
-            \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
-            \FunctionTok{geom\_line}\NormalTok{()}
+        \FunctionTok{ggplot}\NormalTok{(pd, }\FunctionTok{aes}\NormalTok{(year, pop)) }\SpecialCharTok{+}
+            \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =}\NormalTok{ pc, }\AttributeTok{size =}\NormalTok{ ps, }\AttributeTok{alpha=}\NormalTok{av) }\SpecialCharTok{+}
+            \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =}\NormalTok{ lc, }\AttributeTok{size =}\NormalTok{ ls, }\AttributeTok{alpha=}\NormalTok{av) }\SpecialCharTok{+}
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =}\NormalTok{ cn)}
 \NormalTok{    \})}
 \NormalTok{\}}
 
-\CommentTok{\# Run the application }
+\CommentTok{\# Run the application}
 \FunctionTok{shinyApp}\NormalTok{(}\AttributeTok{ui =}\NormalTok{ ui, }\AttributeTok{server =}\NormalTok{ server)}
 \end{Highlighting}
 \end{Shaded}
+
+Add an additional input that allows the user to choose which variable to plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(shiny)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(gapminder)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{gm }\OtherTok{\textless{}{-}}\NormalTok{ gapminder}
+
+\CommentTok{\# Define UI for application that draws a histogram}
+\NormalTok{ui }\OtherTok{\textless{}{-}} \FunctionTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{\# Application title}
+    \FunctionTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
+
+    \CommentTok{\# Sidebar with a slider input for number of bins}
+    \FunctionTok{sidebarLayout}\NormalTok{(}
+        \FunctionTok{sidebarPanel}\NormalTok{(}
+            \FunctionTok{selectInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"country\_name"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
+                        \AttributeTok{choices =} \FunctionTok{unique}\NormalTok{(gm}\SpecialCharTok{$}\NormalTok{country),}
+                        \AttributeTok{selected =} \StringTok{\textquotesingle{}Mexico\textquotesingle{}}\NormalTok{),}
+
+            \FunctionTok{selectInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"line\_color"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Choose a color for the line"}\NormalTok{,}
+                        \AttributeTok{choices =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{),}
+                        \AttributeTok{selected =} \StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{),}
+            \FunctionTok{selectInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"point\_color"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Choose a color for the points"}\NormalTok{,}
+                        \AttributeTok{choices =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{),}
+                        \AttributeTok{selected =} \StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{),}
+            \FunctionTok{sliderInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"line\_size"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Change the thickness of the line"}\NormalTok{,}
+                        \AttributeTok{min =} \DecValTok{1}\NormalTok{,}
+                        \AttributeTok{max =} \DecValTok{10}\NormalTok{,}
+                        \AttributeTok{value =}\DecValTok{2}\NormalTok{),}
+            \FunctionTok{sliderInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{"point\_size"}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{"Change the point size"}\NormalTok{,}
+                        \AttributeTok{min =} \DecValTok{1}\NormalTok{,}
+                        \AttributeTok{max =} \DecValTok{10}\NormalTok{,}
+                        \AttributeTok{value =}\DecValTok{5}\NormalTok{),}
+            \FunctionTok{sliderInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{\textquotesingle{}alpha\_value\textquotesingle{}}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{\textquotesingle{}Change transparency of line and points\textquotesingle{}}\NormalTok{,}
+                        \AttributeTok{min=} \DecValTok{0}\NormalTok{,}
+                        \AttributeTok{max=}\DecValTok{1}\NormalTok{,}
+                        \AttributeTok{value =}\FloatTok{0.5}\NormalTok{),}
+            \FunctionTok{selectInput}\NormalTok{(}\AttributeTok{inputId =} \StringTok{\textquotesingle{}plot\_var\textquotesingle{}}\NormalTok{,}
+                        \AttributeTok{label =} \StringTok{\textquotesingle{}Choose a variable to plot\textquotesingle{}}\NormalTok{,}
+                        \AttributeTok{choices =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}lifeExp\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pop\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}gdpPercap\textquotesingle{}}\NormalTok{),}
+                        \AttributeTok{selected =} \StringTok{\textquotesingle{}pop\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{        ),}
+
+        \CommentTok{\# Show a plot of the generated distribution}
+        \FunctionTok{mainPanel}\NormalTok{(}
+            \FunctionTok{plotOutput}\NormalTok{(}\StringTok{"country\_plot"}\NormalTok{)}
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{\# Define server logic required to draw a histogram}
+\NormalTok{server }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+\NormalTok{    output}\SpecialCharTok{$}\NormalTok{country\_plot }\OtherTok{\textless{}{-}} \FunctionTok{renderPlot}\NormalTok{(\{}
+\NormalTok{        cn }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{country\_name}
+\NormalTok{        lc }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{line\_color}
+\NormalTok{        ps }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{point\_size}
+\NormalTok{        ls }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{line\_size}
+\NormalTok{        pc }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{point\_color}
+\NormalTok{        av }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{alpha\_value}
+\NormalTok{        pv }\OtherTok{\textless{}{-}}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{plot\_var}
+\NormalTok{        pd }\OtherTok{\textless{}{-}}\NormalTok{ gm }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(country }\SpecialCharTok{==}\NormalTok{ cn)}
+        \FunctionTok{ggplot}\NormalTok{(pd, }\FunctionTok{aes\_string}\NormalTok{(}\StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{, pv)) }\SpecialCharTok{+}
+            \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =}\NormalTok{ pc, }\AttributeTok{size =}\NormalTok{ ps, }\AttributeTok{alpha=}\NormalTok{av) }\SpecialCharTok{+}
+            \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =}\NormalTok{ lc, }\AttributeTok{size =}\NormalTok{ ls, }\AttributeTok{alpha=}\NormalTok{av) }\SpecialCharTok{+}
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =}\NormalTok{ cn)}
+\NormalTok{    \})}
+\NormalTok{\}}
+
+\CommentTok{\# Run the application}
+\FunctionTok{shinyApp}\NormalTok{(}\AttributeTok{ui =}\NormalTok{ ui, }\AttributeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-9}{%
+\section*{Exercise}\label{exercise-9}}
+\addcontentsline{toc}{section}{Exercise}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Go to github.com and create a new repository called shiny\_example.
+\item
+  Clone that repository to your Documents folder.
+\item
+  Create a new shiny app inside in shiny\_example called covid\_data
+\item
+  Remove everything from the app.R script and copy and paste this:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(shiny)}
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+
+
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/covid\_data.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{pop }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/state\_pop.csv\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Define UI for application that draws a histogram}
+\NormalTok{ui }\OtherTok{\textless{}{-}} \FunctionTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{\# Sidebar with a slider input for number of bins}
+    \FunctionTok{sidebarLayout}\NormalTok{(}
+        \FunctionTok{sidebarPanel}\NormalTok{(}
+
+\NormalTok{        ),}
+
+        \CommentTok{\# Show a plot of the generated distribution}
+        \FunctionTok{mainPanel}\NormalTok{(}
+
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{\# Define server logic required to draw a histogram}
+\NormalTok{server }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+
+\NormalTok{\}}
+
+\CommentTok{\# Run the application}
+\FunctionTok{shinyApp}\NormalTok{(}\AttributeTok{ui =}\NormalTok{ ui, }\AttributeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{4}
+\item
+  Create a title for the app called ``Covid cases and deaths by state''
+\item
+  In the side panel (UI) create an input that allows the user to choose a state.
+\item
+  Create a bar chart called ``cases\_month'' that plots a states covid cases by month
+\item
+  Add an input called ``bar\_color'' that controls the color that fills the bar plot
+\item
+  Add an input called ``alpha\_value'' that controls the transparency of the bars in the chart
+\item
+  Create another bar chart called ``deaths\_month'' that plots a states covid deaths by month
+\item
+  Use the already created inputs ``bar\_color'' and ``alpha\_value'' to control the color and transparency of the new bar chart.
+\item
+  Create a line plot called ``cumulative\_cases'' that plots the cumulative cases over time (hint: use the function \texttt{cumsum})
+\item
+  Create a line plot called ``cumulative\_deaths'' that plots the cumulative deaths over time (hint: use the function \texttt{cumsum})
+\item
+  At the top of your script, join the population data (pop) to the covid data. Create two new variables: covid deaths per 100k and covid cases per 100k.
+\item
+  Create a line plot that plots the cases and deaths per 100k in one chart.
+\item
+  Create an input that controls the line colors for the above chart.
+\item
+  Add a title to all plots that combines the name of the state selected and a description of the chart.
+\item
+  Add a theme to each plot using the ggthemes library
+\item
+  There should now be five charts. Use the \texttt{fluidRow()} and \texttt{column()} argument to put the bar charts side by side. Under the bar charts, put the line plots side by side. Under those, put the final line plot centered in the middle of the screen.
+\item
+  Use the shiny themes package to customize your app (\url{https://rstudio.github.io/shinythemes/})
+\item
+  Deploy the app to shinyapps.io
+\end{enumerate}
 
 \hypertarget{shiny-dashboards}{%
 \chapter{Shiny dashboards}\label{shiny-dashboards}}
@@ -10890,7 +11185,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-409-1.pdf}
+\includegraphics{figures/unnamed-chunk-413-1.pdf}
 
 \textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
 
@@ -10930,7 +11225,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-411-1.pdf}
+\includegraphics{figures/unnamed-chunk-415-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11020,7 +11315,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-417-1.pdf}
+\includegraphics{figures/unnamed-chunk-421-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -11065,11 +11360,11 @@ Each row of this dataset is an abundance estimate from a survey that occurred wi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-421-1.pdf}
+\includegraphics{figures/unnamed-chunk-425-1.pdf}
 
 Performing a simple linear regression with this dataset yields the following results:
 
-\includegraphics{figures/unnamed-chunk-422-1.pdf}
+\includegraphics{figures/unnamed-chunk-426-1.pdf}
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
@@ -11158,7 +11453,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-427-1.pdf}
+\includegraphics{figures/unnamed-chunk-431-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -11221,7 +11516,7 @@ We want to know what the chances are that the population has declined between 20
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-431-1.pdf}
+\includegraphics{figures/unnamed-chunk-435-1.pdf}
 
 If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
 
@@ -11246,7 +11541,7 @@ And in this randomization application, the workflow is a bit more simplified. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-432-1.pdf}
+\includegraphics{figures/unnamed-chunk-436-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]

@@ -81,7 +81,7 @@ shinyApp(ui = ui, server = server)
 ```
 
 
-We Add an input 
+Add an input that allows the user to choose a country to plot. 
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 
@@ -117,13 +117,7 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
 
-    output$country_pop_plot <- renderPlot({
-        cn <- input$country_name
-        pd <- gm %>% dplyr::filter(country == cn)
-        ggplot(pd, aes(year, pop)) + 
-            geom_point() +
-            geom_line()
-    })
+   
 }
 
 # Run the application 
@@ -131,7 +125,7 @@ shinyApp(ui = ui, server = server)
 
 ```
 
-Add a plot
+Add a plot in the `plotOutput` function.
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 
@@ -183,9 +177,9 @@ shinyApp(ui = ui, server = server)
 
 ```
 
-Adding more inputs to adjust the chart
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+Adding more inputs to adjust the way the chart looks.
 
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 
 library(shiny)
 library(dplyr)
@@ -264,6 +258,91 @@ shinyApp(ui = ui, server = server)
 
 ```
 
+Add an additional input that allows the user to choose which variable to plot.
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+library(shiny)
+library(dplyr)
+library(gapminder)
+library(ggplot2)
+
+gm <- gapminder
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+
+    # Application title
+    titlePanel("Shiny example"),
+
+    # Sidebar with a slider input for number of bins
+    sidebarLayout(
+        sidebarPanel(
+            selectInput(inputId = "country_name",
+                        label = "Choose a country",
+                        choices = unique(gm$country),
+                        selected = 'Mexico'),
+
+            selectInput(inputId = "line_color",
+                        label = "Choose a color for the line",
+                        choices = c('green', 'blue','red', 'orange'),
+                        selected = 'green'),
+            selectInput(inputId = "point_color",
+                        label = "Choose a color for the points",
+                        choices = c('green', 'blue','red', 'orange'),
+                        selected = 'green'),
+            sliderInput(inputId = "line_size",
+                        label = "Change the thickness of the line",
+                        min = 1,
+                        max = 10,
+                        value =2),
+            sliderInput(inputId = "point_size",
+                        label = "Change the point size",
+                        min = 1,
+                        max = 10,
+                        value =5),
+            sliderInput(inputId = 'alpha_value',
+                        label = 'Change transparency of line and points',
+                        min= 0,
+                        max=1,
+                        value =0.5),
+            selectInput(inputId = 'plot_var',
+                        label = 'Choose a variable to plot',
+                        choices = c('lifeExp', 'pop', 'gdpPercap'),
+                        selected = 'pop')
+
+        ),
+
+        # Show a plot of the generated distribution
+        mainPanel(
+            plotOutput("country_plot")
+        )
+    )
+)
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+
+    output$country_plot <- renderPlot({
+        cn <- input$country_name
+        lc <- input$line_color
+        ps <- input$point_size
+        ls <- input$line_size
+        pc <- input$point_color
+        av <- input$alpha_value
+        pv <- input$plot_var
+        pd <- gm %>% dplyr::filter(country == cn)
+        ggplot(pd, aes_string('year', pv)) +
+            geom_point(color = pc, size = ps, alpha=av) +
+            geom_line(color = lc, size = ls, alpha=av) +
+            labs(title = cn)
+    })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+
+
+```
 
 ## Exercise {-}
 
@@ -273,11 +352,80 @@ shinyApp(ui = ui, server = server)
 
 3) Create a new shiny app inside in shiny_example called covid_data
 
-4) Remove the default inputs and outputs from the UI and Server functions in the app.R file 
+4) Remove everything from the app.R script and copy and paste this:
 
-5) In the side panel (UI) create an input that allows the user to choose a continent. 
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+library(shiny)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
 
-6) In the main panel, create a plot output
+
+df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/covid_data.csv')
+pop <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/state_pop.csv')
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+
+    # Sidebar with a slider input for number of bins
+    sidebarLayout(
+        sidebarPanel(
+
+        ),
+
+        # Show a plot of the generated distribution
+        mainPanel(
+
+        )
+    )
+)
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+
+
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+
+```
+
+5) Create a title for the app called "Covid cases and deaths by state"
+
+6) In the side panel (UI) create an input that allows the user to choose a state. 
+
+7) Create a bar chart called "cases_month" that plots a states covid cases by month 
+
+8) Add an input called "bar_color" that controls the color that fills the bar plot
+
+9) Add an input called "alpha_value" that controls the transparency of the bars in the chart
+
+10) Create another bar chart called "deaths_month" that plots a states covid deaths by month
+
+11) Use the already created inputs "bar_color" and "alpha_value" to control the color and transparency of the new bar chart. 
+
+12) Create a line plot called "cumulative_cases" that plots the cumulative cases over time (hint: use the function `cumsum`)
+
+13) Create a line plot called "cumulative_deaths" that plots the cumulative deaths over time (hint: use the function `cumsum`)
+
+14) At the top of your script, join the population data (pop) to the covid data. Create two new variables: covid deaths per 100k and covid cases per 100k.
+
+15) Create a line plot that plots the cases and deaths per 100k in one chart. 
+
+16) Create an input that controls the line colors for the above chart. 
+
+17) Add a title to all plots that combines the name of the state selected and a description of the chart.
+
+18) Add a theme to each plot using the ggthemes library
+
+19) There should now be five charts. Use the `fluidRow()` and `column()` argument to put the bar charts side by side. Under the bar charts, put the line plots side by side. Under those, put the final line plot centered in the middle of the screen. 
+
+20) Use the shiny themes package to customize your app (https://rstudio.github.io/shinythemes/)
+
+21) Deploy the app to shinyapps.io
+
 
 
 
