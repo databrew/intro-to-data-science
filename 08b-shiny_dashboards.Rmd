@@ -1,4 +1,107 @@
-# Shiny dashboards
+# Shiny + git + functions task
+
+1. Create a repository on github named trumpapp
+
+2. Clone the trumpapp repository into a place on your computer where you'll easily be able to find it.
+
+3. Open a blank R script. Save it in the recently cloned `trumpapp` folder as `app.R`.
+
+4. Copy-paste the below code into `app.R`
+
+
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+library(shiny)
+library(dplyr)
+library(readr)
+library(shinydashboard)
+library(wordcloud2)
+library(DT)
+ui <- dashboardPage(
+    dashboardHeader(title = "My app title"),
+    dashboardSidebar(
+        sidebarMenu(
+            menuItem("Dashboard", tabName = "dashboard"),
+            menuItem("Raw data", tabName = "rawdata")
+        )
+    ),
+    dashboardBody(
+        tabItems(
+            tabItem("dashboard",
+                    fluidPage(
+                        fluidRow(
+                            h3('Hi, you should replace me'))
+                    )
+            ),
+            tabItem("rawdata",
+                    fluidPage(
+                        fluidRow(
+                            fluidRow(
+                                h3('Hi, you should replace me'))
+                        )
+                    )
+            )
+        )
+    )
+)
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+    
+    # Read in data #####################
+    if('trump.csv' %in% dir()){
+        trump <- read_csv('trump.csv')
+    } else {
+        trump <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/trumptweets.csv')
+        write_csv(trump, 'trump.csv')
+    }
+    # end of data read-in  ##############
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+
+```
+
+5. Run the app to make sure it works.
+
+6. Replace the "My app title" with a title of your choosing.
+
+7. Replace the `h3('Hi, you should replace me')` line with two "columns", the latter twice the width of the former. For example:
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+column(4),
+column(8)
+```
+
+8. In the column of width 4, add a "text input". This is a place the user of the app can write anything they want.
+
+9. In the server part of the app, after the data read-in section, create a "reactive" dataframe. A reactive dataframe is a dataframe that automatically adjusts based on user input. To do this, use the below code:
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+dfr <- reactive({
+  user_text <- tolower(input$user_text) # change this to whatever ID you gave to the object you created in number 8
+  out <- trump %>% filter(grepl(user_text, tolower(content)))
+  out
+})
+```
+
+10. Create a plot output in the server. This should be named something like `output$my_plot` and should use the `renderPlot({})` function. Make this plot be the number of times that the word/string searched for by the user appeared in Trump's tweets, for each year month.
+
+11. Refer to `my_plot` correctly in the UI so that the plot shows up. Test that the plot works.
+
+12. Add a slider input to your app so that the user can filter down the date range of the period covered. Make sure the dates from the slider input are appropriately passed to your app.
+
+13. Look up the `datatable` function. It is part of the `DT` library.
+
+14. In the `rawdata` tab of your app, show the "raw" data of the tweets which match the text input from the user. You'll need `renderDataTable` and `dataTableOutput`.
+
+15. Add another slider which allows users to filter by time of day. 
+
+16. Push your code to github. 
+
+17. Publish your app to shinyapps.io. Send a link to your code and app to sewanee@databrew.cc.
+
+18. You just made a cool Trump tweet data explorer, and you're all done, and you're waiting on everyone else to finish? Congratulations! Now make a Shakespeare data explorer. Good luck. ;)
 
 
 
