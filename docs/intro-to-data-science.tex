@@ -124,7 +124,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-06-22}
+\date{2021-06-25}
 
 \begin{document}
 \maketitle
@@ -2838,7 +2838,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"P!AlxG?:J@4|TQ\textquotesingle{}y[K.*et0\_"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"P=8):1pwSg YHWDXU!$b\textless{}4IC"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2847,7 +2847,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\SpecialCharTok{::}\FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"fQnT,\textless{}E}\SpecialCharTok{\textbackslash{}"}\StringTok{WF|\}$7*\%VwMk?\&Ya"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"{-}\textgreater{}1L3lDH$4CM6VqByKa\{5]\^{}T"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4199,7 +4199,7 @@ The above could also be written as:
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{sample}\NormalTok{(}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sum }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sqrt}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{6.164414}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.09902}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6633,7 +6633,11 @@ Lets take it a step further and add a plotting variable
 \item
   Add a title argument to the function that's called plot\_title that combines the name and year into the title of the plot
 \item
-  Add a final argument for that specifies the numerical variable you are plotting on the y axis (up until now it was just population)
+  Add another argument that specifies the numerical variable you are plotting on the y axis (up until now it was just population. hint(aes\_string))
+\item
+  Add another argument called \texttt{plot\_type} that has a default value ``bar''. Use conditionality (if and else statements) to create a bar chart if \texttt{plot\_type}=``bar'', a point plot otherwise.
+\item
+  Create your own function that filters the data in some way and makes a plot. The function should have at least 5 arguments.
 \end{enumerate}
 
 \hypertarget{sourcing-functions}{%
@@ -8951,16 +8955,15 @@ Test your work along the way, then demonstrate its completion, using the \texttt
 
 Enjoy!
 
-\hypertarget{excel-files-googlesheets}{%
-\chapter{Excel files \& GoogleSheets}\label{excel-files-googlesheets}}
+\hypertarget{google}{%
+\chapter{Excel files \& GoogleSheets}\label{google}}
 
 \hypertarget{learning-goals-22}{%
 \subsubsection*{Learning goals}\label{learning-goals-22}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
-\hypertarget{interactive-dashboards}{%
-\chapter*{Interactive dashboards}\label{interactive-dashboards}}
-\addcontentsline{toc}{chapter}{Interactive dashboards}
+\hypertarget{shiny}{%
+\chapter{Interactive dashboards \{-\}}\label{shiny}}
 
 \hypertarget{intro-to-shiny-apps}{%
 \chapter{Intro to Shiny apps}\label{intro-to-shiny-apps}}
@@ -9411,8 +9414,133 @@ Add an additional input that allows the user to choose which variable to plot.
   Deploy the app to shinyapps.io
 \end{enumerate}
 
-\hypertarget{shiny-dashboards}{%
-\chapter{Shiny dashboards}\label{shiny-dashboards}}
+\hypertarget{shiny-git-functions-task}{%
+\chapter{Shiny + git + functions task}\label{shiny-git-functions-task}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Create a repository on github named trumpapp
+\item
+  Clone the trumpapp repository into a place on your computer where you'll easily be able to find it.
+\item
+  Open a blank R script. Save it in the recently cloned \texttt{trumpapp} folder as \texttt{app.R}.
+\item
+  Copy-paste the below code into \texttt{app.R}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(shiny)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(shinydashboard)}
+\FunctionTok{library}\NormalTok{(wordcloud2)}
+\FunctionTok{library}\NormalTok{(DT)}
+\NormalTok{ui }\OtherTok{\textless{}{-}} \FunctionTok{dashboardPage}\NormalTok{(}
+    \FunctionTok{dashboardHeader}\NormalTok{(}\AttributeTok{title =} \StringTok{"My app title"}\NormalTok{),}
+    \FunctionTok{dashboardSidebar}\NormalTok{(}
+        \FunctionTok{sidebarMenu}\NormalTok{(}
+            \FunctionTok{menuItem}\NormalTok{(}\StringTok{"Dashboard"}\NormalTok{, }\AttributeTok{tabName =} \StringTok{"dashboard"}\NormalTok{),}
+            \FunctionTok{menuItem}\NormalTok{(}\StringTok{"Raw data"}\NormalTok{, }\AttributeTok{tabName =} \StringTok{"rawdata"}\NormalTok{)}
+\NormalTok{        )}
+\NormalTok{    ),}
+    \FunctionTok{dashboardBody}\NormalTok{(}
+        \FunctionTok{tabItems}\NormalTok{(}
+            \FunctionTok{tabItem}\NormalTok{(}\StringTok{"dashboard"}\NormalTok{,}
+                    \FunctionTok{fluidPage}\NormalTok{(}
+                        \FunctionTok{fluidRow}\NormalTok{(}
+                            \FunctionTok{h3}\NormalTok{(}\StringTok{\textquotesingle{}Hi, you should replace me\textquotesingle{}}\NormalTok{))}
+\NormalTok{                    )}
+\NormalTok{            ),}
+            \FunctionTok{tabItem}\NormalTok{(}\StringTok{"rawdata"}\NormalTok{,}
+                    \FunctionTok{fluidPage}\NormalTok{(}
+                        \FunctionTok{fluidRow}\NormalTok{(}
+                            \FunctionTok{fluidRow}\NormalTok{(}
+                                \FunctionTok{h3}\NormalTok{(}\StringTok{\textquotesingle{}Hi, you should replace me\textquotesingle{}}\NormalTok{))}
+\NormalTok{                        )}
+\NormalTok{                    )}
+\NormalTok{            )}
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+\CommentTok{\# Define server logic required to draw a histogram}
+\NormalTok{server }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(input, output) \{}
+    
+    \CommentTok{\# Read in data \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+    \ControlFlowTok{if}\NormalTok{(}\StringTok{\textquotesingle{}trump.csv\textquotesingle{}} \SpecialCharTok{\%in\%} \FunctionTok{dir}\NormalTok{())\{}
+\NormalTok{        trump }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}trump.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{        trump }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/trumptweets.csv\textquotesingle{}}\NormalTok{)}
+        \FunctionTok{write\_csv}\NormalTok{(trump, }\StringTok{\textquotesingle{}trump.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{    \}}
+    \CommentTok{\# end of data read{-}in  \#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\NormalTok{\}}
+
+\CommentTok{\# Run the application }
+\FunctionTok{shinyApp}\NormalTok{(}\AttributeTok{ui =}\NormalTok{ ui, }\AttributeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  Run the app to make sure it works.
+\item
+  Replace the ``My app title'' with a title of your choosing.
+\item
+  Replace the \texttt{h3(\textquotesingle{}Hi,\ you\ should\ replace\ me\textquotesingle{})} line with two ``columns'', the latter twice the width of the former. For example:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{column}\NormalTok{(}\DecValTok{4}\NormalTok{),}
+\FunctionTok{column}\NormalTok{(}\DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  In the column of width 4, add a ``text input''. This is a place the user of the app can write anything they want.
+\item
+  In the server part of the app, after the data read-in section, create a ``reactive'' dataframe. A reactive dataframe is a dataframe that automatically adjusts based on user input. To do this, use the below code:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfr }\OtherTok{\textless{}{-}} \FunctionTok{reactive}\NormalTok{(\{}
+\NormalTok{  user\_text }\OtherTok{\textless{}{-}} \FunctionTok{tolower}\NormalTok{(input}\SpecialCharTok{$}\NormalTok{user\_text) }\CommentTok{\# change this to whatever ID you gave to the object you created in number 8}
+\NormalTok{  out }\OtherTok{\textless{}{-}}\NormalTok{ trump }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\FunctionTok{grepl}\NormalTok{(user\_text, }\FunctionTok{tolower}\NormalTok{(content)))}
+\NormalTok{  out}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+  Create a plot output in the server. This should be named something like \texttt{output\$my\_plot} and should use the \texttt{renderPlot(\{\})} function. Make this plot be the number of times that the word/string searched for by the user appeared in Trump's tweets, for each year month.
+\item
+  Refer to \texttt{my\_plot} correctly in the UI so that the plot shows up. Test that the plot works.
+\item
+  Add a slider input to your app so that the user can filter down the date range of the period covered. Make sure the dates from the slider input are appropriately passed to your app.
+\item
+  Look up the \texttt{datatable} function. It is part of the \texttt{DT} library.
+\item
+  In the \texttt{rawdata} tab of your app, show the ``raw'' data of the tweets which match the text input from the user. You'll need \texttt{renderDataTable} and \texttt{dataTableOutput}.
+\item
+  Add another slider which allows users to filter by time of day.
+\item
+  Push your code to github.
+\item
+  Publish your app to shinyapps.io. Send a link to your code and app to \href{mailto:sewanee@databrew.cc}{\nolinkurl{sewanee@databrew.cc}}.
+\item
+  You just made a cool Trump tweet data explorer, and you're all done, and you're waiting on everyone else to finish? Congratulations! Now make a Shakespeare data explorer. Good luck. ;)
+\end{enumerate}
 
 \hypertarget{data-entry-apps}{%
 \chapter{Data entry apps}\label{data-entry-apps}}
@@ -9461,11 +9589,240 @@ Spinning up a local DB
 \hypertarget{part-documenting-your-work}{%
 \part{Documenting your work}\label{part-documenting-your-work}}
 
-\hypertarget{r-markdown}{%
-\chapter{R Markdown}\label{r-markdown}}
+\hypertarget{rmarkdown}{%
+\chapter{R Markdown}\label{rmarkdown}}
 
-\hypertarget{reproducible-research}{%
-\chapter{Reproducible research}\label{reproducible-research}}
+\hypertarget{what-is-r-markdown}{%
+\section*{What is R Markdown}\label{what-is-r-markdown}}
+\addcontentsline{toc}{section}{What is R Markdown}
+
+R Markdown is the combination of R and Markdown. It is a tool in the toolbox of ``literate programming'' and allows you to weave computer-speak (code) and human-speak (English, or any other language) into one combined document.
+
+\hypertarget{in-class-activity}{%
+\section*{In-class activity}\label{in-class-activity}}
+\addcontentsline{toc}{section}{In-class activity}
+
+Let's not talk about it. Let's just do it.
+
+\hypertarget{starting-the-file}{%
+\subsubsection*{Starting the file}\label{starting-the-file}}
+\addcontentsline{toc}{subsubsection}{Starting the file}
+
+\begin{itemize}
+\tightlist
+\item
+  Create a repository on github called \texttt{report}.\\
+\item
+  Clone that repository to your local machine.\\
+\item
+  \texttt{cd} into that repository.\\
+\item
+  Open Rstudio.\\
+\item
+  Click File -\textgreater{} New File -\textgreater{} R Markdown\\
+\item
+  Fill out ``Title'', ``Author'', and click ``Set to HTML''\\
+\item
+  Type ctrl + s to save your file in the recently cloned \texttt{report} repository
+\end{itemize}
+
+\hypertarget{compiling-your-report}{%
+\subsubsection*{Compiling your report}\label{compiling-your-report}}
+\addcontentsline{toc}{subsubsection}{Compiling your report}
+
+\begin{itemize}
+\tightlist
+\item
+  Have a look at the document. What does each section mean?\\
+\item
+  Click the ``knit'' button at the top.\\
+\item
+  Cool, right? But also kind of boring. Let's make some changes to this report.
+\end{itemize}
+
+\hypertarget{modifying-the-template}{%
+\subsubsection*{Modifying the template}\label{modifying-the-template}}
+\addcontentsline{toc}{subsubsection}{Modifying the template}
+
+\begin{itemize}
+\item
+  First, let's replace the ``setup chunk'' with the below.
+\item
+  Then, let's change the title to some interesting question.\\
+\item
+  Now, let's delete all of the other stuff in the template so far (beginning at ``R Markdown'').\\
+\item
+  Let's put in some headers, using the hashtag symbol. We'll make the following sections: \texttt{Introduction}, \texttt{Methods}, \texttt{Results}, \texttt{Conclusion}.\\
+\item
+  Let's put in some text too.\\
+\item
+  Let's knit, to make sure that we did not break anything. Good? Great.
+\end{itemize}
+
+\hypertarget{formatting}{%
+\subsubsection*{Formatting}\label{formatting}}
+\addcontentsline{toc}{subsubsection}{Formatting}
+
+\begin{itemize}
+\tightlist
+\item
+  Headers\\
+\item
+  In-line code-formatting\\
+\item
+  In-line code processing\\
+\item
+  Italitcs\\
+\item
+  Bold\\
+\item
+  Echo\\
+\item
+  Eval
+\end{itemize}
+
+\hypertarget{bibliography-management}{%
+\subsubsection*{Bibliography management}\label{bibliography-management}}
+\addcontentsline{toc}{subsubsection}{Bibliography management}
+
+\begin{itemize}
+\tightlist
+\item
+  From the command line, create a new file: \texttt{touch\ bibliography.bib}.\\
+\item
+  Look up \url{https://www.researchgate.net/publication/260642613_Statistical_exponential_formulas_for_homogeneous_diffusion}\\
+\item
+  Get the DOI\\
+\item
+  Go to \url{https://doi2bib.org/}\\
+\item
+  Get the bibtex format\\
+\item
+  Copy-paste into your bib file\\
+\item
+  Write some line about a paper\\
+\item
+  Cite that line using citation notation\\
+\item
+  Add \texttt{bibliography:\ bibliography.bib} to your yaml
+\end{itemize}
+
+\hypertarget{wrapping-up}{%
+\subsubsection*{Wrapping up}\label{wrapping-up}}
+\addcontentsline{toc}{subsubsection}{Wrapping up}
+
+\begin{itemize}
+\tightlist
+\item
+  Push your code to github.
+\end{itemize}
+
+\hypertarget{exercises}{%
+\subsubsection{Exercises}\label{exercises}}
+
+Before getting started, think of a testable hypothesis which can be answered via a survey of your friends and classmates. For example: ``woman have more dreams than men'' or ``people born abroad have shorter last names than people born in the USA'' or ``shoe size is associated with GPA''.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Create a new R markdown document. Name it \texttt{paper.Rmd}. Make it in the same repo as your previous RMarkdown document.
+\item
+  Replace the setup chunk with the one used in the in-class exercise (above)
+\item
+  Create a google form survey with at least 5 interesting questions on a topic which interests you (one topic, five questions).
+\item
+  Get at least 5 people to fill out your survey.
+\item
+  In your survey results, create a google spreadsheet.
+\item
+  In the sharing settings of your google spreadsheet, set to ``public''.
+\item
+  Copy the URL of your survey results.
+\item
+  Create an R chunk in your \texttt{paper.Rmd}.
+\item
+  Use the \texttt{gsheet} package to read your survey results as a dataframe.
+\item
+  After reading in the data, create the following sections in your report: \texttt{Introduction}, \texttt{Methods}, \texttt{Results}, \texttt{Conclusion}.
+\item
+  Spend 5-15 minutes on the internet reading about your topic / hypotheses.
+\item
+  Find 2-5 authors/articles of interest related to your topic. Cite them in the introduction.
+\item
+  Describe in plain English your approach to testing your hypothesis in the ``Methods'' section.
+\item
+  After the ``Methods'' section, write the R code (in an \texttt{echo}ed chunk) which tests your hypothesis.
+\item
+  In the ``Results'' section, write a description of both (a) your sample and (b) your results. Include at least two charts. Include at least one table.
+\item
+  In the ``Conclusion'' section, write interesting reflection on your data.
+\item
+  Got here? Cool, you're fast. Now configure your computer to generate pdfs via Rmarkdown: \href{https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-macos-high-sierra-e7b5705c9fd}{mac} / \href{https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9}{windows}
+\item
+  Make your paper in pdf.
+\item
+  Check out \url{https://www.datadreaming.org/post/r-markdown-theme-gallery/}
+\item
+  Publish your paper to the internet
+\item
+  Push your code to git
+\item
+  Check out how to make presentations in Rmarkdown: \url{https://rmarkdown.rstudio.com/lesson-11.html}. Make one.
+\item
+  Check out how to make dashboards in Rmarkdown: \url{https://rmarkdown.rstudio.com/lesson-12.html}. Make one.
+\item
+  Change your citation style. Use a new csl from \url{https://github.com/citation-style-language/styles}
+\end{enumerate}
+
+\hypertarget{rr}{%
+\chapter{Reproducible research}\label{rr}}
+
+Reproducible research is the idea that work done by scientist A is ``reproducible'' by scientist B. In other words, if the findings of the research are of any generalizable value, then the results of two scientists working on the same problem should be identical (or very high in agreement).
+
+In practice, this means using data and code in a structured, well-documented, accessible, clear way, and ensuring that others can do the same.
+
+\hypertarget{why-does-reproducible-research-matter}{%
+\section*{Why does reproducible research matter?}\label{why-does-reproducible-research-matter}}
+\addcontentsline{toc}{section}{Why does reproducible research matter?}
+
+Reproducible research matters for lots of reasons:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Because making your work reproducible means that \emph{you} will have less problems returning to that work at a later time.\\
+\item
+  Because making your work reproducible means that \emph{others} can collaborate with you, help you, error-check you, and build on your work.\\
+\item
+  Because making your work reproducible means you are fighting the plague of irreproducible results which have characterized the \href{https://en.wikipedia.org/wiki/Replication_crisis}{replication crisis}
+\end{enumerate}
+
+\hypertarget{how-to-carry-out-reproducible-research}{%
+\section*{How to carry out reproducible research}\label{how-to-carry-out-reproducible-research}}
+\addcontentsline{toc}{section}{How to carry out reproducible research}
+
+\begin{itemize}
+\tightlist
+\item
+  Make your code open source\\
+\item
+  Put your stuff on github\\
+\item
+  Use open source tools\\
+\item
+  Use free tools\\
+\item
+  Document everything you do\\
+\item
+  Collaborate with others
+\end{itemize}
+
+\hypertarget{final-thoughts}{%
+\section*{Final thoughts}\label{final-thoughts}}
+\addcontentsline{toc}{section}{Final thoughts}
+
+An article about RESULTS is advertising, not scholarship. An article with transparent, reproducible methods is scholarship.
 
 \hypertarget{automated-reporting}{%
 \chapter{Automated reporting}\label{automated-reporting}}
@@ -11185,7 +11542,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-413-1.pdf}
+\includegraphics{figures/unnamed-chunk-417-1.pdf}
 
 \textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
 
@@ -11225,7 +11582,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-415-1.pdf}
+\includegraphics{figures/unnamed-chunk-419-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11247,9 +11604,16 @@ In this case, the observed association rate is still statistically significant a
 
 First, let's see how many of these individuals are known to bubble net feed:
 
-\begin{verbatim}
-[1] 108
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Establish the two populations}
+\NormalTok{bnf\_indices }\OtherTok{\textless{}{-}} \FunctionTok{grep}\NormalTok{(}\StringTok{"BNF"}\NormalTok{,hw}\SpecialCharTok{$}\NormalTok{bhvr) }\CommentTok{\# which detections are of BNFers}
+\NormalTok{bnf\_sits }\OtherTok{\textless{}{-}}\NormalTok{ hw[bnf\_indices,] }\CommentTok{\# BNF sightings}
+\NormalTok{bnf\_ids }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(bnf\_sits}\SpecialCharTok{$}\NormalTok{id) }\CommentTok{\# BNF individuals}
+\FunctionTok{length}\NormalTok{(bnf\_ids)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{108}
+\end{Highlighting}
+\end{Shaded}
 
 So, out of 132 individuals, 108 are known to practice bubble netting.
 
@@ -11315,7 +11679,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-421-1.pdf}
+\includegraphics{figures/unnamed-chunk-425-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -11360,11 +11724,23 @@ Each row of this dataset is an abundance estimate from a survey that occurred wi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-425-1.pdf}
+\includegraphics{figures/unnamed-chunk-429-1.pdf}
 
 Performing a simple linear regression with this dataset yields the following results:
 
-\includegraphics{figures/unnamed-chunk-426-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{year)}
+
+\FunctionTok{plot}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{year,}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{20}\NormalTok{),}
+     \AttributeTok{xlab=}\StringTok{"Year"}\NormalTok{,}
+     \AttributeTok{ylab=}\StringTok{"Total Abundance"}\NormalTok{,}
+     \AttributeTok{col=}\FunctionTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha.f=}\NormalTok{.}\DecValTok{6}\NormalTok{))}
+\FunctionTok{abline}\NormalTok{(df\_lm,}\AttributeTok{col=}\StringTok{"firebrick"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-430-1.pdf}
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
@@ -11453,7 +11829,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-431-1.pdf}
+\includegraphics{figures/unnamed-chunk-435-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -11516,7 +11892,7 @@ We want to know what the chances are that the population has declined between 20
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-435-1.pdf}
+\includegraphics{figures/unnamed-chunk-439-1.pdf}
 
 If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
 
@@ -11541,7 +11917,7 @@ And in this randomization application, the workflow is a bit more simplified. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-436-1.pdf}
+\includegraphics{figures/unnamed-chunk-440-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
