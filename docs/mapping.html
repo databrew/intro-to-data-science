@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 46 Mapping | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 46 Mapping | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-06-25" />
+<meta name="date" content="2021-06-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -116,6 +118,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -425,7 +450,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="mapping" class="section level1" number="46">
 <h1><span class="header-section-number">Module 46</span> Mapping</h1>
+<div id="group-exercise" class="section level4 unnumbered">
+<h4>Group exercise</h4>
+<ol style="list-style-type: decimal">
+<li><p>Create a new rmarkdown document.</p></li>
+<li><p>Create a code chunk. In this chunk, read in some data on “conflicts.” This data comes from <a href="https://ucdp.uu.se/encyclopedia" class="uri">https://ucdp.uu.se/encyclopedia</a>. Take a minute or two to look at the website. To read in the data, run the below code.</p></li>
+</ol>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="mapping.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb396-2"><a href="mapping.html#cb396-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/conflicts.RData&#39;</span>,</span>
+<span id="cb396-3"><a href="mapping.html#cb396-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&#39;conflicts.RData&#39;</span>)</span>
+<span id="cb396-4"><a href="mapping.html#cb396-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;conflicts.RData&#39;</span>)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Have a look in the data. Which fields are likely to be geographic?</p></li>
+<li><p>Make a simple x-y plot using geographic fields.</p></li>
+<li><p>Create an object named <code>conflicts_afg</code>. This should be a plot of conflicts in Afghanistan.</p></li>
+<li><p>Color the points by year.</p></li>
+<li><p>Instead of year, color the points by <code>deaths_civilians</code>.</p></li>
+<li><p>Color the points by date, but make point size reflect <code>deaths_civilians</code>.</p></li>
+<li><p>Create a leaflet map of conflicts in a country of your choice.</p></li>
+<li><p>Use <code>addTiles</code>.</p></li>
+<li><p>Use <code>addProviderTiles</code> to make your map a satellite map.</p></li>
+<li><p>Explore other tiles</p></li>
+<li><p>Add pop-ups to your maps.</p></li>
+</ol>
 
+</div>
 </div>
             </section>
 
@@ -456,6 +505,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
