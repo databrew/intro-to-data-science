@@ -1,9 +1,11 @@
 # Geographic computing & GIS
 
 
+
+
 Let's start by getting some data. Run the below code:
 
-```{r,echo=FALSE,collapse=TRUE, eval = FALSE}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 
 # This code is just for getting sewanee data into the repo in an easily readable format...
 library(dplyr)
@@ -20,25 +22,12 @@ structures <- readOGR(destination_directory, 'Domain_Structures')
 roads <- readOGR(destination_directory, 'Roads')
 elevation <- raster(file.path(destination_directory,
                               'DEM USGS 10m.tif'))
-save(boundary, structures, roads, elevation, file = 'data/sewaneegis.RData')
 ```
 
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-file_source <- 'https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sewaneegis.RData'
-library(dplyr)
-library(rgdal)
-library(raster)
-library(sp)
-destination_directory <- '/tmp'
-destination_file <- file.path(destination_directory, 'sewaneegis.RData')
-if(!'sewaneegis.RData' %in% destination_directory){
-  download.file(file_source,
-                destfile = destination_file)
-}
-load(destination_file)
-```
+
 
 ### In-class exercises  {-}
+
 
 #### Raster {-}
 
