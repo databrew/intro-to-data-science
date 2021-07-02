@@ -344,17 +344,87 @@ df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science
 Subset data by year and indicator
 
 ```{r}
-df <- df %>% filter(indicator_name =='Prevalence of HIV, total (% of population ages 15-49)', year == max(year, na.rm = TRUE))
+df <- df %>% filter(indicator_name =='Mean BMI, male (age 18+)')
 
 ```
 Join with shape file data
 
 ```{r, eval=FALSE}
-world_shp <- inner_join(world_shp@data,df)
+world_shp@data <- left_join(world_shp@data,df)
+```
+
+
+Make a map 
+
+```{r}
+library(leaflet)
+library(RColorBrewer)
+
+# map text
+map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), domain=world_shp@data$value, na.color="#CECECE")
+
+
+    leaflet(world_shp, options = leafletOptions(minZoom = 1, 
+                                                  maxZoom = 10)) %>% 
+        addProviderTiles('Esri.WorldShadedRelief') %>%
+        addPolygons( 
+          color = 'black',
+          weight=1,
+          fillColor = ~map_palette(value), 
+          stroke=TRUE,
+          fillOpacity = 0.9, 
+          label = ~country,
+        ) %>% 
+        addLegend( pal=map_palette, values=~value, opacity=0.9, position = "bottomleft", na.label = "NA" )
 
 ```
 
-Make a 
 
+Add to map 
+
+```{r}
+library(leaflet)
+library(RColorBrewer)
+
+# map text
+map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), domain=world_shp@data$value, na.color="#CECECE")
+
+# Create map
+map_text <- paste(
+  "Indicator: ",  world_shp@data$indicator_name,"<br>",
+  "Economy: ", as.character(world_shp@data$country),"<br/>", 
+  'Value: ', round(world_shp@data$value, digits = 2),  "<br/>",
+  "Year: ", as.character(world_shp@data$year),"<br/>",sep="") %>%
+  lapply(htmltools::HTML)
+
+    leaflet(world_shp, options = leafletOptions(minZoom = 1, 
+                                                  maxZoom = 10)) %>% 
+        addProviderTiles('Esri.WorldShadedRelief') %>%
+        addPolygons( 
+          color = 'black',
+          fillColor = ~map_palette(value), 
+          stroke=TRUE, 
+          fillOpacity = 0.9, 
+          weight=1,
+          label = map_text,
+          highlightOptions = highlightOptions(
+            weight = 1,
+            fillColor = 'white',
+            fillOpacity = 1,
+            color = "white",
+            opacity = 1.0,
+            bringToFront = TRUE,
+            sendToBack = TRUE
+          ),
+          labelOptions = labelOptions( 
+            noHide = FALSE,
+            style = list("font-weight" = "normal", padding = "3px 8px"), 
+            textsize = "13px", 
+            direction = "auto"
+          )
+        ) %>% 
+        addLegend( pal=map_palette, values=~value, opacity=0.9, position = "bottomleft", na.label = "NA" )
+
+```
 
 
