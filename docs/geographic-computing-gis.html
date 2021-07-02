@@ -450,22 +450,19 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="geographic-computing-gis" class="section level1" number="47">
 <h1><span class="header-section-number">Module 47</span> Geographic computing &amp; GIS</h1>
-<p>Let’s start by getting some data. Run the below code which will (a) download some data onto your computer, (b) unzip it and (c) load it into memory.</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="geographic-computing-gis.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb397-2"><a href="geographic-computing-gis.html#cb397-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
-<span id="cb397-3"><a href="geographic-computing-gis.html#cb397-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
-<span id="cb397-4"><a href="geographic-computing-gis.html#cb397-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
-<span id="cb397-5"><a href="geographic-computing-gis.html#cb397-5" aria-hidden="true" tabindex="-1"></a>destination_directory <span class="ot">&lt;-</span> <span class="st">&#39;/tmp&#39;</span></span>
-<span id="cb397-6"><a href="geographic-computing-gis.html#cb397-6" aria-hidden="true" tabindex="-1"></a>destination_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(destination_directory, <span class="st">&#39;sewanee.zip&#39;</span>)</span>
-<span id="cb397-7"><a href="geographic-computing-gis.html#cb397-7" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sewanee.zip&#39;</span>,</span>
-<span id="cb397-8"><a href="geographic-computing-gis.html#cb397-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> destination_file)</span>
-<span id="cb397-9"><a href="geographic-computing-gis.html#cb397-9" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(destination_file, <span class="at">exdir =</span> destination_directory)</span>
-<span id="cb397-10"><a href="geographic-computing-gis.html#cb397-10" aria-hidden="true" tabindex="-1"></a>boundary <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(destination_directory, <span class="st">&#39;Boundary2016&#39;</span>)</span>
-<span id="cb397-11"><a href="geographic-computing-gis.html#cb397-11" aria-hidden="true" tabindex="-1"></a>structures <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(destination_directory, <span class="st">&#39;Domain_Structures&#39;</span>)</span>
-<span id="cb397-12"><a href="geographic-computing-gis.html#cb397-12" aria-hidden="true" tabindex="-1"></a>roads <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(destination_directory, <span class="st">&#39;Roads&#39;</span>)</span>
-<span id="cb397-13"><a href="geographic-computing-gis.html#cb397-13" aria-hidden="true" tabindex="-1"></a>elevation <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">file.path</span>(destination_directory,</span>
-<span id="cb397-14"><a href="geographic-computing-gis.html#cb397-14" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&#39;DEM USGS 10m.tif&#39;</span>))</span>
-<span id="cb397-15"><a href="geographic-computing-gis.html#cb397-15" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(boundary, structures, roads, elevation, <span class="at">file =</span> <span class="st">&#39;data/sewaneegis.RData&#39;</span>)</span></code></pre></div>
+<p>Let’s start by getting some data. Run the below code:</p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="geographic-computing-gis.html#cb397-1" aria-hidden="true" tabindex="-1"></a>file_source <span class="ot">&lt;-</span> <span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sewaneegis.RData&#39;</span></span>
+<span id="cb397-2"><a href="geographic-computing-gis.html#cb397-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb397-3"><a href="geographic-computing-gis.html#cb397-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
+<span id="cb397-4"><a href="geographic-computing-gis.html#cb397-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb397-5"><a href="geographic-computing-gis.html#cb397-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb397-6"><a href="geographic-computing-gis.html#cb397-6" aria-hidden="true" tabindex="-1"></a>destination_directory <span class="ot">&lt;-</span> <span class="st">&#39;/tmp&#39;</span></span>
+<span id="cb397-7"><a href="geographic-computing-gis.html#cb397-7" aria-hidden="true" tabindex="-1"></a>destination_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(destination_directory, <span class="st">&#39;sewaneegis.RData&#39;</span>)</span>
+<span id="cb397-8"><a href="geographic-computing-gis.html#cb397-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="st">&#39;sewaneegis.RData&#39;</span> <span class="sc">%in%</span> destination_directory){</span>
+<span id="cb397-9"><a href="geographic-computing-gis.html#cb397-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(file_source,</span>
+<span id="cb397-10"><a href="geographic-computing-gis.html#cb397-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">destfile =</span> destination_file)</span>
+<span id="cb397-11"><a href="geographic-computing-gis.html#cb397-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb397-12"><a href="geographic-computing-gis.html#cb397-12" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(destination_file)</span></code></pre></div>
 <div id="group-exercise-1" class="section level4 unnumbered">
 <h4>Group exercise</h4>
 <div id="raster" class="section level5 unnumbered">
