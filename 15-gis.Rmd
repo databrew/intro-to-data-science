@@ -310,20 +310,27 @@ library(rgdal)
 library(raster)
 library(sp)
 destination_directory <- '/tmp'
-destination_file <- file.path(destination_directory, 'sewanee.zip')
-download.file('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sewanee.zip',
+destination_file <- file.path(destination_directory, 'world_shp.zip')
+download.file('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/world_shp.zip',
               destfile = destination_file)
 unzip(destination_file, exdir = destination_directory)
-boundary <- readOGR(destination_directory, 'Boundary2016')
-structures <- readOGR(destination_directory, 'Domain_Structures')
-roads <- readOGR(destination_directory, 'Roads')
-elevation <- raster(file.path(destination_directory,
-                              'DEM USGS 10m.tif'))
-save(boundary, structures, roads, elevation, file = 'data/sewaneegis.RData')
+world_shp <- readOGR(file.path(destination_directory, 'world_small/'),
+                     'TM_WORLD_BORDERS_SIMPL-0.3')
+
+save(world_shp, file = 'data/world_shp.RData')
+
+# get the hefpi data
+destination_directory <- '/tmp'
+destination_file <- file.path(destination_directory, 'hefpi_full_database.dta')
+download.file('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/hefpi_full_database.dta',
+              destfile = destination_file)
+dat <- 
+save(world_shp, file = 'data/world_shp.RData')
+
 ```
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-file_source <- 'https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sewaneegis.RData'
+file_source <- 'https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/world_shp.RData'
 library(dplyr)
 library(rgdal)
 library(raster)
