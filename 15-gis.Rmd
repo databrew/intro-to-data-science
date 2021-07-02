@@ -340,14 +340,21 @@ df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science
 
 ```
 
+
+Subset data by year and indicator
+
+```{r}
+df <- df %>% filter(indicator_name =='Prevalence of HIV, total (% of population ages 15-49)', year == max(year, na.rm = TRUE))
+
+```
 Join with shape file data
 
 ```{r, eval=FALSE}
-world_shp <- inner_join(world_shp@data,df, by=c('ISO3'='iso3c'))
-
+world_shp <- inner_join(world_shp@data,df)
 
 ```
 
+Make a 
 
 
 
