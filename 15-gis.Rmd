@@ -343,20 +343,20 @@ df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science
 
 Subset data by year and indicator
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 df <- df %>% filter(indicator_name =='Mean BMI, male (age 18+)')
 
 ```
 Join with shape file data
 
-```{r, eval=FALSE}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 world_shp@data <- left_join(world_shp@data,df)
 ```
 
 
 Make a map 
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 library(leaflet)
 library(RColorBrewer)
 
@@ -364,7 +364,7 @@ library(RColorBrewer)
 map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), domain=world_shp@data$value, na.color="#CECECE")
 
 
-    leaflet(world_shp, options = leafletOptions(minZoom = 1, 
+leaflet(world_shp, options = leafletOptions(minZoom = 1, 
                                                   maxZoom = 10)) %>% 
         addProviderTiles('Esri.WorldShadedRelief') %>%
         addPolygons( 
