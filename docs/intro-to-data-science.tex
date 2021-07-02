@@ -124,7 +124,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-06-25}
+\date{2021-07-02}
 
 \begin{document}
 \maketitle
@@ -2838,7 +2838,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"P=8):1pwSg YHWDXU!$b\textless{}4IC"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"M5]{-}(t\&f=o\}/qG\%.?Z|sw$C)"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2847,7 +2847,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\SpecialCharTok{::}\FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"{-}\textgreater{}1L3lDH$4CM6VqByKa\{5]\^{}T"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Rwx\^{}sB$(t*Ml?]j@pu1bE)FS"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4189,7 +4189,7 @@ sample\_n() (and sample\_frac())
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DecValTok{2}\NormalTok{)))}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.477226}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.830952}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4199,7 +4199,7 @@ The above could also be written as:
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{sample}\NormalTok{(}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sum }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sqrt}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.09902}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.656854}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11364,8 +11364,778 @@ This is a \href{https://www.youtube.com/watch?v=mae2eugjUsU}{pretty good example
 \hypertarget{mapping}{%
 \chapter{Mapping}\label{mapping}}
 
+\hypertarget{group-exercise}{%
+\subsubsection*{Group exercise}\label{group-exercise}}
+\addcontentsline{toc}{subsubsection}{Group exercise}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Create a new rmarkdown document.
+\item
+  Create a code chunk. In this chunk, read in some data on ``conflicts''. This data comes from \url{https://ucdp.uu.se/encyclopedia}. Take a minute or two to look at the website. To read in the data, run the below code.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{download.file}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/conflicts.RData\textquotesingle{}}\NormalTok{,}
+              \AttributeTok{destfile =} \StringTok{\textquotesingle{}conflicts.RData\textquotesingle{}}\NormalTok{)}
+\FunctionTok{load}\NormalTok{(}\StringTok{\textquotesingle{}conflicts.RData\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Have a look in the data. Which fields are likely to be geographic?
+\item
+  Make a simple x-y plot using geographic fields.
+\item
+  Create an object named \texttt{conflicts\_afg}. This should be a plot of conflicts in Afghanistan.
+\item
+  Color the points by year.
+\item
+  Instead of year, color the points by \texttt{deaths\_civilians}.
+\item
+  Color the points by date, but make point size reflect \texttt{deaths\_civilians}.
+\item
+  Create a leaflet map of conflicts in a country of your choice.
+\item
+  Use \texttt{addTiles}.
+\item
+  Use \texttt{addProviderTiles} to make your map a satellite map.
+\item
+  Explore other tiles
+\item
+  Add pop-ups to your maps by using the \texttt{popup} argument within \texttt{addMarkers}.
+\item
+  Add \texttt{clusterOptions\ =\ markerClusterOptions()} to make your points clustered.
+\item
+  Replace your markers with ``circle markers''.
+\item
+  Create a shiny app wherein the user selects a country and time frame, and the app shows both (a) an interactive map and (b) a plot of the number of conflicts by year for that country.
+\end{enumerate}
+
 \hypertarget{geographic-computing-gis}{%
 \chapter{Geographic computing \& GIS}\label{geographic-computing-gis}}
+
+Let's start by getting some data. Run the below code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{file\_source }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/sewaneegis.RData\textquotesingle{}}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(rgdal)}
+\FunctionTok{library}\NormalTok{(raster)}
+\FunctionTok{library}\NormalTok{(sp)}
+\NormalTok{destination\_directory }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}/tmp\textquotesingle{}}
+\NormalTok{destination\_file }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(destination\_directory, }\StringTok{\textquotesingle{}sewaneegis.RData\textquotesingle{}}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\StringTok{\textquotesingle{}sewaneegis.RData\textquotesingle{}} \SpecialCharTok{\%in\%}\NormalTok{ destination\_directory)\{}
+  \FunctionTok{download.file}\NormalTok{(file\_source,}
+                \AttributeTok{destfile =}\NormalTok{ destination\_file)}
+\NormalTok{\}}
+\FunctionTok{load}\NormalTok{(destination\_file)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{in-class-exercises}{%
+\subsection*{In-class exercises}\label{in-class-exercises}}
+\addcontentsline{toc}{subsection}{In-class exercises}
+
+\hypertarget{raster}{%
+\subsubsection*{Raster}\label{raster}}
+\addcontentsline{toc}{subsubsection}{Raster}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  What is the difference between raster data and vector data?
+\item
+  What kinds of vector data are there?
+\item
+  Let's talk about projections: \url{https://en.wikipedia.org/wiki/List_of_map_projections}
+\item
+  Let's fetch some raster data.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(raster)}
+\FunctionTok{library}\NormalTok{(sp)}
+\FunctionTok{library}\NormalTok{(rasterVis)}
+\NormalTok{usa }\OtherTok{\textless{}{-}} \FunctionTok{getData}\NormalTok{(}\StringTok{\textquotesingle{}alt\textquotesingle{}}\NormalTok{, }\AttributeTok{country=}\StringTok{\textquotesingle{}USA\textquotesingle{}}\NormalTok{, }\AttributeTok{mask=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  What kind of data is this? What is the structure?
+\item
+  Let's break it down into just the continental United States.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont }\OtherTok{\textless{}{-}}\NormalTok{ usa[[}\DecValTok{1}\NormalTok{]]}
+\FunctionTok{plot}\NormalTok{(cont)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-417-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Plot it!
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(cont)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-418-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  What do the values mean (the legend)?
+\item
+  Make a plot of Alaska.
+\item
+  Let's retrieve some data for boundaries of States.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{states }\OtherTok{\textless{}{-}} \FunctionTok{getData}\NormalTok{(}\AttributeTok{name =} \StringTok{\textquotesingle{}GADM\textquotesingle{}}\NormalTok{, }\AttributeTok{level =} \DecValTok{1}\NormalTok{, }\AttributeTok{country =} \StringTok{\textquotesingle{}USA\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  Plot the states.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(states)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-420-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{11}
+\tightlist
+\item
+  Take a peak at the states data.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(states)}
+\NormalTok{   GID\_0        NAME\_0   GID\_1     NAME\_1 VARNAME\_1 NL\_NAME\_1 TYPE\_1 ENGTYPE\_1}
+\DecValTok{1}\NormalTok{    USA United States USA}\FloatTok{.1}\NormalTok{\_1    Alabama   AL}\SpecialCharTok{|}\NormalTok{Ala.      }\SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  State     State}
+\DecValTok{12}\NormalTok{   USA United States USA}\FloatTok{.2}\NormalTok{\_1     Alaska AK}\SpecialCharTok{|}\NormalTok{Alaska      }\SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  State     State}
+\DecValTok{23}\NormalTok{   USA United States USA}\FloatTok{.3}\NormalTok{\_1    Arizona  AZ}\SpecialCharTok{|}\NormalTok{Ariz.      }\SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  State     State}
+\DecValTok{34}\NormalTok{   USA United States USA}\FloatTok{.4}\NormalTok{\_1   Arkansas   AR}\SpecialCharTok{|}\NormalTok{Ark.      }\SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  State     State}
+\DecValTok{45}\NormalTok{   USA United States USA}\FloatTok{.5}\NormalTok{\_1 California CA}\SpecialCharTok{|}\NormalTok{Calif.      }\SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  State     State}
+\DecValTok{48}\NormalTok{   USA United States USA}\FloatTok{.6}\NormalTok{\_1   Colorado  CO}\SpecialCharTok{|}\NormalTok{Colo.      }\SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  State     State}
+\NormalTok{   CC\_1 HASC\_1}
+\DecValTok{1}  \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  US.AL}
+\DecValTok{12} \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  US.AK}
+\DecValTok{23} \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  US.AZ}
+\DecValTok{34} \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  US.AR}
+\DecValTok{45} \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  US.CA}
+\DecValTok{48} \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{  US.CO}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{12}
+\tightlist
+\item
+  Make an object just for Tennessee.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tn }\OtherTok{\textless{}{-}}\NormalTok{ states[states}\SpecialCharTok{$}\NormalTok{NAME\_1 }\SpecialCharTok{==} \StringTok{\textquotesingle{}Tennessee\textquotesingle{}}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{13}
+\tightlist
+\item
+  Plot Tennessee.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(tn)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-423-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{14}
+\tightlist
+\item
+  Use the \texttt{crop} and \texttt{mask} functions to get just Tennessee elevation.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tn\_elev }\OtherTok{\textless{}{-}} \FunctionTok{crop}\NormalTok{(cont, tn)}
+\NormalTok{tn\_elev }\OtherTok{\textless{}{-}} \FunctionTok{mask}\NormalTok{(tn\_elev, tn)}
+\FunctionTok{plot}\NormalTok{(tn\_elev)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-424-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{15}
+\item
+  Cool, yeah? Now do the same for your favorite state.
+\item
+  Make a plot of Tennessee. And then add \texttt{elevation} (Sewanee elevation) to it.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(tn)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-425-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(elevation, }\AttributeTok{add =}\NormalTok{ T)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{.local}\NormalTok{(.Object, ...)}\SpecialCharTok{:} 
+\end{Highlighting}
+\end{Shaded}
+
+Oh no! That didn't work. Why not? Have a look at coordinates
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{coordinates}\NormalTok{(tn)}
+\FunctionTok{coordinates}\NormalTok{(elevation)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{17}
+\tightlist
+\item
+  It seems like things are on different coordinate systems. Let's convert elevation to the coordinate system of Tennessee.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{elevation\_ll }\OtherTok{\textless{}{-}} \FunctionTok{projectRaster}\NormalTok{(elevation, }\AttributeTok{crs =} \FunctionTok{proj4string}\NormalTok{(tn))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in .local(.Object, ...): 
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{18}
+\tightlist
+\item
+  Great! Now we can try plotting Sewanee elevation on Tennessee again
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(tn)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-428-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(elevation\_ll, }\AttributeTok{add =}\NormalTok{ T)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{plot}\NormalTok{(elevation\_ll, }\AttributeTok{add =}\NormalTok{ T)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}elevation\_ll\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{19}
+\tightlist
+\item
+  Make a plot of Tennessee and add Sewanee's domain (bounadry) to it.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(tn)}
+\FunctionTok{plot}\NormalTok{(boundary, }\AttributeTok{add =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-429-1.pdf}
+
+Uh oh. Same problem as before. We need to ``reproject'' boundary to latitude longitude.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{20}
+\tightlist
+\item
+  Do it. Use the \texttt{spTransform} function (not \texttt{projectRaster} since \texttt{boundary} is not a raster).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{boundary\_ll }\OtherTok{\textless{}{-}} \FunctionTok{spTransform}\NormalTok{(boundary, }\FunctionTok{proj4string}\NormalTok{(tn))}
+\FunctionTok{plot}\NormalTok{(tn)}
+\FunctionTok{plot}\NormalTok{(boundary\_ll, }\AttributeTok{add =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-430-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{21}
+\tightlist
+\item
+  Plot the Sewanee elevation in latitude and longitude and then add Sewanee boundary
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(elevation\_ll)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{plot}\NormalTok{(elevation\_ll)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}elevation\_ll\textquotesingle{}}\NormalTok{ not found}
+\FunctionTok{plot}\NormalTok{(boundary\_ll, }\AttributeTok{add =}\NormalTok{ T)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{polypath}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mcrds[, }\DecValTok{1}\NormalTok{], }\AttributeTok{y =}\NormalTok{ mcrds[, }\DecValTok{2}\NormalTok{], }\AttributeTok{border =}\NormalTok{ border, }\AttributeTok{col =}\NormalTok{ col, }\SpecialCharTok{:}\NormalTok{ plot.new has not been called yet}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{22}
+\tightlist
+\item
+  Use crop and mask to get just the elevation for the domain. Your plot should look like this.
+\end{enumerate}
+
+\begin{verbatim}
+Error in crop(elevation_ll, boundary_ll): object 'elevation_ll' not found
+Error in mask(domain_elev, boundary_ll): object 'domain_elev' not found
+Error in plot(domain_elev): object 'domain_elev' not found
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{23}
+\tightlist
+\item
+  Add roads to the plot
+\end{enumerate}
+
+\begin{verbatim}
+Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet
+\end{verbatim}
+
+Oh no! Projection problems.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{24}
+\tightlist
+\item
+  Reproject roads and add them.
+\end{enumerate}
+
+\begin{verbatim}
+Error in proj4string(domain_elev): object 'domain_elev' not found
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{25}
+\tightlist
+\item
+  Trim down the roads so that we only include those which are in the domain boundary area using the \texttt{over} function.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{o }\OtherTok{\textless{}{-}} \FunctionTok{over}\NormalTok{(roads\_ll, }\FunctionTok{polygons}\NormalTok{(boundary\_ll))}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{over}\NormalTok{(roads\_ll, }\FunctionTok{polygons}\NormalTok{(boundary\_ll))}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}roads\_ll\textquotesingle{}}\NormalTok{ not found}
+\NormalTok{roads\_ll\_trim }\OtherTok{\textless{}{-}}\NormalTok{ roads\_ll[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(o),]}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}roads\_ll\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{26}
+\tightlist
+\item
+  Make the below plot
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(domain\_elev)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{plot}\NormalTok{(domain\_elev)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
+\FunctionTok{plot}\NormalTok{(roads\_ll\_trim, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{plot}\NormalTok{(roads\_ll\_trim, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}roads\_ll\_trim\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{27}
+\tightlist
+\item
+  Let's make a rasterVis contour raster plot
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(rasterVis)}
+\NormalTok{rasterVis}\SpecialCharTok{::}\FunctionTok{contourplot}\NormalTok{(domain\_elev)}
+\NormalTok{Error }\ControlFlowTok{in}\NormalTok{ rasterVis}\SpecialCharTok{::}\FunctionTok{contourplot}\NormalTok{(domain\_elev)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{28}
+\tightlist
+\item
+  Let's make a level plot
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rasterVis}\SpecialCharTok{::}\FunctionTok{levelplot}\NormalTok{(domain\_elev)}
+\NormalTok{Error }\ControlFlowTok{in}\NormalTok{ rasterVis}\SpecialCharTok{::}\FunctionTok{levelplot}\NormalTok{(domain\_elev)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{29}
+\tightlist
+\item
+  Let's make a level plot
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rasterVis}\SpecialCharTok{::}\FunctionTok{levelplot}\NormalTok{(domain\_elev)}
+\NormalTok{Error }\ControlFlowTok{in}\NormalTok{ rasterVis}\SpecialCharTok{::}\FunctionTok{levelplot}\NormalTok{(domain\_elev)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{30}
+\tightlist
+\item
+  How about a ggplot2-style plot
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\NormalTok{domain\_elev\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(domain\_elev, }\AttributeTok{xy =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(DEM\_USGS\_10m))}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{as.data.frame}\NormalTok{(domain\_elev, }\AttributeTok{xy =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
+
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ domain\_elev\_df,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x,}
+                  \AttributeTok{y =}\NormalTok{ y,}
+                  \AttributeTok{fill =}\NormalTok{ DEM\_USGS\_10m)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_raster}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient2}\NormalTok{(}\AttributeTok{low =} \StringTok{\textquotesingle{}white\textquotesingle{}}\NormalTok{, }\AttributeTok{high =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ domain\_elev\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y, }\AttributeTok{fill =}\NormalTok{ DEM\_USGS\_10m))}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\_df\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{31}
+\item
+  Make a ggplot-style raster plot of USA elevation
+\item
+  Let's ``bin'' values in \texttt{elevation} to say ``high'' or ``low''.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}yellow\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# add breaks to the colormap (6 breaks = 5 segments)}
+\NormalTok{brk }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{300}\NormalTok{, }\DecValTok{1000}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(elevation, }\AttributeTok{col=}\NormalTok{cols, }\AttributeTok{breaks=}\NormalTok{brk, }\AttributeTok{main=}\StringTok{"High vs low"}\NormalTok{)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{.local}\NormalTok{(.Object, ...)}\SpecialCharTok{:} 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{33}
+\item
+  Do the same as above, but make 3 colors.
+\item
+  Let's make a leaflet raster!
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(leaflet)}
+\NormalTok{pal }\OtherTok{\textless{}{-}} \FunctionTok{colorNumeric}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"\#0C2C84"}\NormalTok{, }\StringTok{"\#41B6C4"}\NormalTok{, }\StringTok{"\#FFFFCC"}\NormalTok{), }\FunctionTok{values}\NormalTok{(elevation\_ll),}
+  \AttributeTok{na.color =} \StringTok{"transparent"}\NormalTok{)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{values}\NormalTok{(elevation\_ll)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}elevation\_ll\textquotesingle{}}\NormalTok{ not found}
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{addTiles}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{addRasterImage}\NormalTok{(elevation\_ll, }\AttributeTok{colors =}\NormalTok{ pal, }\AttributeTok{opacity =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{addLegend}\NormalTok{(}\AttributeTok{pal =}\NormalTok{ pal, }\AttributeTok{values =} \FunctionTok{values}\NormalTok{(elevation\_ll),}
+    \AttributeTok{title =} \StringTok{"Elevation"}\NormalTok{)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{values}\NormalTok{(elevation\_ll)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}elevation\_ll\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{35}
+\item
+  Add \texttt{structures} to the above. Hint: you'll need to use \texttt{addPolygons} and you'll need to reproject structures as \texttt{structures\_ll}\ldots{}
+\item
+  Add popups to your structures.
+\item
+  Make your structures a different color and remove the border (hint, you'll need to use the \texttt{stroke} argument)
+\item
+  Get the elevation of each structure by running:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{structure\_elevation }\OtherTok{\textless{}{-}} 
+  \FunctionTok{unlist}\NormalTok{(}\FunctionTok{lapply}\NormalTok{(}\FunctionTok{extract}\NormalTok{(elevation\_ll, structures\_ll),}
+         \ControlFlowTok{function}\NormalTok{(x)\{}
+           \FunctionTok{mean}\NormalTok{(x,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{         \}))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{39}
+\item
+  Use the \texttt{structure\_elevation} object to add a new column to the \texttt{structures\_ll} object.
+\item
+  Make a histogram of the elevation of Sewanee buildings.
+\item
+  How low is the lowest building on the domain? How low is it?
+\item
+  How high is the highest building on the domain? Which building is it?
+\end{enumerate}
+
+\hypertarget{shapefiles-polygons}{%
+\subsubsection*{Shapefiles / polygons}\label{shapefiles-polygons}}
+\addcontentsline{toc}{subsubsection}{Shapefiles / polygons}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{file\_source }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/world\_shp.RData\textquotesingle{}}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(rgdal)}
+\FunctionTok{library}\NormalTok{(raster)}
+\FunctionTok{library}\NormalTok{(sp)}
+\FunctionTok{library}\NormalTok{(readr)}
+\NormalTok{destination\_directory }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}/tmp\textquotesingle{}}
+\NormalTok{destination\_file }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(destination\_directory, }\StringTok{\textquotesingle{}world\_shp.RData\textquotesingle{}}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\StringTok{\textquotesingle{}data/world\_shp.RData\textquotesingle{}} \SpecialCharTok{\%in\%}\NormalTok{ destination\_directory)\{}
+  \FunctionTok{download.file}\NormalTok{(file\_source,}
+                \AttributeTok{destfile =}\NormalTok{ destination\_file)}
+\NormalTok{\}}
+\FunctionTok{load}\NormalTok{(destination\_file)}
+
+\CommentTok{\# Read in indicator data}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/hefpi.csv\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{shp }\OtherTok{\textless{}{-}}\NormalTok{ world\_shp}
+\end{Highlighting}
+\end{Shaded}
+
+Subset data by indicator \& join with shape file data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pd }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(indicator\_name }\SpecialCharTok{==}\StringTok{\textquotesingle{}Inpatient care use, adults\textquotesingle{}}\NormalTok{)}
+\NormalTok{shp}\SpecialCharTok{@}\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{left\_join}\NormalTok{(shp}\SpecialCharTok{@}\NormalTok{data, pd)}
+\end{Highlighting}
+\end{Shaded}
+
+Make a basic (ugly) map
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(leaflet)}
+\FunctionTok{library}\NormalTok{(RColorBrewer)}
+
+\CommentTok{\# map text}
+\NormalTok{map\_palette }\OtherTok{\textless{}{-}} \FunctionTok{colorNumeric}\NormalTok{(}\AttributeTok{palette =} \FunctionTok{brewer.pal}\NormalTok{(}\DecValTok{9}\NormalTok{, }\StringTok{"Greens"}\NormalTok{), }\AttributeTok{domain=}\NormalTok{shp}\SpecialCharTok{@}\NormalTok{data}\SpecialCharTok{$}\NormalTok{value, }\AttributeTok{na.color=}\StringTok{"\#CECECE"}\NormalTok{)}
+
+    \FunctionTok{leaflet}\NormalTok{(shp) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{addProviderTiles}\NormalTok{(}\AttributeTok{provider =}\NormalTok{ providers}\SpecialCharTok{$}\NormalTok{Esri.WorldShadedRelief) }\SpecialCharTok{\%\textgreater{}\%}
+        \FunctionTok{addPolygons}\NormalTok{( }
+          \AttributeTok{fillColor =} \SpecialCharTok{\textasciitilde{}}\FunctionTok{map\_palette}\NormalTok{(value),}
+          \AttributeTok{fillOpacity =} \FloatTok{0.9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-447-1.pdf}
+
+Clean up the borders and add label
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+    \FunctionTok{leaflet}\NormalTok{(shp, }\AttributeTok{options =} \FunctionTok{leafletOptions}\NormalTok{(}\AttributeTok{minZoom =} \DecValTok{1}\NormalTok{,}\AttributeTok{maxZoom =} \DecValTok{10}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{addProviderTiles}\NormalTok{(}\AttributeTok{provider =}\NormalTok{ providers}\SpecialCharTok{$}\NormalTok{Esri.WorldShadedRelief) }\SpecialCharTok{\%\textgreater{}\%}
+        \FunctionTok{addPolygons}\NormalTok{( }
+          \AttributeTok{fillColor =} \SpecialCharTok{\textasciitilde{}}\FunctionTok{map\_palette}\NormalTok{(value),}
+          \AttributeTok{fillOpacity =} \FloatTok{0.9}\NormalTok{)}
+        
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+    \FunctionTok{leaflet}\NormalTok{(shp, }\AttributeTok{options =} \FunctionTok{leafletOptions}\NormalTok{(}\AttributeTok{minZoom =} \DecValTok{1}\NormalTok{,}\AttributeTok{maxZoom =} \DecValTok{10}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{addProviderTiles}\NormalTok{(}\AttributeTok{provider =}\NormalTok{ providers}\SpecialCharTok{$}\NormalTok{Esri.WorldShadedRelief) }\SpecialCharTok{\%\textgreater{}\%}
+        \FunctionTok{addPolygons}\NormalTok{( }
+          \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+          \AttributeTok{weight=}\DecValTok{1}\NormalTok{,}
+          \AttributeTok{fillColor =} \SpecialCharTok{\textasciitilde{}}\FunctionTok{map\_palette}\NormalTok{(value), }
+          \AttributeTok{stroke=}\ConstantTok{TRUE}\NormalTok{,}
+          \AttributeTok{fillOpacity =} \FloatTok{0.9}\NormalTok{, }
+          \AttributeTok{label =} \SpecialCharTok{\textasciitilde{}}\FunctionTok{round}\NormalTok{(value, }\DecValTok{2}\NormalTok{))}
+        
+\end{Highlighting}
+\end{Shaded}
+
+Add legend
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+    \FunctionTok{leaflet}\NormalTok{(shp, }\AttributeTok{options =} \FunctionTok{leafletOptions}\NormalTok{(}\AttributeTok{minZoom =} \DecValTok{1}\NormalTok{,}\AttributeTok{maxZoom =} \DecValTok{10}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{addProviderTiles}\NormalTok{(}\AttributeTok{provider =}\NormalTok{ providers}\SpecialCharTok{$}\NormalTok{Esri.WorldShadedRelief) }\SpecialCharTok{\%\textgreater{}\%}
+        \FunctionTok{addPolygons}\NormalTok{( }
+          \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+          \AttributeTok{weight=}\DecValTok{1}\NormalTok{,}
+          \AttributeTok{fillColor =} \SpecialCharTok{\textasciitilde{}}\FunctionTok{map\_palette}\NormalTok{(value), }
+          \AttributeTok{stroke=}\ConstantTok{TRUE}\NormalTok{,}
+          \AttributeTok{fillOpacity =} \FloatTok{0.9}\NormalTok{, }
+          \AttributeTok{label =} \SpecialCharTok{\textasciitilde{}}\NormalTok{country}
+\NormalTok{        ) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{addLegend}\NormalTok{( }\AttributeTok{pal=}\NormalTok{map\_palette, }\AttributeTok{values=}\SpecialCharTok{\textasciitilde{}}\NormalTok{value, }\AttributeTok{opacity=}\FloatTok{0.9}\NormalTok{, }\AttributeTok{position =} \StringTok{"bottomleft"}\NormalTok{, }\AttributeTok{na.label =} \StringTok{"NA"}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+Add fancy text to map
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(htmltools)}
+
+\CommentTok{\# Create map}
+\NormalTok{map\_text }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}
+  \StringTok{"Indicator: "}\NormalTok{,  shp}\SpecialCharTok{@}\NormalTok{data}\SpecialCharTok{$}\NormalTok{indicator\_name,}\StringTok{"\textless{}br\textgreater{}"}\NormalTok{,}
+  \StringTok{"Economy: "}\NormalTok{, }\FunctionTok{as.character}\NormalTok{(shp}\SpecialCharTok{@}\NormalTok{data}\SpecialCharTok{$}\NormalTok{country),}\StringTok{"\textless{}br/\textgreater{}"}\NormalTok{, }
+  \StringTok{\textquotesingle{}Value: \textquotesingle{}}\NormalTok{, }\FunctionTok{round}\NormalTok{(shp}\SpecialCharTok{@}\NormalTok{data}\SpecialCharTok{$}\NormalTok{value, }\AttributeTok{digits =} \DecValTok{2}\NormalTok{),  }\StringTok{"\textless{}br/\textgreater{}"}\NormalTok{,}
+  \StringTok{"Year: "}\NormalTok{, }\FunctionTok{as.character}\NormalTok{(shp}\SpecialCharTok{@}\NormalTok{data}\SpecialCharTok{$}\NormalTok{year),}\StringTok{"\textless{}br/\textgreater{}"}\NormalTok{,}\AttributeTok{sep=}\StringTok{""}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{lapply}\NormalTok{(htmltools}\SpecialCharTok{::}\NormalTok{HTML)}
+
+    \FunctionTok{leaflet}\NormalTok{(shp, }\AttributeTok{options =} \FunctionTok{leafletOptions}\NormalTok{(}\AttributeTok{minZoom =} \DecValTok{1}\NormalTok{, }
+                                                  \AttributeTok{maxZoom =} \DecValTok{10}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{addProviderTiles}\NormalTok{(}\StringTok{\textquotesingle{}Esri.WorldShadedRelief\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+        \FunctionTok{addPolygons}\NormalTok{( }
+          \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+          \AttributeTok{fillColor =} \SpecialCharTok{\textasciitilde{}}\FunctionTok{map\_palette}\NormalTok{(value), }
+          \AttributeTok{stroke=}\ConstantTok{TRUE}\NormalTok{, }
+          \AttributeTok{fillOpacity =} \FloatTok{0.9}\NormalTok{, }
+          \AttributeTok{weight=}\DecValTok{1}\NormalTok{,}
+          \AttributeTok{label =}\NormalTok{ map\_text,}
+          \AttributeTok{highlightOptions =} \FunctionTok{highlightOptions}\NormalTok{(}
+            \AttributeTok{weight =} \DecValTok{1}\NormalTok{,}
+            \AttributeTok{fillColor =} \StringTok{\textquotesingle{}white\textquotesingle{}}\NormalTok{,}
+            \AttributeTok{fillOpacity =} \DecValTok{1}\NormalTok{,}
+            \AttributeTok{color =} \StringTok{"white"}\NormalTok{,}
+            \AttributeTok{opacity =} \FloatTok{1.0}\NormalTok{,}
+            \AttributeTok{bringToFront =} \ConstantTok{TRUE}\NormalTok{,}
+            \AttributeTok{sendToBack =} \ConstantTok{TRUE}
+\NormalTok{          ),}
+          \AttributeTok{labelOptions =} \FunctionTok{labelOptions}\NormalTok{( }
+            \AttributeTok{noHide =} \ConstantTok{FALSE}\NormalTok{,}
+            \AttributeTok{style =} \FunctionTok{list}\NormalTok{(}\StringTok{"font{-}weight"} \OtherTok{=} \StringTok{"normal"}\NormalTok{, }\AttributeTok{padding =} \StringTok{"3px 8px"}\NormalTok{), }
+            \AttributeTok{textsize =} \StringTok{"13px"}\NormalTok{, }
+            \AttributeTok{direction =} \StringTok{"auto"}
+\NormalTok{          )}
+\NormalTok{        ) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{addLegend}\NormalTok{( }\AttributeTok{pal=}\NormalTok{map\_palette, }\AttributeTok{values=}\SpecialCharTok{\textasciitilde{}}\NormalTok{value, }\AttributeTok{opacity=}\FloatTok{0.9}\NormalTok{, }\AttributeTok{position =} \StringTok{"bottomleft"}\NormalTok{, }\AttributeTok{na.label =} \StringTok{"NA"}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-10}{%
+\section*{Exercise}\label{exercise-10}}
+\addcontentsline{toc}{section}{Exercise}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Make a choropleth map of BMI for men, where the darker the shade of red, the higher the BMI for each country.
+\item
+  Remove the borders from the map
+\item
+  Add a legend on the top right of the map
+\item
+  Make the NA color blue
+\item
+  Make the hover label a combination of the country and BMI value
+\item
+  Make the title of the legend ``BMI''
+\item
+  Create a function that takes an indicator name as an input and creates a map.
+\end{enumerate}
 
 \hypertarget{statistical-modeling}{%
 \chapter{Statistical modeling}\label{statistical-modeling}}
@@ -11542,7 +12312,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-417-1.pdf}
+\includegraphics{figures/unnamed-chunk-457-1.pdf}
 
 \textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
 
@@ -11582,7 +12352,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-419-1.pdf}
+\includegraphics{figures/unnamed-chunk-459-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11679,7 +12449,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-425-1.pdf}
+\includegraphics{figures/unnamed-chunk-465-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -11724,7 +12494,7 @@ Each row of this dataset is an abundance estimate from a survey that occurred wi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-429-1.pdf}
+\includegraphics{figures/unnamed-chunk-469-1.pdf}
 
 Performing a simple linear regression with this dataset yields the following results:
 
@@ -11740,7 +12510,7 @@ Performing a simple linear regression with this dataset yields the following res
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-430-1.pdf}
+\includegraphics{figures/unnamed-chunk-470-1.pdf}
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
@@ -11829,7 +12599,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-435-1.pdf}
+\includegraphics{figures/unnamed-chunk-475-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -11892,7 +12662,7 @@ We want to know what the chances are that the population has declined between 20
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-439-1.pdf}
+\includegraphics{figures/unnamed-chunk-479-1.pdf}
 
 If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
 
@@ -11917,7 +12687,7 @@ And in this randomization application, the workflow is a bit more simplified. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-440-1.pdf}
+\includegraphics{figures/unnamed-chunk-480-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]

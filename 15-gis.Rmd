@@ -338,67 +338,99 @@ load(destination_file)
 # Read in indicator data
 df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/hefpi.csv')
 
+shp <- world_shp
 ```
 
 
-Subset data by year and indicator
+Subset data by indicator & join with shape file data
 
 ```{r}
-df <- df %>% filter(indicator_name =='Mean BMI, male (age 18+)')
-
-```
-Join with shape file data
-
-```{r, eval=FALSE}
-world_shp@data <- left_join(world_shp@data,df)
+pd <- df %>% filter(indicator_name =='Inpatient care use, adults')
+shp@data <- left_join(shp@data, pd)
 ```
 
 
-Make a map 
+Make a basic (ugly) map 
 
-```{r}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 library(leaflet)
 library(RColorBrewer)
 
 # map text
-map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), domain=world_shp@data$value, na.color="#CECECE")
+map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), domain=shp@data$value, na.color="#CECECE")
+
+    leaflet(shp) %>% 
+        addProviderTiles(provider = providers$Esri.WorldShadedRelief) %>%
+        addPolygons( 
+          fillColor = ~map_palette(value),
+          fillOpacity = 0.9)
+        
+
+```
+
+Clean up the borders and add label
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+
+    leaflet(shp, options = leafletOptions(minZoom = 1,maxZoom = 10)) %>% 
+        addProviderTiles(provider = providers$Esri.WorldShadedRelief) %>%
+        addPolygons( 
+          fillColor = ~map_palette(value),
+          fillOpacity = 0.9)
+        
+
+```
 
 
-    leaflet(world_shp, options = leafletOptions(minZoom = 1, 
-                                                  maxZoom = 10)) %>% 
-        addProviderTiles('Esri.WorldShadedRelief') %>%
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+
+    leaflet(shp, options = leafletOptions(minZoom = 1,maxZoom = 10)) %>% 
+        addProviderTiles(provider = providers$Esri.WorldShadedRelief) %>%
         addPolygons( 
           color = 'black',
           weight=1,
           fillColor = ~map_palette(value), 
           stroke=TRUE,
           fillOpacity = 0.9, 
-          label = ~country,
+          label = ~round(value, 2))
+        
+
+```
+
+
+Add legend
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+
+    leaflet(shp, options = leafletOptions(minZoom = 1,maxZoom = 10)) %>% 
+        addProviderTiles(provider = providers$Esri.WorldShadedRelief) %>%
+        addPolygons( 
+          color = 'black',
+          weight=1,
+          fillColor = ~map_palette(value), 
+          stroke=TRUE,
+          fillOpacity = 0.9, 
+          label = ~country
         ) %>% 
         addLegend( pal=map_palette, values=~value, opacity=0.9, position = "bottomleft", na.label = "NA" )
 
 ```
 
+Add fancy text to map
 
-Add to map 
-
-```{r}
-library(leaflet)
-library(RColorBrewer)
-
-# map text
-map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), domain=world_shp@data$value, na.color="#CECECE")
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+library(htmltools)
 
 # Create map
 map_text <- paste(
-  "Indicator: ",  world_shp@data$indicator_name,"<br>",
-  "Economy: ", as.character(world_shp@data$country),"<br/>", 
-  'Value: ', round(world_shp@data$value, digits = 2),  "<br/>",
-  "Year: ", as.character(world_shp@data$year),"<br/>",sep="") %>%
+  "Indicator: ",  shp@data$indicator_name,"<br>",
+  "Economy: ", as.character(shp@data$country),"<br/>", 
+  'Value: ', round(shp@data$value, digits = 2),  "<br/>",
+  "Year: ", as.character(shp@data$year),"<br/>",sep="") %>%
   lapply(htmltools::HTML)
 
-    leaflet(world_shp, options = leafletOptions(minZoom = 1, 
-                                                  maxZoom = 10)) %>% 
+    leaflet(shp, options = leafletOptions(minZoom = 1, 
+                                                maxZoom = 10)) %>% 
         addProviderTiles('Esri.WorldShadedRelief') %>%
         addPolygons( 
           color = 'black',
@@ -427,4 +459,19 @@ map_text <- paste(
 
 ```
 
+## Exercise {-}
+
+1. Make a choropleth map of BMI for men, where the darker the shade of red, the higher the BMI for each country. 
+
+2. Remove the borders from the map
+
+3. Add a legend on the top right of the map
+
+4. Make the NA color blue
+
+5. Make the hover label a combination of the country and BMI value
+
+6. Make the title of the legend "BMI" 
+
+7. Create a function that takes an indicator name as an input and creates a map.
 
