@@ -318,15 +318,6 @@ world_shp <- readOGR(file.path(destination_directory, 'world_small/'),
                      'TM_WORLD_BORDERS_SIMPL-0.3')
 
 save(world_shp, file = 'data/world_shp.RData')
-
-# get the hefpi data
-destination_directory <- '/tmp'
-destination_file <- file.path(destination_directory, 'hefpi_full_database.dta')
-download.file('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/hefpi_full_database.dta',
-              destfile = destination_file)
-dat <- 
-save(world_shp, file = 'data/world_shp.RData')
-
 ```
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
@@ -335,13 +326,26 @@ library(dplyr)
 library(rgdal)
 library(raster)
 library(sp)
+library(readr)
 destination_directory <- '/tmp'
-destination_file <- file.path(destination_directory, 'sewaneegis.RData')
-if(!'sewaneegis.RData' %in% destination_directory){
+destination_file <- file.path(destination_directory, 'world_shp.RData')
+if(!'data/world_shp.RData' %in% destination_directory){
   download.file(file_source,
                 destfile = destination_file)
 }
 load(destination_file)
+
+# Read in indicator data
+df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/hefpi.csv')
+
+```
+
+Join with shape file data
+
+```{r, eval=FALSE}
+world_shp <- inner_join(world_shp@data,df, by=c('ISO3'='iso3c'))
+
+
 ```
 
 
