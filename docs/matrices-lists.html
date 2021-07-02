@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 27 Matrices &amp; lists | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 27 Matrices &amp; lists | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
@@ -51,6 +51,18 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -116,6 +128,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -576,16 +611,16 @@ $list$vector
 <span id="cb358-3"><a href="matrices-lists.html#cb358-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol=</span><span class="dv">10</span>)</span>
 <span id="cb358-4"><a href="matrices-lists.html#cb358-4" aria-hidden="true" tabindex="-1"></a>mx</span>
 <span id="cb358-5"><a href="matrices-lists.html#cb358-5" aria-hidden="true" tabindex="-1"></a>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>] [,<span class="dv">5</span>] [,<span class="dv">6</span>] [,<span class="dv">7</span>] [,<span class="dv">8</span>] [,<span class="dv">9</span>] [,<span class="dv">10</span>]</span>
-<span id="cb358-6"><a href="matrices-lists.html#cb358-6" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>,]   <span class="dv">37</span>   <span class="dv">58</span>   <span class="dv">63</span>   <span class="dv">38</span>   <span class="dv">45</span>   <span class="dv">49</span>   <span class="dv">36</span>   <span class="dv">60</span>   <span class="dv">59</span>    <span class="dv">34</span></span>
-<span id="cb358-7"><a href="matrices-lists.html#cb358-7" aria-hidden="true" tabindex="-1"></a> [<span class="dv">2</span>,]   <span class="dv">32</span>   <span class="dv">52</span>   <span class="dv">44</span>   <span class="dv">56</span>   <span class="dv">52</span>   <span class="dv">66</span>   <span class="dv">44</span>   <span class="dv">48</span>   <span class="dv">54</span>    <span class="dv">38</span></span>
-<span id="cb358-8"><a href="matrices-lists.html#cb358-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">3</span>,]   <span class="dv">50</span>   <span class="dv">45</span>   <span class="dv">61</span>   <span class="dv">59</span>   <span class="dv">56</span>   <span class="dv">64</span>   <span class="dv">26</span>   <span class="dv">45</span>   <span class="dv">42</span>    <span class="dv">44</span></span>
-<span id="cb358-9"><a href="matrices-lists.html#cb358-9" aria-hidden="true" tabindex="-1"></a> [<span class="dv">4</span>,]   <span class="dv">62</span>   <span class="dv">37</span>   <span class="dv">50</span>   <span class="dv">52</span>   <span class="dv">35</span>   <span class="dv">53</span>   <span class="dv">47</span>   <span class="dv">56</span>   <span class="dv">44</span>    <span class="dv">50</span></span>
-<span id="cb358-10"><a href="matrices-lists.html#cb358-10" aria-hidden="true" tabindex="-1"></a> [<span class="dv">5</span>,]   <span class="dv">57</span>   <span class="dv">46</span>   <span class="dv">47</span>   <span class="dv">56</span>   <span class="dv">46</span>   <span class="dv">54</span>   <span class="dv">47</span>   <span class="dv">53</span>   <span class="dv">51</span>    <span class="dv">48</span></span>
-<span id="cb358-11"><a href="matrices-lists.html#cb358-11" aria-hidden="true" tabindex="-1"></a> [<span class="dv">6</span>,]   <span class="dv">41</span>   <span class="dv">38</span>   <span class="dv">55</span>   <span class="dv">36</span>   <span class="dv">71</span>   <span class="dv">41</span>   <span class="dv">78</span>   <span class="dv">51</span>   <span class="dv">59</span>    <span class="dv">33</span></span>
-<span id="cb358-12"><a href="matrices-lists.html#cb358-12" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>,]   <span class="dv">51</span>   <span class="dv">45</span>   <span class="dv">32</span>   <span class="dv">46</span>   <span class="dv">55</span>   <span class="dv">42</span>   <span class="dv">55</span>   <span class="dv">71</span>   <span class="dv">64</span>    <span class="dv">62</span></span>
-<span id="cb358-13"><a href="matrices-lists.html#cb358-13" aria-hidden="true" tabindex="-1"></a> [<span class="dv">8</span>,]   <span class="dv">38</span>   <span class="dv">60</span>   <span class="dv">49</span>   <span class="dv">48</span>   <span class="dv">43</span>   <span class="dv">56</span>   <span class="dv">53</span>   <span class="dv">34</span>   <span class="dv">50</span>    <span class="dv">43</span></span>
-<span id="cb358-14"><a href="matrices-lists.html#cb358-14" aria-hidden="true" tabindex="-1"></a> [<span class="dv">9</span>,]   <span class="dv">63</span>   <span class="dv">51</span>   <span class="dv">42</span>   <span class="dv">53</span>   <span class="dv">53</span>   <span class="dv">64</span>   <span class="dv">54</span>   <span class="dv">53</span>   <span class="dv">39</span>    <span class="dv">62</span></span>
-<span id="cb358-15"><a href="matrices-lists.html#cb358-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">10</span>,]   <span class="dv">51</span>   <span class="dv">47</span>   <span class="dv">69</span>   <span class="dv">63</span>   <span class="dv">50</span>   <span class="dv">46</span>   <span class="dv">52</span>   <span class="dv">66</span>   <span class="dv">64</span>    <span class="dv">47</span></span>
+<span id="cb358-6"><a href="matrices-lists.html#cb358-6" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>,]   <span class="dv">57</span>   <span class="dv">50</span>   <span class="dv">49</span>   <span class="dv">56</span>   <span class="dv">45</span>   <span class="dv">42</span>   <span class="dv">26</span>   <span class="dv">54</span>   <span class="dv">52</span>    <span class="dv">57</span></span>
+<span id="cb358-7"><a href="matrices-lists.html#cb358-7" aria-hidden="true" tabindex="-1"></a> [<span class="dv">2</span>,]   <span class="dv">62</span>   <span class="dv">52</span>   <span class="dv">45</span>   <span class="dv">52</span>   <span class="dv">50</span>   <span class="dv">54</span>   <span class="dv">64</span>   <span class="dv">38</span>   <span class="dv">51</span>    <span class="dv">62</span></span>
+<span id="cb358-8"><a href="matrices-lists.html#cb358-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">3</span>,]   <span class="dv">54</span>   <span class="dv">41</span>   <span class="dv">55</span>   <span class="dv">31</span>   <span class="dv">52</span>   <span class="dv">43</span>   <span class="dv">41</span>   <span class="dv">44</span>   <span class="dv">40</span>    <span class="dv">39</span></span>
+<span id="cb358-9"><a href="matrices-lists.html#cb358-9" aria-hidden="true" tabindex="-1"></a> [<span class="dv">4</span>,]   <span class="dv">40</span>   <span class="dv">54</span>   <span class="dv">59</span>   <span class="dv">43</span>   <span class="dv">52</span>   <span class="dv">33</span>   <span class="dv">37</span>   <span class="dv">69</span>   <span class="dv">37</span>    <span class="dv">57</span></span>
+<span id="cb358-10"><a href="matrices-lists.html#cb358-10" aria-hidden="true" tabindex="-1"></a> [<span class="dv">5</span>,]   <span class="dv">48</span>   <span class="dv">41</span>   <span class="dv">48</span>   <span class="dv">55</span>   <span class="dv">49</span>   <span class="dv">62</span>   <span class="dv">41</span>   <span class="dv">54</span>   <span class="dv">75</span>    <span class="dv">62</span></span>
+<span id="cb358-11"><a href="matrices-lists.html#cb358-11" aria-hidden="true" tabindex="-1"></a> [<span class="dv">6</span>,]   <span class="dv">67</span>   <span class="dv">41</span>   <span class="dv">56</span>   <span class="dv">45</span>   <span class="dv">35</span>   <span class="dv">57</span>   <span class="dv">38</span>   <span class="dv">37</span>   <span class="dv">43</span>    <span class="dv">52</span></span>
+<span id="cb358-12"><a href="matrices-lists.html#cb358-12" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>,]   <span class="dv">46</span>   <span class="dv">40</span>   <span class="dv">46</span>   <span class="dv">47</span>   <span class="dv">54</span>   <span class="dv">51</span>   <span class="dv">30</span>   <span class="dv">76</span>   <span class="dv">59</span>    <span class="dv">46</span></span>
+<span id="cb358-13"><a href="matrices-lists.html#cb358-13" aria-hidden="true" tabindex="-1"></a> [<span class="dv">8</span>,]   <span class="dv">57</span>   <span class="dv">43</span>   <span class="dv">61</span>   <span class="dv">46</span>   <span class="dv">55</span>   <span class="dv">65</span>   <span class="dv">40</span>   <span class="dv">55</span>   <span class="dv">60</span>    <span class="dv">52</span></span>
+<span id="cb358-14"><a href="matrices-lists.html#cb358-14" aria-hidden="true" tabindex="-1"></a> [<span class="dv">9</span>,]   <span class="dv">62</span>   <span class="dv">61</span>   <span class="dv">56</span>   <span class="dv">66</span>   <span class="dv">45</span>   <span class="dv">34</span>   <span class="dv">48</span>   <span class="dv">59</span>   <span class="dv">66</span>    <span class="dv">44</span></span>
+<span id="cb358-15"><a href="matrices-lists.html#cb358-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">10</span>,]   <span class="dv">58</span>   <span class="dv">46</span>   <span class="dv">60</span>   <span class="dv">43</span>   <span class="dv">57</span>   <span class="dv">51</span>   <span class="dv">59</span>   <span class="dv">61</span>   <span class="dv">68</span>    <span class="dv">45</span></span>
 <span id="cb358-16"><a href="matrices-lists.html#cb358-16" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap</span>(mx,<span class="at">Rowv=</span><span class="cn">NA</span>,<span class="at">Colv=</span><span class="cn">NA</span>)</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-387-1.png" width="925.44" /></p>
 <p>To see a real-world example of a matrix in action, here is a dataset containing rates of social associations, scaled between 0 and 0.5, among humpback whales in the fjords of British Columbia, Canada: <a href="data:application/octet-stream;base64,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" download="humpback-sociality.rds">humpback-sociality.rds</a>.</p>
@@ -670,6 +705,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
