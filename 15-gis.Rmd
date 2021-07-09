@@ -338,16 +338,9 @@ pd <- df %>% filter(indicator_name =='Inpatient care use, adults')
 shp@data <- left_join(shp@data, pd)
 ```
 
-Join with shape file data
-
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-world_shp@data <- left_join(world_shp@data,df)
-```
-
-
 Make a basic (ugly) map 
 
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 library(leaflet)
 library(RColorBrewer)
 
@@ -363,7 +356,7 @@ map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), domain=shp@data$v
 
 ```
 
-Clean up the borders and add label
+Set min and max zoom
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 
@@ -376,6 +369,8 @@ Clean up the borders and add label
 
 ```
 
+
+Add colors based on value
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 
@@ -391,7 +386,6 @@ Clean up the borders and add label
         
 
 ```
-
 
 Add legend
 

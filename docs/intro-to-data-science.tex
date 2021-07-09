@@ -124,7 +124,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-07-02}
+\date{2021-07-09}
 
 \begin{document}
 \maketitle
@@ -2838,7 +2838,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"M5]{-}(t\&f=o\}/qG\%.?Z|sw$C)"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Vodqrpl7\{\_iCv8F\%!EyX0YJg"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2847,7 +2847,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\SpecialCharTok{::}\FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Rwx\^{}sB$(t*Ml?]j@pu1bE)FS"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"\_el\}kHQOd=@A\textasciigrave{}8L|3fsB:! 0"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4189,7 +4189,7 @@ sample\_n() (and sample\_frac())
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DecValTok{2}\NormalTok{)))}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.830952}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{4.898979}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4199,7 +4199,7 @@ The above could also be written as:
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{sample}\NormalTok{(}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sum }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sqrt}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.656854}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.830952}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11425,18 +11425,36 @@ Let's start by getting some data. Run the below code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{file\_source }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/sewaneegis.RData\textquotesingle{}}
+
+\CommentTok{\# This code is just for getting sewanee data into the repo in an easily readable format...}
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{library}\NormalTok{(rgdal)}
 \FunctionTok{library}\NormalTok{(raster)}
 \FunctionTok{library}\NormalTok{(sp)}
 \NormalTok{destination\_directory }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}/tmp\textquotesingle{}}
-\NormalTok{destination\_file }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(destination\_directory, }\StringTok{\textquotesingle{}sewaneegis.RData\textquotesingle{}}\NormalTok{)}
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\StringTok{\textquotesingle{}sewaneegis.RData\textquotesingle{}} \SpecialCharTok{\%in\%}\NormalTok{ destination\_directory)\{}
-  \FunctionTok{download.file}\NormalTok{(file\_source,}
-                \AttributeTok{destfile =}\NormalTok{ destination\_file)}
-\NormalTok{\}}
-\FunctionTok{load}\NormalTok{(destination\_file)}
+\NormalTok{destination\_file }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(destination\_directory, }\StringTok{\textquotesingle{}sewanee.zip\textquotesingle{}}\NormalTok{)}
+\FunctionTok{download.file}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/sewanee.zip\textquotesingle{}}\NormalTok{,}
+              \AttributeTok{destfile =}\NormalTok{ destination\_file)}
+\FunctionTok{unzip}\NormalTok{(destination\_file, }\AttributeTok{exdir =}\NormalTok{ destination\_directory)}
+\NormalTok{boundary }\OtherTok{\textless{}{-}} \FunctionTok{readOGR}\NormalTok{(destination\_directory, }\StringTok{\textquotesingle{}Boundary2016\textquotesingle{}}\NormalTok{)}
+\NormalTok{OGR data source with driver}\SpecialCharTok{:}\NormalTok{ ESRI Shapefile }
+\NormalTok{Source}\SpecialCharTok{:} \StringTok{"/tmp"}\NormalTok{, layer}\SpecialCharTok{:} \StringTok{"Boundary2016"}
+\NormalTok{with }\DecValTok{7}\NormalTok{ features}
+\NormalTok{It has }\DecValTok{2}\NormalTok{ fields}
+\NormalTok{structures }\OtherTok{\textless{}{-}} \FunctionTok{readOGR}\NormalTok{(destination\_directory, }\StringTok{\textquotesingle{}Domain\_Structures\textquotesingle{}}\NormalTok{)}
+\NormalTok{OGR data source with driver}\SpecialCharTok{:}\NormalTok{ ESRI Shapefile }
+\NormalTok{Source}\SpecialCharTok{:} \StringTok{"/tmp"}\NormalTok{, layer}\SpecialCharTok{:} \StringTok{"Domain\_Structures"}
+\NormalTok{with }\DecValTok{1055}\NormalTok{ features}
+\NormalTok{It has }\DecValTok{113}\NormalTok{ fields}
+\NormalTok{Integer64 fields read as strings}\SpecialCharTok{:}\NormalTok{  Total\_ft2 ft2\_ea\_flr }
+\NormalTok{roads }\OtherTok{\textless{}{-}} \FunctionTok{readOGR}\NormalTok{(destination\_directory, }\StringTok{\textquotesingle{}Roads\textquotesingle{}}\NormalTok{)}
+\NormalTok{OGR data source with driver}\SpecialCharTok{:}\NormalTok{ ESRI Shapefile }
+\NormalTok{Source}\SpecialCharTok{:} \StringTok{"/tmp"}\NormalTok{, layer}\SpecialCharTok{:} \StringTok{"Roads"}
+\NormalTok{with }\DecValTok{404}\NormalTok{ features}
+\NormalTok{It has }\DecValTok{18}\NormalTok{ fields}
+\NormalTok{Integer64 fields read as strings}\SpecialCharTok{:}\NormalTok{  ID ID2 Column }
+\NormalTok{elevation }\OtherTok{\textless{}{-}} \FunctionTok{raster}\NormalTok{(}\FunctionTok{file.path}\NormalTok{(destination\_directory,}
+                              \StringTok{\textquotesingle{}DEM USGS 10m.tif\textquotesingle{}}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11485,7 +11503,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-417-1.pdf}
+\includegraphics{figures/unnamed-chunk-416-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11501,7 +11519,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-418-1.pdf}
+\includegraphics{figures/unnamed-chunk-417-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11534,7 +11552,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-420-1.pdf}
+\includegraphics{figures/unnamed-chunk-419-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11592,7 +11610,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-423-1.pdf}
+\includegraphics{figures/unnamed-chunk-422-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11610,7 +11628,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-424-1.pdf}
+\includegraphics{figures/unnamed-chunk-423-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11624,17 +11642,11 @@ Let's start by getting some data. Run the below code:
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{plot}\NormalTok{(tn)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-425-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{plot}\NormalTok{(elevation, }\AttributeTok{add =}\NormalTok{ T)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{.local}\NormalTok{(.Object, ...)}\SpecialCharTok{:} 
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-424-1.pdf}
 
 Oh no! That didn't work. Why not? Have a look at coordinates
 
@@ -11659,10 +11671,6 @@ Oh no! That didn't work. Why not? Have a look at coordinates
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Error in .local(.Object, ...): 
-\end{verbatim}
-
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{18}
@@ -11674,17 +11682,11 @@ Error in .local(.Object, ...):
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{plot}\NormalTok{(tn)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-428-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{plot}\NormalTok{(elevation\_ll, }\AttributeTok{add =}\NormalTok{ T)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{plot}\NormalTok{(elevation\_ll, }\AttributeTok{add =}\NormalTok{ T)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}elevation\_ll\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-427-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11701,7 +11703,7 @@ Error in .local(.Object, ...):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-429-1.pdf}
+\includegraphics{figures/unnamed-chunk-428-1.pdf}
 
 Uh oh. Same problem as before. We need to ``reproject'' boundary to latitude longitude.
 
@@ -11721,7 +11723,7 @@ Uh oh. Same problem as before. We need to ``reproject'' boundary to latitude lon
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-430-1.pdf}
+\includegraphics{figures/unnamed-chunk-429-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11734,11 +11736,11 @@ Uh oh. Same problem as before. We need to ``reproject'' boundary to latitude lon
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{plot}\NormalTok{(elevation\_ll)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{plot}\NormalTok{(elevation\_ll)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}elevation\_ll\textquotesingle{}}\NormalTok{ not found}
 \FunctionTok{plot}\NormalTok{(boundary\_ll, }\AttributeTok{add =}\NormalTok{ T)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{polypath}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mcrds[, }\DecValTok{1}\NormalTok{], }\AttributeTok{y =}\NormalTok{ mcrds[, }\DecValTok{2}\NormalTok{], }\AttributeTok{border =}\NormalTok{ border, }\AttributeTok{col =}\NormalTok{ col, }\SpecialCharTok{:}\NormalTok{ plot.new has not been called yet}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-430-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11748,11 +11750,7 @@ Uh oh. Same problem as before. We need to ``reproject'' boundary to latitude lon
   Use crop and mask to get just the elevation for the domain. Your plot should look like this.
 \end{enumerate}
 
-\begin{verbatim}
-Error in crop(elevation_ll, boundary_ll): object 'elevation_ll' not found
-Error in mask(domain_elev, boundary_ll): object 'domain_elev' not found
-Error in plot(domain_elev): object 'domain_elev' not found
-\end{verbatim}
+\includegraphics{figures/unnamed-chunk-431-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11771,19 +11769,8 @@ Oh no! Projection problems.
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{24}
-\tightlist
 \item
   Reproject roads and add them.
-\end{enumerate}
-
-\begin{verbatim}
-Error in proj4string(domain_elev): object 'domain_elev' not found
-\end{verbatim}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{25}
-\tightlist
 \item
   Trim down the roads so that we only include those which are in the domain boundary area using the \texttt{over} function.
 \end{enumerate}
@@ -11791,9 +11778,7 @@ Error in proj4string(domain_elev): object 'domain_elev' not found
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{o }\OtherTok{\textless{}{-}} \FunctionTok{over}\NormalTok{(roads\_ll, }\FunctionTok{polygons}\NormalTok{(boundary\_ll))}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{over}\NormalTok{(roads\_ll, }\FunctionTok{polygons}\NormalTok{(boundary\_ll))}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}roads\_ll\textquotesingle{}}\NormalTok{ not found}
 \NormalTok{roads\_ll\_trim }\OtherTok{\textless{}{-}}\NormalTok{ roads\_ll[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(o),]}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}roads\_ll\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11808,11 +11793,11 @@ Error in proj4string(domain_elev): object 'domain_elev' not found
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{plot}\NormalTok{(domain\_elev)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{plot}\NormalTok{(domain\_elev)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
 \FunctionTok{plot}\NormalTok{(roads\_ll\_trim, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{plot}\NormalTok{(roads\_ll\_trim, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}roads\_ll\_trim\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-435-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11826,9 +11811,10 @@ Error in proj4string(domain_elev): object 'domain_elev' not found
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(rasterVis)}
 \NormalTok{rasterVis}\SpecialCharTok{::}\FunctionTok{contourplot}\NormalTok{(domain\_elev)}
-\NormalTok{Error }\ControlFlowTok{in}\NormalTok{ rasterVis}\SpecialCharTok{::}\FunctionTok{contourplot}\NormalTok{(domain\_elev)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-436-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11841,9 +11827,10 @@ Error in proj4string(domain_elev): object 'domain_elev' not found
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{rasterVis}\SpecialCharTok{::}\FunctionTok{levelplot}\NormalTok{(domain\_elev)}
-\NormalTok{Error }\ControlFlowTok{in}\NormalTok{ rasterVis}\SpecialCharTok{::}\FunctionTok{levelplot}\NormalTok{(domain\_elev)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-437-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11856,9 +11843,10 @@ Error in proj4string(domain_elev): object 'domain_elev' not found
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{rasterVis}\SpecialCharTok{::}\FunctionTok{levelplot}\NormalTok{(domain\_elev)}
-\NormalTok{Error }\ControlFlowTok{in}\NormalTok{ rasterVis}\SpecialCharTok{::}\FunctionTok{levelplot}\NormalTok{(domain\_elev)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-438-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11873,7 +11861,6 @@ Error in proj4string(domain_elev): object 'domain_elev' not found
 \FunctionTok{library}\NormalTok{(ggplot2)}
 \NormalTok{domain\_elev\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(domain\_elev, }\AttributeTok{xy =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(DEM\_USGS\_10m))}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{as.data.frame}\NormalTok{(domain\_elev, }\AttributeTok{xy =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\textquotesingle{}}\NormalTok{ not found}
 
 
 \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ domain\_elev\_df,}
@@ -11882,9 +11869,10 @@ Error in proj4string(domain_elev): object 'domain_elev' not found
                   \AttributeTok{fill =}\NormalTok{ DEM\_USGS\_10m)) }\SpecialCharTok{+}
   \FunctionTok{geom\_raster}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{scale\_fill\_gradient2}\NormalTok{(}\AttributeTok{low =} \StringTok{\textquotesingle{}white\textquotesingle{}}\NormalTok{, }\AttributeTok{high =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ domain\_elev\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y, }\AttributeTok{fill =}\NormalTok{ DEM\_USGS\_10m))}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}domain\_elev\_df\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-439-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11902,9 +11890,10 @@ Error in proj4string(domain_elev): object 'domain_elev' not found
 \NormalTok{brk }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{300}\NormalTok{, }\DecValTok{1000}\NormalTok{)}
 
 \FunctionTok{plot}\NormalTok{(elevation, }\AttributeTok{col=}\NormalTok{cols, }\AttributeTok{breaks=}\NormalTok{brk, }\AttributeTok{main=}\StringTok{"High vs low"}\NormalTok{)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{.local}\NormalTok{(.Object, ...)}\SpecialCharTok{:} 
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-440-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11920,15 +11909,15 @@ Error in proj4string(domain_elev): object 'domain_elev' not found
 \FunctionTok{library}\NormalTok{(leaflet)}
 \NormalTok{pal }\OtherTok{\textless{}{-}} \FunctionTok{colorNumeric}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"\#0C2C84"}\NormalTok{, }\StringTok{"\#41B6C4"}\NormalTok{, }\StringTok{"\#FFFFCC"}\NormalTok{), }\FunctionTok{values}\NormalTok{(elevation\_ll),}
   \AttributeTok{na.color =} \StringTok{"transparent"}\NormalTok{)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{values}\NormalTok{(elevation\_ll)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}elevation\_ll\textquotesingle{}}\NormalTok{ not found}
 \FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{addTiles}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{addRasterImage}\NormalTok{(elevation\_ll, }\AttributeTok{colors =}\NormalTok{ pal, }\AttributeTok{opacity =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{addLegend}\NormalTok{(}\AttributeTok{pal =}\NormalTok{ pal, }\AttributeTok{values =} \FunctionTok{values}\NormalTok{(elevation\_ll),}
     \AttributeTok{title =} \StringTok{"Elevation"}\NormalTok{)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{values}\NormalTok{(elevation\_ll)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}elevation\_ll\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-441-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -12017,12 +12006,11 @@ Make a basic (ugly) map
         \FunctionTok{addPolygons}\NormalTok{( }
           \AttributeTok{fillColor =} \SpecialCharTok{\textasciitilde{}}\FunctionTok{map\_palette}\NormalTok{(value),}
           \AttributeTok{fillOpacity =} \FloatTok{0.9}\NormalTok{)}
+        
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-447-1.pdf}
-
-Clean up the borders and add label
+Set min and max zoom
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12035,6 +12023,8 @@ Clean up the borders and add label
         
 \end{Highlighting}
 \end{Shaded}
+
+Add colors based on value
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12086,7 +12076,7 @@ Add fancy text to map
   \FunctionTok{lapply}\NormalTok{(htmltools}\SpecialCharTok{::}\NormalTok{HTML)}
 
     \FunctionTok{leaflet}\NormalTok{(shp, }\AttributeTok{options =} \FunctionTok{leafletOptions}\NormalTok{(}\AttributeTok{minZoom =} \DecValTok{1}\NormalTok{, }
-                                                  \AttributeTok{maxZoom =} \DecValTok{10}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+                                                \AttributeTok{maxZoom =} \DecValTok{10}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
         \FunctionTok{addProviderTiles}\NormalTok{(}\StringTok{\textquotesingle{}Esri.WorldShadedRelief\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
         \FunctionTok{addPolygons}\NormalTok{( }
           \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
@@ -12312,7 +12302,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-457-1.pdf}
+\includegraphics{figures/unnamed-chunk-456-1.pdf}
 
 \textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
 
@@ -12352,7 +12342,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-459-1.pdf}
+\includegraphics{figures/unnamed-chunk-458-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12449,7 +12439,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-465-1.pdf}
+\includegraphics{figures/unnamed-chunk-464-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -12494,7 +12484,7 @@ Each row of this dataset is an abundance estimate from a survey that occurred wi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-469-1.pdf}
+\includegraphics{figures/unnamed-chunk-468-1.pdf}
 
 Performing a simple linear regression with this dataset yields the following results:
 
@@ -12510,7 +12500,7 @@ Performing a simple linear regression with this dataset yields the following res
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-470-1.pdf}
+\includegraphics{figures/unnamed-chunk-469-1.pdf}
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
@@ -12599,7 +12589,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-475-1.pdf}
+\includegraphics{figures/unnamed-chunk-474-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -12662,7 +12652,7 @@ We want to know what the chances are that the population has declined between 20
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-479-1.pdf}
+\includegraphics{figures/unnamed-chunk-478-1.pdf}
 
 If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
 
@@ -12687,7 +12677,7 @@ And in this randomization application, the workflow is a bit more simplified. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-480-1.pdf}
+\includegraphics{figures/unnamed-chunk-479-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
