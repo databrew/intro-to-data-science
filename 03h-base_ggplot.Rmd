@@ -1,6 +1,5 @@
 # Basics of `ggplot`
 
-(Refer heavily to https://ggplot2-book.org/introduction.html)
 
 #### Learning goals {-}
 
@@ -8,7 +7,7 @@
 - Be able to think conceptually in the framework of the "grammar of graphics"
 - Learn the syntax for creating different plots using using `ggplot2`
 
-## Thinking about data visualization
+## Thinking about data visualization {-}
 
 Let's start with a video: https://youtu.be/5Zg-C8AAIGg.
 
@@ -16,7 +15,9 @@ And one by Hans Rosling too: https://www.youtube.com/watch?v=FACK2knC08E
 
 ## What is `ggplot`?  {-}
 
-`ggplot2` is an R package. It's one of the most downloaded packages in the R universe, and has become the gold standard for data visualization. It's extremely powerful and flexible, and allows for creating lots of visualizations of different types, ranging from maps to bare-bones academic publications, to complex, paneled charts with labeling, etc. Because the syntax is so different from "base" R, it can give the impression of having a somewhat steep learning curve. But in reality, because the principles are so conceptually simple, learning is fairly fast. Generally those who choose to learn it stick with it; that is, once you go gg, you don't go back.
+`ggplot2` is an `R` package. It's one of the most downloaded packages in the `R` universe, and has become the gold standard for data visualization. It's extremely powerful and flexible, and allows for creating lots of visualizations of different types, ranging from maps to bare-bones academic publications, to complex, paneled charts with labeling, etc. Because the syntax is so different from "base" `R`, it can give the impression of having a somewhat steep learning curve. But in reality, because the principles are so conceptually simple, learning is fairly fast. Generally those who choose to learn it stick with it; that is, once you go `gg`, you don't go back.
+
+**Note:** we will refer heavily to this [**online guide about `ggplot`**](https://ggplot2-book.org/introduction.html)
 
 ## The name and concept  {-}
 
@@ -36,7 +37,7 @@ And one by Hans Rosling too: https://www.youtube.com/watch?v=FACK2knC08E
 
 ## Practice {-}
 
-Titanice data set 
+Let's learn by doing. First, load the `titanic` data set:
 
 ```{r,echo=TRUE,collapse=TRUE}
 library(ggplot2)
@@ -49,98 +50,139 @@ titanic<- read_csv("https://raw.githubusercontent.com/databrew/intro-to-data-sci
 
 ## Scatter plot {-} 
 
-Call the plot
+Call the plot:
 
 ```{r,echo=TRUE,collapse=TRUE}
 ggplot()
 ```
 
-Aesthetics (mapping variables to the x y plane)
+Aesthetics (mapping variables to the x y plane):
 
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic, aes(x = Age, y = Fare))
+ggplot(data = titanic, 
+       aes(x = Age, y = Fare))
 ```
 
-Geometry 
+Geometry:
 
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point()
+ggplot(data = titanic, 
+       aes(x = Age, y = Fare)) + 
+  geom_point()
 ```
 
-Statistics 
+Statistics:
+
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm')
+ggplot(data = titanic, 
+       aes(x = Age, y = Fare)) + 
+  geom_point() + 
+  geom_smooth(method = 'lm')
 ```
 
-Labs
+Labels:
+
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm') + labs(title = 'Relationship between Age and Fare')
+ggplot(data = titanic, 
+       aes(x = Age, y = Fare)) + 
+  geom_point() + 
+  geom_smooth(method = 'lm') + 
+  labs(title = 'Relationship between Age and Fare')
 ```
 
-Facets 
+Facets:
 
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm') + labs(title = 'Relationship between Age and Fare') +
+ggplot(data = titanic, 
+       aes(x = Age, y = Fare)) + 
+  geom_point() + 
+  geom_smooth(method = 'lm') + 
+  labs(title = 'Relationship between Age and Fare') +
   facet_wrap(~Sex)
-
 ```
 
-Themes 
+Themes:
 
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic, aes(x = Age, y = Fare)) + geom_point() + geom_smooth(method = 'lm') + labs(title = 'Relationship between Age and Fare') +
-  facet_wrap(~Sex) + theme_fivethirtyeight()
-
+ggplot(data = titanic, 
+       aes(x = Age, y = Fare)) + 
+  geom_point() + 
+  geom_smooth(method = 'lm') + 
+  labs(title = 'Relationship between Age and Fare') +
+  facet_wrap(~Sex) + 
+  theme_fivethirtyeight()
 ```
 
 ## Barplot {-}
 
-Get counts for sex
+Get counts for sex:
 
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic, aes(x = Sex)) + geom_bar(stat='count')
+ggplot(data = titanic, 
+       aes(x = Sex)) + 
+  geom_bar(stat='count')
 ```
 
 Explicitly set y to another variable
 
 ```{r,echo=TRUE,collapse=TRUE}
-titanic_age <- titanic %>% group_by(Sex) %>% summarise(mean_age = mean(Age, na.rm= TRUE))
-ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity')
+titanic_age <- titanic %>% 
+  group_by(Sex) %>% 
+  summarise(mean_age = mean(Age, na.rm= TRUE))
+
+ggplot(data = titanic_age, 
+       aes(x = Sex,y= mean_age)) + 
+  geom_bar(stat = 'identity')
 ```
 
 Fill
 
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) 
+ggplot(data = titanic_age, 
+       aes(x = Sex,y= mean_age)) + 
+  geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) 
 ```
 
 Labs
 
 ```{r,echo=TRUE,collapse=TRUE}
-
-ggplot(data = titanic_age, aes(x = Sex,y= mean_age)) + geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) + labs(y = 'Mean age', title = 'Average age by sex')
-
+ggplot(data = titanic_age, 
+       aes(x = Sex,y= mean_age)) + 
+  geom_bar(stat = 'identity', fill = 'blue', alpha = 0.5) + 
+  labs(y = 'Mean age', title = 'Average age by sex')
 ```
 
 Add another variable
 
 ```{r,echo=TRUE,collapse=TRUE}
-titanic_em <- titanic %>% group_by(Sex, Survived) %>% summarise(mean_age= mean(Age, na.rm = TRUE))
-titanic_em <- titanic_em %>% mutate(Survived = ifelse(Survived == 1, 'Survived','Dead' ))
-ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity')
+titanic_em <- titanic %>% 
+  group_by(Sex, Survived) %>% 
+  summarise(mean_age= mean(Age, na.rm = TRUE))
+
+titanic_em <- titanic_em %>% 
+  mutate(Survived = ifelse(Survived == 1, 'Survived','Dead' ))
+
+ggplot(data = titanic_em, 
+       aes(x=Sex, y=mean_age, fill = Survived)) +
+  geom_bar(stat='identity')
 
 ```
 
 Dodge
 
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity', position = 'dodge') 
+ggplot(data = titanic_em, 
+       aes(x=Sex, y=mean_age, fill = Survived)) +
+  geom_bar(stat='identity', position = 'dodge') 
 ```
 
 Scales
 
 ```{r,echo=TRUE,collapse=TRUE}
-ggplot(data = titanic_em, aes(x=Sex, y=mean_age, fill = Survived)) + geom_bar(stat='identity', position = 'dodge', alpha = 0.7) + scale_fill_manual(values = c('blue', 'grey'))
+ggplot(data = titanic_em, 
+       aes(x=Sex, y=mean_age, fill = Survived)) +
+  geom_bar(stat='identity', position = 'dodge', alpha = 0.7) +
+  scale_fill_manual(values = c('blue', 'grey'))
 ```
 
 
@@ -156,13 +198,16 @@ bn <- babynames
 francis <- bn %>% filter(name == 'Francis', sex == 'M')
 
 # line plot
-ggplot(data=francis, aes(x = year, y =n )) + geom_line() + labs(x = 'Year', y = 'Number of boys named Francis')
-
+ggplot(data=francis, 
+       aes(x = year, y =n )) + 
+  geom_line() + 
+  labs(x = 'Year', y = 'Number of boys named Francis')
 # layer with points
-ggplot(data=francis, aes(x = year, y =n )) + geom_line() + geom_point() + labs(x = 'Year', y = 'Number of boys named Francis')
-
-ggplot(data=francis, aes(x = year, y =n )) + geom_line() + geom_point() + labs(x = 'Year', y = 'Number of boys named Francis')
-
+ggplot(data=francis, 
+       aes(x = year, y =n )) + 
+  geom_line() + 
+  geom_point() + 
+  labs(x = 'Year', y = 'Number of boys named Francis')
 ```
 
 ## Practice exercises 1 {-}

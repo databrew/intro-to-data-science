@@ -1,22 +1,30 @@
-# Dataframes {#dataframes}
+# Dataframes: Intro 
 
-### Dataframes & other data structures  {-}
-
-#### Learning goals {-}
+#### Learning goal {-}
 
 * Practice exploring, summarizing, and filtering dataframes
-* Understand the importance of *tidy* datasets
-* Understand what the `tidyverse` is and why it is awesome
 
-A **vector** is the most basic data structure in `R`, and the other structures are built out of vectors.
+&nbsp;  
 
-As a data scientist, the most common data structure you will be working with is a **dataframe**, which is essentially a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data. 
+A vector is the most basic data structure in `R`, and the other structures are built out of vectors. But, as a data scientist, the most common data structure you will be working with -- by far -- is a **dataframe**. A dataframe, essentially, is a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data. 
 
-We will explore dataframes in detail later, but here is a sneak peak at what they look like:
+## Introducing dataframes {-} 
+
+Here is what a dataframe looks like:
 
 ```{r,echo=TRUE,collapse=TRUE}
-df <- data.frame(x=300:310,
-           y=600:610)
+# Using one of R's built-in datasets
+head(iris)
+```
+
+In this dataframe, each row pertains to a unique iris plant. The columns contain related information about each individual plant. 
+
+Here's another data.frame, built from scratch, which shows that dataframes are just a group of vectors:
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- 25:29
+y <- 55:59
+df <- data.frame(x,y)
 df
 ```
 
@@ -32,23 +40,17 @@ df
 
 This dataframe has one column of class `character` and another of class `numeric`.
 
-Typically you will "read" data into Rstudio from a folder on your computer (to be covered later). However, R (and many R packages) come with built-in, clean data 
 
-To see what's available
-
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-data()
-```
-
-The two other most common data structures are **matrices** and **lists**, but we will wait on learning about those. For now, focus on becoming comfortable using vectors and dataframes. 
-
-### Exercise 4 {-}
+### Exercise 1 {-}
 
 Let's create a new object named `animals`. This is going to be a dataframe with 4 different columns: `species`, `height`, `color`, `veg` (whether or not the animal is a vegetarian). 
 
-### More on dataframes
+First, come up with five species to add to your dataframe and list them in a vector named `species`. 
 
-In data science, the most common data structure you will be using -- by far -- is the **dataframe**. You were introduced to this data structure in Module 10, but a more familiar and detailed orientation is worthwhile. 
+Second, make the other vectors with details about those species in the correct order. 
+
+Third, combine these vectors into a dataframe named `animals`.
+
 
 ## Subsetting & exploring dataframes {-} 
 
@@ -59,22 +61,38 @@ To explore dataframes, let's use a dataset on fuel mileage for all cars sold fro
 library(fueleconomy)
 data(vehicles)
 head(vehicles)
-# View(vehicles)
+```
+
+To look at this dataframe in full, you call display it in a separate tab within `RStudio` using the `View()` functions:
+
+```{r,echo=TRUE,collapse=TRUE,eval=FALSE}
+View(vehicles)
 ```
 
 A dataframe has rows of data organized into columns. In this dataframe, each row pertains to a single vehicle make/model -- i.e., a single *observation*. Each column pertains to a single *type* of data. Columns are named in the *header* of the dataframe. 
 
-All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes (see module 10 for a refreshers). In addition to those functions you already know, we've added some new functions to your inventory of useful functions.
+All the same useful exploration and [subsetting functions](#subsetting) that applied to vectors now apply to dataframes. In addition to those functions you already know, let's add some new functions to your inventory of useful functions.
 
 ### Exploration {-}
 
 ```{r,echo=TRUE,collapse=TRUE}
-tail(vehicles) # head() and tail() summarize the beginning and end of the object
-names(vehicles) # get names of columns
+# head() and tail() summarize the beginning and end of the object
+tail(vehicles) 
+```
 
-nrow(vehicles) # get number of rows
+```{r,echo=TRUE,collapse=TRUE}
+# get names of columns
+names(vehicles) 
+```
 
-ncol(vehicles) # get number of columns
+```{r,echo=TRUE,collapse=TRUE}
+# get number of rows
+nrow(vehicles) 
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+# get number of columns
+ncol(vehicles) 
 ```
 
 Note that `length()` does not work the same on dataframes as it does with vectors. In dataframes, `length()` is the equivalent of `ncol()`; it will *not* give you the number of rows in a dataset.
@@ -90,7 +108,6 @@ any(is.na(vehicles$id))
 any(is.na(vehicles$make))
 
 ```
-
 
 ### Subsetting {-}
 
@@ -129,29 +146,25 @@ vehicles$hwy[1:5,]
 
 ...`R` will throw a fit.  
 
-You can use logical tests to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:
+Also recall that you can use logical tests, which return boolean values `TRUE` or `FALSE`, to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:
 
 ```{r,echo=TRUE,collapse=TRUE}
-keeps <- which(vehicles$hwy > 100)
-keeps
-vehicles[keeps,]
+# Build your logical test
+verdicts <- vehicles$hwy > 100
+
+# Subset with booleans
+vehicles[verdicts,2:3]
 ```
 
-But the above is a long-winded way of doing this. You can also achieve this result as follows:
-
-```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
-vehicles[which(vehicles$hwy > 100),]
+```{r,echo=TRUE,collapse=TRUE}
+# Write this in one line to be more efficient:
+vehicles[ vehicles$hwy > 100  , 2:3]
 ```
 
-You can also get the same result without the `which()` function:
+Recall that the logical test is returning a bunch of `TRUE`'s and `FALSE`'s, one for each row of `vehicles`. Only the `TRUE` rows will be returned.  
 
-```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
-vehicles[vehicles$hwy > 100,]
-```
 
-The logical test is returning a bunch of `TRUE`s and `FALSE`s, one for each row of `vehicles`. Only the `TRUE` rows will be returned.  
-
-#### Exercise 1: Reading for errors {-}
+#### Exercise 2: Reading for errors {-}
 
 What is wrong with these commands? Why will each of them throw an error if you run them, and how can you fix them?
 
@@ -175,10 +188,25 @@ The same summary functions that you have used for vectors work for dataframes, s
 
 ```{r,echo=TRUE,collapse=TRUE}
 min(vehicles$hwy)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
 max(vehicles$hwy)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
 mean(vehicles$cty)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
 sd(vehicles$cty)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
 str(vehicles$make)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
 class(vehicles$hwy)
 ```
 
@@ -197,8 +225,10 @@ unique(vehicles$fuel)
 Finally, the **`order()`** function helps you sort a dataframe according to the values in one of its columns.
 
 ```{r,echo=TRUE,collapse=TRUE}
-vehicles_sorted <- vehicles[order(vehicles$hwy),  #sort dataframe by highway mileage
-                            c(2,3,4,10:12)] # only keep certain columns
+ #sort dataframe by highway mileage
+# only keep certain columns
+vehicles_sorted <- vehicles[order(vehicles$hwy), 
+                            c(2,3,4,10:12)] 
 head(vehicles_sorted)
 ```
 
@@ -213,7 +243,7 @@ head(vehicles_sorted)
 
 ### Building dataframes {-}
 
-To create a new dataframe, use the `data.frame()` function.
+As shown above, to create a new dataframe, use the `data.frame()` function.
 
 ```{r,collapse=TRUE}
 my_vehicles <- data.frame(car=paste(vehicles$make,vehicles$model),
@@ -241,10 +271,14 @@ df[1:4,1:4]
 You can bind multiple dataframes together using **`rbind()`**: 
 
 ```{r,echo=TRUE,collapse=TRUE}
-df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),
+                  instrument=c("Nose harp","Concertina","Ukelele","Drums"))
 df1
+```
 
-df2 <- data.frame(name=c("Matthew"),instrument=c("Washboard"))
+```{r,echo=TRUE,collapse=TRUE}
+df2 <- data.frame(name=c("Matthew"),
+                  instrument=c("Washboard"))
 rbind(df1,df2)
 ```
 
@@ -254,22 +288,30 @@ The only exception to this is adding a dataframe with content an empty dataframe
 
 ```{r,echo=TRUE,collapse=TRUE}
 df <- data.frame() # stage empty dataframe
-df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+
+df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),
+                  instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+
 df <- rbind(df,df1)
+
 df
 ```
 
 You can also bind multiple dataframes together using **`cbind()`**: 
 ```{r,echo=TRUE,collapse=TRUE}
-df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),
+                  instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+
 df <- data.frame(age=c(33,35,35,20), home=c("Canada","Spain","USA","USA"))
+
 df <- cbind(df,df1)
+
 df
 ```
 
 Note that to be combined, two dataframes have to have the exact same number of rows and the exact same column names.
 
-### Exercise 2: Subsetting and filtering {-}
+### Exercise 3: Subsetting and filtering {-}
 
 **A. Subset one field according to a logical test**  
 With no more than two lines of code, get the number of Honda cars in the `vehicles` dataset.  
@@ -296,317 +338,3 @@ According to this dataset, how many different car makes/models have been produce
 
 4. Combine these two vectors into a data frame.
 
-## dplyr {-}
-
-Data scientists largely work in data frames and _do things_ to data. This is what dplyr is optimized for. It consists of a series of "verbs" which cover 95% of what you need to do for most basic data processing tasks. 
-
-#### The verbs {-}
-
-filter()  
-arrange()  
-select()   
-rename()  
-distinct()  
-mutate()   
-summarise()  
-sample_n() (and sample_frac())  
-
-#### The pipe
-
-`%>%` is a "pipe". It is a way to write code without so many parenthesis. For example, what if I want to find the square root of the sum of a sample of two integers from a sequence of 10 to 20 by 2:
-
-```{r,echo=TRUE,collapse=TRUE}
-sqrt(sum(sample(seq(10, 20, 2), 2)))
-```
-
-The above could also be written as:
-
-```{r,echo=TRUE,collapse=TRUE}
-library(dplyr)
-seq(10, 20, 2) %>% sample(2) %>% sum %>% sqrt
-```
-
-Similarly the below:
-
-```{r,echo=TRUE,collapse=TRUE}
-mean(sd(log(1:100)))
-```
-
-Could also be written as:
-
-```{r,echo=TRUE,collapse=TRUE}
-1:100 %>% log %>% sd %>% mean
-```
-
-It can be read as "then".
-
-#### Filtering {-}
-
-The filter() function is used to subset a data frame, retaining all rows that satisfy your conditions. To be retained, the row must produce a value of TRUE for all conditions. Note that when a condition evaluates to NA the row will be dropped, unlike base subsetting with [.
-
-```{r,echo=TRUE,collapse=TRUE}
-library(dplyr)
-people <- data.frame(who = c('Joe', 'Ben', 'Xing', 'Coloma'),
-                    sex = c('Male', 'Male', 'Female', 'Female'),
-                    age = c(35, 33, 32, 34))
-
-men <- people %>%
-  filter(sex == 'Male')
-women <- people %>%
-  filter(sex == 'Male')
-```
-
-
-#### Arranging {-}
-
-Arrange means putting things in order. That is, arrange() orders the rows of a data frame by the values of selected columns.
-
-Unlike other dplyr verbs, arrange() largely ignores grouping; you need to explicitly mention grouping variables (or use .by_group = TRUE) in order to group by them, and functions of variables are evaluated once per data frame, not once per group. For example:
-
-```{r,echo=TRUE,collapse=TRUE}
-people %>% arrange(age)
-
-people %>% arrange(sex)
-
-people %>% arrange(who)
-
-people %>% arrange(desc(age))
-
-```
-
-#### Selecting {-}
-
-Select (and optionally rename) variables in a data frame, using a concise mini-language that makes it easy to refer to variables based on their name (e.g. a:f selects all columns from a on the left to f on the right). You can also use predicate functions like is.numeric to select variables based on their properties.
-
-```{r,echo=TRUE,collapse=TRUE}
-people %>% select(age)
-
-people %>% select(sex, age)
-
-people %>% select(sex, years = age)
-```
-
-
-#### Renaming {-}
-
-rename() changes the names of individual variables using new_name = old_name syntax; rename_with() renames columns using a function.
-
-```{r,echo=TRUE,collapse=TRUE}
-people %>% rename(gender = sex, years = age, first_name = who)
-
-```
-
-
-#### Mutating {-}
-
-mutate() adds new variables and preserves existing ones; transmute() adds new variables and drops existing ones. New variables overwrite existing variables of the same name. Variables can be removed by setting their value to NULL.
-
-```{r,echo=TRUE,collapse=TRUE}
-people %>% mutate(agein2020 = age - 1)
-
-people %>% mutate(is_male = sex == 'Male')
-
-people %>% mutate(who = NULL)
-
-people %>% mutate(average_age = mean(age))
-
-people %>% mutate(average_age = mean(age)) %>%
-  mutate(diff_from_avg = age - average_age)
-
-
-```
-
-
-#### Grouping {-}
-
-Most data operations are done on groups defined by variables. group_by() takes an existing tbl and converts it into a grouped tbl where operations are performed "by group". ungroup() removes grouping.
-
-
-
-```{r,echo=TRUE,collapse=TRUE}
-people %>% 
-  group_by(sex) %>%
-  mutate(average_age_for_sex = mean(age)) 
-
-people %>% 
-  group_by(sex) %>%
-  mutate(average_age_for_sex = mean(age)) %>%
-  mutate(diff_from_avg_for_sex = age - average_age_for_sex)
-```
-
-#### Summarizing {-} 
-
-summarise() or summarize() creates a new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.
-
-```{r,echo=TRUE,collapse=TRUE}
-people %>% 
-  summarise(average_age = mean(age))
-
-people %>% 
-  summarise(average_age = mean(age),
-            standard_dev_of_age = sd(age),
-            oldest_age = max(age),
-            youngest_age = min(age))
-
-people %>% 
-  group_by(sex) %>%
-  summarise(avg_age = mean(age),
-            oldest_age = max(age),
-            total_years = sum(age)) 
-
-people %>%
-  group_by(sex) %>%
-  summarise(sample_size = n())
-```
-
-
-#### Review exercise {-}
-
-
-1. Run the below code.
-
-```{r,echo=TRUE,collapse=TRUE}
-library(dplyr)
-library(babynames)
-bn <- babynames
-```
-
-2. Crete a dataframe named `turn_of_century. This should be data on baby names for the year 1900
-
-3. Create a dataframe named `boys`. This should be only males
-
-4. Create a dataframe named `moms_gen`. This should be females born in the year of birth of your mom.
-
-5. Order `moms_gen` by `n`, in ascending order (ie, the least popular name at top). Look at the result; what is the least popular name among women the year your mom was born?
-
-6. Reverse the order and save the result into an object named `moms_gen_ordered`.
-
-7. Create an object named `boys2k`. This should be all males born in the year 2000.
-
-8. Arrange `boys2k` from most to least popular. What was the most popular boys name in 2000?
-
-9. What percentage of boys were named `Joseph` in 2000?
-
-10. Were there more Jims or Matthews in 2020?
-
-11. How many people were born with _your_ name in 2020.
-
-#### Group activity {-}
-
-Using the `deaths` data, we're going to answer some questions together. Start with:
-
-```{r,echo=TRUE,collapse=TRUE}
-library(readr)
-library(dplyr)
-df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv')
-```
-
-1. How many people are in the dataset.
-
-2. Use `summarize` to count the number of men and women.  
-
-3. Use `summarize` to count the number of people in each class.  
-
-4. Use `summarize` to count the number of men and women in each class.  
-
-5. Use `mutate` to create a variable called `died`. This should be a boolean based on the `Survived` column (in which 1 means the person survived, and 0 means the person died).
-
-6. Use `mutate` to create a variable called `child`. This should be a boolean based on the `Age` column, indicating if someone was less than 18 years old.
-
-7. Create a different dataframe for men vs. women. Name them accordingly.
-
-8. Create a different dataframe for class 1, class 2, and class 3. Name them accordingly.
-
-9. For each of the 5 datasets you've just created, what is the death rate?
-
-10. For each of the 5 datasets, how many children died?
-
-11. Now, using the _full_ dataset, calculate the child-specific death rate for each combination of class and sex (ie, "first class females", "third class males", etc.). 
-
-12. What did you find? What might explain that?
-
-```{r,echo=FALSE,collapse=TRUE, eval = FALSE}
-# class survey data
-library(gsheet)
-survey <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767')
-```
-
-
-
-
-#### Team exercises {-}
-
-Before getting started, start a new script (ctrl + shift + n), name it `survey_exercises.R`, and copy-paste the following code at the top.
-
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-# Load library
-library(gsheet)
-library(dplyr)
-
-# Read in data
-survey  <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767')
-
-# remake the names
-names(survey) <- c('time', 'sex', 'age','sib', 'dad_mus', 'person_mus', 'joe_mus_is', 'eyesight', 'height', 'shoe_size', 'bday', 'money_or_love', 'rps_skill', 'num_pan', 'cats_dogs', 'name')
-
-```
-
-
-1) Create a dataframe called `old_people`. This should include only people older than 20. Write code to calculate the number rows in your new dataframe.
-
-2) Create a dataframe called `captivated`. This should include all those people who find Joe's moustache to be "deeply captivating". Write code to calculate the number rows in your new dataframe.
-
-
-3) Create a dataframe called `special_people`. This should be people who are taller than 175cm, prefer cats over dogs, and consider themselves to be average at rock, paper, scissors.
-
-4) In the full dataset (survey), do more people like cats or dogs? What about among "special" people?
-
-5) Create a new variable in `survey` called "std_shoes" that standardizes shoe sizes by converting men's shoe size to women's (There is an approximate 1.5 size difference between Men's and Women's sizing (e.g., a men's size 7 is roughly equivalent to a women's size 8.5)
-
-6) Get the avg shoe size by sex (Male, Female, Prefer not to say) 
-
-7) Get Average age, height, & number of siblings, by the sex
-
-8) Do people that have ever had a mustache think there will be more pandemics on average than those who have never had a mustache?
-
-9) Do people that prefer cats have smaller feet on average than those who prefer dogs?
-
-10) Is eyesight associated with moustache perception?
-
-11) What percentage of people think they are better than average at rock scissors paper?
-
-12) What percentage of men and women think they are better than average at rock scissors paper?
-
-13) How many people think money matters more than love?
-
-14) Create a dataframe, grouped by whether or not people's dads had moustaches, with variables showing each of the following: the maximum age, maximum height,minimum number of pandemics, and average number of siblings
-
-15) What percentage of men have terrible eyesight?
-
-16) How many women have a shoe size of 9 or more?
-
-17) Create a variable in the `survey` dataset named `days_old`. Use the `bday` variable and subtract it from `Sys.Date()`.
-
-18) What is the standard deviation of age?
-
-19) Create a one-column dataset which contains the name(s) of the person(s) with the most number of siblings (hint: use the following dplyr verbs in this order: `filter`, `select`).
-
-20) Tell me something interesting about this dataset. 
-
-```{r, eval = FALSE, echo = FALSE}
-
-# 10) Create a bar chart that compares the average age of those who prefer cats vs dogs
-# 
-# 11) Create a scatter plot that shows the relationship between age and height (make it look nice!)
-# 
-# 12) Create a scatter plot that shows the relationship between height and shoe size 
-# 
-# 13) Create a bar chart that shows the average number of siblings for dad's mustache status.
-# 
-# 14) Color the barchart above and add some degree of transparency in the color. Add a title.
-# 
-# 15) Create a bar chart that shows the average shoe size by sex and cat/dog preference. 
-# 
-# 
-
-```

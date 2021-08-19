@@ -1,4 +1,4 @@
-# Subsetting and filtering {#subsetting}
+# Basic subsetting and filtering {#subsetting}
 
 ```{r,echo=FALSE,eval=FALSE}
 is_teacher <- FALSE
@@ -6,49 +6,130 @@ is_teacher <- FALSE
 
 #### Learning goals {-}
 
-* Understand how to subset / filter
+* Understand how to subset / filter data
 
+## Subsetting with indices {-}
 
-```{r, results = 'asis', eval = is_teacher}
-teacher_content('Here is some teacher content.')
+You have already learned that certain elements of a vector can be called by specifiying an index:
+
+```{r, echo = T,collapse=T}
+x <- 55:65
+
+# Call x without subsetting
+x
 ```
 
-## A quick review of booleans {-}
+```{r, echo = T,collapse=T}
+# Now call only the third element of x
+x[3]
+```
 
-Recall that a boolean / logical data type is either `TRUE` or `FALSE`. For example:
+You can also subset an object by calling multiple indices:
 
-```{r, echo = T}
+```{r, echo = T,collapse=T}
+# Now call the third, fourth, and fifth element of x
+x[c(3,4,5)]
+```
+
+```{r, echo = T,collapse=T}
+# Another way of doing the same thing:
+x[3:5]
+```
+
+## Subsetting with booleans {-}
+
+You can also subset objects with 'booleans'. Recall that boolean / logical data have two possible values: `TRUE` or `FALSE`. For example:
+
+```{r, echo = T,collapse=T}
 joes_age <- 35
 old_age <- 36
 joe_is_old <- joes_age >= old_age
 joe_is_old
 ```
 
-Recall also that you can calculate whether a condition is true or false on multiple elements of a vector. For example:
+Recall also that you can calculate whether a condition is `TRUE` or `FALSE` on multiple elements of a vector. For example:
 
-```{r, echo = T}
+```{r, echo = T,collapse=T}
 ages <- c(10, 20, 30, 40, 50, 60)
 old_age <- 36
 people_are_old <- ages >= old_age
 people_are_old
 ```
 
-Boolean vectors are useful for subsetting, ie keeping those elements of a vector for which a condition is `TRUE`. You have already done this using indexes, for example:
+Boolean vectors are useful for subsetting. Think of 'subsetting' as keeping only those elements of a vector for which a condition is `TRUE`. 
 
-```{r, echo = T}
-ages[3]
+```{r, echo = T,collapse=T}
+x <- 55:59
+
+# Call x without subsetting
+x
 ```
 
-But you can also do this using booleans. For example:
-
-```{r, echo = T}
-foo <- 1:4
-foo[2:4]
-foo[c(2,3,4)]
-foo[c(FALSE, TRUE, TRUE, TRUE)]
-foo[foo >= 2]
+```{r, echo = T,collapse=T}
+# Now subset to the second, third, and fourth element
+x[c(FALSE, TRUE, TRUE, TRUE, FALSE)]
 ```
 
+That command returned elements for which the subetting vector was `TRUE`. 
+
+This is equivalent to...
+
+```{r, echo = T,collapse=T}
+x[2:4]
+```
+
+You can also get the same result using a logical test, since logical tests return boolean values:
+
+```{r, echo = T,collapse=T}
+# Develop your logical test
+x %in% c(56,57,58)
+
+# Plug it into the subsetting brackets
+x[ x %in% c(56,57,58) ]
+```
+
+This methods gets really useful when you are working with bigger datasets, such as this one:
+
+```{r, echo = T,collapse=T}
+# Make a large dataset of random numbers
+y <- runif(n=100,
+           min=0,
+           max=10)
+length(y)
+```
+
+```{r, echo = T,collapse=T}
+range(y)
+```
+
+With a dataset like this, you can use a boolean filter to figure out how many values are greater than, say, 9.
+
+First, develop your logical test, which will tell you whether each value in the vector is greater than 9:
+
+```{r, echo = T,collapse=T}
+# Develop your logical test,
+y > 9
+```
+
+Now, to get the values corresponding to each `TRUE` in this list, plug your logical test into your subsetting brackets.
+
+```{r, echo = T,collapse=T}
+y[y > 9]
+```
+
+Here's another way you can do the same thing:
+
+```{r, echo = T,collapse=T}
+verdicts <- y > 9
+y[verdicts]
+```
+
+You can use double logical tests too. For example, what if you want all elements between the values 7.0 and 9.0?
+
+```{r, echo = T,collapse=T}
+verdicts <- y > 7 & y < 9
+y[verdicts]
+```
 
 ### Review assignment {-}
 

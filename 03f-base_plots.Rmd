@@ -293,13 +293,14 @@ For example, let's highlight all countries whose life expectancy is greater than
 
 ```{r,echo=TRUE,collapse=TRUE}
 # First
-cols <- rep("grey",times=length(lifespan)) # create a vector of colors the length of vector `lifespan`
+# create a vector of colors the length of vector `lifespan`
+cols <- rep("grey",times=length(lifespan)) 
 cols
 
 # Second
 change_these <- which(lifespan > 75) 
 change_these # these are the elements that we want to highlight
-cols[change_these] <- "red"  # change the color for these elements to a highlight color
+cols[change_these] <- "red"  # change the color for these elements 
 
 # Third
 plot(lifespan ~ gdp,pch=16,col=cols,log="x")
@@ -337,7 +338,8 @@ par(mar=c(4.5,4.5,1,1))
 plot(1,type="n",axes=FALSE,ann=FALSE,xlim=c(0,100000),ylim=c(40,100))
 
 # 2. Add axes
-axis(1,at=c(0,20000,40000,60000,80000,100000),labels=c("$0", "$20","$40","$60","$80","$100"))
+axis(1,at=c(0,20000,40000,60000,80000,100000),
+     labels=c("$0", "$20","$40","$60","$80","$100"))
 axis(2,at=seq(40,100,by=10),las=2)
 
 # 3. Add axis titles
