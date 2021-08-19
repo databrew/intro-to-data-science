@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-07-11}
+\date{2021-08-19}
 
 \begin{document}
 \maketitle
@@ -178,8 +178,6 @@ The next several units provide a suite of skills essential to any data science p
 \begin{itemize}
 \item
   The \textbf{Interactive dashboards} unit teaches you how to make dashboards and websites for projects using \texttt{shiny} in \texttt{RStudio}.
-\item
-  The \textbf{Databases} unit teaches you how to access, create, and work with relational databases online using \texttt{SQL} and its alternatives.
 \item
   The \textbf{Documenting your work} unit teaches you to use \texttt{R\ Markdown} to produce beautiful, reproducible data reports. You will also learn about \emph{version control}, using \texttt{Git} and \texttt{GitHub} to collaborate on shared projects and work on data science teams.
 \item
@@ -2834,7 +2832,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"lH}\CharTok{\textbackslash{}"}\StringTok{y$v)q>h(XA2Oba9n3xuEL"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Tv)opZW%=\{S}\CharTok{\textbackslash{}"}\StringTok{zciPU<JlKYd$"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2843,7 +2841,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\OperatorTok{::}\KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"ap%<wgv-sV51db)[($#&0XBx"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"bp[0|Jhg\}f#LxO3t!wI=&To,"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3516,13 +3514,11 @@ When you use \texttt{read\_csv()} instead of \texttt{read.csv()}, your data are 
 \begin{Highlighting}[]
 \NormalTok{df <-}\StringTok{ }\NormalTok{readr}\OperatorTok{::}\KeywordTok{read_csv}\NormalTok{(}\StringTok{"super_data.csv"}\NormalTok{)}
 \NormalTok{df}
-\CommentTok{# A tibble: 4 x 4}
-\NormalTok{  patient_id height_in weight_lb comment                  }
-       \OperatorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{     }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{     }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{                    }
-\DecValTok{1}          \DecValTok{1}        \DecValTok{74}       \DecValTok{135}\NormalTok{ not very nice            }
-\DecValTok{2}          \DecValTok{2}        \DecValTok{56}       \DecValTok{112}\NormalTok{ kinda cute               }
-\DecValTok{3}          \DecValTok{3}        \DecValTok{59}       \DecValTok{156}\NormalTok{ kinda cute but had a ring}
-\DecValTok{4}          \DecValTok{4}        \DecValTok{43}       \DecValTok{102}\NormalTok{ so small}\OperatorTok{!}\StringTok{                }
+\CommentTok{# A tibble: 0 x 16}
+\CommentTok{# ... with 16 variables: patient_id <chr>, height_in <chr>, weight_lb <chr>,}
+\CommentTok{#   comment1 <chr>, 74 <chr>, 135 <chr>, not very nice2 <chr>, 56 <chr>,}
+\CommentTok{#   112 <chr>, kinda cute3 <chr>, 59 <chr>, 156 <chr>,}
+\CommentTok{#   kinda cute but had a ring4 <chr>, 43 <chr>, 102 <chr>, so small! <chr>}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3725,14 +3721,14 @@ To explore dataframes, let's use a dataset on fuel mileage for all cars sold fro
 \KeywordTok{data}\NormalTok{(vehicles)}
 \KeywordTok{head}\NormalTok{(vehicles)}
 \CommentTok{# A tibble: 6 x 12}
-\NormalTok{     id make  model    year class   trans  drive     cyl displ fuel    hwy   cty}
-  \OperatorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{   }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{   }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{  }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{   }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}
-\DecValTok{1} \DecValTok{13309}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1997}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Autom}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{26}    \DecValTok{20}
-\DecValTok{2} \DecValTok{13310}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1997}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Manua}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{28}    \DecValTok{22}
-\DecValTok{3} \DecValTok{13311}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1997}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Autom}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{6}   \DecValTok{3}\NormalTok{   Regu}\OperatorTok{~}\StringTok{    }\DecValTok{26}    \DecValTok{18}
-\DecValTok{4} \DecValTok{14038}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1998}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Autom}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{27}    \DecValTok{19}
-\DecValTok{5} \DecValTok{14039}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1998}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Manua}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{29}    \DecValTok{21}
-\DecValTok{6} \DecValTok{14040}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\OperatorTok{/}\ErrorTok{~}\StringTok{  }\DecValTok{1998}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Autom}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{-}\ErrorTok{~}\StringTok{     }\DecValTok{6}   \DecValTok{3}\NormalTok{   Regu}\OperatorTok{~}\StringTok{    }\DecValTok{26}    \DecValTok{17}
+\NormalTok{     id make  model        year class  trans drive   cyl displ fuel    hwy   cty}
+  \OperatorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{       }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{  }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}
+\DecValTok{1} \DecValTok{13309}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\OperatorTok{/}\FloatTok{3.0}\NormalTok{CL  }\DecValTok{1997}\NormalTok{ Subco}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{26}    \DecValTok{20}
+\DecValTok{2} \DecValTok{13310}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\OperatorTok{/}\FloatTok{3.0}\NormalTok{CL  }\DecValTok{1997}\NormalTok{ Subco}\OperatorTok{~}\StringTok{ }\NormalTok{Manu}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{28}    \DecValTok{22}
+\DecValTok{3} \DecValTok{13311}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\OperatorTok{/}\FloatTok{3.0}\NormalTok{CL  }\DecValTok{1997}\NormalTok{ Subco}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{     }\DecValTok{6}   \DecValTok{3}\NormalTok{   Regu}\OperatorTok{~}\StringTok{    }\DecValTok{26}    \DecValTok{18}
+\DecValTok{4} \DecValTok{14038}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\OperatorTok{/}\FloatTok{3.0}\NormalTok{CL  }\DecValTok{1998}\NormalTok{ Subco}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{27}    \DecValTok{19}
+\DecValTok{5} \DecValTok{14039}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\OperatorTok{/}\FloatTok{3.0}\NormalTok{CL  }\DecValTok{1998}\NormalTok{ Subco}\OperatorTok{~}\StringTok{ }\NormalTok{Manu}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{     }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regu}\OperatorTok{~}\StringTok{    }\DecValTok{29}    \DecValTok{21}
+\DecValTok{6} \DecValTok{14040}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\OperatorTok{/}\FloatTok{3.0}\NormalTok{CL  }\DecValTok{1998}\NormalTok{ Subco}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{     }\DecValTok{6}   \DecValTok{3}\NormalTok{   Regu}\OperatorTok{~}\StringTok{    }\DecValTok{26}    \DecValTok{17}
 \CommentTok{# View(vehicles)}
 \end{Highlighting}
 \end{Shaded}
@@ -3861,17 +3857,17 @@ You can use logical tests to filter dataframes to rows that meet certain conditi
 \NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{6533} \DecValTok{10613} \DecValTok{10614} \DecValTok{16429} \DecValTok{16430} \DecValTok{24487} \DecValTok{24488} \DecValTok{24489} \DecValTok{28628}
 \NormalTok{vehicles[keeps,]}
 \CommentTok{# A tibble: 9 x 12}
-\NormalTok{     id make   model   year class   trans   drive    cyl displ fuel    hwy   cty}
-  \OperatorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{  }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{  }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{   }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{   }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{  }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}
-\DecValTok{1} \DecValTok{33640}\NormalTok{ Chevr}\OperatorTok{~}\StringTok{ }\NormalTok{Spark}\OperatorTok{~}\StringTok{  }\DecValTok{2014}\NormalTok{ Subcom}\OperatorTok{~}\StringTok{ }\NormalTok{Automa}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{109}   \DecValTok{128}
-\DecValTok{2} \DecValTok{33396}\NormalTok{ Fiat   500e    }\DecValTok{2013}\NormalTok{ Minico}\OperatorTok{~}\StringTok{ }\NormalTok{Automa}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{108}   \DecValTok{122}
-\DecValTok{3} \DecValTok{34392}\NormalTok{ Fiat   500e    }\DecValTok{2014}\NormalTok{ Minico}\OperatorTok{~}\StringTok{ }\NormalTok{Automa}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{108}   \DecValTok{122}
-\DecValTok{4} \DecValTok{33265}\NormalTok{ Honda  Fit EV  }\DecValTok{2013}\NormalTok{ Small }\OperatorTok{~}\StringTok{ }\NormalTok{Automa}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{105}   \DecValTok{132}
-\DecValTok{5} \DecValTok{33905}\NormalTok{ Honda  Fit EV  }\DecValTok{2014}\NormalTok{ Small }\OperatorTok{~}\StringTok{ }\NormalTok{Automa}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{105}   \DecValTok{132}
-\DecValTok{6} \DecValTok{33558}\NormalTok{ Nissan Leaf    }\DecValTok{2013}\NormalTok{ Midsiz}\OperatorTok{~}\StringTok{ }\NormalTok{Automa}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{102}   \DecValTok{129}
-\DecValTok{7} \DecValTok{34699}\NormalTok{ Nissan Leaf    }\DecValTok{2014}\NormalTok{ Midsiz}\OperatorTok{~}\StringTok{ }\NormalTok{Automa}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{101}   \DecValTok{126}
-\DecValTok{8} \DecValTok{34918}\NormalTok{ Nissan Leaf    }\DecValTok{2015}\NormalTok{ Midsiz}\OperatorTok{~}\StringTok{ }\NormalTok{Automa}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{101}   \DecValTok{126}
-\DecValTok{9} \DecValTok{33307}\NormalTok{ Scion  iQ EV   }\DecValTok{2013}\NormalTok{ Minico}\OperatorTok{~}\StringTok{ }\NormalTok{Automa}\OperatorTok{~}\StringTok{ }\NormalTok{Front}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{105}   \DecValTok{138}
+\NormalTok{     id make      model     year class trans drive   cyl displ fuel    hwy   cty}
+  \OperatorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{     }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{    }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}
+\DecValTok{1} \DecValTok{33640}\NormalTok{ Chevrolet Spark EV  }\DecValTok{2014}\NormalTok{ Subc}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{109}   \DecValTok{128}
+\DecValTok{2} \DecValTok{33396}\NormalTok{ Fiat      500e      }\DecValTok{2013}\NormalTok{ Mini}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{108}   \DecValTok{122}
+\DecValTok{3} \DecValTok{34392}\NormalTok{ Fiat      500e      }\DecValTok{2014}\NormalTok{ Mini}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{108}   \DecValTok{122}
+\DecValTok{4} \DecValTok{33265}\NormalTok{ Honda     Fit EV    }\DecValTok{2013}\NormalTok{ Smal}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{105}   \DecValTok{132}
+\DecValTok{5} \DecValTok{33905}\NormalTok{ Honda     Fit EV    }\DecValTok{2014}\NormalTok{ Smal}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{105}   \DecValTok{132}
+\DecValTok{6} \DecValTok{33558}\NormalTok{ Nissan    Leaf      }\DecValTok{2013}\NormalTok{ Mids}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{102}   \DecValTok{129}
+\DecValTok{7} \DecValTok{34699}\NormalTok{ Nissan    Leaf      }\DecValTok{2014}\NormalTok{ Mids}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{101}   \DecValTok{126}
+\DecValTok{8} \DecValTok{34918}\NormalTok{ Nissan    Leaf      }\DecValTok{2015}\NormalTok{ Mids}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{101}   \DecValTok{126}
+\DecValTok{9} \DecValTok{33307}\NormalTok{ Scion     iQ EV     }\DecValTok{2013}\NormalTok{ Mini}\OperatorTok{~}\StringTok{ }\NormalTok{Auto}\OperatorTok{~}\StringTok{ }\NormalTok{Fron}\OperatorTok{~}\StringTok{    }\OtherTok{NA}    \OtherTok{NA}\NormalTok{ Elec}\OperatorTok{~}\StringTok{   }\DecValTok{105}   \DecValTok{138}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4187,7 +4183,7 @@ sample\_n() (and sample\_frac())
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(}\KeywordTok{sample}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DecValTok{2}\NormalTok{)))}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.09902}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.291503}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4197,7 +4193,7 @@ The above could also be written as:
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(dplyr)}
 \KeywordTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\NormalTok{sum }\OperatorTok{%>%}\StringTok{ }\NormalTok{sqrt}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{4.898979}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.291503}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8330,9 +8326,6 @@ Use the appropriate lubridate function to parse each of the following dates:
   Get the average temperature by \texttt{hour}. What is, on average, the coldest moment of the day? And the hottest?
 \end{enumerate}
 
-\hypertarget{working-with-factors}{%
-\chapter{Working with factors}\label{working-with-factors}}
-
 \hypertarget{matrices-lists}{%
 \chapter{Matrices \& lists}\label{matrices-lists}}
 
@@ -8612,16 +8605,16 @@ To practice the latter use case, let's build up a simple matrix using a random n
              \DataTypeTok{ncol=}\DecValTok{10}\NormalTok{)}
 \NormalTok{mx}
 \NormalTok{      [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{] [,}\DecValTok{4}\NormalTok{] [,}\DecValTok{5}\NormalTok{] [,}\DecValTok{6}\NormalTok{] [,}\DecValTok{7}\NormalTok{] [,}\DecValTok{8}\NormalTok{] [,}\DecValTok{9}\NormalTok{] [,}\DecValTok{10}\NormalTok{]}
-\NormalTok{ [}\DecValTok{1}\NormalTok{,]   }\DecValTok{37}   \DecValTok{58}   \DecValTok{63}   \DecValTok{38}   \DecValTok{45}   \DecValTok{49}   \DecValTok{36}   \DecValTok{60}   \DecValTok{59}    \DecValTok{34}
-\NormalTok{ [}\DecValTok{2}\NormalTok{,]   }\DecValTok{32}   \DecValTok{52}   \DecValTok{44}   \DecValTok{56}   \DecValTok{52}   \DecValTok{66}   \DecValTok{44}   \DecValTok{48}   \DecValTok{54}    \DecValTok{38}
-\NormalTok{ [}\DecValTok{3}\NormalTok{,]   }\DecValTok{50}   \DecValTok{45}   \DecValTok{61}   \DecValTok{59}   \DecValTok{56}   \DecValTok{64}   \DecValTok{26}   \DecValTok{45}   \DecValTok{42}    \DecValTok{44}
-\NormalTok{ [}\DecValTok{4}\NormalTok{,]   }\DecValTok{62}   \DecValTok{37}   \DecValTok{50}   \DecValTok{52}   \DecValTok{35}   \DecValTok{53}   \DecValTok{47}   \DecValTok{56}   \DecValTok{44}    \DecValTok{50}
-\NormalTok{ [}\DecValTok{5}\NormalTok{,]   }\DecValTok{57}   \DecValTok{46}   \DecValTok{47}   \DecValTok{56}   \DecValTok{46}   \DecValTok{54}   \DecValTok{47}   \DecValTok{53}   \DecValTok{51}    \DecValTok{48}
-\NormalTok{ [}\DecValTok{6}\NormalTok{,]   }\DecValTok{41}   \DecValTok{38}   \DecValTok{55}   \DecValTok{36}   \DecValTok{71}   \DecValTok{41}   \DecValTok{78}   \DecValTok{51}   \DecValTok{59}    \DecValTok{33}
-\NormalTok{ [}\DecValTok{7}\NormalTok{,]   }\DecValTok{51}   \DecValTok{45}   \DecValTok{32}   \DecValTok{46}   \DecValTok{55}   \DecValTok{42}   \DecValTok{55}   \DecValTok{71}   \DecValTok{64}    \DecValTok{62}
-\NormalTok{ [}\DecValTok{8}\NormalTok{,]   }\DecValTok{38}   \DecValTok{60}   \DecValTok{49}   \DecValTok{48}   \DecValTok{43}   \DecValTok{56}   \DecValTok{53}   \DecValTok{34}   \DecValTok{50}    \DecValTok{43}
-\NormalTok{ [}\DecValTok{9}\NormalTok{,]   }\DecValTok{63}   \DecValTok{51}   \DecValTok{42}   \DecValTok{53}   \DecValTok{53}   \DecValTok{64}   \DecValTok{54}   \DecValTok{53}   \DecValTok{39}    \DecValTok{62}
-\NormalTok{[}\DecValTok{10}\NormalTok{,]   }\DecValTok{51}   \DecValTok{47}   \DecValTok{69}   \DecValTok{63}   \DecValTok{50}   \DecValTok{46}   \DecValTok{52}   \DecValTok{66}   \DecValTok{64}    \DecValTok{47}
+\NormalTok{ [}\DecValTok{1}\NormalTok{,]   }\DecValTok{57}   \DecValTok{50}   \DecValTok{49}   \DecValTok{56}   \DecValTok{45}   \DecValTok{42}   \DecValTok{26}   \DecValTok{54}   \DecValTok{52}    \DecValTok{57}
+\NormalTok{ [}\DecValTok{2}\NormalTok{,]   }\DecValTok{62}   \DecValTok{52}   \DecValTok{45}   \DecValTok{52}   \DecValTok{50}   \DecValTok{54}   \DecValTok{64}   \DecValTok{38}   \DecValTok{51}    \DecValTok{62}
+\NormalTok{ [}\DecValTok{3}\NormalTok{,]   }\DecValTok{54}   \DecValTok{41}   \DecValTok{55}   \DecValTok{31}   \DecValTok{52}   \DecValTok{43}   \DecValTok{41}   \DecValTok{44}   \DecValTok{40}    \DecValTok{39}
+\NormalTok{ [}\DecValTok{4}\NormalTok{,]   }\DecValTok{40}   \DecValTok{54}   \DecValTok{59}   \DecValTok{43}   \DecValTok{52}   \DecValTok{33}   \DecValTok{37}   \DecValTok{69}   \DecValTok{37}    \DecValTok{57}
+\NormalTok{ [}\DecValTok{5}\NormalTok{,]   }\DecValTok{48}   \DecValTok{41}   \DecValTok{48}   \DecValTok{55}   \DecValTok{49}   \DecValTok{62}   \DecValTok{41}   \DecValTok{54}   \DecValTok{75}    \DecValTok{62}
+\NormalTok{ [}\DecValTok{6}\NormalTok{,]   }\DecValTok{67}   \DecValTok{41}   \DecValTok{56}   \DecValTok{45}   \DecValTok{35}   \DecValTok{57}   \DecValTok{38}   \DecValTok{37}   \DecValTok{43}    \DecValTok{52}
+\NormalTok{ [}\DecValTok{7}\NormalTok{,]   }\DecValTok{46}   \DecValTok{40}   \DecValTok{46}   \DecValTok{47}   \DecValTok{54}   \DecValTok{51}   \DecValTok{30}   \DecValTok{76}   \DecValTok{59}    \DecValTok{46}
+\NormalTok{ [}\DecValTok{8}\NormalTok{,]   }\DecValTok{57}   \DecValTok{43}   \DecValTok{61}   \DecValTok{46}   \DecValTok{55}   \DecValTok{65}   \DecValTok{40}   \DecValTok{55}   \DecValTok{60}    \DecValTok{52}
+\NormalTok{ [}\DecValTok{9}\NormalTok{,]   }\DecValTok{62}   \DecValTok{61}   \DecValTok{56}   \DecValTok{66}   \DecValTok{45}   \DecValTok{34}   \DecValTok{48}   \DecValTok{59}   \DecValTok{66}    \DecValTok{44}
+\NormalTok{[}\DecValTok{10}\NormalTok{,]   }\DecValTok{58}   \DecValTok{46}   \DecValTok{60}   \DecValTok{43}   \DecValTok{57}   \DecValTok{51}   \DecValTok{59}   \DecValTok{61}   \DecValTok{68}    \DecValTok{45}
 \KeywordTok{heatmap}\NormalTok{(mx,}\DataTypeTok{Rowv=}\OtherTok{NA}\NormalTok{,}\DataTypeTok{Colv=}\OtherTok{NA}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -8796,13 +8789,6 @@ Test your work along the way, then demonstrate its completion, using the \texttt
 \end{Shaded}
 
 Enjoy!
-
-\hypertarget{google}{%
-\chapter{Excel files \& GoogleSheets}\label{google}}
-
-\hypertarget{learning-goals-22}{%
-\subsubsection*{Learning goals}\label{learning-goals-22}}
-\addcontentsline{toc}{subsubsection}{Learning goals}
 
 \hypertarget{part-interactive-dashboards}{%
 \part{Interactive dashboards}\label{part-interactive-dashboards}}
@@ -9386,50 +9372,6 @@ Add an additional input that allows the user to choose which variable to plot.
   You just made a cool Trump tweet data explorer, and you're all done, and you're waiting on everyone else to finish? Congratulations! Now make a Shakespeare data explorer. Good luck. ;)
 \end{enumerate}
 
-\hypertarget{data-entry-apps}{%
-\chapter{Data entry apps}\label{data-entry-apps}}
-
-\hypertarget{part-databases}{%
-\part{Databases}\label{part-databases}}
-
-\hypertarget{introduction-1}{%
-\chapter{Introduction}\label{introduction-1}}
-
-\hypertarget{what}{%
-\section{What}\label{what}}
-
-\hypertarget{why}{%
-\section{Why}\label{why}}
-
-\hypertarget{when}{%
-\section{When}\label{when}}
-
-\hypertarget{when-not}{%
-\section{When not}\label{when-not}}
-
-\hypertarget{platforms}{%
-\chapter{Platforms}\label{platforms}}
-
-\hypertarget{postgresql}{%
-\section{PostgreSQL}\label{postgresql}}
-
-\hypertarget{mysql}{%
-\section{mySQL}\label{mysql}}
-
-\hypertarget{sqlite}{%
-\section{SQLite}\label{sqlite}}
-
-\hypertarget{alternatives}{%
-\chapter{Alternatives}\label{alternatives}}
-
-\hypertarget{nosql}{%
-\section{NoSQL}\label{nosql}}
-
-\hypertarget{practices}{%
-\chapter{Practices}\label{practices}}
-
-Spinning up a local DB
-
 \hypertarget{part-documenting-your-work}{%
 \part{Documenting your work}\label{part-documenting-your-work}}
 
@@ -9668,21 +9610,6 @@ Reproducible research matters for lots of reasons:
 
 An article about RESULTS is advertising, not scholarship. An article with transparent, reproducible methods is scholarship.
 
-\hypertarget{automated-reporting}{%
-\chapter{Automated reporting}\label{automated-reporting}}
-
-\hypertarget{formatting-standards}{%
-\chapter{Formatting standards}\label{formatting-standards}}
-
-\hypertarget{tables}{%
-\section{Tables}\label{tables}}
-
-\hypertarget{figures}{%
-\section{Figures}\label{figures}}
-
-\hypertarget{captions}{%
-\section{Captions}\label{captions}}
-
 \hypertarget{git}{%
 \chapter{Git}\label{git}}
 
@@ -9710,8 +9637,8 @@ Git is a software for ``version control'': ie, tracking changes to sets of files
 
 But \emph{what is it}, exactly? Git is a system for tracking, organizing, sharing, and reviewing changes to software. It's very flexible, and very powerful. And learning it can sometimes feel a bit overwhelming, because it has so many features and capabilities. But the \href{https://en.wikipedia.org/wiki/Pareto_principle}{Pareto principle} (ie, the 80/20 rule) applies here: most of what you need to know to competently handle git, you can do in very little time.
 
-\hypertarget{why-1}{%
-\section*{Why?}\label{why-1}}
+\hypertarget{why}{%
+\section*{Why?}\label{why}}
 \addcontentsline{toc}{section}{Why?}
 
 Why use git? Why not just save files with meaningful names, make changes to them, overwrite the old changes, etc.? Why not just treat code the same way we treat a MS Word document, or write code collaboratively using interactive, auto-saving tools like Google Docs?
@@ -10066,8 +9993,8 @@ Branching, pull requests, blaming, and more - in a break-out session.
 \hypertarget{sections-of-a-report}{%
 \chapter{Sections of a report}\label{sections-of-a-report}}
 
-\hypertarget{learning-goals-23}{%
-\subsubsection*{Learning goals}\label{learning-goals-23}}
+\hypertarget{learning-goals-22}{%
+\subsubsection*{Learning goals}\label{learning-goals-22}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -10171,8 +10098,8 @@ Below is the abstract from a publication whose first author is an undergraduate 
 
 \includegraphics{img/abstracts-map.png}
 
-\hypertarget{introduction-2}{%
-\section*{Introduction}\label{introduction-2}}
+\hypertarget{introduction-1}{%
+\section*{Introduction}\label{introduction-1}}
 \addcontentsline{toc}{section}{Introduction}
 
 An \emph{Introduction} is an information-rich and persuasive \emph{argument} for the importance of the contribution your paper will be making to the field of study.
@@ -10413,8 +10340,8 @@ A brief statement of whom you thank for their contributions and support of your 
   See the \protect\hyperlink{style}{Module on Style} for details on how to format your references and citations.
 \end{itemize}
 
-\hypertarget{tables-1}{%
-\subsubsection*{Tables}\label{tables-1}}
+\hypertarget{tables}{%
+\subsubsection*{Tables}\label{tables}}
 \addcontentsline{toc}{subsubsection}{Tables}
 
 \begin{itemize}
@@ -10426,8 +10353,8 @@ A brief statement of whom you thank for their contributions and support of your 
   See the \protect\hyperlink{style}{Module on Style} for details on how to create and format tables.
 \end{itemize}
 
-\hypertarget{figures-1}{%
-\subsubsection*{Figures}\label{figures-1}}
+\hypertarget{figures}{%
+\subsubsection*{Figures}\label{figures}}
 \addcontentsline{toc}{subsubsection}{Figures}
 
 \begin{itemize}
@@ -10448,8 +10375,8 @@ A brief statement of whom you thank for their contributions and support of your 
 \hypertarget{style}{%
 \chapter{Formatting, structure \& style}\label{style}}
 
-\hypertarget{learning-goals-24}{%
-\subsubsection*{Learning goals}\label{learning-goals-24}}
+\hypertarget{learning-goals-23}{%
+\subsubsection*{Learning goals}\label{learning-goals-23}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -11197,10 +11124,6 @@ When speaking as a researcher to the public, some of these standards need to be 
 \textbf{- End with strong call to action}, solidly grounded in the data and stories you have presented. Make sure that call to action is related to your talk in obvious and intuitive ways. Make sure it is a meaningful action by which audience members are actually able to make a difference. Finally, make sure that this call to action is expressed succinctly and memorably, as an effective and simple slogan.
 
 This is a \href{https://www.youtube.com/watch?v=mae2eugjUsU}{pretty good example} of a scientifically oriented talk to the public:
-
-\hypertarget{creating-websites}{%
-\chapter*{Creating websites}\label{creating-websites}}
-\addcontentsline{toc}{chapter}{Creating websites}
 
 \hypertarget{part-advanced-skills}{%
 \part{Advanced skills}\label{part-advanced-skills}}
@@ -11967,17 +11890,11 @@ Add fancy text to map
   Create a function that takes an indicator name as an input and creates a map.
 \end{enumerate}
 
-\hypertarget{statistical-modeling}{%
-\chapter{Statistical modeling}\label{statistical-modeling}}
-
-\hypertarget{apply-family}{%
-\chapter{Apply family}\label{apply-family}}
-
 \hypertarget{randomization-statistics}{%
 \chapter{Randomization statistics}\label{randomization-statistics}}
 
-\hypertarget{learning-goals-25}{%
-\subsubsection*{Learning goals}\label{learning-goals-25}}
+\hypertarget{learning-goals-24}{%
+\subsubsection*{Learning goals}\label{learning-goals-24}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -12791,15 +12708,6 @@ For your convenience, the social association rate for these 36 individuals has a
 \CommentTok{# In other words, whales of closer relatedness AVOID each other? At least a hypothesis...}
 \end{Highlighting}
 \end{Shaded}
-
-\hypertarget{iterative-simulations}{%
-\chapter{Iterative simulations}\label{iterative-simulations}}
-
-\hypertarget{image-analysis}{%
-\chapter{Image analysis}\label{image-analysis}}
-
-\hypertarget{machine-learning}{%
-\chapter{Machine learning}\label{machine-learning}}
 
   \bibliography{book.bib,packages.bib}
 
