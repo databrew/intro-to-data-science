@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 31 Research talks | DataBOOM: the canon for data science</title>
+  <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 31 Research talks | DataBOOM: the canon for data science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="github-repo" content="databrew/intro-to-data-science" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 31 Research talks | DataBOOM: the canon for data science" />
+  
+  <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
+  
+
+<meta name="author" content="Databrew" />
+
+
+<meta name="date" content="2021-08-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="style.html"/>
+<link rel="next" href="writing-functions.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">DataBOOM: the canon for data science </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-this-is-and-what-it-isnt"><i class="fa fa-check"></i>What this is, and what it isn’t</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-is-for"><i class="fa fa-check"></i>Who this is for</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What you will learn</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
+</ul></li>
+<li class="part"><span><b>I Core theory</b></span></li>
+<li class="chapter" data-level="2" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html"><i class="fa fa-check"></i><b>2</b> Principles of data science</a><ul>
+<li class="chapter" data-level="" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#what-is-data-science"><i class="fa fa-check"></i>What is data science?</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#data-scientist-vs-data-analysist-vs-data-engineer"><i class="fa fa-check"></i>Data scientist vs data analysist vs data engineer</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i>What is the data life cycle?</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i>Data science ‘in the wild’</a></li>
+<li><a href="principles-of-data-science.html#why-r">Why <code>R</code>?</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#the-reproducibility-crisis"><i class="fa fa-check"></i>The reproducibility crisis</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualizing data</a><ul>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#the-importance-of-visualization"><i class="fa fa-check"></i>The importance of visualization</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#bad-examples"><i class="fa fa-check"></i>Bad examples</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#good-examples"><i class="fa fa-check"></i>Good examples</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#quick-video"><i class="fa fa-check"></i>Quick video</a></li>
+</ul></li>
+<li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
+<li class="chapter" data-level="4" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>4</b> Setting up <code>RStudio</code></a></li>
+<li class="chapter" data-level="5" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>5</b> Running R code</a><ul>
+<li><a href="running-r-code.html#rstudios-console">RStudio’s <em>Console</em></a></li>
+<li><a href="running-r-code.html#running-code-in-the-console">Running code in the <em>Console</em></a></li>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-r-like-a-calculator"><i class="fa fa-check"></i>Use R like a calculator</a></li>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#using-operators-in-r"><i class="fa fa-check"></i>Using operators in R</a></li>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-built-in-functions-within-r"><i class="fa fa-check"></i>Use built-in functions within R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="using-rstudio-and-r-scripts.html"><a href="using-rstudio-and-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Using <code>RStudio</code> and <code>R</code> scripts</a><ul>
+<li><a href="using-rstudio-and-r-scripts.html#r-and-rstudio-whats-the-difference"><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
+<li><a href="using-rstudio-and-r-scripts.html#two-minute-tour-of-rstudio">Two-minute tour of <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-and-r-scripts.html"><a href="using-rstudio-and-r-scripts.html#scripts"><i class="fa fa-check"></i>Scripts</a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-and-r-scripts.html"><a href="using-rstudio-and-r-scripts.html#wd"><i class="fa fa-check"></i>Your working directory</a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-and-r-scripts.html"><a href="using-rstudio-and-r-scripts.html#typical-workflows"><i class="fa fa-check"></i>Typical workflows</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>7</b> Variables</a><ul>
+<li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
+<li><a href="variables.html#types-of-data-in-r">Types of data in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>8</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#vectors-1"><i class="fa fa-check"></i>Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>9</b> Basic subsetting and filtering</a><ul>
+<li class="chapter" data-level="" data-path="subsetting.html"><a href="subsetting.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
+<li class="chapter" data-level="" data-path="subsetting.html"><a href="subsetting.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>10</b> Calling functions</a></li>
+<li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
+<li class="chapter" data-level="11" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>11</b> Importing data</a><ul>
+<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#data-format-requirements"><i class="fa fa-check"></i>Data format requirements</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>12</b> Base plots</a><ul>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#most-common-types-of-plots"><i class="fa fa-check"></i>Most common types of plots</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#basic-plot-formatting"><i class="fa fa-check"></i>Basic plot formatting</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#plotting-with-data-frames"><i class="fa fa-check"></i>Plotting with data frames</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#next-level-plotting"><i class="fa fa-check"></i>Next-level plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>13</b> Packages</a><ul>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#review-the-workflow-for-using-a-package"><i class="fa fa-check"></i>Review: the workflow for using a package</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html"><i class="fa fa-check"></i><b>14</b> Basics of <code>ggplot</code></a><ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#thinking-about-data-visualization"><i class="fa fa-check"></i>Thinking about data visualization</a></li>
+<li><a href="basics-of-ggplot.html#what-is-ggplot">What is <code>ggplot</code>?</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#the-name-and-concept"><i class="fa fa-check"></i>The name and concept</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice"><i class="fa fa-check"></i>Practice</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice-1"><i class="fa fa-check"></i>Practice 1</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice-exercises-1"><i class="fa fa-check"></i>Practice exercises 1</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot.html"><a href="basics-of-ggplot.html#practice-exercises-2"><i class="fa fa-check"></i>Practice exercises 2</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="exploring-data.html"><a href="exploring-data.html"><i class="fa fa-check"></i><b>15</b> Exploring data</a><ul>
+<li class="chapter" data-level="" data-path="exploring-data.html"><a href="exploring-data.html#exploring-distributions"><i class="fa fa-check"></i>Exploring distributions</a></li>
+<li class="chapter" data-level="" data-path="exploring-data.html"><a href="exploring-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>16</b> Significance statistics</a><ul>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-for-different-data-types"><i class="fa fa-check"></i>Tests for different data types</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#comparison-tests"><i class="fa fa-check"></i>Comparison tests</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-of-association"><i class="fa fa-check"></i>Tests of association</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
+</ul></li>
+<li class="part"><span><b>IV Working with data</b></span></li>
+<li class="chapter" data-level="17" data-path="dataframes-basics.html"><a href="dataframes-basics.html"><i class="fa fa-check"></i><b>17</b> Dataframes: basics</a><ul>
+<li class="chapter" data-level="" data-path="dataframes-basics.html"><a href="dataframes-basics.html#introducing-dataframes"><i class="fa fa-check"></i>Introducing dataframes</a></li>
+<li class="chapter" data-level="" data-path="dataframes-basics.html"><a href="dataframes-basics.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>18</b> Dataframes: <code>dplyr</code> tools</a><ul>
+<li><a href="dataframes.html#the-dplyr-package">The <code>dplyr</code> package</a></li>
+<li><a href="dataframes.html#the-pipe">The <code>%&gt;%</code> pipe</a></li>
+<li><a href="dataframes.html#dplyr-verbs"><code>dplyr</code> verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>19</b> Joining datasets</a><ul>
+<li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>20</b> Working with text</a><ul>
+<li class="chapter" data-level="" data-path="text.html"><a href="text.html#basics"><i class="fa fa-check"></i>Basics</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>21</b> Working with dates &amp; times</a><ul>
+<li><a href="dates.html#the-lubridate-package">The <code>lubridate()</code> package</a></li>
+<li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
+<li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#sewanee-weather"><i class="fa fa-check"></i>Sewanee weather</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>22</b> Saving data &amp; plots</a><ul>
+<li><a href="saving-data-plots.html#write.csv"><code>write.csv()</code></a></li>
+<li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
+<li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>23</b> Review exercises: Trump tweets</a></li>
+<li class="chapter" data-level="24" data-path="review-exercise-cleaning-messy-data.html"><a href="review-exercise-cleaning-messy-data.html"><i class="fa fa-check"></i><b>24</b> Review exercise: Cleaning messy data</a></li>
+<li class="part"><span><b>V Interactive dashboards</b></span></li>
+<li class="chapter" data-level="25" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>25</b> Intro to Shiny apps</a><ul>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#an-easy-example"><i class="fa fa-check"></i>An easy example</a></li>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+</ul></li>
+<li class="part"><span><b>VI Reproducible research</b></span></li>
+<li class="chapter" data-level="26" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>26</b> <code>Markdown</code> documentation</a><ul>
+<li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#what-is-reproducible-research"><i class="fa fa-check"></i>What is ‘reproducible research’?</a></li>
+<li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#why-does-reproducible-research-matter"><i class="fa fa-check"></i>Why does reproducible research matter?</a></li>
+<li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#how-to-carry-out-reproducible-research"><i class="fa fa-check"></i>How to carry out reproducible research</a></li>
+<li><a href="markdown-documentation.html#markdown-documentation-1"><code>Markdown</code> documentation</a></li>
+</ul></li>
+<li><a href="r-markdown.html#r-markdown"><code>R Markdown</code></a></li>
+<li class="chapter" data-level="27" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>27</b> Git</a><ul>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#there-is-a-better-way"><i class="fa fa-check"></i>There is a better way</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#what-is-git"><i class="fa fa-check"></i>What is git?</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#why"><i class="fa fa-check"></i>Why?</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#get-ready-for-git"><i class="fa fa-check"></i>Get ready for git</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#getting-to-know-git-bash"><i class="fa fa-check"></i>Getting to know git bash</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#configuration"><i class="fa fa-check"></i>Configuration</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#github"><i class="fa fa-check"></i>Github</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#a-bit-more-practice"><i class="fa fa-check"></i>A bit more practice</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#advanced-git"><i class="fa fa-check"></i>Advanced git</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="review-exercise-shiny-git.html"><a href="review-exercise-shiny-git.html"><i class="fa fa-check"></i><b>28</b> Review exercise: Shiny &amp; Git</a></li>
+<li class="part"><span><b>VII Presenting research</b></span></li>
+<li class="chapter" data-level="29" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html"><i class="fa fa-check"></i><b>29</b> Sections of a report</a><ul>
+<li class="chapter" data-level="" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
+<li class="chapter" data-level="" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#introduction-1"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#methods"><i class="fa fa-check"></i>Methods</a></li>
+<li class="chapter" data-level="" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#results"><i class="fa fa-check"></i>Results</a></li>
+<li class="chapter" data-level="" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="sections-of-a-report.html"><a href="sections-of-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>30</b> Formatting, structure &amp; style</a><ul>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-tables"><i class="fa fa-check"></i>Formatting tables</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-figures"><i class="fa fa-check"></i>Formatting figures</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>31</b> Research talks</a></li>
+<li class="part"><span><b>VIII Deep <code>R</code></b></span></li>
+<li class="chapter" data-level="32" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>32</b> Writing functions</a><ul>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
+<li class="chapter" data-level="32.1" data-path="writing-functions.html"><a href="writing-functions.html#using-dplyr-and-ggplot-in-custom-functions"><i class="fa fa-check"></i><b>32.1</b> Using dplyr and ggplot in custom functions</a></li>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#exercise-7"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>33</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics-1"><i class="fa fa-check"></i>Basics</a></li>
+<li><a href="for-loops.html#for-loop-exercises"><code>for</code> loop exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>34</b> Conditional statements</a><ul>
+<li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
+<li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>35</b> Matrices &amp; lists</a><ul>
+<li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+<li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>36</b> Mapping</a></li>
+<li class="chapter" data-level="37" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>37</b> Geographic computing &amp; GIS</a><ul>
+<li class="chapter" data-level="" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html#exercise-9"><i class="fa fa-check"></i>Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>38</b> Randomization statistics</a><ul>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-9"><i class="fa fa-check"></i>Review assignment</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#c-do-social-bonds-relate-to-kinship"><i class="fa fa-check"></i>(c) Do social bonds relate to kinship?</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/databrew/intro-to-data-science" target="blank">Databrew LLC</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><code>DataBOOM</code>: the canon for data science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="research-talks" class="section level1">
+<h1><span class="header-section-number">Module 31</span> Research talks</h1>
+<p>Just as good writing in science is no different from good writing anywhere else, good research talks should be a good talk by any standard. The only difference should be the <em>target audience.</em> Far too often, data scientists are given a pass for poor presentations and boring delivery. We believe that should change.</p>
+<p>Research talks are typically given to colleagues who share some level of familiarity with your study topic; but those colleagues are still humans and they deserve to listen to an enjoyable talk that allows them to connect to the speaker.</p>
+<p>As a data scientist, you will have to be adept at preparing two types of presentations: (1) talks for colleagues and (2) talks for the public.</p>
+<p>Below we first provide standards that should apply to <em>any</em> talk for <em>any</em> audience. Second, we specify which additional standards to consider, depending on your audience.</p>
+<div id="standards-for-all-presentations" class="section level3 unnumbered">
+<h3>Standards for all presentations</h3>
+<div id="content-substance" class="section level4 unnumbered">
+<h4>Content &amp; substance</h4>
+<div id="first-moments" class="section level5 unnumbered">
+<h5>First moments</h5>
+<ul>
+<li>The first seconds of your talk are an excellent, engaging, and relevant attention getter,<br />
+</li>
+<li>the tone of which matches and sets the stage for the remainder of the talk.</li>
+</ul>
+</div>
+<div id="early-audience-orientation" class="section level5 unnumbered">
+<h5>Early audience orientation</h5>
+<ul>
+<li>Sound orientation to topic and clear thesis delivered early in talk.<br />
+</li>
+<li>Introductory moments includes preview of main points.<br />
+</li>
+<li>Credibility is firmly established, but only after the audience is invested in the topic.</li>
+</ul>
+</div>
+<div id="research-evidence" class="section level5 unnumbered">
+<h5>Research &amp; evidence</h5>
+<ul>
+<li>Reason &amp; evidence are used as part of case being made.</li>
+<li>Facts, numbers, and statistics are used effectively.<br />
+</li>
+<li>Includes only the absolutely essential details regarding research sources, methods, and analyses.<br />
+</li>
+<li>Evidence is not oversold as truth. The uncertainty and ignorance inherent to science is not ignored.</li>
+</ul>
+</div>
+<div id="story-narrative" class="section level5 unnumbered">
+<h5>Story &amp; narrative</h5>
+<ul>
+<li>The organization of the talk takes the form of a story, taking the audience on a shared journey.<br />
+</li>
+<li>Within this framework, anecdotes and stories are used as a medium for connecting the
+audience to facts, evidence, and emotional components of your case.</li>
+</ul>
+</div>
+<div id="relevance-importance" class="section level5 unnumbered">
+<h5>Relevance &amp; Importance</h5>
+<ul>
+<li>A compelling case for the importance of the topic to the audience’s lives and/or their shared interests.<br />
+</li>
+<li>The connection between the audience’s shared interests and the topic is pointed to clearly and consistently.</li>
+</ul>
+</div>
+<div id="pre--misconceptions" class="section level5 unnumbered">
+<h5>Pre- &amp; Misconceptions</h5>
+<ul>
+<li>Content &amp; delivery demonstrate anticipation of preconceptions regarding the topic and the presenter.<br />
+</li>
+<li>Content demonstrates understanding of common misconceptions regarding the topic.<br />
+</li>
+<li>These pre- and misconceptions are addressed and moved beyond deftly and thoroughly.<br />
+</li>
+<li>No elephants in the room go unmentioned.</li>
+</ul>
+</div>
+<div id="final-moments" class="section level5 unnumbered">
+<h5>Final moments</h5>
+<ul>
+<li>Provides a clear and memorable summary of points and refers back to thesis/big picture.<br />
+</li>
+<li>Ends with strong call to action, or at least a vision for next steps, solidly grounded in data presented.</li>
+</ul>
+</div>
+<div id="organization-overall" class="section level5 unnumbered">
+<h5>Organization overall</h5>
+<ul>
+<li>Organization of the content amounts to a strategic and persuasive case, in which rational, emotional,
+and narrative components are woven together with deliberate care.<br />
+</li>
+<li>This organization is made clear to the audience: throughout the talk, the audience is given transitions
+and signposts and reminders that allow them to readily reconstruct the case being made.<br />
+</li>
+<li>The communication of this order is obvious without being condescending or ineffectually repetitive.<br />
+</li>
+<li>The talk is delivered within the allocated time window, reflecting appropriate organization and respect for others’ time.</li>
+</ul>
+</div>
+</div>
+<div id="delivery-style" class="section level4 unnumbered">
+<h4>Delivery &amp; style</h4>
+<div id="preparation" class="section level5 unnumbered">
+<h5>Preparation</h5>
+<ul>
+<li>The speaker is clearly well-prepared, and this is evident in the timing of the talk, familiarity with
+visual aids and what will be said next, and little to no reliance upon notes.</li>
+</ul>
+</div>
+<div id="speech" class="section level5 unnumbered">
+<h5>Speech</h5>
+<ul>
+<li>Vocal expression (projection and volume) is natural and authentic;<br />
+</li>
+<li>Excellent use of variation in vocal intensity, tone, and expression.<br />
+</li>
+<li>Pace of speech is always easy to follow.<br />
+</li>
+<li>Tone is conversational and sincere.<br />
+</li>
+<li>Each thought is brought to completion without trailing off or rambling.<br />
+</li>
+<li>Lack of vocal fillers (e.g., ummm, so…..).<br />
+</li>
+<li>Impactful use of pauses and silence.</li>
+</ul>
+</div>
+<div id="language" class="section level5 unnumbered">
+<h5>Language</h5>
+<ul>
+<li>Speaker is able to articulate what she means clearly through eloquent word choice and
+premeditated sentences.<br />
+</li>
+<li>Language level is considerate of audience’s current knowledge, particularly in science.<br />
+</li>
+<li>Jargon, abbreviations, and acronyms are avoided; any that must be used is explained.<br />
+</li>
+<li>Comparisons and analogies are used effectively without further complicating a concept.</li>
+</ul>
+</div>
+<div id="explanation" class="section level5 unnumbered">
+<h5>Explanation</h5>
+<ul>
+<li>Any word that may not be universally understood is explained, either explicitly or within
+abundant context.<br />
+</li>
+<li>Any concept that may not be universally understood is explained carefully.<br />
+</li>
+<li>These explanations occur at a level appropriate to audience.</li>
+</ul>
+</div>
+<div id="non-verbal-delivery-the-second-conversation" class="section level5 unnumbered">
+<h5>Non-verbal delivery: The “Second Conversation”</h5>
+<ul>
+<li>Attire &amp; composure reflects the utmost sincerity and professionalism, without sacrificing
+authenticity.<br />
+</li>
+<li>The speaker is expressive and compelling through eye contact and facial expressions.<br />
+</li>
+<li>Body language (posture, gestures, and movements) exude poise and earnest engagement.<br />
+</li>
+<li>Body language effectively augments the spoken word, in both timing and affect.<br />
+</li>
+<li>Eyes, movements and gestures are not distracting and do not disclose anxiety or discomfort.</li>
+</ul>
+</div>
+<div id="mistakes" class="section level5 unnumbered">
+<h5>Mistakes</h5>
+<ul>
+<li>Any mistakes are handled in a graceful and self-forgiving manner, and recovery is quick.<br />
+</li>
+<li>The speaker demonstrates resilience and endurance; multiple mistakes do not lead to a decline
+in composure or energy level.</li>
+</ul>
+</div>
+<div id="attentive-responsive-adaptive" class="section level5 unnumbered">
+<h5>Attentive, responsive, &amp; adaptive</h5>
+<ul>
+<li>The speaker actively maintains audience attention throughout, rather than just assuming
+attention is there or not responding accordingly if it clearly isn’t.<br />
+</li>
+<li>The speaker establishes an active dialogue between themselves and the audience, either directly
+(through responses or questions), or indirectly (through sharing moments of laughter, joy, pain,
+anger, disgust, etc.).<br />
+</li>
+<li>Speaker reiterates, clarifies, and changes course adaptively in response to their read of the
+audience.<br />
+</li>
+<li>Speaker knowledgeably and concisely answers appropriate questions, if any.<br />
+</li>
+<li>Evidence that the speaker researched and anticipated common questions, as appropriate.</li>
+</ul>
+</div>
+</div>
+<div id="rapport-relating" class="section level4 unnumbered">
+<h4>Rapport &amp; Relating</h4>
+<div id="energetic-credible" class="section level5 unnumbered">
+<h5>Energetic &amp; credible</h5>
+<ul>
+<li>Professional but enjoyable<br />
+</li>
+<li>Enthusiastic but genuine and believable<br />
+</li>
+<li>Excited but not overbearing</li>
+</ul>
+</div>
+<div id="human-relatable" class="section level5 unnumbered">
+<h5>Human &amp; relatable</h5>
+<ul>
+<li>Poise without intimidation<br />
+</li>
+<li>Confidence without arrogance<br />
+</li>
+<li>Comfort &amp; ease without apathy or indifference<br />
+</li>
+<li>Vulnerability without fragility or volatility</li>
+</ul>
+</div>
+<div id="inclusive-welcoming" class="section level5 unnumbered">
+<h5>Inclusive &amp; welcoming</h5>
+<ul>
+<li>When appropriate, uses inclusive language (“we” and “our” instead of “I” and “my”; non-gendered
+pronouns, politically tolerant language, etc.)<br />
+</li>
+<li>Creates common ground by strongly emphasizing common goals, values and/or experiences.</li>
+</ul>
+</div>
+</div>
+<div id="visual-aids" class="section level4 unnumbered">
+<h4>Visual aids</h4>
+<div id="strategic-use" class="section level5 unnumbered">
+<h5>Strategic use</h5>
+<ul>
+<li>Visual aids complement the spoken word. Redundancy (if any) between what is spoken and what is
+displayed is strategic, not used as a crutch for presenting.<br />
+</li>
+<li>Visual aids are not <em>over-used</em>, and do not obstruct the audience’s ability to listen to and follow the
+narrative thread of the talk.<br />
+</li>
+<li>Visual aids are not <em>under-used</em> if spoken concepts are too complicated. For instance, if a list of
+numbers absolutely must be shared, it is best to provide them visually in addition to saying them.</li>
+</ul>
+</div>
+<div id="design-display" class="section level5 unnumbered">
+<h5>Design &amp; display</h5>
+<ul>
+<li>Visual aids are of professional quality, not sloppy or thrown together.<br />
+</li>
+<li>Visual aids prioritize simplicity, clarity, and good principles of design.<br />
+</li>
+<li>Color palettes are sensitive to color-blind audiences.</li>
+</ul>
+</div>
+<div id="visualizing-information" class="section level5 unnumbered">
+<h5>Visualizing information</h5>
+<ul>
+<li>Use of text is minimized.<br />
+</li>
+<li>Text is an appropriate size and font.<br />
+</li>
+<li>Complicated figures are avoided.<br />
+</li>
+<li>Any data visualization has been reduced to the simplest possible form.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="talking-to-the-public" class="section level3 unnumbered">
+<h3>Talking to the public</h3>
+<p>When speaking as a researcher to the public, some of these standards need to be prioritized above others. The public is a much more diverse audience than your colleagues are. They do not necessarily know you, nor do they necessarily trust you or agree with you. To help them engage with you successfully and actually listen to what you have to say, we recommend the following adjustments:</p>
+<ul>
+<li><p>A public-facing talk must have <strong>a clear and simple message</strong> – a <em>single</em> idea worth spreading.</p></li>
+<li><p>To convince the public of that idea, you must <strong>dial down the research and replace it with stories, emotion, and empathy.</strong> Your case needs to rely heavily upon appeals to the heart and gut of the audience. By end of talk, you want the audience to be emotionally invested in seeing the call to action come to fruition.</p></li>
+<li><p>That said, make sure that those <strong>emotional appeals are made with nuance and discretion</strong>, without exploiting victims or the voiceless. Do not be condescending toward your audience or anyone unlikely to be in your audience.</p></li>
+</ul>
+<p><strong>- Minimize the number of facts, numbers, and statistics.</strong> If you <em>must</em> use them, <em>never</em> use them in isolation from the emotional aspects of your talk. Do not simply hurl facts at your audience. Within an empathic storytelling framework, anecdotes and stories are used as the primary medium for connecting the audience to facts, evidence, and emotional components of your case. Don’t shy away from your data, but use it very carefully. Ultimately, the talk is a persuasive case for elevating the importance of research in our lives.</p>
+<p><strong>- End with strong call to action</strong>, solidly grounded in the data and stories you have presented. Make sure that call to action is related to your talk in obvious and intuitive ways. Make sure it is a meaningful action by which audience members are actually able to make a difference. Finally, make sure that this call to action is expressed succinctly and memorably, as an effective and simple slogan.</p>
+<p>This is a <a href="https://www.youtube.com/watch?v=mae2eugjUsU">pretty good example</a> of a scientifically oriented talk to the public:</p>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="style.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="writing-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/databrew/intro-to-data-science/edit/master/12d-presentations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
