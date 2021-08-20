@@ -7,139 +7,159 @@
 
 ## Basics {-}
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+library(dplyr)
 library(gsheet)
 survey <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767')
 names(survey) <- c('time', 'sex', 'age','sib', 'dad_mus', 'person_mus', 'joe_mus_is', 'eyesight', 'height', 'shoe_size', 'bday', 'money_or_love', 'rps_skill', 'num_pan', 'cats_dogs', 'first_name', 'last_name')
 
 ```
 
-#### paste0 {-}
+#### `paste0()` {-}
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 # combine first name and last name 
 paste0(survey$first_name,' ', survey$last_name)
-paste0(survey$first_name, ' ', survey$sex)
+```
 
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+paste0(survey$first_name, ' ', survey$sex)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 # Make a sentence
 paste0('First name is ', survey$first_name,' and last name is  ', survey$last_name)
+```
 
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 # combine first and last name to make new variable called full_name
 survey <- survey %>% mutate(full_name = paste0(survey$first_name, '_', survey$last_name ))
-
-
 ```
 
-#### tolower & toupper {-}
+#### `tolower()` & `toupper()` {-}
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 # combine first name and last name 
 tolower(survey$money_or_love)
-toupper(survey$money_or_love)
+```
 
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+toupper(survey$money_or_love)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 # overwrite money_or_love
 survey <- survey %>% mutate(money_or_love = tolower(money_or_love))
-
 ```
 
-#### nchar {-}
+#### `nchar()` {-}
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 # count how many characters are in each observations in sex
 nchar(survey$eyesight)
-
-# create a boolean vector of the number of observations with 32 characters
-nchar(survey$eyesight) ==42
-
-# get number of observations with character 42
-length(which(nchar(survey$eyesight) ==42))
-sum(nchar(survey$eyesight) == 42)
-
 ```
 
-##### substr {-}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+# create a boolean vector of the number of observations with 32 characters
+nchar(survey$eyesight) ==42
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+# get number of observations with character 42
+length(which(nchar(survey$eyesight) ==42))
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+sum(nchar(survey$eyesight) == 42)
+```
+
+##### `substr()` {-}
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 # grab only the first letter fo sex
 substr(survey$sex, start = 1, stop = 1)
+```
 
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 # remove the "s" from cats and dogs
 substr(survey$cats_dogs, start = 1, stop = 3)
 ```
 
-#### gsub {-}
+#### `gsub()` {-}
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-
 # replace "Deeply captivating" with "captivating
 gsub('Deeply captivating', 'captivating', survey$joe_mus_is)
-
-# remove long strings
-gsub('(glasses or contacts, but I can get by without them)','', survey$eyesight, fixed = TRUE)
-
-# overwrite variable
-survey <- survey %>% mutate(eyesight = gsub('(glasses or contacts, but I can get by without them)','', eyesight, fixed = TRUE))
-
 ```
 
-#### grepl {-}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+# remove long strings
+gsub('(glasses or contacts, but I can get by without them)','', survey$eyesight, fixed = TRUE)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+# overwrite variable
+survey <- survey %>% mutate(eyesight = gsub('(glasses or contacts, but I can get by without them)','', eyesight, fixed = TRUE))
+```
+
+#### `grepl()` {-}
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 # how many times does Brew show up in full_name
 grepl('Brew', survey$full_name)
-
-# Born in may
-grepl('05', survey$bday)
-
-# Born in 2000
-grepl('2000', survey$bday)
-
-# filter data by those born in 2000
-survey %>% filter(grepl('2000', bday))
-
 ```
 
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+# Born in may
+grepl('05', survey$bday)
+```
 
-#### Exercise {-} 
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+# Born in 2000
+grepl('2000', survey$bday)
+```
 
-1) Create a new variable called first_name_sex that combines the first name and the sex of each individual
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+# filter data by those born in 2000
+survey %>% filter(grepl('2000', bday))
+```
 
-2) Create a new variable called backwards_name that combines last name and first name 
+#### Exercises {-} 
 
-3) Make the backwards_name variable capitalized
+1) Create a new variable called `first_name_sex` that combines the first name and the sex of each individual.
 
-4) Replace "both" in the money_or_love variable with "Money & Love"
+2) Create a new variable called `backwards_name` that combines last name and first name. 
 
-5) Get only the first character dad_mus variable 
+3) Make the `backwards_name` variable capitalized.
 
-6) How many total characters are in the column eyesight
+4) Replace "both" in the `money_or_love` variable with "Money & Love".
 
-7) How many characters did Joe write for the eyesight question
+5) Get only the first character `dad_mus` variable. 
 
-8) How many people in the data were born on the 4th day of the month
+6) How many total characters are in the column `eyesight`?
 
-9) Create a new variables called month_born that has only the month of from the bday variable 
+7) How many characters did Joe write for the `eyesight` question?
 
-10) Do the same thing for year 
+8) How many people in the data were born on the 4th day of the month?
 
-11) Filter the data set by those born and 2001 and prefer being money
+9) Create a new variables called `month_born` that has only the month of from the `bday` variable. 
+
+10) Do the same thing for `year`. 
+
+11) Filter the data set by those born and 2001 and prefer money.
 
 
 #### Team exercises  {-}
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-
 library(dplyr)
 library(readr)
 shake <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/Shakespeare_data.csv')
-
 ```
 
 All good? Great. Let's go.
 
-1. How may rows in the data?
+1. How may rows are in the data?
 
 2. Create a dataframe named `spoken`. This should be those lines which are spoken by an actor/actress (figure it out).
 

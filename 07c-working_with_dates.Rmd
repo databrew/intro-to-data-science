@@ -1,10 +1,6 @@
 # Working with dates & times {#dates}
 
 
-```{r,echo=FALSE,eval=FALSE}
-is_teacher <- FALSE
-```
-
 #### Learning goals {-}
 
 * Be able to read dates, and convert objects to dates
@@ -12,11 +8,7 @@ is_teacher <- FALSE
 * Use date times
 * Gain familiarity with the lubridate package
 
-```{r, results = 'asis', eval = is_teacher}
-teacher_content('Here is some teacher content.')
-```
-
-## First steps  {-}
+&nbsp;
 
 Hadley Wickham's [tutorial on dates](https://r4ds.had.co.nz/dates-and-times.html) starts with 3 simple questions:
 
@@ -25,39 +17,103 @@ Hadley Wickham's [tutorial on dates](https://r4ds.had.co.nz/dates-and-times.html
 -   Does every day have 24 hours?
 -   Does every minute have 60 seconds?
 
-"I'm sure you know that not every year has 365 days, but do you know the full rule for determining if a year is a leap year?
-(It has three parts.) You might have remembered that many parts of the world use daylight savings time (DST), so that some days have 23 hours, and others have 25.
+"I'm sure you know that not every year has 365 days, but do you know the full rule for determining if a year is a leap year? (It has three parts.)  
+
+You might have remembered that many parts of the world use daylight savings time (DST), so that some days have 23 hours, and others have 25. 
+
 You might not have known that some minutes have 61 seconds because every now and then leap seconds are added because the Earth's rotation is gradually slowing down.
 
-Dates and times are hard because they have to reconcile two physical phenomena (the rotation of the Earth and its orbit around the sun) with a whole raft of geopolitical phenomena including months, time zones, and DST.
-This chapter won't teach you every last detail about dates and times, but it will give you a solid grounding of practical skills that will help you with common data analysis challenges."
+Dates and times are hard because they have to reconcile two physical phenomena (the rotation of the Earth and its orbit around the sun) with a whole raft of geopolitical phenomena including months, time zones, and DST.  
 
-## Lubridate  {-}
+This lesson won't teach you every last detail about dates and times, but it will give you a solid grounding of practical skills that will help you with common data analysis challenges."
 
-Let's install the `lubridate` package.
+## The `lubridate()` package  {-}
 
-## Getting familiar with the `date` type  {-}
+First, install the `lubridate` package.
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+install.packages('lubridate')
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 library(lubridate)
+```
+
+### Getting familiar with the `date` type  {-}
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 today <- today()
-my_birthday <- '1985-11-07'
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 str(today)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+my_birthday <- '1985-11-07'
 str(my_birthday)
+```
 
-# This causes an errors
-# today - my_birthday
+Note that class type impacts what you can do with text. The following causes an error...
 
-# This does not
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+today - my_birthday
+```
+
+... but this does not:
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 my_birthday <- as_date(my_birthday)
 today - my_birthday
 ```
 
-## Converting dates from strings  {-}
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+### The `datetime` data class  {-}
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+n <- now() 
+n
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+n + seconds(1)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+n - hours(5)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+hour(n)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+minute(n)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+as_date(n)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+later <- now()
+later
+```
+
+
+## Common tasks {-}
+
+### Converting to dates from strings  {-}
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 ymd("2017-01-31")
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 mdy("January 31st, 2017")
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 dmy("31-Jan-2017")
 ```
 
@@ -65,43 +121,45 @@ What does the `tzone` argument to `today()` do? Why is it important?
 
 Use the appropriate lubridate function to parse each of the following dates:
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 d1 <- "January 1, 2010"
 d2 <- "2015-Mar-07"
 d3 <- "06-Jun-2017"
 d4 <- c("August 19 (2015)", "July 1 (2015)")
-d5 <- "12/30/14" # Dec 30, 2014
+d5 <- "12/30/14"
 ```
 
-## Getting familiar with the `datetime` type  {-}
+### Extracting components from dates  {-}
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-n <- now() 
-n + seconds(1)
-n - hours(5)
-hour(n)
-minute(n)
-as_date(n)
-later <- now()
-```
-
-
-## Extracting components from date and datetime objects  {-}
-
-
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 datetime <- ymd_hms("2016-07-08 12:34:56")
 year(datetime)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 month(datetime)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 mday(datetime)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 yday(datetime)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 wday(datetime)
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 weekdays(datetime)
 ```
 
 
-## Cough data exercise  {-}
+### Exercises
 
+#### Child's cough data  {-}
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 coughs <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/coughs.csv')
@@ -121,10 +179,10 @@ coughs <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-sci
 
 7. Use the `hour` variable to create a `night_day` column indicating whether the cough was occurring at night or day.
 
-8. Does Galileo cough more at night or day?
+8. Does this child cough more at night or day?
 
 
-## Weather data exercise {-}
+## Sewanee weather {-}
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 library(weatherr)
@@ -136,13 +194,6 @@ fc <- locationforecast(lon = sewanee_location$long,
 ```
 
 1. Plot the forecasted temperature
-
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-ggplot(data = fc,
-       aes(x = time,
-           y = temperature)) +
-  geom_point()
-```
 
 2. Get average cloudiness by day.
 
