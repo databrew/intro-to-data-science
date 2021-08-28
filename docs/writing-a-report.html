@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 32 Writing a report | DataBOOM: the canon for data science</title>
+  <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 32 Writing a report | DataBOOM: the canon for data science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="github-repo" content="databrew/intro-to-data-science" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 32 Writing a report | DataBOOM: the canon for data science" />
+  
+  <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
+  
+
+<meta name="author" content="Databrew" />
+
+
+<meta name="date" content="2021-08-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="trump-shiny-git.html"/>
+<link rel="next" href="style.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">DataBOOM: the canon for data science </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-this-is-and-what-it-isnt"><i class="fa fa-check"></i>What this is, and what it isn’t</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-is-for"><i class="fa fa-check"></i>Who this is for</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What you will learn</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
+</ul></li>
+<li class="part"><span><b>I Core theory</b></span></li>
+<li class="chapter" data-level="2" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html"><i class="fa fa-check"></i><b>2</b> Principles of data science</a><ul>
+<li class="chapter" data-level="" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#what-is-data-science"><i class="fa fa-check"></i>What is data science?</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i>What is the data life cycle?</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i>Data science ‘in the wild’</a></li>
+<li><a href="principles-of-data-science.html#why-r">Why <code>R</code>?</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-science.html"><a href="principles-of-data-science.html#the-reproducibility-crisis"><i class="fa fa-check"></i>The reproducibility crisis</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualizing data</a><ul>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#the-importance-of-visualization"><i class="fa fa-check"></i>The importance of visualization</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#bad-examples"><i class="fa fa-check"></i>Bad examples</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#good-examples"><i class="fa fa-check"></i>Good examples</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#quick-video"><i class="fa fa-check"></i>Quick video</a></li>
+</ul></li>
+<li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
+<li class="chapter" data-level="4" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>4</b> Setting up <code>RStudio</code></a></li>
+<li class="chapter" data-level="5" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>5</b> Running R code</a><ul>
+<li><a href="running-r-code.html#rstudios-console">RStudio’s <em>Console</em></a></li>
+<li><a href="running-r-code.html#running-code-in-the-console">Running code in the <em>Console</em></a></li>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-r-like-a-calculator"><i class="fa fa-check"></i>Use R like a calculator</a></li>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#using-operators-in-r"><i class="fa fa-check"></i>Using operators in R</a></li>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-built-in-functions-within-r"><i class="fa fa-check"></i>Use built-in functions within R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a><ul>
+<li><a href="using-rstudio-r-scripts.html#r-and-rstudio-whats-the-difference"><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
+<li><a href="using-rstudio-r-scripts.html#two-minute-tour-of-rstudio">Two-minute tour of <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#scripts"><i class="fa fa-check"></i>Scripts</a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#wd"><i class="fa fa-check"></i>Your working directory</a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#typical-workflows"><i class="fa fa-check"></i>Typical workflows</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>7</b> Variables</a><ul>
+<li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
+<li><a href="variables.html#types-of-data-in-r">Types of data in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>8</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#declaring-and-using-vectors"><i class="fa fa-check"></i>Declaring and using vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>9</b> Dataframes</a><ul>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#building-dataframes"><i class="fa fa-check"></i>Building dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dataframes.html"><a href="dataframes.html#subsetting"><i class="fa fa-check"></i><b>10</b> Subsetting &amp; filtering</a><ul>
+<li class="chapter" data-level="" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i>Subsetting with indices</a></li>
+<li class="chapter" data-level="" data-path="subsetting.html"><a href="subsetting.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
+<li class="chapter" data-level="12" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>12</b> Packages</a><ul>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#review-the-workflow-for-using-a-package"><i class="fa fa-check"></i>Review: the workflow for using a package</a></li>
+</ul></li>
+<li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
+<li class="chapter" data-level="13" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>13</b> Importing data</a><ul>
+<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#data-format-requirements"><i class="fa fa-check"></i>Data format requirements</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>14</b> Base plots</a><ul>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#most-common-types-of-plots"><i class="fa fa-check"></i>Most common types of plots</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#basic-plot-formatting"><i class="fa fa-check"></i>Basic plot formatting</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#plotting-with-data-frames"><i class="fa fa-check"></i>Plotting with data frames</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#next-level-plotting"><i class="fa fa-check"></i>Next-level plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="ggplot-the-basics.html"><a href="ggplot-the-basics.html"><i class="fa fa-check"></i><b>15</b> <code>ggplot</code>: the basics</a><ul>
+<li class="chapter" data-level="" data-path="ggplot-the-basics.html"><a href="ggplot-the-basics.html#thinking-about-data-visualization"><i class="fa fa-check"></i>Thinking about data visualization</a></li>
+<li><a href="ggplot-the-basics.html#what-is-ggplot">What is <code>ggplot</code>?</a></li>
+<li class="chapter" data-level="" data-path="ggplot-the-basics.html"><a href="ggplot-the-basics.html#the-name-and-concept"><i class="fa fa-check"></i>The name and concept</a></li>
+<li class="chapter" data-level="" data-path="ggplot-the-basics.html"><a href="ggplot-the-basics.html#practice"><i class="fa fa-check"></i>Practice</a></li>
+<li class="chapter" data-level="" data-path="ggplot-the-basics.html"><a href="ggplot-the-basics.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot-the-basics.html"><a href="ggplot-the-basics.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
+<li class="chapter" data-level="" data-path="ggplot-the-basics.html"><a href="ggplot-the-basics.html#practice-1"><i class="fa fa-check"></i>Practice 1</a></li>
+<li class="chapter" data-level="" data-path="ggplot-the-basics.html"><a href="ggplot-the-basics.html#practice-exercises-1"><i class="fa fa-check"></i>Practice exercises 1</a></li>
+<li class="chapter" data-level="" data-path="ggplot-the-basics.html"><a href="ggplot-the-basics.html#practice-exercises-2"><i class="fa fa-check"></i>Practice exercises 2</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>16</b> Dataframe wrangling</a><ul>
+<li><a href="dplyr.html#the-dplyr-package">The <code>dplyr</code> package</a></li>
+<li><a href="dplyr.html#the-pipe">The <code>%&gt;%</code> pipe</a></li>
+<li><a href="dplyr.html#dplyr-verbs"><code>dplyr</code> verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>17</b> Distributions &amp; histograms</a><ul>
+<li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#exploring-distributions"><i class="fa fa-check"></i>Exploring distributions</a></li>
+<li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>18</b> Significance statistics</a><ul>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-for-different-data-types"><i class="fa fa-check"></i>Tests for different data types</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#comparison-tests"><i class="fa fa-check"></i>Comparison tests</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-of-association"><i class="fa fa-check"></i>Tests of association</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>19</b> Saving data &amp; plots</a><ul>
+<li><a href="saving-data-plots.html#write.csv"><code>write.csv()</code></a></li>
+<li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
+<li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
+</ul></li>
+<li class="part"><span><b>IV Review exercises</b></span></li>
+<li class="chapter" data-level="20" data-path="a-dplyr-mystery.html"><a href="a-dplyr-mystery.html"><i class="fa fa-check"></i><b>20</b> A <code>dplyr</code> mystery</a></li>
+<li class="chapter" data-level="21" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>21</b> A <code>dplyr</code> survey</a></li>
+<li class="chapter" data-level="22" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>22</b> Cleaning messy data</a></li>
+<li class="chapter" data-level="23" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>23</b> Shakespeare text mining</a></li>
+<li class="chapter" data-level="24" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>24</b> Trump tweets</a></li>
+<li class="chapter" data-level="25" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>25</b> Sewanee’s climate</a></li>
+<li class="part"><span><b>V Reproducible research</b></span></li>
+<li class="chapter" data-level="26" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>26</b> Reproducibility</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#the-reproducibility-crisis-1"><i class="fa fa-check"></i>The reproducibility crisis</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#what-is-reproducible-research"><i class="fa fa-check"></i>What is ‘reproducible research’?</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#why-does-reproducible-research-matter"><i class="fa fa-check"></i>Why does reproducible research matter?</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#how-to-carry-out-reproducible-research"><i class="fa fa-check"></i>How to carry out reproducible research</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>27</b> <code>Markdown</code> documentation</a><ul>
+<li><a href="markdown-documentation.html#documentation-with-markdown">Documentation with <code>Markdown</code></a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>28</b> <code>R Markdown</code></a></li>
+<li class="chapter" data-level="29" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>29</b> Interactive dashboards</a><ul>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#an-easy-example"><i class="fa fa-check"></i>An easy example</a></li>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>30</b> Git</a><ul>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#there-is-a-better-way"><i class="fa fa-check"></i>There is a better way</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#what-is-git"><i class="fa fa-check"></i>What is git?</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#why"><i class="fa fa-check"></i>Why?</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#get-ready-for-git"><i class="fa fa-check"></i>Get ready for git</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#getting-to-know-git-bash"><i class="fa fa-check"></i>Getting to know git bash</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#configuration"><i class="fa fa-check"></i>Configuration</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#github"><i class="fa fa-check"></i>Github</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#a-bit-more-practice"><i class="fa fa-check"></i>A bit more practice</a></li>
+<li class="chapter" data-level="" data-path="git.html"><a href="git.html#advanced-git"><i class="fa fa-check"></i>Advanced git</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>31</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
+<li class="part"><span><b>VI Presenting research</b></span></li>
+<li class="chapter" data-level="32" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>32</b> Writing a report</a><ul>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction-1"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#methods"><i class="fa fa-check"></i>Methods</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#results"><i class="fa fa-check"></i>Results</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>33</b> Good research writing</a><ul>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-tables"><i class="fa fa-check"></i>Formatting tables</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-figures"><i class="fa fa-check"></i>Formatting figures</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>34</b> Research talks</a></li>
+<li class="part"><span><b>VII Deep <code>R</code></b></span></li>
+<li class="chapter" data-level="35" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>35</b> Joining datasets</a><ul>
+<li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>36</b> Working with text</a><ul>
+<li class="chapter" data-level="" data-path="text.html"><a href="text.html#basics"><i class="fa fa-check"></i>Basics</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>37</b> Working with dates &amp; times</a><ul>
+<li><a href="dates.html#the-lubridate-package">The <code>lubridate()</code> package</a></li>
+<li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>38</b> Writing functions</a><ul>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
+<li class="chapter" data-level="38.1" data-path="writing-functions.html"><a href="writing-functions.html#using-dplyr-and-ggplot-in-custom-functions"><i class="fa fa-check"></i><b>38.1</b> Using dplyr and ggplot in custom functions</a></li>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#exercise-7"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>39</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics-1"><i class="fa fa-check"></i>Basics</a></li>
+<li><a href="for-loops.html#for-loop-exercises"><code>for</code> loop exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>40</b> Conditional statements</a><ul>
+<li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
+<li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="41" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>41</b> Matrices &amp; lists</a><ul>
+<li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+<li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>42</b> Geographic computing &amp; GIS</a><ul>
+<li class="chapter" data-level="" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html#exercise-9"><i class="fa fa-check"></i>Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="43" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>43</b> Mapping</a></li>
+<li class="chapter" data-level="44" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>44</b> Randomization statistics</a><ul>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-9"><i class="fa fa-check"></i>Review assignment</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#c-do-social-bonds-relate-to-kinship"><i class="fa fa-check"></i>(c) Do social bonds relate to kinship?</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/databrew/intro-to-data-science" target="blank">Databrew LLC</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><code>DataBOOM</code>: the canon for data science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="writing-a-report" class="section level1">
+<h1><span class="header-section-number">Module 32</span> Writing a report</h1>
+<div id="learning-goals-17" class="section level4 unnumbered">
+<h4>Learning goals</h4>
+<ul>
+<li>Understand the over-arching structure and narrative flow of a research paper<br />
+</li>
+<li>How to write each section of a paper</li>
+</ul>
+</div>
+<div id="overall-structure" class="section level2 unnumbered">
+<h2>Overall structure</h2>
+<p>Data reports, research papers, and scientific publications follow the same basic narrative flow:</p>
+<ul>
+<li><strong>Abstract</strong>: Concise summary. This section can also be referred to as an <em>Overview</em> or <em>Executive Summary</em>.</li>
+<li><strong>Introduction</strong>: A background section that provides context and justifies the ways that the report is important and adds value.<br />
+</li>
+<li><strong>Methods</strong>: Detailed description of what was done and how data were analyzed.<br />
+</li>
+<li><strong>Results</strong>: A concise report of what was found, drawing upon narrative prose, data tables, and figures.</li>
+<li><strong>Discussion</strong>: Considerations and interpretations of the results’ significance, limitations, and consequences for the field of study.</li>
+<li><strong>Other stuff</strong>: Acknowledgments, literature cited (i.e., references), tables, and figures.</li>
+</ul>
+<p>These sections map onto a high-level conceptual flow: a <strong>research paper is like an hourglass.</strong></p>
+<p><img src="img/hourglass.png" style="width:50.0%" /></p>
+<p>Your <em>Intro</em> narrows from a point of common and general interest to an articulation of a <em>specific</em> knowledge gap and a <em>focused</em> purpose. Your focus remains narrow as you cover your study’s <em>Methods</em> and <em>Results</em>. Only in the <em>Discussion</em> does your paper begin expanding out again to place your findings in the context of other studies and consider your findings’ implications on broader issues. Your paper ends as broadly as it began: a point of common interest and importance, this time focused on future concerns and priorities.</p>
+<p>In this module, we will cover how to adhere to this narrative arc while meeting the standards and expectations of each individual section.</p>
+</div>
+<div id="abstract" class="section level2 unnumbered">
+<h2>Abstract</h2>
+<p>An <em>Abstract</em> is a concise and sharp distillation of your paper.</p>
+<div id="standards" class="section level4 unnumbered">
+<h4>Standards</h4>
+<p>A strong <em>Abstract</em> section will answer <em>“Hell yes!”</em> to all of the following questions:</p>
+<p><strong>1. Is your abstract actually a helpful overview?</strong> That is, is your abstract a <em>specific summary of your paper’s content</em>, rather than a vague overview of its organization? As a good example of what <em>NOT</em> to do, in 1951 a geologist published an opinion article, <em>“A Scrutiny of the Abstract”</em>, about how abstracts should and should not be written. He decided to make his article’s abstract sarcastic:</p>
+<p><img src="img/abstracts-bad.png" /></p>
+<p>Avoid this style! There is a way to summarize that avoids any helpful information, and there is a way to summarize the provides an <em>executive summary</em> of your work. Aim for the latter.</p>
+<p>At the end of the above paper, the author provided a <em>good</em> version of his abstract:</p>
+<p><img src="img/abstracts-good.png" /></p>
+<p><strong>2. Does your abstract adhere to the Abstract Recipe</strong> detailed below?<br />
+<strong>3. Does your abstract fit within the word limits</strong> provided by the assignment or instructions? Most <em>Abstract</em> word limits range between 250 and 300 words.</p>
+</div>
+<div id="strategies" class="section level4 unnumbered">
+<h4>Strategies</h4>
+<p>There are hundreds of approaches to writing an <em>Abstract</em>. (For proof, just type “how to write an abstract” into <em>GoogleScholar</em>!) In your first few tries at writing your own abstract, we recommend the following approach.</p>
+<p>Every single sentence serves a specific purpose, outlined in the following <strong>Abstract Recipe:</strong></p>
+<ul>
+<li><strong>Sentence 1:</strong> establishes broad interest and the relevance of your topic.<br />
+</li>
+<li><strong>Sentence 2:</strong> articulates your problem statement.<br />
+</li>
+<li><strong>Sentence 3:</strong> articulates your research question and study objectives.<br />
+</li>
+<li><strong>Sentence 4:</strong> summarizes your data collection methods.<br />
+</li>
+<li><strong>Sentence 5:</strong> summarizes your statistical approach.<br />
+</li>
+<li><strong>Results sentences:</strong> The next few sentences (2 - 4) summarize your most important results. This is the most important part of your <em>Abstract</em>, since it tells the reader what your study is contributing to the world, and as such it should be the longest portion of the paragraph.</li>
+<li><strong>Discussion sentences:</strong> Use one to two sentences to explain the importance and implications of your findings.<br />
+</li>
+<li><strong>Final sentence:</strong> summarizes recommendations for future research (“Future research on this topic should focus on…”) and/or emphasizes the implications and importance of the findings.</li>
+</ul>
+<p>Like a professional chef, professional academics may adjust this recipe as they see fit, but nearly all good abstracts conform to this general formula.</p>
+</div>
+<div id="good-example" class="section level4 unnumbered">
+<h4>Good example</h4>
+<p>Below is the abstract from a publication whose first author is an undergraduate student (<a href="https://www.sciencedirect.com/science/article/pii/S0301479721006332?casa_token=BhsD4GiVQhIAAAAA:78wrLH-vN5gUPvNdX16fyaoHJq8QVQpQ-mqVA6UqxpxLMOFKweuX0YwJtBMLMnmVnfU4e1k" target="blank">Zeitler et al. 2021, <em>Journal of Environmental Management</em></a>). This a strong abstract that maps almost perfectly to the recipe above.</p>
+<p><img src="img/abstracts-map.png" /></p>
+</div>
+</div>
+<div id="introduction-1" class="section level2 unnumbered">
+<h2>Introduction</h2>
+<p>An <em>Introduction</em> is an information-rich and persuasive <em>argument</em> for the importance of the contribution your paper will be making to the field of study.</p>
+<div id="standards-1" class="section level4 unnumbered">
+<h4>Standards</h4>
+<p>An <em>Introduction</em> has to do many things at once. Here are the necessary elements of a quality <em>Intro</em>:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Engage &amp; Justify.</strong> The entire Introduction is a carefully crafted, convincing argument for the importance of your topic and the urgent need for your research.</p></li>
+<li><p><strong>Establish context &amp; convince readers to care.</strong> Early into the Intro, place your topic in a broad context. Make it clear who should be interested in your topic.</p></li>
+<li><p><strong>Invite readers in.</strong> A good Intro is an accessible one; it should not send the message that only experts will get something out of the paper.</p></li>
+<li><p><strong>Get everyone on the same page.</strong> Mention and explain any concepts that will be crucial to understanding your methodology, interpreting your results, or intuiting the impact of your work.</p></li>
+<li><p><strong>Demonstrate authoritative knowledge.</strong> Demonstrate exhaustive knowledge of the topic, and sharp awareness of the ‘state of the science’.</p></li>
+<li><p><strong>Demonstrate basis in previous research.</strong> Aim for a 1:1 ratio of citations to sentences. Each sentence should end with a citation. Your Introduction is an <em>assemblage of previous findings</em> strategically arranged to identify a knowledge gap and set the stage for your own study. <em>(See Literature Review details below.)</em></p></li>
+<li><p><strong>Provide more than a history lesson or a list of facts.</strong> Your Introduction is a tightly organized and persuasive argument, not a brain dump or an aimless encyclopedia entry. Your deep knowledge of the field ought to be sprinkled throughout, <em>interspersed within your narrowing arc</em>.</p></li>
+<li><p><strong>Narrow in on a problem statement.</strong> The entire Intro should narrow to a <em>problem statement</em> (a knowledge gap, an urgent need). Along the way, you are garnering reader buy-in (yes, this is important) which causes them to care about the gap you have identified.</p></li>
+<li><p><strong>Follow with a motivation/objectives statement.</strong> Your study is a response to the problem statement. “To address this knowledge gap, I developed a study based upon the following objectives…”</p></li>
+</ol>
+<p><em>Examples of problem statements &amp; hypotheses / aims:</em><br />
+In the examples below, the problem statement is in boldface &amp; the objectives/aims statement is italicized.</p>
+<ul>
+<li><p>“<strong>Although there have been several modern investigations of cladogenesis and tree shape [2], [3], the manufactory hypothesis has not, to our knowledge, been tested since Darwin…</strong> <em>This paper follows Darwin by examining autocorrelation among ancestral and descendent branches of the tree at the level of subspecies through genera and we also extend the comparison to the level of families.</em>” (from <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0005460" target="&quot;blank">Haskell &amp; Adhikari 2009</a>)</p></li>
+<li><p>“<strong>Few efforts explicitly quantify the consequences of including demand into conservation efforts to safeguard [Ecosystem Services] and biodiversity</strong> (Wolff et al. 2015; Verhagen et al. 2016). <em>We aimed to quantify differences between supply and benefit within the context of conservation planning. We addressed 3 questions: How does incorporating demand shift the spatial distribution of benefits relative to supply? How much benefit is captured by conservation efforts that target supply? How do efforts targeting supply and benefit compare in terms of their biodiversity outcomes?</em>” (from <a href="https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/cobi.13276" target="blank">Watson et al. 2019</a>)</p></li>
+</ul>
+<p>There are plenty of good and bad examples of <em>Introductions</em> in scientific publications. Here are a few recommendations for excellent introductions that follow the rules above. Note how each example demonstrates how to achieve the necessary conceptual arc while maintaining a large ratio of citations to sentences (nearly every sentence has at least one citation).</p>
+<ul>
+<li><p>See <a href="https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/cobi.13276" target="blank">Watson et al. 2019</a> for a sharp and concise <em>Intro</em>.</p></li>
+<li><p>See <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/mms.12661" target="blank">Pitman et al. 2019</a> for an extensive introduction with excellent writing.</p></li>
+</ul>
+</div>
+<div id="strategies-1" class="section level4 unnumbered">
+<h4>Strategies</h4>
+<p>With so much to cover in an Introduction, it can be difficult to know where to begin. There are two main steps to preparing an <em>Introduction</em>: (1) revieweing literature, and (2) writing. Begin with the literature.</p>
+<div id="conducting-a-literature-review" class="section level5 unnumbered">
+<h5>1. Conducting a literature review</h5>
+<p>Carrying out a literature review can be daunting, especially if you are new to a field of study.</p>
+<p>But regardless of your level of experience, you can follow a <strong>common basic workflow.</strong> The overall goal is to <strong>dive into the literature,</strong> follow rabbit holes, and take notes until you begin to feel familiar with the canon of knowledge on your topic. That feeling of familiarity will come once you stop finding new studies in the literature cited sections of the papers you are reading, and once you start to recognize the names of the most prolific and influential scientists in your topic of interest.</p>
+<p><strong>a. Find your first paper to review.</strong> Begin your search on <em>GoogleScholar</em> <a href="scholar.google.com">scholar.google.com</a>. You may need to search other search engines eventually (e.g., JStor, PubMed, etc.), but this is a good place to start.</p>
+<p>The most productive starting point is looking for recent <em>review</em> articles on your topic. Reviews try to be definitive and exhaustive in their list of references. They also point to the studies that were foundationally important in the early days of your topic, as well as to the “cutting edge”: the most recent and exciting developments in the literature.</p>
+<p><strong>b. Open up a scratchpad for taking notes</strong> in <em>Word</em> or <em>GoogleDocs</em>. Type (or screenshot) the citation for your first article to the top of your scratchpad (e.g., Keen EM and Brew JR. 2021. Ping pong: the Sport of Kings? <em>Table Tennis Weekly</em> 56(1): 343-356.)</p>
+<p><strong>c. Begin reading &amp; taking notes.</strong> Don’t sit down to read it word for word. Read it <em>selectively</em> for the topics and details that are most relevant to your work. If your first paper is a research article (i.e., with sections on Methods and Results) instead of a review, focus on its Introduction and Discussion. Your notes should be brief. If you are copying language from the paper word for word, place it in quotes so that you can remember what needs to be paraphrased at a later time. In each note that involves a reference to a separate article, include that reference in your note (e.g.,
+Puckette et al. 2021) so you can track it later.</p>
+<p><strong>d. Copy down all references</strong> that are included in your notes using the literature cited section. This can be tedious but it will pay off in the long run.</p>
+<p><strong>e. Clean up your notes for this first paper.</strong> Make sure <em>every single</em> note has a parenthetical citation attached to it, so you don’t lose track of where it came from. If the note is a direct contribution from the paper you have reviewed, add the reference for that paper to your note (e.g., Keen &amp; Brew 2021).</p>
+<p><strong>f. Select one of these references as your <em>second</em> paper to review.</strong></p>
+<p><strong>g. Repeat.</strong> Until you begin to feel familiar with the current literature and stop being suprised by new studies.</p>
+<p><em>Once you reach a familiarity plateau (shoot for 80% expertise), pause your literature review!</em> For a peer-reviewed article submitted for publication, anything less than 30 reviewed papers is highly unlikely to provide a sufficient grasp of the state of your field of study (most studies cite many times this number).</p>
+</div>
+<div id="organizing-and-writing-your-introduction" class="section level5 unnumbered">
+<h5>2. Organizing and writing your Introduction</h5>
+<p>You now know enough about the literature now to have a basic sense of what is currently known and not know about your topic.</p>
+<p><strong>a. Write your problem statement,</strong> the <em>gap in knowledge</em> the justifies and motivates your study.</p>
+<p><strong>b. Articulate your hypotheses and/or objectives</strong> Frame these as a way of <em>addressing</em> or <em>ameliorating</em> the problem statement.</p>
+<p><strong>c. Determine your starting point.</strong> Choose your audience, your hook, and the initial direction of your conceptual flow. This is arguably the most difficult part of the writing process.</p>
+<p><strong>d. Outline the narrative path from your starting point to your problem statement,</strong> with the key step in your argumentative arc must be, and therefore what the purpose of each paragraph must be.</p>
+<p><strong>e. For each paragraph, articulate the main point or key idea.</strong> This sentence can typically serve as the first sentence of the paragraph (or in some cases the last).</p>
+<p><strong>f. Sort your notes into each paragraph.</strong> Some notes may be useful in multiple paragraphs, in which case you can copy them rather than just moving them. This is why it is <em>critical</em> that you add a parenthetical citation for the source of each reference. Otherwise you will lose track of which content comes from which source!</p>
+<p><strong>g. Sort your notes <em>within</em> each paragraph.</strong> Each paragraph has its own narrative flow, taking the reader from concept A to concept B using a <em>sequence</em> or <em>chain</em> of evidence-based claims. How do your notes need to be organized in order to build that chain?</p>
+<p><strong>h. Determine the <em>holes</em> in your literature review.</strong> As you organize your notes into an argumentative sequence, you will find “holes” in your argument that require substantiation with an as-yet undiscovered reference. This will guide your <em>second stage</em> of literature review (see next steps).</p>
+<p><strong>i. Now begins an iterative process</strong> of writing, seeking new references, and reorganizing your writing. Iterate until satisfied. Once you are satisfied, ask a colleague to review your writing, not only for grammatical errors and typos, but also with an eye toward the overall arc. Where is your argument weakest? How can it be reorganized? Incorporate their feedback and repeat.</p>
+</div>
+</div>
+</div>
+<div id="methods" class="section level2 unnumbered">
+<h2>Methods</h2>
+<p>Your <em>Methods</em> section provides all the detail necessary to (1) understand how you collected data, (2) understand how you analyzed the data, (3) how to interpret the results, and (4) reproduce your study (at least in principle).</p>
+<div id="standards-2" class="section level4 unnumbered">
+<h4>Standards</h4>
+<p>A strong <em>Methods</em> section will answer <em>“Hell yes!”</em> to all of the following questions:</p>
+<p><strong>1. Do your methods make sense</strong> based upon the research question and the objectives stated in your Introduction? For example, if your goal is to understand the risks of a new drug, it would not make sense if you were measuring seismic activity near a volcano. That’s a dumb example, but you get the idea: what you <em>do</em> should actually answer your <em>research question</em>.</p>
+<p><strong>2. Is your research and analysis fully reproducible</strong>, based upon the level of detail and quality of explanation in your Methods section?</p>
+<p><strong>3. Is your analytical approach appropriate</strong> given your objectives and the limitations of your data? For example, if you are interested in the correlation between two variables, it would not make sense to use a <em>t-test</em>.</p>
+<p><strong>4. Is your analytical approach properly thorough?</strong> Are you doing everything you can with the data you have, within the confines of a your project’s scope and objectives? Data are valuable and difficult to come by. Are you learning everything you can regarding your research question from the data you have collected? (<em>Note that it is possible to go too far here, i.e., to include analyses that have nothing to do with your research question. The key is to be thorough but focused.</em>)</p>
+<p><strong>5. Is your Methods section written clearly, concisely, and with precision?</strong> See the <a href="style.html#style">Module on Style</a> for guidance.</p>
+<p>Use the papers you found during your literature review for examples of what is included in <em>Methods</em> sections within publications related to your topic, and the style in which that material is written.</p>
+</div>
+<div id="strategies-2" class="section level4 unnumbered">
+<h4>Strategies</h4>
+<ul>
+<li><p>Your <em>Methods</em> section will likely be the thing you write second, immediately after you develop your research question, objectives, and hypotheses. Writing your Methods in full and with detail will help you uncover mistakes with your sampling design and/or analyses before it is too late.</p></li>
+<li><p>Most <em>Methods</em> sections have a few distinct subsections: Study area, Data collection, Data analysis.</p></li>
+<li><p>Most <em>Methods</em> sections are written in the past tense.</p></li>
+<li><p>Do not hesitate to use tables or diagrams to present details of data collection.</p></li>
+</ul>
+</div>
+</div>
+<div id="results" class="section level2 unnumbered">
+<h2>Results</h2>
+<p>The <em>Results</em> section is a concise narrative of your findings, <em>without</em> interpretation or commentary on the importance and consequences of your findings.</p>
+<div id="standards-3" class="section level4 unnumbered">
+<h4>Standards</h4>
+<p>A strong <em>Results</em> section will answer <em>“Hell yes!”</em> to all of the following questions:</p>
+<p><strong>1. Are your results complete</strong> based on the analyses you described in your Methods section?<br />
+<strong>2. Is your Results section organized as a coherent narrative</strong> that is directly related to your research question, and not just a list of seemingly random findings?<br />
+<strong>3. Are your findings and conclusion <em>appropriate</em>,</strong> given the limitations of the data and the methods you employed?<br />
+<strong>4. Are tables and figures included where appropriate?</strong><br />
+<strong>5. Are tables and figures referenced correctly</strong> within the text of your results? See the next <a href="style.html#style">Module on Style</a> for guidance.
+<strong>6. Does your Results section contain results <em>only</em>,</strong> and not any methodological details that should have been in the <em>Methods</em>, nor interpretation commentary that would be more appropriate in the <em>Discussion</em>?</p>
+<p><strong>7. Is your Results section written clearly and with precision?</strong> This is especially important with respect to the inclusion of statistical results. Again, for guidance see the next <a href="style.html#style">Module on Style</a>.</p>
+<p>Again, use the papers you found during your literature review for examples of what is included in <em>Results</em> sections within publications related to your topic, and the style in which that material is written.</p>
+</div>
+<div id="strategies-3" class="section level4 unnumbered">
+<h4>Strategies</h4>
+<ul>
+<li><p>It is usually best to produce your tables and figures <em>first</em>, then write your <em>Results</em> narrative around those assets.</p></li>
+<li><p>You want your tables, figures, and narrative to be <em>strategically redundant</em>. Your tables and figures represent the detailed version of your <em>Results</em>; they are the raw numbers that answer your research question. Your <em>narrative</em> should refer constantly to the raw results presented in your tables and figures, but they should not repeat them. Your narrative <em>summarizes</em> the tables and figures and frames your findings with respect to how they address your research question. Minimize the numbers you include in your results, but be sure to include the most important ones.</p></li>
+<li><p>Aim for a parallel structure in your <em>Methods</em> and <em>Results</em>. Present your results in the same order in which you explain your methodological process. This makes it easy for readers to go back and forth between the two sections as they make sense of what you found.</p></li>
+<li><p>Most <em>Results</em> sections begin with a brief paragraph summarizing the data that were collected: dates of collection, sample size, and any other context that a reader might need to understand the analytical results that will come in the proceeding paragraphs.</p></li>
+<li><p>Usually, the most difficult thing about writing a <em>Results</em> section, other than writing an intelligible story instead of a list of facts, is to <em>keep your Discussion out of your Results</em>. The results section is a straightforward report of what you found, without commentary on the importance or implications of those findings.</p></li>
+<li><p>That said, you will still have to make some editorial decisions in your <em>Results</em> section. Which findings will you emphasize with narrative prose, and which will you simply refer to using a table or figure? Which findings are misleading if the reader fails to keep certain aspects of your methodology in mind, and how can you frame those findings to avoid misinterpretation?</p></li>
+</ul>
+</div>
+</div>
+<div id="discussion" class="section level2 unnumbered">
+<h2>Discussion</h2>
+<p>The <em>Discussion</em> is where you interpret your results, discuss the limitations of your study, place your findings within the context of the literature, highlight the contributions and implications of your findings, and identify future directions of research.</p>
+<div id="standards-4" class="section level4 unnumbered">
+<h4>Standards</h4>
+<p>The <em>Discussion</em> is probably the most variable and unstructured section of a report, and can therefore be the most difficult to write. For your first few attempts at writing a Discussion, we recommend adhering to the recipe we outline below. A strong <em>Discussion</em> section will have the following components or subsections:</p>
+<p><strong>The opening paragraph</strong> is a brief summary of your most important results that highlights the findings that make your study important. Think of this paragraph as a ‘hook’ that convinces readers they should read the rest of your Discussion.</p>
+<p><strong>Subsection on Study Limitations.</strong> This subsection allows you to (1) place boundaries on how you are able to interpret your results given the limitations or unexpected issues that arose from your methods, and (2) identity areas in which your study could be improved if it were reproduced in the future.</p>
+<p><strong>Subsection on Interpretation of Results.</strong> Use this subsection as an area to highlight and explore your findings, what they mean, and what the important takeaways are.</p>
+<p><strong>Subsection on Comparison to Previous Studies.</strong> Use this subsection to place your findings within the context of other research. Are your results in line with previous findings? Are they surprising? If so, why might that be? If it is difficult to compare your study to others, explain why. This is a chance for you to control the conversation in the event that others try to compare your study to other literature.</p>
+<p><strong>Subsection on Study Implications.</strong> Use this subsection to articulate how your findings relate to your study objectives, address your research question, and are important in a broad sense. Why do your results matter? What implications do they have for the issues, places, and people you are focused on in this project? How might your findings influence future policies, technological innovations, or other changes?</p>
+<p><strong>Subsection on Suggestions for Future Research</strong> with a concluding statement that reinforces the importance and contribution of your project.</p>
+<p>Usually, strong <em>Discussions</em> refer regularly to the concepts introduced in the <em>Introduction</em>. This makes sense, since your <em>Discussion</em> is exploring the ways in which your new findings have contributed to the body of knowledge and gaps in knowledge articulated in your <em>Intro</em>. If your <em>Discussion</em> is not addressing the same issues raised in your <em>Intro</em>, you many need to restructure and reframe one or both of those sections.</p>
+<p>Most of the papers you collect for your literature review will have their own variation on this recipe. Some sections will be more relevant and extensive than others, depending on your topic and findings. Use your literature collection to get a sense of writing style for <em>Discussions</em>.</p>
+</div>
+</div>
+<div id="other-elements-of-a-report" class="section level2 unnumbered">
+<h2>Other elements of a report</h2>
+<div id="acknowledgments" class="section level4 unnumbered">
+<h4>Acknowledgments</h4>
+<p>A brief statement of whom you thank for their contributions and support of your project. Be sure to include any sources of funding, equipment, analytical assistance, or other resources.</p>
+</div>
+<div id="literature-cited" class="section level4 unnumbered">
+<h4>Literature Cited</h4>
+<ul>
+<li><p>Be sure that every reference mentioned in the body of your report has a full citation in this section.</p></li>
+<li><p>Conversely, make sure that every full citation in this section has a corresponding reference within your report. Remove all un-referenced citations!</p></li>
+<li><p>See the <a href="style.html#style">Module on Style</a> for details on how to format your references and citations.</p></li>
+</ul>
+</div>
+<div id="tables" class="section level4 unnumbered">
+<h4>Tables</h4>
+<ul>
+<li><p>Present and enumerate tables in the order they are referenced in your report.</p></li>
+<li><p>Ensure that each table has its own caption placed <em>above the table</em>.</p></li>
+<li><p>See the <a href="style.html#style">Module on Style</a> for details on how to create and format tables.</p></li>
+</ul>
+</div>
+<div id="figures" class="section level4 unnumbered">
+<h4>Figures</h4>
+<ul>
+<li><p>Present and enumerate figures in the order they are referenced in your report.</p></li>
+<li><p>Ensure that each figure has its own caption placed <em>below the figure</em>.</p></li>
+<li><p>See the <a href="style.html#style">Module on Style</a> for details on how to create and format tables.</p></li>
+</ul>
+</div>
+<div id="other-resources-3" class="section level4 unnumbered">
+<h4>Other resources</h4>
+<p><a href="https://www.nature.com/articles/d41586-018-02404-4" target="blank"><strong>“How to Write a First-class Paper”</strong>, by the editors at <em>Nature</em></a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="trump-shiny-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="style.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/databrew/intro-to-data-science/edit/master/12b-sections.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

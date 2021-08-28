@@ -1,4 +1,4 @@
-# Dataframes: `dplyr` tools {#dataframes}
+# Dataframe wrangling {#dplyr}
 
 #### Learning goals {-}
 
@@ -213,9 +213,9 @@ library(babynames)
 bn <- babynames
 ```
 
-2. Crete a dataframe named `turn_of_century. This should be data on baby names for the year 1900
+2. Create a dataframe named `turn_of_century. This should be data on baby names for the year 1900.
 
-3. Create a dataframe named `boys`. This should be only males
+3. Create a dataframe named `boys`. This should be only males.
 
 4. Create a dataframe named `moms_gen`. This should be females born in the year of birth of your mom.
 
@@ -231,117 +231,5 @@ bn <- babynames
 
 10. Were there more Jims or Matthews in 2020?
 
-11. How many people were born with _your_ name in 2020.
+11. How many people were born with _your_ name in 2020?
 
-
-#### Group activity {-}
-
-Using the `deaths` data, we're going to answer some questions together. Start with:
-
-```{r,echo=TRUE,collapse=TRUE}
-library(readr)
-library(dplyr)
-df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv')
-```
-
-1. How many people are in the dataset.
-
-2. Use `summarize` to count the number of men and women.  
-
-3. Use `summarize` to count the number of people in each class.  
-
-4. Use `summarize` to count the number of men and women in each class.  
-
-5. Use `mutate` to create a variable called `died`. This should be a boolean based on the `Survived` column (in which 1 means the person survived, and 0 means the person died).
-
-6. Use `mutate` to create a variable called `child`. This should be a boolean based on the `Age` column, indicating if someone was less than 18 years old.
-
-7. Create a different dataframe for men vs. women. Name them accordingly.
-
-8. Create a different dataframe for class 1, class 2, and class 3. Name them accordingly.
-
-9. For each of the 5 datasets you've just created, what is the death rate?
-
-10. For each of the 5 datasets, how many children died?
-
-11. Now, using the _full_ dataset, calculate the child-specific death rate for each combination of class and sex (ie, "first class females", "third class males", etc.). 
-
-12. What did you find? What might explain that?
-
-
-#### Team exercises {-}
-
-Before getting started, start a new script (ctrl + shift + n), name it `survey_exercises.R`, and copy-paste the following code at the top.
-
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-# Load library
-library(gsheet)
-library(dplyr)
-
-# Read in data
-survey  <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767')
-
-# remake the names
-names(survey) <- c('time', 'sex', 'age','sib', 'dad_mus', 'person_mus', 'joe_mus_is', 'eyesight', 'height', 'shoe_size', 'bday', 'money_or_love', 'rps_skill', 'num_pan', 'cats_dogs', 'name')
-
-```
-
-
-1) Create a dataframe called `old_people`. This should include only people older than 20. Write code to calculate the number rows in your new dataframe.
-
-2) Create a dataframe called `captivated`. This should include all those people who find Joe's moustache to be "deeply captivating". Write code to calculate the number rows in your new dataframe.
-
-
-3) Create a dataframe called `special_people`. This should be people who are taller than 175cm, prefer cats over dogs, and consider themselves to be average at rock, paper, scissors.
-
-4) In the full dataset (survey), do more people like cats or dogs? What about among "special" people?
-
-5) Create a new variable in `survey` called "std_shoes" that standardizes shoe sizes by converting men's shoe size to women's (There is an approximate 1.5 size difference between Men's and Women's sizing (e.g., a men's size 7 is roughly equivalent to a women's size 8.5)
-
-6) Get the avg shoe size by sex (Male, Female, Prefer not to say) 
-
-7) Get Average age, height, & number of siblings, by the sex
-
-8) Do people that have ever had a mustache think there will be more pandemics on average than those who have never had a mustache?
-
-9) Do people that prefer cats have smaller feet on average than those who prefer dogs?
-
-10) Is eyesight associated with moustache perception?
-
-11) What percentage of people think they are better than average at rock scissors paper?
-
-12) What percentage of men and women think they are better than average at rock scissors paper?
-
-13) How many people think money matters more than love?
-
-14) Create a dataframe, grouped by whether or not people's dads had moustaches, with variables showing each of the following: the maximum age, maximum height,minimum number of pandemics, and average number of siblings
-
-15) What percentage of men have terrible eyesight?
-
-16) How many women have a shoe size of 9 or more?
-
-17) Create a variable in the `survey` dataset named `days_old`. Use the `bday` variable and subtract it from `Sys.Date()`.
-
-18) What is the standard deviation of age?
-
-19) Create a one-column dataset which contains the name(s) of the person(s) with the most number of siblings (hint: use the following dplyr verbs in this order: `filter`, `select`).
-
-20) Tell me something interesting about this dataset. 
-
-```{r, eval = FALSE, echo = FALSE}
-
-# 10) Create a bar chart that compares the average age of those who prefer cats vs dogs
-# 
-# 11) Create a scatter plot that shows the relationship between age and height (make it look nice!)
-# 
-# 12) Create a scatter plot that shows the relationship between height and shoe size 
-# 
-# 13) Create a bar chart that shows the average number of siblings for dad's mustache status.
-# 
-# 14) Color the barchart above and add some degree of transparency in the color. Add a title.
-# 
-# 15) Create a bar chart that shows the average shoe size by sex and cat/dog preference. 
-# 
-# 
-
-```
