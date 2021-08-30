@@ -6,7 +6,9 @@
 
 &nbsp;  
 
-A vector is the most basic data structure in `R`, and the other structures are built out of vectors. But, as a data scientist, the most common data structure you will be working with -- by far -- is a **dataframe**. A dataframe, essentially, is a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data. 
+A vector is the most basic data structure in `R`, and the other structures are built out of vectors. But, as a data scientist, the most common data structure you will be working with -- by far -- is a **dataframe**.  
+
+A dataframe, essentially, is a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data. 
 
 Here is what a dataframe looks like:
 
@@ -38,18 +40,6 @@ df
 
 This dataframe has one column of class `character` and another of class `numeric`.
 
-
-### Exercise 1 {-}
-
-Let's create a new object named `animals`. This is going to be a dataframe with 4 different columns: `species`, `height`, `color`, `veg` (whether or not the animal is a vegetarian). 
-
-First, come up with five species to add to your dataframe and list them in a vector named `species`. 
-
-Second, make the other vectors with details about those species in the correct order. 
-
-Third, combine these vectors into a dataframe named `animals`.
-
-
 ## Subsetting & exploring dataframes {-} 
 
 To explore dataframes, let's use a dataset on fuel mileage for all cars sold from 1985 to 2014. 
@@ -61,7 +51,7 @@ data(vehicles)
 head(vehicles)
 ```
 
-To look at this dataframe in full, you call display it in a separate tab within `RStudio` using the `View()` functions:
+To look at this dataframe in full, you call display it in a separate tab within `RStudio` using the `View()` function:
 
 ```{r,echo=TRUE,collapse=TRUE,eval=FALSE}
 View(vehicles)
@@ -69,42 +59,54 @@ View(vehicles)
 
 A dataframe has rows of data organized into columns. In this dataframe, each row pertains to a single vehicle make/model -- i.e., a single *observation*. Each column pertains to a single *type* of data. Columns are named in the *header* of the dataframe. 
 
-All the same useful exploration and [subsetting functions](#subsetting) that applied to vectors now apply to dataframes. In addition to those functions you already know, let's add some new functions to your inventory of useful functions.
+All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes. In addition to those functions you already know, let's add some new functions to your inventory of useful functions.
 
 ### Exploration {-}
 
+**`head()`** and **`tail()`** summarize the beginning and end of the object:  
+
 ```{r,echo=TRUE,collapse=TRUE}
-# head() and tail() summarize the beginning and end of the object
+head(vehicles) 
+
 tail(vehicles) 
 ```
 
+**`names()`** tells you the column names:  
+
 ```{r,echo=TRUE,collapse=TRUE}
-# get names of columns
 names(vehicles) 
 ```
 
+**`nrow()`**, **`ncol()`**, and **`dim()`** tell you about the dimensions of your dataframe:  
+
 ```{r,echo=TRUE,collapse=TRUE}
-# get number of rows
 nrow(vehicles) 
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-# get number of columns
 ncol(vehicles) 
 ```
 
-Note that `length()` does not work the same on dataframes as it does with vectors. In dataframes, `length()` is the equivalent of `ncol()`; it will *not* give you the number of rows in a dataset.
+```{r,echo=TRUE,collapse=TRUE}
+dim(vehicles) 
+```
 
-### Checking for NAs {-}
+Note that **`length()`** does not work the same on dataframes as it does with vectors. In dataframes, `length()` is the equivalent of `ncol()`; it will *not* give you the number of rows in a dataset.
 
-```{r,echo=TRUE,collapse=TRUE, eval=FALSE}
-# is.na(vehicles)
-any(is.na(vehicles)) # at least one!
+Importantly, you can use **`is.na()`** to ask whether columns or rows contain `NA`s:  
 
-# Find the NA
-any(is.na(vehicles$id))
-any(is.na(vehicles$make))
+```{r,echo=TRUE,collapse=TRUE, eval=TRUE}
+# Check for NAs
 
+# Which rows in the `hwy` column have NA's?
+which(is.na(vehicles$hwy))
+
+# (No NAs in that column!)
+
+# What about rows in the `cyl` column?
+which(is.na(vehicles$cyl))
+
+# (lots of NAs in that column!)
 ```
 
 ### Subsetting {-}
@@ -154,35 +156,18 @@ verdicts <- vehicles$hwy > 100
 vehicles[verdicts,2:3]
 ```
 
+Or you can write all this in a single line, to be more efficient:  
+
 ```{r,echo=TRUE,collapse=TRUE}
-# Write this in one line to be more efficient:
 vehicles[ vehicles$hwy > 100  , 2:3]
 ```
 
 Recall that the logical test is returning a bunch of `TRUE`'s and `FALSE`'s, one for each row of `vehicles`. Only the `TRUE` rows will be returned.  
 
 
-#### Exercise 2: Reading for errors {-}
-
-What is wrong with these commands? Why will each of them throw an error if you run them, and how can you fix them?
-
-```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
-# 1
-vehicles[1,15,]
-
-# 2
-vecihles[1:5,]
-
-# 3
-vehicles$hwy[1:5,]
-
-# 4
-vehicles[1:5,1:13]
-```
-
 ### Summarizing {-}
 
-The same summary functions that you have used for vectors work for dataframes, such as:
+The same summary functions that you have used for vectors work for the columns in dataframes, since each column is also a vector. Check it out: 
 
 ```{r,echo=TRUE,collapse=TRUE}
 min(vehicles$hwy)
@@ -223,8 +208,8 @@ unique(vehicles$fuel)
 Finally, the **`order()`** function helps you sort a dataframe according to the values in one of its columns.
 
 ```{r,echo=TRUE,collapse=TRUE}
- #sort dataframe by highway mileage
-# only keep certain columns
+# Sort dataframe by highway mileage
+# Only keep certain columns
 vehicles_sorted <- vehicles[order(vehicles$hwy), 
                             c(2,3,4,10:12)] 
 head(vehicles_sorted)
@@ -238,8 +223,7 @@ vehicles_sorted <- vehicles[rev(order(vehicles$hwy)),
 head(vehicles_sorted)
 ```
 
-
-## Building dataframes {-}
+## Creating dataframes {-}
 
 As shown above, to create a new dataframe, use the `data.frame()` function.
 
@@ -266,23 +250,33 @@ df <- as.data.frame(vehicles)
 df[1:4,1:4]
 ```
 
-You can bind multiple dataframes together using **`rbind()`**: 
+## Modifying dataframes {-}  
+
+### Combining dataframes {-}  
+
+To bind multiple dataframes together by row, use **`rbind()`**: 
 
 ```{r,echo=TRUE,collapse=TRUE}
+# Build up a dataframe
 df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),
                   instrument=c("Nose harp","Concertina","Ukelele","Drums"))
 df1
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
+# Build up a second dataframe
 df2 <- data.frame(name=c("Matthew"),
                   instrument=c("Washboard"))
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+# Combine those dataframes together
 rbind(df1,df2)
 ```
 
 Note that to be combined, two dataframes have to have the exact same number of columns and the exact same column names.
 
-The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the *`R` Toolbag* modules ahead.
+The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the **Deep `R`** modules ahead.
 
 ```{r,echo=TRUE,collapse=TRUE}
 df <- data.frame() # stage empty dataframe
@@ -295,7 +289,8 @@ df <- rbind(df,df1)
 df
 ```
 
-You can also bind multiple dataframes together using **`cbind()`**: 
+You can also bind multiple dataframes together by column, using **`cbind()`**: 
+
 ```{r,echo=TRUE,collapse=TRUE}
 df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),
                   instrument=c("Nose harp","Concertina","Ukelele","Drums"))
@@ -309,30 +304,111 @@ df
 
 Note that to be combined, two dataframes have to have the exact same number of rows and the exact same column names.
 
-### Exercise 3: Subsetting and filtering {-}
+### Adding columns {-}  
 
-**A. Subset one field according to a logical test**  
-With no more than two lines of code, get the number of Honda cars in the `vehicles` dataset.  
+To create a new column for a dataframe, use the `$` symbol and provide the name of the new column:
 
-**B. Subset one field according to a logical test for a different field.**  
-In a single line of code, show the mileages of all the Toyotas in the dataset.
+```{r,echo=TRUE,collapse=TRUE}
+df$x_factor <- c(3,20,60,40)
 
-**C. Subset a dataframe to a single subgroup**  
-In a single line of code, determine how many differet car makes/models were produced in 1995.
+df
+```
 
-**D. Get the mean value for a subgroup of data**  
-What is the average city mileage for Subaru cars in the dataset?
+### Altering values {-}  
 
-**E. Subset a dataframe to only data from between two values**  
-According to this dataset, how many different car makes/models have been produced with highway mileages between 30 and 40 mpg?
+To alter certain values in the dataframe, you can assign new values to a subset of your dataframe. 
 
-#### Review assignment {-}
+Here are four ways to do the same thing: upating Isabelle's X-factor:
 
-1. Create a vector called `people` of 5 peoples names from the class.
+**Option 1: Subsetting a single column**  
 
-2. Show with code how many people are in your vector
+```{r,echo=TRUE,collapse=TRUE}
+df$x_factor[4] <- 70
+```
 
-3. Create another vector called `height` which is the number of centimeters tall each of those 5 people are.
+**Option 2: Subsetting both rows and columns**  
 
-4. Combine these two vectors into a data frame.
+```{r,echo=TRUE,collapse=TRUE}
+df[4,5] <- 70
+```
+
+**Option 3: Subsetting a column based on a logical test**  
+
+```{r,echo=TRUE,collapse=TRUE}
+df$x_factor[df$name == 'Isabelle'] <- 70
+```
+
+**Option 3: Subsetting row and columns using logical tests**  
+
+```{r,echo=TRUE,collapse=TRUE}
+df[df$name == 'Isabelle', names(df) == 'x_factor'] <- 70
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+df
+```
+
+#### Exercises {-}
+
+**Reading for errors**  
+
+What is wrong with these commands? Why will each of them throw an error if you run them, and how can you fix them?
+
+**1.** `vehicles[1,15,]`
+
+**2.** `vecihles[1:5,]`
+
+**3.** `vehicles$hwy[15,]`
+
+**4.** `vehicles[1:5,1:13]`
+
+&nbsp;  
+
+**Subsetting and filtering**
+
+**5. Subset one field according to a logical test:** With no more than two lines of code, get the number of Honda cars in the `vehicles` dataset.  
+
+**6. Subset one field according to a logical test for a different field:** In a single line of code, show the mileages of all the Toyotas in the dataset.
+
+**7. Subset a dataframe to a single subgroup:** In a single line of code, determine how many differet car makes/models were produced in 1995.
+
+**8. Get the mean value for a subgroup of data:** What is the average city mileage for Subaru cars in the dataset?
+
+**9. Subset a dataframe to only data from between two values:** According to this dataset, how many different car makes/models have been produced with highway mileages between 30 and 40 mpg?
+
+**10. Subset by removing `NA`s:** Create a new version of the `vehicles` dataframe that does not have any `NA`s in the `trans` column. 
+
+&nbsp;  
+
+**Creating dataframes**  
+
+**11.**  Create a vector called `people` of 5 peoples names from the class.
+
+**12.**  Show with code how many people are in your vector
+
+**13.**  Create another vector called `height` which is the number of centimeters tall each of those 5 people are.
+
+**14.**  Combine these two vectors into a data frame.
+
+
+Now let's create a new object named `animals`. This is going to be a dataframe with 4 different columns: `species`, `weight` (in kg), `color`, `veg` (whether or not the animal is a vegetarian / herbivore). 
+
+**15.** Come up with five species to add to your dataframe and list them in a vector named `species`. 
+
+**16.** Make the other vectors with details about those species in the correct order. 
+
+**17.** Combine these vectors into a dataframe named `animals`.
+
+&nbsp;  
+
+**Altering dataframes**  
+
+**18.** Add a column to your `animals` dataframe named `rank`, which ranks each animal from your least favorite (0) to your most favorite (5).  
+
+**19.** Now write code to manually switch the ranking for your top two favorite animals.   
+
+**20.** What is the mean weight of the herbivorous animals that you listed, if any?  
+
+**21.** What is the mean weight of the omnivorous/carnivorous animals that you listed?  
+
 

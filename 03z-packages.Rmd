@@ -23,6 +23,14 @@ Some packages are designed to be broadly useful for almost any application, such
 
 Others are designed for niche problems that can be made much more doable with specialized functions or datasets. For example, the package `PBSmapping` contains shoreline, seafloor, and oceanographic datasets and custom mapping functions that make it easier for marine scientists at the Pacific Biological Station (PBS) in British Columbia, Canada, to carry out their work. 
 
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'Here it may be worth discussing what it means for `R` to be an open-source project, where millions of users all over the world are developing packages for it at once, and how that gives `R` an edge over more rigid programming languages such as `MATLAB` and `SASS`.'
+
+teacher_tip(tip)
+```
+
 ## Packages you already have  {-}
 
 In `RStudio`, look to the pane in the bottom right and click on the *Packages* tab. You should see something like this: 
@@ -39,7 +47,7 @@ When you click on one of these functions, you will be taken to the help page for
 
 ## Installing a new package  {-}
 
-There are a couple ways to download and install a new `R` packae on your computer. Most packages are available from an open-source repository known as `CRAN` (which stands for Comprehensive `R` Archive Network). However, an increasingly common practice is to release packages on a public repository such as `GitHub`. 
+There are a couple ways to download and install a new `R` package on your computer. Most packages are available from an open-source repository known as `CRAN` (which stands for Comprehensive `R` Archive Network). However, an increasingly common practice is to release packages on a public repository such as `GitHub`. 
 
 ### Installing from `CRAN`  {-}
 
@@ -98,6 +106,8 @@ library(wesanderson)
 
 Now that your new packages are loaded, you can actually use their functions.
 
+**To emphasize:** a package is installed *only once*, but you `library()` the package in *each and every* script that uses it. Think of a package as camping gear. Like an `R` package, camping gear helps you do cool things that you can't really do with the regular stuff in your closet. And, like an `R` package, you only need to install (i.e., purchase) your gear once; but it is useless unless you pack it in your car (i.e., `library()` it) *every time* you go on a trip.  
+
 
 ## Calling functions from a package  {-}
 
@@ -116,7 +126,7 @@ fun::random_password(length=24)
 Note that this was done in the example above using the `devtools` package.  
 
 
-### Side notes
+### Side notes {-}
 
 #### Package dependencies {-}
 
@@ -127,11 +137,11 @@ Most packages contain functions that are built using functions built from other 
 Packages are updated regularly, and sometimes new versions can break the functions that use it as a dependency. Sometimes you may have to install a new version (*or sometimes an older version!*) of a dependency in order to get your package of interest to work as desired. 
 
 
-## Review: the workflow for using a package {-}
+#### Review: the workflow for using a package {-}
 
 To review how to use functions from a non-base package in `R`, follow these steps (examples provided:)
 
-1. Install the package
+1. Install the package *once.*
 
 ```{r,echo=TRUE,eval=FALSE}
 # Example from CRAN
@@ -141,7 +151,7 @@ install.packages("wesanderson")
 devtools::install_github("karthik/wesanderson")
 ```
 
-2. Load the package
+2. Load the package *in each script.*
 
 ```{r,echo=TRUE,eval=FALSE}
 # Example
@@ -164,24 +174,29 @@ wesanderson::wes_palette("Zissou1")
 ```
 
 
-### Review assigment {-}
-Let's install some packages 
+### Exercises {-}  
 
-1. Install the `babynames` package.
+Let's install some packages:
 
-2. Install `ggplot2`.
+**1.** Install the `babynames` package.
 
-3. Install `dplyr`.
+**2.** Install `ggplot2`.
 
-4. Install `RColorBrewer`.
+**3.** Install `dplyr`.
 
-5. Install `tidyr`.  
+**4.** Install `RColorBrewer`.
 
-6. Install `gapminder`.
+**5.** Install `tidyr`.  
 
-8. Install `readr`.
+**6.** Install `gapminder`.
 
-9. Write 7 lines of code which load the above packages.
+**7.** Install `readr`.
+
+**8.** Install `gsheet`.
+
+**9.** Install `readxl`.
+
+**10.** Write 7 lines of code which *load* the above packages.
 
 
 

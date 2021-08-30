@@ -1,0 +1,163 @@
+# Subsetting & filtering 
+
+#### Learning goals {-}
+
+* Understand how to subset / filter data
+
+&nbsp;  
+
+You have been introduce to subsetting and filtering briefly in previous modules, but it is such an important concept that we want to devote an entire module to practicing it.  
+
+## Subsetting with indices {-}
+
+You have already learned that certain elements of a vector can be called by specifying an index:
+
+```{r, echo = T,collapse=T}
+x <- 55:65
+
+# Call x without subsetting
+x
+```
+
+```{r, echo = T,collapse=T}
+# Now call only the third element of x
+x[3]
+```
+
+Remember: brackets indicate that you don't want everything from a vector; you just want certain elements. 'I want `x`, *but not all of it.*'
+
+You can also subset an object by calling multiple indices:
+
+```{r, echo = T,collapse=T}
+# Now call the third, fourth, and fifth element of x
+x[c(3,4,5)]
+```
+
+```{r, echo = T,collapse=T}
+# Another way of doing the same thing:
+x[3:5]
+```
+
+## Subsetting with booleans {-}
+
+You can also subset objects with 'booleans'. This will eventually be your most common way of filtering data, by far.   
+
+Recall that boolean / logical data have two possible values: `TRUE` or `FALSE`. For example:
+
+```{r, echo = T,collapse=T}
+# Store Joe's age
+joes_age <- 35
+
+# Set the cutoff for old age
+old_age <- 36
+
+# Ask whether Joe is old
+joes_age >= old_age
+```
+
+Recall also that you can calculate whether a condition is `TRUE` or `FALSE` on multiple elements of a vector. For example:
+
+```{r, echo = T,collapse=T}
+# Build a vector of multiple ages
+ages <- c(10, 20, 30, 40, 50, 60)
+
+# Set the cutoff for old age
+old_age <- 36
+
+# Ask which ages are considered old
+ages >= old_age
+```
+
+Boolean vectors are super useful for subsetting. Think of 'subsetting' as keeping only those elements of a vector for which a condition is `TRUE`. 
+
+```{r, echo = T,collapse=T}
+x <- 55:59
+
+# Call x without subsetting
+x
+```
+
+```{r, echo = T,collapse=T}
+# Now subset to the second, third, and fourth element
+x[c(FALSE, TRUE, TRUE, TRUE, FALSE)]
+```
+
+That command returned elements for which the subetting vector was `TRUE`. 
+
+This is equivalent to...
+
+```{r, echo = T,collapse=T}
+x[2:4]
+```
+
+You can also get the same result using a logical test, since logical tests return boolean values:
+
+```{r, echo = T,collapse=T}
+# Develop your logical test: ask which values of x are in the vector 56:58
+x %in% c(56,57,58)
+
+# Now plug taht test it into the subsetting brackets
+x[ x %in% c(56,57,58) ]
+```
+
+This methods gets really useful when you are working with bigger datasets, such as this one:
+
+```{r, echo = T,collapse=T}
+# Make a large dataset of random numbers
+y <- sample(1:1000,size=100)
+length(y)
+```
+
+```{r, echo = T,collapse=T}
+range(y)
+```
+
+With a dataset like this, you can use a boolean filter to figure out how many values are greater than, say, 90.
+
+First, develop your logical test, which will tell you whether each value in the vector is greater than 90:
+
+```{r, echo = T,collapse=T}
+# Develop your logical test,
+y > 90
+```
+
+Now, to get the values corresponding to each `TRUE` in this list, plug your logical test into your subsetting brackets.
+
+```{r, echo = T,collapse=T}
+y[y > 90]
+```
+
+Here's another way you can do the same thing:
+
+```{r, echo = T,collapse=T}
+# Save the result of your logical test in a new vector
+verdicts <- y > 90
+
+# Use that vector to subset y
+y[verdicts]
+```
+
+You can use double logical tests too. For example, what if you want all elements between the values 70 and 90?
+
+```{r, echo = T,collapse=T}
+verdicts <- y > 70 & y < 90
+y[verdicts]
+```
+
+### Review assignment {-}
+
+**1.** Create a vector named `nummies` of all numbers from 1 to 100
+
+**2.** Create another vector named `little_nummies` which consists of all those numbers which are less than or equal to 30
+
+**3.** Create a boolean vector named `these_are_big` which indicates whether each element of `nummies` is greater than or equal to 70
+
+**4.** Use `these_are_big` to subset `nummies` into a vector named `big_nummies`
+
+**5.** Create a new vector named `these_are_not_that_big` which indicates whether each element of `nummies` is greater than 30 and less than 70. You'll need to use the `&` symbol.
+
+**6.** Create a new vector named `meh_nummies` which consists of all `nummies` which are greater than 30 and less than 70.
+
+**7.** How many numbers are greater than 30 and less than 70?
+
+**8.** What is the sum of all those numbers in `meh_nummies`

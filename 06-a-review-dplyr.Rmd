@@ -1,49 +1,74 @@
 # (PART) Review exercises {-}
 
 
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'This review exercise is best done immediately after the module on **Dataframe wrangling**.'
+
+teacher_tip(tip)
+```
+
 # A `dplyr` mystery
 
-#### Group activity {-}
+Use the `dplyr` verbs to answer these questions.  
 
-Using the `deaths` data, we're going to answer some questions together. Start with:
+First, download the following mystery dataset by running this code.  
 
-```{r,echo=TRUE,collapse=TRUE}
+```{r,echo=TRUE,collapse=TRUE, message = FALSE}
 library(readr)
 library(dplyr)
 df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv')
 ```
 
-1. How many people are in the dataset.
+**1.** Review the dataset and try to figure out which each row represents. "Each row is a ____."  
 
-2. Use `summarize` to count the number of men and women.  
+**2.** How many people are in the dataset?  
 
-3. Use `summarize` to count the number of people in each class.  
+**3.** Use `summarize()` to count the number of men and women.  
 
-4. Use `summarize` to count the number of men and women in each class.  
+**4.** Use `summarize()` to count the number of people in each class.   
 
-5. Use `mutate` to create a variable called `died`. This should be a boolean based on the `Survived` column (in which 1 means the person survived, and 0 means the person died).
+**5.** Use `summarize()` to count the number of men and women in each class.   
 
-6. Use `mutate` to create a variable called `child`. This should be a boolean based on the `Age` column, indicating if someone was less than 18 years old.
+**6.** What is the average age of men in the dataset?
 
-7. Create a different dataframe for men vs. women. Name them accordingly.
+**7.** What is the average age of women in the dataset? 
 
-8. Create a different dataframe for class 1, class 2, and class 3. Name them accordingly.
+**8.** Use `mutate` to create a variable called `died`. This should be a boolean based on the `Survived` column (in which 1 means the person survived, and 0 means the person died).  
 
-9. For each of the 5 datasets you've just created, what is the death rate?
+**9.** Use `mutate` to create a variable called `child`. This should be a boolean based on the `Age` column, indicating if someone was less than 18 years old.  
 
-10. For each of the 5 datasets, how many children died?
+**10.** Create a different dataframe for men vs. women. Name them accordingly.  
 
-11. Now, using the _full_ dataset, calculate the child-specific death rate for each combination of class and sex (ie, "first class females", "third class males", etc.). 
+**11.** Create a different dataframe for class 1, class 2, and class 3. Name them accordingly.  
 
-12. What did you find? What might explain that?
+**12.** For each of the 5 datasets you've just created, what is the death rate?  
+
+**13.** For each of the 5 datasets, how many children died?  
+
+**14.** Now, using the _full_ original dataset, calculate the child-specific death rate for each combination of class and sex (ie, "first class females", "third class males", etc.).  
+
+**15.** What did you find? What might explain that?  
+
+**16.** What is the average age of men and women, separately, in each class?
+
+**17.** What do you think this dataset represents? Where does it come from?  
 
 
 # A `dplyr` survey
 
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
 
-#### Team exercises {-}
+tip <- 'This review exercise is best done immediately after the module on **Dataframe wrangling**.'
 
-Before getting started, start a new script (ctrl + shift + n), name it `survey_exercises.R`, and copy-paste the following code at the top.
+teacher_tip(tip)
+```
+
+Use the `dplyr` verbs to answer these questions.  
+
+First, download the results of a recent survey by running this code.  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 # Load library
@@ -58,62 +83,57 @@ names(survey) <- c('time', 'sex', 'age','sib', 'dad_mus', 'person_mus', 'joe_mus
 
 ```
 
+**1.** Review the `survey` dataset and try to figure out which each row represents. "Each row is a ____."  
 
-1) Create a dataframe called `old_people`. This should include only people older than 20. Write code to calculate the number rows in your new dataframe.
+**2.** How many respondents are in the dataset?  
 
-2) Create a dataframe called `captivated`. This should include all those people who find Joe's moustache to be "deeply captivating". Write code to calculate the number rows in your new dataframe.
+**3.** Create a dataframe called `old_people`. This should include only people older than 20. Write code to calculate the number rows in your new dataframe.
 
+**4.** Create a dataframe called `captivated`. This should include all those people who find Joe's moustache to be "deeply captivating". Write code to calculate the number rows in your new dataframe.
 
-3) Create a dataframe called `special_people`. This should be people who are taller than 175cm, prefer cats over dogs, and consider themselves to be average at rock, paper, scissors.
+**5.** Create a dataframe called `special_people`. This should be people who are taller than 175cm, prefer cats over dogs, and consider themselves to be average at rock, paper, scissors.
 
-4) In the full dataset (survey), do more people like cats or dogs? What about among "special" people?
+**6.** In the full dataset (survey), do more people like cats or dogs? What about among "special" people?
 
-5) Create a new variable in `survey` called "std_shoes" that standardizes shoe sizes by converting men's shoe size to women's (There is an approximate 1.5 size difference between Men's and Women's sizing (e.g., a men's size 7 is roughly equivalent to a women's size 8.5)
+**7.** Create a new variable in `survey` called "std_shoes" that standardizes shoe sizes by converting men's shoe size to women's (There is an approximate 1.5 size difference between Men's and Women's sizing (e.g., a men's size 7 is roughly equivalent to a women's size 8.5)
 
-6) Get the avg shoe size by sex (Male, Female, Prefer not to say) 
+**8.** Get the avg shoe size by sex (Male, Female, Prefer not to say) 
 
-7) Get Average age, height, & number of siblings, by the sex
+**9.** Get Average age, height, & number of siblings, by the sex
 
-8) Do people that have ever had a mustache think there will be more pandemics on average than those who have never had a mustache?
+**10.** Do people that have ever had a mustache think there will be more pandemics on average than those who have never had a mustache?
 
-9) Do people that prefer cats have smaller feet on average than those who prefer dogs?
+**11.** Do people that prefer cats have smaller feet on average than those who prefer dogs?
 
-10) Is eyesight associated with moustache perception?
+**12.** Is eyesight associated with moustache perception?
 
-11) What percentage of people think they are better than average at rock scissors paper?
+**13.** What percentage of people think they are better than average at rock scissors paper?
 
-12) What percentage of men and women think they are better than average at rock scissors paper?
+**14.** What percentage of men and women think they are better than average at rock scissors paper?
 
-13) How many people think money matters more than love?
+**15.** How many people think money matters more than love?
 
-14) Create a dataframe, grouped by whether or not people's dads had moustaches, with variables showing each of the following: the maximum age, maximum height,minimum number of pandemics, and average number of siblings
+**16.** Create a dataframe, grouped by whether or not people's dads had moustaches, with variables showing each of the following: the maximum age, maximum height,minimum number of pandemics, and average number of siblings
 
-15) What percentage of men have terrible eyesight?
+**17.** What percentage of men have terrible eyesight?
 
-16) How many women have a shoe size of 9 or more?
+**18.** How many women have a shoe size of 9 or more?
 
-17) Create a variable in the `survey` dataset named `days_old`. Use the `bday` variable and subtract it from `Sys.Date()`.
+**19.** Create a variable in the `survey` dataset named `days_old`. Use the `bday` variable and subtract it from `Sys.Date()`.
 
-18) What is the standard deviation of age?
+**20.** What is the standard deviation of age?
 
-19) Create a one-column dataset which contains the name(s) of the person(s) with the most number of siblings (hint: use the following dplyr verbs in this order: `filter`, `select`).
+**21.** Create a one-column dataset which contains the name(s) of the person(s) with the most number of siblings (hint: use the following dplyr verbs in this order: `filter`, `select`).
 
-20) Tell me something interesting about this dataset. 
+**22.** Create a bar chart that compares the average age of those who prefer cats vs dogs
 
-```{r, eval = FALSE, echo = FALSE}
+**23.** Create a scatter plot that shows the relationship between age and height (make it look nice!)
 
-# 10) Create a bar chart that compares the average age of those who prefer cats vs dogs
-# 
-# 11) Create a scatter plot that shows the relationship between age and height (make it look nice!)
-# 
-# 12) Create a scatter plot that shows the relationship between height and shoe size 
-# 
-# 13) Create a bar chart that shows the average number of siblings for dad's mustache status.
-# 
-# 14) Color the barchart above and add some degree of transparency in the color. Add a title.
-# 
-# 15) Create a bar chart that shows the average shoe size by sex and cat/dog preference. 
-# 
-# 
+**24.** Create a scatter plot that shows the relationship between height and shoe size 
 
-```
+**25.** Create a bar chart that shows the average number of siblings for dad's mustache status.
+
+**26.** Color the barchart above and add some degree of transparency in the color. Add a title.
+
+**27.** Create a bar chart that shows the average shoe size by sex and cat/dog preference. 
+

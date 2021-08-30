@@ -20,8 +20,12 @@ In short, `R` is a open-source (i.e., free) coding language: a powerful programm
 
 `R Studio` needs `R` in order to function, but `R` can technically be used on its own outside of `RStudio` if you want. However, just as a good car mechanic can get an engine to run without being installed within a car, using `R` on its own is a bit clunky and requires some expertise. For beginners (and everyone else, really), `R` is just so much more pleasant to use when you are operating it from within `RStudio`.  
 
-```{r, results = 'asis', eval = FALSE}
-teacher_content('At this point it may be useful to show the students what opening R looks like on its own (not through R Studio). This helps them see why RStudio is valuable, and it will also help them understand what they did wrong when they accidentally open an .R file in R instead of RStudio -- which will happen a lot at first.')
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'At this point it may be useful to show the students what opening `R` looks like on its own (not through `RStudio`). This helps them see why `RStudio` is valuable, and it will also help them understand what they did wrong when they accidentally open an `.R` file in `R` instead of `RStudio` -- which will happen a lot at first.'
+
+teacher_tip(tip)
 ```
 
 `RStudio` also has increasingly powerful *extensions* that make `R` even more useful and versatile in data science. These extensions allow you to use `R` to make interactive data dashboards, beautiful and reproducible data reports, presentations, websites, and even books. And new features like these are regularly being added to `RStudio` by its all-star team of data scientists.
@@ -51,6 +55,14 @@ You will use the bottom right pane very often.
 
 These three panes are useful, but the most useful window pane of all is actually *missing* when you first open `RStudio`. This important pane is where you work with **scripts**.
 
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'We recommend speeding through this section; students will get to know these features as they become necessary. For now, you should move along to creating scripts as soon as you can.'
+
+teacher_tip(tip)
+```
+
 ## Scripts  {-}
 
 Before explaining what scripts are and why they are awesome, let's start a new script.
@@ -79,13 +91,15 @@ To send both lines of code to the *Console* at once, select both lines of code a
 
 (To select multiple lines of code, you can (1) click and drag with your mouse or (2) hold down your `Shift` key while clicking your down arrow key. To select *all* lines of code, press `Command + A`.)
 
-```{r, results = 'asis', eval = FALSE}
-teacher_content('Get all students to practice running code at this point. The act of typing the commands themselves helps them learn and overcome their hesitation about messing up.')
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'Get all students to practice running code at this point. The act of typing the commands themselves helps them learn and overcome their hesitation about messing up.'
+
+teacher_tip(tip)
 ```
 
-### Exercise 1 {-}
-
-Add a few more lines to your script, such that your script now looks like this.
+So let's build up this script. Add a few more lines to your script, such that your script now looks like this.
 
 ```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 2  + 10
@@ -94,8 +108,9 @@ Add a few more lines to your script, such that your script now looks like this.
 500 - 600
 ```
 
-(A) Run all of these lines of code at once.  
-(B) Now add `10` to the first number in each row, and re-run all of the code. 
+Run all of these lines of code at once.  
+
+Now add `10` to the first number in each row, and re-run all of the code.  
 
 Think about how much more efficient part (B) was thanks to your script! If you had typed all of that directly into your *Console*, you would have to recall or retype each line individually. That difference builds up when your number of commands grows into the hundreds. 
 
@@ -116,8 +131,12 @@ The main disadvantages of this workflow are that:
 
 3. Unless you are an advanced *Excel* programmer, you are probably modifying your original dataset, which is always dangerous and a big No-No in data science. Each time you save your work in *Excel* or *GoogleSheets* (which automatically saves each change you make), the original spreadsheet file gets replaced by the updated version. But if you brought your dataset into `R` instead, and modified it using an `R` script, then you leave the raw data alone and keep it safe. (Sure, you can always save different versions of your Excel file, but then you run the risk of mixing up versions and getting confused.)
 
-```{r, results = 'asis', eval = FALSE}
-teacher_content('Consider telling a story from your own work life before you discovered R scripts. For example: receiving versions of Excel files named DATA-final-final-final.xlsx, because tiny changes are inevitably discovered after you try to finalize a data file. Then you work all weekend on an analysis using that data, only to discover you were using the WRONG version of the data!')
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'Consider telling a story from your own work life before you discovered R scripts. For example: receiving versions of Excel files named DATA-final-final-final.xlsx, because tiny changes are inevitably discovered after you try to finalize a data file. Then you work all weekend on an analysis using that data, only to discover you were using the WRONG version of the data!'
+
+teacher_tip(tip)
 ```
 
 Working with `R` scripts allows you to avoid all of these pitfalls. When you write an `R` script, you are making your work ....
@@ -182,15 +201,21 @@ This might not seem necessary with a 5-line script, but adding visual breaks to 
 
 ### Saving your work {-}
 
-`R` scripts are only useful if you save them! Unlike working with *GoogleDocs* or *GoogleSheets*, `R` will not automatically save your changes; you have to do that yourself. (This is inconvenient, but it is also safer; most of coding is trial and error, and sometimes you want to be careful about what is saved.)
+**`R` scripts are only useful if you save them!** Unlike working with *GoogleDocs* or *GoogleSheets*, `R` will not automatically save your changes; you have to do that yourself. (This is inconvenient, but it is also safer; most of coding is trial and error, and sometimes you want to be careful about what is saved.)
 
-```{r, results = 'asis', eval = FALSE}
-teacher_content('Having grown up in the age of GoogleDocs, many students may not be familiar with what computer files are, and may not even know that their computer operates using directories of folders. It would be useful to open up File Explorer on your demo screen and show them how these directories work.')
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'Having grown up in the age of GoogleDocs, many students may not be familiar with what computer files are, and may not even know that their computer operates using directories of folders. It would be useful to open up File Explorer on your demo screen and show them how these directories work.'
+
+teacher_tip(tip)
 ```
 
-**Where to save your work?** The folder in which you save your `R` script will be referred to as your *working directory* (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location. We suggest making a new folder on your Desktop and naming it `databoom`, but you can name it whatever you want and place it wherever you want.
+**Step 1: Decide where to save your work.** The folder in which you save your `R` script will be referred to as your *working directory* (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location. 
 
-**How to save your script?** To save the script you have opened and typed a few lines of code into, press `Command + S` (or `Control + S`). Alternatively, go to File > Save. Navigate to the folder you just created and type in a file name that is simple but descriptive. We suggest making a new `R` script for each module, and naming those scripts according to each module's name. In this case, we recommend naming your script `09_intro_to_rstudio`. 
+**Step 2: In that location, make a new folder named `datalab`**: We suggest making a new folder on your Desktop and naming it `datalab`, but you can name it whatever you want and place it wherever you want.
+
+**Step 3: Save your script in that folder** To save the script you have opened and typed a few lines of code into, press `Command + S` (or `Control + S`). Alternatively, go to File > Save. Navigate to the folder you just created and type in a file name that is simple but descriptive. We suggest making a new `R` script for each module, and naming those scripts according to each module's name. In this case, we recommend naming your script `intro_to_scripts`. 
 
 (It is good practice to avoid spaces in your file names; it will be essential later on, so good to begin the correct habit now. Start using an underscore, `_`, instead of a space.)
 
@@ -218,11 +243,11 @@ There are three ways to set your working directory:
 ![](img/rstudio_setwd.png)
 This action sets your working directory to the same folder that your `R` script is in. When you do this, you will see that a command has been entered into your *Console*:
 
-```{r,echo=FALSE,eval=FALSE,collapse=TRUE}
-setwd("~/Desktop/databoom")
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
+setwd("~/Desktop/datalab")
 ```
 
-(Note that the filepath may be different on your machine.) This code is using the function `setwd()`, which is also used in the next option.
+(Note that the filepath may be different on your machine.) This code is using the function `setwd()`, which is also used in the next option. Go ahead and copy this `setwd(...)` code and paste it into your script, so it will be easy to use next time.
 
 2. **Manually with code, using `setwd()`**: You can manually provide the filepath you want to set as your working directory. This option allows you to set your `wd` to whatever folder you want. The character string within the `setwd()` command is the path to a folder. The formatting of this string must be exact, otherwise `R` will throw an error. Use option 1 at first to get a sense of how your computer formats its folder paths. Copy, paste, and modify the output from option 1 in order to type your path correctly.
 
@@ -304,17 +329,17 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 ```
 
 
-#### Review assignment: {-}
+#### Exercises {-}
 
-**Part 1** *(if not already complete)*. Create a working directory for this course. Call it whatever you like, but `databoom` could work great. Place it somewhere convenient on your computer, such as your Desktop.  
+**1** *(if not already complete)*. Create a working directory for this course. Call it whatever you like, but `datalab` could work great. Place it somewhere convenient on your computer, such as your Desktop.  
 
-**Part 2.** Within this working directory, create three new folders: (1) a `data` folder, which is where you will store the data files we will be using in subsequent modules; (2) a `modules` folder, which is where you will keep the code you use to work on the material in these modules, and (3) a `project` folder, which is where you will keep all your work associated with your summer project.  
+**2.** Within this working directory, create three new folders: (1) a `data` folder, which is where you will store the data files we will be using in subsequent modules; (2) a `modules` folder, which is where you will keep the code you use to work on the material in these modules, and (3) a `project` folder, which is where you will keep all your work associated with your summer project.  
 
-**Part 3.** Now follow the *Typical Workflow* instructions above to create a script. Save it within your `modules` folder. Name it `template.R`. Copy and paste the template `R` code provided above into this file, and save it. This is now a template that you can use to easily create new scripts for this course.
+**3.** Now follow the *Typical Workflow* instructions above to create a script. Save it within your `modules` folder. Name it `template.R`. Copy and paste the template `R` code provided above into this file, and save it. This is now a template that you can use to easily create new scripts for this course.
 
-**Part 4.** Now make a copy of `template.R` to stage a script that you can use in the next module. To do so, in `RStudio` go to the top banner and click `File > Save As`. Save this new script as `10_variables.R` (because the next module is called *Module 10: Variables in `R`*). 
+**4.** Now make a copy of `template.R` to stage a script that you can use in the next module. To do so, in `RStudio` go to the top banner and click `File > Save As`. Save this new script as `variables.R` (because the next module is called *Variables in `R`*). 
 
-**Part 5.** Modify the code in `10-variables.R` so that you are prepared to begin the next module. Change the title, and look ahead to *Module 10* to fill in a brief description. Don't forget to add your name as the author and specify today's date.
+**5.** Modify the code in `variables.R` so that you are prepared to begin the next module. Change the title, and look ahead to the next module to fill in a brief description. Don't forget to add your name as the author and specify today's date.
 
 Boom!
 

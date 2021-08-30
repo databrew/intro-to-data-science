@@ -13,8 +13,9 @@ description: "Data science is just data and science. But it's better with pizza.
 favicon: img/favicon.ico
 always_allow_html: true
 params:
-  is_teacher: FALSE
+  is_teacher: TRUE
 ---
+
 
 ```{r setup, include=FALSE, echo = FALSE}
 # Basic knitr options
@@ -31,6 +32,77 @@ opts_chunk$set(comment = NA,
 options(scipen=999)
 is_teacher <- params$is_teacher
 
+```
+
+```{r,echo=FALSE,eval=FALSE}
+codejs <- readr::read_lines("./js/codefolding.js")
+collapsejs <- readr::read_lines("./js/collapse.js")
+transitionjs <- readr::read_lines("./js/transition.js")
+dropdownjs <- readr::read_lines("./js/dropdown.js")
+
+htmlhead <- c(
+  paste('
+<script>',
+paste(transitionjs, collapse = "\n"),
+'</script>
+<script>',
+paste(collapsejs, collapse = "\n"),
+'</script>
+<script>',
+paste(codejs, collapse = "\n"),
+'</script>
+<script>',
+paste(dropdownjs, collapse = "\n"),
+'</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+.pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+', sep = "\n"),
+  paste0('
+<script>
+document.write(\'<div class="btn-group pull-right" style="position: absolute; top: 20%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 50px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>\')
+</script>
+')
+)
+
+readr::write_lines(htmlhead, path = "header.html")
 ```
 
 ```{r,eval=TRUE,echo=FALSE}
@@ -93,13 +165,13 @@ allowing users to explore the data themselves with an interactive `Shiny` dashbo
 
 
 
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
 
+tip <- 'Here are a few general strategies that should work with nearly every module in this curriculum:  <br><br>  (1) Use the module as your lecture notes. Read them on your own screen, or from the printed version of this book, as you manually type each command into a blank `Rstudio` window on the screen you are sharing with the students. The R script you make as you teach becomes a record of your lecture notes. <br><br> (2) Invite the students to follow along with you, writing the code into `Rstudio` themselves on their own computers. <br><br> (3) Once you introduce the concept of `R` scripts in a few modules, begin each class by opening up a new script and saving it with a simple name that reflects the module. Alternatively, ask students to do this before class begins, so that you can rock and roll immediately. <br><br> (4) We recommend setting up a Slack channel for your class. Have Slack open during instruction, so that students can copy and paste errors into a public channel. This will make it easy to address questions, and it will open up the possibility that students will help those who are stuck on their own. <br><br> (5) Plan for (i) very little time spent on teaching a module, and (ii) a large amount of time reserved for working through the exercises at the end of each module. When you transition from teaching to introducing the exercises, share the link to the module so that students can reference the module as they work.  <br><br> (6) If there is time, once students have the chance to tackle the exercises on their own, work through them together as a group. '
 
-
-```{r, results = 'asis', eval = is_teacher}
-teacher_content('Here is some teacher content.')
+teacher_tip(tip)
 ```
-
 
 
 ```{r,include=TRUE,eval=FALSE}
