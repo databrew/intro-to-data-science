@@ -382,24 +382,28 @@ summary(salt_lm)
 
 When you report the results of your statistical tests within your reports and figure captions, be sure to include the following information: 
 
-**t-tests:**  
+**t-tests:**   
+
 - Type of test used (i.e., t-test)  
 - Sample sizes of each category  
 - p-value  
 
-**ANOVAs:** 
-- Type of test used (i.e., ANOVA)  
-- Sample sizes of each category  
-- df (i.e., degrees of freedom)  
+**ANOVAs:**   
+
+- Type of test used (i.e., ANOVA)   
+- Sample sizes of each category   
+- df (i.e., degrees of freedom)   
 - p-value  
 
-**Chi-square tests:**  
+**Chi-square tests:**    
+
 - Type of test used (i.e., Chi-square)  
 - Sample sizes of each category  
 - df (i.e., degrees of freedom)   
 - p-value  
 
-**Linear regressions:**  
+**Linear regressions:**   
+
 - Type of test used (i.e., linear regression)  
 - Sample size   
 - p-value  
@@ -408,7 +412,7 @@ When you report the results of your statistical tests within your reports and fi
 For tips on writing these results statements, see the [Module on Writing Style for Reports](#style).
 
 
-#### Review exercise {-}
+#### Exercises {-}
 
 To review these concepts, we will use the same dataset from the previous module: *AirBNB* hosts in Amsterdam.  
 
@@ -416,7 +420,8 @@ To review these concepts, we will use the same dataset from the previous module:
 df <- read.csv("./data/airbnb-amsterdam.csv")
 ```
 
-##### Task 1 {-} 
+#### Task 1 {-}  
+
 Two neighborhoods in Amsterdam, "Bos en Lommer" and "Centrum-Oost", are among the most popular *AirBnB* destinations in the city. But are these two neighbourhoods equally affordable, or does one neighborhood tend to be more expensive?  
 
 **(a)** First, produce a single histogram with the price distributions of listings from these two neighborhoods superimposed upon one another.  
@@ -448,7 +453,8 @@ t.test(hood1$price,hood2$price)
 **(c)** Now properly interpret the test, and write a complete results statement.  
 
 
-##### Task 2 {-} 
+#### Task 2 {-}  
+
 Which neighborhood is more likely to offer a `Private room` instead of an `Entire home/apt`?
 
 
@@ -471,7 +477,8 @@ cst$residuals
 **(c)** Now properly interpret the test, and write a complete results statement.  
 
 
-##### Task 3 {-} 
+#### Task 3 {-} 
+
 Do listings with more reviews tend to be more expensive? For this analysis, focus on listings priced less than $500 and less than 400 reviews.
 
 **(a)** First, produce a single plot that properly visualizes the data. 
@@ -509,7 +516,9 @@ abline(price_lm,col=adjustcolor("dark orange",alpha.f=.6),lwd=4)
 summary(price_lm)
 ```
 
-### Group activity using the titanic dataset
+#### Task 4 {-}
+
+Let's change datasets. Read in a dataset of information about passengers aboard the *RMS Titanic* by using this code:  
 
 ```{r,echo=TRUE,collapse=TRUE}
 library(readr)
@@ -518,7 +527,7 @@ df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science
 ```
 
 
-1. Did women pay more than men (t-test)?
+**(a)** Did women pay more than men? Conduct the appropriate test and write up a complete results statement.
 
 ```{r, echo = FALSE, eval = FALSE}
 women_fares <- df$Fare[df$Sex == 'female']
@@ -526,16 +535,16 @@ men_fares <- df$Fare[df$Sex == 'male']
 t.test(men_fares, women_fares)
 ```
 
-2. Make a variable called `rich`. It should indicate (boolean) whether someone was first class or not.
+**(b)** Make a variable called `rich`. It should indicate (boolean) whether someone was first class or not.
 
 ```{r, echo = FALSE, eval = FALSE}
 df <- df %>%
   mutate(rich = Pclass == 1)
 ```
 
-3. How many rich people were there?
+**(c)** How many rich people were there?
 
-4. Did rich people pay more than poor people (t.test)?
+**(d)** Did rich people pay more than poor people? Again, conduct the appropriate test and write up a complete results statement.  
 
 ```{r, echo = FALSE, eval = FALSE}
 rich_fares <- df$Fare[df$rich]
@@ -543,8 +552,7 @@ poor_fares <- df$Fare[!df$rich]
 t.test(rich_fares, poor_fares)
 ```
 
-
-5. Is there an association between being rich and sex (chi-squared test)?
+**(d)** Does one sex tend to be richer than the other? Carry out the right test and write up the results.  
 
 ```{r, echo = FALSE, eval = FALSE}
 class_sex_table <- table(df$rich, df$Sex)
@@ -558,14 +566,14 @@ chi$expected
 chi$p.value
 ```
 
-6. Adjusting for passenger class, did women pay more than men?
+**(e)** 6. Adjusting for passenger class, did women pay more than men?
 
 ```{r, echo = FALSE, eval = FALSE}
 fit <- lm(Fare ~ Sex + factor(Pclass), data = df)
 summary(fit)
 ```
 
-7. Use `dplyr` verbs to get the number of survivors and total people among both men and women. With the result, run a chi-squared test.
+**(7)** Use `dplyr` verbs to get the number of survivors and total people among both men and women. With the result, choose the right test to ask whether more women survived than men.
 
 ```{r, echo = FALSE, eval = FALSE}
 tt <- df %>%
@@ -578,14 +586,14 @@ chi$expected
 chi$observed
 ```
 
-8. Make a basic linear model in which the outcome "Survived" is a function of "Sex".
+**(8)** Make a basic linear model in which the outcome "Survived" is a function of "Sex".
 
 ```{r, echo = FALSE, eval = FALSE}
 fit <- lm(Survived ~ Sex, data = df)
 summary(fit)
 ```
 
-9. Adjusting for passenger class, did women die more than men?
+**(9)** Adjusting for passenger class, did women die more than men?
 
 ```{r, echo = FALSE, eval = FALSE}
 fit <- lm(Survived ~ Sex + factor(Pclass), data = df)
