@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-09-05" />
+<meta name="date" content="2021-09-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,12 +158,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-reproducibility-movement"><i class="fa fa-check"></i>The ‘reproducibility’ movement</a></li>
 <li><a href="the-reproducibility-crisis.html#why-r">Why <code>R</code>?</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a></li>
-<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a><ul>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualizing data</a><ul>
 <li><a href="dataviz.html#the-value-of-data-viz">The value of <em>data viz</em></a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#plot-gallery"><i class="fa fa-check"></i>Plot gallery</a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#chart-junk"><i class="fa fa-check"></i>Chart junk</a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#final-thoughts"><i class="fa fa-check"></i>Final thoughts</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>5</b> Data ethics</a><ul>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#a-few-principles"><i class="fa fa-check"></i>A few principles</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#warm-up-scenarios"><i class="fa fa-check"></i>Warm up scenarios</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#case-studies"><i class="fa fa-check"></i>Case studies</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#more-scenarios"><i class="fa fa-check"></i>More scenarios</a></li>
 </ul></li>
 <li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
 <li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
@@ -414,18 +419,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Set up our canvas.</strong> If we just type <code>ggplot()</code> without anything in the parentheses, the function will just return a blank piece of paper.</li>
 </ol>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="ggplot.html#cb224-1"></a><span class="kw">ggplot</span>()</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-250-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-246-1.png" width="925.44" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Draw the axes</strong> and, 3., setup our <strong>landscape of coordinates</strong>. To do so, we need to feed <code>ggplot()</code> some data and tell it which columns should be mapped onto the axes.</li>
 </ol>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="ggplot.html#cb225-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
 <span id="cb225-2"><a href="ggplot.html#cb225-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">y =</span> Fare))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-251-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-247-1.png" width="925.44" /></p>
 <p>That code looks a bit clunky, we know. The <code>aes()</code> input, which is short for <code>aesthetics</code>, is actually a function. Everything included in its parentheses will be used to <em>map your data to the plot’s aesthetic attributes</em>. So far we have simply said that <code>Age</code> should be mapped to the <em>x</em> axis and that <code>Fare</code> should be mapped to <em>y</em>.</p>
 <p>But let’s say we also want to color-code the points on our plot according to male/female. To do so, we will add specifications to this <code>aes()</code> function.</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="ggplot.html#cb226-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
 <span id="cb226-2"><a href="ggplot.html#cb226-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">y =</span> Fare, <span class="dt">color=</span>Sex))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-252-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-248-1.png" width="925.44" /></p>
 <p>Your plot is still blank, but in the background <code>ggplot()</code> is all setup to make your plot. Since this <code>ggplot()</code> call is the basis of everything that will happen next – it contains the data and the way you want to map it to attributes of your plot – let’s save it to a variable for easy recall. We’ll use <code>p</code> for “plot”.</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="ggplot.html#cb227-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
 <span id="cb227-2"><a href="ggplot.html#cb227-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">y =</span> Fare, <span class="dt">color=</span>Sex))</span></code></pre></div>
@@ -435,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="ggplot.html#cb228-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
 <span id="cb228-2"><a href="ggplot.html#cb228-2"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-254-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-250-1.png" width="925.44" /></p>
 <p>Note the use of a plus sign, <code>+</code>. You are <em>adding</em> layers to your plot.</p>
 <ol start="5" style="list-style-type: decimal">
 <li><strong>Add some more labels</strong>. You see that <code>ggplot()</code> has automatically added axis titles and a legend, but we can add some more using the <code>labs()</code> function. Let’s add an overhead title, a sub-title, and a caption.</li>
@@ -444,27 +449,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb229-2"><a href="ggplot.html#cb229-2"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;Passengers on the RMS Titanic&#39;</span>,</span>
 <span id="cb229-3"><a href="ggplot.html#cb229-3"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Eric Keen &amp; Hadley Whickham (2021)&#39;</span>)</span>
 <span id="cb229-4"><a href="ggplot.html#cb229-4"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-255-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-251-1.png" width="925.44" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li><strong>Add a statistical summary</strong>, like a smoothed regression line.</li>
 </ol>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="ggplot.html#cb230-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>)</span>
 <span id="cb230-2"><a href="ggplot.html#cb230-2"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-256-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-252-1.png" width="925.44" /></p>
 <p>Note that <code>ggplot()</code> automatically produced a different regression line for each sex. That’s nice, but now our plot is getting pretty cluttered.</p>
 <ol start="7" style="list-style-type: decimal">
 <li>Clean up the look by using <strong>facets</strong>: a separate plot for each sex.</li>
 </ol>
 <div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="ggplot.html#cb231-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Sex)</span>
 <span id="cb231-2"><a href="ggplot.html#cb231-2"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-257-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-253-1.png" width="925.44" /></p>
 <p>Beautiful!</p>
 <ol start="8" style="list-style-type: decimal">
 <li>Finally, let’s <strong>stylize</strong> the entire plot with a different <strong>theme</strong>. You can find theme options in the `<code>ggthemes</code> package.</li>
 </ol>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="ggplot.html#cb232-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_economist_white</span>()</span>
 <span id="cb232-2"><a href="ggplot.html#cb232-2"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-258-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-254-1.png" width="925.44" /></p>
 </div>
 <div id="bar-plot" class="section level2 unnumbered">
 <h2>Bar plot</h2>
@@ -473,7 +478,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="ggplot.html#cb233-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
 <span id="cb233-2"><a href="ggplot.html#cb233-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb233-3"><a href="ggplot.html#cb233-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;count&#39;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-259-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-255-1.png" width="925.44" /></p>
 <p>Note that, for the <code>aes()</code> call, we only provided the <em>x</em> axis attribute: <code>Sex</code>.</p>
 <p>Then, in the <code>geom_bar()</code> call, we told <code>R</code> what <code>stat</code>istic should be represented by that bars: <code>'count'</code>.</p>
 <p>But you are allowed to explicitly set the bars’ heights (i.e., the <code>y</code> dimension) to represent a different statistic. Let’s say we wanted each bar to represent the mean age of men and women:</p>
@@ -488,13 +493,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb234-9"><a href="ggplot.html#cb234-9"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_age, </span>
 <span id="cb234-10"><a href="ggplot.html#cb234-10"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex,<span class="dt">y=</span> mean_age)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb234-11"><a href="ggplot.html#cb234-11"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-260-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-256-1.png" width="925.44" /></p>
 <p>In this case, we are explicitly defining the <code>y</code> axis in the <code>aes()</code> call, and telling <code>geom_bar()</code> to just use the values we specified in <code>aes()</code> (that’s what <code>'identity'</code> means; you are telling <code>ggplot()</code> to just use what you already gave it.)</p>
 <p>You can specify other aesthetic attributes, <em>unrelated to the data</em>, within the <code>geom_bar()</code> call:</p>
 <div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="ggplot.html#cb235-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_age, </span>
 <span id="cb235-2"><a href="ggplot.html#cb235-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex,<span class="dt">y=</span> mean_age)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb235-3"><a href="ggplot.html#cb235-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) </span></code></pre></div>
-<p><img src="figures/unnamed-chunk-261-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-257-1.png" width="925.44" /></p>
 <p>Now add better labels:</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="ggplot.html#cb236-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_age, </span>
 <span id="cb236-2"><a href="ggplot.html#cb236-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex,<span class="dt">y=</span> mean_age)) <span class="op">+</span><span class="st"> </span></span>
@@ -503,7 +508,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb236-5"><a href="ggplot.html#cb236-5"></a>       <span class="dt">x =</span> <span class="st">&#39;Gender&#39;</span>,</span>
 <span id="cb236-6"><a href="ggplot.html#cb236-6"></a>       <span class="dt">title =</span> <span class="st">&#39;Titanic passengers: Average age by sex&#39;</span>,</span>
 <span id="cb236-7"><a href="ggplot.html#cb236-7"></a>       <span class="dt">caption =</span> <span class="st">&#39;Do not steal, please&#39;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-262-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-258-1.png" width="925.44" /></p>
 <p>You can add another variable to your bar plot as follows. Let’s say you want to see the average age in each sex, grouped by who survived and who didn’t:</p>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="ggplot.html#cb237-1"></a><span class="co"># First, produce your summary dataframe using some dplyr magic:</span></span>
 <span id="cb237-2"><a href="ggplot.html#cb237-2"></a>titanic_em &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -528,12 +533,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb237-21"><a href="ggplot.html#cb237-21"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_em, </span>
 <span id="cb237-22"><a href="ggplot.html#cb237-22"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>mean_age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></span>
 <span id="cb237-23"><a href="ggplot.html#cb237-23"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-263-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-259-1.png" width="925.44" /></p>
 <p>Rather than stack the bars, you can place them side by side:</p>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="ggplot.html#cb238-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_em, </span>
 <span id="cb238-2"><a href="ggplot.html#cb238-2"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>mean_age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></span>
 <span id="cb238-3"><a href="ggplot.html#cb238-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) </span></code></pre></div>
-<p><img src="figures/unnamed-chunk-264-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-260-1.png" width="925.44" /></p>
 <p>If you don’t love these default colors (even if they are colorblind-friendly), you can manually define the colors for each group of bars:</p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="ggplot.html#cb239-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_em, </span>
 <span id="cb239-2"><a href="ggplot.html#cb239-2"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>mean_age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></span>
@@ -542,7 +547,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb239-5"><a href="ggplot.html#cb239-5"></a>           <span class="dt">alpha =</span> <span class="fl">0.7</span>, </span>
 <span id="cb239-6"><a href="ggplot.html#cb239-6"></a>           <span class="dt">color=</span><span class="st">&#39;grey40&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># bar edge</span></span>
 <span id="cb239-7"><a href="ggplot.html#cb239-7"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;grey&#39;</span>)) <span class="co"># bar fill</span></span></code></pre></div>
-<p><img src="figures/unnamed-chunk-265-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-261-1.png" width="925.44" /></p>
 <div id="exercises-8" class="section level4 unnumbered">
 <h4>Exercises</h4>
 <p><strong>More <em>Titanic</em> plots</strong></p>

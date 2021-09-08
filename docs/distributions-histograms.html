@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-09-05" />
+<meta name="date" content="2021-09-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,12 +158,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-reproducibility-movement"><i class="fa fa-check"></i>The ‘reproducibility’ movement</a></li>
 <li><a href="the-reproducibility-crisis.html#why-r">Why <code>R</code>?</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a></li>
-<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a><ul>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualizing data</a><ul>
 <li><a href="dataviz.html#the-value-of-data-viz">The value of <em>data viz</em></a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#plot-gallery"><i class="fa fa-check"></i>Plot gallery</a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#chart-junk"><i class="fa fa-check"></i>Chart junk</a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#final-thoughts"><i class="fa fa-check"></i>Final thoughts</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>5</b> Data ethics</a><ul>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#a-few-principles"><i class="fa fa-check"></i>A few principles</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#warm-up-scenarios"><i class="fa fa-check"></i>Warm up scenarios</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#case-studies"><i class="fa fa-check"></i>Case studies</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#more-scenarios"><i class="fa fa-check"></i>More scenarios</a></li>
 </ul></li>
 <li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
 <li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
@@ -398,18 +403,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A histogram sorts your data into bins and counts the number of data points in each bin.</p>
 <p>Make histograms in <code>R</code> using the <code>hist()</code> function:</p>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="distributions-histograms.html#cb277-1"></a><span class="kw">hist</span>(df<span class="op">$</span>availability_<span class="dv">365</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-307-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-303-1.png" width="925.44" /></p>
 <p>This is a histogram of the number of nights the listings are available for reservation. In a quick glance, you can see that most listings are available for only a few nights, while a small portion have a wide variety of availabilities.</p>
 <p>Think about how much more helpul this image is than a simple sample mean. To illustrate that value, let’s plot the mean onto this histogram.</p>
 <div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="distributions-histograms.html#cb278-1"></a><span class="kw">hist</span>(df<span class="op">$</span>availability_<span class="dv">365</span>)</span>
 <span id="cb278-2"><a href="distributions-histograms.html#cb278-2"></a><span class="kw">abline</span>(<span class="dt">v=</span> <span class="kw">mean</span>(df<span class="op">$</span>availability_<span class="dv">365</span>),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-308-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-304-1.png" width="925.44" /></p>
 <p>The average value of this dataset is nowhere near the most common values (1 - 20 nights), nor does it capture the fact that there are some listings available for the entire year. <strong>Punchline:</strong> a lot of rich insight is lost when taking an average, which is why a histogram is more useful for displaying distributions than bar graphs (which only show the mean).</p>
 <div id="prettifying-histograms" class="section level4 unnumbered">
 <h4>Prettifying histograms</h4>
 <p>Let’s take a look at another variable: the price of lodging per night.</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="distributions-histograms.html#cb279-1"></a><span class="kw">hist</span>(df<span class="op">$</span>price)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-309-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-305-1.png" width="925.44" /></p>
 <p>Not a very pretty plot. Since the range in prices is so wide, the default parameters for the <code>hist()</code> will need some tweaking.</p>
 <p>To make this histogram prettier, first let’s manually set the number of “breaks”, i.e., the cutoff values for each bin along the x-axis.</p>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="distributions-histograms.html#cb280-1"></a><span class="co"># Calculate breaks -- make each bin one day</span></span>
@@ -417,12 +422,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb280-3"><a href="distributions-histograms.html#cb280-3"></a></span>
 <span id="cb280-4"><a href="distributions-histograms.html#cb280-4"></a><span class="kw">hist</span>(df<span class="op">$</span>price,</span>
 <span id="cb280-5"><a href="distributions-histograms.html#cb280-5"></a>     <span class="dt">breaks=</span>breaks)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-310-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-306-1.png" width="925.44" /></p>
 <p>That’s better. Let’s zoom in on the most common values using <code>xlim()</code>.</p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="distributions-histograms.html#cb281-1"></a><span class="kw">hist</span>(df<span class="op">$</span>price,</span>
 <span id="cb281-2"><a href="distributions-histograms.html#cb281-2"></a>     <span class="dt">breaks=</span>breaks,</span>
 <span id="cb281-3"><a href="distributions-histograms.html#cb281-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-311-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-307-1.png" width="925.44" /></p>
 <p>Finally, let’s improve the labels and colors.</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="distributions-histograms.html#cb282-1"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,.<span class="dv">5</span>,.<span class="dv">5</span>))</span>
 <span id="cb282-2"><a href="distributions-histograms.html#cb282-2"></a><span class="kw">hist</span>(df<span class="op">$</span>price,</span>
@@ -433,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb282-7"><a href="distributions-histograms.html#cb282-7"></a>     <span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>),</span>
 <span id="cb282-8"><a href="distributions-histograms.html#cb282-8"></a>     <span class="dt">border=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">1</span>),</span>
 <span id="cb282-9"><a href="distributions-histograms.html#cb282-9"></a>     )</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-312-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-308-1.png" width="925.44" /></p>
 <p>Interesting spikes in the histogram. Why do you think those are occurring? That is a really interesting feature of the dataset that you might never have discovered if you had not plotted your histogram.</p>
 </div>
 <div id="histograms-in-ggplot2" class="section level4 unnumbered">
@@ -445,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb283-4"><a href="distributions-histograms.html#cb283-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>,</span>
 <span id="cb283-5"><a href="distributions-histograms.html#cb283-5"></a>                 <span class="dt">fill=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>),</span>
 <span id="cb283-6"><a href="distributions-histograms.html#cb283-6"></a>                 <span class="dt">color=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">1</span>)) </span></code></pre></div>
-<p><img src="figures/unnamed-chunk-313-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-309-1.png" width="925.44" /></p>
 <p><code>ggplot2</code> allows you to add some other nice features to histograms, such as a smoothed “density” line:</p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="distributions-histograms.html#cb284-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>price)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb284-2"><a href="distributions-histograms.html#cb284-2"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="op">+</span></span>
@@ -454,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb284-5"><a href="distributions-histograms.html#cb284-5"></a>                 <span class="dt">color=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">1</span>),</span>
 <span id="cb284-6"><a href="distributions-histograms.html#cb284-6"></a>                 <span class="kw">aes</span>(<span class="dt">y=</span>..density..)) <span class="op">+</span></span>
 <span id="cb284-7"><a href="distributions-histograms.html#cb284-7"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span>.<span class="dv">1</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;firebrick&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">5</span>))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-314-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-310-1.png" width="925.44" /></p>
 </div>
 </div>
 <div id="violin-plots" class="section level3 unnumbered">
@@ -463,7 +468,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="distributions-histograms.html#cb285-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>room_type,</span>
 <span id="cb285-2"><a href="distributions-histograms.html#cb285-2"></a>               <span class="dt">y=</span>price)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb285-3"><a href="distributions-histograms.html#cb285-3"></a><span class="st">  </span><span class="kw">geom_violin</span>()</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-315-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-311-1.png" width="925.44" /></p>
 <p>Violin plots are like <em>vertical histograms</em>. Their width indicates where most of your data are clustered, and the shapes also take the shape of a violin – hence the name. Their height shows you your data’s range. Think of a violin plot as the beautiful child of bar graphs and histograms: the best of both worlds.</p>
 <p>A major advantage of violin plots is that they allow you two compare multiple distributions with ease. Let’s adjust our <code>ylim()</code> to zoom in:</p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="distributions-histograms.html#cb286-1"></a><span class="kw">ggplot</span>(df, </span>
@@ -471,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb286-3"><a href="distributions-histograms.html#cb286-3"></a>           <span class="dt">y=</span>price)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb286-4"><a href="distributions-histograms.html#cb286-4"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="op">+</span></span>
 <span id="cb286-5"><a href="distributions-histograms.html#cb286-5"></a><span class="st">  </span><span class="kw">geom_violin</span>()</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-316-1.png" width="925.44" /></p>
+<p><img src="figures/unnamed-chunk-312-1.png" width="925.44" /></p>
 <p>If your research question were, “Which type of listing tends to be most affordable?”, think about how easy that is to answer using a plot like this!</p>
 </div>
 </div>
