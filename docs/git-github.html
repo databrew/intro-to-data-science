@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 31 Git + GitHub | DataBOOM: the canon for data science</title>
+  <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 31 Git + GitHub | DataBOOM: the canon for data science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Data science is just data and science. But it’s better with pizza." />
+  <meta name="github-repo" content="databrew/intro-to-data-science" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 31 Git + GitHub | DataBOOM: the canon for data science" />
+  
+  <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
+  
+
+<meta name="author" content="Databrew" />
+
+
+<meta name="date" content="2021-09-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="shiny.html"/>
+<link rel="next" href="trump-shiny-git.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">DataBOOM: the canon for data science </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-this-is-and-what-it-isnt"><i class="fa fa-check"></i>What this is, and what it isn’t</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-is-for"><i class="fa fa-check"></i>Who this is for</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What you will learn</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
+</ul></li>
+<li class="part"><span><b>I Core theory</b></span></li>
+<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i>What is the data life cycle?</a></li>
+<li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i>Data science ‘in the wild’</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a><ul>
+<li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-crisis"><i class="fa fa-check"></i>The crisis</a></li>
+<li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-reproducibility-movement"><i class="fa fa-check"></i>The ‘reproducibility’ movement</a></li>
+<li><a href="the-reproducibility-crisis.html#why-r">Why <code>R</code>?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a><ul>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#a-few-principles"><i class="fa fa-check"></i>A few principles</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#warm-up-scenarios"><i class="fa fa-check"></i>Warm up scenarios</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#case-studies"><i class="fa fa-check"></i>Case studies</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#more-scenarios"><i class="fa fa-check"></i>More scenarios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a><ul>
+<li><a href="dataviz.html#the-value-of-data-viz">The value of <em>data viz</em></a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#plot-gallery"><i class="fa fa-check"></i>Plot gallery</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#chart-junk"><i class="fa fa-check"></i>Chart junk</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#final-thoughts"><i class="fa fa-check"></i>Final thoughts</a></li>
+</ul></li>
+<li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
+<li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
+<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a><ul>
+<li><a href="running-r-code.html#running-code-in-the-console">Running code in the <em>Console</em></a></li>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-r-like-a-calculator"><i class="fa fa-check"></i>Use R like a calculator</a></li>
+<li><a href="running-r-code.html#getting-along-with-r">Getting along with <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a><ul>
+<li><a href="using-rstudio-r-scripts.html#r-and-rstudio-whats-the-difference"><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
+<li><a href="using-rstudio-r-scripts.html#two-minute-tour-of-rstudio">Two-minute tour of <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#scripts"><i class="fa fa-check"></i>Scripts</a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#wd"><i class="fa fa-check"></i>Your working directory</a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#typical-workflows"><i class="fa fa-check"></i>Typical workflows</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a><ul>
+<li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
+<li><a href="variables.html#types-of-data-in-r">Types of data in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#declaring-and-using-vectors"><i class="fa fa-check"></i>Declaring and using vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#math-with-two-vectors"><i class="fa fa-check"></i>Math with two vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
+<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
+<li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
+<li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a><ul>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#creating-dataframes"><i class="fa fa-check"></i>Creating dataframes</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#modifying-dataframes"><i class="fa fa-check"></i>Modifying dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a><ul>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
+</ul></li>
+<li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
+<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
+<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#data-format-requirements"><i class="fa fa-check"></i>Data format requirements</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#most-common-types-of-plots"><i class="fa fa-check"></i>Most common types of plots</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#basic-plot-formatting"><i class="fa fa-check"></i>Basic plot formatting</a></li>
+<li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#plotting-with-data-frames"><i class="fa fa-check"></i>Plotting with data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a><ul>
+<li><a href="ggplot.html#what-is-ggplot2">What is <code>ggplot2</code>?</a></li>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#bar-plot"><i class="fa fa-check"></i>Bar plot</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a><ul>
+<li><a href="dplyr.html#the-dplyr-package">The <code>dplyr</code> package</a></li>
+<li><a href="dplyr.html#the-pipe">The <code>%&gt;%</code> pipe</a></li>
+<li><a href="dplyr.html#dplyr-verbs"><code>dplyr</code> verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a><ul>
+<li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#exploring-distributions"><i class="fa fa-check"></i>Exploring distributions</a></li>
+<li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a><ul>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-for-different-data-types"><i class="fa fa-check"></i>Tests for different data types</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#comparison-tests"><i class="fa fa-check"></i>Comparison tests</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-of-association"><i class="fa fa-check"></i>Tests of association</a></li>
+<li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
+</ul></li>
+<li class="part"><span><b>IV Review exercises</b></span></li>
+<li class="chapter" data-level="21" data-path="a-dplyr-mystery.html"><a href="a-dplyr-mystery.html"><i class="fa fa-check"></i><b>21</b> A <code>dplyr</code> mystery</a></li>
+<li class="chapter" data-level="22" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>22</b> A <code>dplyr</code> survey</a></li>
+<li class="chapter" data-level="23" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>23</b> Global health &amp; <code>ggplot</code></a></li>
+<li class="chapter" data-level="24" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>24</b> Cleaning messy data</a></li>
+<li class="chapter" data-level="25" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>25</b> Shakespeare text mining</a></li>
+<li class="chapter" data-level="26" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>26</b> Trump tweets</a></li>
+<li class="chapter" data-level="27" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>27</b> Sewanee’s climate</a></li>
+<li class="part"><span><b>V Reproducible research</b></span></li>
+<li class="chapter" data-level="28" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>28</b> <code>Markdown</code> documentation</a><ul>
+<li><a href="markdown-documentation.html#documentation-with-markdown">Documentation with <code>Markdown</code></a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>29</b> <code>R Markdown</code></a></li>
+<li class="chapter" data-level="30" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>30</b> Interactive dashboards</a><ul>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#an-easy-example"><i class="fa fa-check"></i>An easy example</a></li>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>31</b> <code>Git</code> + <code>GitHub</code></a><ul>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
+<li><a href="git-github.html#git-set-up"><code>Git</code> set up</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#clone-a-repository"><i class="fa fa-check"></i>Clone a repository</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
+<li><a href="git-github.html#git-workflow-overview"><code>Git</code> workflow: overview</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>32</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
+<li class="part"><span><b>VI Presenting research</b></span></li>
+<li class="chapter" data-level="33" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>33</b> Writing a report</a><ul>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#methods"><i class="fa fa-check"></i>Methods</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#results"><i class="fa fa-check"></i>Results</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>34</b> Good research writing</a><ul>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-tables"><i class="fa fa-check"></i>Formatting tables</a></li>
+<li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-figures"><i class="fa fa-check"></i>Formatting figures</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>35</b> Research talks</a></li>
+<li class="part"><span><b>VII Deep <code>R</code></b></span></li>
+<li class="chapter" data-level="36" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>36</b> Saving data &amp; plots</a><ul>
+<li><a href="saving-data-plots.html#write.csv"><code>write.csv()</code></a></li>
+<li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
+<li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>37</b> Joining datasets</a><ul>
+<li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>38</b> Working with text</a><ul>
+<li class="chapter" data-level="" data-path="text.html"><a href="text.html#basics"><i class="fa fa-check"></i>Basics</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>39</b> Working with dates &amp; times</a><ul>
+<li><a href="dates.html#the-lubridate-package">The <code>lubridate()</code> package</a></li>
+<li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>40</b> Writing functions</a><ul>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
+<li class="chapter" data-level="40.1" data-path="writing-functions.html"><a href="writing-functions.html#using-dplyr-and-ggplot-in-custom-functions"><i class="fa fa-check"></i><b>40.1</b> Using dplyr and ggplot in custom functions</a></li>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#exercise-3"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
+</ul></li>
+<li class="chapter" data-level="41" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>41</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics-1"><i class="fa fa-check"></i>Basics</a></li>
+<li><a href="for-loops.html#for-loop-exercises"><code>for</code> loop exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>42</b> Conditional statements</a><ul>
+<li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
+<li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="43" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>43</b> Matrices &amp; lists</a><ul>
+<li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+<li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="44" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>44</b> Advanced base plots in <code>R</code></a></li>
+<li class="chapter" data-level="45" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>45</b> Geographic computing &amp; GIS</a><ul>
+<li class="chapter" data-level="" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html#exercise-5"><i class="fa fa-check"></i>Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="46" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>46</b> Mapping</a></li>
+<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a><ul>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-5"><i class="fa fa-check"></i>Review assignment</a></li>
+<li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#c-do-social-bonds-relate-to-kinship"><i class="fa fa-check"></i>(c) Do social bonds relate to kinship?</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/databrew/intro-to-data-science" target="blank">Databrew LLC</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><code>DataBOOM</code>: the canon for data science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="git-github" class="section level1">
+<h1><span class="header-section-number">Module 31</span> <code>Git</code> + <code>GitHub</code></h1>
+<div id="learning-goals-16" class="section level3 unnumbered">
+<h3>Learning goals</h3>
+<ul>
+<li>What Version Control Systems do and why they are awesome<br />
+</li>
+<li>How to install <code>Git</code></li>
+<li>How to work on your Terminal (command line / bash / shell / console).<br />
+</li>
+<li>How to install <code>GitHub</code><br />
+</li>
+<li>How to use pull and push code to and from <code>GitHub</code> repositories</li>
+</ul>
+<p> </p>
+</div>
+<div id="why" class="section level2 unnumbered">
+<h2>Why?</h2>
+<p>Perhaps the below is familiar to you…</p>
+ <br />
+
+<center>
+<img src="img/version_control.png" style="width:30.0%" />
+</center>
+<p> </p>
+<p>… or this …</p>
+ <br />
+
+<center>
+<img src="img/version_control_2.png" style="width:50.0%" />
+</center>
+<p> </p>
+<div id="because-there-is-a-better-way" class="section level3 unnumbered">
+<h3>Because there is a better way</h3>
+<p><strong>Version control systems</strong> (VCS) are software tools meant to help programmers collaborate, maintain source code, document changes, and generally keep track of their files. Instead of reading, sit back and watch <a href="https://youtu.be/9GKpbI1siow">this video</a>.</p>
+<p>Having a working knowledge of a version control system will allow you to better organize and track your own files, as well as collaborate on teams. Though there are lots of different systems out there, the most popular version control system is <strong><code>git</code></strong>.</p>
+</div>
+<div id="the-better-way-git" class="section level3 unnumbered">
+<h3>The better way: <code>Git</code></h3>
+<p><code>Git</code> is a software for version control: i.,e., tracking changes to sets of files. It is a very commonly used tool in programming, computer science, data science, and software development in general. For anyone working in data science, knowing <code>git</code> is a <em>must</em>.</p>
+<p>But <em>what is it</em>, exactly? <code>Git</code> is a system for tracking, organizing, sharing, and reviewing changes to software. It’s very flexible, and very powerful. And learning it can sometimes feel a bit overwhelming, because it has so many features and capabilities. But the <a href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto principle</a> (ie, the 80/20 rule) applies here: most of what you need to know to competently handle <code>git</code>, you can do in very little time.</p>
+</div>
+<div id="why-is-git-better" class="section level3 unnumbered">
+<h3>Why is <code>git</code> better?</h3>
+<p>Why use <code>git</code>? Why not just save files with meaningful names, make changes to them, overwrite the old changes, etc.? Why not just treat code the same way we treat a MS Word document, or write code collaboratively using interactive, auto-saving tools like Google Docs?</p>
+<p>There are a number reasons:</p>
+<ul>
+<li><p><strong>First</strong>, writing code is not like writing a paper. If you make a mistake in the introduction of a term paper, it doesn’t “break” your conclusion. But with code, minor changes to one line of code can have a very large impact on how other parts of that code work. Therefore, tracking minor changes is essential to recovering from errors and managing complex, interdependent software components.</p></li>
+<li><p><strong>Second</strong>, collaborating on code is more complex than collaborating on a term paper. To combine (merge) one person’s work with another often requires very careful review. <code>Git</code> optimizes for this.</p></li>
+<li><p><strong>Third</strong>, code is rarely “done”. It’s usually a work in progress. <code>Git</code> takes this into account, and is set up for very structured checkpoints (commits), change suggestions (pull requests), etc.</p></li>
+<li><p><strong>Finally</strong>, git is the <em>“lingua franca”</em> of version control. Employers often request to see a prospective employee’s <code>Github</code> profile, and expect that programmers and developers of all types (including data scientists) be proficient in <code>git</code>.</p></li>
+</ul>
+</div>
+</div>
+<div id="git-set-up" class="section level2 unnumbered">
+<h2><code>Git</code> set up</h2>
+<p>It’s time to <code>git</code> started. Rather than diving into too much theory, let’s skip right to the practice. We’ll do <em>first</em>, then we will try to understand <em>later</em>. This comic knows what we mean:</p>
+ <br />
+
+<center>
+<img src="img/git.png" style="width:35.0%" />
+</center>
+<p> </p>
+<div id="terminal" class="section level3 unnumbered">
+<h3>Terminal</h3>
+<p>To use <code>git</code>, we first need to get comfortable working with in our computer’s Terminal. The Terminal goes by many names, depending on your operating system: shell, bash, <code>Git</code> bash, console, command line, command prompt, etc. For simplicity, we are going to use just one name: Terminal.</p>
+<p>The Terminal is a way for you to interact with your computer using lines of commands (i.e., command line) instead of pointing or clicking. Just as in the <code>R</code> Console, in your Temrinal you can type code and the computer will do things.</p>
+<p>This will feel a bit unfamiliar at first, but fear not – there are just a few commands you will need to learn.</p>
+<div id="open-terminal" class="section level4 unnumbered">
+<h4>Open Terminal</h4>
+<p><strong>Window</strong>
+To open Terminal, go to the search box in the Start Menu. Type <code>cmd</code> and hit enter. A Terminal “shell” window will appear.</p>
+<p><strong>Mac</strong><br />
+To open Terminal, open the Mac Search (<code>Command</code> + <code>Spacebar</code>) and search “Terminal”. Press <code>Enter</code>. A Terminal “shell” window will appear:</p>
+ <br />
+
+<center>
+<img src="img/bash-mac.png" style="width:60.0%" />
+</center>
+<p> </p>
+</div>
+<div id="pwd" class="section level4 unnumbered">
+<h4>pwd</h4>
+<p>Let’s start with <code>pwd</code>. This stands for “path to working directory”. Type it, press enter, and see what happens.</p>
+<p>If everything went to plan, you’ll see a path (ie, a location within your computer’s file structure). “Working directory” means the folder you are “in” right now – just like in <code>R</code>.</p>
+<p>When you typed <code>pwd</code> you were asking your computer which directory (folder) you’re in. It responded. Great! Now let’s see what else is in the folder where you are.</p>
+</div>
+<div id="ls" class="section level4 unnumbered">
+<h4>ls</h4>
+<p>Type <code>ls</code>. This stands for “list” as in "list all the files in this directory. <code>ls</code> is commonly used to quickly see contents of a folder.</p>
+<p>You now know how to (a) see where you are and (b) see what else is there.</p>
+</div>
+<div id="cd" class="section level4 unnumbered">
+<h4>cd</h4>
+<p>But what about navigation? Let’s say you want to “move around” (ie, go to other folders). You do this using the <code>cd</code> command, which stands for “change directory”.</p>
+<p><strong>Navigating <em>into</em> folders:</strong></p>
+<p>After typing <code>cd</code>, you should type a space and then the name of the directory you want to navigate to. This directory can be either (a) relative or (b) full. “Relative” means relative to where you are. So, for example, if you are currently in the following folder:</p>
+<pre><code>/home/abc/folder_1</code></pre>
+<p>And within that folder you have the following sub-folders:</p>
+<pre><code>folder_a
+folder_b
+folder_c</code></pre>
+<p>You could navigate to one of them by typing the full path:</p>
+<pre><code>cd /home/abc/folder_1/folder_a</code></pre>
+<p>Or by typing the relative path:</p>
+<pre><code>cd folder_a</code></pre>
+<p>Both of the last two commands have the same result: changing your working directory to <code>/home/abc/folder_1/folder_a</code>. You can confirm that using <code>pwd</code>.</p>
+<p><strong>Navigating <em>out of</em> folders:</strong></p>
+<p>What about if you want to navigate “up” to the <code>/home/abc</code> folder. Again, you can do this using relative or full paths. To navigate there with the full path, simply type:</p>
+<pre><code>cd /home/abc</code></pre>
+<p>To go “up” one level using a relative path, use <code>..</code>. So:</p>
+<pre><code>cd ..</code></pre>
+<p>So far so good. Now you can (a) see where you are with <code>pwd</code>, (b) list folder contents with <code>ls</code> and (c) navigate with <code>cd</code>. Those 3 command will cover 80% of what you’ll need to do to use git from the command line.</p>
+</div>
+</div>
+<div id="install-git" class="section level3 unnumbered">
+<h3>Install <code>Git</code></h3>
+<p>Go <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">here</a> and follow the instructions for your operating system. We have also offered details for <em>Windows</em> and <em>Mac</em> below.</p>
+<div id="windows" class="section level4 unnumbered">
+<h4>Windows</h4>
+<p>On windows, once you’ve downloaded, you’ll want to select the below parameters:</p>
+<center>
+<img src="img/git1.png" style="width:60.0%" />
+</center>
+<p> </p>
+<p>The program will prompt you to pick a text editor. Select notepad.</p>
+<center>
+<img src="img/git2.png" style="width:60.0%" />
+</center>
+<p> </p>
+<p>For all other options, leave settings as default and click “next”. The program will now install.</p>
+<p>After installation, there is an option to “Launch Git Bash” (Terminal). Click it.</p>
+<center>
+<img src="img/git3.png" style="width:60.0%" />
+</center>
+<p> </p>
+<p>This will open a Terminal window:</p>
+<center>
+<img src="img/git4.png" style="width:60.0%" />
+</center>
+<p> </p>
+</div>
+<div id="mac" class="section level4 unnumbered">
+<h4>Mac</h4>
+<p>To get <code>Git</code> on your Mac, you will be typing commands into your computer’s Terminal.</p>
+<ol style="list-style-type: decimal">
+<li><p>Open your Terminal.</p></li>
+<li><p>Next we need to download and install a software management tool called <a href="brew.sh">Homebrew</a>. Copy and paste the following command into your Terminal, and press <code>Enter</code>:</p></li>
+</ol>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="git-github.html#cb346-1"></a><span class="op">/</span>bin<span class="op">/</span>bash <span class="op">-</span>c <span class="st">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span></span></code></pre></div>
+<p>You will likely be asked for your computer password. Press <code>Enter</code> when instructed to do so. Downloading Homebrew might take a few minutes.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Now that Homebrew is installed, copy and paste the following command into your Terminal, and press <code>Enter</code>:</li>
+</ol>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="git-github.html#cb347-1"></a>brew install git</span></code></pre></div>
+<p>After a minute or two, <code>git</code> should be downloaded, installed and ready to go.</p>
+</div>
+</div>
+<div id="git-configuration" class="section level3 unnumbered">
+<h3><code>Git</code> configuration</h3>
+<p>Once you’ve installed <code>git</code>, you’ll likely want to configure some options and preferences. Go <a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">here</a> and walk through the steps.</p>
+</div>
+<div id="github-set-up" class="section level3 unnumbered">
+<h3><code>Github</code> set up</h3>
+<p>Now you’ve got <code>git</code>. Great! Git is often used in conjunction with a third party, web-based platform. The most popular is <code>GitHub</code>.</p>
+<p>Go to <a href="www.github.com">www.github.com</a> and create a user account. Make sure you use the same email address you used when configuring <code>git</code> above.</p>
+</div>
+</div>
+<div id="create-a-new-repository" class="section level2 unnumbered">
+<h2>Create a new repository</h2>
+<p>Once you’ve created an account and logged in to <code>GitHub</code>, let’s create a repository.</p>
+<p><strong>What is a repository?</strong> Basically, it’s a coding project in the form of a folder.</p>
+<ol style="list-style-type: decimal">
+<li><p>Having logged into git, click the “plus” icon in the upper right and then click “New repository” (or go directly <a href="https://github.com/new">here</a>).</p></li>
+<li><p>You can fill in the “Repository name” field with whatever you’d like. For the following examples, we’ll use the word “testrepo”.</p></li>
+<li><p>Fill in the “Description” field with the word “My first git repository”.</p></li>
+<li><p>Set the repo as “Public” (unless you plan on putting any secrets here!), and then click the “Add a README file” checkbox. Finally, click “Create repository”.</p></li>
+</ol>
+<p>Cool! You’ve now created your first git repository. It’s public url is <code>https://github.com/&lt;YOUR USERNAME&gt;/&lt;repo-name&gt;</code>. Others can see your code there, and you can too.</p>
+</div>
+<div id="clone-a-repository" class="section level2 unnumbered">
+<h2>Clone a repository</h2>
+<p>Your new repo exists on the internet, but does not yet exist on your local machine. In order to get “testrepo” on your computer, you’ll need to do something that you’ll only do once: “clone” the repo. “Cloning” in git-speak means creating a copy of the repository locally.</p>
+<p>To clone, you’ll first open your terminal window and <code>cd</code> into a directory where you’d like to clone your repo. For example, if you want to put your <code>testrepo</code> directory into <code>~/Documents</code>, you’ll type the below into terminal:</p>
+<pre><code>cd ~/Documents</code></pre>
+<p>You can confirm that you are in <code>~/Documents</code> by typing: <code>pwd</code>. There? Good.</p>
+<p>Now, we’ll write the code to “clone” <code>testrepo</code>:</p>
+<pre><code>git clone https://github.com/&lt;USERNAME&gt;/&lt;repo-name&gt;</code></pre>
+<p>Now, you’ve got a folder on your machine named <code>testrepo</code>. You can confirm this by writing <code>ls</code> in the terminal.</p>
+<p>See <code>testrepo</code> there? Great!</p>
+</div>
+<div id="working-in-a-repository" class="section level2 unnumbered">
+<h2>Working in a repository</h2>
+<div id="change-some-code" class="section level3 unnumbered">
+<h3>Change some code</h3>
+<p>In your local <code>testrepo</code> folder, you have a “cloned” copy of the repository at <a href="https://github.com/" class="uri">https://github.com/</a><YOUR USERNAME>/testrepo.</p>
+<p>As of now, it’s a pretty uninteresting folder. The only thing in it is a file named <code>README.md</code>. A “README” file is generally an explanation of a repository’s content, purpose, etc. Like all files, a README can be tracked in git.</p>
+<p>Let’s open the README file and make a change to it. We’ll add the below line of “code”:</p>
+<pre><code>This is my first git repository.</code></pre>
+<p>The save and close the README file.</p>
+</div>
+<div id="check-the-status-of-your-repo" class="section level3 unnumbered">
+<h3>Check the status of your repo</h3>
+<p>Now, let’s ask <code>git</code> if it noticed if we had made any changes. Type the below into terminal:</p>
+<pre><code>git status</code></pre>
+<p>If everything has gone well until now, <code>git</code> will reply by telling us that we’ve made a change to the file. We can ask <code>git</code> <em>what</em> change we made by typing:</p>
+<pre><code>git diff README.md</code></pre>
+<p><code>diff</code> stands for “difference”, as in "what is the difference between the code I had and the code I have. <code>Git</code> will spit back some color-coded lines showing the change you’ve made.</p>
+<p>Satisfied with your change? Great, now it’s time to confirm it by doing the following:</p>
+</div>
+<div id="track-the-changes-in-a-file" class="section level3 unnumbered">
+<h3>Track the changes in a file</h3>
+<pre><code>git add README.md</code></pre>
+<p>This tells <code>git</code> that we want it to notice and track the change we made to <code>README.md</code>. Then:</p>
+</div>
+<div id="commit-your-changes-as-a-stable-version-of-your-project" class="section level3 unnumbered">
+<h3>Commit your changes as a stable version of your project</h3>
+<pre><code>git commit -m &#39;my first change&#39;</code></pre>
+<p>This tells <code>git</code> that we are “committing” our change, it marking a checkpoint (to which we can revert later). The <code>-m</code> flag is followed by a message in quotations which will help us to navigate this checkpoint in the future.</p>
+<p>Almost there. Now that we’ve added and committed, we need to “push” our change to the remote repository (<code>GitHub</code>), by running:</p>
+</div>
+<div id="push-the-changes-in-your-local-repo-to-github" class="section level3 unnumbered">
+<h3>Push the changes in your local repo to GitHub</h3>
+<pre><code>git push</code></pre>
+<p>You did it! Go to <a href="https://github.com/" class="uri">https://github.com/</a><YOUR USERNAME>/testrepo and open the <code>README.md</code> file. You’ll notice that your most recent changes are there. Now, if someone else wants to get your code, they can “clone” your repository, and they’ll have the code you’ve “pushed” there.</p>
+</div>
+</div>
+<div id="git-workflow-overview" class="section level2 unnumbered">
+<h2><code>Git</code> workflow: overview</h2>
+<p>We get it: <code>git</code> can be daunting and a bit confusing. This diagram tries to summarize the way <code>git</code> works:</p>
+<center>
+<img src="img/git-workflow.png" style="width:50.0%" />
+</center>
+<p> </p>
+<ul>
+<li><p>There are <strong>three workspaces</strong> to keep in mind: the remote version of your repo, the local version of it, and your work area. Your interact with your remote repo on the <code>GitHub</code> website, your local repo through <code>Terminal</code>, and your work area through <code>RStudio</code>.</p></li>
+<li><p>You <strong>sync your remote and local repos</strong> using the <code>git pull</code> and <code>git push</code> commands in <code>Terminal</code>. When you <code>pull</code>, you are updating your local repo using the remote repo. When you <code>push</code>, you do the opposite: update the remote repo using your local repo.</p></li>
+<li><p>You <strong>sync your local repo and your work area</strong> using the <code>git add</code> and <code>git commit</code> commands. You use these commands when you are ready to move files off of your work bench (<code>RStudio</code>) and back onto the shelf (local repo): you’ve reached a stopping point and want to stop working on your code for now.</p></li>
+</ul>
+<p> </p>
+<div id="step-by-step-workflow" class="section level3 unnumbered">
+<h3>Step-by-step workflow</h3>
+<p><strong>Setting up a new repo:</strong></p>
+<p><strong>1.</strong> Start a new remote repo (<code>GitHub</code>).</p>
+<p><strong>2.</strong> Navigate to the local folder into which you want to clone your repo. (<code>Terminal</code>, using a combination of <code>pwd</code>, <code>ls</code>, and <code>cd</code>.)</p>
+<p><strong>3.</strong> Clone the remote repo to your local machine (<code>Terminal</code>).</p>
+<pre><code>git clone https://github.com/&lt;your username&gt;/&lt;repo name&gt;)  </code></pre>
+<p> </p>
+<p><strong>Working in a repo:</strong></p>
+<p><strong>4.</strong> <code>cd</code> into your repo (<code>Terminal</code>).</p>
+<p><strong>5.</strong> <code>pull</code> on your remote repo to make sure your local repo contains the latest version of your project (<code>Terminal</code>).</p>
+<pre><code>git pull</code></pre>
+<p><strong>6.</strong> Make changes to your code (revisions, new files, etc.) (<code>RStudio</code>)</p>
+<p><strong>7.</strong> Stage those revised/new files for a commit (<code>Terminal</code>)</p>
+<pre><code>git add &lt;filename&gt;</code></pre>
+<p><strong>8.</strong> Commit your changes (<code>Terminal</code>)</p>
+<pre><code>git commit -m&quot;add specific message here&quot;</code></pre>
+<p><strong>9.</strong> Push your changes to the remote repo (<code>Terminal</code>)</p>
+<pre><code>git push</code></pre>
+<p><strong>10.</strong> Check out your remote repo to verify that changes were pushed. (<code>GitHub</code>)</p>
+</div>
+<div id="exercises-12" class="section level3 unnumbered">
+<h3>Exercises</h3>
+<p><strong>Create another repo:</strong></p>
+<p>Let’s face it: <code>testrepo</code> is a pretty lame name for a repository. How about we make a repo that’s actually real and useful? We’ll make one for storing all the code we’re writing in this course.</p>
+<p><strong>1)</strong> Go to <a href="https://github.com/" class="uri">https://github.com/</a><YOUR USERNAME></p>
+<p><strong>2)</strong> Click the “plus” icon in the upper right and then click “New repository” (or go directly <a href="https://github.com/new">here</a>).</p>
+<p><strong>3)</strong> Now, for “Repository name”, write “datalab”.</p>
+<p><strong>4)</strong> Fill in the “Description” field with the words “Code I wrote during my intro to data science course”.</p>
+<p><strong>5)</strong> Set the repo as “Public” (unless you plan on putting any secrets here!), and then click the “Add a README file” checkbox. Finally, click “Create repository”.</p>
+<p><strong>6)</strong> Clone the repo to your computer (Documents folder).</p>
+<p><strong>7)</strong> Create a new R script in your <code>datalab</code> repository called <code>gapminder.R</code>.</p>
+<p><strong>8)</strong> Create a histogram of life expectancy in 1982.</p>
+<p><strong>9)</strong> Create a line plot for population in Asia, colored by country. Make the lines a bit thicker and more transparent.</p>
+<p><strong>10)</strong> Add new x and y axis labels, as well as a chart title.</p>
+<p><strong>11)</strong> Create a bar chart of all European countries gdp per capita in 2002.</p>
+<p><strong>12)</strong> Make the bars transparent and filled with the color blue.</p>
+<p><strong>13)</strong> Create a new data set called <code>the_nineties</code> that only contains years from the 1990s.</p>
+<p><strong>14)</strong> Save this dataset to your repository (use <code>write.csv()</code>).</p>
+<p><strong>15)</strong> Add, commit, and push your files to <code>GitHub</code>.</p>
+<p> </p>
+<p><strong>Add a <code>.gitignore</code> file</strong></p>
+<p>If you <code>cd</code> into your local <code>datalab</code> repo, and then type <code>git status</code>, you might note that it’s a bit “busy”. That is, there are a lot of documents there! You’re going to want to (i) add, (ii) commit, and (iii) push these documents, but perhaps there are some kinds of documents you <em>don’t</em> want to push.</p>
+<p>For example, maybe you want to push R code files (<code>.R</code>), but not data files (<code>.csv</code>). In this case, you can explicitly tell <code>git</code> that you don’t want it to pay any attention to <code>.csv</code> files by creating a <code>.gitignore</code> file. A <code>.gitignore</code> file is simply a text file in a git repository that indicates to git that the contents of that file should be ignored.</p>
+<p>Let’s do it.</p>
+<p><strong>16)</strong> First, create an empty <code>.gitignore</code> file. In <code>Terminal</code>, type:</p>
+<pre><code>touch .gitignore</code></pre>
+<p><strong>17)</strong> Then, open the <code>.gitignore</code> file in RStudio.</p>
+<p><strong>18)</strong> Finally, add the following line to it:</p>
+<pre><code>*.csv</code></pre>
+<p>The star is a “wildcard”, meaning that it stands in place of anything (such as <code>ducks.csv</code> or <code>data.csv</code> or <code>xyz.csv</code>).</p>
+<p>With this in your repo, <code>git</code> now knows to ignore anything that ends with the extension <code>.csv</code>.</p>
+<p>Good? Great.</p>
+<p><strong>19)</strong> Push everything to your repo.</p>
+<p>Now you can share your code with others, and your future self.</p>
+<div id="further-resources" class="section level4 unnumbered">
+<h4>Further resources</h4>
+<p><a href="https://r-pkgs.org/git.html">Hadley Wickham’s introduction to <code>git</code> + <code>GitHub</code></a></p>
+<p><a href="https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html">Using <code>git</code> from <code>RStudio</code></a></p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="shiny.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="trump-shiny-git.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/databrew/intro-to-data-science/edit/master/11b-git.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

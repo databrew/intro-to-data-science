@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-09-07}
+\date{2021-09-09}
 
 \begin{document}
 \maketitle
@@ -533,6 +533,188 @@ This course is largely about learning to \emph{do}, and will largely use \texttt
 A research article about \emph{results} is advertising, not scholarship.
 
 Scholarship is an article with transparent, reproducible methods.
+
+\hypertarget{data-ethics}{%
+\chapter{Data ethics}\label{data-ethics}}
+
+\hypertarget{a-few-principles}{%
+\section*{A few principles}\label{a-few-principles}}
+\addcontentsline{toc}{section}{A few principles}
+
+This orientation to the principles of data ethics is not going to be adequate or sufficient. We just need to provide enough context for you (1) to appreciate the limitless complexity and uncertainty of many ethical issues in data science, and (2) to start exploring the complex ethical scenarios below on your own or in dialogue with others.
+
+In most frameworks for data ethics, three foundational principles are used to help us think about whether certain research actions are ethical. Those three principles are:
+
+\textbf{1. Respect} for persons and their autonomy: participation must be based upon informed consent, and privacy must be honored at all times. Immature or incapacitated persons must be protected as they mature or heal.
+
+\textbf{2. Beneficence:} in our work with data, potential risks are minimized while potential benefits are maximized.
+
+\textbf{3. Justice:} Benefits and risks are distributed equally across groups of people. A classic way of asking whether something is `just' is asking using John Rawls' concept of the \textbf{`veil of ignorance'}: pretend you have no information at all about your circumstances or your place in the social order: You don't know your place of birth, year of birth, sex, skin color, language, religion, immigration status, health conditions, or anything else. In other words, you have no information whatsoever that might introduce bias into the way you think about the world. Free of circumstantial bias, what arrangements would you choose to put in place to maximize fairness and fortune for all, and to minimize the chances that you would get screwed by the system?
+
+These principles can guide us as we navigate ethically ambiguous scenarios. When we ask whether something is ethical, we are asking whether all of these principles are upheld. We could also be asking whether the violation of one of these principles might be justified by upholding another in an impactful way.
+
+The question, `Is something ethical?' is usually not easy to answer, particularly when it comes to the use of data in tackling social problems. It is important to note that reasonable people regularly disagree on these ideas; that is why we have committees and drawn-out processes for obtaining permission to use data in research and commerce.
+
+\textbf{So why do these principles matter?} Because without them, we would not be able to have conversations about the ethics of difficult situations. We need articulated principles that we can point to and debate together. Principles like these allow you to have an account for why you feel the way you do about a certain issue. Without that account, we can't learn from each other's perspectives.
+
+Note also that these principles were designed with \textbf{individual human subjects} in mind. It is an open question of active debate how exactly these principles can be applied to \textbf{communities of individuals} all at once -- what exactly does it mean for a group to consent to something? Does every single individual need to consent? The majority? -- or how they translate to our treatment of \textbf{non-human communities}: animals, plants, and places.
+
+Let's stop there and explore some concrete scenarios. For a better orientation to ethical precepts underlying issues of data ethics, \href{https://www.scu.edu/media/ethics-center/technology-ethics/IntroToDataEthics.pdf}{this chapter by Shannon Vallor} is the best open-source resource that we have been able to find. Many of the case studies and scenarios presented below are adapted from that chapter.
+
+\hypertarget{warm-up-scenarios}{%
+\section*{Warm up scenarios}\label{warm-up-scenarios}}
+\addcontentsline{toc}{section}{Warm up scenarios}
+
+Practice applying the above principles to these scenario questions. For each scenario, describe your \textbf{opinion vector} (the \emph{direction} of your opinion -- yes or no -- and the \emph{strength} of your opinion).
+
+\textbf{Location tracking}\\
+Is it ethical for Google to track and store your location information in order to monitor traffic and operating hours of local businesses? Such traffic information is known to help direct emergency service vehicles along the safest and fastest route.
+
+\textbf{Targeted advertising}\\
+Is it ethical for internet search engines to tailor advertisements according to your search history?
+
+\textbf{Dynamic pricing}\\
+Is it ethical for airfare search engines to adjust ticket prices according to your recent search history?
+
+\textbf{Social media scrolling}\\
+Is it ethical for Instagram to count how many milliseconds you spend on each post, then use that info to develop a strategy for getting you to spend more time on its app?
+
+\textbf{Controversial content}\\
+You are a data scientist at Facebook. Based on your analyses of user data, you have discovered that when you show readers sensational or hyperbolic content, such as someone ranting that a new vaccine is an attempt at government-subsidized mind control, the readers stay on Facebook longer and scroll through more contet. Since that translates to profits, is it OK for your team to increase the amount of sensational content in users' feeds?
+
+\hypertarget{case-studies}{%
+\section*{Case studies}\label{case-studies}}
+\addcontentsline{toc}{section}{Case studies}
+
+Use these case studies to reflect upon and discuss the ambiguity, complexity, and dangers of data ethics issues.
+
+\hypertarget{the-facebook-social-contagion-study}{%
+\subsection*{The Facebook `Social Contagion' Study}\label{the-facebook-social-contagion-study}}
+\addcontentsline{toc}{subsection}{The Facebook `Social Contagion' Study}
+
+In 2014, data scientists from Facebook published an \href{https://www.pnas.org/content/111/24/8788}{article} in a prestigious academic journal. In this article, they demonstrated that the emotions and moods of users could be manipulated by toggling the amount of positive or negative content in their feeds. They found that these emotional effects would then be passed to other users in the social network; in other words, emotions and moods could be seeded and were `contagious'. To carry out this research, they manipulated the Facebook feeds of 689,000 users.
+
+~\\
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{img/ethics-fb.png}
+
+~
+
+Facebook did not receive specific consent for this study from its users. Instead, the company argued that the purpose of the study was consistent with the user agreement already in place: to give Facebook knowledge it needs to provide users with a positive experience on the platform.
+
+\textbf{Discuss:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  In what ways, specifically, did Facebook violate basic principles of data ethics with this study? Enumerate each violation individually.
+\item
+  Can a convincing argument be made that justifies this study? What are the strongest arguments in its favor?
+\item
+  What are some things that Facebook could have done differently to handle this situation more ethically?
+\item
+  Who exactly should be held morally accountable for any harms caused by this study? The data scientists employed to analyze and publish the data? Mark Zuckerberg? All Facebook employees? Facebook stock holders? Are Facebook users accountable at all?
+\end{enumerate}
+
+\hypertarget{machine-bias-beauty-contests-recidivism}{%
+\subsection*{Machine bias: Beauty contests \& recidivism}\label{machine-bias-beauty-contests-recidivism}}
+\addcontentsline{toc}{subsection}{Machine bias: Beauty contests \& recidivism}
+
+Machine learning (ML) algorithms are developed by `training' models on known datasets. The models are then used to predict values in other datasets. For example, if you label cars in a batch of photos then use them to train a ML model on that labeled dataset, you can then use that model to identify cars in thousands of other photos.
+
+Sounds neat, but this means that ML models are only as good as the data they are trained upon, and often those training datasets are created by human labelers who carry unkown or unspoken biases. A classic example is the \href{https://www.theguardian.com/technology/2016/sep/08/artificial-intelligence-beauty-contest-doesnt-like-black-people}{Beauty.AI} beauty contest that occurred in 2016. A ML algorithm was trained on a large set of human-labeled photos of women, then women around the world were invited to submit selfies in a global beauty contest. A key advertising hook for the contest was that the `robot jury' -- the ML algorithm -- would be fully impartial and fair. But the results revealed that the ML model was racist: 75\% of the 6,000 contestants were white, but 98\% of the 44 winners were white. How did this happen? The people who labeled the training set of photos carried implicit bias.
+
+~\\
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{img/ethics-machine_bias.png}
+
+~
+
+Debacles like this can have much more serious consequences. \href{https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing}{Court systems use ML models} to estimate the risks that a convicted criminal will commit more crimes once they are released from prison. But retrospective studies have shown that these models consistently and incorrectly label black prisoners as more dangerous and more likely to return to prison at a later date. Most of the risk assessments being used today have not received adequate validation, even though they are spitting out predictions that can destroy lives, families, and communities.
+
+~\\
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{img/ethics-2.png}
+
+~
+
+\textbf{Discuss:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  How might bias have entered the training datasets for these ML models, if the people labeling the data did not deliberately intend to exhibit prejudice against African Americans?
+\item
+  The ML models used to predict recidivism are imperfect and inherently prejudiced, but it is not clear whether it would be better to leave decisions of sentencing, bail amounts, and prisoner support services to individual humans in the court and penal systems. Would it be better to stop all use of ML evaluations, or should they be kept in place until better models are developed?
+\item
+  Returning to the beauty contest debacle. The attraction of a `robot jury' compelled people to seek out a single, simplistic definition of beauty, and to place all contestants on the same spectrum of beauty scores. Other than the racial bias baked into their model, what other problems is there with this endeavor? Articulate and enumerate as many as you can. What do those problems tell you about other ethical and humanistic dangers inherent to data science?
+\end{enumerate}
+
+\hypertarget{web-scraping-okcupid}{%
+\subsection*{Web-scraping OKCupid}\label{web-scraping-okcupid}}
+\addcontentsline{toc}{subsection}{Web-scraping OKCupid}
+
+In 2016, Danish researchers used new web scraping and text mining software to inventory the user profiles of 60,000 users on the online dating site \href{https://fortune.com/2016/05/18/okcupid-data-research/}{OkCupid}. Their goal was to use this dataset to test for correlations between `cognitive ability' and sexual orientation, religious affinity, and other personality traits. They chose these user profiles because they were publicly available online to anyone who wanted to sign up for a free account with OKCupid.
+
+When they published their paper, they included a spreadsheet of the 60,000 user profiles in the supplementary material for their article. They had removed the first and last names of the users, but kept everything else, including username, location, sexual orientation, religious orientation, sexual habits, relationship fidelity, drug use history, political views, and more.
+
+The backlash was immediate. When asked why they did not attempt to deidentify or anonymize the data any further, the researchers responded that the data were already public. In the paper itself, the authors wrote: ``Some may object to the ethics of gathering and releasing this data \ldots{} However, all the data found in the dataset are or were already publicly available, so releasing this dataset merely represents it in a more useful form.''
+
+~\\
+
+\includegraphics[width=0.8\textwidth,height=\textheight]{img/ethics-okcupid.png}
+
+~
+
+\textbf{Discuss:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  What do you make of the authors' argument, that the data were already public, posted freely by the users themselves, so how can this be an issue of privacy or consent?
+\item
+  If you disagree with the authors' argument, explain how the users might reasonably object to the authors' actions.
+\item
+  What kind of risks did the authors impose upon the users of OKCupid? Are any of those risks new, or were they all present when the users decided to make a profile that could have been accessed by any other user?
+\item
+  Does it make an ethical difference that the authors accessed publicly available data in a novel way (web-scraping software) and to a much greater extent (harvesting 60,000 profiles at once) than individual users are typically able to do?
+\item
+  Does the software developer of the web-scraping tool bear any responsibility for this scandal? Does he have any ethical obligations regarding how his tool is used, and by whom?
+\end{enumerate}
+
+\hypertarget{more-scenarios}{%
+\section*{More scenarios}\label{more-scenarios}}
+\addcontentsline{toc}{section}{More scenarios}
+
+\textbf{Airport screening}\\
+A computer scientist have come up with a model that prioritizes security screening at airports according to various passenger characteristics. If using `place of origin' as a predictor in this model improves the model's predictive performance at identifying passengers who are security threats, is it ethical to include that variable in the model and screen certain passengers disproportionately?
+
+\textbf{Supporting struggling college students}\\
+Your college has developed a model that predicts dropouts. It identifies students at high-risk of dropping out and alerts offices that can direct additional support and resources to these students. Your college has found that this model performs better when it includes the student's place of origin, sex, and race as predictors. Is it ethical to implement this model and divert resources accordingly?
+
+\textbf{Robot cashiers}\\
+Self-checkout stations in grocery stores are convenient, but they take jobs away from workers who may not have many other employable skill-sets. When you are checking out, is it more ethical to use the checkout aisles with human cashiers, even if they line is longer and going more slowly?
+
+\textbf{Electric cars}\\
+Cars running on fossil fuels are bad for the environment, but at least they can be serviced by car mechanics who don't necessarily need a college degree.
+
+Electric cars reduce carbon emissions, but they are replacing car mechanics with computer scientists and softwar engineers, all of which require extensive undergradate and post-graduate education. Are electric cars a net social good?
+
+\textbf{Smartphone app for monitoring cough}\\
+A tech start-up has developed an app that can track the prevalence of cough in a network of smartphones. Cough is an important indicator of disease, and cough also helps to spread certain diseases more quickly, such as TB and COVID-19. This app has great potential to help public health officers in the fight against some of the deadliest respiratory diseases. The app works thanks to sophisticated machine learning algorithm for detecting coughs within continuous recordings. That algorithm is currently private and propriety. Do you agree that this cough monitoring app is a good idea, and that public health officials should promote its use?
+
+\textbf{Automated suicide prevention system}\\
+A large internet search engine has developed a model that can predict whether someone is likely to inflict self-harm or attempt suicide based upon their recent search history. This model is 75\% accurate. This company would like to set up an automatic emergency alert system, in which local social service providers are notified about at-risk users in their area. They want to automatically enroll users in this service. Is this an ethical feature to add to their product?
+
+\textbf{Malaria medicine distribution}\\
+Your company is trying to distribute a new malaria medicine in a remote region of Africa without primary care clinics, where tens of thousands people die from malaria each year. This medicine is highly effective, but it is also known to cause birth complications. You need to ensure that it is not administered to pregnant women. Your team's plan is to go door to door and distribute the medicine to women who say they aren't pregnant.
+
+But in this region, cultural attitudes to pregnancy, and the notion of sharing your pregnancy status with a stranger, are very sensitive. Daughters and wives may not feel safe to answer such questions truthfully.
+
+Your team has to choose between (1) taking women's responses at their word, (2) avoiding the pregnancy issue by only distributing it to men, (3) not distributing the medicine at all, (4) some as-yet-unknown solution. What do you do?
+
+\textbf{User accountability}\\
+Let's say that you have disagreed with one or more of the claims about social media in the `Warm-Up Scenarios' section above. Is it ethical for you to continue to use Google, Instagram, or Facebook?
 
 \hypertarget{dataviz}{%
 \chapter{Visualizing data}\label{dataviz}}
@@ -1102,188 +1284,6 @@ Finally, this video offers a nice and concise summary of Edward Tufte's principl
 \hspace*{0.333em}
 
 \includegraphics{img/vis-painting.jpeg}
-
-\hypertarget{data-ethics}{%
-\chapter{Data ethics}\label{data-ethics}}
-
-\hypertarget{a-few-principles}{%
-\section*{A few principles}\label{a-few-principles}}
-\addcontentsline{toc}{section}{A few principles}
-
-This orientation to the principles of data ethics is not going to be adequate or sufficient. We just need to provide enough context for you (1) to appreciate the limitless complexity and uncertainty of many ethical issues in data science, and (2) to start exploring the complex ethical scenarios below on your own or in dialogue with others.
-
-In most frameworks for data ethics, three foundational principles are used to help us think about whether certain research actions are ethical. Those three principles are:
-
-\textbf{1. Respect} for persons and their autonomy: participation must be based upon informed consent, and privacy must be honored at all times. Immature or incapacitated persons must be protected as they mature or heal.
-
-\textbf{2. Beneficence:} in our work with data, potential risks are minimized while potential benefits are maximized.
-
-\textbf{3. Justice:} Benefits and risks are distributed equally across groups of people. A classic way of asking whether something is `just' is asking using John Rawls' concept of the \textbf{`veil of ignorance'}: pretend you have no information at all about your circumstances or your place in the social order: You don't know your place of birth, year of birth, sex, skin color, language, religion, immigration status, health conditions, or anything else. In other words, you have no information whatsoever that might introduce bias into the way you think about the world. Free of circumstantial bias, what arrangements would you choose to put in place to maximize fairness and fortune for all, and to minimize the chances that you would get screwed by the system?
-
-These principles can guide us as we navigate ethically ambiguous scenarios. When we ask whether something is ethical, we are asking whether all of these principles are upheld. We could also be asking whether the violation of one of these principles might be justified by upholding another in an impactful way.
-
-The question, `Is something ethical?' is usually not easy to answer, particularly when it comes to the use of data in tackling social problems. It is important to note that reasonable people regularly disagree on these ideas; that is why we have committees and drawn-out processes for obtaining permission to use data in research and commerce.
-
-\textbf{So why do these principles matter?} Because without them, we would not be able to have conversations about the ethics of difficult situations. We need articulated principles that we can point to and debate together. Principles like these allow you to have an account for why you feel the way you do about a certain issue. Without that account, we can't learn from each other's perspectives.
-
-Note also that these principles were designed with \textbf{individual human subjects} in mind. It is an open question of active debate how exactly these principles can be applied to \textbf{communities of individuals} all at once -- what exactly does it mean for a group to consent to something? Does every single individual need to consent? The majority? -- or how they translate to our treatment of \textbf{non-human communities}: animals, plants, and places.
-
-Let's stop there and explore some concrete scenarios. For a better orientation to ethical precepts underlying issues of data ethics, \href{https://www.scu.edu/media/ethics-center/technology-ethics/IntroToDataEthics.pdf}{this chapter by Shannon Vallor} is the best open-source resource that we have been able to find. Many of the case studies and scenarios presented below are adapted from that chapter.
-
-\hypertarget{warm-up-scenarios}{%
-\section*{Warm up scenarios}\label{warm-up-scenarios}}
-\addcontentsline{toc}{section}{Warm up scenarios}
-
-Practice applying the above principles to these scenario questions. For each scenario, describe your \textbf{opinion vector} (the \emph{direction} of your opinion -- yes or no -- and the \emph{strength} of your opinion).
-
-\textbf{Location tracking}\\
-Is it ethical for Google to track and store your location information in order to monitor traffic and operating hours of local businesses? Such traffic information is known to help direct emergency service vehicles along the safest and fastest route.
-
-\textbf{Targeted advertising}\\
-Is it ethical for internet search engines to tailor advertisements according to your search history?
-
-\textbf{Dynamic pricing}\\
-Is it ethical for airfare search engines to adjust ticket prices according to your recent search history?
-
-\textbf{Social media scrolling}\\
-Is it ethical for Instagram to count how many milliseconds you spend on each post, then use that info to develop a strategy for getting you to spend more time on its app?
-
-\textbf{Controversial content}\\
-You are a data scientist at Facebook. Based on your analyses of user data, you have discovered that when you show readers sensational or hyperbolic content, such as someone ranting that a new vaccine is an attempt at government-subsidized mind control, the readers stay on Facebook longer and scroll through more contet. Since that translates to profits, is it OK for your team to increase the amount of sensational content in users' feeds?
-
-\hypertarget{case-studies}{%
-\section*{Case studies}\label{case-studies}}
-\addcontentsline{toc}{section}{Case studies}
-
-Use these case studies to reflect upon and discuss the ambiguity, complexity, and dangers of data ethics issues.
-
-\hypertarget{the-facebook-social-contagion-study}{%
-\subsection*{The Facebook `Social Contagion' Study}\label{the-facebook-social-contagion-study}}
-\addcontentsline{toc}{subsection}{The Facebook `Social Contagion' Study}
-
-In 2014, data scientists from Facebook published an \href{https://www.pnas.org/content/111/24/8788}{article} in a prestigious academic journal. In this article, they demonstrated that the emotions and moods of users could be manipulated by toggling the amount of positive or negative content in their feeds. They found that these emotional effects would then be passed to other users in the social network; in other words, emotions and moods could be seeded and were `contagious'. To carry out this research, they manipulated the Facebook feeds of 689,000 users.
-
-~\\
-
-\includegraphics[width=0.7\textwidth,height=\textheight]{img/ethics-fb.png}
-
-~
-
-Facebook did not receive specific consent for this study from its users. Instead, the company argued that the purpose of the study was consistent with the user agreement already in place: to give Facebook knowledge it needs to provide users with a positive experience on the platform.
-
-\textbf{Discuss:}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  In what ways, specifically, did Facebook violate basic principles of data ethics with this study? Enumerate each violation individually.
-\item
-  Can a convincing argument be made that justifies this study? What are the strongest arguments in its favor?
-\item
-  What are some things that Facebook could have done differently to handle this situation more ethically?
-\item
-  Who exactly should be held morally accountable for any harms caused by this study? The data scientists employed to analyze and publish the data? Mark Zuckerberg? All Facebook employees? Facebook stock holders? Are Facebook users accountable at all?
-\end{enumerate}
-
-\hypertarget{machine-bias-beauty-contests-recidivism}{%
-\subsection*{Machine bias: Beauty contests \& recidivism}\label{machine-bias-beauty-contests-recidivism}}
-\addcontentsline{toc}{subsection}{Machine bias: Beauty contests \& recidivism}
-
-Machine learning (ML) algorithms are developed by `training' models on known datasets. The models are then used to predict values in other datasets. For example, if you label cars in a batch of photos then use them to train a ML model on that labeled dataset, you can then use that model to identify cars in thousands of other photos.
-
-Sounds neat, but this means that ML models are only as good as the data they are trained upon, and often those training datasets are created by human labelers who carry unkown or unspoken biases. A classic example is the \href{https://www.theguardian.com/technology/2016/sep/08/artificial-intelligence-beauty-contest-doesnt-like-black-people}{Beauty.AI} beauty contest that occurred in 2016. A ML algorithm was trained on a large set of human-labeled photos of women, then women around the world were invited to submit selfies in a global beauty contest. A key advertising hook for the contest was that the `robot jury' -- the ML algorithm -- would be fully impartial and fair. But the results revealed that the ML model was racist: 75\% of the 6,000 contestants were white, but 98\% of the 44 winners were white. How did this happen? The people who labeled the training set of photos carried implicit bias.
-
-~\\
-
-\includegraphics[width=0.7\textwidth,height=\textheight]{img/ethics-machine_bias.png}
-
-~
-
-Debacles like this can have much more serious consequences. \href{https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing}{Court systems use ML models} to estimate the risks that a convicted criminal will commit more crimes once they are released from prison. But retrospective studies have shown that these models consistently and incorrectly label black prisoners as more dangerous and more likely to return to prison at a later date. Most of the risk assessments being used today have not received adequate validation, even though they are spitting out predictions that can destroy lives, families, and communities.
-
-~\\
-
-\includegraphics[width=0.7\textwidth,height=\textheight]{img/ethics-2.png}
-
-~
-
-\textbf{Discuss:}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  How might bias have entered the training datasets for these ML models, if the people labeling the data did not deliberately intend to exhibit prejudice against African Americans?
-\item
-  The ML models used to predict recidivism are imperfect and inherently prejudiced, but it is not clear whether it would be better to leave decisions of sentencing, bail amounts, and prisoner support services to individual humans in the court and penal systems. Would it be better to stop all use of ML evaluations, or should they be kept in place until better models are developed?
-\item
-  Returning to the beauty contest debacle. The attraction of a `robot jury' compelled people to seek out a single, simplistic definition of beauty, and to place all contestants on the same spectrum of beauty scores. Other than the racial bias baked into their model, what other problems is there with this endeavor? Articulate and enumerate as many as you can. What do those problems tell you about other ethical and humanistic dangers inherent to data science?
-\end{enumerate}
-
-\hypertarget{web-scraping-okcupid}{%
-\subsection*{Web-scraping OKCupid}\label{web-scraping-okcupid}}
-\addcontentsline{toc}{subsection}{Web-scraping OKCupid}
-
-In 2016, Danish researchers used new web scraping and text mining software to inventory the user profiles of 60,000 users on the online dating site \href{https://fortune.com/2016/05/18/okcupid-data-research/}{OkCupid}. Their goal was to use this dataset to test for correlations between `cognitive ability' and sexual orientation, religious affinity, and other personality traits. They chose these user profiles because they were publicly available online to anyone who wanted to sign up for a free account with OKCupid.
-
-When they published their paper, they included a spreadsheet of the 60,000 user profiles in the supplementary material for their article. They had removed the first and last names of the users, but kept everything else, including username, location, sexual orientation, religious orientation, sexual habits, relationship fidelity, drug use history, political views, and more.
-
-The backlash was immediate. When asked why they did not attempt to deidentify or anonymize the data any further, the researchers responded that the data were already public. In the paper itself, the authors wrote: ``Some may object to the ethics of gathering and releasing this data \ldots{} However, all the data found in the dataset are or were already publicly available, so releasing this dataset merely represents it in a more useful form.''
-
-~\\
-
-\includegraphics[width=0.8\textwidth,height=\textheight]{img/ethics-okcupid.png}
-
-~
-
-\textbf{Discuss:}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  What do you make of the authors' argument, that the data were already public, posted freely by the users themselves, so how can this be an issue of privacy or consent?
-\item
-  If you disagree with the authors' argument, explain how the users might reasonably object to the authors' actions.
-\item
-  What kind of risks did the authors impose upon the users of OKCupid? Are any of those risks new, or were they all present when the users decided to make a profile that could have been accessed by any other user?
-\item
-  Does it make an ethical difference that the authors accessed publicly available data in a novel way (web-scraping software) and to a much greater extent (harvesting 60,000 profiles at once) than individual users are typically able to do?
-\item
-  Does the software developer of the web-scraping tool bear any responsibility for this scandal? Does he have any ethical obligations regarding how his tool is used, and by whom?
-\end{enumerate}
-
-\hypertarget{more-scenarios}{%
-\section*{More scenarios}\label{more-scenarios}}
-\addcontentsline{toc}{section}{More scenarios}
-
-\textbf{Airport screening}\\
-A computer scientist have come up with a model that prioritizes security screening at airports according to various passenger characteristics. If using `place of origin' as a predictor in this model improves the model's predictive performance at identifying passengers who are security threats, is it ethical to include that variable in the model and screen certain passengers disproportionately?
-
-\textbf{Supporting struggling college students}\\
-Your college has developed a model that predicts dropouts. It identifies students at high-risk of dropping out and alerts offices that can direct additional support and resources to these students. Your college has found that this model performs better when it includes the student's place of origin, sex, and race as predictors. Is it ethical to implement this model and divert resources accordingly?
-
-\textbf{Robot cashiers}\\
-Self-checkout stations in grocery stores are convenient, but they take jobs away from workers who may not have many other employable skill-sets. When you are checking out, is it more ethical to use the checkout aisles with human cashiers, even if they line is longer and going more slowly?
-
-\textbf{Electric cars}\\
-Cars running on fossil fuels are bad for the environment, but at least they can be serviced by car mechanics who don't necessarily need a college degree.
-
-Electric cars reduce carbon emissions, but they are replacing car mechanics with computer scientists and softwar engineers, all of which require extensive undergradate and post-graduate education. Are electric cars a net social good?
-
-\textbf{Smartphone app for monitoring cough}\\
-A tech start-up has developed an app that can track the prevalence of cough in a network of smartphones. Cough is an important indicator of disease, and cough also helps to spread certain diseases more quickly, such as TB and COVID-19. This app has great potential to help public health officers in the fight against some of the deadliest respiratory diseases. The app works thanks to sophisticated machine learning algorithm for detecting coughs within continuous recordings. That algorithm is currently private and propriety. Do you agree that this cough monitoring app is a good idea, and that public health officials should promote its use?
-
-\textbf{Automated suicide prevention system}\\
-A large internet search engine has developed a model that can predict whether someone is likely to inflict self-harm or attempt suicide based upon their recent search history. This model is 75\% accurate. This company would like to set up an automatic emergency alert system, in which local social service providers are notified about at-risk users in their area. They want to automatically enroll users in this service. Is this an ethical feature to add to their product?
-
-\textbf{Malaria medicine distribution}\\
-Your company is trying to distribute a new malaria medicine in a remote region of Africa without primary care clinics, where tens of thousands people die from malaria each year. This medicine is highly effective, but it is also known to cause birth complications. You need to ensure that it is not administered to pregnant women. Your team's plan is to go door to door and distribute the medicine to women who say they aren't pregnant.
-
-But in this region, cultural attitudes to pregnancy, and the notion of sharing your pregnancy status with a stranger, are very sensitive. Daughters and wives may not feel safe to answer such questions truthfully.
-
-Your team has to choose between (1) not distributing the medicine at all, (2) only distributing it to men, or (3) some as-yet-unknown solution. What do you do?
-
-\textbf{User accountability}\\
-Let's say that you have disagreed with one or more of the claims about social media in the `Warm-Up Scenarios' section above. Is it ethical for you to continue to use Google, Instagram, or Facebook?
 
 \hypertarget{part-getting-started}{%
 \chapter*{\texorpdfstring{(PART) Getting sta\texttt{r}ted}{(PART) Getting started}}\label{part-getting-started}}
@@ -3432,7 +3432,7 @@ Here's an example of how this function works. This line of code will sample a si
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,}\DataTypeTok{size=}\DecValTok{1}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3441,7 +3441,7 @@ This command will draw three random samples:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,}\DataTypeTok{size=}\DecValTok{3}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5} \DecValTok{7} \DecValTok{2}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5} \DecValTok{6} \DecValTok{4}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3615,7 +3615,7 @@ This methods gets really useful when you are working with bigger datasets, such 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{range}\NormalTok{(y)}
-\NormalTok{[}\DecValTok{1}\NormalTok{]   }\DecValTok{1} \DecValTok{988}
+\NormalTok{[}\DecValTok{1}\NormalTok{]   }\DecValTok{4} \DecValTok{995}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3627,15 +3627,15 @@ First, develop your logical test, which will tell you whether each value in the 
 \begin{Highlighting}[]
 \CommentTok{# Develop your logical test,}
 \NormalTok{y }\OperatorTok{>}\StringTok{ }\DecValTok{90}
-\NormalTok{  [}\DecValTok{1}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}
+\NormalTok{  [}\DecValTok{1}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
 \NormalTok{ [}\DecValTok{13}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{25}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{37}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{49}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{61}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE} \OtherTok{FALSE}
-\NormalTok{ [}\DecValTok{73}\NormalTok{]  }\OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{85}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{97}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{25}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{37}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{49}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}
+\NormalTok{ [}\DecValTok{61}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{73}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{85}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{97}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3644,11 +3644,11 @@ Now, to get the values corresponding to each \texttt{TRUE} in this list, plug yo
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{y[y }\OperatorTok{>}\StringTok{ }\DecValTok{90}\NormalTok{]}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{898} \DecValTok{655} \DecValTok{480} \DecValTok{456} \DecValTok{883} \DecValTok{125} \DecValTok{453} \DecValTok{660} \DecValTok{672} \DecValTok{985} \DecValTok{476} \DecValTok{287} \DecValTok{332} \DecValTok{381} \DecValTok{276} \DecValTok{815} \DecValTok{757} \DecValTok{951} \DecValTok{766}
-\NormalTok{[}\DecValTok{20}\NormalTok{] }\DecValTok{211} \DecValTok{703} \DecValTok{652} \DecValTok{520} \DecValTok{353} \DecValTok{973} \DecValTok{352} \DecValTok{810} \DecValTok{359} \DecValTok{267} \DecValTok{440} \DecValTok{725} \DecValTok{348} \DecValTok{745} \DecValTok{117} \DecValTok{753} \DecValTok{134} \DecValTok{728} \DecValTok{717}
-\NormalTok{[}\DecValTok{39}\NormalTok{] }\DecValTok{250} \DecValTok{818} \DecValTok{278} \DecValTok{889} \DecValTok{799} \DecValTok{931} \DecValTok{309} \DecValTok{739} \DecValTok{526} \DecValTok{927} \DecValTok{116} \DecValTok{967} \DecValTok{966} \DecValTok{521} \DecValTok{533} \DecValTok{684} \DecValTok{582} \DecValTok{106} \DecValTok{375}
-\NormalTok{[}\DecValTok{58}\NormalTok{] }\DecValTok{606} \DecValTok{255} \DecValTok{700} \DecValTok{988} \DecValTok{704} \DecValTok{830} \DecValTok{400} \DecValTok{363} \DecValTok{444} \DecValTok{635} \DecValTok{915} \DecValTok{445} \DecValTok{279} \DecValTok{147} \DecValTok{692} \DecValTok{894} \DecValTok{870} \DecValTok{259} \DecValTok{756}
-\NormalTok{[}\DecValTok{77}\NormalTok{] }\DecValTok{868} \DecValTok{612} \DecValTok{860} \DecValTok{135} \DecValTok{194}  \DecValTok{91} \DecValTok{132} \DecValTok{527} \DecValTok{380} \DecValTok{609} \DecValTok{782} \DecValTok{130} \DecValTok{199} \DecValTok{598}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{515} \DecValTok{271} \DecValTok{981} \DecValTok{565} \DecValTok{368} \DecValTok{214} \DecValTok{765} \DecValTok{454} \DecValTok{284} \DecValTok{263} \DecValTok{433} \DecValTok{813} \DecValTok{826} \DecValTok{411} \DecValTok{364} \DecValTok{235} \DecValTok{211} \DecValTok{935} \DecValTok{385}
+\NormalTok{[}\DecValTok{20}\NormalTok{] }\DecValTok{501} \DecValTok{578} \DecValTok{450} \DecValTok{636} \DecValTok{904} \DecValTok{389} \DecValTok{920} \DecValTok{576} \DecValTok{693} \DecValTok{382} \DecValTok{139} \DecValTok{516} \DecValTok{756} \DecValTok{476} \DecValTok{738} \DecValTok{775} \DecValTok{995} \DecValTok{822} \DecValTok{279}
+\NormalTok{[}\DecValTok{39}\NormalTok{] }\DecValTok{475} \DecValTok{884} \DecValTok{623} \DecValTok{700} \DecValTok{503} \DecValTok{674} \DecValTok{664} \DecValTok{321} \DecValTok{790} \DecValTok{820} \DecValTok{112} \DecValTok{803} \DecValTok{320} \DecValTok{561} \DecValTok{701} \DecValTok{914} \DecValTok{892} \DecValTok{370} \DecValTok{752}
+\NormalTok{[}\DecValTok{58}\NormalTok{] }\DecValTok{543} \DecValTok{108} \DecValTok{766} \DecValTok{269} \DecValTok{123} \DecValTok{648} \DecValTok{395} \DecValTok{835} \DecValTok{950} \DecValTok{439} \DecValTok{288} \DecValTok{605} \DecValTok{151} \DecValTok{686} \DecValTok{846} \DecValTok{564} \DecValTok{117} \DecValTok{275} \DecValTok{710}
+\NormalTok{[}\DecValTok{77}\NormalTok{] }\DecValTok{521} \DecValTok{401} \DecValTok{372} \DecValTok{789} \DecValTok{526} \DecValTok{228} \DecValTok{443} \DecValTok{252} \DecValTok{734} \DecValTok{360} \DecValTok{836} \DecValTok{413} \DecValTok{253} \DecValTok{737} \DecValTok{610} \DecValTok{786} \DecValTok{168} \DecValTok{899}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3661,11 +3661,11 @@ Here's another way you can do the same thing:
 
 \CommentTok{# Use that vector to subset y}
 \NormalTok{y[verdicts]}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{898} \DecValTok{655} \DecValTok{480} \DecValTok{456} \DecValTok{883} \DecValTok{125} \DecValTok{453} \DecValTok{660} \DecValTok{672} \DecValTok{985} \DecValTok{476} \DecValTok{287} \DecValTok{332} \DecValTok{381} \DecValTok{276} \DecValTok{815} \DecValTok{757} \DecValTok{951} \DecValTok{766}
-\NormalTok{[}\DecValTok{20}\NormalTok{] }\DecValTok{211} \DecValTok{703} \DecValTok{652} \DecValTok{520} \DecValTok{353} \DecValTok{973} \DecValTok{352} \DecValTok{810} \DecValTok{359} \DecValTok{267} \DecValTok{440} \DecValTok{725} \DecValTok{348} \DecValTok{745} \DecValTok{117} \DecValTok{753} \DecValTok{134} \DecValTok{728} \DecValTok{717}
-\NormalTok{[}\DecValTok{39}\NormalTok{] }\DecValTok{250} \DecValTok{818} \DecValTok{278} \DecValTok{889} \DecValTok{799} \DecValTok{931} \DecValTok{309} \DecValTok{739} \DecValTok{526} \DecValTok{927} \DecValTok{116} \DecValTok{967} \DecValTok{966} \DecValTok{521} \DecValTok{533} \DecValTok{684} \DecValTok{582} \DecValTok{106} \DecValTok{375}
-\NormalTok{[}\DecValTok{58}\NormalTok{] }\DecValTok{606} \DecValTok{255} \DecValTok{700} \DecValTok{988} \DecValTok{704} \DecValTok{830} \DecValTok{400} \DecValTok{363} \DecValTok{444} \DecValTok{635} \DecValTok{915} \DecValTok{445} \DecValTok{279} \DecValTok{147} \DecValTok{692} \DecValTok{894} \DecValTok{870} \DecValTok{259} \DecValTok{756}
-\NormalTok{[}\DecValTok{77}\NormalTok{] }\DecValTok{868} \DecValTok{612} \DecValTok{860} \DecValTok{135} \DecValTok{194}  \DecValTok{91} \DecValTok{132} \DecValTok{527} \DecValTok{380} \DecValTok{609} \DecValTok{782} \DecValTok{130} \DecValTok{199} \DecValTok{598}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{515} \DecValTok{271} \DecValTok{981} \DecValTok{565} \DecValTok{368} \DecValTok{214} \DecValTok{765} \DecValTok{454} \DecValTok{284} \DecValTok{263} \DecValTok{433} \DecValTok{813} \DecValTok{826} \DecValTok{411} \DecValTok{364} \DecValTok{235} \DecValTok{211} \DecValTok{935} \DecValTok{385}
+\NormalTok{[}\DecValTok{20}\NormalTok{] }\DecValTok{501} \DecValTok{578} \DecValTok{450} \DecValTok{636} \DecValTok{904} \DecValTok{389} \DecValTok{920} \DecValTok{576} \DecValTok{693} \DecValTok{382} \DecValTok{139} \DecValTok{516} \DecValTok{756} \DecValTok{476} \DecValTok{738} \DecValTok{775} \DecValTok{995} \DecValTok{822} \DecValTok{279}
+\NormalTok{[}\DecValTok{39}\NormalTok{] }\DecValTok{475} \DecValTok{884} \DecValTok{623} \DecValTok{700} \DecValTok{503} \DecValTok{674} \DecValTok{664} \DecValTok{321} \DecValTok{790} \DecValTok{820} \DecValTok{112} \DecValTok{803} \DecValTok{320} \DecValTok{561} \DecValTok{701} \DecValTok{914} \DecValTok{892} \DecValTok{370} \DecValTok{752}
+\NormalTok{[}\DecValTok{58}\NormalTok{] }\DecValTok{543} \DecValTok{108} \DecValTok{766} \DecValTok{269} \DecValTok{123} \DecValTok{648} \DecValTok{395} \DecValTok{835} \DecValTok{950} \DecValTok{439} \DecValTok{288} \DecValTok{605} \DecValTok{151} \DecValTok{686} \DecValTok{846} \DecValTok{564} \DecValTok{117} \DecValTok{275} \DecValTok{710}
+\NormalTok{[}\DecValTok{77}\NormalTok{] }\DecValTok{521} \DecValTok{401} \DecValTok{372} \DecValTok{789} \DecValTok{526} \DecValTok{228} \DecValTok{443} \DecValTok{252} \DecValTok{734} \DecValTok{360} \DecValTok{836} \DecValTok{413} \DecValTok{253} \DecValTok{737} \DecValTok{610} \DecValTok{786} \DecValTok{168} \DecValTok{899}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3675,7 +3675,7 @@ You can use double logical tests too. For example, what if you want all elements
 \begin{Highlighting}[]
 \NormalTok{verdicts <-}\StringTok{ }\NormalTok{y }\OperatorTok{>}\StringTok{ }\DecValTok{70} \OperatorTok{&}\StringTok{ }\NormalTok{y }\OperatorTok{<}\StringTok{ }\DecValTok{90}
 \NormalTok{y[verdicts]}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{80} \DecValTok{82}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{84} \DecValTok{73} \DecValTok{72}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4550,7 +4550,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"yx6F>mLC*%j?G4JoBM wKv3Q"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{" 8O_,|j)I*gy2C?rM0W+(PET"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4559,7 +4559,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\OperatorTok{::}\KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"~yfAL(}\CharTok{\textbackslash{}"}\StringTok{=\{G]JV.|>v^edWq?,"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"@HxP[b-y6Wg,]>s=2e.J*\}Iz"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8612,108 +8612,238 @@ Add an additional input that allows the user to choose which variable to plot.
   Deploy the app to shinyapps.io
 \end{enumerate}
 
-\hypertarget{git}{%
-\chapter{Git}\label{git}}
+\hypertarget{git-github}{%
+\chapter{\texorpdfstring{\texttt{Git} + \texttt{GitHub}}{Git + GitHub}}\label{git-github}}
 
-Perhaps the below is familiar to you\ldots{}
+\hypertarget{learning-goals-16}{%
+\subsection*{Learning goals}\label{learning-goals-16}}
+\addcontentsline{toc}{subsection}{Learning goals}
 
-\includegraphics{img/version_control.png}
+\begin{itemize}
+\tightlist
+\item
+  What Version Control Systems do and why they are awesome\\
+\item
+  How to install \texttt{Git}
+\item
+  How to work on your Terminal (command line / bash / shell / console).\\
+\item
+  How to install \texttt{GitHub}\\
+\item
+  How to use pull and push code to and from \texttt{GitHub} repositories
+\end{itemize}
 
-Or this\ldots{}
-
-\includegraphics{img/version_control_2.png}
-
-\hypertarget{there-is-a-better-way}{%
-\section*{There is a better way}\label{there-is-a-better-way}}
-\addcontentsline{toc}{section}{There is a better way}
-
-Version control systems (VCS) are software tools meant to help programmers collaborate, maintain source code, document changes, and generally keep track of their files. Instead of reading, sit back and watch \href{https://youtu.be/9GKpbI1siow}{this video}.
-
-Having a working knowledge of a version control system will allow you to better organize and track your own files, as well as collaborate on teams. Though there are lots of different systems out there, the most popular version control system is ``git''. Let's dive in (next chapter).
-
-\hypertarget{what-is-git}{%
-\section*{What is git?}\label{what-is-git}}
-\addcontentsline{toc}{section}{What is git?}
-
-Git is a software for ``version control'': ie, tracking changes to sets of files. It is a very commonly used tool in programming, computer science, data science, and software development in general. For anyone working in data science, knowing git is a must.
-
-But \emph{what is it}, exactly? Git is a system for tracking, organizing, sharing, and reviewing changes to software. It's very flexible, and very powerful. And learning it can sometimes feel a bit overwhelming, because it has so many features and capabilities. But the \href{https://en.wikipedia.org/wiki/Pareto_principle}{Pareto principle} (ie, the 80/20 rule) applies here: most of what you need to know to competently handle git, you can do in very little time.
+~
 
 \hypertarget{why}{%
 \section*{Why?}\label{why}}
 \addcontentsline{toc}{section}{Why?}
 
-Why use git? Why not just save files with meaningful names, make changes to them, overwrite the old changes, etc.? Why not just treat code the same way we treat a MS Word document, or write code collaboratively using interactive, auto-saving tools like Google Docs?
+Perhaps the below is familiar to you\ldots{}
+
+~\\
+
+\includegraphics[width=0.3\textwidth,height=\textheight]{img/version_control.png}
+
+~
+
+\ldots{} or this \ldots{}
+
+~\\
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{img/version_control_2.png}
+
+~
+
+\hypertarget{because-there-is-a-better-way}{%
+\subsection*{Because there is a better way}\label{because-there-is-a-better-way}}
+\addcontentsline{toc}{subsection}{Because there is a better way}
+
+\textbf{Version control systems} (VCS) are software tools meant to help programmers collaborate, maintain source code, document changes, and generally keep track of their files. Instead of reading, sit back and watch \href{https://youtu.be/9GKpbI1siow}{this video}.
+
+Having a working knowledge of a version control system will allow you to better organize and track your own files, as well as collaborate on teams. Though there are lots of different systems out there, the most popular version control system is \textbf{\texttt{git}}.
+
+\hypertarget{the-better-way-git}{%
+\subsection*{\texorpdfstring{The better way: \texttt{Git}}{The better way: Git}}\label{the-better-way-git}}
+\addcontentsline{toc}{subsection}{The better way: \texttt{Git}}
+
+\texttt{Git} is a software for version control: i.,e., tracking changes to sets of files. It is a very commonly used tool in programming, computer science, data science, and software development in general. For anyone working in data science, knowing \texttt{git} is a \emph{must}.
+
+But \emph{what is it}, exactly? \texttt{Git} is a system for tracking, organizing, sharing, and reviewing changes to software. It's very flexible, and very powerful. And learning it can sometimes feel a bit overwhelming, because it has so many features and capabilities. But the \href{https://en.wikipedia.org/wiki/Pareto_principle}{Pareto principle} (ie, the 80/20 rule) applies here: most of what you need to know to competently handle \texttt{git}, you can do in very little time.
+
+\hypertarget{why-is-git-better}{%
+\subsection*{\texorpdfstring{Why is \texttt{git} better?}{Why is git better?}}\label{why-is-git-better}}
+\addcontentsline{toc}{subsection}{Why is \texttt{git} better?}
+
+Why use \texttt{git}? Why not just save files with meaningful names, make changes to them, overwrite the old changes, etc.? Why not just treat code the same way we treat a MS Word document, or write code collaboratively using interactive, auto-saving tools like Google Docs?
 
 There are a number reasons:
 
 \begin{itemize}
-\tightlist
 \item
-  First, writing code is not like writing a paper. If you make a mistake in the introduction of a term paper, it doesn't ``break'' your conclusion. But with code, minor changes to one line of code can have a very large impact on how other parts of that code work. Therefore, tracking minor changes is essential to recovering from errors and managing complex, interdependent software components.\\
+  \textbf{First}, writing code is not like writing a paper. If you make a mistake in the introduction of a term paper, it doesn't ``break'' your conclusion. But with code, minor changes to one line of code can have a very large impact on how other parts of that code work. Therefore, tracking minor changes is essential to recovering from errors and managing complex, interdependent software components.
 \item
-  Second, collaborating on code is more complex than collaborating on a term paper. To combine (merge) one person's work with another often requires very careful review. Git optimizes for this.\\
+  \textbf{Second}, collaborating on code is more complex than collaborating on a term paper. To combine (merge) one person's work with another often requires very careful review. \texttt{Git} optimizes for this.
 \item
-  Third, code is rarely ``done''. It's usually a work in progress. Git takes this into account, and is set up for very structured checkpoints (commits), change suggestions (pull requests), etc.
+  \textbf{Third}, code is rarely ``done''. It's usually a work in progress. \texttt{Git} takes this into account, and is set up for very structured checkpoints (commits), change suggestions (pull requests), etc.
 \item
-  Finally, git is the ``lingua franca'' of version control. Employers often request to see a prospective employee's github profile, and expect that programmers and developers of all types (including data scientists) be proficient in git.
+  \textbf{Finally}, git is the \emph{``lingua franca''} of version control. Employers often request to see a prospective employee's \texttt{Github} profile, and expect that programmers and developers of all types (including data scientists) be proficient in \texttt{git}.
 \end{itemize}
 
-\hypertarget{get-ready-for-git}{%
-\section*{Get ready for git}\label{get-ready-for-git}}
-\addcontentsline{toc}{section}{Get ready for git}
+\hypertarget{git-set-up}{%
+\section*{\texorpdfstring{\texttt{Git} set up}{Git set up}}\label{git-set-up}}
+\addcontentsline{toc}{section}{\texttt{Git} set up}
 
-It's time to ``git'' started. Rather than diving into too much theory, let's skip right to the practice. Like this:
+It's time to \texttt{git} started. Rather than diving into too much theory, let's skip right to the practice. We'll do \emph{first}, then we will try to understand \emph{later}. This comic knows what we mean:
 
-\includegraphics{img/git.png}
+~\\
 
-\hypertarget{installation}{%
-\section*{Installation}\label{installation}}
-\addcontentsline{toc}{section}{Installation}
+\includegraphics[width=0.35\textwidth,height=\textheight]{img/git.png}
 
-We'll start by installing git. Go \href{https://git-scm.com/book/en/v2/Getting-Started-Installing-Git}{here} and follow the instructions for your operating system.
+~
+
+\hypertarget{terminal}{%
+\subsection*{Terminal}\label{terminal}}
+\addcontentsline{toc}{subsection}{Terminal}
+
+To use \texttt{git}, we first need to get comfortable working with in our computer's Terminal. The Terminal goes by many names, depending on your operating system: shell, bash, \texttt{Git} bash, console, command line, command prompt, etc. For simplicity, we are going to use just one name: Terminal.
+
+The Terminal is a way for you to interact with your computer using lines of commands (i.e., command line) instead of pointing or clicking. Just as in the \texttt{R} Console, in your Temrinal you can type code and the computer will do things.
+
+This will feel a bit unfamiliar at first, but fear not -- there are just a few commands you will need to learn.
+
+\hypertarget{open-terminal}{%
+\subsubsection*{Open Terminal}\label{open-terminal}}
+\addcontentsline{toc}{subsubsection}{Open Terminal}
+
+\textbf{Window}
+To open Terminal, go to the search box in the Start Menu. Type \texttt{cmd} and hit enter. A Terminal ``shell'' window will appear.
+
+\textbf{Mac}\\
+To open Terminal, open the Mac Search (\texttt{Command} + \texttt{Spacebar}) and search ``Terminal''. Press \texttt{Enter}. A Terminal ``shell'' window will appear:
+
+~\\
+
+\includegraphics[width=0.6\textwidth,height=\textheight]{img/bash-mac.png}
+
+~
+
+\hypertarget{pwd}{%
+\subsubsection*{pwd}\label{pwd}}
+\addcontentsline{toc}{subsubsection}{pwd}
+
+Let's start with \texttt{pwd}. This stands for ``path to working directory''. Type it, press enter, and see what happens.
+
+If everything went to plan, you'll see a path (ie, a location within your computer's file structure). ``Working directory'' means the folder you are ``in'' right now -- just like in \texttt{R}.
+
+When you typed \texttt{pwd} you were asking your computer which directory (folder) you're in. It responded. Great! Now let's see what else is in the folder where you are.
+
+\hypertarget{ls}{%
+\subsubsection*{ls}\label{ls}}
+\addcontentsline{toc}{subsubsection}{ls}
+
+Type \texttt{ls}. This stands for ``list'' as in "list all the files in this directory. \texttt{ls} is commonly used to quickly see contents of a folder.
+
+You now know how to (a) see where you are and (b) see what else is there.
+
+\hypertarget{cd}{%
+\subsubsection*{cd}\label{cd}}
+\addcontentsline{toc}{subsubsection}{cd}
+
+But what about navigation? Let's say you want to ``move around'' (ie, go to other folders). You do this using the \texttt{cd} command, which stands for ``change directory''.
+
+\textbf{Navigating \emph{into} folders:}
+
+After typing \texttt{cd}, you should type a space and then the name of the directory you want to navigate to. This directory can be either (a) relative or (b) full. ``Relative'' means relative to where you are. So, for example, if you are currently in the following folder:
+
+\begin{verbatim}
+/home/abc/folder_1
+\end{verbatim}
+
+And within that folder you have the following sub-folders:
+
+\begin{verbatim}
+folder_a
+folder_b
+folder_c
+\end{verbatim}
+
+You could navigate to one of them by typing the full path:
+
+\begin{verbatim}
+cd /home/abc/folder_1/folder_a
+\end{verbatim}
+
+Or by typing the relative path:
+
+\begin{verbatim}
+cd folder_a
+\end{verbatim}
+
+Both of the last two commands have the same result: changing your working directory to \texttt{/home/abc/folder\_1/folder\_a}. You can confirm that using \texttt{pwd}.
+
+\textbf{Navigating \emph{out of} folders:}
+
+What about if you want to navigate ``up'' to the \texttt{/home/abc} folder. Again, you can do this using relative or full paths. To navigate there with the full path, simply type:
+
+\begin{verbatim}
+cd /home/abc
+\end{verbatim}
+
+To go ``up'' one level using a relative path, use \texttt{..}. So:
+
+\begin{verbatim}
+cd ..
+\end{verbatim}
+
+So far so good. Now you can (a) see where you are with \texttt{pwd}, (b) list folder contents with \texttt{ls} and (c) navigate with \texttt{cd}. Those 3 command will cover 80\% of what you'll need to do to use git from the command line.
+
+\hypertarget{install-git}{%
+\subsection*{\texorpdfstring{Install \texttt{Git}}{Install Git}}\label{install-git}}
+\addcontentsline{toc}{subsection}{Install \texttt{Git}}
+
+Go \href{https://git-scm.com/book/en/v2/Getting-Started-Installing-Git}{here} and follow the instructions for your operating system. We have also offered details for \emph{Windows} and \emph{Mac} below.
 
 \hypertarget{windows}{%
-\subsection*{Windows}\label{windows}}
-\addcontentsline{toc}{subsection}{Windows}
+\subsubsection*{Windows}\label{windows}}
+\addcontentsline{toc}{subsubsection}{Windows}
 
 On windows, once you've downloaded, you'll want to select the below parameters:
 
-\includegraphics{img/git1.png}
+\includegraphics[width=0.6\textwidth,height=\textheight]{img/git1.png}
+
+~
 
 The program will prompt you to pick a text editor. Select notepad.
 
-\includegraphics{img/git2.png}
+\includegraphics[width=0.6\textwidth,height=\textheight]{img/git2.png}
+
+~
 
 For all other options, leave settings as default and click ``next''. The program will now install.
 
-After installation, there is an option to ``Launch Git Bash''. Click it.
+After installation, there is an option to ``Launch Git Bash'' (Terminal). Click it.
 
-\includegraphics{img/git3.png}
+\includegraphics[width=0.6\textwidth,height=\textheight]{img/git3.png}
 
-This will open a ``terminal'' window:
+~
 
-\includegraphics{img/git4.png}
+This will open a Terminal window:
+
+\includegraphics[width=0.6\textwidth,height=\textheight]{img/git4.png}
+
+~
 
 \hypertarget{mac}{%
-\subsection*{Mac}\label{mac}}
-\addcontentsline{toc}{subsection}{Mac}
+\subsubsection*{Mac}\label{mac}}
+\addcontentsline{toc}{subsubsection}{Mac}
 
-To get Git on your Mac, you will be typing commands into your computer's Terminal. ``Terminal'' is the Mac word for the ``Git Bash'' window you will be using in the next section.
+To get \texttt{Git} on your Mac, you will be typing commands into your computer's Terminal.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
 \item
-  To open Terminal, open the Mac Search (\texttt{Command} + \texttt{Spacebar}) and search ``Terminal''. Press \texttt{Enter}. A Terminal ``shell'' window will appear:
-\end{enumerate}
-
-\includegraphics{img/bash-mac.png}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
+  Open your Terminal.
 \item
   Next we need to download and install a software management tool called \href{brew.sh}{Homebrew}. Copy and paste the following command into your Terminal, and press \texttt{Enter}:
 \end{enumerate}
@@ -8740,109 +8870,49 @@ You will likely be asked for your computer password. Press \texttt{Enter} when i
 \end{Highlighting}
 \end{Shaded}
 
-After a minute or two, Git should be downloaded, installed and ready to go.
+After a minute or two, \texttt{git} should be downloaded, installed and ready to go.
 
-\hypertarget{getting-to-know-git-bash}{%
-\section*{Getting to know git bash}\label{getting-to-know-git-bash}}
-\addcontentsline{toc}{section}{Getting to know git bash}
+\hypertarget{git-configuration}{%
+\subsection*{\texorpdfstring{\texttt{Git} configuration}{Git configuration}}\label{git-configuration}}
+\addcontentsline{toc}{subsection}{\texttt{Git} configuration}
 
-The strange little black box you're looking at is called ``Git Bash''. Bash is a command line language/interface. In other words, it's a way to interact with your computer without pointing and clicking. You type code, and the computer does things. It'll feel a bit unfamiliar at first, but don't worry - there are just a few commands you need to know to work with git. We'll use the terms ``bash'', ``command line'', and ``terminal'' interchangeably (though in reality these are a bit \href{https://superuser.com/questions/880344/what-is-the-difference-between-terminal-and-bash}{different}).
+Once you've installed \texttt{git}, you'll likely want to configure some options and preferences. Go \href{https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup}{here} and walk through the steps.
 
-\hypertarget{pwd}{%
-\subsubsection*{pwd}\label{pwd}}
-\addcontentsline{toc}{subsubsection}{pwd}
+\hypertarget{github-set-up}{%
+\subsection*{\texorpdfstring{\texttt{Github} set up}{Github set up}}\label{github-set-up}}
+\addcontentsline{toc}{subsection}{\texttt{Github} set up}
 
-Let's start with \texttt{pwd}. This stands for ``path to working directory''. Type it, press enter, and see what happens.
+Now you've got \texttt{git}. Great! Git is often used in conjunction with a third party, web-based platform. The most popular is \texttt{GitHub}.
 
-If everything went to plan, you'll see a path (ie, a location within your computer's file structure). ``Working directory'' means the folder you are ``in'' right now. Just like with a point-and-click program for exploring folders, you can navigate between folders using bash / terminal.
+Go to \url{www.github.com} and create a user account. Make sure you use the same email address you used when configuring \texttt{git} above.
 
-When you typed \texttt{pwd} you were asking your computer which directory (folder) you're in. It responded. Great! Now let's see what else is in the folder where you are.
+\hypertarget{create-a-new-repository}{%
+\section*{Create a new repository}\label{create-a-new-repository}}
+\addcontentsline{toc}{section}{Create a new repository}
 
-\hypertarget{ls}{%
-\subsubsection*{ls}\label{ls}}
-\addcontentsline{toc}{subsubsection}{ls}
+Once you've created an account and logged in to \texttt{GitHub}, let's create a repository.
 
-Type \texttt{ls}. This stands for ``list'' as in "list all the files in this directory. \texttt{ls} is commonly used to quickly see contents of a folder.
+\textbf{What is a repository?} Basically, it's a coding project in the form of a folder.
 
-\hypertarget{cd}{%
-\subsubsection*{cd}\label{cd}}
-\addcontentsline{toc}{subsubsection}{cd}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Having logged into git, click the ``plus'' icon in the upper right and then click ``New repository'' (or go directly \href{https://github.com/new}{here}).
+\item
+  You can fill in the ``Repository name'' field with whatever you'd like. For the following examples, we'll use the word ``testrepo''.
+\item
+  Fill in the ``Description'' field with the word ``My first git repository''.
+\item
+  Set the repo as ``Public'' (unless you plan on putting any secrets here!), and then click the ``Add a README file'' checkbox. Finally, click ``Create repository''.
+\end{enumerate}
 
-You now know how to (a) see where you are and (b) see what else is there. But what about navigation? Let's say you want to ``move around'' (ie, go to other folders). You do this using the \texttt{cd} command, which stands for ``change directory''.
+Cool! You've now created your first git repository. It's public url is \texttt{https://github.com/\textless{}YOUR\ USERNAME\textgreater{}/\textless{}repo-name\textgreater{}}. Others can see your code there, and you can too.
 
-After typing \texttt{cd}, you should type a space and then the name of the directory you want to navigate to. This directory can be either (a) relative or (b) full. ``Relative'' means relative to where you are. So, for example, if you are currently in the following folder:
+\hypertarget{clone-a-repository}{%
+\section*{Clone a repository}\label{clone-a-repository}}
+\addcontentsline{toc}{section}{Clone a repository}
 
-\begin{verbatim}
-/home/abc/folder1
-\end{verbatim}
-
-And within that folder you have the following sub-folders:
-
-\begin{verbatim}
-foldera
-folderb
-folderc
-\end{verbatim}
-
-You could navigate to one of them by typing the full path:
-
-\begin{verbatim}
-cd /home/abc/folder1/foldera
-\end{verbatim}
-
-Or by typing the relative path:
-
-\begin{verbatim}
-cd foldera
-\end{verbatim}
-
-Both of the last two commands have the same result: changing your working directory to \texttt{/home/abc/folder1/foldera}.
-
-What about if you want to navigate ``up'' to the \texttt{/home/abc} folder. Again, you can do this using relative or full paths. To navigate there with the full path, simply type:
-
-\begin{verbatim}
-cd /home/abc
-\end{verbatim}
-
-To go ``up'' one level using a relative path, use \texttt{..}. So:
-
-\begin{verbatim}
-cd ..
-\end{verbatim}
-
-So far so good. Now you can (a) see where you are with \texttt{pwd}, (b) list folder contents with \texttt{ls} and (c) navigate with \texttt{cd}. Those 3 command will cover 80\% of what you'll need to do to use git from the command line.
-
-\hypertarget{configuration}{%
-\section*{Configuration}\label{configuration}}
-\addcontentsline{toc}{section}{Configuration}
-
-Once you've installed git, you'll likely want to configure some options and preferences. Go \href{https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup}{here} and walk through the steps.
-
-\hypertarget{github}{%
-\section*{Github}\label{github}}
-\addcontentsline{toc}{section}{Github}
-
-Now you've got git. Great! Git is often used in conjunction with a third party, web-based platform. The most popular is github. Go to www.github.com and create a user account.
-
-\hypertarget{creating-a-repository}{%
-\subsection*{Creating a repository}\label{creating-a-repository}}
-\addcontentsline{toc}{subsection}{Creating a repository}
-
-Once you've created an account and logged in, let's create a repository. What is a repository? Basically, it's a project in the form of a folder. Having logged into git, click the ``plus'' icon in the upper right and then click ``New repository'' (or go directly \href{https://github.com/new}{here}).
-
-You can fill in the ``Repository name'' field with whatever you'd like. For the following examples, we'll use the word ``testrepo''.
-
-Fill in the ``Description'' field with the word ``My first git repository''.
-
-Set the repo as ``Public'' (unless you plan on putting any secrets here!), and then click the ``Add a README file'' checkbox. Finally, click ``Create repository''.
-
-Cool! You've now created your first git repository. It's public url is \url{https://github.com/}/testrepo. Others can see your code there, and you can too.
-
-\hypertarget{cloning-a-repository}{%
-\subsection*{Cloning a repository}\label{cloning-a-repository}}
-\addcontentsline{toc}{subsection}{Cloning a repository}
-
-``testrepo'' exists on the internet, but does not yet exist on your local machine. In order to get ``testrepo'' on your computer, you'll need to do something that you'll only do once: ``clone'' the repo. ``Cloning'' in git-speak means creating a copy of the repository locally.
+Your new repo exists on the internet, but does not yet exist on your local machine. In order to get ``testrepo'' on your computer, you'll need to do something that you'll only do once: ``clone'' the repo. ``Cloning'' in git-speak means creating a copy of the repository locally.
 
 To clone, you'll first open your terminal window and \texttt{cd} into a directory where you'd like to clone your repo. For example, if you want to put your \texttt{testrepo} directory into \texttt{\textasciitilde{}/Documents}, you'll type the below into terminal:
 
@@ -8855,17 +8925,24 @@ You can confirm that you are in \texttt{\textasciitilde{}/Documents} by typing: 
 Now, we'll write the code to ``clone'' \texttt{testrepo}:
 
 \begin{verbatim}
-git clone https://github.com/<USERNAME>/testrepo
+git clone https://github.com/<USERNAME>/<repo-name>
 \end{verbatim}
 
 Now, you've got a folder on your machine named \texttt{testrepo}. You can confirm this by writing \texttt{ls} in the terminal.
+
 See \texttt{testrepo} there? Great!
 
-\hypertarget{writing-some-code}{%
-\subsection*{Writing some code}\label{writing-some-code}}
-\addcontentsline{toc}{subsection}{Writing some code}
+\hypertarget{working-in-a-repository}{%
+\section*{Working in a repository}\label{working-in-a-repository}}
+\addcontentsline{toc}{section}{Working in a repository}
 
-In your local \texttt{testrepo} folder, you have a ``cloned'' copy of the repository at \url{https://github.com/}/testrepo. As of now, it's a pretty uninteresting folder. The only thing in it is a file named \texttt{README.md}. A ``README'' file is generally an explanation of a repository's content, purpose, etc. Like all files, a README can be tracked in git.
+\hypertarget{change-some-code}{%
+\subsection*{Change some code}\label{change-some-code}}
+\addcontentsline{toc}{subsection}{Change some code}
+
+In your local \texttt{testrepo} folder, you have a ``cloned'' copy of the repository at \url{https://github.com/}/testrepo.
+
+As of now, it's a pretty uninteresting folder. The only thing in it is a file named \texttt{README.md}. A ``README'' file is generally an explanation of a repository's content, purpose, etc. Like all files, a README can be tracked in git.
 
 Let's open the README file and make a change to it. We'll add the below line of ``code'':
 
@@ -8875,35 +8952,51 @@ This is my first git repository.
 
 The save and close the README file.
 
-Now, let's ask ``git'' if it noticed if we had made any changes. Type the below into terminal:
+\hypertarget{check-the-status-of-your-repo}{%
+\subsection*{Check the status of your repo}\label{check-the-status-of-your-repo}}
+\addcontentsline{toc}{subsection}{Check the status of your repo}
+
+Now, let's ask \texttt{git} if it noticed if we had made any changes. Type the below into terminal:
 
 \begin{verbatim}
 git status
 \end{verbatim}
 
-If everything has gone well until now, git will reply by telling us that we've made a change to the file. We can ask git \emph{what} change we made by typing:
+If everything has gone well until now, \texttt{git} will reply by telling us that we've made a change to the file. We can ask \texttt{git} \emph{what} change we made by typing:
 
 \begin{verbatim}
 git diff README.md
 \end{verbatim}
 
-\texttt{diff} stands for ``difference'', as in "what is the difference between the code I had and the code I have. Git will spit back some color-coded lines showing the change you've made.
+\texttt{diff} stands for ``difference'', as in "what is the difference between the code I had and the code I have. \texttt{Git} will spit back some color-coded lines showing the change you've made.
 
 Satisfied with your change? Great, now it's time to confirm it by doing the following:
+
+\hypertarget{track-the-changes-in-a-file}{%
+\subsection*{Track the changes in a file}\label{track-the-changes-in-a-file}}
+\addcontentsline{toc}{subsection}{Track the changes in a file}
 
 \begin{verbatim}
 git add README.md
 \end{verbatim}
 
-This tells git that we want it to notice and track the change we made to \texttt{README.md}. Then:
+This tells \texttt{git} that we want it to notice and track the change we made to \texttt{README.md}. Then:
+
+\hypertarget{commit-your-changes-as-a-stable-version-of-your-project}{%
+\subsection*{Commit your changes as a stable version of your project}\label{commit-your-changes-as-a-stable-version-of-your-project}}
+\addcontentsline{toc}{subsection}{Commit your changes as a stable version of your project}
 
 \begin{verbatim}
 git commit -m 'my first change'
 \end{verbatim}
 
-This tells git that we are ``committing'' our change, it marking a checkpoint (to which we can revert later). The \texttt{-m} flag is followed by a message in quotations which will help us to navigate this checkpoint in the future.
+This tells \texttt{git} that we are ``committing'' our change, it marking a checkpoint (to which we can revert later). The \texttt{-m} flag is followed by a message in quotations which will help us to navigate this checkpoint in the future.
 
-Almost there. Now that we've added and committed, we need to ``push'' our change to the remote repository (github), by running:
+Almost there. Now that we've added and committed, we need to ``push'' our change to the remote repository (\texttt{GitHub}), by running:
+
+\hypertarget{push-the-changes-in-your-local-repo-to-github}{%
+\subsection*{Push the changes in your local repo to GitHub}\label{push-the-changes-in-your-local-repo-to-github}}
+\addcontentsline{toc}{subsection}{Push the changes in your local repo to GitHub}
 
 \begin{verbatim}
 git push
@@ -8911,67 +9004,134 @@ git push
 
 You did it! Go to \url{https://github.com/}/testrepo and open the \texttt{README.md} file. You'll notice that your most recent changes are there. Now, if someone else wants to get your code, they can ``clone'' your repository, and they'll have the code you've ``pushed'' there.
 
-\hypertarget{a-bit-more-practice}{%
-\section*{A bit more practice}\label{a-bit-more-practice}}
-\addcontentsline{toc}{section}{A bit more practice}
+\hypertarget{git-workflow-overview}{%
+\section*{\texorpdfstring{\texttt{Git} workflow: overview}{Git workflow: overview}}\label{git-workflow-overview}}
+\addcontentsline{toc}{section}{\texttt{Git} workflow: overview}
 
-\hypertarget{exercise-creating-another-repo}{%
-\subsection*{Exercise: creating another repo}\label{exercise-creating-another-repo}}
-\addcontentsline{toc}{subsection}{Exercise: creating another repo}
+We get it: \texttt{git} can be daunting and a bit confusing. This diagram tries to summarize the way \texttt{git} works:
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{img/git-workflow.png}
+
+~
+
+\begin{itemize}
+\item
+  There are \textbf{three workspaces} to keep in mind: the remote version of your repo, the local version of it, and your work area. Your interact with your remote repo on the \texttt{GitHub} website, your local repo through \texttt{Terminal}, and your work area through \texttt{RStudio}.
+\item
+  You \textbf{sync your remote and local repos} using the \texttt{git\ pull} and \texttt{git\ push} commands in \texttt{Terminal}. When you \texttt{pull}, you are updating your local repo using the remote repo. When you \texttt{push}, you do the opposite: update the remote repo using your local repo.
+\item
+  You \textbf{sync your local repo and your work area} using the \texttt{git\ add} and \texttt{git\ commit} commands. You use these commands when you are ready to move files off of your work bench (\texttt{RStudio}) and back onto the shelf (local repo): you've reached a stopping point and want to stop working on your code for now.
+\end{itemize}
+
+~
+
+\hypertarget{step-by-step-workflow}{%
+\subsection*{Step-by-step workflow}\label{step-by-step-workflow}}
+\addcontentsline{toc}{subsection}{Step-by-step workflow}
+
+\textbf{Setting up a new repo:}
+
+\textbf{1.} Start a new remote repo (\texttt{GitHub}).
+
+\textbf{2.} Navigate to the local folder into which you want to clone your repo. (\texttt{Terminal}, using a combination of \texttt{pwd}, \texttt{ls}, and \texttt{cd}.)
+
+\textbf{3.} Clone the remote repo to your local machine (\texttt{Terminal}).
+
+\begin{verbatim}
+git clone https://github.com/<your username>/<repo name>)  
+\end{verbatim}
+
+~
+
+\textbf{Working in a repo:}
+
+\textbf{4.} \texttt{cd} into your repo (\texttt{Terminal}).
+
+\textbf{5.} \texttt{pull} on your remote repo to make sure your local repo contains the latest version of your project (\texttt{Terminal}).
+
+\begin{verbatim}
+git pull
+\end{verbatim}
+
+\textbf{6.} Make changes to your code (revisions, new files, etc.) (\texttt{RStudio})
+
+\textbf{7.} Stage those revised/new files for a commit (\texttt{Terminal})
+
+\begin{verbatim}
+git add <filename>
+\end{verbatim}
+
+\textbf{8.} Commit your changes (\texttt{Terminal})
+
+\begin{verbatim}
+git commit -m"add specific message here"
+\end{verbatim}
+
+\textbf{9.} Push your changes to the remote repo (\texttt{Terminal})
+
+\begin{verbatim}
+git push
+\end{verbatim}
+
+\textbf{10.} Check out your remote repo to verify that changes were pushed. (\texttt{GitHub})
+
+\hypertarget{exercises-12}{%
+\subsection*{Exercises}\label{exercises-12}}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\textbf{Create another repo:}
 
 Let's face it: \texttt{testrepo} is a pretty lame name for a repository. How about we make a repo that's actually real and useful? We'll make one for storing all the code we're writing in this course.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  Go to \url{https://github.com/}
-\item
-  Click the ``plus'' icon in the upper right and then click ``New repository'' (or go directly \href{https://github.com/new}{here}).
-\item
-  Now, for ``Repository name'', write ``datascience''.
-\item
-  Fill in the ``Description'' field with the words ``Code I wrote during my intro to data science course''.
-\item
-  Set the repo as ``Public'' (unless you plan on putting any secrets here!), and then click the ``Add a README file'' checkbox. Finally, click ``Create repository''.
-\item
-  Clone the repo to your computer (Documents folder)
-\item
-  Create a new R script in your repository ``datascience'' called gapminder
-\item
-  Create a histogram of life expectancy in 1982
-\item
-  Create a line plot for population in Asia, colored by country. Make the lines a bit thicker and more transparent.
-\item
-  Add new x and y axis labels, as well as a chart title.
-\item
-  Create a bar chart of all European countries gdp per capita in 2002
-\item
-  Make the bars transparent and filled with the color blue.
-\item
-  Create a new data set called \texttt{the\_nineties} that only contains years from the 1990s.
-\item
-  Save this dataset to your repository (use write.csv)
-\item
-  Add, commit, and push your files to github
-\end{enumerate}
+\textbf{1)} Go to \url{https://github.com/}
 
-\hypertarget{the-.gitignore}{%
-\subsection*{\texorpdfstring{The \texttt{.gitignore}}{The .gitignore}}\label{the-.gitignore}}
-\addcontentsline{toc}{subsection}{The \texttt{.gitignore}}
+\textbf{2)} Click the ``plus'' icon in the upper right and then click ``New repository'' (or go directly \href{https://github.com/new}{here}).
 
-If you \texttt{cd} into \texttt{datascience}, and then type \texttt{git\ status}, you might note that it's a bit ``busy''. That is, there are a lot of documents there! You're going to want to (i) add, (ii) commit, and (iii) push these documents, but perhaps there are some kinds of documents you \emph{don't} want to push.
+\textbf{3)} Now, for ``Repository name'', write ``datalab''.
 
-For example, maybe you want to push R code files (\texttt{.R}), but not data files (\texttt{.csv}). In this case, you can explicitly tell git that you don't want it to pay any attention to \texttt{.csv} files by creating a \texttt{.gitignore} file. A \texttt{.gitignore} file is simply a text file in a git repository that indicates to git that the contents of that file should be ignored.
+\textbf{4)} Fill in the ``Description'' field with the words ``Code I wrote during my intro to data science course''.
 
-Let's do it. First, create an empty \texttt{.gitignore} file:
+\textbf{5)} Set the repo as ``Public'' (unless you plan on putting any secrets here!), and then click the ``Add a README file'' checkbox. Finally, click ``Create repository''.
+
+\textbf{6)} Clone the repo to your computer (Documents folder).
+
+\textbf{7)} Create a new R script in your \texttt{datalab} repository called \texttt{gapminder.R}.
+
+\textbf{8)} Create a histogram of life expectancy in 1982.
+
+\textbf{9)} Create a line plot for population in Asia, colored by country. Make the lines a bit thicker and more transparent.
+
+\textbf{10)} Add new x and y axis labels, as well as a chart title.
+
+\textbf{11)} Create a bar chart of all European countries gdp per capita in 2002.
+
+\textbf{12)} Make the bars transparent and filled with the color blue.
+
+\textbf{13)} Create a new data set called \texttt{the\_nineties} that only contains years from the 1990s.
+
+\textbf{14)} Save this dataset to your repository (use \texttt{write.csv()}).
+
+\textbf{15)} Add, commit, and push your files to \texttt{GitHub}.
+
+~
+
+\textbf{Add a \texttt{.gitignore} file}
+
+If you \texttt{cd} into your local \texttt{datalab} repo, and then type \texttt{git\ status}, you might note that it's a bit ``busy''. That is, there are a lot of documents there! You're going to want to (i) add, (ii) commit, and (iii) push these documents, but perhaps there are some kinds of documents you \emph{don't} want to push.
+
+For example, maybe you want to push R code files (\texttt{.R}), but not data files (\texttt{.csv}). In this case, you can explicitly tell \texttt{git} that you don't want it to pay any attention to \texttt{.csv} files by creating a \texttt{.gitignore} file. A \texttt{.gitignore} file is simply a text file in a git repository that indicates to git that the contents of that file should be ignored.
+
+Let's do it.
+
+\textbf{16)} First, create an empty \texttt{.gitignore} file. In \texttt{Terminal}, type:
 
 \begin{verbatim}
 touch .gitignore
 \end{verbatim}
 
-Then, open the \texttt{.gitignore} file in RStudio.
+\textbf{17)} Then, open the \texttt{.gitignore} file in RStudio.
 
-Finally, add the following line to it:
+\textbf{18)} Finally, add the following line to it:
 
 \begin{verbatim}
 *.csv
@@ -8979,15 +9139,21 @@ Finally, add the following line to it:
 
 The star is a ``wildcard'', meaning that it stands in place of anything (such as \texttt{ducks.csv} or \texttt{data.csv} or \texttt{xyz.csv}).
 
-With this in your repo, git now knows to ignore anything that ends with the extension \texttt{.csv}.
+With this in your repo, \texttt{git} now knows to ignore anything that ends with the extension \texttt{.csv}.
 
-Good? Great. Push everything to your repo. Now you can share your code with others, and your future self.
+Good? Great.
 
-\hypertarget{advanced-git}{%
-\section*{Advanced git}\label{advanced-git}}
-\addcontentsline{toc}{section}{Advanced git}
+\textbf{19)} Push everything to your repo.
 
-Branching, pull requests, blaming, and more - in a break-out session.
+Now you can share your code with others, and your future self.
+
+\hypertarget{further-resources}{%
+\subsubsection*{Further resources}\label{further-resources}}
+\addcontentsline{toc}{subsubsection}{Further resources}
+
+\href{https://r-pkgs.org/git.html}{Hadley Wickham's introduction to \texttt{git} + \texttt{GitHub}}
+
+\href{https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html}{Using \texttt{git} from \texttt{RStudio}}
 
 \hypertarget{trump-shiny-git}{%
 \chapter{\texorpdfstring{Trump, \texttt{Shiny}, \& \texttt{Git}}{Trump, Shiny, \& Git}}\label{trump-shiny-git}}
@@ -9123,8 +9289,8 @@ Branching, pull requests, blaming, and more - in a break-out session.
 \hypertarget{writing-a-report}{%
 \chapter{Writing a report}\label{writing-a-report}}
 
-\hypertarget{learning-goals-16}{%
-\subsubsection*{Learning goals}\label{learning-goals-16}}
+\hypertarget{learning-goals-17}{%
+\subsubsection*{Learning goals}\label{learning-goals-17}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -9505,8 +9671,8 @@ A brief statement of whom you thank for their contributions and support of your 
 \hypertarget{style}{%
 \chapter{Good research writing}\label{style}}
 
-\hypertarget{learning-goals-17}{%
-\subsubsection*{Learning goals}\label{learning-goals-17}}
+\hypertarget{learning-goals-18}{%
+\subsubsection*{Learning goals}\label{learning-goals-18}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -10261,8 +10427,8 @@ This is a \href{https://www.youtube.com/watch?v=mae2eugjUsU}{pretty good example
 \hypertarget{saving-data-plots}{%
 \chapter{Saving data \& plots}\label{saving-data-plots}}
 
-\hypertarget{learning-goals-18}{%
-\subsubsection*{Learning goals}\label{learning-goals-18}}
+\hypertarget{learning-goals-19}{%
+\subsubsection*{Learning goals}\label{learning-goals-19}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -10363,8 +10529,8 @@ Make sure you add `.pdf' to the end of your filename, and try not to run the \te
 \hypertarget{joining_datasets}{%
 \chapter{Joining datasets}\label{joining_datasets}}
 
-\hypertarget{learning-goals-19}{%
-\subsubsection*{Learning goals}\label{learning-goals-19}}
+\hypertarget{learning-goals-20}{%
+\subsubsection*{Learning goals}\label{learning-goals-20}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -10729,8 +10895,8 @@ Now carry out your statistical test.
 \hypertarget{text}{%
 \chapter{Working with text}\label{text}}
 
-\hypertarget{learning-goals-20}{%
-\subsubsection*{Learning goals}\label{learning-goals-20}}
+\hypertarget{learning-goals-21}{%
+\subsubsection*{Learning goals}\label{learning-goals-21}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -11057,8 +11223,8 @@ Now carry out your statistical test.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises-12}{%
-\subsubsection*{Exercises}\label{exercises-12}}
+\hypertarget{exercises-13}{%
+\subsubsection*{Exercises}\label{exercises-13}}
 \addcontentsline{toc}{subsubsection}{Exercises}
 
 \begin{enumerate}
@@ -11090,8 +11256,8 @@ Now carry out your statistical test.
 \hypertarget{dates}{%
 \chapter{Working with dates \& times}\label{dates}}
 
-\hypertarget{learning-goals-21}{%
-\subsubsection*{Learning goals}\label{learning-goals-21}}
+\hypertarget{learning-goals-22}{%
+\subsubsection*{Learning goals}\label{learning-goals-22}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -11161,7 +11327,7 @@ First, install the \texttt{lubridate} package.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{str}\NormalTok{(today)}
-\NormalTok{ Date[}\DecValTok{1}\OperatorTok{:}\DecValTok{1}\NormalTok{], format}\OperatorTok{:}\StringTok{ "2021-09-07"}
+\NormalTok{ Date[}\DecValTok{1}\OperatorTok{:}\DecValTok{1}\NormalTok{], format}\OperatorTok{:}\StringTok{ "2021-09-09"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11187,7 +11353,7 @@ Note that class type impacts what you can do with text. The following causes an 
 \begin{Highlighting}[]
 \NormalTok{my_birthday <-}\StringTok{ }\KeywordTok{as_date}\NormalTok{(my_birthday)}
 \NormalTok{today }\OperatorTok{-}\StringTok{ }\NormalTok{my_birthday}
-\NormalTok{Time difference of }\DecValTok{13088}\NormalTok{ days}
+\NormalTok{Time difference of }\DecValTok{13090}\NormalTok{ days}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11199,42 +11365,42 @@ Note that class type impacts what you can do with text. The following causes an 
 \begin{Highlighting}[]
 \NormalTok{n <-}\StringTok{ }\KeywordTok{now}\NormalTok{() }
 \NormalTok{n}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-07 18:05:08 CDT"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09 09:39:43 CDT"}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{n }\OperatorTok{+}\StringTok{ }\KeywordTok{seconds}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-07 18:05:09 CDT"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09 09:39:44 CDT"}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{n }\OperatorTok{-}\StringTok{ }\KeywordTok{hours}\NormalTok{(}\DecValTok{5}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-07 13:05:08 CDT"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09 04:39:43 CDT"}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{hour}\NormalTok{(n)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{18}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{minute}\NormalTok{(n)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{39}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{as_date}\NormalTok{(n)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-07"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11242,7 +11408,7 @@ Note that class type impacts what you can do with text. The following causes an 
 \begin{Highlighting}[]
 \NormalTok{later <-}\StringTok{ }\KeywordTok{now}\NormalTok{()}
 \NormalTok{later}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-07 18:05:08 CDT"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09 09:39:43 CDT"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11336,8 +11502,8 @@ Use the appropriate lubridate function to parse each of the following dates:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises-13}{%
-\subsection{Exercises}\label{exercises-13}}
+\hypertarget{exercises-14}{%
+\subsection{Exercises}\label{exercises-14}}
 
 \hypertarget{childs-cough-data}{%
 \subsubsection*{Child's cough data}\label{childs-cough-data}}
@@ -11372,8 +11538,8 @@ Use the appropriate lubridate function to parse each of the following dates:
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
 
-\hypertarget{learning-goals-22}{%
-\subsubsection*{Learning goals}\label{learning-goals-22}}
+\hypertarget{learning-goals-23}{%
+\subsubsection*{Learning goals}\label{learning-goals-23}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -11817,8 +11983,8 @@ Carry out the above instructions to ensure that you know how to source a functio
 \hypertarget{for-loops}{%
 \chapter{\texorpdfstring{\texttt{for} loops}{for loops}}\label{for-loops}}
 
-\hypertarget{learning-goals-23}{%
-\subsubsection*{Learning goals}\label{learning-goals-23}}
+\hypertarget{learning-goals-24}{%
+\subsubsection*{Learning goals}\label{learning-goals-24}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -12606,8 +12772,8 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \hypertarget{conditional-statements}{%
 \chapter{Conditional statements}\label{conditional-statements}}
 
-\hypertarget{learning-goals-24}{%
-\subsubsection*{Learning goals}\label{learning-goals-24}}
+\hypertarget{learning-goals-25}{%
+\subsubsection*{Learning goals}\label{learning-goals-25}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -13002,8 +13168,8 @@ To do this work, your supervisor asks you to use the \texttt{us\_contagious\_dis
 \hypertarget{matrices-lists}{%
 \chapter{Matrices \& lists}\label{matrices-lists}}
 
-\hypertarget{learning-goals-25}{%
-\subsubsection*{Learning goals}\label{learning-goals-25}}
+\hypertarget{learning-goals-26}{%
+\subsubsection*{Learning goals}\label{learning-goals-26}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -13397,8 +13563,8 @@ Demonstrate that the matrix output of your second function is the same as the or
 \hypertarget{advanced-base-plots-in-r}{%
 \chapter{\texorpdfstring{Advanced base plots in \texttt{R}}{Advanced base plots in R}}\label{advanced-base-plots-in-r}}
 
-\hypertarget{learning-goals-26}{%
-\subsubsection*{Learning goals}\label{learning-goals-26}}
+\hypertarget{learning-goals-27}{%
+\subsubsection*{Learning goals}\label{learning-goals-27}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -13578,8 +13744,8 @@ Here is an example of this process:
 
 \includegraphics{figures/unnamed-chunk-550-1.pdf}
 
-\hypertarget{exercises-14}{%
-\subsubsection*{Exercises}\label{exercises-14}}
+\hypertarget{exercises-15}{%
+\subsubsection*{Exercises}\label{exercises-15}}
 \addcontentsline{toc}{subsubsection}{Exercises}
 
 \textbf{Public health \& life expectancy}
@@ -14369,8 +14535,8 @@ Add fancy text to map
 \hypertarget{randomization-statistics}{%
 \chapter{Randomization statistics}\label{randomization-statistics}}
 
-\hypertarget{learning-goals-27}{%
-\subsubsection*{Learning goals}\label{learning-goals-27}}
+\hypertarget{learning-goals-28}{%
+\subsubsection*{Learning goals}\label{learning-goals-28}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
