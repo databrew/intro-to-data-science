@@ -120,7 +120,7 @@
 
 \title{\texttt{DataBOOM}: the canon for data science}
 \author{Databrew}
-\date{2021-09-09}
+\date{2021-09-12}
 
 \begin{document}
 \maketitle
@@ -687,13 +687,13 @@ The backlash was immediate. When asked why they did not attempt to deidentify or
 \addcontentsline{toc}{section}{More scenarios}
 
 \textbf{Airport screening}\\
-A computer scientist have come up with a model that prioritizes security screening at airports according to various passenger characteristics. If using `place of origin' as a predictor in this model improves the model's predictive performance at identifying passengers who are security threats, is it ethical to include that variable in the model and screen certain passengers disproportionately?
+A data scientist has come up with a model that prioritizes security screening at airports according to various passenger characteristics. If using `place of origin' as a predictor in this model improves the model's predictive performance at identifying passengers who are security threats, is it ethical to include that variable in the model and screen certain passengers disproportionately?
 
 \textbf{Supporting struggling college students}\\
 Your college has developed a model that predicts dropouts. It identifies students at high-risk of dropping out and alerts offices that can direct additional support and resources to these students. Your college has found that this model performs better when it includes the student's place of origin, sex, and race as predictors. Is it ethical to implement this model and divert resources accordingly?
 
 \textbf{Robot cashiers}\\
-Self-checkout stations in grocery stores are convenient, but they take jobs away from workers who may not have many other employable skill-sets. When you are checking out, is it more ethical to use the checkout aisles with human cashiers, even if they line is longer and going more slowly?
+Self-checkout stations in grocery stores are convenient, but they take jobs away from workers who may not have many other employable skill-sets. When you are checking out, is it more ethical to use the checkout aisles with human cashiers, even if the line is longer and going more slowly?
 
 \textbf{Electric cars}\\
 Cars running on fossil fuels are bad for the environment, but at least they can be serviced by car mechanics who don't necessarily need a college degree.
@@ -1003,7 +1003,7 @@ Also, like the examples above, this plot doesn't have to be 3D. The height has a
 
 ~\\
 
-\includegraphics[width=0.9\textwidth,height=\textheight]{img/vis12.png}
+\includegraphics[width=0.75\textwidth,height=\textheight]{img/vis12.png}
 
 ~
 
@@ -3432,7 +3432,7 @@ Here's an example of how this function works. This line of code will sample a si
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,}\DataTypeTok{size=}\DecValTok{1}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3441,7 +3441,7 @@ This command will draw three random samples:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,}\DataTypeTok{size=}\DecValTok{3}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5} \DecValTok{6} \DecValTok{4}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{2} \DecValTok{3}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3615,7 +3615,7 @@ This methods gets really useful when you are working with bigger datasets, such 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{range}\NormalTok{(y)}
-\NormalTok{[}\DecValTok{1}\NormalTok{]   }\DecValTok{4} \DecValTok{995}
+\NormalTok{[}\DecValTok{1}\NormalTok{]   }\DecValTok{9} \DecValTok{990}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3627,14 +3627,14 @@ First, develop your logical test, which will tell you whether each value in the 
 \begin{Highlighting}[]
 \CommentTok{# Develop your logical test,}
 \NormalTok{y }\OperatorTok{>}\StringTok{ }\DecValTok{90}
-\NormalTok{  [}\DecValTok{1}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{13}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{25}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{37}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{49}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}
-\NormalTok{ [}\DecValTok{61}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{73}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
-\NormalTok{ [}\DecValTok{85}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{  [}\DecValTok{1}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{13}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{25}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{37}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{49}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{61}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}
+\NormalTok{ [}\DecValTok{73}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{ [}\DecValTok{85}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}
 \NormalTok{ [}\DecValTok{97}\NormalTok{]  }\OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}  \OtherTok{TRUE}
 \end{Highlighting}
 \end{Shaded}
@@ -3644,11 +3644,11 @@ Now, to get the values corresponding to each \texttt{TRUE} in this list, plug yo
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{y[y }\OperatorTok{>}\StringTok{ }\DecValTok{90}\NormalTok{]}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{515} \DecValTok{271} \DecValTok{981} \DecValTok{565} \DecValTok{368} \DecValTok{214} \DecValTok{765} \DecValTok{454} \DecValTok{284} \DecValTok{263} \DecValTok{433} \DecValTok{813} \DecValTok{826} \DecValTok{411} \DecValTok{364} \DecValTok{235} \DecValTok{211} \DecValTok{935} \DecValTok{385}
-\NormalTok{[}\DecValTok{20}\NormalTok{] }\DecValTok{501} \DecValTok{578} \DecValTok{450} \DecValTok{636} \DecValTok{904} \DecValTok{389} \DecValTok{920} \DecValTok{576} \DecValTok{693} \DecValTok{382} \DecValTok{139} \DecValTok{516} \DecValTok{756} \DecValTok{476} \DecValTok{738} \DecValTok{775} \DecValTok{995} \DecValTok{822} \DecValTok{279}
-\NormalTok{[}\DecValTok{39}\NormalTok{] }\DecValTok{475} \DecValTok{884} \DecValTok{623} \DecValTok{700} \DecValTok{503} \DecValTok{674} \DecValTok{664} \DecValTok{321} \DecValTok{790} \DecValTok{820} \DecValTok{112} \DecValTok{803} \DecValTok{320} \DecValTok{561} \DecValTok{701} \DecValTok{914} \DecValTok{892} \DecValTok{370} \DecValTok{752}
-\NormalTok{[}\DecValTok{58}\NormalTok{] }\DecValTok{543} \DecValTok{108} \DecValTok{766} \DecValTok{269} \DecValTok{123} \DecValTok{648} \DecValTok{395} \DecValTok{835} \DecValTok{950} \DecValTok{439} \DecValTok{288} \DecValTok{605} \DecValTok{151} \DecValTok{686} \DecValTok{846} \DecValTok{564} \DecValTok{117} \DecValTok{275} \DecValTok{710}
-\NormalTok{[}\DecValTok{77}\NormalTok{] }\DecValTok{521} \DecValTok{401} \DecValTok{372} \DecValTok{789} \DecValTok{526} \DecValTok{228} \DecValTok{443} \DecValTok{252} \DecValTok{734} \DecValTok{360} \DecValTok{836} \DecValTok{413} \DecValTok{253} \DecValTok{737} \DecValTok{610} \DecValTok{786} \DecValTok{168} \DecValTok{899}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{126} \DecValTok{932} \DecValTok{139} \DecValTok{628} \DecValTok{266} \DecValTok{353} \DecValTok{882} \DecValTok{925} \DecValTok{754} \DecValTok{148} \DecValTok{362} \DecValTok{376} \DecValTok{927} \DecValTok{374} \DecValTok{980} \DecValTok{122} \DecValTok{990} \DecValTok{655} \DecValTok{383}
+\NormalTok{[}\DecValTok{20}\NormalTok{] }\DecValTok{249} \DecValTok{332} \DecValTok{224} \DecValTok{900} \DecValTok{963} \DecValTok{780} \DecValTok{217} \DecValTok{268} \DecValTok{471} \DecValTok{586} \DecValTok{462} \DecValTok{924} \DecValTok{212} \DecValTok{377} \DecValTok{121} \DecValTok{513} \DecValTok{670} \DecValTok{881} \DecValTok{146}
+\NormalTok{[}\DecValTok{39}\NormalTok{] }\DecValTok{271} \DecValTok{446} \DecValTok{765} \DecValTok{264} \DecValTok{734} \DecValTok{189} \DecValTok{242} \DecValTok{194} \DecValTok{805} \DecValTok{661} \DecValTok{367} \DecValTok{458} \DecValTok{543} \DecValTok{158} \DecValTok{211} \DecValTok{193} \DecValTok{192} \DecValTok{451} \DecValTok{918}
+\NormalTok{[}\DecValTok{58}\NormalTok{] }\DecValTok{697} \DecValTok{445} \DecValTok{473} \DecValTok{983} \DecValTok{604} \DecValTok{250} \DecValTok{802} \DecValTok{928} \DecValTok{338} \DecValTok{936} \DecValTok{401} \DecValTok{920} \DecValTok{878} \DecValTok{978} \DecValTok{665} \DecValTok{811} \DecValTok{169} \DecValTok{672} \DecValTok{981}
+\NormalTok{[}\DecValTok{77}\NormalTok{] }\DecValTok{769} \DecValTok{841} \DecValTok{975} \DecValTok{761} \DecValTok{100} \DecValTok{822} \DecValTok{411} \DecValTok{152} \DecValTok{491} \DecValTok{664} \DecValTok{703}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3661,11 +3661,11 @@ Here's another way you can do the same thing:
 
 \CommentTok{# Use that vector to subset y}
 \NormalTok{y[verdicts]}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{515} \DecValTok{271} \DecValTok{981} \DecValTok{565} \DecValTok{368} \DecValTok{214} \DecValTok{765} \DecValTok{454} \DecValTok{284} \DecValTok{263} \DecValTok{433} \DecValTok{813} \DecValTok{826} \DecValTok{411} \DecValTok{364} \DecValTok{235} \DecValTok{211} \DecValTok{935} \DecValTok{385}
-\NormalTok{[}\DecValTok{20}\NormalTok{] }\DecValTok{501} \DecValTok{578} \DecValTok{450} \DecValTok{636} \DecValTok{904} \DecValTok{389} \DecValTok{920} \DecValTok{576} \DecValTok{693} \DecValTok{382} \DecValTok{139} \DecValTok{516} \DecValTok{756} \DecValTok{476} \DecValTok{738} \DecValTok{775} \DecValTok{995} \DecValTok{822} \DecValTok{279}
-\NormalTok{[}\DecValTok{39}\NormalTok{] }\DecValTok{475} \DecValTok{884} \DecValTok{623} \DecValTok{700} \DecValTok{503} \DecValTok{674} \DecValTok{664} \DecValTok{321} \DecValTok{790} \DecValTok{820} \DecValTok{112} \DecValTok{803} \DecValTok{320} \DecValTok{561} \DecValTok{701} \DecValTok{914} \DecValTok{892} \DecValTok{370} \DecValTok{752}
-\NormalTok{[}\DecValTok{58}\NormalTok{] }\DecValTok{543} \DecValTok{108} \DecValTok{766} \DecValTok{269} \DecValTok{123} \DecValTok{648} \DecValTok{395} \DecValTok{835} \DecValTok{950} \DecValTok{439} \DecValTok{288} \DecValTok{605} \DecValTok{151} \DecValTok{686} \DecValTok{846} \DecValTok{564} \DecValTok{117} \DecValTok{275} \DecValTok{710}
-\NormalTok{[}\DecValTok{77}\NormalTok{] }\DecValTok{521} \DecValTok{401} \DecValTok{372} \DecValTok{789} \DecValTok{526} \DecValTok{228} \DecValTok{443} \DecValTok{252} \DecValTok{734} \DecValTok{360} \DecValTok{836} \DecValTok{413} \DecValTok{253} \DecValTok{737} \DecValTok{610} \DecValTok{786} \DecValTok{168} \DecValTok{899}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{126} \DecValTok{932} \DecValTok{139} \DecValTok{628} \DecValTok{266} \DecValTok{353} \DecValTok{882} \DecValTok{925} \DecValTok{754} \DecValTok{148} \DecValTok{362} \DecValTok{376} \DecValTok{927} \DecValTok{374} \DecValTok{980} \DecValTok{122} \DecValTok{990} \DecValTok{655} \DecValTok{383}
+\NormalTok{[}\DecValTok{20}\NormalTok{] }\DecValTok{249} \DecValTok{332} \DecValTok{224} \DecValTok{900} \DecValTok{963} \DecValTok{780} \DecValTok{217} \DecValTok{268} \DecValTok{471} \DecValTok{586} \DecValTok{462} \DecValTok{924} \DecValTok{212} \DecValTok{377} \DecValTok{121} \DecValTok{513} \DecValTok{670} \DecValTok{881} \DecValTok{146}
+\NormalTok{[}\DecValTok{39}\NormalTok{] }\DecValTok{271} \DecValTok{446} \DecValTok{765} \DecValTok{264} \DecValTok{734} \DecValTok{189} \DecValTok{242} \DecValTok{194} \DecValTok{805} \DecValTok{661} \DecValTok{367} \DecValTok{458} \DecValTok{543} \DecValTok{158} \DecValTok{211} \DecValTok{193} \DecValTok{192} \DecValTok{451} \DecValTok{918}
+\NormalTok{[}\DecValTok{58}\NormalTok{] }\DecValTok{697} \DecValTok{445} \DecValTok{473} \DecValTok{983} \DecValTok{604} \DecValTok{250} \DecValTok{802} \DecValTok{928} \DecValTok{338} \DecValTok{936} \DecValTok{401} \DecValTok{920} \DecValTok{878} \DecValTok{978} \DecValTok{665} \DecValTok{811} \DecValTok{169} \DecValTok{672} \DecValTok{981}
+\NormalTok{[}\DecValTok{77}\NormalTok{] }\DecValTok{769} \DecValTok{841} \DecValTok{975} \DecValTok{761} \DecValTok{100} \DecValTok{822} \DecValTok{411} \DecValTok{152} \DecValTok{491} \DecValTok{664} \DecValTok{703}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3675,7 +3675,7 @@ You can use double logical tests too. For example, what if you want all elements
 \begin{Highlighting}[]
 \NormalTok{verdicts <-}\StringTok{ }\NormalTok{y }\OperatorTok{>}\StringTok{ }\DecValTok{70} \OperatorTok{&}\StringTok{ }\NormalTok{y }\OperatorTok{<}\StringTok{ }\DecValTok{90}
 \NormalTok{y[verdicts]}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{84} \DecValTok{73} \DecValTok{72}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{83} \DecValTok{75} \DecValTok{88}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4550,7 +4550,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{" 8O_,|j)I*gy2C?rM0W+(PET"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{">}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{3&-V*F8md=;fP9[XN_\}qGe"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4559,7 +4559,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\OperatorTok{::}\KeywordTok{random_password}\NormalTok{(}\DataTypeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"@HxP[b-y6Wg,]>s=2e.J*\}Iz"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"kqt[e>^X:.i &PGsg?%r4;,I"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7960,663 +7960,11 @@ Let's run the below to get started.
 \hypertarget{part-reproducible-research}{%
 \part{Reproducible research}\label{part-reproducible-research}}
 
-\hypertarget{markdown-documentation}{%
-\chapter{\texorpdfstring{\texttt{Markdown} documentation}{Markdown documentation}}\label{markdown-documentation}}
-
-\hypertarget{learning-goals-15}{%
-\subsubsection*{Learning goals}\label{learning-goals-15}}
-\addcontentsline{toc}{subsubsection}{Learning goals}
-
-\begin{itemize}
-\tightlist
-\item
-  How to document your projects with \texttt{Markdown}, and why doing so is so important.
-\end{itemize}
-
-\hypertarget{documentation-with-markdown}{%
-\section*{\texorpdfstring{Documentation with \texttt{Markdown}}{Documentation with Markdown}}\label{documentation-with-markdown}}
-\addcontentsline{toc}{section}{Documentation with \texttt{Markdown}}
-
-\emph{Forthcoming!}
-
-\hypertarget{r-markdown}{%
-\chapter{\texorpdfstring{\texttt{R\ Markdown}}{R Markdown}}\label{r-markdown}}
-
-\texttt{R\ Markdown} is the combination of \texttt{R} and \texttt{Markdown}. It is a tool in the toolbox of ``literate programming'' and allows you to weave computer-speak (code) and human-speak (English, or any other language) into one combined document.
-
-\hypertarget{in-class-activity}{%
-\subsection*{In-class activity}\label{in-class-activity}}
-\addcontentsline{toc}{subsection}{In-class activity}
-
-Let's not talk about it. Let's just do it.
-
-\hypertarget{starting-the-file}{%
-\subsubsection*{Starting the file}\label{starting-the-file}}
-\addcontentsline{toc}{subsubsection}{Starting the file}
-
-\begin{itemize}
-\tightlist
-\item
-  Create a repository on github called \texttt{report}.\\
-\item
-  Clone that repository to your local machine.\\
-\item
-  \texttt{cd} into that repository.\\
-\item
-  Open Rstudio.\\
-\item
-  Click File -\textgreater{} New File -\textgreater{} R Markdown\\
-\item
-  Fill out ``Title'', ``Author'', and click ``Set to HTML''\\
-\item
-  Type ctrl + s to save your file in the recently cloned \texttt{report} repository
-\end{itemize}
-
-\hypertarget{compiling-your-report}{%
-\subsubsection*{Compiling your report}\label{compiling-your-report}}
-\addcontentsline{toc}{subsubsection}{Compiling your report}
-
-\begin{itemize}
-\tightlist
-\item
-  Have a look at the document. What does each section mean?\\
-\item
-  Click the ``knit'' button at the top.\\
-\item
-  Cool, right? But also kind of boring. Let's make some changes to this report.
-\end{itemize}
-
-\hypertarget{modifying-the-template}{%
-\subsubsection*{Modifying the template}\label{modifying-the-template}}
-\addcontentsline{toc}{subsubsection}{Modifying the template}
-
-\begin{itemize}
-\item
-  First, let's replace the ``setup chunk'' with the below.
-\item
-  Then, let's change the title to some interesting question.\\
-\item
-  Now, let's delete all of the other stuff in the template so far (beginning at ``R Markdown'').\\
-\item
-  Let's put in some headers, using the hashtag symbol. We'll make the following sections: \texttt{Introduction}, \texttt{Methods}, \texttt{Results}, \texttt{Conclusion}.\\
-\item
-  Let's put in some text too.\\
-\item
-  Let's knit, to make sure that we did not break anything. Good? Great.
-\end{itemize}
-
-\hypertarget{formatting}{%
-\subsubsection*{Formatting}\label{formatting}}
-\addcontentsline{toc}{subsubsection}{Formatting}
-
-\begin{itemize}
-\tightlist
-\item
-  Headers\\
-\item
-  In-line code-formatting\\
-\item
-  In-line code processing\\
-\item
-  Italitcs\\
-\item
-  Bold\\
-\item
-  Echo\\
-\item
-  Eval
-\end{itemize}
-
-\hypertarget{bibliography-management}{%
-\subsubsection*{Bibliography management}\label{bibliography-management}}
-\addcontentsline{toc}{subsubsection}{Bibliography management}
-
-\begin{itemize}
-\tightlist
-\item
-  From the command line, create a new file: \texttt{touch\ bibliography.bib}.\\
-\item
-  Look up \url{https://www.researchgate.net/publication/260642613_Statistical_exponential_formulas_for_homogeneous_diffusion}\\
-\item
-  Get the DOI\\
-\item
-  Go to \url{https://doi2bib.org/}\\
-\item
-  Get the bibtex format\\
-\item
-  Copy-paste into your bib file\\
-\item
-  Write some line about a paper\\
-\item
-  Cite that line using citation notation\\
-\item
-  Add \texttt{bibliography:\ bibliography.bib} to your yaml
-\end{itemize}
-
-\hypertarget{wrapping-up}{%
-\subsubsection*{Wrapping up}\label{wrapping-up}}
-\addcontentsline{toc}{subsubsection}{Wrapping up}
-
-\begin{itemize}
-\tightlist
-\item
-  Push your code to github.
-\end{itemize}
-
-\hypertarget{exercises-11}{%
-\subsubsection*{Exercises}\label{exercises-11}}
-\addcontentsline{toc}{subsubsection}{Exercises}
-
-Before getting started, think of a testable hypothesis which can be answered via a survey of your friends and classmates. For example: ``woman have more dreams than men'' or ``people born abroad have shorter last names than people born in the USA'' or ``shoe size is associated with GPA''.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Create a new R markdown document. Name it \texttt{paper.Rmd}. Make it in the same repo as your previous RMarkdown document.
-\item
-  Replace the setup chunk with the one used in the in-class exercise (above)
-\item
-  Create a google form survey with at least 5 interesting questions on a topic which interests you (one topic, five questions).
-\item
-  Get at least 5 people to fill out your survey.
-\item
-  In your survey results, create a google spreadsheet.
-\item
-  In the sharing settings of your google spreadsheet, set to ``public''.
-\item
-  Copy the URL of your survey results.
-\item
-  Create an R chunk in your \texttt{paper.Rmd}.
-\item
-  Use the \texttt{gsheet} package to read your survey results as a dataframe.
-\item
-  After reading in the data, create the following sections in your report: \texttt{Introduction}, \texttt{Methods}, \texttt{Results}, \texttt{Conclusion}.
-\item
-  Spend 5-15 minutes on the internet reading about your topic / hypotheses.
-\item
-  Find 2-5 authors/articles of interest related to your topic. Cite them in the introduction.
-\item
-  Describe in plain English your approach to testing your hypothesis in the ``Methods'' section.
-\item
-  After the ``Methods'' section, write the R code (in an \texttt{echo}ed chunk) which tests your hypothesis.
-\item
-  In the ``Results'' section, write a description of both (a) your sample and (b) your results. Include at least two charts. Include at least one table.
-\item
-  In the ``Conclusion'' section, write interesting reflection on your data.
-\item
-  Got here? Cool, you're fast. Now configure your computer to generate pdfs via Rmarkdown: \href{https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-macos-high-sierra-e7b5705c9fd}{mac} / \href{https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9}{windows}
-\item
-  Make your paper in pdf.
-\item
-  Check out \url{https://www.datadreaming.org/post/r-markdown-theme-gallery/}
-\item
-  Publish your paper to the internet
-\item
-  Push your code to git
-\item
-  Check out how to make presentations in Rmarkdown: \url{https://rmarkdown.rstudio.com/lesson-11.html}. Make one.
-\item
-  Check out how to make dashboards in Rmarkdown: \url{https://rmarkdown.rstudio.com/lesson-12.html}. Make one.
-\item
-  Change your citation style. Use a new csl from \url{https://github.com/citation-style-language/styles}
-\end{enumerate}
-
-\hypertarget{shiny}{%
-\chapter{Interactive dashboards}\label{shiny}}
-
-\hypertarget{overview}{%
-\section*{Overview}\label{overview}}
-\addcontentsline{toc}{section}{Overview}
-
-Shiny is a library that makes it super easy to build interactive web applications and dashboards in R.
-
-First we need to install the library
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{'shiny'}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Shiny apps consists of two main parts:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  The \textbf{UI} - this controls what is being displayed on the application page and how the components are laid out. This may include text and other markdown elements, graphics, widgets that take in user input, or plots. You will also use the UI to define a navigation bar with multiple tabs in this tutorial.
-\item
-  The \textbf{Server} - this controls the data that will be displayed through the UI. The server will be where you load in and wrangle data, then define your outputs (i.e.~plots) using input from the UI.
-\end{enumerate}
-
-Lets get started! Navigate to the left hand corner of the Rstudio screen and select: File \textgreater{} New File \textgreater{} Shiny Web App.. Create a name for your application and save to your directory.
-
-\includegraphics{img/new_shiny_app.png}
-
-This will open a script with deployment ready pre-populated code. To run the app, simply click the ``Run App'' button in the top right. Let's break down each function to get a better understanding of the app internals.
-
-\textbf{The UI:}
-\texttt{fluidPage}: Gives us a flexible page to work with by making it easy to position elements of the app (inputs, text, plots, etc) beside each other (rows) and on top of each other (columns)
-\texttt{titlePanel}: An optional title.
-\texttt{sidebarLayout}: Creates a layout in UI that splits the screen into a sidebar (sidebarPanel) \& and main section (mainPanel)
-\texttt{sidebarPanel}: Typically reserved for app inputs.
-\texttt{sliderInput}: One of many shiny widget inputs to manipulate data.
-\texttt{mainPanel}: Typically reserved for app outputs (plots, tables, etc)
-\texttt{plotOutput}: A shiny function that creates a plot, to be created in the server.
-
-\textbf{The Server:}
-\texttt{output\$distPlot}: The output of the app. In this case a plot, named ``distPlot'' called in the \texttt{plotOutput} function in the UI
-\texttt{renderPlot}: A shiny function to create the plot.
-
-The key difference between the UI and Server is that the UI takes inputs (sliderInput), whereas the server creates outputs (a plot). In our default example the input is simply a number from 1 to 50 to determine the number of bins in the output (a histogram).
-
-\hypertarget{an-easy-example}{%
-\section*{An easy example}\label{an-easy-example}}
-\addcontentsline{toc}{section}{An easy example}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\KeywordTok{library}\NormalTok{(shiny)}
-\KeywordTok{library}\NormalTok{(dplyr)}
-\KeywordTok{library}\NormalTok{(gapminder)}
-\KeywordTok{library}\NormalTok{(ggplot2)}
-
-\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
-
-\CommentTok{# Define UI for application that draws a histogram}
-\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
-
-    \CommentTok{# Application title}
-    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
-
-    \CommentTok{# Sidebar with a slider input for number of bins }
-    \KeywordTok{sidebarLayout}\NormalTok{(}
-        \KeywordTok{sidebarPanel}\NormalTok{(}
-            
-\NormalTok{        ),}
-
-        \CommentTok{# Show a plot of the generated distribution}
-        \KeywordTok{mainPanel}\NormalTok{(}
-          
-\NormalTok{        )}
-\NormalTok{    )}
-\NormalTok{)}
-
-\CommentTok{# Define server logic required to draw a histogram}
-\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
-
-\NormalTok{\}}
-
-\CommentTok{# Run the application }
-\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
-\end{Highlighting}
-\end{Shaded}
-
-Add an input that allows the user to choose a country to plot.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\KeywordTok{library}\NormalTok{(shiny)}
-\KeywordTok{library}\NormalTok{(dplyr)}
-\KeywordTok{library}\NormalTok{(gapminder)}
-\KeywordTok{library}\NormalTok{(ggplot2)}
-
-\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
-
-\CommentTok{# Define UI for application that draws a histogram}
-\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
-
-    \CommentTok{# Application title}
-    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
-
-    \CommentTok{# Sidebar with a slider input for number of bins }
-    \KeywordTok{sidebarLayout}\NormalTok{(}
-        \KeywordTok{sidebarPanel}\NormalTok{(}
-            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"country_name"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
-                        \DataTypeTok{choices =} \KeywordTok{unique}\NormalTok{(gm}\OperatorTok{$}\NormalTok{country),}
-                        \DataTypeTok{selected =} \StringTok{'Mexico'}\NormalTok{)}
-\NormalTok{        ),}
-
-        \CommentTok{# Show a plot of the generated distribution}
-        \KeywordTok{mainPanel}\NormalTok{(}
-            
-\NormalTok{        )}
-\NormalTok{    )}
-\NormalTok{)}
-
-\CommentTok{# Define server logic required to draw a histogram}
-\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
-
-   
-\NormalTok{\}}
-
-\CommentTok{# Run the application }
-\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
-\end{Highlighting}
-\end{Shaded}
-
-Add a plot in the \texttt{plotOutput} function.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\KeywordTok{library}\NormalTok{(shiny)}
-\KeywordTok{library}\NormalTok{(dplyr)}
-\KeywordTok{library}\NormalTok{(gapminder)}
-\KeywordTok{library}\NormalTok{(ggplot2)}
-
-\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
-
-\CommentTok{# Define UI for application that draws a histogram}
-\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
-
-    \CommentTok{# Application title}
-    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
-
-    \CommentTok{# Sidebar with a slider input for number of bins }
-    \KeywordTok{sidebarLayout}\NormalTok{(}
-        \KeywordTok{sidebarPanel}\NormalTok{(}
-            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"country_name"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
-                        \DataTypeTok{choices =} \KeywordTok{unique}\NormalTok{(gm}\OperatorTok{$}\NormalTok{country),}
-                        \DataTypeTok{selected =} \StringTok{'Mexico'}\NormalTok{)}
-\NormalTok{        ),}
-
-        \CommentTok{# Show a plot of the generated distribution}
-        \KeywordTok{mainPanel}\NormalTok{(}
-            \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"country_plot"}\NormalTok{)}
-\NormalTok{        )}
-\NormalTok{    )}
-\NormalTok{)}
-
-\CommentTok{# Define server logic required to draw a histogram}
-\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
-
-\NormalTok{    output}\OperatorTok{$}\NormalTok{country_plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
-\NormalTok{        cn <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{country_name}
-        
-\NormalTok{        pd <-}\StringTok{ }\NormalTok{gm }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(country }\OperatorTok{==}\StringTok{ }\NormalTok{cn)}
-        \KeywordTok{ggplot}\NormalTok{(pd, }\KeywordTok{aes}\NormalTok{(year, pop)) }\OperatorTok{+}
-\StringTok{            }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{            }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
-\StringTok{            }\KeywordTok{labs}\NormalTok{()}
-\NormalTok{    \})}
-\NormalTok{\}}
-
-\CommentTok{# Run the application }
-\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
-\end{Highlighting}
-\end{Shaded}
-
-Adding more inputs to adjust the way the chart looks.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\KeywordTok{library}\NormalTok{(shiny)}
-\KeywordTok{library}\NormalTok{(dplyr)}
-\KeywordTok{library}\NormalTok{(gapminder)}
-\KeywordTok{library}\NormalTok{(ggplot2)}
-
-\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
-
-\CommentTok{# Define UI for application that draws a histogram}
-\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
-
-    \CommentTok{# Application title}
-    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
-
-    \CommentTok{# Sidebar with a slider input for number of bins}
-    \KeywordTok{sidebarLayout}\NormalTok{(}
-        \KeywordTok{sidebarPanel}\NormalTok{(}
-            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"country_name"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
-                        \DataTypeTok{choices =} \KeywordTok{unique}\NormalTok{(gm}\OperatorTok{$}\NormalTok{country),}
-                        \DataTypeTok{selected =} \StringTok{'Mexico'}\NormalTok{),}
-
-            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"line_color"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Choose a color for the line"}\NormalTok{,}
-                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'green'}\NormalTok{, }\StringTok{'blue'}\NormalTok{,}\StringTok{'red'}\NormalTok{, }\StringTok{'orange'}\NormalTok{),}
-                        \DataTypeTok{selected =} \StringTok{'green'}\NormalTok{),}
-            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"point_color"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Choose a color for the points"}\NormalTok{,}
-                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'green'}\NormalTok{, }\StringTok{'blue'}\NormalTok{,}\StringTok{'red'}\NormalTok{, }\StringTok{'orange'}\NormalTok{),}
-                        \DataTypeTok{selected =} \StringTok{'green'}\NormalTok{),}
-            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"line_size"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Change the thickness of the line"}\NormalTok{,}
-                        \DataTypeTok{min =} \DecValTok{1}\NormalTok{,}
-                        \DataTypeTok{max =} \DecValTok{10}\NormalTok{,}
-                        \DataTypeTok{value =}\DecValTok{2}\NormalTok{),}
-            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"point_size"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Change the point size"}\NormalTok{,}
-                        \DataTypeTok{min =} \DecValTok{1}\NormalTok{,}
-                        \DataTypeTok{max =} \DecValTok{10}\NormalTok{,}
-                        \DataTypeTok{value =}\DecValTok{5}\NormalTok{),}
-            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{'alpha_value'}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{'Change transparency of line and points'}\NormalTok{,}
-                        \DataTypeTok{min=} \DecValTok{0}\NormalTok{,}
-                        \DataTypeTok{max=}\DecValTok{1}\NormalTok{,}
-                        \DataTypeTok{value =}\FloatTok{0.5}\NormalTok{)}
-
-\NormalTok{        ),}
-
-        \CommentTok{# Show a plot of the generated distribution}
-        \KeywordTok{mainPanel}\NormalTok{(}
-           \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"country_plot"}\NormalTok{)}
-\NormalTok{        )}
-\NormalTok{    )}
-\NormalTok{)}
-
-\CommentTok{# Define server logic required to draw a histogram}
-\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
-
-\NormalTok{    output}\OperatorTok{$}\NormalTok{country_plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
-\NormalTok{        cn <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{country_name}
-\NormalTok{        lc <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{line_color}
-\NormalTok{        ps <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{point_size}
-\NormalTok{        ls <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{line_size}
-\NormalTok{        pc <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{point_color}
-\NormalTok{        av <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{alpha_value}
-\NormalTok{        pd <-}\StringTok{ }\NormalTok{gm }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(country }\OperatorTok{==}\StringTok{ }\NormalTok{cn)}
-        \KeywordTok{ggplot}\NormalTok{(pd, }\KeywordTok{aes}\NormalTok{(year, pop)) }\OperatorTok{+}
-\StringTok{            }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ pc, }\DataTypeTok{size =}\NormalTok{ ps, }\DataTypeTok{alpha=}\NormalTok{av) }\OperatorTok{+}
-\StringTok{            }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ lc, }\DataTypeTok{size =}\NormalTok{ ls, }\DataTypeTok{alpha=}\NormalTok{av) }\OperatorTok{+}
-\StringTok{            }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =}\NormalTok{ cn)}
-\NormalTok{    \})}
-\NormalTok{\}}
-
-\CommentTok{# Run the application}
-\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
-\end{Highlighting}
-\end{Shaded}
-
-Add an additional input that allows the user to choose which variable to plot.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(shiny)}
-\KeywordTok{library}\NormalTok{(dplyr)}
-\KeywordTok{library}\NormalTok{(gapminder)}
-\KeywordTok{library}\NormalTok{(ggplot2)}
-
-\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
-
-\CommentTok{# Define UI for application that draws a histogram}
-\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
-
-    \CommentTok{# Application title}
-    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
-
-    \CommentTok{# Sidebar with a slider input for number of bins}
-    \KeywordTok{sidebarLayout}\NormalTok{(}
-        \KeywordTok{sidebarPanel}\NormalTok{(}
-            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"country_name"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
-                        \DataTypeTok{choices =} \KeywordTok{unique}\NormalTok{(gm}\OperatorTok{$}\NormalTok{country),}
-                        \DataTypeTok{selected =} \StringTok{'Mexico'}\NormalTok{),}
-
-            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"line_color"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Choose a color for the line"}\NormalTok{,}
-                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'green'}\NormalTok{, }\StringTok{'blue'}\NormalTok{,}\StringTok{'red'}\NormalTok{, }\StringTok{'orange'}\NormalTok{),}
-                        \DataTypeTok{selected =} \StringTok{'green'}\NormalTok{),}
-            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"point_color"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Choose a color for the points"}\NormalTok{,}
-                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'green'}\NormalTok{, }\StringTok{'blue'}\NormalTok{,}\StringTok{'red'}\NormalTok{, }\StringTok{'orange'}\NormalTok{),}
-                        \DataTypeTok{selected =} \StringTok{'green'}\NormalTok{),}
-            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"line_size"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Change the thickness of the line"}\NormalTok{,}
-                        \DataTypeTok{min =} \DecValTok{1}\NormalTok{,}
-                        \DataTypeTok{max =} \DecValTok{10}\NormalTok{,}
-                        \DataTypeTok{value =}\DecValTok{2}\NormalTok{),}
-            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"point_size"}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{"Change the point size"}\NormalTok{,}
-                        \DataTypeTok{min =} \DecValTok{1}\NormalTok{,}
-                        \DataTypeTok{max =} \DecValTok{10}\NormalTok{,}
-                        \DataTypeTok{value =}\DecValTok{5}\NormalTok{),}
-            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{'alpha_value'}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{'Change transparency of line and points'}\NormalTok{,}
-                        \DataTypeTok{min=} \DecValTok{0}\NormalTok{,}
-                        \DataTypeTok{max=}\DecValTok{1}\NormalTok{,}
-                        \DataTypeTok{value =}\FloatTok{0.5}\NormalTok{),}
-            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{'plot_var'}\NormalTok{,}
-                        \DataTypeTok{label =} \StringTok{'Choose a variable to plot'}\NormalTok{,}
-                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'lifeExp'}\NormalTok{, }\StringTok{'pop'}\NormalTok{, }\StringTok{'gdpPercap'}\NormalTok{),}
-                        \DataTypeTok{selected =} \StringTok{'pop'}\NormalTok{)}
-
-\NormalTok{        ),}
-
-        \CommentTok{# Show a plot of the generated distribution}
-        \KeywordTok{mainPanel}\NormalTok{(}
-            \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"country_plot"}\NormalTok{)}
-\NormalTok{        )}
-\NormalTok{    )}
-\NormalTok{)}
-
-\CommentTok{# Define server logic required to draw a histogram}
-\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
-
-\NormalTok{    output}\OperatorTok{$}\NormalTok{country_plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
-\NormalTok{        cn <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{country_name}
-\NormalTok{        lc <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{line_color}
-\NormalTok{        ps <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{point_size}
-\NormalTok{        ls <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{line_size}
-\NormalTok{        pc <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{point_color}
-\NormalTok{        av <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{alpha_value}
-\NormalTok{        pv <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{plot_var}
-\NormalTok{        pd <-}\StringTok{ }\NormalTok{gm }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(country }\OperatorTok{==}\StringTok{ }\NormalTok{cn)}
-        \KeywordTok{ggplot}\NormalTok{(pd, }\KeywordTok{aes_string}\NormalTok{(}\StringTok{'year'}\NormalTok{, pv)) }\OperatorTok{+}
-\StringTok{            }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ pc, }\DataTypeTok{size =}\NormalTok{ ps, }\DataTypeTok{alpha=}\NormalTok{av) }\OperatorTok{+}
-\StringTok{            }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ lc, }\DataTypeTok{size =}\NormalTok{ ls, }\DataTypeTok{alpha=}\NormalTok{av) }\OperatorTok{+}
-\StringTok{            }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =}\NormalTok{ cn)}
-\NormalTok{    \})}
-\NormalTok{\}}
-
-\CommentTok{# Run the application}
-\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{exercise}{%
-\section*{Exercise}\label{exercise}}
-\addcontentsline{toc}{section}{Exercise}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  Go to github.com and create a new repository called shiny\_example.
-\item
-  Clone that repository to your Documents folder.
-\item
-  Create a new shiny app inside in shiny\_example called covid\_data
-\item
-  Remove everything from the app.R script and copy and paste this:
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(shiny)}
-\KeywordTok{library}\NormalTok{(readr)}
-\KeywordTok{library}\NormalTok{(dplyr)}
-\KeywordTok{library}\NormalTok{(ggplot2)}
-\KeywordTok{library}\NormalTok{(lubridate)}
-
-
-\NormalTok{df <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{'https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/covid_data.csv'}\NormalTok{)}
-\NormalTok{pop <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{'https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/state_pop.csv'}\NormalTok{)}
-
-\CommentTok{# Define UI for application that draws a histogram}
-\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
-
-    \CommentTok{# Sidebar with a slider input for number of bins}
-    \KeywordTok{sidebarLayout}\NormalTok{(}
-        \KeywordTok{sidebarPanel}\NormalTok{(}
-
-\NormalTok{        ),}
-
-        \CommentTok{# Show a plot of the generated distribution}
-        \KeywordTok{mainPanel}\NormalTok{(}
-
-\NormalTok{        )}
-\NormalTok{    )}
-\NormalTok{)}
-
-\CommentTok{# Define server logic required to draw a histogram}
-\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
-
-
-\NormalTok{\}}
-
-\CommentTok{# Run the application}
-\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\setcounter{enumi}{4}
-\item
-  Create a title for the app called ``Covid cases and deaths by state''
-\item
-  In the side panel (UI) create an input that allows the user to choose a state.
-\item
-  Create a bar chart called ``cases\_month'' that plots a states covid cases by month
-\item
-  Add an input called ``bar\_color'' that controls the color that fills the bar plot
-\item
-  Add an input called ``alpha\_value'' that controls the transparency of the bars in the chart
-\item
-  Create another bar chart called ``deaths\_month'' that plots a states covid deaths by month
-\item
-  Use the already created inputs ``bar\_color'' and ``alpha\_value'' to control the color and transparency of the new bar chart.
-\item
-  Create a line plot called ``cumulative\_cases'' that plots the cumulative cases over time (hint: use the function \texttt{cumsum})
-\item
-  Create a line plot called ``cumulative\_deaths'' that plots the cumulative deaths over time (hint: use the function \texttt{cumsum})
-\item
-  At the top of your script, join the population data (pop) to the covid data. Create two new variables: covid deaths per 100k and covid cases per 100k.
-\item
-  Create a line plot that plots the cases and deaths per 100k in one chart.
-\item
-  Create an input that controls the line colors for the above chart.
-\item
-  Add a title to all plots that combines the name of the state selected and a description of the chart.
-\item
-  Add a theme to each plot using the ggthemes library
-\item
-  There should now be five charts. Use the \texttt{fluidRow()} and \texttt{column()} argument to put the bar charts side by side. Under the bar charts, put the line plots side by side. Under those, put the final line plot centered in the middle of the screen.
-\item
-  Use the shiny themes package to customize your app (\url{https://rstudio.github.io/shinythemes/})
-\item
-  Deploy the app to shinyapps.io
-\end{enumerate}
-
 \hypertarget{git-github}{%
 \chapter{\texorpdfstring{\texttt{Git} + \texttt{GitHub}}{Git + GitHub}}\label{git-github}}
 
-\hypertarget{learning-goals-16}{%
-\subsection*{Learning goals}\label{learning-goals-16}}
+\hypertarget{learning-goals-15}{%
+\subsection*{Learning goals}\label{learning-goals-15}}
 \addcontentsline{toc}{subsection}{Learning goals}
 
 \begin{itemize}
@@ -9075,8 +8423,8 @@ git push
 
 \textbf{10.} Check out your remote repo to verify that changes were pushed. (\texttt{GitHub})
 
-\hypertarget{exercises-12}{%
-\subsection*{Exercises}\label{exercises-12}}
+\hypertarget{exercises-11}{%
+\subsection*{Exercises}\label{exercises-11}}
 \addcontentsline{toc}{subsection}{Exercises}
 
 \textbf{Create another repo:}
@@ -9154,6 +8502,1086 @@ Now you can share your code with others, and your future self.
 \href{https://r-pkgs.org/git.html}{Hadley Wickham's introduction to \texttt{git} + \texttt{GitHub}}
 
 \href{https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html}{Using \texttt{git} from \texttt{RStudio}}
+
+\hypertarget{markdown-documentation}{%
+\chapter{\texorpdfstring{\texttt{Markdown} documentation}{Markdown documentation}}\label{markdown-documentation}}
+
+\hypertarget{learning-goals-16}{%
+\subsubsection*{Learning goals}\label{learning-goals-16}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  How to document your projects with \texttt{Markdown}, and why doing so is so important.
+\end{itemize}
+
+~
+
+This is a \textbf{meta-tutorial} for using \texttt{Markdown}, a ``syntax'' for writing
+\emph{beautiful} reports with simple text files. This tutorial, which was written
+in \texttt{Markdown}, has been provided twice: first, as its formatted `book-ready'
+form, and second as the raw text file used to write it.
+
+\hypertarget{what-is-markdown}{%
+\section*{\texorpdfstring{What is \texttt{Markdown}?}{What is Markdown?}}\label{what-is-markdown}}
+\addcontentsline{toc}{section}{What is \texttt{Markdown}?}
+
+\texttt{Markdown} lets you write documents formatted with fancy \texttt{HTML} (the main
+language used to create websites) without having to know how to write \texttt{HTML}
+code. Instead, you just need to know how to use a few common symbols.
+
+\hypertarget{why-1}{%
+\subsection*{Why?}\label{why-1}}
+\addcontentsline{toc}{subsection}{Why?}
+
+\texttt{Markdown} was created because most data scientists used to document their
+code and data projects with simple text files (\texttt{.txt}). Text files are designed
+to be simple, so they have no special formatting: no nice fonts, no headings,
+no bold, no italics, no bullet lists. And, as a result of their simplicity,
+text files are (1) \emph{boring} and (2) \emph{difficult to organize}.
+
+\texttt{Markdown} is the perfect solution: it translates a simple text file into a
+beautifully formatted report.
+
+Recall that, in order for your research to be truly reproducible, you have to
+\textbf{document your work thoroughly}. Doing so requires two things: First, that
+you provide a detailed description of your work in a simple text file, and
+second, that your documentation be \emph{well-organized} and \emph{enjoyably legible}.
+Think about it: if your documentation is incomplete, impossible to navigate,
+and difficult to read, can you really say that your project is reproducible?
+
+\hypertarget{what-can-you-do-with-markdown}{%
+\subsection*{\texorpdfstring{What can you do with \texttt{Markdown}?}{What can you do with Markdown?}}\label{what-can-you-do-with-markdown}}
+\addcontentsline{toc}{subsection}{What can you do with \texttt{Markdown}?}
+
+First of all, \texttt{Markdown} \ldots{}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Lets you organize your report into sections and subsections.\\
+\item
+  Lets you \emph{italicize} and \textbf{emphasize} certain sections of your work.
+\item
+  Lets you distinguish between normal text and \texttt{code} or \texttt{filenames}.
+\item
+  Lets you write large chunks of code, like the one below.
+\end{enumerate}
+
+\begin{verbatim}
+# This is a large chunk of code. 
+x <- 1:10
+y <- 15:20
+z <- x + y
+\end{verbatim}
+
+Also, \texttt{Markdown} \ldots{}
+
+\begin{itemize}
+\item
+  Lets you weave together your documentation with \texttt{R} code that
+  \emph{actually runs} (this is called \texttt{RMarkdown}, which is covered
+  in the next module), opening up possibilities for automatic reporting
+  and truly reproducible research publications.
+\item
+  Lets you produce publication-ready articles and books, since there is a
+  world of open-source formatting templates available to you.
+\item
+  Lets you add \href{https://www.markdownguide.org/getting-started/}{hyperlinks}.
+\item
+  Lets you type \texttt{HTML} code directly into the same document,
+  if you want to.
+\item
+  Lets you include images, like the one below.
+\end{itemize}
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{img/markdown-dogs.jpeg}
+
+~
+
+\hypertarget{common-markdown-mistakes}{%
+\subsubsection*{\texorpdfstring{Common \texttt{Markdown} mistakes}{Common Markdown mistakes}}\label{common-markdown-mistakes}}
+\addcontentsline{toc}{subsubsection}{Common \texttt{Markdown} mistakes}
+
+\begin{itemize}
+\item
+  When you try to make a section heading (e.g., \texttt{\#\#\ New\ section}),
+  you forget to put a space between the hashtags and the name of the section.
+\item
+  When you try to begin a new paragraph, you don't add \emph{two spaces}
+  at the end of your sentence. (Without those two spaces, \texttt{Markdown}
+  will assume you are still working in the same paragraph.)
+\item
+  The same thing happens often when making a list. Without \emph{two spaces}
+  at the end of each item, the items might not get placed on new lines.
+\item
+  When you try to begin a new paragraph, you don't add an empty line
+  between your paragraphs.
+\end{itemize}
+
+\hypertarget{raw-markdown-example}{%
+\section*{\texorpdfstring{Raw \texttt{Markdown} example}{Raw Markdown example}}\label{raw-markdown-example}}
+\addcontentsline{toc}{section}{Raw \texttt{Markdown} example}
+
+Below we provide the raw textfile we used to write the section above.
+
+\begin{verbatim}
+# `Markdown` documentation 
+
+#### Learning goals {-}
+
+- How to document your projects with `Markdown`, and why doing so is so important.
+
+&nbsp;  
+
+This is a **meta-tutorial** for using `Markdown`, a "syntax" for writing
+*beautiful* reports with simple text files. This tutorial, which was written
+in `Markdown`, has been provided twice: first, as its formatted 'book-ready' 
+form, and second as the raw text file used to write it.  
+
+## What is `Markdown`?  {-}  
+
+`Markdown` lets you write documents formatted with fancy `HTML` (the main
+language used to create websites) without having to know how to write `HTML`
+code. Instead, you just need to know how to use a few common symbols. 
+
+### Why? {-} 
+
+`Markdown` was created because most data scientists used to document their
+code and data projects with simple text files (`.txt`). Text files are designed
+to be simple, so they have no special formatting: no nice fonts, no headings,
+no bold, no italics, no bullet lists. And, as a result of their simplicity,
+text files are (1) *boring* and (2) *difficult to organize*.  
+
+`Markdown` is the perfect solution: it translates a simple text file into a
+beautifully formatted report.  
+
+Recall that, in order for your research to be truly reproducible, you have to
+**document your work thoroughly**. Doing so requires two things: First, that
+you provide a detailed description of your work in a simple text file, and
+second, that your documentation be *well-organized* and *enjoyably legible*.
+Think about it: if your documentation is incomplete, impossible to navigate,
+and difficult to read, can you really say that your project is reproducible?
+
+### What can you do with `Markdown`? {-}  
+
+First of all, `Markdown` ...  
+
+1. Lets you organize your report into sections and subsections.  
+2. Lets you *italicize* and **emphasize** certain sections of your work. 
+3. Lets you distinguish between normal text and `code` or `filenames`. 
+4. Lets you write large chunks of code, like the one below. 
+
+```
+# This is a large chunk of code. 
+x <- 1:10
+y <- 15:20
+z <- x + y
+```
+
+Also, `Markdown` ...  
+
+- Lets you weave together your documentation with `R` code that
+*actually runs* (this is called `RMarkdown`, which is covered
+in the next module), opening up possibilities for automatic reporting
+and truly reproducible research publications.  
+
+- Lets you produce publication-ready articles and books, since there is a
+world of open-source formatting templates available to you.  
+
+- Lets you add [hyperlinks](https://www.markdownguide.org/getting-started/).  
+
+- Lets you type `HTML` code directly into the same document, 
+<font color='red'><b>if you want to</b></font>. 
+
+- Lets you include images, like the one below.  
+
+<center>
+![](img/markdown-dogs.jpeg){width=50%}
+</center>
+
+&nbsp;  
+
+#### Common `Markdown` mistakes {-}
+
+- When you try to make a section heading (e.g., `## New section`),
+you forget to put a space between the hashtags and the name of the section.  
+
+- When you try to begin a new paragraph, you don't add *two spaces*
+at the end of your sentence. (Without those two spaces, `Markdown`
+will assume you are still working in the same paragraph.) 
+
+- The same thing happens often when making a list. Without *two spaces*
+at the end of each item, the items might not get placed on new lines.  
+
+- When you try to begin a new paragraph, you don't add an empty line
+between your paragraphs.  
+\end{verbatim}
+
+\hypertarget{exercises-12}{%
+\section*{Exercises}\label{exercises-12}}
+\addcontentsline{toc}{section}{Exercises}
+
+\textbf{Open a new, blank \texttt{Markdown} document:}
+
+\textbf{1.} In \texttt{RStudio}, go to the top left dropbown menu for making a new file (look for the green plus sign.)
+
+\textbf{2.} Select ``Text File''
+
+\textbf{3.} Save this text file as \texttt{test.md}.
+
+The prefix, \texttt{.md}, specifies that this text file should be interpreted as a \texttt{Markdown} file. Once you save the file, you should see some new options appear, one of which is preview.
+
+\textbf{4.} At the top of your \texttt{test.md} file, write: \texttt{\#\ Title}
+
+\textbf{5.} Click the Preview button and see if a \texttt{Markdown} file is produced.
+
+~
+
+\textbf{Make your own \texttt{Markdown}:}\\
+Use the \texttt{Markdown} example above, which you can compare to the formatted version at the top of this module, to figure out how to add the following elements to your document.
+
+Use the \emph{Preview} button to test if your entries are doing what you want them to.
+
+\textbf{6.} Write a silly sentence.
+
+\textbf{7.} Make a word in that sentence \emph{italicized}.
+
+\textbf{8.} Make a word in that sentence \textbf{boldface.}
+
+\textbf{9.} Add the first section to your document. Name it whatever you want.
+
+\textbf{10.} Add a sentence in this new section, formatting one of its words as a piece of \texttt{code}.
+
+\textbf{11.} Start a new paragraph and add another sentence.
+
+\textbf{12.} Start a third paragraph and add vertical space between it and the previous paragraph.
+
+\textbf{13.} Add a multi-line chunk of code.
+
+\textbf{14.} Download a silly meme from the internet and add it to your document. (\emph{Hint:} you will have to place that image file in the same folder as your \texttt{Markdown} file.)
+
+\textbf{15.} Add another subsection to the subsection you are working in. Name it ``Grocery List''.
+
+\textbf{16.} Type out an enumerated grocery list.
+
+\textbf{17.} Add another subsection, this time at the same hierarchichal level as the one you created in step 9. Name it ``Bucket List''.
+
+\textbf{18.} Create a bullet list of things you want to accomplish before you die.
+
+\textbf{19.} Make one of your list items act as a link to another website.
+
+~
+
+\textbf{Update your \texttt{Git} repo \texttt{README} with \texttt{Markdown}}
+
+This will be a review of both \texttt{Markdown} and \texttt{Git}!
+
+\textbf{20.} Navigate to your \texttt{GitHub} repo online.
+
+\textbf{21.} If you have not yet added a \texttt{README} file to your repo, click on the button that generates one for you.
+
+\textbf{22.} Click on the file to edit it.
+
+\textbf{23.} Add \texttt{Markdown} to your \texttt{README}, showcasing the tricks you haved learned in this exercise thus far. \emph{Preview} your changes as you go and make sure everything looks how you intended.
+
+\textbf{24.} Commit your changes and check out your \texttt{README} on the homepage of your repo.
+
+~
+
+\textbf{Make a \texttt{Markdown} CV}
+
+It is increasingly common for data scientists to have a Markdown version of their \emph{CV} posted as its own page connected to their \texttt{GitHub} profile. Check out these examples:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://carolstran.github.io/cv/}{Here}\\
+\item
+  \href{https://github.com/ViliamV/easy-markdown-cv}{Also here}\\
+\item
+  \href{http://wodenimoni.com/nimo-markdown-cv/}{And here!}
+\end{itemize}
+
+Maintaining your \emph{CV} this way can be very efficient. It is easy to format and easy to update. And, most importantly, rather than have various versions of your \emph{CV} on your computer or in GoogleDrive, you can just share a \emph{link} to your live, published \emph{CV}. What better way to demonstrate your skillset in reproducible, professional-quality research?
+
+\textbf{25.} Use the instructions provided \href{https://workwithcarolyn.com/blog/digital-cv-guide}{here} to create a new repo for your \emph{CV}, type up your \emph{CV} in \texttt{Markdown}, and publish it for free on \texttt{GitHub\ Pages}.
+
+This will also be a review of both \texttt{Markdown} and \texttt{Git}!
+
+\hypertarget{resources}{%
+\subsubsection*{Resources}\label{resources}}
+\addcontentsline{toc}{subsubsection}{Resources}
+
+\url{https://www.markdownguide.org/basic-syntax/}
+
+\hypertarget{r-markdown}{%
+\chapter{\texorpdfstring{\texttt{R\ Markdown}}{R Markdown}}\label{r-markdown}}
+
+\hypertarget{learning-goals-17}{%
+\subsubsection*{Learning goals}\label{learning-goals-17}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  How to create \texttt{RMarkdown} documents\\
+\item
+  Why they are awesome\\
+\item
+  Why they are essential to truly \emph{reproducible} reporting.
+\end{itemize}
+
+~
+
+\texttt{R\ Markdown} is the combination of \texttt{R} and \texttt{Markdown}: you create a \texttt{Markdown} document that has \texttt{R} built-in to it: the two languages are woven, or ``knitted'', together.
+
+\hypertarget{do-first-explain-later}{%
+\section*{Do first, explain later}\label{do-first-explain-later}}
+\addcontentsline{toc}{section}{Do first, explain later}
+
+Let's not talk about it. Let's just do it.
+
+\hypertarget{start-an-rmarkdown-report}{%
+\subsubsection*{\texorpdfstring{Start an \texttt{RMarkdown} report}{Start an RMarkdown report}}\label{start-an-rmarkdown-report}}
+\addcontentsline{toc}{subsubsection}{Start an \texttt{RMarkdown} report}
+
+\textbf{1.} Open Rstudio.\\
+\textbf{2.} Click \texttt{File} -\textgreater{} \texttt{New\ File} -\textgreater{} \texttt{R\ Markdown}\\
+\textbf{3.} Fill out ``Title'', ``Author'', and click ``Set to HTML''\\
+\textbf{4.} Type \texttt{Ctrl\ +\ S} to save your file in your working directory.
+
+\hypertarget{compile-your-report}{%
+\subsubsection*{Compile your report}\label{compile-your-report}}
+\addcontentsline{toc}{subsubsection}{Compile your report}
+
+\textbf{5.} Have a look at the document. What does each section mean?\\
+\textbf{6.} Click the \emph{``Knit''} button at the top.\\
+\textbf{7.} Cool, right?
+
+But also kind of boring. Let's make some changes to this report.
+
+\hypertarget{modify-the-template}{%
+\subsubsection*{Modify the template}\label{modify-the-template}}
+\addcontentsline{toc}{subsubsection}{Modify the template}
+
+\textbf{8.} Let's replace the ``setup chunk'' with the below.
+
+\textbf{9.} Then, let's change the title to some interesting question.
+
+\textbf{10.} Now, let's delete all of the other stuff in the template so far (beginning at ``R Markdown'').
+
+\textbf{11.} Put in some section headers using \texttt{Markdown}. Make the following sections:
+
+\begin{verbatim}
+# Introduction
+
+# Methods
+
+# Results
+
+# Discussion
+
+# Bibliography
+\end{verbatim}
+
+\textbf{12.} Write a two-sentence introduction to your made-up research topic.
+
+\textbf{13.} \texttt{Knit} again, to make sure that we did not break anything. (You should \texttt{knit} often!)
+
+Good? Great.
+
+\hypertarget{add-an-r-chunk}{%
+\section*{\texorpdfstring{Add an \texttt{R} chunk}{Add an R chunk}}\label{add-an-r-chunk}}
+\addcontentsline{toc}{section}{Add an \texttt{R} chunk}
+
+In your \emph{Methods} section, let's create an \texttt{R} chunk in which we can generate some fake data.
+
+To make an \texttt{R} chunk, type this:
+
+\begin{verbatim}
+
+```r
+# code goes here
+```
+\end{verbatim}
+
+Those three marks represent the start and end of a chunk of code.
+
+Now add this code into your chunk:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{1000}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(x) }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DataTypeTok{sd=}\DecValTok{3}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{x, }\DataTypeTok{cex=}\NormalTok{.}\DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-375-1.pdf}
+
+Know, re-\texttt{knit} your doc. Everything work?
+
+\hypertarget{chunk-options}{%
+\subsection*{Chunk options}\label{chunk-options}}
+\addcontentsline{toc}{subsection}{Chunk options}
+
+\hypertarget{hide-a-chunk}{%
+\subsubsection*{Hide a chunk}\label{hide-a-chunk}}
+\addcontentsline{toc}{subsubsection}{Hide a chunk}
+
+To run the code within an \texttt{R} chunk but hide the code in your final output, change the bracketed code at the top of your chunk to read \texttt{\{r,\ echo\ =\ FALSE\}}.
+
+\hypertarget{dont-evaluate-a-chunk}{%
+\subsubsection*{Don't evaluate a chunk}\label{dont-evaluate-a-chunk}}
+\addcontentsline{toc}{subsubsection}{Don't evaluate a chunk}
+
+To skip over a chunk without evaluating it, change your brackets to look like this: \texttt{\{r,\ eval\ =\ FALSE\}}.
+
+What if you want to hide a chunk \emph{and} skip over it? \texttt{\{r,\ echo\ =\ FALSE,\ eval\ =\ FALSE\}}. This is a nice way to store code scraps that you don't want to run but aren't ready to get rid of.
+
+\hypertarget{change-figure-size}{%
+\subsubsection*{Change figure size}\label{change-figure-size}}
+\addcontentsline{toc}{subsubsection}{Change figure size}
+
+To change the dimensions of a plot output, change your brackets to look like this:
+\texttt{\{r,\ fig.height\ =\ 3,\ fig.width\ =\ 7\}}
+
+Doing so produces a plot like this:
+
+\includegraphics{figures/unnamed-chunk-376-1.pdf}
+
+\hypertarget{add-figure-caption}{%
+\subsubsection*{Add figure caption}\label{add-figure-caption}}
+\addcontentsline{toc}{subsubsection}{Add figure caption}
+
+To add a figure caption, change your brackets like so: \texttt{\{r,\ fig.cap\ =\ "A\ squished\ plot."\}}
+
+\begin{figure}
+\centering
+\includegraphics{figures/unnamed-chunk-377-1.pdf}
+\caption{\label{fig:unnamed-chunk-377}A squished plot.}
+\end{figure}
+
+\hypertarget{in-line-r-code}{%
+\section*{\texorpdfstring{In-line \texttt{R} code}{In-line R code}}\label{in-line-r-code}}
+\addcontentsline{toc}{section}{In-line \texttt{R} code}
+
+In your \emph{Results} section, add this line:
+
+\begin{quote}
+Our analysis was based on \texttt{\textasciigrave{}r\ length(x)\textasciigrave{}} observations.
+\end{quote}
+
+Know, re-\texttt{knit} your doc. What was printed before the word ``observations''?
+
+~
+
+\textbf{This is why \texttt{RMarkdown} is reproducible.} Think of how a typical research report works: you get your results from
+\texttt{R} or whatever program you are using, then you manually write those results numbers into a \emph{Word} document. What is reproducible about that?
+
+With \texttt{RMarkdown}, you can let the data underlying your analysis \emph{literally speak for themselves}.
+
+\hypertarget{tables}{%
+\section*{Tables}\label{tables}}
+\addcontentsline{toc}{section}{Tables}
+
+To make a pretty table out of a dataframe, create a chunk that looks like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(knitr)}
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(x,y)}
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(df), }\DataTypeTok{caption =} \StringTok{"A pretty sweet table."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-378}A pretty sweet table.}
+\centering
+\begin{tabular}[t]{r|r}
+\hline
+x & y\\
+\hline
+1 & 3.2427774\\
+\hline
+2 & 5.0654191\\
+\hline
+3 & 2.8821258\\
+\hline
+4 & -0.9641585\\
+\hline
+5 & 1.7655092\\
+\hline
+6 & 7.6560954\\
+\hline
+\end{tabular}
+\end{table}
+
+\hypertarget{bibliographies}{%
+\section*{Bibliographies}\label{bibliographies}}
+\addcontentsline{toc}{section}{Bibliographies}
+
+\begin{itemize}
+\item
+  In \texttt{RStudio}, create a new Text File and save it as \texttt{bibliography.bib} in the same location as your \texttt{RMarkdown} file.
+\item
+  Look up \href{https://www.researchgate.net/publication/260642613_Statistical_exponential_formulas_for_homogeneous_diffusion}{this paper}
+\item
+  Copy the \texttt{DOI}.
+\item
+  Go to \url{https://doi2bib.org/}
+\item
+  Copy the \texttt{bibtex} format
+\item
+  Paste into your \texttt{.bib} file.
+\end{itemize}
+
+Note that the top line of this \texttt{bib} entry has the phrase \texttt{Rudd2014}. This is known as the citation's ``key'' -- you can use this phrase to reference this source within your \texttt{Markdown} doc.
+
+\begin{itemize}
+\item
+  Back in your \texttt{RMarkdown} doc, in your \emph{Discussion} section, write some line about a paper.
+\item
+  At the end of that sentence, add this text: \texttt{({[}@Rudd2014{]})}.
+\item
+  Add \texttt{bibliography:\ bibliography.bib} to your ``\texttt{yaml}'', the header information at the very top of your \texttt{RMarkdown} file. Change the \texttt{yaml} so that it looks like this:
+\end{itemize}
+
+\begin{verbatim}
+---
+output: html_document
+bibliography: bibliography.bib
+---
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Re-\texttt{knit} your doc to see what happens. Was the citation automatically generated?
+\end{itemize}
+
+\hypertarget{exercises-13}{%
+\subsubsection*{Exercises}\label{exercises-13}}
+\addcontentsline{toc}{subsubsection}{Exercises}
+
+Before getting started, think of a testable hypothesis which can be answered via a survey of your friends and classmates. For example: ``woman have more dreams than men'', or ``people born abroad have shorter last names than people born in the USA'', or ``shoe size is associated with GPA''.
+
+\textbf{1.} Create a repository on github called \texttt{report}.
+
+\textbf{2.} Clone that repository to your local machine.
+
+\textbf{3.} \texttt{cd} into that repository.
+
+\textbf{4.} In that repo, create a new \texttt{Rmarkdown} document. Name it \texttt{paper.Rmd}.
+
+\textbf{5.} Replace the setup chunk with the one used in the in-class exercise (above).
+
+\textbf{6.} Create a \emph{GoogleForms} survey with at least 5 interesting questions on a topic which interests you (one topic, five questions).
+
+\textbf{7.} Get at least 5 people to fill out your survey.
+
+~
+
+\textbf{8.} In your \emph{GoogleForms} settings, create a \emph{GoogleSheet} of your results.
+
+\textbf{9.} In the sharing settings of your \emph{GoogleSheet}, set to ``public''.
+
+\textbf{10.} Copy the URL of your \emph{GoogleSheet}.
+
+\textbf{11.} Create an R chunk in your \texttt{paper.Rmd}.
+
+\textbf{12.} Use the \texttt{gsheet} package to read your survey results as a dataframe.
+
+~
+
+\textbf{13.} After reading in the data, create the following sections in your report: \texttt{Introduction}, \texttt{Methods}, \texttt{Results}, \texttt{Conclusion}.
+
+\textbf{14.} Spend 5-15 minutes on the internet reading about your topic / hypotheses.
+
+\textbf{15.} Find 2-5 authors/articles of interest related to your topic. Cite them in the \emph{Introduction}.
+
+\textbf{16.} Describe in plain English your approach to testing your hypothesis in the \emph{Methods} section.
+
+\textbf{17.} In your \emph{Methods} section, provide a URL link to your survey.
+
+~
+
+\textbf{18.} After the \emph{Methods} section, write the \texttt{R} code (in an \texttt{echo}ed chunk) which tests your hypothesis.
+
+\textbf{19.} In the \emph{Results} section, write a description of both (a) your sample and (b) your results. Include at least two charts. Include at least one table.
+
+\textbf{20.} In the \emph{Conclusion} section, write interesting reflection on your data.
+
+~
+
+\textbf{21.} Got here? Cool, you're fast. Now configure your computer to generate pdfs via Rmarkdown: \href{https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-macos-high-sierra-e7b5705c9fd}{mac} / \href{https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9}{windows}
+
+\textbf{22.} Make your paper in pdf.
+
+\textbf{23.} Check out these \href{https://www.datadreaming.org/post/r-markdown-theme-gallery/}{theme options for \texttt{Rmarkdown} docs.}
+
+\textbf{24.} Push your code to git
+
+\textbf{25.} Check out how to \href{https://rmarkdown.rstudio.com/lesson-11.html}{make presentations in \texttt{Rmarkdown}.} Make one.
+
+\textbf{26.} Check out how to \href{https://rmarkdown.rstudio.com/lesson-12.html}{make dashboards in \texttt{Rmarkdown}.} Make one.
+
+\textbf{27.} Change your citation style. To do so, \href{https://github.com/citation-style-language/styles}{use a new csl from this site.}
+
+\hypertarget{shiny}{%
+\chapter{Interactive dashboards}\label{shiny}}
+
+\hypertarget{overview}{%
+\section*{Overview}\label{overview}}
+\addcontentsline{toc}{section}{Overview}
+
+Shiny is a library that makes it super easy to build interactive web applications and dashboards in R.
+
+First we need to install the library
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{'shiny'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Shiny apps consists of two main parts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  The \textbf{UI} - this controls what is being displayed on the application page and how the components are laid out. This may include text and other markdown elements, graphics, widgets that take in user input, or plots. You will also use the UI to define a navigation bar with multiple tabs in this tutorial.
+\item
+  The \textbf{Server} - this controls the data that will be displayed through the UI. The server will be where you load in and wrangle data, then define your outputs (i.e.~plots) using input from the UI.
+\end{enumerate}
+
+Lets get started! Navigate to the left hand corner of the Rstudio screen and select: File \textgreater{} New File \textgreater{} Shiny Web App.. Create a name for your application and save to your directory.
+
+\includegraphics{img/new_shiny_app.png}
+
+This will open a script with deployment ready pre-populated code. To run the app, simply click the ``Run App'' button in the top right. Let's break down each function to get a better understanding of the app internals.
+
+\textbf{The UI:}
+\texttt{fluidPage}: Gives us a flexible page to work with by making it easy to position elements of the app (inputs, text, plots, etc) beside each other (rows) and on top of each other (columns)
+\texttt{titlePanel}: An optional title.
+\texttt{sidebarLayout}: Creates a layout in UI that splits the screen into a sidebar (sidebarPanel) \& and main section (mainPanel)
+\texttt{sidebarPanel}: Typically reserved for app inputs.
+\texttt{sliderInput}: One of many shiny widget inputs to manipulate data.
+\texttt{mainPanel}: Typically reserved for app outputs (plots, tables, etc)
+\texttt{plotOutput}: A shiny function that creates a plot, to be created in the server.
+
+\textbf{The Server:}
+\texttt{output\$distPlot}: The output of the app. In this case a plot, named ``distPlot'' called in the \texttt{plotOutput} function in the UI
+\texttt{renderPlot}: A shiny function to create the plot.
+
+The key difference between the UI and Server is that the UI takes inputs (sliderInput), whereas the server creates outputs (a plot). In our default example the input is simply a number from 1 to 50 to determine the number of bins in the output (a histogram).
+
+\hypertarget{an-easy-example}{%
+\section*{An easy example}\label{an-easy-example}}
+\addcontentsline{toc}{section}{An easy example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(gapminder)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
+
+\CommentTok{# Define UI for application that draws a histogram}
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{# Application title}
+    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
+
+    \CommentTok{# Sidebar with a slider input for number of bins }
+    \KeywordTok{sidebarLayout}\NormalTok{(}
+        \KeywordTok{sidebarPanel}\NormalTok{(}
+            
+\NormalTok{        ),}
+
+        \CommentTok{# Show a plot of the generated distribution}
+        \KeywordTok{mainPanel}\NormalTok{(}
+          
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{# Define server logic required to draw a histogram}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+\NormalTok{\}}
+
+\CommentTok{# Run the application }
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+Add an input that allows the user to choose a country to plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(gapminder)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
+
+\CommentTok{# Define UI for application that draws a histogram}
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{# Application title}
+    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
+
+    \CommentTok{# Sidebar with a slider input for number of bins }
+    \KeywordTok{sidebarLayout}\NormalTok{(}
+        \KeywordTok{sidebarPanel}\NormalTok{(}
+            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"country_name"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
+                        \DataTypeTok{choices =} \KeywordTok{unique}\NormalTok{(gm}\OperatorTok{$}\NormalTok{country),}
+                        \DataTypeTok{selected =} \StringTok{'Mexico'}\NormalTok{)}
+\NormalTok{        ),}
+
+        \CommentTok{# Show a plot of the generated distribution}
+        \KeywordTok{mainPanel}\NormalTok{(}
+            
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{# Define server logic required to draw a histogram}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+   
+\NormalTok{\}}
+
+\CommentTok{# Run the application }
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+Add a plot in the \texttt{plotOutput} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(gapminder)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
+
+\CommentTok{# Define UI for application that draws a histogram}
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{# Application title}
+    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
+
+    \CommentTok{# Sidebar with a slider input for number of bins }
+    \KeywordTok{sidebarLayout}\NormalTok{(}
+        \KeywordTok{sidebarPanel}\NormalTok{(}
+            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"country_name"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
+                        \DataTypeTok{choices =} \KeywordTok{unique}\NormalTok{(gm}\OperatorTok{$}\NormalTok{country),}
+                        \DataTypeTok{selected =} \StringTok{'Mexico'}\NormalTok{)}
+\NormalTok{        ),}
+
+        \CommentTok{# Show a plot of the generated distribution}
+        \KeywordTok{mainPanel}\NormalTok{(}
+            \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"country_plot"}\NormalTok{)}
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{# Define server logic required to draw a histogram}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+\NormalTok{    output}\OperatorTok{$}\NormalTok{country_plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+\NormalTok{        cn <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{country_name}
+        
+\NormalTok{        pd <-}\StringTok{ }\NormalTok{gm }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(country }\OperatorTok{==}\StringTok{ }\NormalTok{cn)}
+        \KeywordTok{ggplot}\NormalTok{(pd, }\KeywordTok{aes}\NormalTok{(year, pop)) }\OperatorTok{+}
+\StringTok{            }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{            }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{            }\KeywordTok{labs}\NormalTok{()}
+\NormalTok{    \})}
+\NormalTok{\}}
+
+\CommentTok{# Run the application }
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+Adding more inputs to adjust the way the chart looks.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(gapminder)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
+
+\CommentTok{# Define UI for application that draws a histogram}
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{# Application title}
+    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
+
+    \CommentTok{# Sidebar with a slider input for number of bins}
+    \KeywordTok{sidebarLayout}\NormalTok{(}
+        \KeywordTok{sidebarPanel}\NormalTok{(}
+            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"country_name"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
+                        \DataTypeTok{choices =} \KeywordTok{unique}\NormalTok{(gm}\OperatorTok{$}\NormalTok{country),}
+                        \DataTypeTok{selected =} \StringTok{'Mexico'}\NormalTok{),}
+
+            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"line_color"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Choose a color for the line"}\NormalTok{,}
+                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'green'}\NormalTok{, }\StringTok{'blue'}\NormalTok{,}\StringTok{'red'}\NormalTok{, }\StringTok{'orange'}\NormalTok{),}
+                        \DataTypeTok{selected =} \StringTok{'green'}\NormalTok{),}
+            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"point_color"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Choose a color for the points"}\NormalTok{,}
+                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'green'}\NormalTok{, }\StringTok{'blue'}\NormalTok{,}\StringTok{'red'}\NormalTok{, }\StringTok{'orange'}\NormalTok{),}
+                        \DataTypeTok{selected =} \StringTok{'green'}\NormalTok{),}
+            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"line_size"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Change the thickness of the line"}\NormalTok{,}
+                        \DataTypeTok{min =} \DecValTok{1}\NormalTok{,}
+                        \DataTypeTok{max =} \DecValTok{10}\NormalTok{,}
+                        \DataTypeTok{value =}\DecValTok{2}\NormalTok{),}
+            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"point_size"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Change the point size"}\NormalTok{,}
+                        \DataTypeTok{min =} \DecValTok{1}\NormalTok{,}
+                        \DataTypeTok{max =} \DecValTok{10}\NormalTok{,}
+                        \DataTypeTok{value =}\DecValTok{5}\NormalTok{),}
+            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{'alpha_value'}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{'Change transparency of line and points'}\NormalTok{,}
+                        \DataTypeTok{min=} \DecValTok{0}\NormalTok{,}
+                        \DataTypeTok{max=}\DecValTok{1}\NormalTok{,}
+                        \DataTypeTok{value =}\FloatTok{0.5}\NormalTok{)}
+
+\NormalTok{        ),}
+
+        \CommentTok{# Show a plot of the generated distribution}
+        \KeywordTok{mainPanel}\NormalTok{(}
+           \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"country_plot"}\NormalTok{)}
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{# Define server logic required to draw a histogram}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+\NormalTok{    output}\OperatorTok{$}\NormalTok{country_plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+\NormalTok{        cn <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{country_name}
+\NormalTok{        lc <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{line_color}
+\NormalTok{        ps <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{point_size}
+\NormalTok{        ls <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{line_size}
+\NormalTok{        pc <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{point_color}
+\NormalTok{        av <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{alpha_value}
+\NormalTok{        pd <-}\StringTok{ }\NormalTok{gm }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(country }\OperatorTok{==}\StringTok{ }\NormalTok{cn)}
+        \KeywordTok{ggplot}\NormalTok{(pd, }\KeywordTok{aes}\NormalTok{(year, pop)) }\OperatorTok{+}
+\StringTok{            }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ pc, }\DataTypeTok{size =}\NormalTok{ ps, }\DataTypeTok{alpha=}\NormalTok{av) }\OperatorTok{+}
+\StringTok{            }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ lc, }\DataTypeTok{size =}\NormalTok{ ls, }\DataTypeTok{alpha=}\NormalTok{av) }\OperatorTok{+}
+\StringTok{            }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =}\NormalTok{ cn)}
+\NormalTok{    \})}
+\NormalTok{\}}
+
+\CommentTok{# Run the application}
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+Add an additional input that allows the user to choose which variable to plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(gapminder)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{gm <-}\StringTok{ }\NormalTok{gapminder}
+
+\CommentTok{# Define UI for application that draws a histogram}
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{# Application title}
+    \KeywordTok{titlePanel}\NormalTok{(}\StringTok{"Shiny example"}\NormalTok{),}
+
+    \CommentTok{# Sidebar with a slider input for number of bins}
+    \KeywordTok{sidebarLayout}\NormalTok{(}
+        \KeywordTok{sidebarPanel}\NormalTok{(}
+            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"country_name"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Choose a country"}\NormalTok{,}
+                        \DataTypeTok{choices =} \KeywordTok{unique}\NormalTok{(gm}\OperatorTok{$}\NormalTok{country),}
+                        \DataTypeTok{selected =} \StringTok{'Mexico'}\NormalTok{),}
+
+            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"line_color"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Choose a color for the line"}\NormalTok{,}
+                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'green'}\NormalTok{, }\StringTok{'blue'}\NormalTok{,}\StringTok{'red'}\NormalTok{, }\StringTok{'orange'}\NormalTok{),}
+                        \DataTypeTok{selected =} \StringTok{'green'}\NormalTok{),}
+            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"point_color"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Choose a color for the points"}\NormalTok{,}
+                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'green'}\NormalTok{, }\StringTok{'blue'}\NormalTok{,}\StringTok{'red'}\NormalTok{, }\StringTok{'orange'}\NormalTok{),}
+                        \DataTypeTok{selected =} \StringTok{'green'}\NormalTok{),}
+            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"line_size"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Change the thickness of the line"}\NormalTok{,}
+                        \DataTypeTok{min =} \DecValTok{1}\NormalTok{,}
+                        \DataTypeTok{max =} \DecValTok{10}\NormalTok{,}
+                        \DataTypeTok{value =}\DecValTok{2}\NormalTok{),}
+            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"point_size"}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{"Change the point size"}\NormalTok{,}
+                        \DataTypeTok{min =} \DecValTok{1}\NormalTok{,}
+                        \DataTypeTok{max =} \DecValTok{10}\NormalTok{,}
+                        \DataTypeTok{value =}\DecValTok{5}\NormalTok{),}
+            \KeywordTok{sliderInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{'alpha_value'}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{'Change transparency of line and points'}\NormalTok{,}
+                        \DataTypeTok{min=} \DecValTok{0}\NormalTok{,}
+                        \DataTypeTok{max=}\DecValTok{1}\NormalTok{,}
+                        \DataTypeTok{value =}\FloatTok{0.5}\NormalTok{),}
+            \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{'plot_var'}\NormalTok{,}
+                        \DataTypeTok{label =} \StringTok{'Choose a variable to plot'}\NormalTok{,}
+                        \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{'lifeExp'}\NormalTok{, }\StringTok{'pop'}\NormalTok{, }\StringTok{'gdpPercap'}\NormalTok{),}
+                        \DataTypeTok{selected =} \StringTok{'pop'}\NormalTok{)}
+
+\NormalTok{        ),}
+
+        \CommentTok{# Show a plot of the generated distribution}
+        \KeywordTok{mainPanel}\NormalTok{(}
+            \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"country_plot"}\NormalTok{)}
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{# Define server logic required to draw a histogram}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+\NormalTok{    output}\OperatorTok{$}\NormalTok{country_plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+\NormalTok{        cn <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{country_name}
+\NormalTok{        lc <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{line_color}
+\NormalTok{        ps <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{point_size}
+\NormalTok{        ls <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{line_size}
+\NormalTok{        pc <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{point_color}
+\NormalTok{        av <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{alpha_value}
+\NormalTok{        pv <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{plot_var}
+\NormalTok{        pd <-}\StringTok{ }\NormalTok{gm }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(country }\OperatorTok{==}\StringTok{ }\NormalTok{cn)}
+        \KeywordTok{ggplot}\NormalTok{(pd, }\KeywordTok{aes_string}\NormalTok{(}\StringTok{'year'}\NormalTok{, pv)) }\OperatorTok{+}
+\StringTok{            }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ pc, }\DataTypeTok{size =}\NormalTok{ ps, }\DataTypeTok{alpha=}\NormalTok{av) }\OperatorTok{+}
+\StringTok{            }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ lc, }\DataTypeTok{size =}\NormalTok{ ls, }\DataTypeTok{alpha=}\NormalTok{av) }\OperatorTok{+}
+\StringTok{            }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =}\NormalTok{ cn)}
+\NormalTok{    \})}
+\NormalTok{\}}
+
+\CommentTok{# Run the application}
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise}{%
+\section*{Exercise}\label{exercise}}
+\addcontentsline{toc}{section}{Exercise}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Go to github.com and create a new repository called shiny\_example.
+\item
+  Clone that repository to your Documents folder.
+\item
+  Create a new shiny app inside in shiny\_example called covid\_data
+\item
+  Remove everything from the app.R script and copy and paste this:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(readr)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(lubridate)}
+
+
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{'https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/covid_data.csv'}\NormalTok{)}
+\NormalTok{pop <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{'https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/state_pop.csv'}\NormalTok{)}
+
+\CommentTok{# Define UI for application that draws a histogram}
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+
+    \CommentTok{# Sidebar with a slider input for number of bins}
+    \KeywordTok{sidebarLayout}\NormalTok{(}
+        \KeywordTok{sidebarPanel}\NormalTok{(}
+
+\NormalTok{        ),}
+
+        \CommentTok{# Show a plot of the generated distribution}
+        \KeywordTok{mainPanel}\NormalTok{(}
+
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\CommentTok{# Define server logic required to draw a histogram}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+
+\NormalTok{\}}
+
+\CommentTok{# Run the application}
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{4}
+\item
+  Create a title for the app called ``Covid cases and deaths by state''
+\item
+  In the side panel (UI) create an input that allows the user to choose a state.
+\item
+  Create a bar chart called ``cases\_month'' that plots a states covid cases by month
+\item
+  Add an input called ``bar\_color'' that controls the color that fills the bar plot
+\item
+  Add an input called ``alpha\_value'' that controls the transparency of the bars in the chart
+\item
+  Create another bar chart called ``deaths\_month'' that plots a states covid deaths by month
+\item
+  Use the already created inputs ``bar\_color'' and ``alpha\_value'' to control the color and transparency of the new bar chart.
+\item
+  Create a line plot called ``cumulative\_cases'' that plots the cumulative cases over time (hint: use the function \texttt{cumsum})
+\item
+  Create a line plot called ``cumulative\_deaths'' that plots the cumulative deaths over time (hint: use the function \texttt{cumsum})
+\item
+  At the top of your script, join the population data (pop) to the covid data. Create two new variables: covid deaths per 100k and covid cases per 100k.
+\item
+  Create a line plot that plots the cases and deaths per 100k in one chart.
+\item
+  Create an input that controls the line colors for the above chart.
+\item
+  Add a title to all plots that combines the name of the state selected and a description of the chart.
+\item
+  Add a theme to each plot using the ggthemes library
+\item
+  There should now be five charts. Use the \texttt{fluidRow()} and \texttt{column()} argument to put the bar charts side by side. Under the bar charts, put the line plots side by side. Under those, put the final line plot centered in the middle of the screen.
+\item
+  Use the shiny themes package to customize your app (\url{https://rstudio.github.io/shinythemes/})
+\item
+  Deploy the app to shinyapps.io
+\end{enumerate}
 
 \hypertarget{trump-shiny-git}{%
 \chapter{\texorpdfstring{Trump, \texttt{Shiny}, \& \texttt{Git}}{Trump, Shiny, \& Git}}\label{trump-shiny-git}}
@@ -9289,8 +9717,8 @@ Now you can share your code with others, and your future self.
 \hypertarget{writing-a-report}{%
 \chapter{Writing a report}\label{writing-a-report}}
 
-\hypertarget{learning-goals-17}{%
-\subsubsection*{Learning goals}\label{learning-goals-17}}
+\hypertarget{learning-goals-18}{%
+\subsubsection*{Learning goals}\label{learning-goals-18}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -9636,8 +10064,8 @@ A brief statement of whom you thank for their contributions and support of your 
   See the \protect\hyperlink{style}{Module on Style} for details on how to format your references and citations.
 \end{itemize}
 
-\hypertarget{tables}{%
-\subsubsection*{Tables}\label{tables}}
+\hypertarget{tables-1}{%
+\subsubsection*{Tables}\label{tables-1}}
 \addcontentsline{toc}{subsubsection}{Tables}
 
 \begin{itemize}
@@ -9671,8 +10099,8 @@ A brief statement of whom you thank for their contributions and support of your 
 \hypertarget{style}{%
 \chapter{Good research writing}\label{style}}
 
-\hypertarget{learning-goals-18}{%
-\subsubsection*{Learning goals}\label{learning-goals-18}}
+\hypertarget{learning-goals-19}{%
+\subsubsection*{Learning goals}\label{learning-goals-19}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -10427,8 +10855,8 @@ This is a \href{https://www.youtube.com/watch?v=mae2eugjUsU}{pretty good example
 \hypertarget{saving-data-plots}{%
 \chapter{Saving data \& plots}\label{saving-data-plots}}
 
-\hypertarget{learning-goals-19}{%
-\subsubsection*{Learning goals}\label{learning-goals-19}}
+\hypertarget{learning-goals-20}{%
+\subsubsection*{Learning goals}\label{learning-goals-20}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -10507,7 +10935,7 @@ Let's say you want to plot the prevalence of the name ``Barack'' in recent U.S h
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-388-1.pdf}
+\includegraphics{figures/unnamed-chunk-393-1.pdf}
 
 To save this as a figure as a \texttt{pdf}, preface these lines of code with a \texttt{pdf()} command and add \texttt{dev.off()} below those lines. This opens up a \texttt{pdf} `device' (i.e., an engine for creating a PDF file), prints the plot to that new file, then closes the device and saves the file.
 
@@ -10529,8 +10957,8 @@ Make sure you add `.pdf' to the end of your filename, and try not to run the \te
 \hypertarget{joining_datasets}{%
 \chapter{Joining datasets}\label{joining_datasets}}
 
-\hypertarget{learning-goals-20}{%
-\subsubsection*{Learning goals}\label{learning-goals-20}}
+\hypertarget{learning-goals-21}{%
+\subsubsection*{Learning goals}\label{learning-goals-21}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -10678,7 +11106,7 @@ So, to answer our research question about the relationship between player height
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-398-1.pdf}
+\includegraphics{figures/unnamed-chunk-403-1.pdf}
 
 Hmm. Looks like we have an outlier!
 
@@ -10781,7 +11209,7 @@ First, create a nicely formatted histogram that portrays the data relevant to th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-402-1.pdf}
+\includegraphics{figures/unnamed-chunk-407-1.pdf}
 
 Provide the code to test this research question statistically, then write a results statement below.
 
@@ -10864,7 +11292,7 @@ First, prepare a plot to visualize what you will be comparing:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-404-1.pdf}
+\includegraphics{figures/unnamed-chunk-409-1.pdf}
 
 Now carry out your statistical test.
 
@@ -10895,8 +11323,8 @@ Now carry out your statistical test.
 \hypertarget{text}{%
 \chapter{Working with text}\label{text}}
 
-\hypertarget{learning-goals-21}{%
-\subsubsection*{Learning goals}\label{learning-goals-21}}
+\hypertarget{learning-goals-22}{%
+\subsubsection*{Learning goals}\label{learning-goals-22}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -11223,8 +11651,8 @@ Now carry out your statistical test.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises-13}{%
-\subsubsection*{Exercises}\label{exercises-13}}
+\hypertarget{exercises-14}{%
+\subsubsection*{Exercises}\label{exercises-14}}
 \addcontentsline{toc}{subsubsection}{Exercises}
 
 \begin{enumerate}
@@ -11256,8 +11684,8 @@ Now carry out your statistical test.
 \hypertarget{dates}{%
 \chapter{Working with dates \& times}\label{dates}}
 
-\hypertarget{learning-goals-22}{%
-\subsubsection*{Learning goals}\label{learning-goals-22}}
+\hypertarget{learning-goals-23}{%
+\subsubsection*{Learning goals}\label{learning-goals-23}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -11327,7 +11755,7 @@ First, install the \texttt{lubridate} package.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{str}\NormalTok{(today)}
-\NormalTok{ Date[}\DecValTok{1}\OperatorTok{:}\DecValTok{1}\NormalTok{], format}\OperatorTok{:}\StringTok{ "2021-09-09"}
+\NormalTok{ Date[}\DecValTok{1}\OperatorTok{:}\DecValTok{1}\NormalTok{], format}\OperatorTok{:}\StringTok{ "2021-09-12"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11353,7 +11781,7 @@ Note that class type impacts what you can do with text. The following causes an 
 \begin{Highlighting}[]
 \NormalTok{my_birthday <-}\StringTok{ }\KeywordTok{as_date}\NormalTok{(my_birthday)}
 \NormalTok{today }\OperatorTok{-}\StringTok{ }\NormalTok{my_birthday}
-\NormalTok{Time difference of }\DecValTok{13090}\NormalTok{ days}
+\NormalTok{Time difference of }\DecValTok{13093}\NormalTok{ days}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11365,42 +11793,42 @@ Note that class type impacts what you can do with text. The following causes an 
 \begin{Highlighting}[]
 \NormalTok{n <-}\StringTok{ }\KeywordTok{now}\NormalTok{() }
 \NormalTok{n}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09 09:39:43 CDT"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-12 19:53:31 CDT"}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{n }\OperatorTok{+}\StringTok{ }\KeywordTok{seconds}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09 09:39:44 CDT"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-12 19:53:32 CDT"}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{n }\OperatorTok{-}\StringTok{ }\KeywordTok{hours}\NormalTok{(}\DecValTok{5}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09 04:39:43 CDT"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-12 14:53:31 CDT"}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{hour}\NormalTok{(n)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{19}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{minute}\NormalTok{(n)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{39}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{53}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{as_date}\NormalTok{(n)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-12"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11408,7 +11836,7 @@ Note that class type impacts what you can do with text. The following causes an 
 \begin{Highlighting}[]
 \NormalTok{later <-}\StringTok{ }\KeywordTok{now}\NormalTok{()}
 \NormalTok{later}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-09 09:39:43 CDT"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2021-09-12 19:53:31 CDT"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11502,8 +11930,8 @@ Use the appropriate lubridate function to parse each of the following dates:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises-14}{%
-\subsection{Exercises}\label{exercises-14}}
+\hypertarget{exercises-15}{%
+\subsection{Exercises}\label{exercises-15}}
 
 \hypertarget{childs-cough-data}{%
 \subsubsection*{Child's cough data}\label{childs-cough-data}}
@@ -11538,8 +11966,8 @@ Use the appropriate lubridate function to parse each of the following dates:
 \hypertarget{writing-functions}{%
 \chapter{Writing functions}\label{writing-functions}}
 
-\hypertarget{learning-goals-23}{%
-\subsubsection*{Learning goals}\label{learning-goals-23}}
+\hypertarget{learning-goals-24}{%
+\subsubsection*{Learning goals}\label{learning-goals-24}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -11727,7 +12155,7 @@ Plots can be included in the function commands just as in any other context:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-463-1.pdf}
+\includegraphics{figures/unnamed-chunk-468-1.pdf}
 
 \begin{verbatim}
  [1] 11.3 12.6 13.9 15.2 16.5 17.8 19.1 20.4 21.7 23.0 24.3 25.6 26.9 28.2 29.5
@@ -11780,7 +12208,7 @@ Now let's call this fancy function a bunch of times:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-465-1.pdf}
+\includegraphics{figures/unnamed-chunk-470-1.pdf}
 
 Think about how many lines of code would have been needed to write out all of these fancy plots if you did not use a custom function! Think about how cluttered and dizzying your code would look! And think about how many opportunities for errors and inconsistencies there would have been! That is the advantage of writing your own functions: it makes your work more efficient, more organized, and less prone to errors.
 
@@ -11983,8 +12411,8 @@ Carry out the above instructions to ensure that you know how to source a functio
 \hypertarget{for-loops}{%
 \chapter{\texorpdfstring{\texttt{for} loops}{for loops}}\label{for-loops}}
 
-\hypertarget{learning-goals-24}{%
-\subsubsection*{Learning goals}\label{learning-goals-24}}
+\hypertarget{learning-goals-25}{%
+\subsubsection*{Learning goals}\label{learning-goals-25}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -12294,7 +12722,7 @@ Try plotting the Keeling Curve:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-482-1.pdf}
+\includegraphics{figures/unnamed-chunk-487-1.pdf}
 
 There are some erroneous data points! We clearly can't have negative CO2 values. Let's remove those and try again:
 
@@ -12305,7 +12733,7 @@ There are some erroneous data points! We clearly can't have negative CO2 values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-483-1.pdf}
+\includegraphics{figures/unnamed-chunk-488-1.pdf}
 
 \textbf{What's the deal with those squiggles?} They seem to happen every year, cyclically. Let's investigate!
 
@@ -12353,13 +12781,13 @@ To begin, let's plot data for only a \emph{single} year:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-484-1.pdf}
+\includegraphics{figures/unnamed-chunk-489-1.pdf}
 
 But this only shows one year of data! How can we include the seasonal squiggle from other years?
 
 Figure out how to use a \texttt{for} loop to layer each year of data onto this plot. Your final plot will look like this:
 
-\includegraphics{figures/unnamed-chunk-485-1.pdf}
+\includegraphics{figures/unnamed-chunk-490-1.pdf}
 
 So how do you interpret this graph? Why do you think those squiggles happen every year?
 
@@ -12405,7 +12833,7 @@ Looks like the first four columns would be interesting to plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-487-1.pdf}
+\includegraphics{figures/unnamed-chunk-492-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12467,7 +12895,7 @@ Let's say we want to see how gas mileage is affected by the number of cylinders 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-489-1.pdf}
+\includegraphics{figures/unnamed-chunk-494-1.pdf}
 
 Now try to do something similar on your own with the \texttt{airquality} dataset. Use \texttt{for\ loops} to create a plot with Month on the x axis and Temperature on the y axis. On this plot, depict all the temperatures recorded in each month in the color grey, then superimpose the mean temperature for each month.
 
@@ -12489,7 +12917,7 @@ We will provide the empty plot, you provide the \texttt{for\ loop}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-490-1.pdf}
+\includegraphics{figures/unnamed-chunk-495-1.pdf}
 
 \hypertarget{review-assignments}{%
 \subsection*{Review assignments}\label{review-assignments}}
@@ -12717,7 +13145,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-497-1.pdf}
+\includegraphics{figures/unnamed-chunk-502-1.pdf}
 
 \hypertarget{now-loop-it}{%
 \subsubsection*{Now loop it!}\label{now-loop-it}}
@@ -12741,7 +13169,7 @@ This dataset, freely available from World Bank, shows the renewable electricity 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-498-1.pdf}
+\includegraphics{figures/unnamed-chunk-503-1.pdf}
 
 \hypertarget{now-loop-it-in-layers}{%
 \subparagraph{\texorpdfstring{Now loop it \emph{in layers!}}{Now loop it in layers!}}\label{now-loop-it-in-layers}}
@@ -12767,13 +13195,13 @@ To add some flare, highlight the USA curve by coloring it red and making it thic
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-499-1.pdf}
+\includegraphics{figures/unnamed-chunk-504-1.pdf}
 
 \hypertarget{conditional-statements}{%
 \chapter{Conditional statements}\label{conditional-statements}}
 
-\hypertarget{learning-goals-25}{%
-\subsubsection*{Learning goals}\label{learning-goals-25}}
+\hypertarget{learning-goals-26}{%
+\subsubsection*{Learning goals}\label{learning-goals-26}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -13168,8 +13596,8 @@ To do this work, your supervisor asks you to use the \texttt{us\_contagious\_dis
 \hypertarget{matrices-lists}{%
 \chapter{Matrices \& lists}\label{matrices-lists}}
 
-\hypertarget{learning-goals-26}{%
-\subsubsection*{Learning goals}\label{learning-goals-26}}
+\hypertarget{learning-goals-27}{%
+\subsubsection*{Learning goals}\label{learning-goals-27}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -13447,21 +13875,21 @@ To practice the latter use case, let's build up a simple matrix using a random n
              \DataTypeTok{ncol=}\DecValTok{10}\NormalTok{)}
 \NormalTok{mx}
 \NormalTok{      [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{] [,}\DecValTok{4}\NormalTok{] [,}\DecValTok{5}\NormalTok{] [,}\DecValTok{6}\NormalTok{] [,}\DecValTok{7}\NormalTok{] [,}\DecValTok{8}\NormalTok{] [,}\DecValTok{9}\NormalTok{] [,}\DecValTok{10}\NormalTok{]}
-\NormalTok{ [}\DecValTok{1}\NormalTok{,]   }\DecValTok{57}   \DecValTok{50}   \DecValTok{49}   \DecValTok{56}   \DecValTok{45}   \DecValTok{42}   \DecValTok{26}   \DecValTok{54}   \DecValTok{52}    \DecValTok{57}
-\NormalTok{ [}\DecValTok{2}\NormalTok{,]   }\DecValTok{62}   \DecValTok{52}   \DecValTok{45}   \DecValTok{52}   \DecValTok{50}   \DecValTok{54}   \DecValTok{64}   \DecValTok{38}   \DecValTok{51}    \DecValTok{62}
-\NormalTok{ [}\DecValTok{3}\NormalTok{,]   }\DecValTok{54}   \DecValTok{41}   \DecValTok{55}   \DecValTok{31}   \DecValTok{52}   \DecValTok{43}   \DecValTok{41}   \DecValTok{44}   \DecValTok{40}    \DecValTok{39}
-\NormalTok{ [}\DecValTok{4}\NormalTok{,]   }\DecValTok{40}   \DecValTok{54}   \DecValTok{59}   \DecValTok{43}   \DecValTok{52}   \DecValTok{33}   \DecValTok{37}   \DecValTok{69}   \DecValTok{37}    \DecValTok{57}
-\NormalTok{ [}\DecValTok{5}\NormalTok{,]   }\DecValTok{48}   \DecValTok{41}   \DecValTok{48}   \DecValTok{55}   \DecValTok{49}   \DecValTok{62}   \DecValTok{41}   \DecValTok{54}   \DecValTok{75}    \DecValTok{62}
-\NormalTok{ [}\DecValTok{6}\NormalTok{,]   }\DecValTok{67}   \DecValTok{41}   \DecValTok{56}   \DecValTok{45}   \DecValTok{35}   \DecValTok{57}   \DecValTok{38}   \DecValTok{37}   \DecValTok{43}    \DecValTok{52}
-\NormalTok{ [}\DecValTok{7}\NormalTok{,]   }\DecValTok{46}   \DecValTok{40}   \DecValTok{46}   \DecValTok{47}   \DecValTok{54}   \DecValTok{51}   \DecValTok{30}   \DecValTok{76}   \DecValTok{59}    \DecValTok{46}
-\NormalTok{ [}\DecValTok{8}\NormalTok{,]   }\DecValTok{57}   \DecValTok{43}   \DecValTok{61}   \DecValTok{46}   \DecValTok{55}   \DecValTok{65}   \DecValTok{40}   \DecValTok{55}   \DecValTok{60}    \DecValTok{52}
-\NormalTok{ [}\DecValTok{9}\NormalTok{,]   }\DecValTok{62}   \DecValTok{61}   \DecValTok{56}   \DecValTok{66}   \DecValTok{45}   \DecValTok{34}   \DecValTok{48}   \DecValTok{59}   \DecValTok{66}    \DecValTok{44}
-\NormalTok{[}\DecValTok{10}\NormalTok{,]   }\DecValTok{58}   \DecValTok{46}   \DecValTok{60}   \DecValTok{43}   \DecValTok{57}   \DecValTok{51}   \DecValTok{59}   \DecValTok{61}   \DecValTok{68}    \DecValTok{45}
+\NormalTok{ [}\DecValTok{1}\NormalTok{,]   }\DecValTok{64}   \DecValTok{32}   \DecValTok{50}   \DecValTok{52}   \DecValTok{41}   \DecValTok{37}   \DecValTok{60}   \DecValTok{42}   \DecValTok{40}    \DecValTok{46}
+\NormalTok{ [}\DecValTok{2}\NormalTok{,]   }\DecValTok{62}   \DecValTok{35}   \DecValTok{61}   \DecValTok{51}   \DecValTok{42}   \DecValTok{41}   \DecValTok{34}   \DecValTok{40}   \DecValTok{46}    \DecValTok{55}
+\NormalTok{ [}\DecValTok{3}\NormalTok{,]   }\DecValTok{43}   \DecValTok{37}   \DecValTok{53}   \DecValTok{50}   \DecValTok{55}   \DecValTok{48}   \DecValTok{42}   \DecValTok{52}   \DecValTok{54}    \DecValTok{51}
+\NormalTok{ [}\DecValTok{4}\NormalTok{,]   }\DecValTok{18}   \DecValTok{32}   \DecValTok{72}   \DecValTok{31}   \DecValTok{42}   \DecValTok{50}   \DecValTok{52}   \DecValTok{38}   \DecValTok{50}    \DecValTok{36}
+\NormalTok{ [}\DecValTok{5}\NormalTok{,]   }\DecValTok{58}   \DecValTok{59}   \DecValTok{47}   \DecValTok{55}   \DecValTok{47}   \DecValTok{48}   \DecValTok{49}   \DecValTok{37}   \DecValTok{54}    \DecValTok{63}
+\NormalTok{ [}\DecValTok{6}\NormalTok{,]   }\DecValTok{71}   \DecValTok{42}   \DecValTok{47}   \DecValTok{53}   \DecValTok{52}   \DecValTok{30}   \DecValTok{48}   \DecValTok{52}   \DecValTok{45}    \DecValTok{41}
+\NormalTok{ [}\DecValTok{7}\NormalTok{,]   }\DecValTok{60}   \DecValTok{49}   \DecValTok{47}   \DecValTok{44}   \DecValTok{55}   \DecValTok{53}   \DecValTok{36}   \DecValTok{54}   \DecValTok{57}    \DecValTok{51}
+\NormalTok{ [}\DecValTok{8}\NormalTok{,]   }\DecValTok{26}   \DecValTok{38}   \DecValTok{50}   \DecValTok{46}   \DecValTok{41}   \DecValTok{43}   \DecValTok{56}   \DecValTok{45}   \DecValTok{53}    \DecValTok{67}
+\NormalTok{ [}\DecValTok{9}\NormalTok{,]   }\DecValTok{55}   \DecValTok{63}   \DecValTok{43}   \DecValTok{46}   \DecValTok{63}   \DecValTok{56}   \DecValTok{54}   \DecValTok{32}   \DecValTok{65}    \DecValTok{45}
+\NormalTok{[}\DecValTok{10}\NormalTok{,]   }\DecValTok{64}   \DecValTok{41}   \DecValTok{75}   \DecValTok{56}   \DecValTok{52}   \DecValTok{57}   \DecValTok{42}   \DecValTok{44}   \DecValTok{53}    \DecValTok{59}
 \KeywordTok{heatmap}\NormalTok{(mx,}\DataTypeTok{Rowv=}\OtherTok{NA}\NormalTok{,}\DataTypeTok{Colv=}\OtherTok{NA}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-536-1.pdf}
+\includegraphics{figures/unnamed-chunk-541-1.pdf}
 
 To see a real-world example of a matrix in action, here is a dataset containing rates of social associations, scaled between 0 and 0.5, among humpback whales in the fjords of British Columbia, Canada: .
 
@@ -13534,7 +13962,7 @@ Now that we've cancelled out the diagnoal, a heatmap of this dataset will show u
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-542-1.pdf}
+\includegraphics{figures/unnamed-chunk-547-1.pdf}
 
 \hypertarget{review-exercise-3}{%
 \subsubsection*{Review exercise}\label{review-exercise-3}}
@@ -13563,8 +13991,8 @@ Demonstrate that the matrix output of your second function is the same as the or
 \hypertarget{advanced-base-plots-in-r}{%
 \chapter{\texorpdfstring{Advanced base plots in \texttt{R}}{Advanced base plots in R}}\label{advanced-base-plots-in-r}}
 
-\hypertarget{learning-goals-27}{%
-\subsubsection*{Learning goals}\label{learning-goals-27}}
+\hypertarget{learning-goals-28}{%
+\subsubsection*{Learning goals}\label{learning-goals-28}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -13605,7 +14033,7 @@ You can add a line at \texttt{lifespan\ =\ 75} using the function \texttt{abline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-545-1.pdf}
+\includegraphics{figures/unnamed-chunk-550-1.pdf}
 
 In this command, the \texttt{h} input means ``place a horizontal line at this y value.''.
 
@@ -13618,7 +14046,7 @@ Similarly, you can use \texttt{v} to specify vertical lines at certain x values.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-546-1.pdf}
+\includegraphics{figures/unnamed-chunk-551-1.pdf}
 
 Note here that another input, \texttt{lty}, was used to change the type of line printed. (Refer to \texttt{?abline()} for more details).
 
@@ -13635,7 +14063,7 @@ Use the \texttt{text()} function to add labels to your plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-547-1.pdf}
+\includegraphics{figures/unnamed-chunk-552-1.pdf}
 
 \hypertarget{highlighting-certain-data-points}{%
 \subsection*{Highlighting certain data points}\label{highlighting-certain-data-points}}
@@ -13652,7 +14080,7 @@ It can be helpful to highlight a certain data point (or group of data points) us
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-548-1.pdf}
+\includegraphics{figures/unnamed-chunk-553-1.pdf}
 
 In this example, we re-plotted the data for the fifth row in the dataframe (in this case, China).
 
@@ -13688,7 +14116,7 @@ For example, let's highlight all countries whose life expectancy is greater than
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-549-1.pdf}
+\includegraphics{figures/unnamed-chunk-554-1.pdf}
 
 \hypertarget{building-a-plot-from-the-ground-up}{%
 \subsection*{Building a plot from the ground up}\label{building-a-plot-from-the-ground-up}}
@@ -13742,10 +14170,10 @@ Here is an example of this process:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-550-1.pdf}
+\includegraphics{figures/unnamed-chunk-555-1.pdf}
 
-\hypertarget{exercises-15}{%
-\subsubsection*{Exercises}\label{exercises-15}}
+\hypertarget{exercises-16}{%
+\subsubsection*{Exercises}\label{exercises-16}}
 \addcontentsline{toc}{subsubsection}{Exercises}
 
 \textbf{Public health \& life expectancy}
@@ -13855,7 +14283,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-553-1.pdf}
+\includegraphics{figures/unnamed-chunk-558-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -13871,7 +14299,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-554-1.pdf}
+\includegraphics{figures/unnamed-chunk-559-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -13960,7 +14388,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-559-1.pdf}
+\includegraphics{figures/unnamed-chunk-564-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -13978,7 +14406,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-560-1.pdf}
+\includegraphics{figures/unnamed-chunk-565-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -13996,7 +14424,7 @@ Let's start by getting some data. Run the below code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-561-1.pdf}
+\includegraphics{figures/unnamed-chunk-566-1.pdf}
 
 Oh no! That didn't work. Why not? Have a look at coordinates
 
@@ -14036,7 +14464,7 @@ Oh no! That didn't work. Why not? Have a look at coordinates
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-564-1.pdf}
+\includegraphics{figures/unnamed-chunk-569-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14053,7 +14481,7 @@ Oh no! That didn't work. Why not? Have a look at coordinates
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-565-1.pdf}
+\includegraphics{figures/unnamed-chunk-570-1.pdf}
 
 Uh oh. Same problem as before. We need to ``reproject'' boundary to latitude longitude.
 
@@ -14073,7 +14501,7 @@ Uh oh. Same problem as before. We need to ``reproject'' boundary to latitude lon
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-566-1.pdf}
+\includegraphics{figures/unnamed-chunk-571-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14090,7 +14518,7 @@ Uh oh. Same problem as before. We need to ``reproject'' boundary to latitude lon
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-567-1.pdf}
+\includegraphics{figures/unnamed-chunk-572-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14100,7 +14528,7 @@ Uh oh. Same problem as before. We need to ``reproject'' boundary to latitude lon
   Use crop and mask to get just the elevation for the domain. Your plot should look like this.
 \end{enumerate}
 
-\includegraphics{figures/unnamed-chunk-568-1.pdf}
+\includegraphics{figures/unnamed-chunk-573-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14147,7 +14575,7 @@ Oh no! Projection problems.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-572-1.pdf}
+\includegraphics{figures/unnamed-chunk-577-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14164,7 +14592,7 @@ Oh no! Projection problems.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-573-1.pdf}
+\includegraphics{figures/unnamed-chunk-578-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14180,7 +14608,7 @@ Oh no! Projection problems.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-574-1.pdf}
+\includegraphics{figures/unnamed-chunk-579-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14196,7 +14624,7 @@ Oh no! Projection problems.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-575-1.pdf}
+\includegraphics{figures/unnamed-chunk-580-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14222,7 +14650,7 @@ Oh no! Projection problems.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-576-1.pdf}
+\includegraphics{figures/unnamed-chunk-581-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14243,7 +14671,7 @@ Oh no! Projection problems.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-577-1.pdf}
+\includegraphics{figures/unnamed-chunk-582-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14535,8 +14963,8 @@ Add fancy text to map
 \hypertarget{randomization-statistics}{%
 \chapter{Randomization statistics}\label{randomization-statistics}}
 
-\hypertarget{learning-goals-28}{%
-\subsubsection*{Learning goals}\label{learning-goals-28}}
+\hypertarget{learning-goals-29}{%
+\subsubsection*{Learning goals}\label{learning-goals-29}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -14701,7 +15129,7 @@ That's alot of associations! Let's see if that observation is statistically sign
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-595-1.pdf}
+\includegraphics{figures/unnamed-chunk-600-1.pdf}
 
 \textbf{Step 7:} Finally, we \textbf{calculate our p-value}:
 
@@ -14741,7 +15169,7 @@ Let's do this again with a different humpback pair, IDs 16 and 118, who were see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-597-1.pdf}
+\includegraphics{figures/unnamed-chunk-602-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14838,7 +15266,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-603-1.pdf}
+\includegraphics{figures/unnamed-chunk-608-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -14883,7 +15311,7 @@ Each row of this dataset is an abundance estimate from a survey that occurred wi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-607-1.pdf}
+\includegraphics{figures/unnamed-chunk-612-1.pdf}
 
 Performing a simple linear regression with this dataset yields the following results:
 
@@ -14899,7 +15327,7 @@ Performing a simple linear regression with this dataset yields the following res
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-608-1.pdf}
+\includegraphics{figures/unnamed-chunk-613-1.pdf}
 
 The slope appears to be negative, but the regression has a non-significant p-value (p=0.22) and a very small correlation coefficient:
 
@@ -14988,7 +15416,7 @@ Let's go through the steps:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-613-1.pdf}
+\includegraphics{figures/unnamed-chunk-618-1.pdf}
 
 \textbf{7. p-value:}
 
@@ -15051,7 +15479,7 @@ We want to know what the chances are that the population has declined between 20
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-617-1.pdf}
+\includegraphics{figures/unnamed-chunk-622-1.pdf}
 
 If this is all we have, what can we say about the status of this endangered species? With such a low sample size and so much variability, it can be really hard to produce significant or even compelling results. \textbf{Well, what are the chances that this population is in decline?} That is a question that a simple linear model cannot tell us.
 
@@ -15076,7 +15504,7 @@ And in this randomization application, the workflow is a bit more simplified. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-618-1.pdf}
+\includegraphics{figures/unnamed-chunk-623-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
