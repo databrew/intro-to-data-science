@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-09-12" />
+<meta name="date" content="2021-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -306,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="38" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>38</b> Working with text</a><ul>
-<li class="chapter" data-level="" data-path="text.html"><a href="text.html#basics"><i class="fa fa-check"></i>Basics</a></li>
+<li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
 <li class="chapter" data-level="39" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>39</b> Working with dates &amp; times</a><ul>
 <li><a href="dates.html#the-lubridate-package">The <code>lubridate()</code> package</a></li>
@@ -320,7 +320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
 <li class="chapter" data-level="41" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>41</b> <code>for</code> loops</a><ul>
-<li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics-1"><i class="fa fa-check"></i>Basics</a></li>
+<li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li><a href="for-loops.html#for-loop-exercises"><code>for</code> loop exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="42" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>42</b> Conditional statements</a><ul>
@@ -364,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="writing-functions" class="section level1">
 <h1><span class="header-section-number">Module 40</span> Writing functions</h1>
-<div id="learning-goals-24" class="section level4 unnumbered">
+<div id="learning-goals-23" class="section level4 unnumbered">
 <h4>Learning goals</h4>
 <ul>
 <li>Be able to write your own functions</li>
@@ -384,15 +384,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>When you define your own custom function, these are the three pieces you must be sure to include.</p>
 <p>Here is a basic example:</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="writing-functions.html#cb439-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb439-2"><a href="writing-functions.html#cb439-2"></a>  y &lt;-<span class="st"> </span><span class="fl">1.3</span><span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span>
-<span id="cb439-3"><a href="writing-functions.html#cb439-3"></a>  <span class="kw">return</span>(y)</span>
-<span id="cb439-4"><a href="writing-functions.html#cb439-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="writing-functions.html#cb452-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb452-2"><a href="writing-functions.html#cb452-2"></a>  y &lt;-<span class="st"> </span><span class="fl">1.3</span><span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span>
+<span id="cb452-3"><a href="writing-functions.html#cb452-3"></a>  <span class="kw">return</span>(y)</span>
+<span id="cb452-4"><a href="writing-functions.html#cb452-4"></a>}</span></code></pre></div>
 <p>Now use your function:</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="writing-functions.html#cb440-1"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">2</span>) <span class="co"># example 1</span></span>
-<span id="cb440-2"><a href="writing-functions.html#cb440-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span>
-<span id="cb440-3"><a href="writing-functions.html#cb440-3"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">4</span>) <span class="co"># example 2</span></span>
-<span id="cb440-4"><a href="writing-functions.html#cb440-4"></a>[<span class="dv">1</span>] <span class="fl">15.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="writing-functions.html#cb453-1"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">2</span>) <span class="co"># example 1</span></span>
+<span id="cb453-2"><a href="writing-functions.html#cb453-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span>
+<span id="cb453-3"><a href="writing-functions.html#cb453-3"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">4</span>) <span class="co"># example 2</span></span>
+<span id="cb453-4"><a href="writing-functions.html#cb453-4"></a>[<span class="dv">1</span>] <span class="fl">15.2</span></span></code></pre></div>
 <p>Let’s break this down.</p>
 <ul>
 <li><code>my_function</code> is the name you are giving your function. It is the command you will use to call your function.</li>
@@ -402,8 +402,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>return(y)</code> is the command you use to define what the function’s output will be.</li>
 </ul>
 <p>Note that you are not <em>required</em> to write out <code>x=2</code> in full when you are calling your function. Just providing <code>2</code> can also work:</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="writing-functions.html#cb441-1"></a><span class="kw">my_function</span>(<span class="dv">2</span>)</span>
-<span id="cb441-2"><a href="writing-functions.html#cb441-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="writing-functions.html#cb454-1"></a><span class="kw">my_function</span>(<span class="dv">2</span>)</span>
+<span id="cb454-2"><a href="writing-functions.html#cb454-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span></code></pre></div>
 <div id="exercise-1" class="section level3 unnumbered">
 <h3>Exercise 1</h3>
 <p>Define your own basic function and run it to make sure it works.</p>
@@ -415,84 +415,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Multiple inputs</h3>
 <p>You can define a function with multiple inputs. Just separate each input with a comma.</p>
 <p>To demonstrate this, let’s modify the function above to allow you to define any linear regression you wish:</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="writing-functions.html#cb442-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x,a,b){</span>
-<span id="cb442-2"><a href="writing-functions.html#cb442-2"></a>  y &lt;-<span class="st"> </span>a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
-<span id="cb442-3"><a href="writing-functions.html#cb442-3"></a>  <span class="kw">return</span>(y)</span>
-<span id="cb442-4"><a href="writing-functions.html#cb442-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="writing-functions.html#cb455-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x,a,b){</span>
+<span id="cb455-2"><a href="writing-functions.html#cb455-2"></a>  y &lt;-<span class="st"> </span>a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb455-3"><a href="writing-functions.html#cb455-3"></a>  <span class="kw">return</span>(y)</span>
+<span id="cb455-4"><a href="writing-functions.html#cb455-4"></a>}</span></code></pre></div>
 <p>Now call your function:</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="writing-functions.html#cb443-1"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">2</span>,<span class="dt">a=</span><span class="fl">1.3</span>,<span class="dt">b=</span><span class="dv">10</span>) <span class="co"># example 1</span></span>
-<span id="cb443-2"><a href="writing-functions.html#cb443-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span>
-<span id="cb443-3"><a href="writing-functions.html#cb443-3"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">4</span>,<span class="dt">a=</span><span class="dv">5</span>,<span class="dt">b=</span><span class="dv">100</span>) <span class="co"># example 2</span></span>
-<span id="cb443-4"><a href="writing-functions.html#cb443-4"></a>[<span class="dv">1</span>] <span class="dv">120</span></span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="writing-functions.html#cb456-1"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">2</span>,<span class="dt">a=</span><span class="fl">1.3</span>,<span class="dt">b=</span><span class="dv">10</span>) <span class="co"># example 1</span></span>
+<span id="cb456-2"><a href="writing-functions.html#cb456-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span>
+<span id="cb456-3"><a href="writing-functions.html#cb456-3"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">4</span>,<span class="dt">a=</span><span class="dv">5</span>,<span class="dt">b=</span><span class="dv">100</span>) <span class="co"># example 2</span></span>
+<span id="cb456-4"><a href="writing-functions.html#cb456-4"></a>[<span class="dv">1</span>] <span class="dv">120</span></span></code></pre></div>
 <p>Note that you do not need to write out the name of each input, as long as you provide inputs in the correct order.</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="writing-functions.html#cb444-1"></a><span class="kw">my_function</span>(<span class="dv">2</span>, <span class="fl">1.3</span>, <span class="dv">10</span>) <span class="co"># example 1</span></span>
-<span id="cb444-2"><a href="writing-functions.html#cb444-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span>
-<span id="cb444-3"><a href="writing-functions.html#cb444-3"></a><span class="kw">my_function</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">100</span>) <span class="co"># example 2</span></span>
-<span id="cb444-4"><a href="writing-functions.html#cb444-4"></a>[<span class="dv">1</span>] <span class="dv">120</span></span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="writing-functions.html#cb457-1"></a><span class="kw">my_function</span>(<span class="dv">2</span>, <span class="fl">1.3</span>, <span class="dv">10</span>) <span class="co"># example 1</span></span>
+<span id="cb457-2"><a href="writing-functions.html#cb457-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span>
+<span id="cb457-3"><a href="writing-functions.html#cb457-3"></a><span class="kw">my_function</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">100</span>) <span class="co"># example 2</span></span>
+<span id="cb457-4"><a href="writing-functions.html#cb457-4"></a>[<span class="dv">1</span>] <span class="dv">120</span></span></code></pre></div>
 <p>But note that it is usually best practice to name each input in your function call, to prevent the possibility of any confusion or mistakes. Also, when you name each input you can provide inputs in whatever order you wish:</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="writing-functions.html#cb445-1"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">2</span>, <span class="dt">a=</span><span class="fl">1.3</span>, <span class="dt">b=</span><span class="dv">10</span>)</span>
-<span id="cb445-2"><a href="writing-functions.html#cb445-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span>
-<span id="cb445-3"><a href="writing-functions.html#cb445-3"></a><span class="kw">my_function</span>(<span class="dt">a=</span><span class="fl">1.3</span>, <span class="dt">b=</span><span class="dv">10</span>, <span class="dt">x=</span><span class="dv">2</span>) <span class="co"># different inout order, same output value</span></span>
-<span id="cb445-4"><a href="writing-functions.html#cb445-4"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="writing-functions.html#cb458-1"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">2</span>, <span class="dt">a=</span><span class="fl">1.3</span>, <span class="dt">b=</span><span class="dv">10</span>)</span>
+<span id="cb458-2"><a href="writing-functions.html#cb458-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span>
+<span id="cb458-3"><a href="writing-functions.html#cb458-3"></a><span class="kw">my_function</span>(<span class="dt">a=</span><span class="fl">1.3</span>, <span class="dt">b=</span><span class="dv">10</span>, <span class="dt">x=</span><span class="dv">2</span>) <span class="co"># different inout order, same output value</span></span>
+<span id="cb458-4"><a href="writing-functions.html#cb458-4"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span></code></pre></div>
 </div>
 <div id="providing-defaults-for-inputs" class="section level3 unnumbered">
 <h3>Providing defaults for inputs</h3>
 <p>Just as <code>R</code>’s base functions include default values for some inputs (think <code>na.rm=FALSE</code> for <code>mean()</code> and <code>sd()</code>), you can define defaults in your own functions.</p>
 <p>This version of <code>my_function</code> includes default values for inputs <code>a</code> and <code>b</code>.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="writing-functions.html#cb446-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x,<span class="dt">a=</span><span class="fl">1.3</span>,<span class="dt">b=</span><span class="dv">10</span>){</span>
-<span id="cb446-2"><a href="writing-functions.html#cb446-2"></a>  y &lt;-<span class="st"> </span>a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
-<span id="cb446-3"><a href="writing-functions.html#cb446-3"></a>  <span class="kw">return</span>(y)</span>
-<span id="cb446-4"><a href="writing-functions.html#cb446-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="writing-functions.html#cb459-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x,<span class="dt">a=</span><span class="fl">1.3</span>,<span class="dt">b=</span><span class="dv">10</span>){</span>
+<span id="cb459-2"><a href="writing-functions.html#cb459-2"></a>  y &lt;-<span class="st"> </span>a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb459-3"><a href="writing-functions.html#cb459-3"></a>  <span class="kw">return</span>(y)</span>
+<span id="cb459-4"><a href="writing-functions.html#cb459-4"></a>}</span></code></pre></div>
 <p>When you provide default values, you no longer need to specify those inputs in your function call:</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="writing-functions.html#cb447-1"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">2</span>)</span>
-<span id="cb447-2"><a href="writing-functions.html#cb447-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="writing-functions.html#cb460-1"></a><span class="kw">my_function</span>(<span class="dt">x=</span><span class="dv">2</span>)</span>
+<span id="cb460-2"><a href="writing-functions.html#cb460-2"></a>[<span class="dv">1</span>] <span class="fl">12.6</span></span></code></pre></div>
 </div>
 <div id="adding-plots" class="section level3 unnumbered">
 <h3>Adding plots</h3>
 <p>Plots can be included in the function commands just as in any other context:</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="writing-functions.html#cb448-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x,<span class="dt">a=</span><span class="fl">1.3</span>,<span class="dt">b=</span><span class="dv">10</span>){</span>
-<span id="cb448-2"><a href="writing-functions.html#cb448-2"></a>  y &lt;-<span class="st"> </span>a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
-<span id="cb448-3"><a href="writing-functions.html#cb448-3"></a>  <span class="kw">plot</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>)</span>
-<span id="cb448-4"><a href="writing-functions.html#cb448-4"></a>  <span class="kw">return</span>(y)</span>
-<span id="cb448-5"><a href="writing-functions.html#cb448-5"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="writing-functions.html#cb449-1"></a>my_input &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></span>
-<span id="cb449-2"><a href="writing-functions.html#cb449-2"></a><span class="kw">my_function</span>(<span class="dt">x=</span>my_input)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-468-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="writing-functions.html#cb461-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(x,<span class="dt">a=</span><span class="fl">1.3</span>,<span class="dt">b=</span><span class="dv">10</span>){</span>
+<span id="cb461-2"><a href="writing-functions.html#cb461-2"></a>  y &lt;-<span class="st"> </span>a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb461-3"><a href="writing-functions.html#cb461-3"></a>  <span class="kw">plot</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>)</span>
+<span id="cb461-4"><a href="writing-functions.html#cb461-4"></a>  <span class="kw">return</span>(y)</span>
+<span id="cb461-5"><a href="writing-functions.html#cb461-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="writing-functions.html#cb462-1"></a>my_input &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></span>
+<span id="cb462-2"><a href="writing-functions.html#cb462-2"></a><span class="kw">my_function</span>(<span class="dt">x=</span>my_input)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-481-1.png" width="925.44" /></p>
 <pre><code> [1] 11.3 12.6 13.9 15.2 16.5 17.8 19.1 20.4 21.7 23.0 24.3 25.6 26.9 28.2 29.5
 [16] 30.8 32.1 33.4 34.7 36.0</code></pre>
 <p>Adding plots to functions can be super useful if you want to make multiple plots with the same formatting specifications. Rather than retyping the same long plot commands multiple times, just write a single function and call the function as many times as you wish.</p>
 <p>Let’s add some fancy formatting to our plot. Note that we will modify the name of the function to make it more descriptive and helpful. The <code>lm</code> in <code>plot_my_lm</code> stands for <em>linear model</em>, which is what is being defined with the <code>y=ax+b</code> equation.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="writing-functions.html#cb451-1"></a>plot_my_lm &lt;-<span class="st"> </span><span class="cf">function</span>(x,<span class="dt">a=</span><span class="fl">1.3</span>,<span class="dt">b=</span><span class="dv">10</span>,<span class="dt">plot_only=</span><span class="ot">TRUE</span>){</span>
-<span id="cb451-2"><a href="writing-functions.html#cb451-2"></a>  </span>
-<span id="cb451-3"><a href="writing-functions.html#cb451-3"></a>  <span class="co"># Process</span></span>
-<span id="cb451-4"><a href="writing-functions.html#cb451-4"></a>  y &lt;-<span class="st"> </span>a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
-<span id="cb451-5"><a href="writing-functions.html#cb451-5"></a>  </span>
-<span id="cb451-6"><a href="writing-functions.html#cb451-6"></a>  <span class="co"># Plot</span></span>
-<span id="cb451-7"><a href="writing-functions.html#cb451-7"></a>  <span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">3</span>,.<span class="dv">5</span>)) <span class="co"># set plot margins</span></span>
-<span id="cb451-8"><a href="writing-functions.html#cb451-8"></a>  <span class="kw">plot</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>,<span class="dt">ann=</span><span class="ot">FALSE</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="st">&quot;firebrick&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>)) <span class="co"># define basic plot</span></span>
-<span id="cb451-9"><a href="writing-functions.html#cb451-9"></a>  <span class="kw">title</span>(<span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;y =&quot;</span>,a,<span class="st">&quot;x +&quot;</span>,b)) <span class="co"># print a dynamic main title</span></span>
-<span id="cb451-10"><a href="writing-functions.html#cb451-10"></a>  <span class="kw">title</span>(<span class="dt">xlab=</span><span class="st">&quot;x&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>)  <span class="co"># print axis labels</span></span>
-<span id="cb451-11"><a href="writing-functions.html#cb451-11"></a>  <span class="kw">axis</span>(<span class="dv">1</span>) <span class="co"># print the X axis</span></span>
-<span id="cb451-12"><a href="writing-functions.html#cb451-12"></a>  <span class="kw">axis</span>(<span class="dv">2</span>,<span class="dt">las=</span><span class="dv">2</span>) <span class="co"># print the Y axis and turn its labels right-side-up</span></span>
-<span id="cb451-13"><a href="writing-functions.html#cb451-13"></a>  <span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">v=</span><span class="dv">0</span>,<span class="dt">col=</span><span class="st">&quot;grey70&quot;</span>) <span class="co"># add grey lines indicating x=0 and y=0</span></span>
-<span id="cb451-14"><a href="writing-functions.html#cb451-14"></a>  </span>
-<span id="cb451-15"><a href="writing-functions.html#cb451-15"></a>  <span class="co"># Return</span></span>
-<span id="cb451-16"><a href="writing-functions.html#cb451-16"></a>  <span class="cf">if</span>(plot_only<span class="op">==</span><span class="ot">FALSE</span>){</span>
-<span id="cb451-17"><a href="writing-functions.html#cb451-17"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb451-18"><a href="writing-functions.html#cb451-18"></a>  }</span>
-<span id="cb451-19"><a href="writing-functions.html#cb451-19"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="writing-functions.html#cb464-1"></a>plot_my_lm &lt;-<span class="st"> </span><span class="cf">function</span>(x,<span class="dt">a=</span><span class="fl">1.3</span>,<span class="dt">b=</span><span class="dv">10</span>,<span class="dt">plot_only=</span><span class="ot">TRUE</span>){</span>
+<span id="cb464-2"><a href="writing-functions.html#cb464-2"></a>  </span>
+<span id="cb464-3"><a href="writing-functions.html#cb464-3"></a>  <span class="co"># Process</span></span>
+<span id="cb464-4"><a href="writing-functions.html#cb464-4"></a>  y &lt;-<span class="st"> </span>a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb464-5"><a href="writing-functions.html#cb464-5"></a>  </span>
+<span id="cb464-6"><a href="writing-functions.html#cb464-6"></a>  <span class="co"># Plot</span></span>
+<span id="cb464-7"><a href="writing-functions.html#cb464-7"></a>  <span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">3</span>,.<span class="dv">5</span>)) <span class="co"># set plot margins</span></span>
+<span id="cb464-8"><a href="writing-functions.html#cb464-8"></a>  <span class="kw">plot</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>,<span class="dt">ann=</span><span class="ot">FALSE</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="st">&quot;firebrick&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>)) <span class="co"># define basic plot</span></span>
+<span id="cb464-9"><a href="writing-functions.html#cb464-9"></a>  <span class="kw">title</span>(<span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;y =&quot;</span>,a,<span class="st">&quot;x +&quot;</span>,b)) <span class="co"># print a dynamic main title</span></span>
+<span id="cb464-10"><a href="writing-functions.html#cb464-10"></a>  <span class="kw">title</span>(<span class="dt">xlab=</span><span class="st">&quot;x&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>)  <span class="co"># print axis labels</span></span>
+<span id="cb464-11"><a href="writing-functions.html#cb464-11"></a>  <span class="kw">axis</span>(<span class="dv">1</span>) <span class="co"># print the X axis</span></span>
+<span id="cb464-12"><a href="writing-functions.html#cb464-12"></a>  <span class="kw">axis</span>(<span class="dv">2</span>,<span class="dt">las=</span><span class="dv">2</span>) <span class="co"># print the Y axis and turn its labels right-side-up</span></span>
+<span id="cb464-13"><a href="writing-functions.html#cb464-13"></a>  <span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">v=</span><span class="dv">0</span>,<span class="dt">col=</span><span class="st">&quot;grey70&quot;</span>) <span class="co"># add grey lines indicating x=0 and y=0</span></span>
+<span id="cb464-14"><a href="writing-functions.html#cb464-14"></a>  </span>
+<span id="cb464-15"><a href="writing-functions.html#cb464-15"></a>  <span class="co"># Return</span></span>
+<span id="cb464-16"><a href="writing-functions.html#cb464-16"></a>  <span class="cf">if</span>(plot_only<span class="op">==</span><span class="ot">FALSE</span>){</span>
+<span id="cb464-17"><a href="writing-functions.html#cb464-17"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb464-18"><a href="writing-functions.html#cb464-18"></a>  }</span>
+<span id="cb464-19"><a href="writing-functions.html#cb464-19"></a>}</span></code></pre></div>
 <p>Note that we added a parameter, <code>plot_only</code>. When it is set to <code>TRUE</code>, the function will not return any numbers.</p>
 <p>Now let’s call this fancy function a bunch of times:</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="writing-functions.html#cb452-1"></a>my_input &lt;-<span class="st"> </span><span class="dv">-20</span><span class="op">:</span><span class="dv">20</span> <span class="co"># define a common x input value</span></span>
-<span id="cb452-2"><a href="writing-functions.html#cb452-2"></a></span>
-<span id="cb452-3"><a href="writing-functions.html#cb452-3"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>)) <span class="co"># stage a multi-paned plot</span></span>
-<span id="cb452-4"><a href="writing-functions.html#cb452-4"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="dv">2</span>,<span class="dt">b=</span><span class="dv">15</span>)</span>
-<span id="cb452-5"><a href="writing-functions.html#cb452-5"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="dv">1</span>,<span class="dt">b=</span><span class="dv">10</span>)</span>
-<span id="cb452-6"><a href="writing-functions.html#cb452-6"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span>.<span class="dv">5</span>,<span class="dt">b=</span><span class="dv">5</span>)</span>
-<span id="cb452-7"><a href="writing-functions.html#cb452-7"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="dv">0</span>,<span class="dt">b=</span><span class="dv">0</span>)</span>
-<span id="cb452-8"><a href="writing-functions.html#cb452-8"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="op">-</span><span class="dv">1</span>,<span class="dt">b=</span><span class="op">-</span><span class="dv">5</span>)</span>
-<span id="cb452-9"><a href="writing-functions.html#cb452-9"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="op">-</span><span class="dv">2</span>,<span class="dt">b=</span><span class="dv">15</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-470-1.png" width="672" /></p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="writing-functions.html#cb465-1"></a>my_input &lt;-<span class="st"> </span><span class="dv">-20</span><span class="op">:</span><span class="dv">20</span> <span class="co"># define a common x input value</span></span>
+<span id="cb465-2"><a href="writing-functions.html#cb465-2"></a></span>
+<span id="cb465-3"><a href="writing-functions.html#cb465-3"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>)) <span class="co"># stage a multi-paned plot</span></span>
+<span id="cb465-4"><a href="writing-functions.html#cb465-4"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="dv">2</span>,<span class="dt">b=</span><span class="dv">15</span>)</span>
+<span id="cb465-5"><a href="writing-functions.html#cb465-5"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="dv">1</span>,<span class="dt">b=</span><span class="dv">10</span>)</span>
+<span id="cb465-6"><a href="writing-functions.html#cb465-6"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span>.<span class="dv">5</span>,<span class="dt">b=</span><span class="dv">5</span>)</span>
+<span id="cb465-7"><a href="writing-functions.html#cb465-7"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="dv">0</span>,<span class="dt">b=</span><span class="dv">0</span>)</span>
+<span id="cb465-8"><a href="writing-functions.html#cb465-8"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="op">-</span><span class="dv">1</span>,<span class="dt">b=</span><span class="op">-</span><span class="dv">5</span>)</span>
+<span id="cb465-9"><a href="writing-functions.html#cb465-9"></a><span class="kw">plot_my_lm</span>(<span class="dt">x=</span>my_input,<span class="dt">a=</span><span class="op">-</span><span class="dv">2</span>,<span class="dt">b=</span><span class="dv">15</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-483-1.png" width="672" /></p>
 <p>Think about how many lines of code would have been needed to write out all of these fancy plots if you did not use a custom function! Think about how cluttered and dizzying your code would look! And think about how many opportunities for errors and inconsistencies there would have been! That is the advantage of writing your own functions: it makes your work more efficient, more organized, and less prone to errors.</p>
 <p>Another major advantage of this approach comes into play when you decide you want to tweak the formatting of your plot. Rather than going through each <code>plot(...)</code> command and modifying the inputs in each one, when you write a custom plotting function you just have to make those changes once. Again, using a custom function saves you time and removes the possibility of inconsistencies or mistakes in the plots you are creating.</p>
 </div>
@@ -540,42 +540,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="using-dplyr-and-ggplot-in-custom-functions" class="section level2">
 <h2><span class="header-section-number">40.1</span> Using dplyr and ggplot in custom functions</h2>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="writing-functions.html#cb453-1"></a><span class="kw">library</span>(gapminder)</span>
-<span id="cb453-2"><a href="writing-functions.html#cb453-2"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb453-3"><a href="writing-functions.html#cb453-3"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb453-4"><a href="writing-functions.html#cb453-4"></a>gm &lt;-<span class="st"> </span>gapminder</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="writing-functions.html#cb466-1"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb466-2"><a href="writing-functions.html#cb466-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb466-3"><a href="writing-functions.html#cb466-3"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb466-4"><a href="writing-functions.html#cb466-4"></a>gm &lt;-<span class="st"> </span>gapminder</span></code></pre></div>
 <p>Previously we analyzed and explored the dataset by using dplyr and ggplot. A lot of our analysis used the same code, just applied to different variables and aspects of the data.</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="writing-functions.html#cb454-1"></a><span class="co"># plot the gdp per capita for china over time</span></span>
-<span id="cb454-2"><a href="writing-functions.html#cb454-2"></a>china_gdp &lt;-<span class="st"> </span>gm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &#39;China&#39;</span>)</span>
-<span id="cb454-3"><a href="writing-functions.html#cb454-3"></a><span class="kw">ggplot</span>(china_gdp, <span class="kw">aes</span>(year, gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb454-4"><a href="writing-functions.html#cb454-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb454-5"><a href="writing-functions.html#cb454-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;GDP per capita&#39;</span>, <span class="dt">title =</span> <span class="st">&quot;China GDP per capita over time&quot;</span>)</span>
-<span id="cb454-6"><a href="writing-functions.html#cb454-6"></a></span>
-<span id="cb454-7"><a href="writing-functions.html#cb454-7"></a><span class="co"># now india </span></span>
-<span id="cb454-8"><a href="writing-functions.html#cb454-8"></a>india_gdp &lt;-<span class="st"> </span>gm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &#39;India&#39;</span>) </span>
-<span id="cb454-9"><a href="writing-functions.html#cb454-9"></a><span class="kw">ggplot</span>(india_gdp, <span class="kw">aes</span>(year, gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb454-10"><a href="writing-functions.html#cb454-10"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb454-11"><a href="writing-functions.html#cb454-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;GDP per capita&#39;</span>, <span class="dt">title =</span> <span class="st">&quot;India GDP per capita over time&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="writing-functions.html#cb467-1"></a><span class="co"># plot the gdp per capita for china over time</span></span>
+<span id="cb467-2"><a href="writing-functions.html#cb467-2"></a>china_gdp &lt;-<span class="st"> </span>gm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &#39;China&#39;</span>)</span>
+<span id="cb467-3"><a href="writing-functions.html#cb467-3"></a><span class="kw">ggplot</span>(china_gdp, <span class="kw">aes</span>(year, gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb467-4"><a href="writing-functions.html#cb467-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb467-5"><a href="writing-functions.html#cb467-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;GDP per capita&#39;</span>, <span class="dt">title =</span> <span class="st">&quot;China GDP per capita over time&quot;</span>)</span>
+<span id="cb467-6"><a href="writing-functions.html#cb467-6"></a></span>
+<span id="cb467-7"><a href="writing-functions.html#cb467-7"></a><span class="co"># now india </span></span>
+<span id="cb467-8"><a href="writing-functions.html#cb467-8"></a>india_gdp &lt;-<span class="st"> </span>gm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &#39;India&#39;</span>) </span>
+<span id="cb467-9"><a href="writing-functions.html#cb467-9"></a><span class="kw">ggplot</span>(india_gdp, <span class="kw">aes</span>(year, gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb467-10"><a href="writing-functions.html#cb467-10"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb467-11"><a href="writing-functions.html#cb467-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;GDP per capita&#39;</span>, <span class="dt">title =</span> <span class="st">&quot;India GDP per capita over time&quot;</span>)</span></code></pre></div>
 <p>If we want to do this for every country we will be reusing the same code over and over again. Lets write a function</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="writing-functions.html#cb455-1"></a>plot_gdp &lt;-<span class="st"> </span><span class="cf">function</span>(country_name){</span>
-<span id="cb455-2"><a href="writing-functions.html#cb455-2"></a>  plot_data &lt;-<span class="st"> </span>gm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> </span>country_name) </span>
-<span id="cb455-3"><a href="writing-functions.html#cb455-3"></a>  <span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(year, gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb455-4"><a href="writing-functions.html#cb455-4"></a><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb455-5"><a href="writing-functions.html#cb455-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;GDP per capita&#39;</span>, <span class="dt">title =</span> <span class="kw">paste0</span>(country_name, <span class="st">&#39; GDP per capita over time&#39;</span>))</span>
-<span id="cb455-6"><a href="writing-functions.html#cb455-6"></a>}</span>
-<span id="cb455-7"><a href="writing-functions.html#cb455-7"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;China&#39;</span>)</span>
-<span id="cb455-8"><a href="writing-functions.html#cb455-8"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;India&#39;</span>)</span>
-<span id="cb455-9"><a href="writing-functions.html#cb455-9"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;Angola&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="writing-functions.html#cb468-1"></a>plot_gdp &lt;-<span class="st"> </span><span class="cf">function</span>(country_name){</span>
+<span id="cb468-2"><a href="writing-functions.html#cb468-2"></a>  plot_data &lt;-<span class="st"> </span>gm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> </span>country_name) </span>
+<span id="cb468-3"><a href="writing-functions.html#cb468-3"></a>  <span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(year, gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb468-4"><a href="writing-functions.html#cb468-4"></a><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb468-5"><a href="writing-functions.html#cb468-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;GDP per capita&#39;</span>, <span class="dt">title =</span> <span class="kw">paste0</span>(country_name, <span class="st">&#39; GDP per capita over time&#39;</span>))</span>
+<span id="cb468-6"><a href="writing-functions.html#cb468-6"></a>}</span>
+<span id="cb468-7"><a href="writing-functions.html#cb468-7"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;China&#39;</span>)</span>
+<span id="cb468-8"><a href="writing-functions.html#cb468-8"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;India&#39;</span>)</span>
+<span id="cb468-9"><a href="writing-functions.html#cb468-9"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;Angola&#39;</span>)</span></code></pre></div>
 <p>Lets take it a step further and add a plotting variable</p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="writing-functions.html#cb456-1"></a>plot_gdp &lt;-<span class="st"> </span><span class="cf">function</span>(country_name, plot_var){</span>
-<span id="cb456-2"><a href="writing-functions.html#cb456-2"></a>  plot_data &lt;-<span class="st"> </span>gm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> </span>country_name) </span>
-<span id="cb456-3"><a href="writing-functions.html#cb456-3"></a>  <span class="kw">ggplot</span>(plot_data, <span class="kw">aes_string</span>(<span class="st">&#39;year&#39;</span>, plot_var)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb456-4"><a href="writing-functions.html#cb456-4"></a><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb456-5"><a href="writing-functions.html#cb456-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>, <span class="dt">y =</span> plot_var, <span class="dt">title =</span> <span class="kw">paste0</span>(country_name,<span class="st">&#39; &#39;</span>, plot_var ,<span class="st">&#39; over time&#39;</span>))</span>
-<span id="cb456-6"><a href="writing-functions.html#cb456-6"></a>}</span>
-<span id="cb456-7"><a href="writing-functions.html#cb456-7"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;China&#39;</span>, <span class="dt">plot_var =</span> <span class="st">&#39;pop&#39;</span>)</span>
-<span id="cb456-8"><a href="writing-functions.html#cb456-8"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;India&#39;</span>, <span class="dt">plot_var =</span> <span class="st">&#39;lifeExp&#39;</span>)</span>
-<span id="cb456-9"><a href="writing-functions.html#cb456-9"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;Angola&#39;</span>,<span class="dt">plot_var =</span> <span class="st">&#39;gdpPercap&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="writing-functions.html#cb469-1"></a>plot_gdp &lt;-<span class="st"> </span><span class="cf">function</span>(country_name, plot_var){</span>
+<span id="cb469-2"><a href="writing-functions.html#cb469-2"></a>  plot_data &lt;-<span class="st"> </span>gm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> </span>country_name) </span>
+<span id="cb469-3"><a href="writing-functions.html#cb469-3"></a>  <span class="kw">ggplot</span>(plot_data, <span class="kw">aes_string</span>(<span class="st">&#39;year&#39;</span>, plot_var)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb469-4"><a href="writing-functions.html#cb469-4"></a><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb469-5"><a href="writing-functions.html#cb469-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>, <span class="dt">y =</span> plot_var, <span class="dt">title =</span> <span class="kw">paste0</span>(country_name,<span class="st">&#39; &#39;</span>, plot_var ,<span class="st">&#39; over time&#39;</span>))</span>
+<span id="cb469-6"><a href="writing-functions.html#cb469-6"></a>}</span>
+<span id="cb469-7"><a href="writing-functions.html#cb469-7"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;China&#39;</span>, <span class="dt">plot_var =</span> <span class="st">&#39;pop&#39;</span>)</span>
+<span id="cb469-8"><a href="writing-functions.html#cb469-8"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;India&#39;</span>, <span class="dt">plot_var =</span> <span class="st">&#39;lifeExp&#39;</span>)</span>
+<span id="cb469-9"><a href="writing-functions.html#cb469-9"></a><span class="kw">plot_gdp</span>(<span class="dt">country_name =</span> <span class="st">&#39;Angola&#39;</span>,<span class="dt">plot_var =</span> <span class="st">&#39;gdpPercap&#39;</span>)</span></code></pre></div>
 </div>
 <div id="exercise-3" class="section level2 unnumbered">
 <h2>Exercise</h2>
@@ -599,7 +599,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Now remove the code defining <code>plot_my_lm()</code> from your module <code>R</code> script.</p></li>
 <li><p>In its place, type this command:</p></li>
 </ol>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="writing-functions.html#cb457-1"></a><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="writing-functions.html#cb470-1"></a><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)</span></code></pre></div>
 <p>This command tells <code>R</code> to run the code in <code>functions.R</code> and store the objects and outputs from it in its active memory. You can now call <code>plot_my_lm()</code> from your module script.</p>
 <div id="exercise-4" class="section level3 unnumbered">
 <h3>Exercise</h3>

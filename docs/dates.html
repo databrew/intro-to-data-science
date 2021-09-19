@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-09-12" />
+<meta name="date" content="2021-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -306,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="38" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>38</b> Working with text</a><ul>
-<li class="chapter" data-level="" data-path="text.html"><a href="text.html#basics"><i class="fa fa-check"></i>Basics</a></li>
+<li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
 <li class="chapter" data-level="39" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>39</b> Working with dates &amp; times</a><ul>
 <li><a href="dates.html#the-lubridate-package">The <code>lubridate()</code> package</a></li>
@@ -320,7 +320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
 <li class="chapter" data-level="41" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>41</b> <code>for</code> loops</a><ul>
-<li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics-1"><i class="fa fa-check"></i>Basics</a></li>
+<li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li><a href="for-loops.html#for-loop-exercises"><code>for</code> loop exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="42" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>42</b> Conditional statements</a><ul>
@@ -364,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="dates" class="section level1">
 <h1><span class="header-section-number">Module 39</span> Working with dates &amp; times</h1>
-<div id="learning-goals-23" class="section level4 unnumbered">
+<div id="learning-goals-22" class="section level4 unnumbered">
 <h4>Learning goals</h4>
 <ul>
 <li>Be able to read dates, and convert objects to dates</li>
@@ -374,6 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p> </p>
 <p>Hadley Wickham’s <a href="https://r4ds.had.co.nz/dates-and-times.html">tutorial on dates</a> starts with 3 simple questions:</p>
+<blockquote>
 <ul>
 <li>Does every year have 365 days?</li>
 <li>Does every day have 24 hours?</li>
@@ -383,99 +384,225 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You might have remembered that many parts of the world use daylight savings time (DST), so that some days have 23 hours, and others have 25.</p>
 <p>You might not have known that some minutes have 61 seconds because every now and then leap seconds are added because the Earth’s rotation is gradually slowing down.</p>
 <p>Dates and times are hard because they have to reconcile two physical phenomena (the rotation of the Earth and its orbit around the sun) with a whole raft of geopolitical phenomena including months, time zones, and DST.</p>
-<p>This lesson won’t teach you every last detail about dates and times, but it will give you a solid grounding of practical skills that will help you with common data analysis challenges."</p>
+<p>This chapter won’t teach you every last detail about dates and times, but it will give you a solid grounding of practical skills that will help you with common data analysis challenges."</p>
+</blockquote>
 </div>
 <div id="the-lubridate-package" class="section level2 unnumbered">
 <h2>The <code>lubridate()</code> package</h2>
 <p>First, install the <code>lubridate</code> package.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="dates.html#cb414-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;lubridate&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="dates.html#cb415-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="dates.html#cb415-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;lubridate&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="dates.html#cb416-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
 <div id="getting-familiar-with-the-date-type" class="section level3 unnumbered">
 <h3>Getting familiar with the <code>date</code> type</h3>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="dates.html#cb416-1"></a>today &lt;-<span class="st"> </span><span class="kw">today</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="dates.html#cb417-1"></a><span class="kw">str</span>(today)</span>
-<span id="cb417-2"><a href="dates.html#cb417-2"></a> Date[<span class="dv">1</span><span class="op">:</span><span class="dv">1</span>], format<span class="op">:</span><span class="st"> &quot;2021-09-12&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="dates.html#cb418-1"></a>my_birthday &lt;-<span class="st"> &#39;1985-11-07&#39;</span></span>
-<span id="cb418-2"><a href="dates.html#cb418-2"></a><span class="kw">str</span>(my_birthday)</span>
-<span id="cb418-3"><a href="dates.html#cb418-3"></a> chr <span class="st">&quot;1985-11-07&quot;</span></span></code></pre></div>
+<p>Get today’s date:</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="dates.html#cb417-1"></a>today &lt;-<span class="st"> </span><span class="kw">today</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="dates.html#cb418-1"></a><span class="kw">str</span>(today)</span>
+<span id="cb418-2"><a href="dates.html#cb418-2"></a> Date[<span class="dv">1</span><span class="op">:</span><span class="dv">1</span>], format<span class="op">:</span><span class="st"> &quot;2021-09-19&quot;</span></span></code></pre></div>
+<p>This looks like a simple character string, but it is not. There are all sorts of date-time calculations in the background.</p>
+<p>To demonstrate this, let’s bring in a simple string:</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="dates.html#cb419-1"></a>my_birthday &lt;-<span class="st"> &#39;1985-11-07&#39;</span></span>
+<span id="cb419-2"><a href="dates.html#cb419-2"></a><span class="kw">str</span>(my_birthday)</span>
+<span id="cb419-3"><a href="dates.html#cb419-3"></a> chr <span class="st">&quot;1985-11-07&quot;</span></span></code></pre></div>
 <p>Note that class type impacts what you can do with text. The following causes an error…</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="dates.html#cb419-1"></a>today <span class="op">-</span><span class="st"> </span>my_birthday</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="dates.html#cb420-1"></a>today <span class="op">-</span><span class="st"> </span>my_birthday</span></code></pre></div>
 <p>… but this does not:</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="dates.html#cb420-1"></a>my_birthday &lt;-<span class="st"> </span><span class="kw">as_date</span>(my_birthday)</span>
-<span id="cb420-2"><a href="dates.html#cb420-2"></a>today <span class="op">-</span><span class="st"> </span>my_birthday</span>
-<span id="cb420-3"><a href="dates.html#cb420-3"></a>Time difference of <span class="dv">13093</span> days</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="dates.html#cb421-1"></a>my_birthday &lt;-<span class="st"> </span><span class="kw">as_date</span>(my_birthday)</span>
+<span id="cb421-2"><a href="dates.html#cb421-2"></a>today <span class="op">-</span><span class="st"> </span>my_birthday</span>
+<span id="cb421-3"><a href="dates.html#cb421-3"></a>Time difference of <span class="dv">13100</span> days</span></code></pre></div>
 </div>
-<div id="the-datetime-data-class" class="section level3 unnumbered">
-<h3>The <code>datetime</code> data class</h3>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="dates.html#cb421-1"></a>n &lt;-<span class="st"> </span><span class="kw">now</span>() </span>
-<span id="cb421-2"><a href="dates.html#cb421-2"></a>n</span>
-<span id="cb421-3"><a href="dates.html#cb421-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-12 19:48:43 CDT&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="dates.html#cb422-1"></a>n <span class="op">+</span><span class="st"> </span><span class="kw">seconds</span>(<span class="dv">1</span>)</span>
-<span id="cb422-2"><a href="dates.html#cb422-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-12 19:48:44 CDT&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="dates.html#cb423-1"></a>n <span class="op">-</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">5</span>)</span>
-<span id="cb423-2"><a href="dates.html#cb423-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-12 14:48:43 CDT&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="dates.html#cb424-1"></a><span class="kw">hour</span>(n)</span>
-<span id="cb424-2"><a href="dates.html#cb424-2"></a>[<span class="dv">1</span>] <span class="dv">19</span></span></code></pre></div>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="dates.html#cb425-1"></a><span class="kw">minute</span>(n)</span>
-<span id="cb425-2"><a href="dates.html#cb425-2"></a>[<span class="dv">1</span>] <span class="dv">48</span></span></code></pre></div>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="dates.html#cb426-1"></a><span class="kw">as_date</span>(n)</span>
-<span id="cb426-2"><a href="dates.html#cb426-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-12&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="dates.html#cb427-1"></a>later &lt;-<span class="st"> </span><span class="kw">now</span>()</span>
-<span id="cb427-2"><a href="dates.html#cb427-2"></a>later</span>
-<span id="cb427-3"><a href="dates.html#cb427-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-12 19:48:43 CDT&quot;</span></span></code></pre></div>
+<div id="the-datetime-class" class="section level3 unnumbered">
+<h3>The <code>datetime</code> class</h3>
+<p>When you are working with a <code>datetime</code> object, you can add and subtract time to it.</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="dates.html#cb422-1"></a>n &lt;-<span class="st"> </span><span class="kw">now</span>() </span>
+<span id="cb422-2"><a href="dates.html#cb422-2"></a>n</span>
+<span id="cb422-3"><a href="dates.html#cb422-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 10:17:49 CDT&quot;</span></span></code></pre></div>
+<p>Add or substract seconds:</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="dates.html#cb423-1"></a>n <span class="op">+</span><span class="st"> </span><span class="kw">seconds</span>(<span class="dv">1</span>)</span>
+<span id="cb423-2"><a href="dates.html#cb423-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 10:17:50 CDT&quot;</span></span></code></pre></div>
+<p>Add or subtract hours:</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="dates.html#cb424-1"></a>n <span class="op">-</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">5</span>)</span>
+<span id="cb424-2"><a href="dates.html#cb424-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 05:17:49 CDT&quot;</span></span></code></pre></div>
+<p>Simplify to just the date:</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="dates.html#cb425-1"></a><span class="kw">as_date</span>(n)</span>
+<span id="cb425-2"><a href="dates.html#cb425-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19&quot;</span></span></code></pre></div>
+<p>See how time flies:</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="dates.html#cb426-1"></a>later &lt;-<span class="st"> </span><span class="kw">now</span>()</span>
+<span id="cb426-2"><a href="dates.html#cb426-2"></a>later</span>
+<span id="cb426-3"><a href="dates.html#cb426-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 10:17:49 CDT&quot;</span></span></code></pre></div>
 </div>
 </div>
 <div id="common-tasks" class="section level2 unnumbered">
 <h2>Common tasks</h2>
 <div id="converting-to-dates-from-strings" class="section level3 unnumbered">
 <h3>Converting to dates from strings</h3>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="dates.html#cb428-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2017-01-31&quot;</span>)</span>
+<p>The <code>lubridate</code> package was built to handle dates of various input formats. The following functions convert a character with a particular format into a standard <code>datetime</code> object:</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="dates.html#cb427-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2017-01-31&quot;</span>)</span>
+<span id="cb427-2"><a href="dates.html#cb427-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
+<p>This also works if the single-digits dates are not padded with a <code>0</code>:</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="dates.html#cb428-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2017-1-31&quot;</span>)</span>
 <span id="cb428-2"><a href="dates.html#cb428-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="dates.html#cb429-1"></a><span class="kw">mdy</span>(<span class="st">&quot;January 31st, 2017&quot;</span>)</span>
+<p>Other formats can also be handled:</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="dates.html#cb429-1"></a><span class="kw">ydm</span>(<span class="st">&quot;2017-31-01&quot;</span>)</span>
 <span id="cb429-2"><a href="dates.html#cb429-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="dates.html#cb430-1"></a><span class="kw">dmy</span>(<span class="st">&quot;31-Jan-2017&quot;</span>)</span>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="dates.html#cb430-1"></a><span class="kw">mdy</span>(<span class="st">&quot;January 31st, 2017&quot;</span>)</span>
 <span id="cb430-2"><a href="dates.html#cb430-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
-<p>What does the <code>tzone</code> argument to <code>today()</code> do? Why is it important?</p>
-<p>Use the appropriate lubridate function to parse each of the following dates:</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="dates.html#cb431-1"></a>d1 &lt;-<span class="st"> &quot;January 1, 2010&quot;</span></span>
-<span id="cb431-2"><a href="dates.html#cb431-2"></a>d2 &lt;-<span class="st"> &quot;2015-Mar-07&quot;</span></span>
-<span id="cb431-3"><a href="dates.html#cb431-3"></a>d3 &lt;-<span class="st"> &quot;06-Jun-2017&quot;</span></span>
-<span id="cb431-4"><a href="dates.html#cb431-4"></a>d4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;August 19 (2015)&quot;</span>, <span class="st">&quot;July 1 (2015)&quot;</span>)</span>
-<span id="cb431-5"><a href="dates.html#cb431-5"></a>d5 &lt;-<span class="st"> &quot;12/30/14&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="dates.html#cb431-1"></a><span class="kw">dmy</span>(<span class="st">&quot;31-Jan-2017&quot;</span>)</span>
+<span id="cb431-2"><a href="dates.html#cb431-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
 </div>
 <div id="extracting-components-from-dates" class="section level3 unnumbered">
 <h3>Extracting components from dates</h3>
+<p>Let’s practice extracting information from the following <code>datetime</code> object:</p>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="dates.html#cb432-1"></a>datetime &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2016-07-08 12:34:56&quot;</span>)</span>
 <span id="cb432-2"><a href="dates.html#cb432-2"></a><span class="kw">year</span>(datetime)</span>
 <span id="cb432-3"><a href="dates.html#cb432-3"></a>[<span class="dv">1</span>] <span class="dv">2016</span></span></code></pre></div>
+<p>Get the month:</p>
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="dates.html#cb433-1"></a><span class="kw">month</span>(datetime)</span>
 <span id="cb433-2"><a href="dates.html#cb433-2"></a>[<span class="dv">1</span>] <span class="dv">7</span></span></code></pre></div>
+<p>Get the day of month:</p>
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="dates.html#cb434-1"></a><span class="kw">mday</span>(datetime)</span>
 <span id="cb434-2"><a href="dates.html#cb434-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
+<p>Get the day of year:</p>
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="dates.html#cb435-1"></a><span class="kw">yday</span>(datetime)</span>
 <span id="cb435-2"><a href="dates.html#cb435-2"></a>[<span class="dv">1</span>] <span class="dv">190</span></span></code></pre></div>
+<p>Get the day of week:</p>
 <div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="dates.html#cb436-1"></a><span class="kw">wday</span>(datetime)</span>
 <span id="cb436-2"><a href="dates.html#cb436-2"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code></pre></div>
+<p>Get the name of the day of week:</p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="dates.html#cb437-1"></a><span class="kw">weekdays</span>(datetime)</span>
 <span id="cb437-2"><a href="dates.html#cb437-2"></a>[<span class="dv">1</span>] <span class="st">&quot;Friday&quot;</span></span></code></pre></div>
+<p>Get the hour of the day:</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="dates.html#cb438-1"></a><span class="kw">hour</span>(datetime)</span>
+<span id="cb438-2"><a href="dates.html#cb438-2"></a>[<span class="dv">1</span>] <span class="dv">12</span></span></code></pre></div>
+<p>Get the minute of the hour:</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="dates.html#cb439-1"></a><span class="kw">minute</span>(datetime)</span>
+<span id="cb439-2"><a href="dates.html#cb439-2"></a>[<span class="dv">1</span>] <span class="dv">34</span></span></code></pre></div>
+<p>Get the seconds of the minute:</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="dates.html#cb440-1"></a><span class="kw">second</span>(datetime)</span>
+<span id="cb440-2"><a href="dates.html#cb440-2"></a>[<span class="dv">1</span>] <span class="dv">56</span></span></code></pre></div>
 </div>
-<div id="exercises-15" class="section level3">
-<h3><span class="header-section-number">39.0.1</span> Exercises</h3>
-<div id="childs-cough-data" class="section level4 unnumbered">
-<h4>Child’s cough data</h4>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="dates.html#cb438-1"></a>coughs &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/coughs.csv&#39;</span>)</span></code></pre></div>
-<ol style="list-style-type: decimal">
-<li><p>Create a <code>dow</code> (day of week) column.</p></li>
-<li><p>Create a <code>date</code> (without time) column.</p></li>
-<li><p>How many coughs happened each day?</p></li>
-<li><p>Create a chart of coughs by day.</p></li>
-<li><p>Look up <code>floor_date</code>. Use it to get the number of coughs by date-hour.</p></li>
-<li><p>Create an <code>hour</code> variable.</p></li>
-<li><p>Use the <code>hour</code> variable to create a <code>night_day</code> column indicating whether the cough was occurring at night or day.</p></li>
-<li><p>Does this child cough more at night or day?</p></li>
-</ol>
+<div id="dealing-with-time-zones" class="section level3 unnumbered">
+<h3>Dealing with time zones</h3>
+<p>When working with dates and times in <code>R</code>, time zones can be a major pain, but the <code>lubridate</code> package tries to make this simpler.</p>
+<p>Adjust timezones for dates:</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="dates.html#cb441-1"></a><span class="co"># Today&#39;s date where I am</span></span>
+<span id="cb441-2"><a href="dates.html#cb441-2"></a><span class="kw">today</span>()</span>
+<span id="cb441-3"><a href="dates.html#cb441-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19&quot;</span></span>
+<span id="cb441-4"><a href="dates.html#cb441-4"></a></span>
+<span id="cb441-5"><a href="dates.html#cb441-5"></a><span class="co"># Today&#39;s date in New Zealand</span></span>
+<span id="cb441-6"><a href="dates.html#cb441-6"></a><span class="kw">today</span>(<span class="dt">tzone=</span><span class="st">&#39;NZ&#39;</span>)</span>
+<span id="cb441-7"><a href="dates.html#cb441-7"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-20&quot;</span></span></code></pre></div>
+<p>Adjust time zones for date-times:</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="dates.html#cb442-1"></a><span class="co"># Time where I am</span></span>
+<span id="cb442-2"><a href="dates.html#cb442-2"></a><span class="kw">now</span>()</span>
+<span id="cb442-3"><a href="dates.html#cb442-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 10:17:49 CDT&quot;</span></span>
+<span id="cb442-4"><a href="dates.html#cb442-4"></a></span>
+<span id="cb442-5"><a href="dates.html#cb442-5"></a><span class="co"># Time in UTC / GMT (which are synonymous)</span></span>
+<span id="cb442-6"><a href="dates.html#cb442-6"></a><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>)</span>
+<span id="cb442-7"><a href="dates.html#cb442-7"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 UTC&quot;</span></span>
+<span id="cb442-8"><a href="dates.html#cb442-8"></a></span>
+<span id="cb442-9"><a href="dates.html#cb442-9"></a><span class="kw">now</span>(<span class="st">&#39;GMT&#39;</span>)</span>
+<span id="cb442-10"><a href="dates.html#cb442-10"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 GMT&quot;</span></span></code></pre></div>
+<p>Don’t know what time zone your computer is working in? Use this function:</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="dates.html#cb443-1"></a><span class="kw">Sys.timezone</span>()</span></code></pre></div>
+<pre><code>[1] &quot;America/Chicago&quot;</code></pre>
+<p>To get a list of time zones accepted in <code>R</code>, use the function <code>OlsonNames()</code> (there are about 500 options):</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="dates.html#cb445-1"></a><span class="kw">OlsonNames</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">50</span>)</span></code></pre></div>
+<pre><code> [1] &quot;Africa/Abidjan&quot;       &quot;Africa/Accra&quot;         &quot;Africa/Addis_Ababa&quot;  
+ [4] &quot;Africa/Algiers&quot;       &quot;Africa/Asmara&quot;        &quot;Africa/Asmera&quot;       
+ [7] &quot;Africa/Bamako&quot;        &quot;Africa/Bangui&quot;        &quot;Africa/Banjul&quot;       
+[10] &quot;Africa/Bissau&quot;        &quot;Africa/Blantyre&quot;      &quot;Africa/Brazzaville&quot;  
+[13] &quot;Africa/Bujumbura&quot;     &quot;Africa/Cairo&quot;         &quot;Africa/Casablanca&quot;   
+[16] &quot;Africa/Ceuta&quot;         &quot;Africa/Conakry&quot;       &quot;Africa/Dakar&quot;        
+[19] &quot;Africa/Dar_es_Salaam&quot; &quot;Africa/Djibouti&quot;      &quot;Africa/Douala&quot;       
+[22] &quot;Africa/El_Aaiun&quot;      &quot;Africa/Freetown&quot;      &quot;Africa/Gaborone&quot;     
+[25] &quot;Africa/Harare&quot;        &quot;Africa/Johannesburg&quot;  &quot;Africa/Juba&quot;         
+[28] &quot;Africa/Kampala&quot;       &quot;Africa/Khartoum&quot;      &quot;Africa/Kigali&quot;       
+[31] &quot;Africa/Kinshasa&quot;      &quot;Africa/Lagos&quot;         &quot;Africa/Libreville&quot;   
+[34] &quot;Africa/Lome&quot;          &quot;Africa/Luanda&quot;        &quot;Africa/Lubumbashi&quot;   
+[37] &quot;Africa/Lusaka&quot;        &quot;Africa/Malabo&quot;        &quot;Africa/Maputo&quot;       
+[40] &quot;Africa/Maseru&quot;        &quot;Africa/Mbabane&quot;       &quot;Africa/Mogadishu&quot;    
+[43] &quot;Africa/Monrovia&quot;      &quot;Africa/Nairobi&quot;       &quot;Africa/Ndjamena&quot;     
+[46] &quot;Africa/Niamey&quot;        &quot;Africa/Nouakchott&quot;    &quot;Africa/Ouagadougou&quot;  
+[49] &quot;Africa/Porto-Novo&quot;    &quot;Africa/Sao_Tome&quot;     </code></pre>
+<p>At some point you may have reason to force the timezone of a <code>datetime</code> object to change without actually changing the date or time. To do so, use the function <code>force_tz()</code>:</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="dates.html#cb447-1"></a><span class="co"># Get current time in UTC/GMT</span></span>
+<span id="cb447-2"><a href="dates.html#cb447-2"></a>n &lt;-<span class="st"> </span><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>)</span>
+<span id="cb447-3"><a href="dates.html#cb447-3"></a>n</span>
+<span id="cb447-4"><a href="dates.html#cb447-4"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 UTC&quot;</span></span>
+<span id="cb447-5"><a href="dates.html#cb447-5"></a></span>
+<span id="cb447-6"><a href="dates.html#cb447-6"></a><span class="co"># Change timezone to Central Standard Time without changing time: </span></span>
+<span id="cb447-7"><a href="dates.html#cb447-7"></a><span class="kw">force_tz</span>(n,<span class="dt">tzone=</span><span class="st">&#39;America/Chicago&#39;</span>)</span>
+<span id="cb447-8"><a href="dates.html#cb447-8"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 CDT&quot;</span></span></code></pre></div>
+</div>
+<div id="using-timestamps-instead" class="section level3 unnumbered">
+<h3>Using timestamps instead</h3>
+<p>One way to avoid timezone issues is to convert a <code>datetime</code> object to a numeric timestamp.</p>
+<p>Timesetamps record the number of seconds that have passed since midnight GMT on January 1, 1970. It doesn’t matter which timezone you are standing in; the seconds that have passed since that moment will be the same:</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="dates.html#cb448-1"></a><span class="co"># Time where I am</span></span>
+<span id="cb448-2"><a href="dates.html#cb448-2"></a><span class="kw">now</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</span>
+<span id="cb448-3"><a href="dates.html#cb448-3"></a>[<span class="dv">1</span>] <span class="dv">1632064669</span></span>
+<span id="cb448-4"><a href="dates.html#cb448-4"></a></span>
+<span id="cb448-5"><a href="dates.html#cb448-5"></a><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</span>
+<span id="cb448-6"><a href="dates.html#cb448-6"></a>[<span class="dv">1</span>] <span class="dv">1632064669</span></span></code></pre></div>
+<p>Timestamps can simplify things when you are doing a lot of adding and substracting with time. Timestamps are just seconds; they are just numbers. So they are much less of a black box than <code>datetime</code> objects.</p>
+<p>You can always convert from a timestamp back into a <code>datetime</code> object:</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="dates.html#cb449-1"></a><span class="co"># Convert to timestamp</span></span>
+<span id="cb449-2"><a href="dates.html#cb449-2"></a>ts &lt;-<span class="st"> </span><span class="kw">now</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</span>
+<span id="cb449-3"><a href="dates.html#cb449-3"></a>ts</span>
+<span id="cb449-4"><a href="dates.html#cb449-4"></a>[<span class="dv">1</span>] <span class="dv">1632064669</span></span>
+<span id="cb449-5"><a href="dates.html#cb449-5"></a></span>
+<span id="cb449-6"><a href="dates.html#cb449-6"></a><span class="co"># Convert back to datetime object</span></span>
+<span id="cb449-7"><a href="dates.html#cb449-7"></a>ts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_datetime</span>()</span>
+<span id="cb449-8"><a href="dates.html#cb449-8"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 UTC&quot;</span></span></code></pre></div>
+</div>
+<div id="exercises-15" class="section level3 unnumbered">
+<h3>Exercises</h3>
+<p><strong>Creating <code>datetime</code> objects</strong></p>
+<p>Use the appropriate <code>lubridate</code> function to parse each of the following dates:</p>
+<p><strong>1.</strong> <code>January 1, 2010</code></p>
+<p><strong>2.</strong> <code>2015-Mar-07</code></p>
+<p><strong>3.</strong> <code>06-Jun-2017</code></p>
+<p><strong>4.</strong> <code>c('August 19 (2015)', 'July 1 (2015)')</code></p>
+<p><strong>5.</strong> <code>12/30/14</code></p>
+<p> </p>
+<p><strong>Extracting <code>datetime</code> components</strong></p>
+<p>Work with this vector of dates:</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="dates.html#cb450-1"></a>dt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;2000-01-04 03:43:01&#39;</span>,</span>
+<span id="cb450-2"><a href="dates.html#cb450-2"></a>        <span class="st">&#39;2007-09-29 12:18:59&#39;</span>,</span>
+<span id="cb450-3"><a href="dates.html#cb450-3"></a>        <span class="st">&#39;2011-04-16 19:51:16&#39;</span>,</span>
+<span id="cb450-4"><a href="dates.html#cb450-4"></a>        <span class="st">&#39;2015-12-13 21:24:48&#39;</span>,</span>
+<span id="cb450-5"><a href="dates.html#cb450-5"></a>        <span class="st">&#39;2020-06-01 06:39:02&#39;</span>)</span></code></pre></div>
+<p><strong>6.</strong> Create a dataframe that has the following columns:</p>
+<ul>
+<li><code>raw</code> (containing the original string)<br />
+</li>
+<li><code>year</code></li>
+<li><code>month</code></li>
+<li><code>dom</code> (day of month)</li>
+<li><code>doy</code> (day of year)</li>
+<li><code>hour</code></li>
+<li><code>minutes</code></li>
+<li><code>seconds</code></li>
+</ul>
+<p><strong>7.</strong> Now add two more variables:</p>
+<ul>
+<li><code>timestamp</code><br />
+</li>
+<li><code>diff</code> (the difference, in days, between this time and midnight GMT on January 1, 1970)</li>
+</ul>
+<p> </p>
+<p><strong>Record of a child’s cough</strong></p>
+<p>First, download the data:</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="dates.html#cb451-1"></a>coughs &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/coughs.csv&#39;</span>)</span></code></pre></div>
+<p><strong>8.</strong> Create a <code>dow</code> (day of week) column.</p>
+<p><strong>9.</strong> Create a <code>date</code> (without time) column.</p>
+<p><strong>10.</strong> How many coughs happened each day?</p>
+<p><strong>11.</strong> Create a chart of coughs by day.</p>
+<p><strong>11.</strong> Look up <code>floor_date</code>. Use it to get the number of coughs by date-hour.</p>
+<p><strong>12.</strong> Create an <code>hour</code> variable.</p>
+<p><strong>13.</strong> Use the <code>hour</code> variable to create a <code>night_day</code> column indicating whether the cough was occurring at night or day.</p>
+<p><strong>14.</strong> Does this child cough more at night or day?</p>
 
-</div>
 </div>
 </div>
 </div>
