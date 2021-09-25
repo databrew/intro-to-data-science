@@ -176,82 +176,111 @@ Think about how many lines of code would have been needed to write out all of th
 
 Another major advantage of this approach comes into play when you decide you want to tweak the formatting of your plot. Rather than going through each `plot(...)` command and modifying the inputs in each one, when you write a custom plotting function you just have to make those changes once. Again, using a custom function saves you time and removes the possibility of inconsistencies or mistakes in the plots you are creating. 
 
-### Exercise 2 {-}
+### Exercises {-}
 
 Modify the most recent version of `plot_my_lm` above such that you can specify the color for the plotted line as an input in the function. Then reproduce the multi-paned plot using a different color in each plot. (Here is a good reference for [color options in R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)).
 
-#### Exercises with names data {-}
+
+## Sourcing functions  {-}
+
+As you advance in your coding, you will likely be writing multiple custom functions within a single `R` script. It is usually useful to group these functions into the same section of code near the top of your script. 
+
+But for even *better* script organization and simplification, you should *source* your functions from a separate `R` script. This means placing your function code in a separate `R` script and calling that file from the script in which you are carrying out your analyses. In addition to simplifying your analysis script, keeping your functions in a separate file allows them to be shared or sourced from any number of other scripts, which further organizes and simplifies your project's code and increases the reproducibility of your work.
+
+Here is how sourcing functions can work:  
+
+1. Open a new `R` script. Save it as `functions.R` and save it in the same working directory as the script you are using to work through this module. 
+
+2. Copy and paste the `plot_my_lm()` function into your `functions.R` script. Save that script to ensure your code is safe.
+
+3. Now remove the code defining `plot_my_lm()` from your module `R` script. 
+
+4. In its place, type this command:
+
+```{r,echo=TRUE,eval=FALSE}
+source("functions.R")
+```
+
+This command tells `R` to run the code in `functions.R` and store the objects and outputs from it in its active memory. You can now call `plot_my_lm()` from your module script.  
+
+
+### Review exercises  {-}
+
+Carry out the above instructions to ensure that you know how to source a function from a separate `R` script.
+
+
+#### Exercises with baby names {-}
 
 ![](img/baby_names.png)
 
 In this exercise, you will investigate annual trends in the prevalence of six names for babies born in the United States.  
 
-**Step 1.** Decide upon five names of interest to you, in addition to your own. Create a vector of these six names.  
+**1.** Decide upon five names of interest to you, in addition to your own. Create a vector of these six names.  
 
-**Step 2.** Install and load the package `babynames`, which includes the names of each child born in the United States from 1880 to 2017, according to the Social Security Administration.    
+**2.** Install and load the package `babynames`, which includes the names of each child born in the United States from 1880 to 2017, according to the Social Security Administration.    
 
-**Step 3.** Make an object named `bn` like this: `bn <- babynames::babynames`.
+**3.** Make an object named `bn` like this: `bn <- babynames::babynames`.
+
+**4.** Write a function that takes any name and plots its proportional prevalence from 1880 to 2017. Format the plot beautifully. Provide the name as the title of the plot.  
 
 
-**Step 4.** Write a function that takes any name and plots its proportional prevalence from 1880 to 2017. Format the plot beautifully. Provide the name as the title of the plot.  
+**5.** Modify your function so that it takes multiple names (instead of just one) and generates a multi-pane plot, one for each of the names passed to the function. Then, test that function on the object you created in number one.  
 
+**6.** Create a function called `first_letter`. This should take any vector as an argument and return the first letter only. You will need to use the `substr` function.
 
-**Step 5.** Modify your function so that it takes multiple names (instead of just one) and generates a multi-pane plot, one for each of the names passed to the function. Then, test that function on the object you created in number one.  
+**7.** Use your `first_letter` function to make a new variable in the babynames dataset called `fl`. This should be the first letter of all names.
 
-**Step 6.** Create a function called `first_letter`. This should take any vector as an argument and return the first letter only. You will need to use the `substr` function.
+**8.** What was the most popular first letter of boys names in 1900?
 
-**Step 7.** Use your `first_letter` function to make a new variable in the babynames dataset called `fl`. This should be the first letter of all names.
+**9.** What was the least popular first letter of girls names in 2017?
 
-**Step 8.** What was the most popular first letter of boys names in 1900?
+**10.** Make a function called `letter_plot`. This should take two arguments, `letter` and `m_or_f`, and then create a plot showing the popularity of that letter for the letter/sex combination inputted over time.
 
-**Step 9.** What was the least popular first letter of girls names in 2017?
+**11.** Make a function called `letter_compare`. This should take two  arguments: `y` (the year) and `gender` (sex). This should make a plot of the popularity of each letter being used as the first letter for a name, for the sex in question, for the year provided.
 
-**Step 10.** Make a function called `letter_plot`. This should take two arguments, `letter` and `m_or_f`, and then create a plot showing the popularity of that letter for the letter/sex combination inputted over time.
-
-**Step 11.** Make a function called `letter_compare`. This should take two  arguments: `y` (the year) and `gender` (sex). This should make a plot of the popularity of each letter being used as the first letter for a name, for the sex in question, for the year provided.
 
 #### Exercises  with trees data {-}
 
-1. Define an object named `trees` using the built-in `trees` dataset: `trees <- trees` (weird, right?)
+**12.** Define an object named `trees` using the built-in `trees` dataset: `trees <- trees` (weird, right?)
 
-2. How many rows are there?
+**13.** How many rows are there?
 
-3. How many columns are there?
+**14.** How many columns are there?
 
-4. "Girth" is the same thing as "circumference". Make a function named `girth_to_diameter`. It should do exactly what it says.
+**15.** "Girth" is the same thing as "circumference". Make a function named `girth_to_diameter`. It should do exactly what it says.
 
-5. Create a new variable called `diameter`. Use your new function to populate it.
+**16.** Create a new variable called `diameter`. Use your new function to populate it.
 
-6. Create a scatterplot showing the association between `diameter` and `Volume`.
+**17.** Create a scatterplot showing the association between `diameter` and `Volume`.
 
-7. Create a histogram of `Height`.
+**18.** Create a histogram of `Height`.
 
-8. Create a function named `diameter_to_area`. It should do what it says it does. Create a new variable named `area` using this function. This should be the area of a cross-sectional cut of the tree.
+**19.** Create a function named `diameter_to_area`. It should do what it says it does. Create a new variable named `area` using this function. This should be the area of a cross-sectional cut of the tree.
 
-9. Create a dataset named `oranges` by reading in the built-in `Orange` dataset like this: `oranges <- Orange`.
+**20.** Create a dataset named `oranges` by reading in the built-in `Orange` dataset like this: `oranges <- Orange`.
 
-10. Create a plot showing circumference as a function of age, faceted by tree number.
+**21.** Create a plot showing circumference as a function of age, faceted by tree number.
 
-11. Create a function called `plot_tree`. This should take only one argument, `tree_number`, and generate a plot of that tree's growth over time.
+**22.** Create a function called `plot_tree`. This should take only one argument, `tree_number`, and generate a plot of that tree's growth over time.
 
-12. Create a function called `circumference_to_radius`. It should do what it says. Use it to create a new variable in the `oranges` data named `radius`.
+**23.** Create a function called `circumference_to_radius`. It should do what it says. Use it to create a new variable in the `oranges` data named `radius`.
 
-13. Create a function called `double_it`. It should double it. Use it to create a variable named `diameter`.
+**24.** Create a function called `double_it`. It should double it. Use it to create a variable named `diameter`.
 
-14. Assume that the measurements of the trees are in inches, and that the age of the trees is in days. Create (a) a function for converting inches to centimeters and (b) a function for converting days to weeks. Create new variables in the data, using these functions, named `circumference_cm` and `age_weeks`.
+**25.** Assume that the measurements of the trees are in inches, and that the age of the trees is in days. Create (a) a function for converting inches to centimeters and (b) a function for converting days to weeks. Create new variables in the data, using these functions, named `circumference_cm` and `age_weeks`.
 
-15. Plot the association between age in weeks and circumference in centimeters. Facet by tree number.
+**26.** Plot the association between age in weeks and circumference in centimeters. Facet by tree number.
 
-16. Do trees get bigger as they get older?
+**27.** Do trees get bigger as they get older?
 
-## Using dplyr and ggplot in custom functions
+
+#### Exercises with `dplyr` and `ggplot` {-} 
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
 library(gapminder)
 library(dplyr)
 library(ggplot2)
 gm <- gapminder
-
 ```
 
 Previously we analyzed and explored the dataset by using dplyr and ggplot. A lot of our analysis used the same code, just applied to different variables and aspects of the data. 
@@ -285,7 +314,6 @@ plot_gdp(country_name = 'India')
 plot_gdp(country_name = 'Angola')
 ```
 
-
 Lets take it a step further and add a plotting variable 
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
@@ -300,46 +328,20 @@ plot_gdp(country_name = 'India', plot_var = 'lifeExp')
 plot_gdp(country_name = 'Angola',plot_var = 'gdpPercap')
 ```
 
-## Exercise {-}
+**Now keep going:**  
 
-1) Create a function that filters by a continent and year and creates a barplot of the population for all the countries in that continent 
+**28.** Create a function that filters by a continent and year and creates a barplot of the population for all the countries in that continent 
 
-2) Add a color argument to the function called color_bars that fills the bar chart with that color 
+**29.** Add a color argument to the function called color_bars that fills the bar chart with that color 
 
-3) Add a title argument to the function that's called plot_title that combines the name and year into the title of the plot
+**30.** Add a title argument to the function that's called plot_title that combines the name and year into the title of the plot
 
-4) Add another argument that specifies the numerical variable you are plotting on the y axis (up until now it was just population. hint(aes_string))
+**31.** Add another argument that specifies the numerical variable you are plotting on the y axis (up until now it was just population. hint(aes_string))
 
-5) Add another argument called `plot_type` that has a default value "bar". Use conditionality (if and else statements) to create a bar chart if `plot_type`="bar", a point plot otherwise. 
+**32.** Add another argument called `plot_type` that has a default value "bar". Use conditionality (if and else statements) to create a bar chart if `plot_type`="bar", a point plot otherwise. 
 
-6) Create your own function that filters the data in some way and makes a plot. The function should have at least 5 arguments.
+**33.** Create your own function that filters the data in some way and makes a plot. The function should have at least 5 arguments.
 
-## Sourcing functions  {-}
-
-As you advance in your coding, you will likely be writing multiple custom functions within a single `R` script. It is usually useful to group these functions into the same section of code near the top of your script. 
-
-But for even *better* script organization and simplification, you should *source* your functions from a separate `R` script. This means placing your function code in a separate `R` script and calling that file from the script in which you are carrying out your analyses. In addition to simplifying your analysis script, keeping your functions in a separate file allows them to be shared or sourced from any number of other scripts, which further organizes and simplifies your project's code and increases the reproducibility of your work.
-
-Here is how sourcing functions can work:  
-
-1. Open a new `R` script. Save it as `functions.R` and save it in the same working directory as the script you are using to work through this module. 
-
-2. Copy and paste the `plot_my_lm()` function into your `functions.R` script. Save that script to ensure your code is safe.
-
-3. Now remove the code defining `plot_my_lm()` from your module `R` script. 
-
-4. In its place, type this command:
-
-```{r,echo=TRUE,eval=FALSE}
-source("functions.R")
-```
-
-This command tells `R` to run the code in `functions.R` and store the objects and outputs from it in its active memory. You can now call `plot_my_lm()` from your module script.  
-
-
-### Exercise  {-}
-
-Carry out the above instructions to ensure that you know how to source a function from a separate `R` script.
 
 
 

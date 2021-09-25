@@ -1,166 +1,259 @@
-# Geographic computing & GIS
+# Geographic Information Systems  
+
+### Learning goals {-} 
+
+* Understand the difference between vector and raster data, and when to use which.  
+* Learn how to work with vector and raster data in base maps in `R`.  
+* Learn how to work with vector and raster data in `leaflet` maps.  
+
+&nbsp;  
+
+For some good examples of bad maps -- the kind of thing we are trying to help you *avoid* -- check out [this Twitter feed](https://twitter.com/terriblemaps?lang=en). 
+
+We don't often read scatter plots in life, but we read maps *all the time.* Learning how to work with spatial data and create beautiful maps are essential skills as a data scientist.  To get there, you need to become familiar with Geographical Information Systems, or **GIS**.   
+
+In a GIS, spatial data are tied together in a database that makes it (1) easy to map the data and (2) easy to access all sorts of information underlying each spatial feature.  
+
+GIS matters because most data, it turns out, have an important geographic component. There are nearly *always* important geographic questions you can ask about your data.  
 
 
+## Geographic data structures {-}  
+
+In your work with spatial data, you are going to encounter **two main types of data:**  
+
+### Vectors {-}  
+
+Vectors are discrete shapes built up by individual points.  
+
+There are three common types of vectors:  
+
+(1) A **point** is a single location (zero-dimensional).  
+
+(2) A **line** is a set of points connected by straight lines (1-dimensional).  
+
+(3) A **polygon** is a shape formed by a line whose beginning and end are the same location: it is a line that begins and ends at the same spot and thus encloses an area. Polygons have an inside and an outside.  
+
+Vectors are best used to represent discrete objects or areas: the location of an observation, a river, a road, a building, a country's boundary, etc.  
+
+Most vectors have two types of data: geographic information, such as coordinates, and tabular data with attributes for the vector. For this reason, vectors are usually saved in **shapefiles**, which typically require a folder of several different files to use.  That's why most **shapefiles** are downloaded as zipped folders.  
 
 
-Let's start by getting some data. Run the below code:
+### Rasters {-}  
 
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+Rasters are grids. They have rows and columns, just like a dataframe, and each grid cell represents a single value. Rasters are best used for continuous phenomena -- in other words, things that occur *everywhere*: temperature, elevation, humidity, etc.  
 
-# This code is just for getting sewanee data into the repo in an easily readable format...
+We interact with rasters all the time: think of smartphone screens and digital photos. Such images are simply rasters of pixels. Each pixel has a value representing color and brightness.  
+
+## Getting to work {-}  
+
+To use `R` as a GIS, first download a bunch of libraries that are likely to be useful:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+pkg <- 'dplyr'     ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'readr'     ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'ggplot2'   ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'leaflet'   ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'rgdal'     ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'raster'    ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'sp'        ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'rasterVis' ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'htmltools' ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'RColorBrewer' 
+                     if(! pkg %in% installed.packages()){install.packages(pkg)}
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 library(dplyr)
+library(readr)
+library(ggplot2)
+library(leaflet)
 library(rgdal)
 library(raster)
 library(sp)
-destination_directory <- '/tmp'
-destination_file <- file.path(destination_directory, 'sewanee.zip')
-download.file('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sewanee.zip',
-              destfile = destination_file)
-unzip(destination_file, exdir = destination_directory)
-boundary <- readOGR(destination_directory, 'Boundary2016')
-structures <- readOGR(destination_directory, 'Domain_Structures')
-roads <- readOGR(destination_directory, 'Roads')
-elevation <- raster(file.path(destination_directory,
-                              'DEM USGS 10m.tif'))
+library(rasterVis)
+library(htmltools)
+library(RColorBrewer)
 ```
 
 
+### Working with rasters {-}  
 
-### In-class exercises  {-}
+To download some raster data, user the function `getData()` from the `raster` package:  
 
-
-#### Raster {-}
-
-1. What is the difference between raster data and vector data?
-
-2. What kinds of vector data are there?
-
-3. Let's talk about projections: https://en.wikipedia.org/wiki/List_of_map_projections
-
-4. Let's fetch some raster data. 
-
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-library(raster)
-library(sp)
-library(rasterVis)
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 usa <- getData('alt', country='USA', mask=TRUE)
 ```
 
-5. What kind of data is this? What is the structure?
+This function is great for getting country-level data. Use `ccodes()` to get the codes for each country:  
 
-6. Let's break it down into just the continental United States.
-
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-cont <- usa[[1]]
-plot(cont)
+```{r}
+ccodes() %>% head()
 ```
 
-7. Plot it!
-
+Since the  United States consists of several distant territories (Hawaii, Alaska, Samoa, etc.), the object `usa` is actually a *list* containing an object for each territory:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-plot(cont)
+names(usa)
 ```
 
-8. What do the values mean (the legend)?
+Let's plot the continental United States:  
 
-9. Make a plot of Alaska.
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+plot(usa[[1]])
+```
 
-10. Let's retrieve some data for boundaries of States.
+How do you interpret this map? What type of data does this raster object contain?  
+
+Now plot a separate territory:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+plot(usa[[2]])
+```
+
+
+### Working with vectors {-}  
+
+You can also use the `getData()` function to get vectors, such as the boundaries of U.S. states:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 states <- getData(name = 'GADM', level = 1, country = 'USA')
 ```
 
-11. Plot the states.
-
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-#plot(states)
-```
-
-12. Take a peak at the states data.
+Check out this `states` object. It's a new type of data structure: a `SpatialPolygonsDataFrame`:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 head(states)
 ```
 
-13. Make an object just for Tennessee.
+Subset this object to only the data for Tennessee:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 tn <- states[states$NAME_1 == 'Tennessee',]
 ```
 
-14. Plot Tennessee.
+Now plot it:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 plot(tn)
 ```
 
 
-15. Use the `crop` and `mask` functions to get just Tennessee elevation.
+## Combining rasters & vectors {-}  
+
+Now let's try to combine raster data, such as elevation (stored in the object `usa[[1]]`), with vector data, such as state boundaries (stored in the object `tn`).  
+
+To do so, let's `crop` the elevation raster to only the data contained with the Tennessee boundary: 
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-tn_elev <- crop(cont, tn)
+# First crop to a simple bounding box
+tn_elev <- crop(usa[[1]], tn)
+
+# Now crop to the exact boundary of TN
 tn_elev <- mask(tn_elev, tn)
+
+# Plot it
 plot(tn_elev)
 ```
 
-16. Cool, yeah? Now do the same for your favorite state.
 
-17. Make a plot of Tennessee. And then add `elevation` (Sewanee elevation) to it.
+### Dealing with projections {-}  
+
+Let's load in some data specifically for the area of Sewanee, TN:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+# Setup a temporary directory for these data
+destination_directory <- '/tmp'
+
+# Download the zipped folder of data
+destination_file <- file.path(destination_directory, 'sewanee.zip')
+download.file('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sewanee.zip',
+              destfile = destination_file)
+
+# Unzip folder 
+unzip(destination_file, exdir = destination_directory)
+```
+
+This zipped folder has data files for both rasters and vectors.  
+
+Read in the raster data for elevation:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+elevation <- raster(file.path(destination_directory,
+                              'DEM USGS 10m.tif'))
+```
+
+Now let's try to map Sewanee's raster data onto the `tn` vector of boundaries:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 plot(tn)
 plot(elevation, add = T)
 ```
 
-Oh no! That didn't work. Why not? Have a look at coordinates
+Oh no! That didn't work. Why not? Have a look at coordinates:  
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-coordinates(tn)
-coordinates(elevation)
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+coordinates(tn) %>% head()
+
+coordinates(elevation) %>% head() 
 ```
 
-18. It seems like things are on different coordinate systems. Let's convert elevation to the coordinate system of Tennessee.
+It seems like these two objects are using different coordinate systems.  Let's check out what *projection* these objects are using:  
 
-```{r}
-elevation_ll <- projectRaster(elevation, crs = proj4string(tn))
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+proj4string(elevation)
+
+proj4string(tn)
 ```
 
-19. Great! Now we can try plotting Sewanee elevation on Tennessee again
+The `tn` coordinates are in classic lat/long, but the `elevation` coordinates appear to be in UTM (*Easting*/*Northing* coordinates). 
+
+Let's convert `elevation`'s coordinate system to than of `tn`:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+elevation_ll <- projectRaster(elevation, 
+                              crs = proj4string(tn))
+```
+
+Great -- now let's try out plot again:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 plot(tn)
 plot(elevation_ll, add = T)
 ```
 
+Phew -- worked this time (even though it still ain't pretty).  
 
-20. Make a plot of Tennessee and add Sewanee's domain (bounadry) to it.
+Now let's bring in some vectors pertaining to the Sewanee Domain: boundaries, roads, and structures:  
 
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-plot(tn)
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+boundary <- readOGR(destination_directory, 'Boundary2016')
+structures <- readOGR(destination_directory, 'Domain_Structures')
+roads <- readOGR(destination_directory, 'Roads')
+```
+
+This time let's make a zoomed-in plot of Sewanee's land, with elevation and the Domain boundary:  
+
+```{r,echo=TRUE, collapse=TRUE, eval = TRUE}
+plot(elevation_ll)
 plot(boundary, add = T)
 ```
 
 Uh oh. Same problem as before. We need to "reproject" boundary to latitude longitude.
 
-21. Do it. Use the `spTransform` function (not `projectRaster` since `boundary` is not a raster).
+This time, since we are now transforming a vector, we need to use the function `spTransform()` instead of `projectRaster()`.  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-boundary_ll <- spTransform(boundary, proj4string(tn))
-plot(tn)
-plot(boundary_ll, add = T)
+boundary_ll <- spTransform(boundary, proj4string(elevation_ll))
 ```
 
-
-22. Plot the Sewanee elevation in latitude and longitude and then add Sewanee boundary
+Okay, let's retry our plot:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 plot(elevation_ll)
 plot(boundary_ll, add = T)
 ```
 
-23. Use crop and mask to get just the elevation for the domain. Your plot should look like this.
+Let's use `crop` and `mask` to get just the elevation for the domain. 
 
 ```{r,echo=FALSE,collapse=TRUE, eval = TRUE}
 domain_elev <- crop(elevation_ll, boundary_ll)
@@ -168,108 +261,72 @@ domain_elev <- mask(domain_elev, boundary_ll)
 plot(domain_elev)
 ```
 
+If we wanted more information about this `domain_elev` raster, we could use some special exploration functions for rasters:  
 
-24. Add roads to the plot
-
-```{r,echo=FALSE,collapse=TRUE, eval = TRUE}
-plot(roads, add = T)
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+rasterVis::levelplot(domain_elev)
 ```
 
-Oh no! Projection problems.
-
-25. Reproject roads and add them.
+Now let's add roads to the plot. This time, we will preemptively re-project the `roads` data.  
 
 ```{r,echo=FALSE,collapse=TRUE, eval = TRUE}
 roads_ll <- spTransform(roads, proj4string(domain_elev))
-#plot(roads_ll, add = T)
+plot(domain_elev)
+plot(roads_ll, add = T)
 ```
 
-26. Trim down the roads so that we only include those which are in the domain boundary area using the `over` function.
+What is we only want to use the roads that cross the Domain boundary? To do so, we will user the `over()` function:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 o <- over(roads_ll, polygons(boundary_ll))
 roads_ll_trim <- roads_ll[!is.na(o),]
 ```
 
-27. Make the below plot
+Now let's re-do the plot:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 plot(domain_elev)
 plot(roads_ll_trim, add = TRUE)
 ```
 
-28. Let's make a rasterVis contour raster plot
+
+## Combining rasters, vectors, & `leaflet` {-}  
+
+Let's place Sewanee's elevation raster onto a `leaflet` map.  
+
+First, let's make a color palette (i.e., a **chloropleth**) to represent elevation:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-library(rasterVis)
-rasterVis::contourplot(domain_elev)
+pal <- colorNumeric(c("#0C2C84", "#41B6C4", "#FFFFCC"), 
+                    values(elevation_ll),
+                    na.color = "transparent")
 ```
 
-29. Let's make a level plot
+We add the raster to the `leaflet` map using the `addRasterImage()` function:  
 
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-rasterVis::levelplot(domain_elev)
-```
-
-30. Let's make a level plot
-
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-rasterVis::levelplot(domain_elev)
-```
-
-31. How about a ggplot2-style plot
-
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-library(ggplot2)
-domain_elev_df <- as.data.frame(domain_elev, xy = TRUE) %>%
-  filter(!is.na(DEM_USGS_10m))
-
-
-ggplot(data = domain_elev_df,
-       aes(x = x,
-                  y = y,
-                  fill = DEM_USGS_10m)) +
-  geom_raster() +
-  scale_fill_gradient2(low = 'white', high = 'red')
-```
-
-32. Make a ggplot-style raster plot of USA elevation
-
-
-33. Let's "bin" values in `elevation` to say "high" or "low".
-
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-cols <- c('black', 'yellow')
-# add breaks to the colormap (6 breaks = 5 segments)
-brk <- c(0, 300, 1000)
-
-plot(elevation, col=cols, breaks=brk, main="High vs low")
-```
-
-
-34. Do the same as above, but make 3 colors.
-
-
-35. Let's make a leaflet raster!
-
-```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
-library(leaflet)
-pal <- colorNumeric(c("#0C2C84", "#41B6C4", "#FFFFCC"), values(elevation_ll),
-  na.color = "transparent")
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE,  message=FALSE, warning=FALSE}
 leaflet() %>% 
   addTiles() %>%
-  addRasterImage(elevation_ll, colors = pal, opacity = 0.8) %>%
-  addLegend(pal = pal, values = values(elevation_ll),
-    title = "Elevation")
+  addRasterImage(elevation_ll, 
+                 colors = pal, 
+                 opacity = 0.8) %>%
+  addLegend(pal = pal, 
+            values = values(elevation_ll),
+            title = "Elevation (m)")
 ```
 
-36. Add `structures` to the above. Hint: you'll need to use `addPolygons` and you'll need to reproject structures as `structures_ll`...
 
-37. Add popups to your structures.
+### Excercises {-}  
 
-38. Make your structures a different color and remove the border (hint, you'll need to use the `stroke` argument)
+**Adding to the Sewanee `leaflet` map**   
 
-39. Get the elevation of each structure by running:
+**1.** Add `structures` to your `leaflet` map of `elevation_ll` from above. *Hint:* you'll need to use `addPolygons` and you'll need to reproject structures as `structures_ll`...
+
+**2.** Add popups to your structures.
+
+**3.** Make your structures a different color and remove the border *Hint:8 you'll need to use the `stroke` argument.
+
+**4.** Get the elevation of each structure by running:
 
 ```{r, echo=TRUE, collapse=TRUE, eval=FALSE}
 structure_elevation <- 
@@ -279,138 +336,122 @@ structure_elevation <-
          }))
 ```
 
-40. Use the `structure_elevation` object to add a new column to the `structures_ll` object.
+**4.** Use the `structure_elevation` object to add a new column to the `structures_ll` object.
 
-41. Make a histogram of the elevation of Sewanee buildings.
+**5.** Make a histogram of the elevation of Sewanee buildings.
 
-42. How low is the lowest building on the domain? How low is it?
+**6.** How low is the lowest building on the domain? How low is it?
 
-43. How high is the highest building on the domain? Which building is it?
+**7.** How high is the highest building on the domain? Which building is it?
+
+&nbsp;  
 
 
-#### Shapefiles / polygons {-}
+**A global map of world health**  
 
+Let's read in a new dataset of polygons, this time the national boundaries of the world's nations:  
 
-```{r,echo=FALSE,collapse=TRUE, eval = FALSE}
-
-# This code is just for getting sewanee data into the repo in an easily readable format...
-library(dplyr)
-library(rgdal)
-library(raster)
-library(sp)
+```{r,echo=FALSE,collapse=TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+# Download data
 destination_directory <- '/tmp'
 destination_file <- file.path(destination_directory, 'world_shp.zip')
 download.file('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/world_shp.zip',
               destfile = destination_file)
+
+# Unzip data
 unzip(destination_file, exdir = destination_directory)
+
+# Read in data
 world_shp <- readOGR(file.path(destination_directory, 'world_small/'),
                      'TM_WORLD_BORDERS_SIMPL-0.3')
 
+# Save data to session memory
 save(world_shp, file = 'data/world_shp.RData')
 ```
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+# Stage some variables
 file_source <- 'https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/world_shp.RData'
-library(dplyr)
-library(rgdal)
-library(raster)
-library(sp)
-library(readr)
 destination_directory <- '/tmp'
 destination_file <- file.path(destination_directory, 'world_shp.RData')
+
+# Download the data, if you don't already have it
 if(!'data/world_shp.RData' %in% destination_directory){
   download.file(file_source,
                 destfile = destination_file)
 }
 load(destination_file)
 
-# Read in indicator data
-df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/hefpi.csv')
-
+# Rename shapefile object
 shp <- world_shp
 ```
 
+Now let's read in some indicator data of global health:  
 
-Subset data by indicator & join with shape file data
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE,  message=FALSE, warning=FALSE}
+# Read in indicator data
+df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/hefpi.csv')
+```
 
-```{r}
+**8.** Check out this data:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+head(df)
+
+nrow(df)
+```
+
+**9.** Let's focus in on the rate of inpatient care use among adults:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 pd <- df %>% filter(indicator_name =='Inpatient care use, adults')
+```
+
+**10.** Now let's join this tabular data to the shapefile data according to country:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE}
 shp@data <- left_join(shp@data, pd)
 ```
 
-Make a basic (ugly) map 
+**11.** OK, let's get a map started.  First, let's establish our base map:  
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-library(leaflet)
-library(RColorBrewer)
-
-# map text
-map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), domain=shp@data$value, na.color="#CECECE")
-
-    leaflet(shp) %>% 
-        addProviderTiles(provider = providers$Esri.WorldShadedRelief) %>%
-        addPolygons( 
-          fillColor = ~map_palette(value),
-          fillOpacity = 0.9)
-        
-
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaf <- leaflet(shp) %>% 
+           addProviderTiles(provider = providers$Esri.WorldShadedRelief)
 ```
 
-Set min and max zoom
+**12.** Next, let's create a color scale for the value of interest:  
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-
-    leaflet(shp, options = leafletOptions(minZoom = 1,maxZoom = 10)) %>% 
-        addProviderTiles(provider = providers$Esri.WorldShadedRelief) %>%
-        addPolygons( 
-          fillColor = ~map_palette(value),
-          fillOpacity = 0.9)
-        
-
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), 
+                            domain=shp@data$value, 
+                            na.color="#CECECE")
 ```
 
+**13.** And use this palette to color-code each country:  
 
-Add label
-
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-
-    leaflet(shp, options = leafletOptions(minZoom = 1,maxZoom = 10)) %>% 
-        addProviderTiles(provider = providers$Esri.WorldShadedRelief) %>%
-        addPolygons( 
-          color = 'black',
-          weight=1,
-          fillColor = ~map_palette(value), 
-          stroke=TRUE,
-          fillOpacity = 0.9, 
-          label = ~round(value, 2))
-        
-
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaf <- leaf %>% addPolygons(fillColor = ~map_palette(value),
+                             fillOpacity = 0.9,
+                             stroke=TRUE,
+                             color='black',
+                             weight=1,
+                             label = ~round(value,2))
 ```
 
-Add legend
+**14.** Now add a legend:  
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-
-    leaflet(shp, options = leafletOptions(minZoom = 1,maxZoom = 10)) %>% 
-        addProviderTiles(provider = providers$Esri.WorldShadedRelief) %>%
-        addPolygons( 
-          color = 'black',
-          weight=1,
-          fillColor = ~map_palette(value), 
-          stroke=TRUE,
-          fillOpacity = 0.9, 
-          label = ~country
-        ) %>% 
-        addLegend( pal=map_palette, values=~value, opacity=0.9, position = "bottomleft", na.label = "NA" )
-
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaf <- leaf %>% addLegend(pal=map_palette, 
+                           values=~value, 
+                           opacity=0.9, 
+                           position = "bottomleft", 
+                           na.label = "NA" )
 ```
 
-Add fancy text to map
+**15.** Let's stage some fancy text:  
 
-```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-library(htmltools)
-
-# Create map
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
 map_text <- paste(
   "Indicator: ",  shp@data$indicator_name,"<br>",
   "Economy: ", as.character(shp@data$country),"<br/>", 
@@ -418,9 +459,7 @@ map_text <- paste(
   "Year: ", as.character(shp@data$year),"<br/>",sep="") %>%
   lapply(htmltools::HTML)
 
-    leaflet(shp, options = leafletOptions(minZoom = 1, 
-                                                maxZoom = 10)) %>% 
-        addProviderTiles('Esri.WorldShadedRelief') %>%
+leaf <- leaf %>%
         addPolygons( 
           color = 'black',
           fillColor = ~map_palette(value), 
@@ -443,24 +482,24 @@ map_text <- paste(
             textsize = "13px", 
             direction = "auto"
           )
-        ) %>% 
-        addLegend( pal=map_palette, values=~value, opacity=0.9, position = "bottomleft", na.label = "NA" )
+        ) 
 
+leaf
 ```
 
-## Exercise {-}
+&nbsp;  
 
-1. Make a choropleth map of BMI for men, where the darker the shade of red, the higher the BMI for each country. 
+**16.** Now make a choropleth map of BMI for men, where the darker the shade of red, the higher the BMI for each country. 
 
-2. Remove the borders from the map
+**17.** Remove the borders from the map
 
-3. Add a legend on the top right of the map
+**18.** Add a legend on the top right of the map
 
-4. Make the NA color blue
+**19.** Make the NA color blue
 
-5. Make the hover label a combination of the country and BMI value
+**20.** Make the hover label a combination of the country and BMI value
 
-6. Make the title of the legend "BMI" 
+**21.** Make the title of the legend "BMI" 
 
-7. Create a function that takes an indicator name as an input and creates a map.
+**22.** Create a function that takes an indicator name as an input and creates a map.
 

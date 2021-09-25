@@ -108,10 +108,17 @@ That's alot of associations! Let's see if that observation is statistically sign
 ```{r,echo=TRUE,collapse=TRUE}
 nulls <- c()
 for(i in 1:1000){
-  hw_null <- hw # save a safe copy of the data
-  hw_null$id <- sample(hw_null$id,size=nrow(hw_null),replace=FALSE) # shuffle the null variable
-  nulli <- association_tally(hw_null,A="59",B="11") # determine null rate for this iteration
-  nulls[i] <- nulli # save result
+  # save a safe copy of the data
+  hw_null <- hw 
+  
+  # shuffle the null variable
+  hw_null$id <- sample(hw_null$id,size=nrow(hw_null),replace=FALSE) 
+  
+  # determine null rate for this iteration
+  nulli <- association_tally(hw_null,A="59",B="11")
+  
+  # save result
+  nulls[i] <- nulli 
 }
 ```
  
@@ -122,7 +129,8 @@ for(i in 1:1000){
 
 ```{r,echo=TRUE,collapse=TRUE}
 par(mar=c(4.2,4.2,1,1))
-hist(nulls,breaks=seq(0,25,by=1),xlim=c(0,(obs+10)),main=NULL,xlab="Null distribution")
+hist(nulls,breaks=seq(0,25,by=1),xlim=c(0,(obs+10)),
+     main=NULL,xlab="Null distribution")
 abline(v=obs,lwd=2,lty=3,col="blue")
 ```
 
@@ -154,7 +162,8 @@ for(i in 1:1000){
 }
 
 # Visualize
-hist(nulls,breaks=seq(0,20,by=1),xlim=c(0,(obs+7)),main=NULL,xlab="Null distribution")
+hist(nulls,breaks=seq(0,20,by=1),xlim=c(0,(obs+7)),
+     main=NULL,xlab="Null distribution")
 abline(v=obs,lwd=2,lty=3,col="blue")
 
 # Calculate p-value
@@ -201,11 +210,16 @@ annual_difference <- function(hw,bnf_ids){
   other <- hw[! hw$id %in% bnf_ids,] # Sightings of other whales
   
   # Get distribution of years seen for individuals within each population
-  counts <- table(bnf$id,bnf$year) # sightings of each whale (rows) in each year (columns)
-  n_bnf <- apply(counts,1,function(x){length(which(x>0))}) # years seen for each individual
+  # sightings of each whale (rows) in each year (columns)
+  counts <- table(bnf$id,bnf$year) 
+  # years seen for each individual
+  n_bnf <- apply(counts,1,function(x){length(which(x>0))})
   
-  counts <- table(other$id,other$year) # sightings of each whale (rows) in each year (columns)
-  n_other <- apply(counts,1,function(x){length(which(x>0))}) # years seen for each individual
+  # sightings of each whale (rows) in each year (columns)
+  counts <- table(other$id,other$year) 
+  
+  # years seen for each individual
+  n_other <- apply(counts,1,function(x){length(which(x>0))}) 
   
   # Now get average difference between two distributions
   mean_diff <- mean(n_bnf,na.rm=TRUE) - mean(n_other,na.rm=TRUE)
@@ -235,7 +249,8 @@ for(i in 1:1000){
 **6. Visualize:** 
 
 ```{r,echo=TRUE,collapse=TRUE}
-hist(nulls,breaks=seq(-5,5,by=.1),xlim=c(-5,5),main=NULL,xlab="Null distribution")
+hist(nulls,breaks=seq(-5,5,by=.1),xlim=c(-5,5),
+     main=NULL,xlab="Null distribution")
 abline(v=obs,lwd=2,lty=3,col="blue")
 ```
 
@@ -362,11 +377,13 @@ for(i in 1:1000){
 
 ```{r,echo=TRUE,fig.height=5,fig.width=7,collapse=TRUE}
 par(mfrow=c(1,2))
-hist(nulls$slope,breaks=seq(-1,1,by=.01),xlim=c(-.5,.5),main=NULL,xlab="Null distribution",border="grey70")
+hist(nulls$slope,breaks=seq(-1,1,by=.01),xlim=c(-.5,.5),
+     main=NULL,xlab="Null distribution",border="grey70")
 text(-.48,20,"Slope \nestimate",pos=4)
 abline(v=obs[1],lwd=2,lty=3,col="blue")
 
-hist(nulls$r,breaks=seq(0,1,by=.001),xlim=c(0,.1),main=NULL,xlab="Null distribution",border="grey70")
+hist(nulls$r,breaks=seq(0,1,by=.001),xlim=c(0,.1),
+     main=NULL,xlab="Null distribution",border="grey70")
 text(.06,20,"Correlation \ncoefficient",pos=4)
 abline(v=obs[2],lwd=2,lty=3,col="blue")
 ```
@@ -431,7 +448,8 @@ r2021 <- sample(n2021,size=10000,replace=TRUE)
 diffs <- r2021 - r2017
 
 # Visualize
-hist(diffs,breaks=seq(-20,20,by=1),xlim=c(-20,20),main=NULL,xlab="Null distribution",border="grey70")
+hist(diffs,breaks=seq(-20,20,by=1),xlim=c(-20,20),
+     main=NULL,xlab="Null distribution",border="grey70")
 abline(v=0,lwd=2,lty=3,col="blue")
 
 # Get p_value
@@ -468,7 +486,8 @@ length(bnf_ids)
 **Answer key:** 
 
 ```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
-# Internal function for determining times seen together for a single row of a dyads dataframe
+# Internal function for determining times seen together 
+# for a single row of a dyads dataframe
 social_X <- function(dyad){
     A <- dyad[1]
     B <- dyad[2]
@@ -485,8 +504,10 @@ social_difference <- function(hw,bnf_ids){
   other <- hw[! hw$id %in% bnf_ids,] # Sightings of other whales
   other_ids <- unique(other$id)
   
-  bnfs <- expand.grid(bnf_ids,bnf_ids) # Make a dataframe of all possible dyad combinations
-  bnfs$X <- apply(bnfs,1,social_X) # Get number of times seen
+  # Make a dataframe of all possible dyad combinations
+  bnfs <- expand.grid(bnf_ids,bnf_ids) 
+  # Get number of times seen
+  bnfs$X <- apply(bnfs,1,social_X) 
   
   # Do same for others
   others <- expand.grid(other_ids, other_ids)
@@ -512,7 +533,8 @@ for(i in 1:100){
 
 # Visualize
 par(mar=c(4.2,4.2,1,1))
-hist(nulls,breaks=seq(-6,6,by=.1),xlim=c(-3,1),main=NULL,xlab="Null distribution")
+hist(nulls,breaks=seq(-6,6,by=.1),xlim=c(-3,1),
+     main=NULL,xlab="Null distribution")
 abline(v=obs,lwd=2,lty=3,col="blue")
 
 # p-value
@@ -661,11 +683,13 @@ for(i in 1:500){
 
 # Visualize
 par(mfrow=c(1,2))
-hist(nulls$slope,breaks=seq(-1,1,by=.0005),xlim=c(-.02,.02),main=NULL,xlab="Null distribution",border="grey70")
+hist(nulls$slope,breaks=seq(-1,1,by=.0005),xlim=c(-.02,.02),
+     main=NULL,xlab="Null distribution",border="grey70")
 text(-.48,20,"Slope \nestimate",pos=4)
 abline(v=obs[1],lwd=2,lty=3,col="blue")
 
-hist(nulls$r,breaks=seq(0,1,by=.0001),xlim=c(0,.01),main=NULL,xlab="Null distribution",border="grey70")
+hist(nulls$r,breaks=seq(0,1,by=.0001),xlim=c(0,.01)
+     ,main=NULL,xlab="Null distribution",border="grey70")
 text(.06,20,"Correlation \ncoefficient",pos=4)
 abline(v=obs[2],lwd=2,lty=3,col="blue")
 
@@ -679,8 +703,12 @@ p_value
 
 # How to interpret this correlation coefficient? 
 # Could it be said that the correlation is unexpectedly POOR? 
-# As in, the correlation coefficient is worse than > 95% of outcomes expected under the null distribution? 
-# In other words, whales of closer relatedness AVOID each other? At least a hypothesis...
+
+# As in, the correlation coefficient is worse than 
+# > 95% of outcomes expected under the null distribution? 
+
+# In other words, whales of closer relatedness AVOID each other? 
+# At least a hypothesis...
 ```
 
 

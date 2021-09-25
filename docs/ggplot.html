@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-09-19" />
+<meta name="date" content="2021-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,6 +59,8 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -212,9 +214,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
 <li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
-<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
-<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#data-format-requirements"><i class="fa fa-check"></i>Data format requirements</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
+<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
+<li><a href="importing-data.html#prepping-your-data-for-r">Prepping your data for <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
@@ -243,16 +246,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-of-association"><i class="fa fa-check"></i>Tests of association</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
 </ul></li>
-<li class="part"><span><b>IV Review exercises</b></span></li>
-<li class="chapter" data-level="21" data-path="a-dplyr-mystery.html"><a href="a-dplyr-mystery.html"><i class="fa fa-check"></i><b>21</b> A <code>dplyr</code> mystery</a></li>
-<li class="chapter" data-level="22" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>22</b> A <code>dplyr</code> survey</a></li>
-<li class="chapter" data-level="23" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>23</b> Global health &amp; <code>ggplot</code></a></li>
-<li class="chapter" data-level="24" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>24</b> Cleaning messy data</a></li>
-<li class="chapter" data-level="25" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>25</b> Shakespeare text mining</a></li>
-<li class="chapter" data-level="26" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>26</b> Trump tweets</a></li>
-<li class="chapter" data-level="27" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>27</b> Sewanee’s climate</a></li>
-<li class="part"><span><b>V Reproducible research</b></span></li>
-<li class="chapter" data-level="28" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>28</b> <code>Git</code> + <code>GitHub</code></a><ul>
+<li class="part"><span><b>IV Reproducible research</b></span></li>
+<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a><ul>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
 <li><a href="git-github.html#git-set-up"><code>Git</code> set up</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
@@ -260,26 +255,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
 <li><a href="git-github.html#git-workflow-overview"><code>Git</code> workflow: overview</a></li>
 </ul></li>
-<li class="chapter" data-level="29" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>29</b> <code>Markdown</code> documentation</a><ul>
+<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a><ul>
 <li><a href="markdown-documentation.html#what-is-markdown">What is <code>Markdown</code>?</a></li>
 <li><a href="markdown-documentation.html#raw-markdown-example">Raw <code>Markdown</code> example</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-12"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="30" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>30</b> <code>R Markdown</code></a><ul>
+<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a><ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
 <li><a href="r-markdown.html#add-an-r-chunk">Add an <code>R</code> chunk</a></li>
 <li><a href="r-markdown.html#in-line-r-code">In-line <code>R</code> code</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
 </ul></li>
-<li class="chapter" data-level="31" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>31</b> Interactive dashboards</a><ul>
+<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a><ul>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#an-easy-example"><i class="fa fa-check"></i>An easy example</a></li>
-<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li><a href="shiny.html#build-your-first-shiny-app">Build your first <code>shiny</code> app</a></li>
 </ul></li>
-<li class="chapter" data-level="32" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>32</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
+<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a><ul>
+<li><a href="interactive-maps.html#mapping-with-leaflet">Mapping with <code>leaflet</code></a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-2"><i class="fa fa-check"></i>Final thoughts</a></li>
+</ul></li>
+<li class="part"><span><b>V Review exercises</b></span></li>
+<li class="chapter" data-level="26" data-path="rms-titanic.html"><a href="rms-titanic.html"><i class="fa fa-check"></i><b>26</b> <em>RMS Titanic</em></a></li>
+<li class="chapter" data-level="27" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>27</b> A <code>dplyr</code> survey</a></li>
+<li class="chapter" data-level="28" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>28</b> Global health &amp; <code>ggplot</code></a></li>
+<li class="chapter" data-level="29" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>29</b> Sewanee’s climate</a></li>
+<li class="chapter" data-level="30" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>30</b> Cleaning messy data</a></li>
+<li class="chapter" data-level="31" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>31</b> Shakespeare text mining</a></li>
+<li class="chapter" data-level="32" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>32</b> Trump tweets</a></li>
+<li class="chapter" data-level="33" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>33</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
 <li class="part"><span><b>VI Presenting research</b></span></li>
-<li class="chapter" data-level="33" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>33</b> Writing a report</a><ul>
+<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a><ul>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
@@ -288,54 +295,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
 </ul></li>
-<li class="chapter" data-level="34" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>34</b> Good research writing</a><ul>
+<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a><ul>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-tables"><i class="fa fa-check"></i>Formatting tables</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-figures"><i class="fa fa-check"></i>Formatting figures</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>35</b> Research talks</a></li>
+<li class="chapter" data-level="36" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>36</b> Research talks</a></li>
 <li class="part"><span><b>VII Deep <code>R</code></b></span></li>
-<li class="chapter" data-level="36" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>36</b> Saving data &amp; plots</a><ul>
+<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a><ul>
 <li><a href="saving-data-plots.html#write.csv"><code>write.csv()</code></a></li>
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="37" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>37</b> Joining datasets</a><ul>
+<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
 <li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>38</b> Working with text</a><ul>
+<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>39</b> Working with dates &amp; times</a><ul>
+<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a><ul>
 <li><a href="dates.html#the-lubridate-package">The <code>lubridate()</code> package</a></li>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>40</b> Writing functions</a><ul>
+<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a><ul>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
-<li class="chapter" data-level="40.1" data-path="writing-functions.html"><a href="writing-functions.html#using-dplyr-and-ggplot-in-custom-functions"><i class="fa fa-check"></i><b>40.1</b> Using dplyr and ggplot in custom functions</a></li>
-<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#exercise-3"><i class="fa fa-check"></i>Exercise</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>41</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a><ul>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li><a href="for-loops.html#for-loop-exercises"><code>for</code> loop exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>42</b> Conditional statements</a><ul>
+<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a><ul>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>43</b> Matrices &amp; lists</a><ul>
+<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a><ul>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>44</b> Advanced base plots in <code>R</code></a></li>
-<li class="chapter" data-level="45" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>45</b> Geographic computing &amp; GIS</a><ul>
-<li class="chapter" data-level="" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html#exercise-5"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="45" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>45</b> Advanced base plots in <code>R</code></a></li>
+<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a><ul>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#geographic-data-structures"><i class="fa fa-check"></i>Geographic data structures</a></li>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors"><i class="fa fa-check"></i>Combining rasters &amp; vectors</a></li>
+<li><a href="geographic-information-systems.html#combining-rasters-vectors-leaflet">Combining rasters, vectors, &amp; <code>leaflet</code></a></li>
 </ul></li>
-<li class="chapter" data-level="46" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>46</b> Mapping</a></li>
 <li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a><ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
@@ -404,12 +411,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="setting-up-ggplot" class="section level3 unnumbered">
 <h3>Setting up <code>ggplot</code></h3>
 <p>Let’s learn by doing. First, install and load <code>ggplot2</code> and associated packages.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="ggplot.html#cb222-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb222-2"><a href="ggplot.html#cb222-2"></a><span class="kw">library</span>(readr)</span>
-<span id="cb222-3"><a href="ggplot.html#cb222-3"></a><span class="kw">library</span>(ggthemes)</span>
-<span id="cb222-4"><a href="ggplot.html#cb222-4"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="ggplot.html#cb224-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb224-2"><a href="ggplot.html#cb224-2"></a><span class="kw">library</span>(readr)</span>
+<span id="cb224-3"><a href="ggplot.html#cb224-3"></a><span class="kw">library</span>(ggthemes)</span>
+<span id="cb224-4"><a href="ggplot.html#cb224-4"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
 <p>Download the <code>titanic</code> dataset, the manifest of <em>Titanic</em> passengers with details such as as age, passenger class, fare paid, and whether or not they survived.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="ggplot.html#cb223-1"></a>titanic&lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="ggplot.html#cb225-1"></a>titanic&lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv&quot;</span>)</span></code></pre></div>
 <div id="tip-text" class="tip">
 <p><strong>Instructor tip:</strong></p>
 <p>At this point it may be useful to emphasize that the name of the package is <strong><code>ggplot2</code></strong>, but the name of the function is just <strong><code>ggplot()</code></strong>.</p>
@@ -422,136 +429,136 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><strong>Set up our canvas.</strong> If we just type <code>ggplot()</code> without anything in the parentheses, the function will just return a blank piece of paper.</li>
 </ol>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="ggplot.html#cb224-1"></a><span class="kw">ggplot</span>()</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-246-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="ggplot.html#cb226-1"></a><span class="kw">ggplot</span>()</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-247-1.png" width="925.44" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Draw the axes</strong> and, 3., setup our <strong>landscape of coordinates</strong>. To do so, we need to feed <code>ggplot()</code> some data and tell it which columns should be mapped onto the axes.</li>
 </ol>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="ggplot.html#cb225-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
-<span id="cb225-2"><a href="ggplot.html#cb225-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">y =</span> Fare))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-247-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="ggplot.html#cb227-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
+<span id="cb227-2"><a href="ggplot.html#cb227-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">y =</span> Fare))</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-248-1.png" width="925.44" /></p>
 <p>That code looks a bit clunky, we know. The <code>aes()</code> input, which is short for <code>aesthetics</code>, is actually a function. Everything included in its parentheses will be used to <em>map your data to the plot’s aesthetic attributes</em>. So far we have simply said that <code>Age</code> should be mapped to the <em>x</em> axis and that <code>Fare</code> should be mapped to <em>y</em>.</p>
 <p>But let’s say we also want to color-code the points on our plot according to male/female. To do so, we will add specifications to this <code>aes()</code> function.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="ggplot.html#cb226-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
-<span id="cb226-2"><a href="ggplot.html#cb226-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">y =</span> Fare, <span class="dt">color=</span>Sex))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-248-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="ggplot.html#cb228-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
+<span id="cb228-2"><a href="ggplot.html#cb228-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">y =</span> Fare, <span class="dt">color=</span>Sex))</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-249-1.png" width="925.44" /></p>
 <p>Your plot is still blank, but in the background <code>ggplot()</code> is all setup to make your plot. Since this <code>ggplot()</code> call is the basis of everything that will happen next – it contains the data and the way you want to map it to attributes of your plot – let’s save it to a variable for easy recall. We’ll use <code>p</code> for “plot”.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="ggplot.html#cb227-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
-<span id="cb227-2"><a href="ggplot.html#cb227-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">y =</span> Fare, <span class="dt">color=</span>Sex))</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="ggplot.html#cb229-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
+<span id="cb229-2"><a href="ggplot.html#cb229-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">y =</span> Fare, <span class="dt">color=</span>Sex))</span></code></pre></div>
 <p>Note that you don’t need to write out <code>titanic$Age</code> or <code>titanic$Fare</code>. You’ve told <code>ggplot</code> that your <code>data</code> is <code>titanic</code>, so it knows to look inside that dataframe for those columns.</p>
 <ol start="4" style="list-style-type: decimal">
 <li><strong>Map our data to geometric shapes</strong>. In this case, a scatter plot of points:</li>
 </ol>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="ggplot.html#cb228-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
-<span id="cb228-2"><a href="ggplot.html#cb228-2"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-250-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="ggplot.html#cb230-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb230-2"><a href="ggplot.html#cb230-2"></a>p</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-251-1.png" width="925.44" /></p>
 <p>Note the use of a plus sign, <code>+</code>. You are <em>adding</em> layers to your plot.</p>
 <ol start="5" style="list-style-type: decimal">
 <li><strong>Add some more labels</strong>. You see that <code>ggplot()</code> has automatically added axis titles and a legend, but we can add some more using the <code>labs()</code> function. Let’s add an overhead title, a sub-title, and a caption.</li>
 </ol>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="ggplot.html#cb229-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between Age, Fare, and Sex&#39;</span>,</span>
-<span id="cb229-2"><a href="ggplot.html#cb229-2"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;Passengers on the RMS Titanic&#39;</span>,</span>
-<span id="cb229-3"><a href="ggplot.html#cb229-3"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Eric Keen &amp; Hadley Whickham (2021)&#39;</span>)</span>
-<span id="cb229-4"><a href="ggplot.html#cb229-4"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-251-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="ggplot.html#cb231-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between Age, Fare, and Sex&#39;</span>,</span>
+<span id="cb231-2"><a href="ggplot.html#cb231-2"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;Passengers on the RMS Titanic&#39;</span>,</span>
+<span id="cb231-3"><a href="ggplot.html#cb231-3"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Eric Keen &amp; Hadley Whickham (2021)&#39;</span>)</span>
+<span id="cb231-4"><a href="ggplot.html#cb231-4"></a>p</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-252-1.png" width="925.44" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li><strong>Add a statistical summary</strong>, like a smoothed regression line.</li>
 </ol>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="ggplot.html#cb230-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>)</span>
-<span id="cb230-2"><a href="ggplot.html#cb230-2"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-252-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="ggplot.html#cb232-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>)</span>
+<span id="cb232-2"><a href="ggplot.html#cb232-2"></a>p</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-253-1.png" width="925.44" /></p>
 <p>Note that <code>ggplot()</code> automatically produced a different regression line for each sex. That’s nice, but now our plot is getting pretty cluttered.</p>
 <ol start="7" style="list-style-type: decimal">
 <li>Clean up the look by using <strong>facets</strong>: a separate plot for each sex.</li>
 </ol>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="ggplot.html#cb231-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Sex)</span>
-<span id="cb231-2"><a href="ggplot.html#cb231-2"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-253-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="ggplot.html#cb233-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Sex)</span>
+<span id="cb233-2"><a href="ggplot.html#cb233-2"></a>p</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-254-1.png" width="925.44" /></p>
 <p>Beautiful!</p>
 <ol start="8" style="list-style-type: decimal">
 <li>Finally, let’s <strong>stylize</strong> the entire plot with a different <strong>theme</strong>. You can find theme options in the `<code>ggthemes</code> package.</li>
 </ol>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="ggplot.html#cb232-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_economist_white</span>()</span>
-<span id="cb232-2"><a href="ggplot.html#cb232-2"></a>p</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-254-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="ggplot.html#cb234-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_economist_white</span>()</span>
+<span id="cb234-2"><a href="ggplot.html#cb234-2"></a>p</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-255-1.png" width="925.44" /></p>
 </div>
 <div id="bar-plot" class="section level2 unnumbered">
 <h2>Bar plot</h2>
 <p>In a bar plot, your data are mapped to bars instead of points. And, instead of showing every data point, you are summarizing the data in some way – i.e., displaying a <em>statistic</em>. That statistic is usually just a count of the number of data points in each subgroup.</p>
 <p>Let’s make a bar plot that compares the number of men and women on the <em>Titanic</em>:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="ggplot.html#cb233-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
-<span id="cb233-2"><a href="ggplot.html#cb233-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb233-3"><a href="ggplot.html#cb233-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;count&#39;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-255-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="ggplot.html#cb235-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic, </span>
+<span id="cb235-2"><a href="ggplot.html#cb235-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb235-3"><a href="ggplot.html#cb235-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;count&#39;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-256-1.png" width="925.44" /></p>
 <p>Note that, for the <code>aes()</code> call, we only provided the <em>x</em> axis attribute: <code>Sex</code>.</p>
 <p>Then, in the <code>geom_bar()</code> call, we told <code>R</code> what <code>stat</code>istic should be represented by that bars: <code>'count'</code>.</p>
 <p>But you are allowed to explicitly set the bars’ heights (i.e., the <code>y</code> dimension) to represent a different statistic. Let’s say we wanted each bar to represent the mean age of men and women:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="ggplot.html#cb234-1"></a><span class="co"># First, determine the mean age of each sex</span></span>
-<span id="cb234-2"><a href="ggplot.html#cb234-2"></a>mean_age_males &lt;-<span class="st"> </span><span class="kw">mean</span>(titanic<span class="op">$</span>Age[titanic<span class="op">$</span>Sex <span class="op">==</span><span class="st"> &#39;male&#39;</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb234-3"><a href="ggplot.html#cb234-3"></a>mean_age_females &lt;-<span class="st"> </span><span class="kw">mean</span>(titanic<span class="op">$</span>Age[titanic<span class="op">$</span>Sex <span class="op">==</span><span class="st"> &#39;female&#39;</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb234-4"><a href="ggplot.html#cb234-4"></a></span>
-<span id="cb234-5"><a href="ggplot.html#cb234-5"></a><span class="co"># Make a new dataframe with this summary data</span></span>
-<span id="cb234-6"><a href="ggplot.html#cb234-6"></a>titanic_age &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Sex =</span> <span class="kw">c</span>(<span class="st">&#39;male&#39;</span>,<span class="st">&#39;female&#39;</span>),</span>
-<span id="cb234-7"><a href="ggplot.html#cb234-7"></a>                          <span class="dt">mean_age =</span> <span class="kw">c</span>(mean_age_males, mean_age_females))</span>
-<span id="cb234-8"><a href="ggplot.html#cb234-8"></a><span class="co"># Plot it</span></span>
-<span id="cb234-9"><a href="ggplot.html#cb234-9"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_age, </span>
-<span id="cb234-10"><a href="ggplot.html#cb234-10"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex,<span class="dt">y=</span> mean_age)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb234-11"><a href="ggplot.html#cb234-11"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-256-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="ggplot.html#cb236-1"></a><span class="co"># First, determine the mean age of each sex</span></span>
+<span id="cb236-2"><a href="ggplot.html#cb236-2"></a>mean_age_males &lt;-<span class="st"> </span><span class="kw">mean</span>(titanic<span class="op">$</span>Age[titanic<span class="op">$</span>Sex <span class="op">==</span><span class="st"> &#39;male&#39;</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb236-3"><a href="ggplot.html#cb236-3"></a>mean_age_females &lt;-<span class="st"> </span><span class="kw">mean</span>(titanic<span class="op">$</span>Age[titanic<span class="op">$</span>Sex <span class="op">==</span><span class="st"> &#39;female&#39;</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb236-4"><a href="ggplot.html#cb236-4"></a></span>
+<span id="cb236-5"><a href="ggplot.html#cb236-5"></a><span class="co"># Make a new dataframe with this summary data</span></span>
+<span id="cb236-6"><a href="ggplot.html#cb236-6"></a>titanic_age &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Sex =</span> <span class="kw">c</span>(<span class="st">&#39;male&#39;</span>,<span class="st">&#39;female&#39;</span>),</span>
+<span id="cb236-7"><a href="ggplot.html#cb236-7"></a>                          <span class="dt">mean_age =</span> <span class="kw">c</span>(mean_age_males, mean_age_females))</span>
+<span id="cb236-8"><a href="ggplot.html#cb236-8"></a><span class="co"># Plot it</span></span>
+<span id="cb236-9"><a href="ggplot.html#cb236-9"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_age, </span>
+<span id="cb236-10"><a href="ggplot.html#cb236-10"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex,<span class="dt">y=</span> mean_age)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb236-11"><a href="ggplot.html#cb236-11"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-257-1.png" width="925.44" /></p>
 <p>In this case, we are explicitly defining the <code>y</code> axis in the <code>aes()</code> call, and telling <code>geom_bar()</code> to just use the values we specified in <code>aes()</code> (that’s what <code>'identity'</code> means; you are telling <code>ggplot()</code> to just use what you already gave it.)</p>
 <p>You can specify other aesthetic attributes, <em>unrelated to the data</em>, within the <code>geom_bar()</code> call:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="ggplot.html#cb235-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_age, </span>
-<span id="cb235-2"><a href="ggplot.html#cb235-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex,<span class="dt">y=</span> mean_age)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb235-3"><a href="ggplot.html#cb235-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) </span></code></pre></div>
-<p><img src="figures/unnamed-chunk-257-1.png" width="925.44" /></p>
-<p>Now add better labels:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="ggplot.html#cb236-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_age, </span>
-<span id="cb236-2"><a href="ggplot.html#cb236-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex,<span class="dt">y=</span> mean_age)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb236-3"><a href="ggplot.html#cb236-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb236-4"><a href="ggplot.html#cb236-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&#39;Mean age&#39;</span>, </span>
-<span id="cb236-5"><a href="ggplot.html#cb236-5"></a>       <span class="dt">x =</span> <span class="st">&#39;Gender&#39;</span>,</span>
-<span id="cb236-6"><a href="ggplot.html#cb236-6"></a>       <span class="dt">title =</span> <span class="st">&#39;Titanic passengers: Average age by sex&#39;</span>,</span>
-<span id="cb236-7"><a href="ggplot.html#cb236-7"></a>       <span class="dt">caption =</span> <span class="st">&#39;Do not steal, please&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="ggplot.html#cb237-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_age, </span>
+<span id="cb237-2"><a href="ggplot.html#cb237-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex,<span class="dt">y=</span> mean_age)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb237-3"><a href="ggplot.html#cb237-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) </span></code></pre></div>
 <p><img src="figures/unnamed-chunk-258-1.png" width="925.44" /></p>
-<p>You can add another variable to your bar plot as follows. Let’s say you want to see the average age in each sex, grouped by who survived and who didn’t:</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="ggplot.html#cb237-1"></a><span class="co"># First, produce your summary dataframe using some dplyr magic:</span></span>
-<span id="cb237-2"><a href="ggplot.html#cb237-2"></a>titanic_em &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb237-3"><a href="ggplot.html#cb237-3"></a><span class="st">  </span><span class="kw">group_by</span>(Sex, Survived) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb237-4"><a href="ggplot.html#cb237-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_age=</span> <span class="kw">mean</span>(Age, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
-<span id="cb237-5"><a href="ggplot.html#cb237-5"></a></span>
-<span id="cb237-6"><a href="ggplot.html#cb237-6"></a>titanic_em &lt;-<span class="st"> </span>titanic_em <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb237-7"><a href="ggplot.html#cb237-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">ifelse</span>(Survived <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&#39;Survived&#39;</span>,<span class="st">&#39;Dead&#39;</span> ))</span>
-<span id="cb237-8"><a href="ggplot.html#cb237-8"></a></span>
-<span id="cb237-9"><a href="ggplot.html#cb237-9"></a><span class="co"># Check it out</span></span>
-<span id="cb237-10"><a href="ggplot.html#cb237-10"></a>titanic_em</span>
-<span id="cb237-11"><a href="ggplot.html#cb237-11"></a><span class="co"># A tibble: 4 × 3</span></span>
-<span id="cb237-12"><a href="ggplot.html#cb237-12"></a><span class="co"># Groups:   Sex [2]</span></span>
-<span id="cb237-13"><a href="ggplot.html#cb237-13"></a>  Sex    Survived mean_age</span>
-<span id="cb237-14"><a href="ggplot.html#cb237-14"></a>  <span class="op">&lt;</span>chr<span class="op">&gt;</span><span class="st">  </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">       </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span></span>
-<span id="cb237-15"><a href="ggplot.html#cb237-15"></a><span class="dv">1</span> female Dead         <span class="fl">25.0</span></span>
-<span id="cb237-16"><a href="ggplot.html#cb237-16"></a><span class="dv">2</span> female Survived     <span class="fl">28.8</span></span>
-<span id="cb237-17"><a href="ggplot.html#cb237-17"></a><span class="dv">3</span> male   Dead         <span class="fl">31.6</span></span>
-<span id="cb237-18"><a href="ggplot.html#cb237-18"></a><span class="dv">4</span> male   Survived     <span class="fl">27.3</span></span>
-<span id="cb237-19"><a href="ggplot.html#cb237-19"></a></span>
-<span id="cb237-20"><a href="ggplot.html#cb237-20"></a><span class="co"># Now plot it</span></span>
-<span id="cb237-21"><a href="ggplot.html#cb237-21"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_em, </span>
-<span id="cb237-22"><a href="ggplot.html#cb237-22"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>mean_age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></span>
-<span id="cb237-23"><a href="ggplot.html#cb237-23"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</span></code></pre></div>
+<p>Now add better labels:</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="ggplot.html#cb238-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_age, </span>
+<span id="cb238-2"><a href="ggplot.html#cb238-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Sex,<span class="dt">y=</span> mean_age)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb238-3"><a href="ggplot.html#cb238-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb238-4"><a href="ggplot.html#cb238-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&#39;Mean age&#39;</span>, </span>
+<span id="cb238-5"><a href="ggplot.html#cb238-5"></a>       <span class="dt">x =</span> <span class="st">&#39;Gender&#39;</span>,</span>
+<span id="cb238-6"><a href="ggplot.html#cb238-6"></a>       <span class="dt">title =</span> <span class="st">&#39;Titanic passengers: Average age by sex&#39;</span>,</span>
+<span id="cb238-7"><a href="ggplot.html#cb238-7"></a>       <span class="dt">caption =</span> <span class="st">&#39;Do not steal, please&#39;</span>)</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-259-1.png" width="925.44" /></p>
-<p>Rather than stack the bars, you can place them side by side:</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="ggplot.html#cb238-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_em, </span>
-<span id="cb238-2"><a href="ggplot.html#cb238-2"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>mean_age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></span>
-<span id="cb238-3"><a href="ggplot.html#cb238-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) </span></code></pre></div>
+<p>You can add another variable to your bar plot as follows. Let’s say you want to see the average age in each sex, grouped by who survived and who didn’t:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="ggplot.html#cb239-1"></a><span class="co"># First, produce your summary dataframe using some dplyr magic:</span></span>
+<span id="cb239-2"><a href="ggplot.html#cb239-2"></a>titanic_em &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb239-3"><a href="ggplot.html#cb239-3"></a><span class="st">  </span><span class="kw">group_by</span>(Sex, Survived) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb239-4"><a href="ggplot.html#cb239-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_age=</span> <span class="kw">mean</span>(Age, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb239-5"><a href="ggplot.html#cb239-5"></a></span>
+<span id="cb239-6"><a href="ggplot.html#cb239-6"></a>titanic_em &lt;-<span class="st"> </span>titanic_em <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb239-7"><a href="ggplot.html#cb239-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">ifelse</span>(Survived <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&#39;Survived&#39;</span>,<span class="st">&#39;Dead&#39;</span> ))</span>
+<span id="cb239-8"><a href="ggplot.html#cb239-8"></a></span>
+<span id="cb239-9"><a href="ggplot.html#cb239-9"></a><span class="co"># Check it out</span></span>
+<span id="cb239-10"><a href="ggplot.html#cb239-10"></a>titanic_em</span>
+<span id="cb239-11"><a href="ggplot.html#cb239-11"></a><span class="co"># A tibble: 4 × 3</span></span>
+<span id="cb239-12"><a href="ggplot.html#cb239-12"></a><span class="co"># Groups:   Sex [2]</span></span>
+<span id="cb239-13"><a href="ggplot.html#cb239-13"></a>  Sex    Survived mean_age</span>
+<span id="cb239-14"><a href="ggplot.html#cb239-14"></a>  <span class="op">&lt;</span>chr<span class="op">&gt;</span><span class="st">  </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">       </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span></span>
+<span id="cb239-15"><a href="ggplot.html#cb239-15"></a><span class="dv">1</span> female Dead         <span class="fl">25.0</span></span>
+<span id="cb239-16"><a href="ggplot.html#cb239-16"></a><span class="dv">2</span> female Survived     <span class="fl">28.8</span></span>
+<span id="cb239-17"><a href="ggplot.html#cb239-17"></a><span class="dv">3</span> male   Dead         <span class="fl">31.6</span></span>
+<span id="cb239-18"><a href="ggplot.html#cb239-18"></a><span class="dv">4</span> male   Survived     <span class="fl">27.3</span></span>
+<span id="cb239-19"><a href="ggplot.html#cb239-19"></a></span>
+<span id="cb239-20"><a href="ggplot.html#cb239-20"></a><span class="co"># Now plot it</span></span>
+<span id="cb239-21"><a href="ggplot.html#cb239-21"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_em, </span>
+<span id="cb239-22"><a href="ggplot.html#cb239-22"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>mean_age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></span>
+<span id="cb239-23"><a href="ggplot.html#cb239-23"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-260-1.png" width="925.44" /></p>
-<p>If you don’t love these default colors (even if they are colorblind-friendly), you can manually define the colors for each group of bars:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="ggplot.html#cb239-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_em, </span>
-<span id="cb239-2"><a href="ggplot.html#cb239-2"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>mean_age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></span>
-<span id="cb239-3"><a href="ggplot.html#cb239-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>, </span>
-<span id="cb239-4"><a href="ggplot.html#cb239-4"></a>           <span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>, </span>
-<span id="cb239-5"><a href="ggplot.html#cb239-5"></a>           <span class="dt">alpha =</span> <span class="fl">0.7</span>, </span>
-<span id="cb239-6"><a href="ggplot.html#cb239-6"></a>           <span class="dt">color=</span><span class="st">&#39;grey40&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># bar edge</span></span>
-<span id="cb239-7"><a href="ggplot.html#cb239-7"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;grey&#39;</span>)) <span class="co"># bar fill</span></span></code></pre></div>
+<p>Rather than stack the bars, you can place them side by side:</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="ggplot.html#cb240-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_em, </span>
+<span id="cb240-2"><a href="ggplot.html#cb240-2"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>mean_age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></span>
+<span id="cb240-3"><a href="ggplot.html#cb240-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) </span></code></pre></div>
 <p><img src="figures/unnamed-chunk-261-1.png" width="925.44" /></p>
+<p>If you don’t love these default colors (even if they are colorblind-friendly), you can manually define the colors for each group of bars:</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="ggplot.html#cb241-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> titanic_em, </span>
+<span id="cb241-2"><a href="ggplot.html#cb241-2"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>mean_age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></span>
+<span id="cb241-3"><a href="ggplot.html#cb241-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>, </span>
+<span id="cb241-4"><a href="ggplot.html#cb241-4"></a>           <span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>, </span>
+<span id="cb241-5"><a href="ggplot.html#cb241-5"></a>           <span class="dt">alpha =</span> <span class="fl">0.7</span>, </span>
+<span id="cb241-6"><a href="ggplot.html#cb241-6"></a>           <span class="dt">color=</span><span class="st">&#39;grey40&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># bar edge</span></span>
+<span id="cb241-7"><a href="ggplot.html#cb241-7"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;grey&#39;</span>)) <span class="co"># bar fill</span></span></code></pre></div>
+<p><img src="figures/unnamed-chunk-262-1.png" width="925.44" /></p>
 <div id="exercises-8" class="section level4 unnumbered">
 <h4>Exercises</h4>
 <p><strong>More <em>Titanic</em> plots</strong></p>
@@ -564,8 +571,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><strong>Baby names</strong></p>
 <p>Download the dataset on baby names given to newborns in the USA:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="ggplot.html#cb240-1"></a><span class="kw">library</span>(babynames)</span>
-<span id="cb240-2"><a href="ggplot.html#cb240-2"></a>bn &lt;-<span class="st"> </span>babynames</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="ggplot.html#cb242-1"></a><span class="kw">library</span>(babynames)</span>
+<span id="cb242-2"><a href="ggplot.html#cb242-2"></a>bn &lt;-<span class="st"> </span>babynames</span></code></pre></div>
 <p><strong>7.</strong> Create a line chart showing the number of girls named Mary over time.</p>
 <p><strong>8.</strong> Change the color of the line to blue.</p>
 <p><strong>9.</strong> Add a fitting title to the plot.</p>

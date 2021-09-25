@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 34 Good research writing | DataBOOM: the canon for data science</title>
+  <title>Module 35 Good research writing | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 34 Good research writing | DataBOOM: the canon for data science" />
+  <meta property="og:title" content="Module 35 Good research writing | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="databrew/intro-to-data-science" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 34 Good research writing | DataBOOM: the canon for data science" />
+  <meta name="twitter:title" content="Module 35 Good research writing | DataBOOM: the canon for data science" />
   
   <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-09-19" />
+<meta name="date" content="2021-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,6 +59,8 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -212,9 +214,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
 <li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
-<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
-<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#data-format-requirements"><i class="fa fa-check"></i>Data format requirements</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
+<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
+<li><a href="importing-data.html#prepping-your-data-for-r">Prepping your data for <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
@@ -243,16 +246,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-of-association"><i class="fa fa-check"></i>Tests of association</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
 </ul></li>
-<li class="part"><span><b>IV Review exercises</b></span></li>
-<li class="chapter" data-level="21" data-path="a-dplyr-mystery.html"><a href="a-dplyr-mystery.html"><i class="fa fa-check"></i><b>21</b> A <code>dplyr</code> mystery</a></li>
-<li class="chapter" data-level="22" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>22</b> A <code>dplyr</code> survey</a></li>
-<li class="chapter" data-level="23" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>23</b> Global health &amp; <code>ggplot</code></a></li>
-<li class="chapter" data-level="24" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>24</b> Cleaning messy data</a></li>
-<li class="chapter" data-level="25" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>25</b> Shakespeare text mining</a></li>
-<li class="chapter" data-level="26" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>26</b> Trump tweets</a></li>
-<li class="chapter" data-level="27" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>27</b> Sewanee’s climate</a></li>
-<li class="part"><span><b>V Reproducible research</b></span></li>
-<li class="chapter" data-level="28" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>28</b> <code>Git</code> + <code>GitHub</code></a><ul>
+<li class="part"><span><b>IV Reproducible research</b></span></li>
+<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a><ul>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
 <li><a href="git-github.html#git-set-up"><code>Git</code> set up</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
@@ -260,26 +255,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
 <li><a href="git-github.html#git-workflow-overview"><code>Git</code> workflow: overview</a></li>
 </ul></li>
-<li class="chapter" data-level="29" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>29</b> <code>Markdown</code> documentation</a><ul>
+<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a><ul>
 <li><a href="markdown-documentation.html#what-is-markdown">What is <code>Markdown</code>?</a></li>
 <li><a href="markdown-documentation.html#raw-markdown-example">Raw <code>Markdown</code> example</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-12"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="30" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>30</b> <code>R Markdown</code></a><ul>
+<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a><ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
 <li><a href="r-markdown.html#add-an-r-chunk">Add an <code>R</code> chunk</a></li>
 <li><a href="r-markdown.html#in-line-r-code">In-line <code>R</code> code</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
 </ul></li>
-<li class="chapter" data-level="31" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>31</b> Interactive dashboards</a><ul>
+<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a><ul>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#an-easy-example"><i class="fa fa-check"></i>An easy example</a></li>
-<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li><a href="shiny.html#build-your-first-shiny-app">Build your first <code>shiny</code> app</a></li>
 </ul></li>
-<li class="chapter" data-level="32" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>32</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
+<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a><ul>
+<li><a href="interactive-maps.html#mapping-with-leaflet">Mapping with <code>leaflet</code></a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-2"><i class="fa fa-check"></i>Final thoughts</a></li>
+</ul></li>
+<li class="part"><span><b>V Review exercises</b></span></li>
+<li class="chapter" data-level="26" data-path="rms-titanic.html"><a href="rms-titanic.html"><i class="fa fa-check"></i><b>26</b> <em>RMS Titanic</em></a></li>
+<li class="chapter" data-level="27" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>27</b> A <code>dplyr</code> survey</a></li>
+<li class="chapter" data-level="28" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>28</b> Global health &amp; <code>ggplot</code></a></li>
+<li class="chapter" data-level="29" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>29</b> Sewanee’s climate</a></li>
+<li class="chapter" data-level="30" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>30</b> Cleaning messy data</a></li>
+<li class="chapter" data-level="31" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>31</b> Shakespeare text mining</a></li>
+<li class="chapter" data-level="32" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>32</b> Trump tweets</a></li>
+<li class="chapter" data-level="33" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>33</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
 <li class="part"><span><b>VI Presenting research</b></span></li>
-<li class="chapter" data-level="33" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>33</b> Writing a report</a><ul>
+<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a><ul>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
@@ -288,54 +295,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
 </ul></li>
-<li class="chapter" data-level="34" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>34</b> Good research writing</a><ul>
+<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a><ul>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-tables"><i class="fa fa-check"></i>Formatting tables</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-figures"><i class="fa fa-check"></i>Formatting figures</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>35</b> Research talks</a></li>
+<li class="chapter" data-level="36" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>36</b> Research talks</a></li>
 <li class="part"><span><b>VII Deep <code>R</code></b></span></li>
-<li class="chapter" data-level="36" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>36</b> Saving data &amp; plots</a><ul>
+<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a><ul>
 <li><a href="saving-data-plots.html#write.csv"><code>write.csv()</code></a></li>
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="37" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>37</b> Joining datasets</a><ul>
+<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
 <li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>38</b> Working with text</a><ul>
+<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>39</b> Working with dates &amp; times</a><ul>
+<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a><ul>
 <li><a href="dates.html#the-lubridate-package">The <code>lubridate()</code> package</a></li>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>40</b> Writing functions</a><ul>
+<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a><ul>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
-<li class="chapter" data-level="40.1" data-path="writing-functions.html"><a href="writing-functions.html#using-dplyr-and-ggplot-in-custom-functions"><i class="fa fa-check"></i><b>40.1</b> Using dplyr and ggplot in custom functions</a></li>
-<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#exercise-3"><i class="fa fa-check"></i>Exercise</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>41</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a><ul>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li><a href="for-loops.html#for-loop-exercises"><code>for</code> loop exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>42</b> Conditional statements</a><ul>
+<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a><ul>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>43</b> Matrices &amp; lists</a><ul>
+<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a><ul>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>44</b> Advanced base plots in <code>R</code></a></li>
-<li class="chapter" data-level="45" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>45</b> Geographic computing &amp; GIS</a><ul>
-<li class="chapter" data-level="" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html#exercise-5"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="45" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>45</b> Advanced base plots in <code>R</code></a></li>
+<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a><ul>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#geographic-data-structures"><i class="fa fa-check"></i>Geographic data structures</a></li>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors"><i class="fa fa-check"></i>Combining rasters &amp; vectors</a></li>
+<li><a href="geographic-information-systems.html#combining-rasters-vectors-leaflet">Combining rasters, vectors, &amp; <code>leaflet</code></a></li>
 </ul></li>
-<li class="chapter" data-level="46" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>46</b> Mapping</a></li>
 <li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a><ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
@@ -363,8 +370,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="style" class="section level1">
-<h1><span class="header-section-number">Module 34</span> Good research writing</h1>
-<div id="learning-goals-19" class="section level4 unnumbered">
+<h1><span class="header-section-number">Module 35</span> Good research writing</h1>
+<div id="learning-goals-26" class="section level4 unnumbered">
 <h4>Learning goals</h4>
 <ul>
 <li>Understand the principles of good research writing</li>
@@ -378,18 +385,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Core principles</h2>
 <p>Opan and Swan (1990) offer many fundamental principles for strong scientific writing, but they all stem from the same core idea: <strong>Write with the reader in mind.</strong> It is not enough to have all the correct information on the page; that information must organized and presented in ways that helps the reader understand.</p>
 <p>To illustrate this point in a brief example, they show three different ways to present the same information:</p>
-<p><em>Option 1:</em></p>
+<p><strong>Option 1:</strong></p>
 <p>“Our results were t(time)=15’, T(temperature)=32º, t=0’, T=25º; t=6’, T=29º; t=3’, T=27º; t=12’, T=32º; t=9’; T=31º”</p>
-<p><em>Option 2:</em></p>
-<p><img src="img/style-eg1.png" style="width:30.0%" /></p>
-<p><em>Option 3:</em></p>
-<p><img src="img/style-eg2.png" style="width:30.0%" /></p>
+<p><strong>Option 2:</strong></p>
+<p><img src="img/style-eg1.png" style="width:25.0%" /></p>
+<p><strong>Option 3:</strong></p>
+<p><img src="img/style-eg2.png" style="width:25.0%" /></p>
 <p>Which of these is easiest to interpret? Why?</p>
-<p>In short, <em>place information where readers expect to find it.</em> This applies broad organization, such as keep all methodological details within the <em>Methods</em> sections, or deciding which information to place in tables and which to write out in the narrative of your <em>Results</em> section, but it also applies to writing at the sentence-level. In every sentence readers take in, they have subconscious expectations about how coherent ideas will be structured. Shape your sentences to meet those expectations.</p>
+<p>In short, <strong>place information where readers expect to find it.</strong> This applies broad organization, such as keep all methodological details within the <em>Methods</em> sections, or deciding which information to place in tables and which to write out in the narrative of your <em>Results</em> section, but it also applies to writing at the sentence-level. In every sentence readers take in, they have subconscious expectations about how coherent ideas will be structured. Shape your sentences to meet those expectations.</p>
 <p> </p>
 <p>Opan and Swan (1990) provide a good example of really bad writing:</p>
+<blockquote>
 <p><em>“The smallest of the URF’s (URFA6L), a 207-nucleotide (nt) reading frame overlapping out of phase the NH2-terminal portion of the adenosinetriphosphatase (ATPase) subunit 6 gene has been identified as the animal equivalent of the recently discovered yeast H+-ATPase subunit 8 gene. The functional significance of the other URF’s has been, on the contrary, elusive. Recently, however, immunoprecipitation experiments with antibodies to purified, rotenone-sensitive NADH-ubiquinone oxido-reductase [hereafter referred to as respiratory chain NADH dehydrogenase or complex I] from bovine heart, as well as enzyme fractionation studies, have indicated that six human URF’s (that is, URF1, URF2, URF3, URF4, URF4L, and URF5, hereafter referred to as ND1, ND2, ND3, ND4, ND4L, and ND5) encode subunits of complex I. This is a large complex that also contains many subunits synthesized in the cytoplasm.”</em></p>
-<p>If you are like most readers, this paragraph is difficult to make sense of and the authors’ intended meaning is completely lost.</p>
+</blockquote>
+<p> </p>
+<p>If you are like most readers, this paragraph is difficult to make sense of. The authors’ intended meaning is completely lost.</p>
 <p>To fix this paragraph and others like it, Opan and Swan recommend the following steps:</p>
 <p> </p>
 <p><strong>Principle 1. Keep language as straightforward and clear as possible.</strong> The more complex a sentence or paragraph becomes, the more likely that a reader will get confused or just give up. Note, however, that long sentences are not necessarily bad. If a sentence is shaped well and written clearly, there is no limit to its length.</p>
@@ -402,17 +412,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Principle 5. Make use of the ‘Stress Position’.</strong> Readers naturally emphasize the material at the sentence’s end. Arrange the emphatic information in your sentence to arrive last. In other words, save the best for last.</p>
 <p><em>Bad example:</em> The end of a sentence is usually where readers naturally place emphasis on material. Place the emphatic information near the end of your sentence in order to re-arrange. The last is the place for which the best should be saved.</p>
 <p><em>Good example:</em> See Principle 5.</p>
-<p><strong>Principle 6. The ‘Topic Position’ keeps things clear.</strong> The ‘topic position’, i.e., the material at the beginning of a sentence, establishes context and expectations for the remainder of the sentence. The first pieces of information help the reader understand what the sentence will be about. As Oppan &amp; Swan (1990) put it, <em>“‘Bees disperse pollen’ and ‘Pollen is dispersed by bees’ are two different but equally respectable sentences about the same facts. The first tells us something about bees; the second tells us something about pollen.”</em> If you are writing a paragraph about pollen, then the second is superior. Even though it utilizes passive voice, it correctly reinforces who the main character is.</p>
+<p><strong>Principle 6. The ‘Topic Position’ keeps things clear.</strong> The ‘topic position’, i.e., the material at the beginning of a sentence, establishes context and expectations for the remainder of the sentence. The first pieces of information help the reader understand what the sentence will be about. As Oppan &amp; Swan (1990) put it:</p>
+<blockquote>
+<p><em>“‘Bees disperse pollen’ and ‘Pollen is dispersed by bees’ are two different but equally respectable sentences about the same facts. The first tells us something about bees; the second tells us something about pollen.”</em></p>
+</blockquote>
+<p>If you are writing a paragraph about pollen, then the second is superior. Even though it utilizes passive voice, it correctly reinforces who the main character is.</p>
 <p><strong>Principle 7. Use Topic Positions and Stress Positions to link ideas in a paragraph.</strong> In a clear-flowing paragraph, the Topic Position of each sentence is linked to the Stress Position of the previous. In other words, the topic position provides both context (looking ahead) and linkage (looking back). Try to get into the pattern of placing ‘old information’, i.e., material you have already introduced, in the Topic Position and ‘new information’ in the Stress Position. Maintaining this pattern consistently is an enormous aid to reader comprehension.</p>
 <p>This stress-topic linkage is particularly important in persuasive writing, such as a report’s <em>Introduction</em>. Those sections are really evidence-based arguments that build on top of one another, connecting ideas in a chain. They are not lists of facts.
 In a strong argument, sentences are connected in a chain.</p>
 <p><em>Bad example:</em> “A is something interesting. B is something interesting. C is …”</p>
 <p><em>Good:</em> “A is related to B. B is related to C. C is related D…”</p>
 <p>Oppan and Swan (1990) provide the following examples:</p>
-<p>Bad example:<br />
-<em>Large earthquakes along a given fault segment do not occur at random intervals because it takes time to accumulate the strain energy for the rupture. The rates at which tectonic plates move and accumulate strain at their boundaries are approximately uniform. Therefore, in first approximation, one may expect that large ruptures of the same fault segment will occur at approximately constant time intervals. If subsequent main shocks have different amounts of slip across the fault, then the recurrence time may vary, and the basic idea of periodic mainshocks must be modified. For great plate boundary ruptures the length and slip often vary by a factor of 2. Along the southern segment of the San Andreas fault the recurrence interval is 145 years with variations of several decades. The smaller the standard deviation of the average recurrence interval, the more specific could be the long term prediction of a future mainshock.</em></p>
-<p>Good example:<br />
-<em>Large earthquakes along a given fault segment do not occur at random intervals because it takes time to accumulate the strain energy for the rupture. The rates at which tectonic plates move and accumulate strain at their boundaries are roughly uniform. Therefore, nearly constant time intervals (at first approximation) would be expected between large ruptures of the same fault segment. However, the recurrence time may vary; the basic idea of periodic mainshocks may need to be modified if subsequent mainshocks have different amounts of slip across the fault. Indeed, the length and slip of great plate boundary ruptures often vary by a factor of 2. For example, the recurrence intervals along the southern segment of the San Andreas fault is 145 years with variations of several decades. The smaller the standard deviation of the average recurrence interval, the more specific could be the long term prediction of a future mainshock.</em></p>
+<p>Bad example:</p>
+<blockquote>
+<p><em>Large earthquakes along a given fault segment do not occur at random intervals because it takes time to accumulate the strain energy for the rupture. The rates at which tectonic plates move and accumulate strain at their boundaries are approximately uniform. Therefore, in first approximation, one may expect that large ruptures of the same fault segment will occur at approximately constant time intervals. If subsequent main shocks have different amounts of slip across the fault, then the recurrence time may vary, and the basic idea of periodic mainshocks must be modified. For great plate boundary ruptures the length and slip often vary by a factor of 2. Along the southern segment of the San Andreas fault the recurrence interval is 145 years with variations of several decades. The smaller the standard deviation of the average recurrence interval, the more specific could be the long term prediction of a future mainshock.</em></p>
+</blockquote>
+<p>Good example:</p>
+<blockquote>
+<p><em>Large earthquakes along a given fault segment do not occur at random intervals because it takes time to accumulate the strain energy for the rupture. The rates at which tectonic plates move and accumulate strain at their boundaries are roughly uniform. Therefore, nearly constant time intervals (at first approximation) would be expected between large ruptures of the same fault segment. However, the recurrence time may vary; the basic idea of periodic mainshocks may need to be modified if subsequent mainshocks have different amounts of slip across the fault. Indeed, the length and slip of great plate boundary ruptures often vary by a factor of 2. For example, the recurrence intervals along the southern segment of the San Andreas fault is 145 years with variations of several decades. The smaller the standard deviation of the average recurrence interval, the more specific could be the long term prediction of a future mainshock.</em></p>
+</blockquote>
 <p>Oppan and Swan (1990) conclude this recommendation by stating that, <em>“In our experience, the misplacement of old and new information turns out to be the No. 1 problem in American professional writing today.”</em></p>
 <p><strong>Principle 8. Anticipate and avoid logical gaps.</strong> When a new sentence contains no reference whatsoever to ‘old information’ in previous sentences, the readers will make their own logical leaps, and those leaps will almost always be wrong.</p>
 <p> </p>
@@ -433,7 +451,7 @@ In a strong argument, sentences are connected in a chain.</p>
 </div>
 <div id="use-of-passive-voice-and-first-person" class="section level3 unnumbered">
 <h3>Use of passive voice and first-person</h3>
-<p>Most beginners are told that the use of first-person language within a research report is inappropriate, but that is simply not true. It certain <em>is</em> true that it is possible to <em>misuse</em> first-person structure, but it is also true that first person structure can occasionally improve the flow of a paragraph and, counterintuitively, it can help keep the reader’s focus on your objectives and methods.</p>
+<p>Most beginners are told that the use of first-person language within a research report is inappropriate, but that is simply not true. It certainly <em>is</em> true that it is possible to <em>misuse</em> first-person structure, but it is also true that first person structure can occasionally improve the flow of a paragraph and, counterintuitively, it can help keep the reader’s focus on your objectives and methods.</p>
 <p>Examples of appropriate use of first-person:</p>
 <ul>
 <li><p><em>“We aimed to quantify differences between supply and benefit within the context of conservation planning. We addressed 3 questions…”</em> (from <a href="https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/cobi.13276" target="blank">Watson et al. 2019</a>)</p></li>

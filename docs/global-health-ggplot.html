@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 23 Global health &amp; ggplot | DataBOOM: the canon for data science</title>
+  <title>Module 28 Global health &amp; ggplot | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 23 Global health &amp; ggplot | DataBOOM: the canon for data science" />
+  <meta property="og:title" content="Module 28 Global health &amp; ggplot | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="databrew/intro-to-data-science" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 23 Global health &amp; ggplot | DataBOOM: the canon for data science" />
+  <meta name="twitter:title" content="Module 28 Global health &amp; ggplot | DataBOOM: the canon for data science" />
   
   <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-09-19" />
+<meta name="date" content="2021-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="a-dplyr-survey.html"/>
-<link rel="next" href="cleaning-messy-data.html"/>
+<link rel="next" href="sewanees-climate.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -59,6 +59,8 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -212,9 +214,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
 <li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
-<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
-<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#data-format-requirements"><i class="fa fa-check"></i>Data format requirements</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
+<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
+<li><a href="importing-data.html#prepping-your-data-for-r">Prepping your data for <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
@@ -243,16 +246,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-of-association"><i class="fa fa-check"></i>Tests of association</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
 </ul></li>
-<li class="part"><span><b>IV Review exercises</b></span></li>
-<li class="chapter" data-level="21" data-path="a-dplyr-mystery.html"><a href="a-dplyr-mystery.html"><i class="fa fa-check"></i><b>21</b> A <code>dplyr</code> mystery</a></li>
-<li class="chapter" data-level="22" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>22</b> A <code>dplyr</code> survey</a></li>
-<li class="chapter" data-level="23" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>23</b> Global health &amp; <code>ggplot</code></a></li>
-<li class="chapter" data-level="24" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>24</b> Cleaning messy data</a></li>
-<li class="chapter" data-level="25" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>25</b> Shakespeare text mining</a></li>
-<li class="chapter" data-level="26" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>26</b> Trump tweets</a></li>
-<li class="chapter" data-level="27" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>27</b> Sewanee’s climate</a></li>
-<li class="part"><span><b>V Reproducible research</b></span></li>
-<li class="chapter" data-level="28" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>28</b> <code>Git</code> + <code>GitHub</code></a><ul>
+<li class="part"><span><b>IV Reproducible research</b></span></li>
+<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a><ul>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
 <li><a href="git-github.html#git-set-up"><code>Git</code> set up</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
@@ -260,26 +255,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
 <li><a href="git-github.html#git-workflow-overview"><code>Git</code> workflow: overview</a></li>
 </ul></li>
-<li class="chapter" data-level="29" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>29</b> <code>Markdown</code> documentation</a><ul>
+<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a><ul>
 <li><a href="markdown-documentation.html#what-is-markdown">What is <code>Markdown</code>?</a></li>
 <li><a href="markdown-documentation.html#raw-markdown-example">Raw <code>Markdown</code> example</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-12"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="30" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>30</b> <code>R Markdown</code></a><ul>
+<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a><ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
 <li><a href="r-markdown.html#add-an-r-chunk">Add an <code>R</code> chunk</a></li>
 <li><a href="r-markdown.html#in-line-r-code">In-line <code>R</code> code</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
 </ul></li>
-<li class="chapter" data-level="31" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>31</b> Interactive dashboards</a><ul>
+<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a><ul>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#an-easy-example"><i class="fa fa-check"></i>An easy example</a></li>
-<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li><a href="shiny.html#build-your-first-shiny-app">Build your first <code>shiny</code> app</a></li>
 </ul></li>
-<li class="chapter" data-level="32" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>32</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
+<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a><ul>
+<li><a href="interactive-maps.html#mapping-with-leaflet">Mapping with <code>leaflet</code></a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-2"><i class="fa fa-check"></i>Final thoughts</a></li>
+</ul></li>
+<li class="part"><span><b>V Review exercises</b></span></li>
+<li class="chapter" data-level="26" data-path="rms-titanic.html"><a href="rms-titanic.html"><i class="fa fa-check"></i><b>26</b> <em>RMS Titanic</em></a></li>
+<li class="chapter" data-level="27" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>27</b> A <code>dplyr</code> survey</a></li>
+<li class="chapter" data-level="28" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>28</b> Global health &amp; <code>ggplot</code></a></li>
+<li class="chapter" data-level="29" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>29</b> Sewanee’s climate</a></li>
+<li class="chapter" data-level="30" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>30</b> Cleaning messy data</a></li>
+<li class="chapter" data-level="31" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>31</b> Shakespeare text mining</a></li>
+<li class="chapter" data-level="32" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>32</b> Trump tweets</a></li>
+<li class="chapter" data-level="33" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>33</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
 <li class="part"><span><b>VI Presenting research</b></span></li>
-<li class="chapter" data-level="33" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>33</b> Writing a report</a><ul>
+<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a><ul>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
@@ -288,54 +295,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
 </ul></li>
-<li class="chapter" data-level="34" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>34</b> Good research writing</a><ul>
+<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a><ul>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-tables"><i class="fa fa-check"></i>Formatting tables</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-figures"><i class="fa fa-check"></i>Formatting figures</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>35</b> Research talks</a></li>
+<li class="chapter" data-level="36" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>36</b> Research talks</a></li>
 <li class="part"><span><b>VII Deep <code>R</code></b></span></li>
-<li class="chapter" data-level="36" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>36</b> Saving data &amp; plots</a><ul>
+<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a><ul>
 <li><a href="saving-data-plots.html#write.csv"><code>write.csv()</code></a></li>
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="37" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>37</b> Joining datasets</a><ul>
+<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
 <li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>38</b> Working with text</a><ul>
+<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>39</b> Working with dates &amp; times</a><ul>
+<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a><ul>
 <li><a href="dates.html#the-lubridate-package">The <code>lubridate()</code> package</a></li>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>40</b> Writing functions</a><ul>
+<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a><ul>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
-<li class="chapter" data-level="40.1" data-path="writing-functions.html"><a href="writing-functions.html#using-dplyr-and-ggplot-in-custom-functions"><i class="fa fa-check"></i><b>40.1</b> Using dplyr and ggplot in custom functions</a></li>
-<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#exercise-3"><i class="fa fa-check"></i>Exercise</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>41</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a><ul>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li><a href="for-loops.html#for-loop-exercises"><code>for</code> loop exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>42</b> Conditional statements</a><ul>
+<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a><ul>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>43</b> Matrices &amp; lists</a><ul>
+<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a><ul>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>44</b> Advanced base plots in <code>R</code></a></li>
-<li class="chapter" data-level="45" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>45</b> Geographic computing &amp; GIS</a><ul>
-<li class="chapter" data-level="" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html#exercise-5"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="45" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>45</b> Advanced base plots in <code>R</code></a></li>
+<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a><ul>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#geographic-data-structures"><i class="fa fa-check"></i>Geographic data structures</a></li>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors"><i class="fa fa-check"></i>Combining rasters &amp; vectors</a></li>
+<li><a href="geographic-information-systems.html#combining-rasters-vectors-leaflet">Combining rasters, vectors, &amp; <code>leaflet</code></a></li>
 </ul></li>
-<li class="chapter" data-level="46" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>46</b> Mapping</a></li>
 <li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a><ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
@@ -363,14 +370,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="global-health-ggplot" class="section level1">
-<h1><span class="header-section-number">Module 23</span> Global health &amp; <code>ggplot</code></h1>
+<h1><span class="header-section-number">Module 28</span> Global health &amp; <code>ggplot</code></h1>
 <p>This review exercise is useful immediately after you learn <code>ggplot2</code> and <code>dplyr</code>.</p>
 <p> </p>
 <p>First, let’s read in some data on health from the World Bank:</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="global-health-ggplot.html#cb323-1"></a><span class="kw">library</span>(readr)</span>
-<span id="cb323-2"><a href="global-health-ggplot.html#cb323-2"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb323-3"><a href="global-health-ggplot.html#cb323-3"></a><span class="kw">library</span>(gapminder)</span>
-<span id="cb323-4"><a href="global-health-ggplot.html#cb323-4"></a>gm &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="global-health-ggplot.html#cb397-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb397-2"><a href="global-health-ggplot.html#cb397-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb397-3"><a href="global-health-ggplot.html#cb397-3"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb397-4"><a href="global-health-ggplot.html#cb397-4"></a>gm &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder</span></code></pre></div>
 <p><strong>1.</strong> How many rows are in the dataset?</p>
 <p><strong>2.</strong> How many columns are in the dataset?</p>
 <p><strong>3.</strong> What are the names of the columns?</p>
@@ -419,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="a-dplyr-survey.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="cleaning-messy-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sewanees-climate.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -450,7 +457,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/databrew/intro-to-data-science/edit/master/06-ab-dplyr_ggplot.Rmd",
+"link": "https://github.com/databrew/intro-to-data-science/edit/master/11-ab-dplyr_ggplot.Rmd",
 "text": "Edit"
 },
 "history": {

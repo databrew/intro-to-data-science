@@ -1,0 +1,292 @@
+# Interactive maps
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+
+```
+
+#### Learning goals {-}
+
+- Learn how to create interactive, *beautiful* maps with `leaflet`. 
+
+- Understand why `leaflet` is so awesome and valuable in *reproducible* data science.  
+
+
+## Mapping with `leaflet` {-}  
+
+If you know about the right packages, making really nice maps in `R` is actually pretty easy. `R`'s spatial visualization tool set is one of the things that elevates it above the other open-source coding tools out there. 
+
+Being able to make a map programmatically is a powerful skill. And we can do it quickly and easily in `R` thanks to the package `leaflet`.  
+
+Let's load it up:   
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+install.packages('leaflet')
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE}
+library(leaflet)
+
+# Some other packages too:
+library(dplyr)
+library(ggplot2)
+```
+
+To practice making a map, let's focus in on the location of Sewanee: The University of the South, in Tennessee, USA.  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+sewanee <- data.frame(longitude=-85.9211, 
+                      latitude=35.2031)
+```
+
+To begin a `leaflet` map, simply type `leaflet()`. This creates a blank canvas. 
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet()
+```
+
+&nbsp;  
+
+Now, add the background map. To do so, `leaflet` uses "tiles". Tiles are basically images -- little pictures stitched together to give you a sense of a continuous map.
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>% addTiles() 
+```
+
+&nbsp;  
+
+Try zooming into this map to get a sense of how powerful these interactive `leaflet` maps can be.  
+
+To get the map focused on a specific area of interest, bring in "markers" based on your data:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>% 
+    addTiles() %>% 
+    addMarkers(data=sewanee)
+```
+
+&nbsp;  
+
+Ta-dah! There's your map. Try zooming in & out again.  
+
+### Stylizing your `leaflet` map {-}  
+
+How about satellite imagery instead?  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>% 
+    addProviderTiles(providers$Esri.WorldImagery) %>% 
+    addMarkers(data=sewanee)
+```
+
+&nbsp;  
+
+How about topography instead?  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>% 
+    addProviderTiles(providers$Esri.WorldTopoMap) %>% 
+    addMarkers(data=sewanee)
+```
+
+&nbsp;  
+
+The `leaflet` package has plenty of other tile styles available through the `addProviderTiles()` function. To preview all the options, check out [this site.](https://leaflet-extras.github.io/leaflet-providers/preview/)   
+
+### Working with markers in `leaflet` {-}  
+
+To change the markers from a "dart" to a circle, use `addCircleMarkers()` instead: 
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>% 
+    addProviderTiles(providers$Esri.WorldTopoMap) %>% 
+    addCircleMarkers(data=sewanee, 
+                     color = "firebrick",
+                     radius = 15)
+```
+
+&nbsp;  
+
+To add 'pop up' information when you click on your marker, use the `popup` input:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>% 
+    addProviderTiles(providers$Esri.WorldTopoMap) %>% 
+    addCircleMarkers(data=sewanee, 
+                     color = "firebrick",
+                     radius = 15,
+                     popup = paste0('<b>YSR, yall.</b> <br>', 
+                                    'Lat: ',sewanee$longitude,'<br>',
+                                    'Lon: ',sewanee$latitude,'\n'))
+```
+
+&nbsp;  
+
+Click on the marker and see how it looks! Note that we used a bit of `HTML` to make the text look prettier.  
+
+### Mapping marine areas {-}  
+
+Note that `leaflet` is also useful in mapping marine areas.  
+
+For example, map the bathymetry of the northeast Pacific basin:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>% 
+    addProviderTiles(providers$Esri.OceanBasemap) %>%
+    fitBounds(lng1 = -165,
+              lng2 = -100,
+              lat1 = 10,
+              lat2 = 50)
+```
+
+&nbsp;  
+
+Or get satellite imagery for an island off the coast of Georgia, USA:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>% 
+    addProviderTiles(providers$Esri.WorldImagery) %>% 
+    fitBounds(lng1 = -81.2,
+              lng2 = -81.1,
+              lat1 = 31.54,
+              lat2 = 31.7)
+```
+
+
+## Geocoding {-}  
+
+To jumpstart your mapping skills in `R`, the second package you need to know about is `tidygeocoder`. This package helps you **"geocode"** a mailing address. Geocoding means providing the latitude and longitude for an address, which allows you to find it on a map.  
+
+First, install & load the package:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+install.packages('tidygeocoder')
+```
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+library(tidygeocoder)
+```
+
+Second, create a dataframe for the address(es) you wish to map:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+addresses <- data.frame(name= 'White House', 
+                        addr = "1600 Pennsylvania Ave NW, Washington, DC")
+```
+
+Now, geocode:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE}
+lat_longs <- addresses %>%
+    geocode(addr, method = 'osm', lat = latitude , long = longitude)
+```
+
+Check out the result:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+lat_longs
+```
+
+And check out your map:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE}
+leaflet(data=lat_longs) %>% 
+    addProviderTiles(providers$Stamen.Watercolor) %>% 
+    addMarkers()
+```
+
+&nbsp;  
+
+You can also **reverse geocode**, i.e., get the mailing address for a lat-long coordinate.  
+
+Say these are your coordinates of interest:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+lat_longs <- data.frame(latitude=48.8584, 
+                        longitude=2.2945)
+```
+
+Now, reverse-geocode:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+reverse <- lat_longs %>%
+    reverse_geocode(lat = latitude, 
+                    long = longitude)
+```
+
+Check out the result:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+reverse
+```
+
+Now, add the mailing address as a `popup` in your marker:  
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>% 
+    addProviderTiles(providers$HikeBike.HikeBike) %>% 
+    addCircleMarkers(data=lat_longs, 
+                     color = "firebrick",
+                     radius = 15,
+                     popup = gsub(",",",<br>", reverse$address))
+```
+
+
+## Final thoughts {-}  
+
+Maps, even simple ones, are amazingly effective data visualizations. The density and layers of information contained within a map are incredible!  
+
+All of those virtues are compounded with an interactie map. At each zoom level, you gain a new perspective.  Like `shiny` apps, `leaflet` maps put the viewer in control of how they explore and understand the data.  
+
+
+
+### Exercises {-}  
+
+**1.** Create a new `Rmarkdown` document.
+
+**2.** Create a code chunk. In this chunk, read in some data on "conflicts". To read in the data, run the below code.  
+
+```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
+download.file('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/conflicts.RData',
+              destfile = 'conflicts.RData')
+
+load('conflicts.RData')
+```
+
+This data comes from [https://ucdp.uu.se/encyclopedia](https://ucdp.uu.se/encyclopedia). Take a minute or two to look at the website. 
+
+
+**3.** Have a look in the data. Which fields are likely to be geographic?
+
+**4.** Make a simple x-y plot using geographic fields.
+
+```{r,echo=FALSE,collapse=TRUE, eval = FALSE}
+ggplot(data = conflicts,
+       aes(x = longitude,
+           y = latitude)) +
+  geom_point()
+```
+
+**5.** Create an object named `conflicts_afg`. This should be a plot of conflicts in Afghanistan.
+
+**6.** Color the points by year.
+
+**7.** Instead of year, color the points by `deaths_civilians`.
+
+**8.** Color the points by date, but make point size reflect `deaths_civilians`.
+
+**9.** Create a leaflet map of conflicts in a country of your choice.
+
+**10.** Use `addTiles`.
+
+**11.** Use `addProviderTiles` to make your map a satellite map.
+
+**12.** Explore other tiles
+
+**13.** Add pop-ups to your maps by using the `popup` argument within `addMarkers`.
+
+**14.** Add `clusterOptions = markerClusterOptions()` to make your points clustered.
+
+**15.** Replace your markers with "circle markers".
+
+**16.** Create a shiny app wherein the user selects a country and time frame, and the app shows both (a) an interactive map and (b) a plot of the number of conflicts by year for that country. 
+

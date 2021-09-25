@@ -1,0 +1,95 @@
+# Global health & `ggplot`  
+
+This review exercise is useful immediately after you learn `ggplot2` and `dplyr`.  
+
+&nbsp;  
+
+First, let's read in some data on health from the World Bank:
+
+```{r,echo=TRUE,collapse=TRUE,message=FALSE,warning=FALSE}
+library(readr)
+library(dplyr)
+library(gapminder)
+gm <- gapminder::gapminder
+```
+
+**1.** How many rows are in the dataset?
+
+**2.** How many columns are in the dataset?
+
+**3.** What are the names of the columns?
+
+**4.** What is the oldest year in the dataset?
+
+**5.** What is the country/year with the greatest population in the dataset?
+
+**6.** Get the average GDP per capita for each continent  in 1952.
+
+**7.** Get the average GDP per capita for each continent for the most recent year in the dataset.
+
+**8.** Average GDP is a bit misleading, since it does not take into account the relative size (in population) of the different countries (ie, China is a lot bigger than Cambodia). Look up the function `weighted.mean`. Use it to get the average life expectancy by continent for the most recent year in the dataset, weighted by population.
+
+&nbsp; 
+
+**9.** Make a barplot of the above table (ie, average life expectancy by continent, weighted by population).
+
+**10.** Make a point plot in which the x-axis is country, and the y-axis is GDP. Add the line `theme(axis.text.x = element_text(angle = 90))` in order to make the x-axis text vertically aligned. What's the problem with this plot? How many points are there per country?
+
+**11.** Make a new version of the above, but filter down to just the earliest year in the dataset.
+
+**12.** Make a scatterplot of life expectancy and GDP per capita, just for 1972.
+
+**13.** Make the same plot as above, but for the most recent year in the data.
+
+**14.** Make the same plot as the above, but have the size of the points reflect the population.
+
+**15.** Make the same plot as the above, but have the color of the points reflect the continent.
+
+&nbsp; 
+
+**16.** Filter the data down to just the most recent year in the data, and make a histogram (`geom_histogram`) showing the distribution of GDP per capita.
+
+**17.** Get the average GDP per capita for each continent/year, weighted by the population of each country. 
+
+**18.** Using the data created above, make a plot in which the x-axis is year, the y-axis is (weighted) average GDP per capita, and the color of the lines reflects the content.
+
+**19.** Make the same plot as the above, but facet the plot by continent.
+
+**20.** Make the same plot as the above, but remove the coloring by continent.
+
+&nbsp; 
+
+**21.** Make a plot showing France's population over time.
+
+**22.** Make a plot showing all European countries' population over time, with color reflecting the name of the country.
+
+**23.** Create a variable called `status`. If GDP per capita is over 20,000, this should be "rich"; if between 5,000 and 20,000, this should be "middle"; if this is less than 5,000, this should be "poor".
+
+**24.** Create an object with the number of rich countries per year.
+
+**25.** Create an object with the percentage of countries that were rich each year.
+
+&nbsp; 
+
+**26.** Create a plot showing the percentage of countries which were rich each year.
+
+**27.** Create an object with the number of people living in poor countries each year.
+
+**28.** Create a chart showing the number of people living in rich, medium, and poor countries per year (line chart, coloring by `status`).
+
+**29.** Create a chart showing the life expectancy in Somalia over time.
+
+**30.** Create a chart showing GDP per capita in Somalia over time.
+
+&nbsp; 
+
+**31.** Create a histogram of life expectancy for the most recent year in the data. Facet this chart by continent.
+
+**32.** Create a barchart showing average continent-level GDP over time, weighted for population, with one bar for each year, stacked bars with the color of the bars indicating continent (`geom_bar(position = 'stack')`).
+
+**33.** Create the same chart as above, but with bars side-by-side (`geom_bar(position = 'dodge')`)
+
+**34.** Generate 3-5 more charts / tables that show interesting things about the data.
+
+**35.** Make the above charts as aesthetically pleasing as possible.
+

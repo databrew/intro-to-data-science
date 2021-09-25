@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 39 Working with dates &amp; times | DataBOOM: the canon for data science</title>
+  <title>Module 40 Working with dates &amp; times | DataBOOM: the canon for data science</title>
   <meta name="description" content="Data science is just data and science. But it’s better with pizza." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 39 Working with dates &amp; times | DataBOOM: the canon for data science" />
+  <meta property="og:title" content="Module 40 Working with dates &amp; times | DataBOOM: the canon for data science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="databrew/intro-to-data-science" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 39 Working with dates &amp; times | DataBOOM: the canon for data science" />
+  <meta name="twitter:title" content="Module 40 Working with dates &amp; times | DataBOOM: the canon for data science" />
   
   <meta name="twitter:description" content="Data science is just data and science. But it’s better with pizza." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Databrew" />
 
 
-<meta name="date" content="2021-09-19" />
+<meta name="date" content="2021-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,6 +59,8 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -212,9 +214,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
 <li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
-<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
-<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#data-format-requirements"><i class="fa fa-check"></i>Data format requirements</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
+<li><a href="importing-data.html#csv-files"><code>.csv</code> files</a></li>
+<li><a href="importing-data.html#prepping-your-data-for-r">Prepping your data for <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
@@ -243,16 +246,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-of-association"><i class="fa fa-check"></i>Tests of association</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
 </ul></li>
-<li class="part"><span><b>IV Review exercises</b></span></li>
-<li class="chapter" data-level="21" data-path="a-dplyr-mystery.html"><a href="a-dplyr-mystery.html"><i class="fa fa-check"></i><b>21</b> A <code>dplyr</code> mystery</a></li>
-<li class="chapter" data-level="22" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>22</b> A <code>dplyr</code> survey</a></li>
-<li class="chapter" data-level="23" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>23</b> Global health &amp; <code>ggplot</code></a></li>
-<li class="chapter" data-level="24" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>24</b> Cleaning messy data</a></li>
-<li class="chapter" data-level="25" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>25</b> Shakespeare text mining</a></li>
-<li class="chapter" data-level="26" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>26</b> Trump tweets</a></li>
-<li class="chapter" data-level="27" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>27</b> Sewanee’s climate</a></li>
-<li class="part"><span><b>V Reproducible research</b></span></li>
-<li class="chapter" data-level="28" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>28</b> <code>Git</code> + <code>GitHub</code></a><ul>
+<li class="part"><span><b>IV Reproducible research</b></span></li>
+<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a><ul>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
 <li><a href="git-github.html#git-set-up"><code>Git</code> set up</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
@@ -260,26 +255,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
 <li><a href="git-github.html#git-workflow-overview"><code>Git</code> workflow: overview</a></li>
 </ul></li>
-<li class="chapter" data-level="29" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>29</b> <code>Markdown</code> documentation</a><ul>
+<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a><ul>
 <li><a href="markdown-documentation.html#what-is-markdown">What is <code>Markdown</code>?</a></li>
 <li><a href="markdown-documentation.html#raw-markdown-example">Raw <code>Markdown</code> example</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-12"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="30" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>30</b> <code>R Markdown</code></a><ul>
+<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a><ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
 <li><a href="r-markdown.html#add-an-r-chunk">Add an <code>R</code> chunk</a></li>
 <li><a href="r-markdown.html#in-line-r-code">In-line <code>R</code> code</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
 </ul></li>
-<li class="chapter" data-level="31" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>31</b> Interactive dashboards</a><ul>
+<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a><ul>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#an-easy-example"><i class="fa fa-check"></i>An easy example</a></li>
-<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li><a href="shiny.html#build-your-first-shiny-app">Build your first <code>shiny</code> app</a></li>
 </ul></li>
-<li class="chapter" data-level="32" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>32</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
+<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a><ul>
+<li><a href="interactive-maps.html#mapping-with-leaflet">Mapping with <code>leaflet</code></a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-2"><i class="fa fa-check"></i>Final thoughts</a></li>
+</ul></li>
+<li class="part"><span><b>V Review exercises</b></span></li>
+<li class="chapter" data-level="26" data-path="rms-titanic.html"><a href="rms-titanic.html"><i class="fa fa-check"></i><b>26</b> <em>RMS Titanic</em></a></li>
+<li class="chapter" data-level="27" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>27</b> A <code>dplyr</code> survey</a></li>
+<li class="chapter" data-level="28" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>28</b> Global health &amp; <code>ggplot</code></a></li>
+<li class="chapter" data-level="29" data-path="sewanees-climate.html"><a href="sewanees-climate.html"><i class="fa fa-check"></i><b>29</b> Sewanee’s climate</a></li>
+<li class="chapter" data-level="30" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>30</b> Cleaning messy data</a></li>
+<li class="chapter" data-level="31" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>31</b> Shakespeare text mining</a></li>
+<li class="chapter" data-level="32" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>32</b> Trump tweets</a></li>
+<li class="chapter" data-level="33" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>33</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
 <li class="part"><span><b>VI Presenting research</b></span></li>
-<li class="chapter" data-level="33" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>33</b> Writing a report</a><ul>
+<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a><ul>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
@@ -288,54 +295,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
 </ul></li>
-<li class="chapter" data-level="34" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>34</b> Good research writing</a><ul>
+<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a><ul>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-tables"><i class="fa fa-check"></i>Formatting tables</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-figures"><i class="fa fa-check"></i>Formatting figures</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>35</b> Research talks</a></li>
+<li class="chapter" data-level="36" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>36</b> Research talks</a></li>
 <li class="part"><span><b>VII Deep <code>R</code></b></span></li>
-<li class="chapter" data-level="36" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>36</b> Saving data &amp; plots</a><ul>
+<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a><ul>
 <li><a href="saving-data-plots.html#write.csv"><code>write.csv()</code></a></li>
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="37" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>37</b> Joining datasets</a><ul>
+<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
 <li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>38</b> Working with text</a><ul>
+<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>39</b> Working with dates &amp; times</a><ul>
+<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a><ul>
 <li><a href="dates.html#the-lubridate-package">The <code>lubridate()</code> package</a></li>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>40</b> Writing functions</a><ul>
+<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a><ul>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
-<li class="chapter" data-level="40.1" data-path="writing-functions.html"><a href="writing-functions.html#using-dplyr-and-ggplot-in-custom-functions"><i class="fa fa-check"></i><b>40.1</b> Using dplyr and ggplot in custom functions</a></li>
-<li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#exercise-3"><i class="fa fa-check"></i>Exercise</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>41</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a><ul>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li><a href="for-loops.html#for-loop-exercises"><code>for</code> loop exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>42</b> Conditional statements</a><ul>
+<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a><ul>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>43</b> Matrices &amp; lists</a><ul>
+<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a><ul>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>44</b> Advanced base plots in <code>R</code></a></li>
-<li class="chapter" data-level="45" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html"><i class="fa fa-check"></i><b>45</b> Geographic computing &amp; GIS</a><ul>
-<li class="chapter" data-level="" data-path="geographic-computing-gis.html"><a href="geographic-computing-gis.html#exercise-5"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="45" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>45</b> Advanced base plots in <code>R</code></a></li>
+<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a><ul>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#geographic-data-structures"><i class="fa fa-check"></i>Geographic data structures</a></li>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
+<li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors"><i class="fa fa-check"></i>Combining rasters &amp; vectors</a></li>
+<li><a href="geographic-information-systems.html#combining-rasters-vectors-leaflet">Combining rasters, vectors, &amp; <code>leaflet</code></a></li>
 </ul></li>
-<li class="chapter" data-level="46" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>46</b> Mapping</a></li>
 <li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a><ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
@@ -363,8 +370,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="dates" class="section level1">
-<h1><span class="header-section-number">Module 39</span> Working with dates &amp; times</h1>
-<div id="learning-goals-22" class="section level4 unnumbered">
+<h1><span class="header-section-number">Module 40</span> Working with dates &amp; times</h1>
+<div id="learning-goals-29" class="section level4 unnumbered">
 <h4>Learning goals</h4>
 <ul>
 <li>Be able to read dates, and convert objects to dates</li>
@@ -390,45 +397,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-lubridate-package" class="section level2 unnumbered">
 <h2>The <code>lubridate()</code> package</h2>
 <p>First, install the <code>lubridate</code> package.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="dates.html#cb415-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;lubridate&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="dates.html#cb416-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="dates.html#cb452-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;lubridate&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="dates.html#cb453-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
 <div id="getting-familiar-with-the-date-type" class="section level3 unnumbered">
 <h3>Getting familiar with the <code>date</code> type</h3>
 <p>Get today’s date:</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="dates.html#cb417-1"></a>today &lt;-<span class="st"> </span><span class="kw">today</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="dates.html#cb418-1"></a><span class="kw">str</span>(today)</span>
-<span id="cb418-2"><a href="dates.html#cb418-2"></a> Date[<span class="dv">1</span><span class="op">:</span><span class="dv">1</span>], format<span class="op">:</span><span class="st"> &quot;2021-09-19&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="dates.html#cb454-1"></a>today &lt;-<span class="st"> </span><span class="kw">today</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="dates.html#cb455-1"></a><span class="kw">str</span>(today)</span>
+<span id="cb455-2"><a href="dates.html#cb455-2"></a> Date[<span class="dv">1</span><span class="op">:</span><span class="dv">1</span>], format<span class="op">:</span><span class="st"> &quot;2021-09-25&quot;</span></span></code></pre></div>
 <p>This looks like a simple character string, but it is not. There are all sorts of date-time calculations in the background.</p>
 <p>To demonstrate this, let’s bring in a simple string:</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="dates.html#cb419-1"></a>my_birthday &lt;-<span class="st"> &#39;1985-11-07&#39;</span></span>
-<span id="cb419-2"><a href="dates.html#cb419-2"></a><span class="kw">str</span>(my_birthday)</span>
-<span id="cb419-3"><a href="dates.html#cb419-3"></a> chr <span class="st">&quot;1985-11-07&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="dates.html#cb456-1"></a>my_birthday &lt;-<span class="st"> &#39;1985-11-07&#39;</span></span>
+<span id="cb456-2"><a href="dates.html#cb456-2"></a><span class="kw">str</span>(my_birthday)</span>
+<span id="cb456-3"><a href="dates.html#cb456-3"></a> chr <span class="st">&quot;1985-11-07&quot;</span></span></code></pre></div>
 <p>Note that class type impacts what you can do with text. The following causes an error…</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="dates.html#cb420-1"></a>today <span class="op">-</span><span class="st"> </span>my_birthday</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="dates.html#cb457-1"></a>today <span class="op">-</span><span class="st"> </span>my_birthday</span></code></pre></div>
 <p>… but this does not:</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="dates.html#cb421-1"></a>my_birthday &lt;-<span class="st"> </span><span class="kw">as_date</span>(my_birthday)</span>
-<span id="cb421-2"><a href="dates.html#cb421-2"></a>today <span class="op">-</span><span class="st"> </span>my_birthday</span>
-<span id="cb421-3"><a href="dates.html#cb421-3"></a>Time difference of <span class="dv">13100</span> days</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="dates.html#cb458-1"></a>my_birthday &lt;-<span class="st"> </span><span class="kw">as_date</span>(my_birthday)</span>
+<span id="cb458-2"><a href="dates.html#cb458-2"></a>today <span class="op">-</span><span class="st"> </span>my_birthday</span>
+<span id="cb458-3"><a href="dates.html#cb458-3"></a>Time difference of <span class="dv">13106</span> days</span></code></pre></div>
 </div>
 <div id="the-datetime-class" class="section level3 unnumbered">
 <h3>The <code>datetime</code> class</h3>
 <p>When you are working with a <code>datetime</code> object, you can add and subtract time to it.</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="dates.html#cb422-1"></a>n &lt;-<span class="st"> </span><span class="kw">now</span>() </span>
-<span id="cb422-2"><a href="dates.html#cb422-2"></a>n</span>
-<span id="cb422-3"><a href="dates.html#cb422-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 10:17:49 CDT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="dates.html#cb459-1"></a>n &lt;-<span class="st"> </span><span class="kw">now</span>() </span>
+<span id="cb459-2"><a href="dates.html#cb459-2"></a>n</span>
+<span id="cb459-3"><a href="dates.html#cb459-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 14:25:25 CDT&quot;</span></span></code></pre></div>
 <p>Add or substract seconds:</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="dates.html#cb423-1"></a>n <span class="op">+</span><span class="st"> </span><span class="kw">seconds</span>(<span class="dv">1</span>)</span>
-<span id="cb423-2"><a href="dates.html#cb423-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 10:17:50 CDT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="dates.html#cb460-1"></a>n <span class="op">+</span><span class="st"> </span><span class="kw">seconds</span>(<span class="dv">1</span>)</span>
+<span id="cb460-2"><a href="dates.html#cb460-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 14:25:26 CDT&quot;</span></span></code></pre></div>
 <p>Add or subtract hours:</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="dates.html#cb424-1"></a>n <span class="op">-</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">5</span>)</span>
-<span id="cb424-2"><a href="dates.html#cb424-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 05:17:49 CDT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="dates.html#cb461-1"></a>n <span class="op">-</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">5</span>)</span>
+<span id="cb461-2"><a href="dates.html#cb461-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 09:25:25 CDT&quot;</span></span></code></pre></div>
 <p>Simplify to just the date:</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="dates.html#cb425-1"></a><span class="kw">as_date</span>(n)</span>
-<span id="cb425-2"><a href="dates.html#cb425-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="dates.html#cb462-1"></a><span class="kw">as_date</span>(n)</span>
+<span id="cb462-2"><a href="dates.html#cb462-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25&quot;</span></span></code></pre></div>
 <p>See how time flies:</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="dates.html#cb426-1"></a>later &lt;-<span class="st"> </span><span class="kw">now</span>()</span>
-<span id="cb426-2"><a href="dates.html#cb426-2"></a>later</span>
-<span id="cb426-3"><a href="dates.html#cb426-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 10:17:49 CDT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="dates.html#cb463-1"></a>later &lt;-<span class="st"> </span><span class="kw">now</span>()</span>
+<span id="cb463-2"><a href="dates.html#cb463-2"></a>later</span>
+<span id="cb463-3"><a href="dates.html#cb463-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 14:25:25 CDT&quot;</span></span></code></pre></div>
 </div>
 </div>
 <div id="common-tasks" class="section level2 unnumbered">
@@ -436,77 +443,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="converting-to-dates-from-strings" class="section level3 unnumbered">
 <h3>Converting to dates from strings</h3>
 <p>The <code>lubridate</code> package was built to handle dates of various input formats. The following functions convert a character with a particular format into a standard <code>datetime</code> object:</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="dates.html#cb427-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2017-01-31&quot;</span>)</span>
-<span id="cb427-2"><a href="dates.html#cb427-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="dates.html#cb464-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2017-01-31&quot;</span>)</span>
+<span id="cb464-2"><a href="dates.html#cb464-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
 <p>This also works if the single-digits dates are not padded with a <code>0</code>:</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="dates.html#cb428-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2017-1-31&quot;</span>)</span>
-<span id="cb428-2"><a href="dates.html#cb428-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="dates.html#cb465-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2017-1-31&quot;</span>)</span>
+<span id="cb465-2"><a href="dates.html#cb465-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
 <p>Other formats can also be handled:</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="dates.html#cb429-1"></a><span class="kw">ydm</span>(<span class="st">&quot;2017-31-01&quot;</span>)</span>
-<span id="cb429-2"><a href="dates.html#cb429-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="dates.html#cb430-1"></a><span class="kw">mdy</span>(<span class="st">&quot;January 31st, 2017&quot;</span>)</span>
-<span id="cb430-2"><a href="dates.html#cb430-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="dates.html#cb431-1"></a><span class="kw">dmy</span>(<span class="st">&quot;31-Jan-2017&quot;</span>)</span>
-<span id="cb431-2"><a href="dates.html#cb431-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="dates.html#cb466-1"></a><span class="kw">ydm</span>(<span class="st">&quot;2017-31-01&quot;</span>)</span>
+<span id="cb466-2"><a href="dates.html#cb466-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="dates.html#cb467-1"></a><span class="kw">mdy</span>(<span class="st">&quot;January 31st, 2017&quot;</span>)</span>
+<span id="cb467-2"><a href="dates.html#cb467-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="dates.html#cb468-1"></a><span class="kw">dmy</span>(<span class="st">&quot;31-Jan-2017&quot;</span>)</span>
+<span id="cb468-2"><a href="dates.html#cb468-2"></a>[<span class="dv">1</span>] <span class="st">&quot;2017-01-31&quot;</span></span></code></pre></div>
 </div>
 <div id="extracting-components-from-dates" class="section level3 unnumbered">
 <h3>Extracting components from dates</h3>
 <p>Let’s practice extracting information from the following <code>datetime</code> object:</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="dates.html#cb432-1"></a>datetime &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2016-07-08 12:34:56&quot;</span>)</span>
-<span id="cb432-2"><a href="dates.html#cb432-2"></a><span class="kw">year</span>(datetime)</span>
-<span id="cb432-3"><a href="dates.html#cb432-3"></a>[<span class="dv">1</span>] <span class="dv">2016</span></span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="dates.html#cb469-1"></a>datetime &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2016-07-08 12:34:56&quot;</span>)</span>
+<span id="cb469-2"><a href="dates.html#cb469-2"></a><span class="kw">year</span>(datetime)</span>
+<span id="cb469-3"><a href="dates.html#cb469-3"></a>[<span class="dv">1</span>] <span class="dv">2016</span></span></code></pre></div>
 <p>Get the month:</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="dates.html#cb433-1"></a><span class="kw">month</span>(datetime)</span>
-<span id="cb433-2"><a href="dates.html#cb433-2"></a>[<span class="dv">1</span>] <span class="dv">7</span></span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="dates.html#cb470-1"></a><span class="kw">month</span>(datetime)</span>
+<span id="cb470-2"><a href="dates.html#cb470-2"></a>[<span class="dv">1</span>] <span class="dv">7</span></span></code></pre></div>
 <p>Get the day of month:</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="dates.html#cb434-1"></a><span class="kw">mday</span>(datetime)</span>
-<span id="cb434-2"><a href="dates.html#cb434-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="dates.html#cb471-1"></a><span class="kw">mday</span>(datetime)</span>
+<span id="cb471-2"><a href="dates.html#cb471-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
 <p>Get the day of year:</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="dates.html#cb435-1"></a><span class="kw">yday</span>(datetime)</span>
-<span id="cb435-2"><a href="dates.html#cb435-2"></a>[<span class="dv">1</span>] <span class="dv">190</span></span></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="dates.html#cb472-1"></a><span class="kw">yday</span>(datetime)</span>
+<span id="cb472-2"><a href="dates.html#cb472-2"></a>[<span class="dv">1</span>] <span class="dv">190</span></span></code></pre></div>
 <p>Get the day of week:</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="dates.html#cb436-1"></a><span class="kw">wday</span>(datetime)</span>
-<span id="cb436-2"><a href="dates.html#cb436-2"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="dates.html#cb473-1"></a><span class="kw">wday</span>(datetime)</span>
+<span id="cb473-2"><a href="dates.html#cb473-2"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code></pre></div>
 <p>Get the name of the day of week:</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="dates.html#cb437-1"></a><span class="kw">weekdays</span>(datetime)</span>
-<span id="cb437-2"><a href="dates.html#cb437-2"></a>[<span class="dv">1</span>] <span class="st">&quot;Friday&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="dates.html#cb474-1"></a><span class="kw">weekdays</span>(datetime)</span>
+<span id="cb474-2"><a href="dates.html#cb474-2"></a>[<span class="dv">1</span>] <span class="st">&quot;Friday&quot;</span></span></code></pre></div>
 <p>Get the hour of the day:</p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="dates.html#cb438-1"></a><span class="kw">hour</span>(datetime)</span>
-<span id="cb438-2"><a href="dates.html#cb438-2"></a>[<span class="dv">1</span>] <span class="dv">12</span></span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="dates.html#cb475-1"></a><span class="kw">hour</span>(datetime)</span>
+<span id="cb475-2"><a href="dates.html#cb475-2"></a>[<span class="dv">1</span>] <span class="dv">12</span></span></code></pre></div>
 <p>Get the minute of the hour:</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="dates.html#cb439-1"></a><span class="kw">minute</span>(datetime)</span>
-<span id="cb439-2"><a href="dates.html#cb439-2"></a>[<span class="dv">1</span>] <span class="dv">34</span></span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="dates.html#cb476-1"></a><span class="kw">minute</span>(datetime)</span>
+<span id="cb476-2"><a href="dates.html#cb476-2"></a>[<span class="dv">1</span>] <span class="dv">34</span></span></code></pre></div>
 <p>Get the seconds of the minute:</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="dates.html#cb440-1"></a><span class="kw">second</span>(datetime)</span>
-<span id="cb440-2"><a href="dates.html#cb440-2"></a>[<span class="dv">1</span>] <span class="dv">56</span></span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="dates.html#cb477-1"></a><span class="kw">second</span>(datetime)</span>
+<span id="cb477-2"><a href="dates.html#cb477-2"></a>[<span class="dv">1</span>] <span class="dv">56</span></span></code></pre></div>
 </div>
 <div id="dealing-with-time-zones" class="section level3 unnumbered">
 <h3>Dealing with time zones</h3>
 <p>When working with dates and times in <code>R</code>, time zones can be a major pain, but the <code>lubridate</code> package tries to make this simpler.</p>
 <p>Adjust timezones for dates:</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="dates.html#cb441-1"></a><span class="co"># Today&#39;s date where I am</span></span>
-<span id="cb441-2"><a href="dates.html#cb441-2"></a><span class="kw">today</span>()</span>
-<span id="cb441-3"><a href="dates.html#cb441-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19&quot;</span></span>
-<span id="cb441-4"><a href="dates.html#cb441-4"></a></span>
-<span id="cb441-5"><a href="dates.html#cb441-5"></a><span class="co"># Today&#39;s date in New Zealand</span></span>
-<span id="cb441-6"><a href="dates.html#cb441-6"></a><span class="kw">today</span>(<span class="dt">tzone=</span><span class="st">&#39;NZ&#39;</span>)</span>
-<span id="cb441-7"><a href="dates.html#cb441-7"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-20&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="dates.html#cb478-1"></a><span class="co"># Today&#39;s date where I am</span></span>
+<span id="cb478-2"><a href="dates.html#cb478-2"></a><span class="kw">today</span>()</span>
+<span id="cb478-3"><a href="dates.html#cb478-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25&quot;</span></span>
+<span id="cb478-4"><a href="dates.html#cb478-4"></a></span>
+<span id="cb478-5"><a href="dates.html#cb478-5"></a><span class="co"># Today&#39;s date in New Zealand</span></span>
+<span id="cb478-6"><a href="dates.html#cb478-6"></a><span class="kw">today</span>(<span class="dt">tzone=</span><span class="st">&#39;NZ&#39;</span>)</span>
+<span id="cb478-7"><a href="dates.html#cb478-7"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-26&quot;</span></span></code></pre></div>
 <p>Adjust time zones for date-times:</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="dates.html#cb442-1"></a><span class="co"># Time where I am</span></span>
-<span id="cb442-2"><a href="dates.html#cb442-2"></a><span class="kw">now</span>()</span>
-<span id="cb442-3"><a href="dates.html#cb442-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 10:17:49 CDT&quot;</span></span>
-<span id="cb442-4"><a href="dates.html#cb442-4"></a></span>
-<span id="cb442-5"><a href="dates.html#cb442-5"></a><span class="co"># Time in UTC / GMT (which are synonymous)</span></span>
-<span id="cb442-6"><a href="dates.html#cb442-6"></a><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>)</span>
-<span id="cb442-7"><a href="dates.html#cb442-7"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 UTC&quot;</span></span>
-<span id="cb442-8"><a href="dates.html#cb442-8"></a></span>
-<span id="cb442-9"><a href="dates.html#cb442-9"></a><span class="kw">now</span>(<span class="st">&#39;GMT&#39;</span>)</span>
-<span id="cb442-10"><a href="dates.html#cb442-10"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 GMT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="dates.html#cb479-1"></a><span class="co"># Time where I am</span></span>
+<span id="cb479-2"><a href="dates.html#cb479-2"></a><span class="kw">now</span>()</span>
+<span id="cb479-3"><a href="dates.html#cb479-3"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 14:25:25 CDT&quot;</span></span>
+<span id="cb479-4"><a href="dates.html#cb479-4"></a></span>
+<span id="cb479-5"><a href="dates.html#cb479-5"></a><span class="co"># Time in UTC / GMT (which are synonymous)</span></span>
+<span id="cb479-6"><a href="dates.html#cb479-6"></a><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>)</span>
+<span id="cb479-7"><a href="dates.html#cb479-7"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 19:25:25 UTC&quot;</span></span>
+<span id="cb479-8"><a href="dates.html#cb479-8"></a></span>
+<span id="cb479-9"><a href="dates.html#cb479-9"></a><span class="kw">now</span>(<span class="st">&#39;GMT&#39;</span>)</span>
+<span id="cb479-10"><a href="dates.html#cb479-10"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 19:25:25 GMT&quot;</span></span></code></pre></div>
 <p>Don’t know what time zone your computer is working in? Use this function:</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="dates.html#cb443-1"></a><span class="kw">Sys.timezone</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="dates.html#cb480-1"></a><span class="kw">Sys.timezone</span>()</span></code></pre></div>
 <pre><code>[1] &quot;America/Chicago&quot;</code></pre>
 <p>To get a list of time zones accepted in <code>R</code>, use the function <code>OlsonNames()</code> (there are about 500 options):</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="dates.html#cb445-1"></a><span class="kw">OlsonNames</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">50</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="dates.html#cb482-1"></a><span class="kw">OlsonNames</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">50</span>)</span></code></pre></div>
 <pre><code> [1] &quot;Africa/Abidjan&quot;       &quot;Africa/Accra&quot;         &quot;Africa/Addis_Ababa&quot;  
  [4] &quot;Africa/Algiers&quot;       &quot;Africa/Asmara&quot;        &quot;Africa/Asmera&quot;       
  [7] &quot;Africa/Bamako&quot;        &quot;Africa/Bangui&quot;        &quot;Africa/Banjul&quot;       
@@ -525,37 +532,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [46] &quot;Africa/Niamey&quot;        &quot;Africa/Nouakchott&quot;    &quot;Africa/Ouagadougou&quot;  
 [49] &quot;Africa/Porto-Novo&quot;    &quot;Africa/Sao_Tome&quot;     </code></pre>
 <p>At some point you may have reason to force the timezone of a <code>datetime</code> object to change without actually changing the date or time. To do so, use the function <code>force_tz()</code>:</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="dates.html#cb447-1"></a><span class="co"># Get current time in UTC/GMT</span></span>
-<span id="cb447-2"><a href="dates.html#cb447-2"></a>n &lt;-<span class="st"> </span><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>)</span>
-<span id="cb447-3"><a href="dates.html#cb447-3"></a>n</span>
-<span id="cb447-4"><a href="dates.html#cb447-4"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 UTC&quot;</span></span>
-<span id="cb447-5"><a href="dates.html#cb447-5"></a></span>
-<span id="cb447-6"><a href="dates.html#cb447-6"></a><span class="co"># Change timezone to Central Standard Time without changing time: </span></span>
-<span id="cb447-7"><a href="dates.html#cb447-7"></a><span class="kw">force_tz</span>(n,<span class="dt">tzone=</span><span class="st">&#39;America/Chicago&#39;</span>)</span>
-<span id="cb447-8"><a href="dates.html#cb447-8"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 CDT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="dates.html#cb484-1"></a><span class="co"># Get current time in UTC/GMT</span></span>
+<span id="cb484-2"><a href="dates.html#cb484-2"></a>n &lt;-<span class="st"> </span><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>)</span>
+<span id="cb484-3"><a href="dates.html#cb484-3"></a>n</span>
+<span id="cb484-4"><a href="dates.html#cb484-4"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 19:25:25 UTC&quot;</span></span>
+<span id="cb484-5"><a href="dates.html#cb484-5"></a></span>
+<span id="cb484-6"><a href="dates.html#cb484-6"></a><span class="co"># Change timezone to Central Standard Time without changing time: </span></span>
+<span id="cb484-7"><a href="dates.html#cb484-7"></a><span class="kw">force_tz</span>(n,<span class="dt">tzone=</span><span class="st">&#39;America/Chicago&#39;</span>)</span>
+<span id="cb484-8"><a href="dates.html#cb484-8"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 19:25:25 CDT&quot;</span></span></code></pre></div>
 </div>
 <div id="using-timestamps-instead" class="section level3 unnumbered">
 <h3>Using timestamps instead</h3>
 <p>One way to avoid timezone issues is to convert a <code>datetime</code> object to a numeric timestamp.</p>
 <p>Timesetamps record the number of seconds that have passed since midnight GMT on January 1, 1970. It doesn’t matter which timezone you are standing in; the seconds that have passed since that moment will be the same:</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="dates.html#cb448-1"></a><span class="co"># Time where I am</span></span>
-<span id="cb448-2"><a href="dates.html#cb448-2"></a><span class="kw">now</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</span>
-<span id="cb448-3"><a href="dates.html#cb448-3"></a>[<span class="dv">1</span>] <span class="dv">1632064669</span></span>
-<span id="cb448-4"><a href="dates.html#cb448-4"></a></span>
-<span id="cb448-5"><a href="dates.html#cb448-5"></a><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</span>
-<span id="cb448-6"><a href="dates.html#cb448-6"></a>[<span class="dv">1</span>] <span class="dv">1632064669</span></span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="dates.html#cb485-1"></a><span class="co"># Time where I am</span></span>
+<span id="cb485-2"><a href="dates.html#cb485-2"></a><span class="kw">now</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</span>
+<span id="cb485-3"><a href="dates.html#cb485-3"></a>[<span class="dv">1</span>] <span class="dv">1632597926</span></span>
+<span id="cb485-4"><a href="dates.html#cb485-4"></a></span>
+<span id="cb485-5"><a href="dates.html#cb485-5"></a><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</span>
+<span id="cb485-6"><a href="dates.html#cb485-6"></a>[<span class="dv">1</span>] <span class="dv">1632597926</span></span></code></pre></div>
 <p>Timestamps can simplify things when you are doing a lot of adding and substracting with time. Timestamps are just seconds; they are just numbers. So they are much less of a black box than <code>datetime</code> objects.</p>
 <p>You can always convert from a timestamp back into a <code>datetime</code> object:</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="dates.html#cb449-1"></a><span class="co"># Convert to timestamp</span></span>
-<span id="cb449-2"><a href="dates.html#cb449-2"></a>ts &lt;-<span class="st"> </span><span class="kw">now</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</span>
-<span id="cb449-3"><a href="dates.html#cb449-3"></a>ts</span>
-<span id="cb449-4"><a href="dates.html#cb449-4"></a>[<span class="dv">1</span>] <span class="dv">1632064669</span></span>
-<span id="cb449-5"><a href="dates.html#cb449-5"></a></span>
-<span id="cb449-6"><a href="dates.html#cb449-6"></a><span class="co"># Convert back to datetime object</span></span>
-<span id="cb449-7"><a href="dates.html#cb449-7"></a>ts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_datetime</span>()</span>
-<span id="cb449-8"><a href="dates.html#cb449-8"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-19 15:17:49 UTC&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="dates.html#cb486-1"></a><span class="co"># Convert to timestamp</span></span>
+<span id="cb486-2"><a href="dates.html#cb486-2"></a>ts &lt;-<span class="st"> </span><span class="kw">now</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</span>
+<span id="cb486-3"><a href="dates.html#cb486-3"></a>ts</span>
+<span id="cb486-4"><a href="dates.html#cb486-4"></a>[<span class="dv">1</span>] <span class="dv">1632597926</span></span>
+<span id="cb486-5"><a href="dates.html#cb486-5"></a></span>
+<span id="cb486-6"><a href="dates.html#cb486-6"></a><span class="co"># Convert back to datetime object</span></span>
+<span id="cb486-7"><a href="dates.html#cb486-7"></a>ts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_datetime</span>()</span>
+<span id="cb486-8"><a href="dates.html#cb486-8"></a>[<span class="dv">1</span>] <span class="st">&quot;2021-09-25 19:25:25 UTC&quot;</span></span></code></pre></div>
 </div>
-<div id="exercises-15" class="section level3 unnumbered">
+<div id="exercises-17" class="section level3 unnumbered">
 <h3>Exercises</h3>
 <p><strong>Creating <code>datetime</code> objects</strong></p>
 <p>Use the appropriate <code>lubridate</code> function to parse each of the following dates:</p>
@@ -567,11 +574,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><strong>Extracting <code>datetime</code> components</strong></p>
 <p>Work with this vector of dates:</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="dates.html#cb450-1"></a>dt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;2000-01-04 03:43:01&#39;</span>,</span>
-<span id="cb450-2"><a href="dates.html#cb450-2"></a>        <span class="st">&#39;2007-09-29 12:18:59&#39;</span>,</span>
-<span id="cb450-3"><a href="dates.html#cb450-3"></a>        <span class="st">&#39;2011-04-16 19:51:16&#39;</span>,</span>
-<span id="cb450-4"><a href="dates.html#cb450-4"></a>        <span class="st">&#39;2015-12-13 21:24:48&#39;</span>,</span>
-<span id="cb450-5"><a href="dates.html#cb450-5"></a>        <span class="st">&#39;2020-06-01 06:39:02&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="dates.html#cb487-1"></a>dt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;2000-01-04 03:43:01&#39;</span>,</span>
+<span id="cb487-2"><a href="dates.html#cb487-2"></a>        <span class="st">&#39;2007-09-29 12:18:59&#39;</span>,</span>
+<span id="cb487-3"><a href="dates.html#cb487-3"></a>        <span class="st">&#39;2011-04-16 19:51:16&#39;</span>,</span>
+<span id="cb487-4"><a href="dates.html#cb487-4"></a>        <span class="st">&#39;2015-12-13 21:24:48&#39;</span>,</span>
+<span id="cb487-5"><a href="dates.html#cb487-5"></a>        <span class="st">&#39;2020-06-01 06:39:02&#39;</span>)</span></code></pre></div>
 <p><strong>6.</strong> Create a dataframe that has the following columns:</p>
 <ul>
 <li><code>raw</code> (containing the original string)<br />
@@ -593,7 +600,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><strong>Record of a child’s cough</strong></p>
 <p>First, download the data:</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="dates.html#cb451-1"></a>coughs &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/coughs.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="dates.html#cb488-1"></a>coughs &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/coughs.csv&#39;</span>)</span></code></pre></div>
 <p><strong>8.</strong> Create a <code>dow</code> (day of week) column.</p>
 <p><strong>9.</strong> Create a <code>date</code> (without time) column.</p>
 <p><strong>10.</strong> How many coughs happened each day?</p>
