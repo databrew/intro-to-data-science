@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 45 Advanced base plots in R | www.datascience.pizza</title>
   <meta name="description" content="A resource &amp; workbook for the Sewanee DataLab" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 45 Advanced base plots in R | www.datascience.pizza" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,8 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="matrices-lists.html"/>
 <link rel="next" href="geographic-information-systems.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,24 +48,24 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.0.9000/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0.9000/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -73,16 +74,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -91,9 +90,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +124,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
+<li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
 <li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
@@ -307,8 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
-<li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
+<li><a href="joining_datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
@@ -377,39 +377,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>This module assumes you have already worked through the module on base plotting.</p>
 <p>Make sure you have this dataset from that module ready to go:</p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="advanced-base-plots-in-r.html#cb578-1"></a>country &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;Tanzania&quot;</span>,<span class="st">&quot;Japan&quot;</span>,<span class="st">&quot;Ctr. Africa Rep.&quot;</span>,<span class="st">&quot;China&quot;</span>,<span class="st">&quot;Norway&quot;</span>,<span class="st">&quot;India&quot;</span>)</span>
-<span id="cb578-2"><a href="advanced-base-plots-in-r.html#cb578-2"></a>lifespan &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">65</span>,<span class="dv">84</span>,<span class="dv">53</span>,<span class="dv">77</span>,<span class="dv">82</span>,<span class="dv">69</span>)</span>
-<span id="cb578-3"><a href="advanced-base-plots-in-r.html#cb578-3"></a>gdp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">55335</span>,<span class="dv">2875</span>,<span class="dv">38674</span>,<span class="dv">623</span>,<span class="dv">13102</span>,<span class="dv">84500</span>,<span class="dv">6807</span>)</span>
-<span id="cb578-4"><a href="advanced-base-plots-in-r.html#cb578-4"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(country,lifespan,gdp)</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb579-1" data-line-number="1">country &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;Tanzania&quot;</span>,<span class="st">&quot;Japan&quot;</span>,<span class="st">&quot;Ctr. Africa Rep.&quot;</span>,<span class="st">&quot;China&quot;</span>,<span class="st">&quot;Norway&quot;</span>,<span class="st">&quot;India&quot;</span>)</a>
+<a class="sourceLine" id="cb579-2" data-line-number="2">lifespan &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">65</span>,<span class="dv">84</span>,<span class="dv">53</span>,<span class="dv">77</span>,<span class="dv">82</span>,<span class="dv">69</span>)</a>
+<a class="sourceLine" id="cb579-3" data-line-number="3">gdp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">55335</span>,<span class="dv">2875</span>,<span class="dv">38674</span>,<span class="dv">623</span>,<span class="dv">13102</span>,<span class="dv">84500</span>,<span class="dv">6807</span>)</a>
+<a class="sourceLine" id="cb579-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(country,lifespan,gdp)</a></code></pre></div>
 <p>The possibilities for data visualization in <code>R</code> are pretty much limitless, and over time you will become fluent in making gorgeous plots. Here are a few common tools that can take your plots to the next level.</p>
 </div>
 <div id="adding-lines" class="section level3 unnumbered">
 <h3>Adding lines</h3>
 <p>In some cases it is useful to add reference lines to your plot. For example, what if we wanted to be able to quickly see which countries had life expectancies below 75 years?</p>
 <p>You can add a line at <code>lifespan = 75</code> using the function <code>abline()</code>.</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="advanced-base-plots-in-r.html#cb579-1"></a><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</span>
-<span id="cb579-2"><a href="advanced-base-plots-in-r.html#cb579-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb580-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a>
+<a class="sourceLine" id="cb580-2" data-line-number="2"><span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">75</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-600-1.png" width="925.44" /></p>
 <p>In this command, the <code>h</code> input means “place a horizontal line at this y value.”.</p>
 <p>Similarly, you can use <code>v</code> to specify vertical lines at certain x values.</p>
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="advanced-base-plots-in-r.html#cb580-1"></a><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</span>
-<span id="cb580-2"><a href="advanced-base-plots-in-r.html#cb580-2"></a><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="dv">25000</span>,<span class="dv">35000</span>),<span class="dt">lty=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb581-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a>
+<a class="sourceLine" id="cb581-2" data-line-number="2"><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="dv">25000</span>,<span class="dv">35000</span>),<span class="dt">lty=</span><span class="dv">3</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-601-1.png" width="925.44" /></p>
 <p>Note here that another input, <code>lty</code>, was used to change the type of line printed. (Refer to <code>?abline()</code> for more details).</p>
 </div>
 <div id="adding-text" class="section level3 unnumbered">
 <h3>Adding text</h3>
 <p>Use the <code>text()</code> function to add labels to your plot:</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="advanced-base-plots-in-r.html#cb581-1"></a><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</span>
-<span id="cb581-2"><a href="advanced-base-plots-in-r.html#cb581-2"></a><span class="kw">text</span>(<span class="dt">x=</span><span class="dv">30000</span>,<span class="dt">y=</span><span class="dv">75</span>,<span class="dt">labels=</span><span class="st">&quot;My text went here&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb582-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a>
+<a class="sourceLine" id="cb582-2" data-line-number="2"><span class="kw">text</span>(<span class="dt">x=</span><span class="dv">30000</span>,<span class="dt">y=</span><span class="dv">75</span>,<span class="dt">labels=</span><span class="st">&quot;My text went here&quot;</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-602-1.png" width="925.44" /></p>
 </div>
 <div id="highlighting-certain-data-points" class="section level3 unnumbered">
 <h3>Highlighting certain data points</h3>
 <p>It can be helpful to highlight a certain data point (or group of data points) using a different dot size, format, or color.</p>
 <p><strong>To highlight a single data point</strong>, here is one approach you can take: first, plot all points, <em>then</em> re-plot the point of interest using the <code>points()</code> function:</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="advanced-base-plots-in-r.html#cb582-1"></a><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</span>
-<span id="cb582-2"><a href="advanced-base-plots-in-r.html#cb582-2"></a><span class="kw">points</span>(<span class="dt">x=</span>df<span class="op">$</span>gdp[<span class="dv">5</span>],<span class="dt">y=</span>df<span class="op">$</span>lifespan[<span class="dv">5</span>],<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb583-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a>
+<a class="sourceLine" id="cb583-2" data-line-number="2"><span class="kw">points</span>(<span class="dt">x=</span>df<span class="op">$</span>gdp[<span class="dv">5</span>],<span class="dt">y=</span>df<span class="op">$</span>lifespan[<span class="dv">5</span>],<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-603-1.png" width="925.44" /></p>
 <p>In this example, we re-plotted the data for the fifth row in the dataframe (in this case, China).</p>
 <p><strong>To highlight a group of data points</strong>, try this approach:</p>
@@ -419,20 +419,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Third, use your vector of colors within your <code>plot()</code> command.</p></li>
 </ul>
 <p>For example, let’s highlight all countries whose life expectancy is greater than 75.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="advanced-base-plots-in-r.html#cb583-1"></a><span class="co"># First</span></span>
-<span id="cb583-2"><a href="advanced-base-plots-in-r.html#cb583-2"></a><span class="co"># create a vector of colors the length of vector `lifespan`</span></span>
-<span id="cb583-3"><a href="advanced-base-plots-in-r.html#cb583-3"></a>cols &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;grey&quot;</span>,<span class="dt">times=</span><span class="kw">length</span>(lifespan)) </span>
-<span id="cb583-4"><a href="advanced-base-plots-in-r.html#cb583-4"></a>cols</span>
-<span id="cb583-5"><a href="advanced-base-plots-in-r.html#cb583-5"></a>[<span class="dv">1</span>] <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span></span>
-<span id="cb583-6"><a href="advanced-base-plots-in-r.html#cb583-6"></a></span>
-<span id="cb583-7"><a href="advanced-base-plots-in-r.html#cb583-7"></a><span class="co"># Second</span></span>
-<span id="cb583-8"><a href="advanced-base-plots-in-r.html#cb583-8"></a>change_these &lt;-<span class="st"> </span><span class="kw">which</span>(lifespan <span class="op">&gt;</span><span class="st"> </span><span class="dv">75</span>) </span>
-<span id="cb583-9"><a href="advanced-base-plots-in-r.html#cb583-9"></a>change_these <span class="co"># these are the elements that we want to highlight</span></span>
-<span id="cb583-10"><a href="advanced-base-plots-in-r.html#cb583-10"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">6</span></span>
-<span id="cb583-11"><a href="advanced-base-plots-in-r.html#cb583-11"></a>cols[change_these] &lt;-<span class="st"> &quot;red&quot;</span>  <span class="co"># change the color for these elements </span></span>
-<span id="cb583-12"><a href="advanced-base-plots-in-r.html#cb583-12"></a></span>
-<span id="cb583-13"><a href="advanced-base-plots-in-r.html#cb583-13"></a><span class="co"># Third</span></span>
-<span id="cb583-14"><a href="advanced-base-plots-in-r.html#cb583-14"></a><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span>cols,<span class="dt">log=</span><span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb584-1" data-line-number="1"><span class="co"># First</span></a>
+<a class="sourceLine" id="cb584-2" data-line-number="2"><span class="co"># create a vector of colors the length of vector `lifespan`</span></a>
+<a class="sourceLine" id="cb584-3" data-line-number="3">cols &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;grey&quot;</span>,<span class="dt">times=</span><span class="kw">length</span>(lifespan)) </a>
+<a class="sourceLine" id="cb584-4" data-line-number="4">cols</a>
+<a class="sourceLine" id="cb584-5" data-line-number="5">[<span class="dv">1</span>] <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span></a>
+<a class="sourceLine" id="cb584-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb584-7" data-line-number="7"><span class="co"># Second</span></a>
+<a class="sourceLine" id="cb584-8" data-line-number="8">change_these &lt;-<span class="st"> </span><span class="kw">which</span>(lifespan <span class="op">&gt;</span><span class="st"> </span><span class="dv">75</span>) </a>
+<a class="sourceLine" id="cb584-9" data-line-number="9">change_these <span class="co"># these are the elements that we want to highlight</span></a>
+<a class="sourceLine" id="cb584-10" data-line-number="10">[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">6</span></a>
+<a class="sourceLine" id="cb584-11" data-line-number="11">cols[change_these] &lt;-<span class="st"> &quot;red&quot;</span>  <span class="co"># change the color for these elements </span></a>
+<a class="sourceLine" id="cb584-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb584-13" data-line-number="13"><span class="co"># Third</span></a>
+<a class="sourceLine" id="cb584-14" data-line-number="14"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span>cols,<span class="dt">log=</span><span class="st">&quot;x&quot;</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-604-1.png" width="925.44" /></p>
 </div>
 <div id="building-a-plot-from-the-ground-up" class="section level3 unnumbered">
@@ -440,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In many applications it can be helpful to have complete control over the way your plot is built. To do so, you can build your plot from the very bottom up in multiple steps.</p>
 <p>The steps for building up your own plot are as follows:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Stage a blank canvas</strong>: A plot begins with a blank canvas that covers a certain range of values for <code>x</code> and <code>y</code>. To stage a blank canvas, add this parameters to your <code>plot()</code> function: <code>type="n", axes=FALSE, ann=FALSE, xlim=c(__, __), ylim=c(__, __)"</code>. These commands tell <code>R</code> to plot a blank space, not to print axes, not to print annotations like x- or y-axis labels, and to limit your canvas to a certain coordinate range. Be sure to add numbers to the <code>xlim()</code> and <code>ylim()</code>commands.</p></li>
+<li><p><strong>Stage a blank canvas</strong>: A plot begins with a blank canvas that covers a certain range of values for <code>x</code> and <code>y</code>. To stage a blank canvas, add this parameters to your <code>plot()</code> function: <code>type=&quot;n&quot;, axes=FALSE, ann=FALSE, xlim=c(__, __), ylim=c(__, __)&quot;</code>. These commands tell <code>R</code> to plot a blank space, not to print axes, not to print annotations like x- or y-axis labels, and to limit your canvas to a certain coordinate range. Be sure to add numbers to the <code>xlim()</code> and <code>ylim()</code>commands.</p></li>
 <li><p><strong>Add your axes</strong>, if you want, using the function <code>axis()</code>. The command <code>axis(1)</code> prints the x-axis, and <code>axis(2)</code> prints the y-axis. This function allows you to define where tick marks occur and other details (see <code>?axis</code>).</p></li>
 <li><p><strong>Add axis titles</strong> using the function <code>title()</code>.</p></li>
 <li><p><strong>Add reference lines</strong>, if you want, using <code>abline()</code>. Do this before adding data, since it is usually nice for data points to be superimposed <em>on top of</em> your reference lines.</p></li>
@@ -448,27 +448,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Add text labels</strong>, if you want, using <code>text()</code>.</p></li>
 </ol>
 <p>Here is an example of this process:</p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="advanced-base-plots-in-r.html#cb584-1"></a><span class="co"># 1. Stage a blank canvas</span></span>
-<span id="cb584-2"><a href="advanced-base-plots-in-r.html#cb584-2"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb584-3"><a href="advanced-base-plots-in-r.html#cb584-3"></a><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>,<span class="dt">ann=</span><span class="ot">FALSE</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</span>
-<span id="cb584-4"><a href="advanced-base-plots-in-r.html#cb584-4"></a></span>
-<span id="cb584-5"><a href="advanced-base-plots-in-r.html#cb584-5"></a><span class="co"># 2. Add axes</span></span>
-<span id="cb584-6"><a href="advanced-base-plots-in-r.html#cb584-6"></a><span class="kw">axis</span>(<span class="dv">1</span>,<span class="dt">at=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">20000</span>,<span class="dv">40000</span>,<span class="dv">60000</span>,<span class="dv">80000</span>,<span class="dv">100000</span>),</span>
-<span id="cb584-7"><a href="advanced-base-plots-in-r.html#cb584-7"></a>     <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;$0&quot;</span>, <span class="st">&quot;$20&quot;</span>,<span class="st">&quot;$40&quot;</span>,<span class="st">&quot;$60&quot;</span>,<span class="st">&quot;$80&quot;</span>,<span class="st">&quot;$100&quot;</span>))</span>
-<span id="cb584-8"><a href="advanced-base-plots-in-r.html#cb584-8"></a><span class="kw">axis</span>(<span class="dv">2</span>,<span class="dt">at=</span><span class="kw">seq</span>(<span class="dv">40</span>,<span class="dv">100</span>,<span class="dt">by=</span><span class="dv">10</span>),<span class="dt">las=</span><span class="dv">2</span>)</span>
-<span id="cb584-9"><a href="advanced-base-plots-in-r.html#cb584-9"></a></span>
-<span id="cb584-10"><a href="advanced-base-plots-in-r.html#cb584-10"></a><span class="co"># 3. Add axis titles</span></span>
-<span id="cb584-11"><a href="advanced-base-plots-in-r.html#cb584-11"></a><span class="kw">title</span>(<span class="dt">xlab=</span><span class="st">&quot;Gross Domestic Product (GDP, in thousands) per Capita &quot;</span>,<span class="dt">cex.lab=</span>.<span class="dv">9</span>)</span>
-<span id="cb584-12"><a href="advanced-base-plots-in-r.html#cb584-12"></a><span class="kw">title</span>(<span class="dt">ylab=</span><span class="st">&quot;Average Life Expectancy&quot;</span>,<span class="dt">cex.lab=</span>.<span class="dv">9</span>)</span>
-<span id="cb584-13"><a href="advanced-base-plots-in-r.html#cb584-13"></a></span>
-<span id="cb584-14"><a href="advanced-base-plots-in-r.html#cb584-14"></a><span class="co"># 4. Add reference lines</span></span>
-<span id="cb584-15"><a href="advanced-base-plots-in-r.html#cb584-15"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">70</span>,<span class="dt">v=</span><span class="dv">50000</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</span>
-<span id="cb584-16"><a href="advanced-base-plots-in-r.html#cb584-16"></a></span>
-<span id="cb584-17"><a href="advanced-base-plots-in-r.html#cb584-17"></a><span class="co"># 5. Add data</span></span>
-<span id="cb584-18"><a href="advanced-base-plots-in-r.html#cb584-18"></a><span class="kw">points</span>(<span class="dt">x=</span>gdp,<span class="dt">y=</span>lifespan,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="st">&quot;firebrick&quot;</span>)</span>
-<span id="cb584-19"><a href="advanced-base-plots-in-r.html#cb584-19"></a></span>
-<span id="cb584-20"><a href="advanced-base-plots-in-r.html#cb584-20"></a><span class="co"># 6. Add text</span></span>
-<span id="cb584-21"><a href="advanced-base-plots-in-r.html#cb584-21"></a><span class="kw">text</span>(<span class="dt">x=</span>gdp[<span class="dv">6</span>],<span class="dt">y=</span>lifespan[<span class="dv">6</span>],<span class="dt">labels=</span><span class="st">&quot;Norway&quot;</span>,<span class="dt">pos=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb585-1" data-line-number="1"><span class="co"># 1. Stage a blank canvas</span></a>
+<a class="sourceLine" id="cb585-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb585-3" data-line-number="3"><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>,<span class="dt">ann=</span><span class="ot">FALSE</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb585-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb585-5" data-line-number="5"><span class="co"># 2. Add axes</span></a>
+<a class="sourceLine" id="cb585-6" data-line-number="6"><span class="kw">axis</span>(<span class="dv">1</span>,<span class="dt">at=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">20000</span>,<span class="dv">40000</span>,<span class="dv">60000</span>,<span class="dv">80000</span>,<span class="dv">100000</span>),</a>
+<a class="sourceLine" id="cb585-7" data-line-number="7">     <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;$0&quot;</span>, <span class="st">&quot;$20&quot;</span>,<span class="st">&quot;$40&quot;</span>,<span class="st">&quot;$60&quot;</span>,<span class="st">&quot;$80&quot;</span>,<span class="st">&quot;$100&quot;</span>))</a>
+<a class="sourceLine" id="cb585-8" data-line-number="8"><span class="kw">axis</span>(<span class="dv">2</span>,<span class="dt">at=</span><span class="kw">seq</span>(<span class="dv">40</span>,<span class="dv">100</span>,<span class="dt">by=</span><span class="dv">10</span>),<span class="dt">las=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb585-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb585-10" data-line-number="10"><span class="co"># 3. Add axis titles</span></a>
+<a class="sourceLine" id="cb585-11" data-line-number="11"><span class="kw">title</span>(<span class="dt">xlab=</span><span class="st">&quot;Gross Domestic Product (GDP, in thousands) per Capita &quot;</span>,<span class="dt">cex.lab=</span>.<span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb585-12" data-line-number="12"><span class="kw">title</span>(<span class="dt">ylab=</span><span class="st">&quot;Average Life Expectancy&quot;</span>,<span class="dt">cex.lab=</span>.<span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb585-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb585-14" data-line-number="14"><span class="co"># 4. Add reference lines</span></a>
+<a class="sourceLine" id="cb585-15" data-line-number="15"><span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">70</span>,<span class="dt">v=</span><span class="dv">50000</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</a>
+<a class="sourceLine" id="cb585-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb585-17" data-line-number="17"><span class="co"># 5. Add data</span></a>
+<a class="sourceLine" id="cb585-18" data-line-number="18"><span class="kw">points</span>(<span class="dt">x=</span>gdp,<span class="dt">y=</span>lifespan,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="st">&quot;firebrick&quot;</span>)</a>
+<a class="sourceLine" id="cb585-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb585-20" data-line-number="20"><span class="co"># 6. Add text</span></a>
+<a class="sourceLine" id="cb585-21" data-line-number="21"><span class="kw">text</span>(<span class="dt">x=</span>gdp[<span class="dv">6</span>],<span class="dt">y=</span>lifespan[<span class="dv">6</span>],<span class="dt">labels=</span><span class="st">&quot;Norway&quot;</span>,<span class="dt">pos=</span><span class="dv">3</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-605-1.png" width="925.44" /></p>
 <div id="exercises-19" class="section level4 unnumbered">
 <h4>Exercises</h4>
@@ -499,7 +499,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -518,6 +517,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -538,6 +538,10 @@ gitbook.start({
 "text": null
 },
 "download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

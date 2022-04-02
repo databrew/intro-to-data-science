@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 9 Variables | www.datascience.pizza</title>
   <meta name="description" content="A resource &amp; workbook for the Sewanee DataLab" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 9 Variables | www.datascience.pizza" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,8 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="using-rstudio-r-scripts.html"/>
 <link rel="next" href="vectors.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,24 +48,24 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.0.9000/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0.9000/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -73,16 +74,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -91,9 +90,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +124,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
+<li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
 <li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
@@ -307,8 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
-<li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
+<li><a href="joining_datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
@@ -380,51 +380,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introducing-variables" class="section level2 unnumbered">
 <h2>Introducing variables</h2>
 <p>So far we have strictly been using <code>R</code> as a calculator, with commands such as:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="variables.html#cb54-1"></a><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></span>
-<span id="cb54-2"><a href="variables.html#cb54-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">8</span></a></code></pre></div>
 <p>Of course, <code>R</code> can do much, much more than these basic computations. Your first step in uncovering the potential of <code>R</code> is learning how to use <strong>variables</strong>.</p>
 <p>In <code>R</code>, a variable is a convenient way of referring to an underlying value. That value can be as simple as a single number (e.g., <code>6</code>), or as complex as a spreadsheet that is many Gigabytes in size. It may be useful to think of a variable as a cup; just as cups make it easy to hold your coffee and carry it from the kitchen to the couch, variables make it easy to contain and work with data.</p>
 <div id="declaring-variables" class="section level3 unnumbered">
 <h3>Declaring variables</h3>
 <p>To assign numbers or other types of data to a variable, you use the <code>&lt;</code> and <code>-</code> characters to make the arrow symbol <code>&lt;-</code>.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="variables.html#cb55-1"></a>x &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">+</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">+</span><span class="dv">5</span></a></code></pre></div>
 <p>As the direction of the <code>&lt;-</code> arrow suggests, this command stores the result of <code>3 + 5</code> into the variable <code>x</code>.</p>
 <p>Unlike before, you did not see <code>8</code> printed to the <em>Console</em>. That is because the result was stored into <code>x</code>.</p>
 </div>
 <div id="calling-variables" class="section level3 unnumbered">
 <h3>Calling variables</h3>
 <p>If you wanted R to tell you what <code>x</code> is, just type the variable name into the <em>Console</em> and run that command:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="variables.html#cb56-1"></a>x</span>
-<span id="cb56-2"><a href="variables.html#cb56-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">x</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">8</span></a></code></pre></div>
 <p>Want to create a variable but also see its value at the same time? Here’s a handy trick: put your command in parentheses:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="variables.html#cb57-1"></a>(x &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">*</span><span class="dv">12</span>)</span>
-<span id="cb57-2"><a href="variables.html#cb57-2"></a>[<span class="dv">1</span>] <span class="dv">36</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">(x &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">*</span><span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">36</span></a></code></pre></div>
 <p>When you do that, <code>x</code> gets assigned a value, then that value is printed to the console.</p>
 <p>You can also update variables.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="variables.html#cb58-1"></a>(x &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">3</span>)</span>
-<span id="cb58-2"><a href="variables.html#cb58-2"></a>[<span class="dv">1</span>] <span class="dv">108</span></span></code></pre></div>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="variables.html#cb59-1"></a>(x &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">3</span>)</span>
-<span id="cb59-2"><a href="variables.html#cb59-2"></a>[<span class="dv">1</span>] <span class="dv">324</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">(x &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">108</span></a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">(x &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">324</span></a></code></pre></div>
 <p>You can also add variables together.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="variables.html#cb60-1"></a>x &lt;-<span class="st"> </span><span class="dv">8</span></span>
-<span id="cb60-2"><a href="variables.html#cb60-2"></a>y &lt;-<span class="st"> </span><span class="fl">4.5</span></span>
-<span id="cb60-3"><a href="variables.html#cb60-3"></a>x <span class="op">+</span><span class="st"> </span>y</span>
-<span id="cb60-4"><a href="variables.html#cb60-4"></a>[<span class="dv">1</span>] <span class="fl">12.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="fl">4.5</span></a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">x <span class="op">+</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb61-4" data-line-number="4">[<span class="dv">1</span>] <span class="fl">12.5</span></a></code></pre></div>
 </div>
 <div id="naming-variables" class="section level3 unnumbered">
 <h3>Naming variables</h3>
 <p>Here are a few rules:</p>
 <p><strong>1.</strong> A variable name has to have at least one letter in it. These examples work:</p>
 <p><strong>2.</strong> A variable name has to be connected. No spaces! It is usually best to represent a space using a period (<code>.</code>) or an underscore (<code>_</code>). Note that periods and underscores can be used in variable names:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="variables.html#cb61-1"></a>my.variable &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co"># periods can be used</span></span>
-<span id="cb61-2"><a href="variables.html#cb61-2"></a>my_variable &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co"># underscores can be used</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">my.variable &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co"># periods can be used</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">my_variable &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co"># underscores can be used</span></a></code></pre></div>
 <p>However, hyphens <em>cannot</em> be used, since that symbol is used for subtraction.</p>
 <p><strong>3.</strong> Variables are case-sensitive. If you misspell a variable name, you will confuse <code>R</code> and get an error. For example, ask <code>R</code> to tell you the value of capital <code>X</code>. The error message will be <code>Error: object 'X' not found</code>, which means <code>R</code> looked in its memory for an object (i.e., a variable) named <code>X</code> and could not find one.</p>
 <p><strong>4.</strong> Variable names can be as complicated or as simple as you want.</p>
 <p><strong>5.</strong> Some names need to be avoided, since <code>R</code> uses them for special purposes. For example, <code>data</code> should be avoided, as should <code>mean</code>, since both are functions built-in to <code>R</code> and <code>R</code> is liable to interpret them as such instead of as a variable containing your data.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="variables.html#cb62-1"></a>supercalifragilistic.expialidocious &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb62-2"><a href="variables.html#cb62-2"></a>supercalifragilistic.expialidocious  <span class="co"># still works</span></span>
-<span id="cb62-3"><a href="variables.html#cb62-3"></a>[<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">supercalifragilistic.expialidocious &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">supercalifragilistic.expialidocious  <span class="co"># still works</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">[<span class="dv">1</span>] <span class="dv">5</span></a></code></pre></div>
 <p>So those are the basic rules, but naming variables well is a bit of an art. The trick is using names that are clear but are not so complicated that typing them is tedious or prone to errors.</p>
 <p>Note that <code>R</code> uses a feature called ‘Tab complete’ to help you type variable names. Begin typing a variable name, such as <code>supercalifragilistic.expialidocious</code> from the example above, but after the first few letters press the <code>Tab</code> key. <code>R</code> will then give you options for auto-completing your word. Press <code>Tab</code> again, or <code>Enter</code>, to accept the auto-complete. This is a handy way to avoid typos.</p>
 </div>
@@ -440,39 +440,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>In order to be combined, data have to be the same class.</p>
 <p>R is able to compute the following commands …</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="variables.html#cb63-1"></a>x &lt;-<span class="st"> </span><span class="dv">6</span></span>
-<span id="cb63-2"><a href="variables.html#cb63-2"></a>y &lt;-<span class="st"> </span><span class="dv">4</span></span>
-<span id="cb63-3"><a href="variables.html#cb63-3"></a>x <span class="op">+</span><span class="st"> </span>y</span>
-<span id="cb63-4"><a href="variables.html#cb63-4"></a>[<span class="dv">1</span>] <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3">x <span class="op">+</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb64-4" data-line-number="4">[<span class="dv">1</span>] <span class="dv">10</span></a></code></pre></div>
 <p>… but not these:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="variables.html#cb64-1"></a>x &lt;-<span class="st"> </span><span class="dv">6</span></span>
-<span id="cb64-2"><a href="variables.html#cb64-2"></a>y &lt;-<span class="st"> &quot;4&quot;</span></span>
-<span id="cb64-3"><a href="variables.html#cb64-3"></a>x <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">y &lt;-<span class="st"> &quot;4&quot;</span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3">x <span class="op">+</span><span class="st"> </span>y</a></code></pre></div>
 <p>That’s because the quotation marks used in naming <code>y</code> causes <code>R</code> to interpret <code>y</code> as a <code>character</code> class.</p>
 <p>To see how <code>R</code> is interpreting variables, you can use the <code>class()</code> function:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="variables.html#cb65-1"></a>x &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb65-2"><a href="variables.html#cb65-2"></a><span class="kw">class</span>(x)</span>
-<span id="cb65-3"><a href="variables.html#cb65-3"></a>[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="variables.html#cb66-1"></a>x &lt;-<span class="st"> &quot;100&quot;</span></span>
-<span id="cb66-2"><a href="variables.html#cb66-2"></a><span class="kw">class</span>(x)</span>
-<span id="cb66-3"><a href="variables.html#cb66-3"></a>[<span class="dv">1</span>] <span class="st">&quot;character&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="variables.html#cb67-1"></a>x &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">==</span><span class="st"> </span><span class="dv">101</span></span>
-<span id="cb67-2"><a href="variables.html#cb67-2"></a><span class="kw">class</span>(x)</span>
-<span id="cb67-3"><a href="variables.html#cb67-3"></a>[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="kw">class</span>(x)</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">x &lt;-<span class="st"> &quot;100&quot;</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="kw">class</span>(x)</a>
+<a class="sourceLine" id="cb67-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;character&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">==</span><span class="st"> </span><span class="dv">101</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="kw">class</span>(x)</a>
+<a class="sourceLine" id="cb68-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span></a></code></pre></div>
 <p>Another data type to be aware of is <strong>factors</strong>, but we will deal with them later.</p>
 <div id="exercises-2" class="section level4 unnumbered">
 <h4>Exercises</h4>
 <p><strong>Finding the errors</strong></p>
 <p><strong>1.</strong> This code will produce an error. Can you find the problem and fix it so that this code will work?</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="variables.html#cb68-1"></a><span class="co"># Assign 5 to a variable</span></span>
-<span id="cb68-2"><a href="variables.html#cb68-2"></a>my_var <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co"># Assign 5 to a variable</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">my_var <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
 <p><strong>2.</strong> Same for this one:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="variables.html#cb69-1"></a><span class="co"># Assign 5 to a variable</span></span>
-<span id="cb69-2"><a href="variables.html#cb69-2"></a>my_var <span class="op">==</span><span class="st"> </span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># Assign 5 to a variable</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">my_var <span class="op">==</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
 <p><strong>3.</strong> Same for this one:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="variables.html#cb70-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb70-2"><a href="variables.html#cb70-2"></a>y &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb70-3"><a href="variables.html#cb70-3"></a>X <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb71-3" data-line-number="3">X <span class="op">+</span><span class="st"> </span>y</a></code></pre></div>
 <p> </p>
 <p><strong>Your Bananas-to-ICS ratio</strong></p>
 <p><strong>4.</strong> Estimate how many bananas you’ve eaten in your lifetime and store that value in a variable (choose whatever name you wish). (By the way, what is a good method for estimating this as accurately as you can?)</p>
@@ -507,7 +507,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -526,6 +525,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -546,6 +546,10 @@ gitbook.start({
 "text": null
 },
 "download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

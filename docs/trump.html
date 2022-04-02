@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 32 Trump tweets | www.datascience.pizza</title>
   <meta name="description" content="A resource &amp; workbook for the Sewanee DataLab" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 32 Trump tweets | www.datascience.pizza" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,8 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="shakespeare-text-mining.html"/>
 <link rel="next" href="trump-shiny-git.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,24 +48,24 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.0.9000/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0.9000/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -73,16 +74,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -91,9 +90,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +124,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
+<li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
 <li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
@@ -307,8 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
-<li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
+<li><a href="joining_datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
@@ -376,18 +376,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p> </p>
 <p>Let’s run the below to get started.</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="trump.html#cb403-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb403-2"><a href="trump.html#cb403-2"></a><span class="kw">library</span>(readr)</span>
-<span id="cb403-3"><a href="trump.html#cb403-3"></a><span class="kw">library</span>(tidytext)</span>
-<span id="cb403-4"><a href="trump.html#cb403-4"></a>trump &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/trumptweets.csv&#39;</span>)</span>
-<span id="cb403-5"><a href="trump.html#cb403-5"></a>stop_words &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb404-2" data-line-number="2"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb404-3" data-line-number="3"><span class="kw">library</span>(tidytext)</a>
+<a class="sourceLine" id="cb404-4" data-line-number="4">trump &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/trumptweets.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb404-5" data-line-number="5">stop_words &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</a></code></pre></div>
 <p><strong>1.</strong> In the current format, one row of data is equal to one <what>?</p>
 <p><strong>2.</strong> Create a variable called <code>line</code>. This should be 1, 2, 3, 4, etc.</p>
 <p><strong>3.</strong> Create a variable called <code>text</code>. This should be an exact copy of <code>content</code>.</p>
 <p><strong>4.</strong> Use the <code>unnest_tokens</code> function to reshape the data for better text processing.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="trump.html#cb404-1"></a>simple &lt;-<span class="st"> </span>trump <span class="op">%&gt;%</span></span>
-<span id="cb404-2"><a href="trump.html#cb404-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>mentions, <span class="op">-</span>hashtags, <span class="op">-</span>geo, <span class="op">-</span>content, <span class="op">-</span>link, <span class="op">-</span>id) <span class="op">%&gt;%</span></span>
-<span id="cb404-3"><a href="trump.html#cb404-3"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" data-line-number="1">simple &lt;-<span class="st"> </span>trump <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb405-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>mentions, <span class="op">-</span>hashtags, <span class="op">-</span>geo, <span class="op">-</span>content, <span class="op">-</span>link, <span class="op">-</span>id) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb405-3" data-line-number="3"><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text)</a></code></pre></div>
 <p><strong>5.</strong> What format is the data in now (ie, one row is equal to <what>)?</p>
 <p><strong>6.</strong> Take a minute to read about the <code>tidytext</code> package at <a href="https://www.tidytextmining.com/tidytext.html" class="uri">https://www.tidytextmining.com/tidytext.html</a>.</p>
 <p> </p>
@@ -405,11 +405,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>16.</strong> Are you ready to do some sentiment analysis? Great.</p>
 <p><strong>17.</strong> Create a dataframe named <code>sentiments</code> by running the following: <code>sentiments &lt;- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sentiments.csv')</code></p>
 <p><strong>18.</strong> What is the <code>sentiments</code> dataset?</p>
-<p><strong>19.</strong> Create another dataset named <code>polarity</code> by running the following: <code>polarity &lt;- get_sentiments("afinn")</code></p>
+<p><strong>19.</strong> Create another dataset named <code>polarity</code> by running the following: <code>polarity &lt;- get_sentiments(&quot;afinn&quot;)</code></p>
 <p><strong>20.</strong> Use <code>left_join</code> to combine polarity and sentiments into one dataset named <code>emotions</code>.</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="trump.html#cb405-1"></a>emotions &lt;-<span class="st"> </span><span class="kw">left_join</span>(sentiments, polarity) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">duplicated</span>(word))</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1">emotions &lt;-<span class="st"> </span><span class="kw">left_join</span>(sentiments, polarity) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">duplicated</span>(word))</a></code></pre></div>
 <p><strong>21.</strong> Use <code>left_join</code> to combine the <code>trump</code> data and the <code>emotions</code> data.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="trump.html#cb406-1"></a>simple &lt;-<span class="st"> </span><span class="kw">left_join</span>(simple, emotions)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" data-line-number="1">simple &lt;-<span class="st"> </span><span class="kw">left_join</span>(simple, emotions)</a></code></pre></div>
 <p><strong>22.</strong> Have a look at the <code>simple</code> (Trump) data. What do you see?</p>
 <p><strong>23.</strong> Get an overall polarity score (using the <code>value</code> variable) for the entire dataset. Is it positive or negative?</p>
 <p> </p>
@@ -443,7 +443,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -462,6 +461,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -482,6 +482,10 @@ gitbook.start({
 "text": null
 },
 "download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

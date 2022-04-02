@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 13 Dataframes | www.datascience.pizza</title>
   <meta name="description" content="A resource &amp; workbook for the Sewanee DataLab" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 13 Dataframes | www.datascience.pizza" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,8 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="subsetting-filtering.html"/>
 <link rel="next" href="packages.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,24 +48,24 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.0.9000/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0.9000/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -73,16 +74,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -91,9 +90,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +124,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
+<li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
 <li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
@@ -307,8 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
-<li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
+<li><a href="joining_datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
@@ -378,257 +378,257 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A vector is the most basic data structure in <code>R</code>, and the other structures are built out of vectors. But, as a data scientist, the most common data structure you will be working with – by far – is a <strong>dataframe</strong>.</p>
 <p>A dataframe, essentially, is a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data.</p>
 <p>Here is what a dataframe looks like:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="dataframes.html#cb136-1"></a><span class="co"># Using one of R&#39;s built-in datasets</span></span>
-<span id="cb136-2"><a href="dataframes.html#cb136-2"></a><span class="kw">head</span>(iris)</span>
-<span id="cb136-3"><a href="dataframes.html#cb136-3"></a>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
-<span id="cb136-4"><a href="dataframes.html#cb136-4"></a><span class="dv">1</span>          <span class="fl">5.1</span>         <span class="fl">3.5</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb136-5"><a href="dataframes.html#cb136-5"></a><span class="dv">2</span>          <span class="fl">4.9</span>         <span class="fl">3.0</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb136-6"><a href="dataframes.html#cb136-6"></a><span class="dv">3</span>          <span class="fl">4.7</span>         <span class="fl">3.2</span>          <span class="fl">1.3</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb136-7"><a href="dataframes.html#cb136-7"></a><span class="dv">4</span>          <span class="fl">4.6</span>         <span class="fl">3.1</span>          <span class="fl">1.5</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb136-8"><a href="dataframes.html#cb136-8"></a><span class="dv">5</span>          <span class="fl">5.0</span>         <span class="fl">3.6</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb136-9"><a href="dataframes.html#cb136-9"></a><span class="dv">6</span>          <span class="fl">5.4</span>         <span class="fl">3.9</span>          <span class="fl">1.7</span>         <span class="fl">0.4</span>  setosa</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="co"># Using one of R&#39;s built-in datasets</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">head</span>(iris)</a>
+<a class="sourceLine" id="cb137-3" data-line-number="3">  Sepal.Length Sepal.Width Petal.Length Petal.Width Species</a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="dv">1</span>          <span class="fl">5.1</span>         <span class="fl">3.5</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-5" data-line-number="5"><span class="dv">2</span>          <span class="fl">4.9</span>         <span class="fl">3.0</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-6" data-line-number="6"><span class="dv">3</span>          <span class="fl">4.7</span>         <span class="fl">3.2</span>          <span class="fl">1.3</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-7" data-line-number="7"><span class="dv">4</span>          <span class="fl">4.6</span>         <span class="fl">3.1</span>          <span class="fl">1.5</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-8" data-line-number="8"><span class="dv">5</span>          <span class="fl">5.0</span>         <span class="fl">3.6</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-9" data-line-number="9"><span class="dv">6</span>          <span class="fl">5.4</span>         <span class="fl">3.9</span>          <span class="fl">1.7</span>         <span class="fl">0.4</span>  setosa</a></code></pre></div>
 <p>In this dataframe, each row pertains to a unique iris plant. The columns contain related information about each individual plant.</p>
 <p>Here’s another data.frame, built from scratch, which shows that dataframes are just a group of vectors:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="dataframes.html#cb137-1"></a>x &lt;-<span class="st"> </span><span class="dv">25</span><span class="op">:</span><span class="dv">29</span></span>
-<span id="cb137-2"><a href="dataframes.html#cb137-2"></a>y &lt;-<span class="st"> </span><span class="dv">55</span><span class="op">:</span><span class="dv">59</span></span>
-<span id="cb137-3"><a href="dataframes.html#cb137-3"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</span>
-<span id="cb137-4"><a href="dataframes.html#cb137-4"></a>df</span>
-<span id="cb137-5"><a href="dataframes.html#cb137-5"></a>   x  y</span>
-<span id="cb137-6"><a href="dataframes.html#cb137-6"></a><span class="dv">1</span> <span class="dv">25</span> <span class="dv">55</span></span>
-<span id="cb137-7"><a href="dataframes.html#cb137-7"></a><span class="dv">2</span> <span class="dv">26</span> <span class="dv">56</span></span>
-<span id="cb137-8"><a href="dataframes.html#cb137-8"></a><span class="dv">3</span> <span class="dv">27</span> <span class="dv">57</span></span>
-<span id="cb137-9"><a href="dataframes.html#cb137-9"></a><span class="dv">4</span> <span class="dv">28</span> <span class="dv">58</span></span>
-<span id="cb137-10"><a href="dataframes.html#cb137-10"></a><span class="dv">5</span> <span class="dv">29</span> <span class="dv">59</span></span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">25</span><span class="op">:</span><span class="dv">29</span></a>
+<a class="sourceLine" id="cb138-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">55</span><span class="op">:</span><span class="dv">59</span></a>
+<a class="sourceLine" id="cb138-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</a>
+<a class="sourceLine" id="cb138-4" data-line-number="4">df</a>
+<a class="sourceLine" id="cb138-5" data-line-number="5">   x  y</a>
+<a class="sourceLine" id="cb138-6" data-line-number="6"><span class="dv">1</span> <span class="dv">25</span> <span class="dv">55</span></a>
+<a class="sourceLine" id="cb138-7" data-line-number="7"><span class="dv">2</span> <span class="dv">26</span> <span class="dv">56</span></a>
+<a class="sourceLine" id="cb138-8" data-line-number="8"><span class="dv">3</span> <span class="dv">27</span> <span class="dv">57</span></a>
+<a class="sourceLine" id="cb138-9" data-line-number="9"><span class="dv">4</span> <span class="dv">28</span> <span class="dv">58</span></a>
+<a class="sourceLine" id="cb138-10" data-line-number="10"><span class="dv">5</span> <span class="dv">29</span> <span class="dv">59</span></a></code></pre></div>
 <p>In this command, we used the <code>data.frame()</code> function to combine two vectors into a dataframe with two columns named <code>x</code> and <code>y</code>. <code>R</code> then saved this result in a new variable named <code>df</code>. When we call <code>df</code>, <code>R</code> shows us the dataframe.</p>
 <p>The great thing about dataframes is that they allow you to relate different data types to each other.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="dataframes.html#cb138-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>),</span>
-<span id="cb138-2"><a href="dataframes.html#cb138-2"></a>                 <span class="dt">height=</span><span class="kw">c</span>(<span class="dv">75</span>,<span class="dv">73</span>,<span class="dv">80</span>))</span>
-<span id="cb138-3"><a href="dataframes.html#cb138-3"></a>df</span>
-<span id="cb138-4"><a href="dataframes.html#cb138-4"></a>  name height</span>
-<span id="cb138-5"><a href="dataframes.html#cb138-5"></a><span class="dv">1</span>  Ben     <span class="dv">75</span></span>
-<span id="cb138-6"><a href="dataframes.html#cb138-6"></a><span class="dv">2</span>  Joe     <span class="dv">73</span></span>
-<span id="cb138-7"><a href="dataframes.html#cb138-7"></a><span class="dv">3</span> Eric     <span class="dv">80</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>),</a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">                 <span class="dt">height=</span><span class="kw">c</span>(<span class="dv">75</span>,<span class="dv">73</span>,<span class="dv">80</span>))</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3">df</a>
+<a class="sourceLine" id="cb139-4" data-line-number="4">  name height</a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="dv">1</span>  Ben     <span class="dv">75</span></a>
+<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="dv">2</span>  Joe     <span class="dv">73</span></a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="dv">3</span> Eric     <span class="dv">80</span></a></code></pre></div>
 <p>This dataframe has one column of class <code>character</code> and another of class <code>numeric</code>.</p>
 </div>
 <div id="subsetting-exploring-dataframes" class="section level2 unnumbered">
 <h2>Subsetting &amp; exploring dataframes</h2>
 <p>To explore dataframes, let’s use a dataset on fuel mileage for all cars sold from 1985 to 2014.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="dataframes.html#cb139-1"></a><span class="co"># need to install first install.packages(&#39;fueleconomy&#39;)</span></span>
-<span id="cb139-2"><a href="dataframes.html#cb139-2"></a><span class="kw">library</span>(fueleconomy)</span>
-<span id="cb139-3"><a href="dataframes.html#cb139-3"></a><span class="kw">data</span>(vehicles)</span>
-<span id="cb139-4"><a href="dataframes.html#cb139-4"></a><span class="kw">head</span>(vehicles)</span>
-<span id="cb139-5"><a href="dataframes.html#cb139-5"></a>     id  make       model year           class           trans</span>
-<span id="cb139-6"><a href="dataframes.html#cb139-6"></a><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb139-7"><a href="dataframes.html#cb139-7"></a><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars    Manual <span class="dv">5</span><span class="op">-</span>spd</span>
-<span id="cb139-8"><a href="dataframes.html#cb139-8"></a><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb139-9"><a href="dataframes.html#cb139-9"></a><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb139-10"><a href="dataframes.html#cb139-10"></a><span class="dv">5</span> <span class="dv">14039</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars    Manual <span class="dv">5</span><span class="op">-</span>spd</span>
-<span id="cb139-11"><a href="dataframes.html#cb139-11"></a><span class="dv">6</span> <span class="dv">14040</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb139-12"><a href="dataframes.html#cb139-12"></a>              drive cyl displ    fuel hwy cty</span>
-<span id="cb139-13"><a href="dataframes.html#cb139-13"></a><span class="dv">1</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">26</span>  <span class="dv">20</span></span>
-<span id="cb139-14"><a href="dataframes.html#cb139-14"></a><span class="dv">2</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">28</span>  <span class="dv">22</span></span>
-<span id="cb139-15"><a href="dataframes.html#cb139-15"></a><span class="dv">3</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">18</span></span>
-<span id="cb139-16"><a href="dataframes.html#cb139-16"></a><span class="dv">4</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">27</span>  <span class="dv">19</span></span>
-<span id="cb139-17"><a href="dataframes.html#cb139-17"></a><span class="dv">5</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">29</span>  <span class="dv">21</span></span>
-<span id="cb139-18"><a href="dataframes.html#cb139-18"></a><span class="dv">6</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">17</span></span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="co"># need to install first install.packages(&#39;fueleconomy&#39;)</span></a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="kw">library</span>(fueleconomy)</a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="kw">data</span>(vehicles)</a>
+<a class="sourceLine" id="cb140-4" data-line-number="4"><span class="kw">head</span>(vehicles)</a>
+<a class="sourceLine" id="cb140-5" data-line-number="5">     id  make       model year           class           trans</a>
+<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb140-7" data-line-number="7"><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars    Manual <span class="dv">5</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb140-8" data-line-number="8"><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb140-9" data-line-number="9"><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb140-10" data-line-number="10"><span class="dv">5</span> <span class="dv">14039</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars    Manual <span class="dv">5</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb140-11" data-line-number="11"><span class="dv">6</span> <span class="dv">14040</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb140-12" data-line-number="12">              drive cyl displ    fuel hwy cty</a>
+<a class="sourceLine" id="cb140-13" data-line-number="13"><span class="dv">1</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">26</span>  <span class="dv">20</span></a>
+<a class="sourceLine" id="cb140-14" data-line-number="14"><span class="dv">2</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">28</span>  <span class="dv">22</span></a>
+<a class="sourceLine" id="cb140-15" data-line-number="15"><span class="dv">3</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">18</span></a>
+<a class="sourceLine" id="cb140-16" data-line-number="16"><span class="dv">4</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">27</span>  <span class="dv">19</span></a>
+<a class="sourceLine" id="cb140-17" data-line-number="17"><span class="dv">5</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">29</span>  <span class="dv">21</span></a>
+<a class="sourceLine" id="cb140-18" data-line-number="18"><span class="dv">6</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">17</span></a></code></pre></div>
 <p>To look at this dataframe in full, you call display it in a separate tab within <code>RStudio</code> using the <code>View()</code> function:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="dataframes.html#cb140-1"></a><span class="kw">View</span>(vehicles)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">View</span>(vehicles)</a></code></pre></div>
 <p>A dataframe has rows of data organized into columns. In this dataframe, each row pertains to a single vehicle make/model – i.e., a single <em>observation</em>. Each column pertains to a single <em>type</em> of data. Columns are named in the <em>header</em> of the dataframe.</p>
 <p>All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes. In addition to those functions you already know, let’s add some new functions to your inventory of useful functions.</p>
 <div id="exploration" class="section level3 unnumbered">
 <h3>Exploration</h3>
 <p><strong><code>head()</code></strong> and <strong><code>tail()</code></strong> summarize the beginning and end of the object:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="dataframes.html#cb141-1"></a><span class="kw">head</span>(vehicles) </span>
-<span id="cb141-2"><a href="dataframes.html#cb141-2"></a>     id  make       model year           class           trans</span>
-<span id="cb141-3"><a href="dataframes.html#cb141-3"></a><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb141-4"><a href="dataframes.html#cb141-4"></a><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars    Manual <span class="dv">5</span><span class="op">-</span>spd</span>
-<span id="cb141-5"><a href="dataframes.html#cb141-5"></a><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb141-6"><a href="dataframes.html#cb141-6"></a><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb141-7"><a href="dataframes.html#cb141-7"></a><span class="dv">5</span> <span class="dv">14039</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars    Manual <span class="dv">5</span><span class="op">-</span>spd</span>
-<span id="cb141-8"><a href="dataframes.html#cb141-8"></a><span class="dv">6</span> <span class="dv">14040</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb141-9"><a href="dataframes.html#cb141-9"></a>              drive cyl displ    fuel hwy cty</span>
-<span id="cb141-10"><a href="dataframes.html#cb141-10"></a><span class="dv">1</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">26</span>  <span class="dv">20</span></span>
-<span id="cb141-11"><a href="dataframes.html#cb141-11"></a><span class="dv">2</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">28</span>  <span class="dv">22</span></span>
-<span id="cb141-12"><a href="dataframes.html#cb141-12"></a><span class="dv">3</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">18</span></span>
-<span id="cb141-13"><a href="dataframes.html#cb141-13"></a><span class="dv">4</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">27</span>  <span class="dv">19</span></span>
-<span id="cb141-14"><a href="dataframes.html#cb141-14"></a><span class="dv">5</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">29</span>  <span class="dv">21</span></span>
-<span id="cb141-15"><a href="dataframes.html#cb141-15"></a><span class="dv">6</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">17</span></span>
-<span id="cb141-16"><a href="dataframes.html#cb141-16"></a></span>
-<span id="cb141-17"><a href="dataframes.html#cb141-17"></a><span class="kw">tail</span>(vehicles) </span>
-<span id="cb141-18"><a href="dataframes.html#cb141-18"></a>         id make             model year            class        trans</span>
-<span id="cb141-19"><a href="dataframes.html#cb141-19"></a><span class="dv">33437</span> <span class="dv">28868</span> Yugo GV Plus<span class="op">/</span>GV<span class="op">/</span>Cabrio <span class="dv">1990</span> Minicompact Cars Manual <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb141-20"><a href="dataframes.html#cb141-20"></a><span class="dv">33438</span>  <span class="dv">6635</span> Yugo GV Plus<span class="op">/</span>GV<span class="op">/</span>Cabrio <span class="dv">1990</span>  Subcompact Cars Manual <span class="dv">5</span><span class="op">-</span>spd</span>
-<span id="cb141-21"><a href="dataframes.html#cb141-21"></a><span class="dv">33439</span>  <span class="dv">3157</span> Yugo            GV<span class="op">/</span>GVX <span class="dv">1987</span>  Subcompact Cars Manual <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb141-22"><a href="dataframes.html#cb141-22"></a><span class="dv">33440</span>  <span class="dv">5497</span> Yugo            GV<span class="op">/</span>GVX <span class="dv">1989</span>  Subcompact Cars Manual <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb141-23"><a href="dataframes.html#cb141-23"></a><span class="dv">33441</span>  <span class="dv">5498</span> Yugo            GV<span class="op">/</span>GVX <span class="dv">1989</span>  Subcompact Cars Manual <span class="dv">5</span><span class="op">-</span>spd</span>
-<span id="cb141-24"><a href="dataframes.html#cb141-24"></a><span class="dv">33442</span>  <span class="dv">1745</span> Yugo       Gy<span class="op">/</span>yugo GVX <span class="dv">1986</span> Minicompact Cars Manual <span class="dv">4</span><span class="op">-</span>spd</span>
-<span id="cb141-25"><a href="dataframes.html#cb141-25"></a>                  drive cyl displ    fuel hwy cty</span>
-<span id="cb141-26"><a href="dataframes.html#cb141-26"></a><span class="dv">33437</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.3</span> Regular  <span class="dv">27</span>  <span class="dv">21</span></span>
-<span id="cb141-27"><a href="dataframes.html#cb141-27"></a><span class="dv">33438</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.3</span> Regular  <span class="dv">28</span>  <span class="dv">23</span></span>
-<span id="cb141-28"><a href="dataframes.html#cb141-28"></a><span class="dv">33439</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.1</span> Regular  <span class="dv">29</span>  <span class="dv">24</span></span>
-<span id="cb141-29"><a href="dataframes.html#cb141-29"></a><span class="dv">33440</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.1</span> Regular  <span class="dv">29</span>  <span class="dv">24</span></span>
-<span id="cb141-30"><a href="dataframes.html#cb141-30"></a><span class="dv">33441</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.3</span> Regular  <span class="dv">28</span>  <span class="dv">23</span></span>
-<span id="cb141-31"><a href="dataframes.html#cb141-31"></a><span class="dv">33442</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.1</span> Regular  <span class="dv">29</span>  <span class="dv">22</span></span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">head</span>(vehicles) </a>
+<a class="sourceLine" id="cb142-2" data-line-number="2">     id  make       model year           class           trans</a>
+<a class="sourceLine" id="cb142-3" data-line-number="3"><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars    Manual <span class="dv">5</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-7" data-line-number="7"><span class="dv">5</span> <span class="dv">14039</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars    Manual <span class="dv">5</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-8" data-line-number="8"><span class="dv">6</span> <span class="dv">14040</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-9" data-line-number="9">              drive cyl displ    fuel hwy cty</a>
+<a class="sourceLine" id="cb142-10" data-line-number="10"><span class="dv">1</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">26</span>  <span class="dv">20</span></a>
+<a class="sourceLine" id="cb142-11" data-line-number="11"><span class="dv">2</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">28</span>  <span class="dv">22</span></a>
+<a class="sourceLine" id="cb142-12" data-line-number="12"><span class="dv">3</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">18</span></a>
+<a class="sourceLine" id="cb142-13" data-line-number="13"><span class="dv">4</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">27</span>  <span class="dv">19</span></a>
+<a class="sourceLine" id="cb142-14" data-line-number="14"><span class="dv">5</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">29</span>  <span class="dv">21</span></a>
+<a class="sourceLine" id="cb142-15" data-line-number="15"><span class="dv">6</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">17</span></a>
+<a class="sourceLine" id="cb142-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb142-17" data-line-number="17"><span class="kw">tail</span>(vehicles) </a>
+<a class="sourceLine" id="cb142-18" data-line-number="18">         id make             model year            class        trans</a>
+<a class="sourceLine" id="cb142-19" data-line-number="19"><span class="dv">33437</span> <span class="dv">28868</span> Yugo GV Plus<span class="op">/</span>GV<span class="op">/</span>Cabrio <span class="dv">1990</span> Minicompact Cars Manual <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-20" data-line-number="20"><span class="dv">33438</span>  <span class="dv">6635</span> Yugo GV Plus<span class="op">/</span>GV<span class="op">/</span>Cabrio <span class="dv">1990</span>  Subcompact Cars Manual <span class="dv">5</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-21" data-line-number="21"><span class="dv">33439</span>  <span class="dv">3157</span> Yugo            GV<span class="op">/</span>GVX <span class="dv">1987</span>  Subcompact Cars Manual <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-22" data-line-number="22"><span class="dv">33440</span>  <span class="dv">5497</span> Yugo            GV<span class="op">/</span>GVX <span class="dv">1989</span>  Subcompact Cars Manual <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-23" data-line-number="23"><span class="dv">33441</span>  <span class="dv">5498</span> Yugo            GV<span class="op">/</span>GVX <span class="dv">1989</span>  Subcompact Cars Manual <span class="dv">5</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-24" data-line-number="24"><span class="dv">33442</span>  <span class="dv">1745</span> Yugo       Gy<span class="op">/</span>yugo GVX <span class="dv">1986</span> Minicompact Cars Manual <span class="dv">4</span><span class="op">-</span>spd</a>
+<a class="sourceLine" id="cb142-25" data-line-number="25">                  drive cyl displ    fuel hwy cty</a>
+<a class="sourceLine" id="cb142-26" data-line-number="26"><span class="dv">33437</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.3</span> Regular  <span class="dv">27</span>  <span class="dv">21</span></a>
+<a class="sourceLine" id="cb142-27" data-line-number="27"><span class="dv">33438</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.3</span> Regular  <span class="dv">28</span>  <span class="dv">23</span></a>
+<a class="sourceLine" id="cb142-28" data-line-number="28"><span class="dv">33439</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.1</span> Regular  <span class="dv">29</span>  <span class="dv">24</span></a>
+<a class="sourceLine" id="cb142-29" data-line-number="29"><span class="dv">33440</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.1</span> Regular  <span class="dv">29</span>  <span class="dv">24</span></a>
+<a class="sourceLine" id="cb142-30" data-line-number="30"><span class="dv">33441</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.3</span> Regular  <span class="dv">28</span>  <span class="dv">23</span></a>
+<a class="sourceLine" id="cb142-31" data-line-number="31"><span class="dv">33442</span> Front<span class="op">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.1</span> Regular  <span class="dv">29</span>  <span class="dv">22</span></a></code></pre></div>
 <p><strong><code>names()</code></strong> tells you the column names:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="dataframes.html#cb142-1"></a><span class="kw">names</span>(vehicles) </span>
-<span id="cb142-2"><a href="dataframes.html#cb142-2"></a> [<span class="dv">1</span>] <span class="st">&quot;id&quot;</span>    <span class="st">&quot;make&quot;</span>  <span class="st">&quot;model&quot;</span> <span class="st">&quot;year&quot;</span>  <span class="st">&quot;class&quot;</span> <span class="st">&quot;trans&quot;</span> <span class="st">&quot;drive&quot;</span> <span class="st">&quot;cyl&quot;</span>   <span class="st">&quot;displ&quot;</span></span>
-<span id="cb142-3"><a href="dataframes.html#cb142-3"></a>[<span class="dv">10</span>] <span class="st">&quot;fuel&quot;</span>  <span class="st">&quot;hwy&quot;</span>   <span class="st">&quot;cty&quot;</span>  </span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">names</span>(vehicles) </a>
+<a class="sourceLine" id="cb143-2" data-line-number="2"> [<span class="dv">1</span>] <span class="st">&quot;id&quot;</span>    <span class="st">&quot;make&quot;</span>  <span class="st">&quot;model&quot;</span> <span class="st">&quot;year&quot;</span>  <span class="st">&quot;class&quot;</span> <span class="st">&quot;trans&quot;</span> <span class="st">&quot;drive&quot;</span> <span class="st">&quot;cyl&quot;</span>   <span class="st">&quot;displ&quot;</span></a>
+<a class="sourceLine" id="cb143-3" data-line-number="3">[<span class="dv">10</span>] <span class="st">&quot;fuel&quot;</span>  <span class="st">&quot;hwy&quot;</span>   <span class="st">&quot;cty&quot;</span>  </a></code></pre></div>
 <p><strong><code>nrow()</code></strong>, <strong><code>ncol()</code></strong>, and <strong><code>dim()</code></strong> tell you about the dimensions of your dataframe:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="dataframes.html#cb143-1"></a><span class="kw">nrow</span>(vehicles) </span>
-<span id="cb143-2"><a href="dataframes.html#cb143-2"></a>[<span class="dv">1</span>] <span class="dv">33442</span></span></code></pre></div>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="dataframes.html#cb144-1"></a><span class="kw">ncol</span>(vehicles) </span>
-<span id="cb144-2"><a href="dataframes.html#cb144-2"></a>[<span class="dv">1</span>] <span class="dv">12</span></span></code></pre></div>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="dataframes.html#cb145-1"></a><span class="kw">dim</span>(vehicles) </span>
-<span id="cb145-2"><a href="dataframes.html#cb145-2"></a>[<span class="dv">1</span>] <span class="dv">33442</span>    <span class="dv">12</span></span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">nrow</span>(vehicles) </a>
+<a class="sourceLine" id="cb144-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">33442</span></a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="kw">ncol</span>(vehicles) </a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">12</span></a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">dim</span>(vehicles) </a>
+<a class="sourceLine" id="cb146-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">33442</span>    <span class="dv">12</span></a></code></pre></div>
 <p>Note that <strong><code>length()</code></strong> does not work the same on dataframes as it does with vectors. In dataframes, <code>length()</code> is the equivalent of <code>ncol()</code>; it will <em>not</em> give you the number of rows in a dataset.</p>
 <p>Importantly, you can use <strong><code>is.na()</code></strong> to ask whether columns or rows contain <code>NA</code>s:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="dataframes.html#cb146-1"></a><span class="co"># Check for NAs</span></span>
-<span id="cb146-2"><a href="dataframes.html#cb146-2"></a></span>
-<span id="cb146-3"><a href="dataframes.html#cb146-3"></a><span class="co"># Which rows in the `hwy` column have NA&#39;s?</span></span>
-<span id="cb146-4"><a href="dataframes.html#cb146-4"></a><span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>hwy))</span>
-<span id="cb146-5"><a href="dataframes.html#cb146-5"></a><span class="kw">integer</span>(<span class="dv">0</span>)</span>
-<span id="cb146-6"><a href="dataframes.html#cb146-6"></a></span>
-<span id="cb146-7"><a href="dataframes.html#cb146-7"></a><span class="co"># (No NAs in that column!)</span></span>
-<span id="cb146-8"><a href="dataframes.html#cb146-8"></a></span>
-<span id="cb146-9"><a href="dataframes.html#cb146-9"></a><span class="co"># What about rows in the `cyl` column?</span></span>
-<span id="cb146-10"><a href="dataframes.html#cb146-10"></a><span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>cyl))</span>
-<span id="cb146-11"><a href="dataframes.html#cb146-11"></a> [<span class="dv">1</span>]  <span class="dv">1232</span>  <span class="dv">1233</span>  <span class="dv">2347</span>  <span class="dv">3246</span>  <span class="dv">3247</span>  <span class="dv">3248</span>  <span class="dv">6115</span>  <span class="dv">6116</span>  <span class="dv">6533</span>  <span class="dv">7783</span>  <span class="dv">7784</span>  <span class="dv">8472</span></span>
-<span id="cb146-12"><a href="dataframes.html#cb146-12"></a>[<span class="dv">13</span>] <span class="dv">10613</span> <span class="dv">10614</span> <span class="dv">11696</span> <span class="dv">11697</span> <span class="dv">12411</span> <span class="dv">12412</span> <span class="dv">12413</span> <span class="dv">12928</span> <span class="dv">12929</span> <span class="dv">12934</span> <span class="dv">12935</span> <span class="dv">12944</span></span>
-<span id="cb146-13"><a href="dataframes.html#cb146-13"></a>[<span class="dv">25</span>] <span class="dv">16429</span> <span class="dv">16430</span> <span class="dv">21070</span> <span class="dv">23472</span> <span class="dv">23473</span> <span class="dv">23474</span> <span class="dv">24485</span> <span class="dv">24486</span> <span class="dv">24487</span> <span class="dv">24488</span> <span class="dv">24489</span> <span class="dv">26150</span></span>
-<span id="cb146-14"><a href="dataframes.html#cb146-14"></a>[<span class="dv">37</span>] <span class="dv">28628</span> <span class="dv">28704</span> <span class="dv">28705</span> <span class="dv">28706</span> <span class="dv">28707</span> <span class="dv">28708</span> <span class="dv">28709</span> <span class="dv">29314</span> <span class="dv">29315</span> <span class="dv">30023</span> <span class="dv">30024</span> <span class="dv">30025</span></span>
-<span id="cb146-15"><a href="dataframes.html#cb146-15"></a>[<span class="dv">49</span>] <span class="dv">30026</span> <span class="dv">30027</span> <span class="dv">30028</span> <span class="dv">31063</span> <span class="dv">31064</span> <span class="dv">31065</span> <span class="dv">31066</span> <span class="dv">31067</span> <span class="dv">31068</span> <span class="dv">31069</span></span>
-<span id="cb146-16"><a href="dataframes.html#cb146-16"></a></span>
-<span id="cb146-17"><a href="dataframes.html#cb146-17"></a><span class="co"># (lots of NAs in that column!)</span></span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="co"># Check for NAs</span></a>
+<a class="sourceLine" id="cb147-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="co"># Which rows in the `hwy` column have NA&#39;s?</span></a>
+<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>hwy))</a>
+<a class="sourceLine" id="cb147-5" data-line-number="5"><span class="kw">integer</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb147-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb147-7" data-line-number="7"><span class="co"># (No NAs in that column!)</span></a>
+<a class="sourceLine" id="cb147-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb147-9" data-line-number="9"><span class="co"># What about rows in the `cyl` column?</span></a>
+<a class="sourceLine" id="cb147-10" data-line-number="10"><span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>cyl))</a>
+<a class="sourceLine" id="cb147-11" data-line-number="11"> [<span class="dv">1</span>]  <span class="dv">1232</span>  <span class="dv">1233</span>  <span class="dv">2347</span>  <span class="dv">3246</span>  <span class="dv">3247</span>  <span class="dv">3248</span>  <span class="dv">6115</span>  <span class="dv">6116</span>  <span class="dv">6533</span>  <span class="dv">7783</span>  <span class="dv">7784</span>  <span class="dv">8472</span></a>
+<a class="sourceLine" id="cb147-12" data-line-number="12">[<span class="dv">13</span>] <span class="dv">10613</span> <span class="dv">10614</span> <span class="dv">11696</span> <span class="dv">11697</span> <span class="dv">12411</span> <span class="dv">12412</span> <span class="dv">12413</span> <span class="dv">12928</span> <span class="dv">12929</span> <span class="dv">12934</span> <span class="dv">12935</span> <span class="dv">12944</span></a>
+<a class="sourceLine" id="cb147-13" data-line-number="13">[<span class="dv">25</span>] <span class="dv">16429</span> <span class="dv">16430</span> <span class="dv">21070</span> <span class="dv">23472</span> <span class="dv">23473</span> <span class="dv">23474</span> <span class="dv">24485</span> <span class="dv">24486</span> <span class="dv">24487</span> <span class="dv">24488</span> <span class="dv">24489</span> <span class="dv">26150</span></a>
+<a class="sourceLine" id="cb147-14" data-line-number="14">[<span class="dv">37</span>] <span class="dv">28628</span> <span class="dv">28704</span> <span class="dv">28705</span> <span class="dv">28706</span> <span class="dv">28707</span> <span class="dv">28708</span> <span class="dv">28709</span> <span class="dv">29314</span> <span class="dv">29315</span> <span class="dv">30023</span> <span class="dv">30024</span> <span class="dv">30025</span></a>
+<a class="sourceLine" id="cb147-15" data-line-number="15">[<span class="dv">49</span>] <span class="dv">30026</span> <span class="dv">30027</span> <span class="dv">30028</span> <span class="dv">31063</span> <span class="dv">31064</span> <span class="dv">31065</span> <span class="dv">31066</span> <span class="dv">31067</span> <span class="dv">31068</span> <span class="dv">31069</span></a>
+<a class="sourceLine" id="cb147-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb147-17" data-line-number="17"><span class="co"># (lots of NAs in that column!)</span></a></code></pre></div>
 </div>
 <div id="subsetting" class="section level3 unnumbered">
 <h3>Subsetting</h3>
 <p>Recall that dataframes are filtered by row and/or column using this format: <strong><code>dataframe[rows,columns]</code></strong>. To get the third element of the second column, for example, you type <code>dataframe[3,2]</code>.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="dataframes.html#cb147-1"></a>vehicles[<span class="dv">3</span>,<span class="dv">2</span>]</span>
-<span id="cb147-2"><a href="dataframes.html#cb147-2"></a>[<span class="dv">1</span>] <span class="st">&quot;Acura&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">vehicles[<span class="dv">3</span>,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb148-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;Acura&quot;</span></a></code></pre></div>
 <p>Note that the comma is necessary even if you do not want to specify columns. If you try to type this …</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="dataframes.html#cb148-1"></a>vehicles[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">vehicles[<span class="dv">3</span>]</a></code></pre></div>
 <p>…<code>R</code> will assume you are asking for the third column, not the third row.</p>
 <p>To filter a dataframe to multiple values, you can specify vectors for the <code>row</code> and <code>column</code></p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="dataframes.html#cb149-1"></a>vehicles[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>] <span class="co"># can use colons</span></span>
-<span id="cb149-2"><a href="dataframes.html#cb149-2"></a>  hwy cty</span>
-<span id="cb149-3"><a href="dataframes.html#cb149-3"></a><span class="dv">1</span>  <span class="dv">26</span>  <span class="dv">20</span></span>
-<span id="cb149-4"><a href="dataframes.html#cb149-4"></a><span class="dv">2</span>  <span class="dv">28</span>  <span class="dv">22</span></span>
-<span id="cb149-5"><a href="dataframes.html#cb149-5"></a><span class="dv">3</span>  <span class="dv">26</span>  <span class="dv">18</span></span>
-<span id="cb149-6"><a href="dataframes.html#cb149-6"></a>vehicles[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>)]  <span class="co"># can use c()</span></span>
-<span id="cb149-7"><a href="dataframes.html#cb149-7"></a>     id hwy cty</span>
-<span id="cb149-8"><a href="dataframes.html#cb149-8"></a><span class="dv">1</span> <span class="dv">13309</span>  <span class="dv">26</span>  <span class="dv">20</span></span>
-<span id="cb149-9"><a href="dataframes.html#cb149-9"></a><span class="dv">2</span> <span class="dv">13310</span>  <span class="dv">28</span>  <span class="dv">22</span></span>
-<span id="cb149-10"><a href="dataframes.html#cb149-10"></a><span class="dv">3</span> <span class="dv">13311</span>  <span class="dv">26</span>  <span class="dv">18</span></span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">vehicles[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>] <span class="co"># can use colons</span></a>
+<a class="sourceLine" id="cb150-2" data-line-number="2">  hwy cty</a>
+<a class="sourceLine" id="cb150-3" data-line-number="3"><span class="dv">1</span>  <span class="dv">26</span>  <span class="dv">20</span></a>
+<a class="sourceLine" id="cb150-4" data-line-number="4"><span class="dv">2</span>  <span class="dv">28</span>  <span class="dv">22</span></a>
+<a class="sourceLine" id="cb150-5" data-line-number="5"><span class="dv">3</span>  <span class="dv">26</span>  <span class="dv">18</span></a>
+<a class="sourceLine" id="cb150-6" data-line-number="6">vehicles[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>)]  <span class="co"># can use c()</span></a>
+<a class="sourceLine" id="cb150-7" data-line-number="7">     id hwy cty</a>
+<a class="sourceLine" id="cb150-8" data-line-number="8"><span class="dv">1</span> <span class="dv">13309</span>  <span class="dv">26</span>  <span class="dv">20</span></a>
+<a class="sourceLine" id="cb150-9" data-line-number="9"><span class="dv">2</span> <span class="dv">13310</span>  <span class="dv">28</span>  <span class="dv">22</span></a>
+<a class="sourceLine" id="cb150-10" data-line-number="10"><span class="dv">3</span> <span class="dv">13311</span>  <span class="dv">26</span>  <span class="dv">18</span></a></code></pre></div>
 <p>Columns can also be called according to their names. Use the <strong><code>$</code></strong> sign to specify a column.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="dataframes.html#cb150-1"></a>vehicles<span class="op">$</span>hwy[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span>
-<span id="cb150-2"><a href="dataframes.html#cb150-2"></a>[<span class="dv">1</span>] <span class="dv">26</span> <span class="dv">28</span> <span class="dv">26</span> <span class="dv">27</span> <span class="dv">29</span></span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">vehicles<span class="op">$</span>hwy[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb151-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">26</span> <span class="dv">28</span> <span class="dv">26</span> <span class="dv">27</span> <span class="dv">29</span></a></code></pre></div>
 <p>Note that when you use a <code>$</code>, you will not need to use a comma within your brackets. If you try to run this …</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="dataframes.html#cb151-1"></a>vehicles<span class="op">$</span>hwy[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">vehicles<span class="op">$</span>hwy[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a></code></pre></div>
 <p>…<code>R</code> will throw a fit.</p>
 <p>Also recall that you can use logical tests, which return boolean values <code>TRUE</code> or <code>FALSE</code>, to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="dataframes.html#cb152-1"></a><span class="co"># Build your logical test</span></span>
-<span id="cb152-2"><a href="dataframes.html#cb152-2"></a>verdicts &lt;-<span class="st"> </span>vehicles<span class="op">$</span>hwy <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span></span>
-<span id="cb152-3"><a href="dataframes.html#cb152-3"></a></span>
-<span id="cb152-4"><a href="dataframes.html#cb152-4"></a><span class="co"># Subset with booleans</span></span>
-<span id="cb152-5"><a href="dataframes.html#cb152-5"></a>vehicles[verdicts,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</span>
-<span id="cb152-6"><a href="dataframes.html#cb152-6"></a>           make    model</span>
-<span id="cb152-7"><a href="dataframes.html#cb152-7"></a><span class="dv">6533</span>  Chevrolet Spark EV</span>
-<span id="cb152-8"><a href="dataframes.html#cb152-8"></a><span class="dv">10613</span>      Fiat     500e</span>
-<span id="cb152-9"><a href="dataframes.html#cb152-9"></a><span class="dv">10614</span>      Fiat     500e</span>
-<span id="cb152-10"><a href="dataframes.html#cb152-10"></a><span class="dv">16429</span>     Honda   Fit EV</span>
-<span id="cb152-11"><a href="dataframes.html#cb152-11"></a><span class="dv">16430</span>     Honda   Fit EV</span>
-<span id="cb152-12"><a href="dataframes.html#cb152-12"></a><span class="dv">24487</span>    Nissan     Leaf</span>
-<span id="cb152-13"><a href="dataframes.html#cb152-13"></a><span class="dv">24488</span>    Nissan     Leaf</span>
-<span id="cb152-14"><a href="dataframes.html#cb152-14"></a><span class="dv">24489</span>    Nissan     Leaf</span>
-<span id="cb152-15"><a href="dataframes.html#cb152-15"></a><span class="dv">28628</span>     Scion    iQ EV</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="co"># Build your logical test</span></a>
+<a class="sourceLine" id="cb153-2" data-line-number="2">verdicts &lt;-<span class="st"> </span>vehicles<span class="op">$</span>hwy <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb153-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="co"># Subset with booleans</span></a>
+<a class="sourceLine" id="cb153-5" data-line-number="5">vehicles[verdicts,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb153-6" data-line-number="6">           make    model</a>
+<a class="sourceLine" id="cb153-7" data-line-number="7"><span class="dv">6533</span>  Chevrolet Spark EV</a>
+<a class="sourceLine" id="cb153-8" data-line-number="8"><span class="dv">10613</span>      Fiat     500e</a>
+<a class="sourceLine" id="cb153-9" data-line-number="9"><span class="dv">10614</span>      Fiat     500e</a>
+<a class="sourceLine" id="cb153-10" data-line-number="10"><span class="dv">16429</span>     Honda   Fit EV</a>
+<a class="sourceLine" id="cb153-11" data-line-number="11"><span class="dv">16430</span>     Honda   Fit EV</a>
+<a class="sourceLine" id="cb153-12" data-line-number="12"><span class="dv">24487</span>    Nissan     Leaf</a>
+<a class="sourceLine" id="cb153-13" data-line-number="13"><span class="dv">24488</span>    Nissan     Leaf</a>
+<a class="sourceLine" id="cb153-14" data-line-number="14"><span class="dv">24489</span>    Nissan     Leaf</a>
+<a class="sourceLine" id="cb153-15" data-line-number="15"><span class="dv">28628</span>     Scion    iQ EV</a></code></pre></div>
 <p>Or you can write all this in a single line, to be more efficient:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="dataframes.html#cb153-1"></a>vehicles[ vehicles<span class="op">$</span>hwy <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>  , <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</span>
-<span id="cb153-2"><a href="dataframes.html#cb153-2"></a>           make    model</span>
-<span id="cb153-3"><a href="dataframes.html#cb153-3"></a><span class="dv">6533</span>  Chevrolet Spark EV</span>
-<span id="cb153-4"><a href="dataframes.html#cb153-4"></a><span class="dv">10613</span>      Fiat     500e</span>
-<span id="cb153-5"><a href="dataframes.html#cb153-5"></a><span class="dv">10614</span>      Fiat     500e</span>
-<span id="cb153-6"><a href="dataframes.html#cb153-6"></a><span class="dv">16429</span>     Honda   Fit EV</span>
-<span id="cb153-7"><a href="dataframes.html#cb153-7"></a><span class="dv">16430</span>     Honda   Fit EV</span>
-<span id="cb153-8"><a href="dataframes.html#cb153-8"></a><span class="dv">24487</span>    Nissan     Leaf</span>
-<span id="cb153-9"><a href="dataframes.html#cb153-9"></a><span class="dv">24488</span>    Nissan     Leaf</span>
-<span id="cb153-10"><a href="dataframes.html#cb153-10"></a><span class="dv">24489</span>    Nissan     Leaf</span>
-<span id="cb153-11"><a href="dataframes.html#cb153-11"></a><span class="dv">28628</span>     Scion    iQ EV</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">vehicles[ vehicles<span class="op">$</span>hwy <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>  , <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb154-2" data-line-number="2">           make    model</a>
+<a class="sourceLine" id="cb154-3" data-line-number="3"><span class="dv">6533</span>  Chevrolet Spark EV</a>
+<a class="sourceLine" id="cb154-4" data-line-number="4"><span class="dv">10613</span>      Fiat     500e</a>
+<a class="sourceLine" id="cb154-5" data-line-number="5"><span class="dv">10614</span>      Fiat     500e</a>
+<a class="sourceLine" id="cb154-6" data-line-number="6"><span class="dv">16429</span>     Honda   Fit EV</a>
+<a class="sourceLine" id="cb154-7" data-line-number="7"><span class="dv">16430</span>     Honda   Fit EV</a>
+<a class="sourceLine" id="cb154-8" data-line-number="8"><span class="dv">24487</span>    Nissan     Leaf</a>
+<a class="sourceLine" id="cb154-9" data-line-number="9"><span class="dv">24488</span>    Nissan     Leaf</a>
+<a class="sourceLine" id="cb154-10" data-line-number="10"><span class="dv">24489</span>    Nissan     Leaf</a>
+<a class="sourceLine" id="cb154-11" data-line-number="11"><span class="dv">28628</span>     Scion    iQ EV</a></code></pre></div>
 <p>Recall that the logical test is returning a bunch of <code>TRUE</code>’s and <code>FALSE</code>’s, one for each row of <code>vehicles</code>. Only the <code>TRUE</code> rows will be returned.</p>
 </div>
 <div id="summarizing" class="section level3 unnumbered">
 <h3>Summarizing</h3>
 <p>The same summary functions that you have used for vectors work for the columns in dataframes, since each column is also a vector. Check it out:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="dataframes.html#cb154-1"></a><span class="kw">min</span>(vehicles<span class="op">$</span>hwy)</span>
-<span id="cb154-2"><a href="dataframes.html#cb154-2"></a>[<span class="dv">1</span>] <span class="dv">9</span></span></code></pre></div>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="dataframes.html#cb155-1"></a><span class="kw">max</span>(vehicles<span class="op">$</span>hwy)</span>
-<span id="cb155-2"><a href="dataframes.html#cb155-2"></a>[<span class="dv">1</span>] <span class="dv">109</span></span></code></pre></div>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="dataframes.html#cb156-1"></a><span class="kw">mean</span>(vehicles<span class="op">$</span>cty)</span>
-<span id="cb156-2"><a href="dataframes.html#cb156-2"></a>[<span class="dv">1</span>] <span class="fl">17.491</span></span></code></pre></div>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="dataframes.html#cb157-1"></a><span class="kw">sd</span>(vehicles<span class="op">$</span>cty)</span>
-<span id="cb157-2"><a href="dataframes.html#cb157-2"></a>[<span class="dv">1</span>] <span class="fl">5.582174</span></span></code></pre></div>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="dataframes.html#cb158-1"></a><span class="kw">str</span>(vehicles<span class="op">$</span>make)</span>
-<span id="cb158-2"><a href="dataframes.html#cb158-2"></a> chr [<span class="dv">1</span><span class="op">:</span><span class="dv">33442</span>] <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> ...</span></code></pre></div>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="dataframes.html#cb159-1"></a><span class="kw">class</span>(vehicles<span class="op">$</span>hwy)</span>
-<span id="cb159-2"><a href="dataframes.html#cb159-2"></a>[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">min</span>(vehicles<span class="op">$</span>hwy)</a>
+<a class="sourceLine" id="cb155-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">9</span></a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">max</span>(vehicles<span class="op">$</span>hwy)</a>
+<a class="sourceLine" id="cb156-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">109</span></a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="kw">mean</span>(vehicles<span class="op">$</span>cty)</a>
+<a class="sourceLine" id="cb157-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">17.491</span></a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">sd</span>(vehicles<span class="op">$</span>cty)</a>
+<a class="sourceLine" id="cb158-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">5.582174</span></a></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">str</span>(vehicles<span class="op">$</span>make)</a>
+<a class="sourceLine" id="cb159-2" data-line-number="2"> chr [<span class="dv">1</span><span class="op">:</span><span class="dv">33442</span>] <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> ...</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">class</span>(vehicles<span class="op">$</span>hwy)</a>
+<a class="sourceLine" id="cb160-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></a></code></pre></div>
 <p>You can also use the <strong><code>summary()</code></strong> function, which provides summary statistics for each column in your dataframe:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="dataframes.html#cb160-1"></a><span class="kw">summary</span>(vehicles)</span>
-<span id="cb160-2"><a href="dataframes.html#cb160-2"></a>       id            make              model                year     </span>
-<span id="cb160-3"><a href="dataframes.html#cb160-3"></a> Min.   <span class="op">:</span><span class="st">    </span><span class="dv">1</span>   Length<span class="op">:</span><span class="dv">33442</span>       Length<span class="op">:</span><span class="dv">33442</span>       Min.   <span class="op">:</span><span class="dv">1984</span>  </span>
-<span id="cb160-4"><a href="dataframes.html#cb160-4"></a> 1st Qu.<span class="op">:</span><span class="st"> </span><span class="dv">8361</span>   Class <span class="op">:</span>character   Class <span class="op">:</span>character   1st Qu.<span class="op">:</span><span class="dv">1991</span>  </span>
-<span id="cb160-5"><a href="dataframes.html#cb160-5"></a> Median <span class="op">:</span><span class="dv">16724</span>   Mode  <span class="op">:</span>character   Mode  <span class="op">:</span>character   Median <span class="op">:</span><span class="dv">1999</span>  </span>
-<span id="cb160-6"><a href="dataframes.html#cb160-6"></a> Mean   <span class="op">:</span><span class="dv">17038</span>                                         Mean   <span class="op">:</span><span class="dv">1999</span>  </span>
-<span id="cb160-7"><a href="dataframes.html#cb160-7"></a> 3rd Qu.<span class="op">:</span><span class="dv">25265</span>                                         3rd Qu.<span class="op">:</span><span class="dv">2008</span>  </span>
-<span id="cb160-8"><a href="dataframes.html#cb160-8"></a> Max.   <span class="op">:</span><span class="dv">34932</span>                                         Max.   <span class="op">:</span><span class="dv">2015</span>  </span>
-<span id="cb160-9"><a href="dataframes.html#cb160-9"></a>                                                                     </span>
-<span id="cb160-10"><a href="dataframes.html#cb160-10"></a>    class              trans              drive                cyl        </span>
-<span id="cb160-11"><a href="dataframes.html#cb160-11"></a> Length<span class="op">:</span><span class="dv">33442</span>       Length<span class="op">:</span><span class="dv">33442</span>       Length<span class="op">:</span><span class="dv">33442</span>       Min.   <span class="op">:</span><span class="st"> </span><span class="fl">2.000</span>  </span>
-<span id="cb160-12"><a href="dataframes.html#cb160-12"></a> Class <span class="op">:</span>character   Class <span class="op">:</span>character   Class <span class="op">:</span>character   1st Qu.<span class="op">:</span><span class="st"> </span><span class="fl">4.000</span>  </span>
-<span id="cb160-13"><a href="dataframes.html#cb160-13"></a> Mode  <span class="op">:</span>character   Mode  <span class="op">:</span>character   Mode  <span class="op">:</span>character   Median <span class="op">:</span><span class="st"> </span><span class="fl">6.000</span>  </span>
-<span id="cb160-14"><a href="dataframes.html#cb160-14"></a>                                                          Mean   <span class="op">:</span><span class="st"> </span><span class="fl">5.772</span>  </span>
-<span id="cb160-15"><a href="dataframes.html#cb160-15"></a>                                                          3rd Qu.<span class="op">:</span><span class="st"> </span><span class="fl">6.000</span>  </span>
-<span id="cb160-16"><a href="dataframes.html#cb160-16"></a>                                                          Max.   <span class="op">:</span><span class="fl">16.000</span>  </span>
-<span id="cb160-17"><a href="dataframes.html#cb160-17"></a>                                                          NA<span class="st">&#39;s   :58      </span></span>
-<span id="cb160-18"><a href="dataframes.html#cb160-18"></a><span class="st">     displ           fuel                hwy              cty        </span></span>
-<span id="cb160-19"><a href="dataframes.html#cb160-19"></a><span class="st"> Min.   :0.000   Length:33442       Min.   :  9.00   Min.   :  6.00  </span></span>
-<span id="cb160-20"><a href="dataframes.html#cb160-20"></a><span class="st"> 1st Qu.:2.300   Class :character   1st Qu.: 19.00   1st Qu.: 15.00  </span></span>
-<span id="cb160-21"><a href="dataframes.html#cb160-21"></a><span class="st"> Median :3.000   Mode  :character   Median : 23.00   Median : 17.00  </span></span>
-<span id="cb160-22"><a href="dataframes.html#cb160-22"></a><span class="st"> Mean   :3.353                      Mean   : 23.55   Mean   : 17.49  </span></span>
-<span id="cb160-23"><a href="dataframes.html#cb160-23"></a><span class="st"> 3rd Qu.:4.300                      3rd Qu.: 27.00   3rd Qu.: 20.00  </span></span>
-<span id="cb160-24"><a href="dataframes.html#cb160-24"></a><span class="st"> Max.   :8.400                      Max.   :109.00   Max.   :138.00  </span></span>
-<span id="cb160-25"><a href="dataframes.html#cb160-25"></a><span class="st"> NA&#39;</span>s   <span class="op">:</span><span class="dv">57</span>                                                          </span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">summary</span>(vehicles)</a>
+<a class="sourceLine" id="cb161-2" data-line-number="2">       id            make              model                year     </a>
+<a class="sourceLine" id="cb161-3" data-line-number="3"> Min.   <span class="op">:</span><span class="st">    </span><span class="dv">1</span>   Length<span class="op">:</span><span class="dv">33442</span>       Length<span class="op">:</span><span class="dv">33442</span>       Min.   <span class="op">:</span><span class="dv">1984</span>  </a>
+<a class="sourceLine" id="cb161-4" data-line-number="4"> 1st Qu.<span class="op">:</span><span class="st"> </span><span class="dv">8361</span>   Class <span class="op">:</span>character   Class <span class="op">:</span>character   1st Qu.<span class="op">:</span><span class="dv">1991</span>  </a>
+<a class="sourceLine" id="cb161-5" data-line-number="5"> Median <span class="op">:</span><span class="dv">16724</span>   Mode  <span class="op">:</span>character   Mode  <span class="op">:</span>character   Median <span class="op">:</span><span class="dv">1999</span>  </a>
+<a class="sourceLine" id="cb161-6" data-line-number="6"> Mean   <span class="op">:</span><span class="dv">17038</span>                                         Mean   <span class="op">:</span><span class="dv">1999</span>  </a>
+<a class="sourceLine" id="cb161-7" data-line-number="7"> 3rd Qu.<span class="op">:</span><span class="dv">25265</span>                                         3rd Qu.<span class="op">:</span><span class="dv">2008</span>  </a>
+<a class="sourceLine" id="cb161-8" data-line-number="8"> Max.   <span class="op">:</span><span class="dv">34932</span>                                         Max.   <span class="op">:</span><span class="dv">2015</span>  </a>
+<a class="sourceLine" id="cb161-9" data-line-number="9">                                                                     </a>
+<a class="sourceLine" id="cb161-10" data-line-number="10">    class              trans              drive                cyl        </a>
+<a class="sourceLine" id="cb161-11" data-line-number="11"> Length<span class="op">:</span><span class="dv">33442</span>       Length<span class="op">:</span><span class="dv">33442</span>       Length<span class="op">:</span><span class="dv">33442</span>       Min.   <span class="op">:</span><span class="st"> </span><span class="fl">2.000</span>  </a>
+<a class="sourceLine" id="cb161-12" data-line-number="12"> Class <span class="op">:</span>character   Class <span class="op">:</span>character   Class <span class="op">:</span>character   1st Qu.<span class="op">:</span><span class="st"> </span><span class="fl">4.000</span>  </a>
+<a class="sourceLine" id="cb161-13" data-line-number="13"> Mode  <span class="op">:</span>character   Mode  <span class="op">:</span>character   Mode  <span class="op">:</span>character   Median <span class="op">:</span><span class="st"> </span><span class="fl">6.000</span>  </a>
+<a class="sourceLine" id="cb161-14" data-line-number="14">                                                          Mean   <span class="op">:</span><span class="st"> </span><span class="fl">5.772</span>  </a>
+<a class="sourceLine" id="cb161-15" data-line-number="15">                                                          3rd Qu.<span class="op">:</span><span class="st"> </span><span class="fl">6.000</span>  </a>
+<a class="sourceLine" id="cb161-16" data-line-number="16">                                                          Max.   <span class="op">:</span><span class="fl">16.000</span>  </a>
+<a class="sourceLine" id="cb161-17" data-line-number="17">                                                          NA<span class="st">&#39;s   :58      </span></a>
+<a class="sourceLine" id="cb161-18" data-line-number="18"><span class="st">     displ           fuel                hwy              cty        </span></a>
+<a class="sourceLine" id="cb161-19" data-line-number="19"><span class="st"> Min.   :0.000   Length:33442       Min.   :  9.00   Min.   :  6.00  </span></a>
+<a class="sourceLine" id="cb161-20" data-line-number="20"><span class="st"> 1st Qu.:2.300   Class :character   1st Qu.: 19.00   1st Qu.: 15.00  </span></a>
+<a class="sourceLine" id="cb161-21" data-line-number="21"><span class="st"> Median :3.000   Mode  :character   Median : 23.00   Median : 17.00  </span></a>
+<a class="sourceLine" id="cb161-22" data-line-number="22"><span class="st"> Mean   :3.353                      Mean   : 23.55   Mean   : 17.49  </span></a>
+<a class="sourceLine" id="cb161-23" data-line-number="23"><span class="st"> 3rd Qu.:4.300                      3rd Qu.: 27.00   3rd Qu.: 20.00  </span></a>
+<a class="sourceLine" id="cb161-24" data-line-number="24"><span class="st"> Max.   :8.400                      Max.   :109.00   Max.   :138.00  </span></a>
+<a class="sourceLine" id="cb161-25" data-line-number="25"><span class="st"> NA&#39;</span>s   <span class="op">:</span><span class="dv">57</span>                                                          </a></code></pre></div>
 <p>The function <strong><code>unique()</code></strong> returns unique values within a column:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="dataframes.html#cb161-1"></a><span class="kw">unique</span>(vehicles<span class="op">$</span>fuel)</span>
-<span id="cb161-2"><a href="dataframes.html#cb161-2"></a> [<span class="dv">1</span>] <span class="st">&quot;Regular&quot;</span>                     <span class="st">&quot;Premium&quot;</span>                    </span>
-<span id="cb161-3"><a href="dataframes.html#cb161-3"></a> [<span class="dv">3</span>] <span class="st">&quot;Diesel&quot;</span>                      <span class="st">&quot;Premium or E85&quot;</span>             </span>
-<span id="cb161-4"><a href="dataframes.html#cb161-4"></a> [<span class="dv">5</span>] <span class="st">&quot;Electricity&quot;</span>                 <span class="st">&quot;Gasoline or E85&quot;</span>            </span>
-<span id="cb161-5"><a href="dataframes.html#cb161-5"></a> [<span class="dv">7</span>] <span class="st">&quot;Premium Gas or Electricity&quot;</span>  <span class="st">&quot;Gasoline or natural gas&quot;</span>    </span>
-<span id="cb161-6"><a href="dataframes.html#cb161-6"></a> [<span class="dv">9</span>] <span class="st">&quot;CNG&quot;</span>                         <span class="st">&quot;Midgrade&quot;</span>                   </span>
-<span id="cb161-7"><a href="dataframes.html#cb161-7"></a>[<span class="dv">11</span>] <span class="st">&quot;Regular Gas and Electricity&quot;</span> <span class="st">&quot;Gasoline or propane&quot;</span>        </span>
-<span id="cb161-8"><a href="dataframes.html#cb161-8"></a>[<span class="dv">13</span>] <span class="st">&quot;Premium and Electricity&quot;</span>    </span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">unique</span>(vehicles<span class="op">$</span>fuel)</a>
+<a class="sourceLine" id="cb162-2" data-line-number="2"> [<span class="dv">1</span>] <span class="st">&quot;Regular&quot;</span>                     <span class="st">&quot;Premium&quot;</span>                    </a>
+<a class="sourceLine" id="cb162-3" data-line-number="3"> [<span class="dv">3</span>] <span class="st">&quot;Diesel&quot;</span>                      <span class="st">&quot;Premium or E85&quot;</span>             </a>
+<a class="sourceLine" id="cb162-4" data-line-number="4"> [<span class="dv">5</span>] <span class="st">&quot;Electricity&quot;</span>                 <span class="st">&quot;Gasoline or E85&quot;</span>            </a>
+<a class="sourceLine" id="cb162-5" data-line-number="5"> [<span class="dv">7</span>] <span class="st">&quot;Premium Gas or Electricity&quot;</span>  <span class="st">&quot;Gasoline or natural gas&quot;</span>    </a>
+<a class="sourceLine" id="cb162-6" data-line-number="6"> [<span class="dv">9</span>] <span class="st">&quot;CNG&quot;</span>                         <span class="st">&quot;Midgrade&quot;</span>                   </a>
+<a class="sourceLine" id="cb162-7" data-line-number="7">[<span class="dv">11</span>] <span class="st">&quot;Regular Gas and Electricity&quot;</span> <span class="st">&quot;Gasoline or propane&quot;</span>        </a>
+<a class="sourceLine" id="cb162-8" data-line-number="8">[<span class="dv">13</span>] <span class="st">&quot;Premium and Electricity&quot;</span>    </a></code></pre></div>
 <p>Finally, the <strong><code>order()</code></strong> function helps you sort a dataframe according to the values in one of its columns.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="dataframes.html#cb162-1"></a><span class="co"># Sort dataframe by highway mileage</span></span>
-<span id="cb162-2"><a href="dataframes.html#cb162-2"></a><span class="co"># Only keep certain columns</span></span>
-<span id="cb162-3"><a href="dataframes.html#cb162-3"></a>vehicles_sorted &lt;-<span class="st"> </span>vehicles[<span class="kw">order</span>(vehicles<span class="op">$</span>hwy), </span>
-<span id="cb162-4"><a href="dataframes.html#cb162-4"></a>                            <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>)] </span>
-<span id="cb162-5"><a href="dataframes.html#cb162-5"></a><span class="kw">head</span>(vehicles_sorted)</span>
-<span id="cb162-6"><a href="dataframes.html#cb162-6"></a>              make                  model year    fuel hwy cty</span>
-<span id="cb162-7"><a href="dataframes.html#cb162-7"></a><span class="dv">397</span>   Aston Martin                Lagonda <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb162-8"><a href="dataframes.html#cb162-8"></a><span class="dv">398</span>   Aston Martin                Lagonda <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb162-9"><a href="dataframes.html#cb162-9"></a><span class="dv">406</span>   Aston Martin Saloon<span class="op">/</span>Vantage<span class="op">/</span>Volante <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb162-10"><a href="dataframes.html#cb162-10"></a><span class="dv">408</span>   Aston Martin Saloon<span class="op">/</span>Vantage<span class="op">/</span>Volante <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb162-11"><a href="dataframes.html#cb162-11"></a><span class="dv">27725</span>  Rolls<span class="op">-</span>Royce               Camargue <span class="dv">1987</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb162-12"><a href="dataframes.html#cb162-12"></a><span class="dv">27726</span>  Rolls<span class="op">-</span>Royce            Continental <span class="dv">1987</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="co"># Sort dataframe by highway mileage</span></a>
+<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="co"># Only keep certain columns</span></a>
+<a class="sourceLine" id="cb163-3" data-line-number="3">vehicles_sorted &lt;-<span class="st"> </span>vehicles[<span class="kw">order</span>(vehicles<span class="op">$</span>hwy), </a>
+<a class="sourceLine" id="cb163-4" data-line-number="4">                            <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>)] </a>
+<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="kw">head</span>(vehicles_sorted)</a>
+<a class="sourceLine" id="cb163-6" data-line-number="6">              make                  model year    fuel hwy cty</a>
+<a class="sourceLine" id="cb163-7" data-line-number="7"><span class="dv">397</span>   Aston Martin                Lagonda <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></a>
+<a class="sourceLine" id="cb163-8" data-line-number="8"><span class="dv">398</span>   Aston Martin                Lagonda <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></a>
+<a class="sourceLine" id="cb163-9" data-line-number="9"><span class="dv">406</span>   Aston Martin Saloon<span class="op">/</span>Vantage<span class="op">/</span>Volante <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></a>
+<a class="sourceLine" id="cb163-10" data-line-number="10"><span class="dv">408</span>   Aston Martin Saloon<span class="op">/</span>Vantage<span class="op">/</span>Volante <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></a>
+<a class="sourceLine" id="cb163-11" data-line-number="11"><span class="dv">27725</span>  Rolls<span class="op">-</span>Royce               Camargue <span class="dv">1987</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></a>
+<a class="sourceLine" id="cb163-12" data-line-number="12"><span class="dv">27726</span>  Rolls<span class="op">-</span>Royce            Continental <span class="dv">1987</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></a></code></pre></div>
 <p>Reverse the order by wrapping <strong><code>rev()</code></strong> around the <code>order()</code> call:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="dataframes.html#cb163-1"></a>vehicles_sorted &lt;-<span class="st"> </span>vehicles[<span class="kw">rev</span>(<span class="kw">order</span>(vehicles<span class="op">$</span>hwy)),</span>
-<span id="cb163-2"><a href="dataframes.html#cb163-2"></a>                            <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>)]</span>
-<span id="cb163-3"><a href="dataframes.html#cb163-3"></a><span class="kw">head</span>(vehicles_sorted)</span>
-<span id="cb163-4"><a href="dataframes.html#cb163-4"></a>           make    model year        fuel hwy cty</span>
-<span id="cb163-5"><a href="dataframes.html#cb163-5"></a><span class="dv">6533</span>  Chevrolet Spark EV <span class="dv">2014</span> Electricity <span class="dv">109</span> <span class="dv">128</span></span>
-<span id="cb163-6"><a href="dataframes.html#cb163-6"></a><span class="dv">10614</span>      Fiat     500e <span class="dv">2014</span> Electricity <span class="dv">108</span> <span class="dv">122</span></span>
-<span id="cb163-7"><a href="dataframes.html#cb163-7"></a><span class="dv">10613</span>      Fiat     500e <span class="dv">2013</span> Electricity <span class="dv">108</span> <span class="dv">122</span></span>
-<span id="cb163-8"><a href="dataframes.html#cb163-8"></a><span class="dv">28628</span>     Scion    iQ EV <span class="dv">2013</span> Electricity <span class="dv">105</span> <span class="dv">138</span></span>
-<span id="cb163-9"><a href="dataframes.html#cb163-9"></a><span class="dv">16430</span>     Honda   Fit EV <span class="dv">2014</span> Electricity <span class="dv">105</span> <span class="dv">132</span></span>
-<span id="cb163-10"><a href="dataframes.html#cb163-10"></a><span class="dv">16429</span>     Honda   Fit EV <span class="dv">2013</span> Electricity <span class="dv">105</span> <span class="dv">132</span></span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1">vehicles_sorted &lt;-<span class="st"> </span>vehicles[<span class="kw">rev</span>(<span class="kw">order</span>(vehicles<span class="op">$</span>hwy)),</a>
+<a class="sourceLine" id="cb164-2" data-line-number="2">                            <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>)]</a>
+<a class="sourceLine" id="cb164-3" data-line-number="3"><span class="kw">head</span>(vehicles_sorted)</a>
+<a class="sourceLine" id="cb164-4" data-line-number="4">           make    model year        fuel hwy cty</a>
+<a class="sourceLine" id="cb164-5" data-line-number="5"><span class="dv">6533</span>  Chevrolet Spark EV <span class="dv">2014</span> Electricity <span class="dv">109</span> <span class="dv">128</span></a>
+<a class="sourceLine" id="cb164-6" data-line-number="6"><span class="dv">10614</span>      Fiat     500e <span class="dv">2014</span> Electricity <span class="dv">108</span> <span class="dv">122</span></a>
+<a class="sourceLine" id="cb164-7" data-line-number="7"><span class="dv">10613</span>      Fiat     500e <span class="dv">2013</span> Electricity <span class="dv">108</span> <span class="dv">122</span></a>
+<a class="sourceLine" id="cb164-8" data-line-number="8"><span class="dv">28628</span>     Scion    iQ EV <span class="dv">2013</span> Electricity <span class="dv">105</span> <span class="dv">138</span></a>
+<a class="sourceLine" id="cb164-9" data-line-number="9"><span class="dv">16430</span>     Honda   Fit EV <span class="dv">2014</span> Electricity <span class="dv">105</span> <span class="dv">132</span></a>
+<a class="sourceLine" id="cb164-10" data-line-number="10"><span class="dv">16429</span>     Honda   Fit EV <span class="dv">2013</span> Electricity <span class="dv">105</span> <span class="dv">132</span></a></code></pre></div>
 </div>
 </div>
 <div id="creating-dataframes" class="section level2 unnumbered">
@@ -644,104 +644,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 106 Acura Legend      24       16</code></pre>
 <p>Note how the columns were named in the <code>data.frame()</code> call, and that each column is separated by a comma.</p>
 <p>You can also stage an empty dataframe, which sounds useless but will become very useful as you start working with <code>for</code> loops and other higher-order <code>R</code> tools.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="dataframes.html#cb165-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
-<span id="cb165-2"><a href="dataframes.html#cb165-2"></a>df</span>
-<span id="cb165-3"><a href="dataframes.html#cb165-3"></a>data frame with <span class="dv">0</span> columns and <span class="dv">0</span> rows</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</a>
+<a class="sourceLine" id="cb166-2" data-line-number="2">df</a>
+<a class="sourceLine" id="cb166-3" data-line-number="3">data frame with <span class="dv">0</span> columns and <span class="dv">0</span> rows</a></code></pre></div>
 <p>To coerce an object into a format that <code>R</code> interprets as a dataframe, use <strong><code>as.dataframe()</code></strong>:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="dataframes.html#cb166-1"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(vehicles)</span>
-<span id="cb166-2"><a href="dataframes.html#cb166-2"></a>df[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</span>
-<span id="cb166-3"><a href="dataframes.html#cb166-3"></a>     id  make       model year</span>
-<span id="cb166-4"><a href="dataframes.html#cb166-4"></a><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></span>
-<span id="cb166-5"><a href="dataframes.html#cb166-5"></a><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></span>
-<span id="cb166-6"><a href="dataframes.html#cb166-6"></a><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></span>
-<span id="cb166-7"><a href="dataframes.html#cb166-7"></a><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span></span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(vehicles)</a>
+<a class="sourceLine" id="cb167-2" data-line-number="2">df[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb167-3" data-line-number="3">     id  make       model year</a>
+<a class="sourceLine" id="cb167-4" data-line-number="4"><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></a>
+<a class="sourceLine" id="cb167-5" data-line-number="5"><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></a>
+<a class="sourceLine" id="cb167-6" data-line-number="6"><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></a>
+<a class="sourceLine" id="cb167-7" data-line-number="7"><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="op">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span></a></code></pre></div>
 </div>
 <div id="modifying-dataframes" class="section level2 unnumbered">
 <h2>Modifying dataframes</h2>
 <div id="combining-dataframes" class="section level3 unnumbered">
 <h3>Combining dataframes</h3>
 <p>To bind multiple dataframes together by row, use <strong><code>rbind()</code></strong>:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="dataframes.html#cb167-1"></a><span class="co"># Build up a dataframe</span></span>
-<span id="cb167-2"><a href="dataframes.html#cb167-2"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
-<span id="cb167-3"><a href="dataframes.html#cb167-3"></a>                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
-<span id="cb167-4"><a href="dataframes.html#cb167-4"></a>df1</span>
-<span id="cb167-5"><a href="dataframes.html#cb167-5"></a>      name instrument</span>
-<span id="cb167-6"><a href="dataframes.html#cb167-6"></a><span class="dv">1</span>      Ben  Nose harp</span>
-<span id="cb167-7"><a href="dataframes.html#cb167-7"></a><span class="dv">2</span>      Joe Concertina</span>
-<span id="cb167-8"><a href="dataframes.html#cb167-8"></a><span class="dv">3</span>     Eric    Ukelele</span>
-<span id="cb167-9"><a href="dataframes.html#cb167-9"></a><span class="dv">4</span> Isabelle      Drums</span></code></pre></div>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="dataframes.html#cb168-1"></a><span class="co"># Build up a second dataframe</span></span>
-<span id="cb168-2"><a href="dataframes.html#cb168-2"></a>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Matthew&quot;</span>),</span>
-<span id="cb168-3"><a href="dataframes.html#cb168-3"></a>                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Washboard&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="dataframes.html#cb169-1"></a><span class="co"># Combine those dataframes together</span></span>
-<span id="cb169-2"><a href="dataframes.html#cb169-2"></a><span class="kw">rbind</span>(df1,df2)</span>
-<span id="cb169-3"><a href="dataframes.html#cb169-3"></a>      name instrument</span>
-<span id="cb169-4"><a href="dataframes.html#cb169-4"></a><span class="dv">1</span>      Ben  Nose harp</span>
-<span id="cb169-5"><a href="dataframes.html#cb169-5"></a><span class="dv">2</span>      Joe Concertina</span>
-<span id="cb169-6"><a href="dataframes.html#cb169-6"></a><span class="dv">3</span>     Eric    Ukelele</span>
-<span id="cb169-7"><a href="dataframes.html#cb169-7"></a><span class="dv">4</span> Isabelle      Drums</span>
-<span id="cb169-8"><a href="dataframes.html#cb169-8"></a><span class="dv">5</span>  Matthew  Washboard</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="co"># Build up a dataframe</span></a>
+<a class="sourceLine" id="cb168-2" data-line-number="2">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</a>
+<a class="sourceLine" id="cb168-3" data-line-number="3">                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</a>
+<a class="sourceLine" id="cb168-4" data-line-number="4">df1</a>
+<a class="sourceLine" id="cb168-5" data-line-number="5">      name instrument</a>
+<a class="sourceLine" id="cb168-6" data-line-number="6"><span class="dv">1</span>      Ben  Nose harp</a>
+<a class="sourceLine" id="cb168-7" data-line-number="7"><span class="dv">2</span>      Joe Concertina</a>
+<a class="sourceLine" id="cb168-8" data-line-number="8"><span class="dv">3</span>     Eric    Ukelele</a>
+<a class="sourceLine" id="cb168-9" data-line-number="9"><span class="dv">4</span> Isabelle      Drums</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="co"># Build up a second dataframe</span></a>
+<a class="sourceLine" id="cb169-2" data-line-number="2">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Matthew&quot;</span>),</a>
+<a class="sourceLine" id="cb169-3" data-line-number="3">                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Washboard&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="co"># Combine those dataframes together</span></a>
+<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="kw">rbind</span>(df1,df2)</a>
+<a class="sourceLine" id="cb170-3" data-line-number="3">      name instrument</a>
+<a class="sourceLine" id="cb170-4" data-line-number="4"><span class="dv">1</span>      Ben  Nose harp</a>
+<a class="sourceLine" id="cb170-5" data-line-number="5"><span class="dv">2</span>      Joe Concertina</a>
+<a class="sourceLine" id="cb170-6" data-line-number="6"><span class="dv">3</span>     Eric    Ukelele</a>
+<a class="sourceLine" id="cb170-7" data-line-number="7"><span class="dv">4</span> Isabelle      Drums</a>
+<a class="sourceLine" id="cb170-8" data-line-number="8"><span class="dv">5</span>  Matthew  Washboard</a></code></pre></div>
 <p>Note that to be combined, two dataframes have to have the exact same number of columns and the exact same column names.</p>
 <p>The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the <strong>Deep <code>R</code></strong> modules ahead.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="dataframes.html#cb170-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>() <span class="co"># stage empty dataframe</span></span>
-<span id="cb170-2"><a href="dataframes.html#cb170-2"></a></span>
-<span id="cb170-3"><a href="dataframes.html#cb170-3"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
-<span id="cb170-4"><a href="dataframes.html#cb170-4"></a>                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
-<span id="cb170-5"><a href="dataframes.html#cb170-5"></a></span>
-<span id="cb170-6"><a href="dataframes.html#cb170-6"></a>df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df,df1)</span>
-<span id="cb170-7"><a href="dataframes.html#cb170-7"></a></span>
-<span id="cb170-8"><a href="dataframes.html#cb170-8"></a>df</span>
-<span id="cb170-9"><a href="dataframes.html#cb170-9"></a>      name instrument</span>
-<span id="cb170-10"><a href="dataframes.html#cb170-10"></a><span class="dv">1</span>      Ben  Nose harp</span>
-<span id="cb170-11"><a href="dataframes.html#cb170-11"></a><span class="dv">2</span>      Joe Concertina</span>
-<span id="cb170-12"><a href="dataframes.html#cb170-12"></a><span class="dv">3</span>     Eric    Ukelele</span>
-<span id="cb170-13"><a href="dataframes.html#cb170-13"></a><span class="dv">4</span> Isabelle      Drums</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>() <span class="co"># stage empty dataframe</span></a>
+<a class="sourceLine" id="cb171-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb171-3" data-line-number="3">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</a>
+<a class="sourceLine" id="cb171-4" data-line-number="4">                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</a>
+<a class="sourceLine" id="cb171-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb171-6" data-line-number="6">df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df,df1)</a>
+<a class="sourceLine" id="cb171-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb171-8" data-line-number="8">df</a>
+<a class="sourceLine" id="cb171-9" data-line-number="9">      name instrument</a>
+<a class="sourceLine" id="cb171-10" data-line-number="10"><span class="dv">1</span>      Ben  Nose harp</a>
+<a class="sourceLine" id="cb171-11" data-line-number="11"><span class="dv">2</span>      Joe Concertina</a>
+<a class="sourceLine" id="cb171-12" data-line-number="12"><span class="dv">3</span>     Eric    Ukelele</a>
+<a class="sourceLine" id="cb171-13" data-line-number="13"><span class="dv">4</span> Isabelle      Drums</a></code></pre></div>
 <p>You can also bind multiple dataframes together by column, using <strong><code>cbind()</code></strong>:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dataframes.html#cb171-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
-<span id="cb171-2"><a href="dataframes.html#cb171-2"></a>                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
-<span id="cb171-3"><a href="dataframes.html#cb171-3"></a></span>
-<span id="cb171-4"><a href="dataframes.html#cb171-4"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">age=</span><span class="kw">c</span>(<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">35</span>,<span class="dv">20</span>), <span class="dt">home=</span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>,<span class="st">&quot;Spain&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;USA&quot;</span>))</span>
-<span id="cb171-5"><a href="dataframes.html#cb171-5"></a></span>
-<span id="cb171-6"><a href="dataframes.html#cb171-6"></a>df &lt;-<span class="st"> </span><span class="kw">cbind</span>(df,df1)</span>
-<span id="cb171-7"><a href="dataframes.html#cb171-7"></a></span>
-<span id="cb171-8"><a href="dataframes.html#cb171-8"></a>df</span>
-<span id="cb171-9"><a href="dataframes.html#cb171-9"></a>  age   home     name instrument</span>
-<span id="cb171-10"><a href="dataframes.html#cb171-10"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp</span>
-<span id="cb171-11"><a href="dataframes.html#cb171-11"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina</span>
-<span id="cb171-12"><a href="dataframes.html#cb171-12"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele</span>
-<span id="cb171-13"><a href="dataframes.html#cb171-13"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</a>
+<a class="sourceLine" id="cb172-2" data-line-number="2">                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</a>
+<a class="sourceLine" id="cb172-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb172-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">age=</span><span class="kw">c</span>(<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">35</span>,<span class="dv">20</span>), <span class="dt">home=</span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>,<span class="st">&quot;Spain&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;USA&quot;</span>))</a>
+<a class="sourceLine" id="cb172-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb172-6" data-line-number="6">df &lt;-<span class="st"> </span><span class="kw">cbind</span>(df,df1)</a>
+<a class="sourceLine" id="cb172-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb172-8" data-line-number="8">df</a>
+<a class="sourceLine" id="cb172-9" data-line-number="9">  age   home     name instrument</a>
+<a class="sourceLine" id="cb172-10" data-line-number="10"><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp</a>
+<a class="sourceLine" id="cb172-11" data-line-number="11"><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina</a>
+<a class="sourceLine" id="cb172-12" data-line-number="12"><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele</a>
+<a class="sourceLine" id="cb172-13" data-line-number="13"><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums</a></code></pre></div>
 <p>Note that to be combined, two dataframes have to have the exact same number of rows and the exact same column names.</p>
 </div>
 <div id="adding-columns" class="section level3 unnumbered">
 <h3>Adding columns</h3>
 <p>To create a new column for a dataframe, use the <code>$</code> symbol and provide the name of the new column:</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="dataframes.html#cb172-1"></a>df<span class="op">$</span>x_factor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">20</span>,<span class="dv">60</span>,<span class="dv">40</span>)</span>
-<span id="cb172-2"><a href="dataframes.html#cb172-2"></a></span>
-<span id="cb172-3"><a href="dataframes.html#cb172-3"></a>df</span>
-<span id="cb172-4"><a href="dataframes.html#cb172-4"></a>  age   home     name instrument x_factor</span>
-<span id="cb172-5"><a href="dataframes.html#cb172-5"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></span>
-<span id="cb172-6"><a href="dataframes.html#cb172-6"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></span>
-<span id="cb172-7"><a href="dataframes.html#cb172-7"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></span>
-<span id="cb172-8"><a href="dataframes.html#cb172-8"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">40</span></span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1">df<span class="op">$</span>x_factor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">20</span>,<span class="dv">60</span>,<span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb173-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb173-3" data-line-number="3">df</a>
+<a class="sourceLine" id="cb173-4" data-line-number="4">  age   home     name instrument x_factor</a>
+<a class="sourceLine" id="cb173-5" data-line-number="5"><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></a>
+<a class="sourceLine" id="cb173-6" data-line-number="6"><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></a>
+<a class="sourceLine" id="cb173-7" data-line-number="7"><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></a>
+<a class="sourceLine" id="cb173-8" data-line-number="8"><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">40</span></a></code></pre></div>
 </div>
 <div id="altering-values" class="section level3 unnumbered">
 <h3>Altering values</h3>
 <p>To alter certain values in the dataframe, you can assign new values to a subset of your dataframe.</p>
 <p>Here are four ways to do the same thing: upating Isabelle’s X-factor:</p>
 <p><strong>Option 1: Subsetting a single column</strong></p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="dataframes.html#cb173-1"></a>df<span class="op">$</span>x_factor[<span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">df<span class="op">$</span>x_factor[<span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">70</span></a></code></pre></div>
 <p><strong>Option 2: Subsetting both rows and columns</strong></p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="dataframes.html#cb174-1"></a>df[<span class="dv">4</span>,<span class="dv">5</span>] &lt;-<span class="st"> </span><span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">df[<span class="dv">4</span>,<span class="dv">5</span>] &lt;-<span class="st"> </span><span class="dv">70</span></a></code></pre></div>
 <p><strong>Option 3: Subsetting a column based on a logical test</strong></p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="dataframes.html#cb175-1"></a>df<span class="op">$</span>x_factor[df<span class="op">$</span>name <span class="op">==</span><span class="st"> &#39;Isabelle&#39;</span>] &lt;-<span class="st"> </span><span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1">df<span class="op">$</span>x_factor[df<span class="op">$</span>name <span class="op">==</span><span class="st"> &#39;Isabelle&#39;</span>] &lt;-<span class="st"> </span><span class="dv">70</span></a></code></pre></div>
 <p><strong>Option 3: Subsetting row and columns using logical tests</strong></p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="dataframes.html#cb176-1"></a>df[df<span class="op">$</span>name <span class="op">==</span><span class="st"> &#39;Isabelle&#39;</span>, <span class="kw">names</span>(df) <span class="op">==</span><span class="st"> &#39;x_factor&#39;</span>] &lt;-<span class="st"> </span><span class="dv">70</span></span></code></pre></div>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="dataframes.html#cb177-1"></a>df</span>
-<span id="cb177-2"><a href="dataframes.html#cb177-2"></a>  age   home     name instrument x_factor</span>
-<span id="cb177-3"><a href="dataframes.html#cb177-3"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></span>
-<span id="cb177-4"><a href="dataframes.html#cb177-4"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></span>
-<span id="cb177-5"><a href="dataframes.html#cb177-5"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></span>
-<span id="cb177-6"><a href="dataframes.html#cb177-6"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1">df[df<span class="op">$</span>name <span class="op">==</span><span class="st"> &#39;Isabelle&#39;</span>, <span class="kw">names</span>(df) <span class="op">==</span><span class="st"> &#39;x_factor&#39;</span>] &lt;-<span class="st"> </span><span class="dv">70</span></a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1">df</a>
+<a class="sourceLine" id="cb178-2" data-line-number="2">  age   home     name instrument x_factor</a>
+<a class="sourceLine" id="cb178-3" data-line-number="3"><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></a>
+<a class="sourceLine" id="cb178-4" data-line-number="4"><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></a>
+<a class="sourceLine" id="cb178-5" data-line-number="5"><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></a>
+<a class="sourceLine" id="cb178-6" data-line-number="6"><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">70</span></a></code></pre></div>
 <div id="exercises-5" class="section level4 unnumbered">
 <h4>Exercises</h4>
 <p><strong>Reading for errors</strong></p>
@@ -789,7 +789,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -808,6 +807,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -828,6 +828,10 @@ gitbook.start({
 "text": null
 },
 "download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

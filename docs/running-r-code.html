@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 7 Running R code | www.datascience.pizza</title>
   <meta name="description" content="A resource &amp; workbook for the Sewanee DataLab" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 7 Running R code | www.datascience.pizza" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,8 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="setting-up-rstudio.html"/>
 <link rel="next" href="using-rstudio-r-scripts.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,24 +48,24 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.0.9000/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0.9000/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -73,16 +74,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -91,9 +90,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +124,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
+<li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
 <li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
@@ -307,8 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
-<li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
+<li><a href="joining_datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
@@ -384,43 +384,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="running-code-in-the-console" class="section level2 unnumbered">
 <h2>Running code in the <em>Console</em></h2>
 <p>Type your first command into the <em>Console</em>, then press <code>Enter</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="running-r-code.html#cb1-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb1-2"><a href="running-r-code.html#cb1-2"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">2</span></a></code></pre></div>
 <p>When you press <code>Enter</code>, you send your line of code to <code>R</code>; you post it for <code>R</code> to see. Then <code>R</code> takes it, does some processing, and posts a result (<code>2</code>) just below your command.</p>
 <p>Note that spaces don’t matter. Both of the following two commands are legible to <code>R</code> and return the same thing:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="running-r-code.html#cb2-1"></a><span class="dv">4</span><span class="op">+</span><span class="dv">4</span></span>
-<span id="cb2-2"><a href="running-r-code.html#cb2-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="running-r-code.html#cb3-1"></a><span class="dv">4</span>        <span class="op">+</span><span class="st">        </span><span class="dv">4</span></span>
-<span id="cb3-2"><a href="running-r-code.html#cb3-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dv">4</span><span class="op">+</span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">8</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dv">4</span>        <span class="op">+</span><span class="st">        </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">8</span></a></code></pre></div>
 <p>However, it is better to make your code as easy to read as possible, which usually means using a single space between numbers:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="running-r-code.html#cb4-1"></a><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></span>
-<span id="cb4-2"><a href="running-r-code.html#cb4-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">8</span></a></code></pre></div>
 <p>Try typing in other basic calculations:</p>
 </div>
 <div id="use-r-like-a-calculator" class="section level2 unnumbered">
 <h2>Use R like a calculator</h2>
 <p>As you can tell from those commands you just ran, <code>R</code> is, at heart, a fancy calculator.</p>
 <p>Some calculations are straightforward, like addition and subtraction:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="running-r-code.html#cb5-1"></a><span class="dv">490</span> <span class="op">+</span><span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb5-2"><a href="running-r-code.html#cb5-2"></a>[<span class="dv">1</span>] <span class="dv">1490</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="running-r-code.html#cb6-1"></a><span class="dv">490</span> <span class="op">-</span><span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb6-2"><a href="running-r-code.html#cb6-2"></a>[<span class="dv">1</span>] <span class="dv">-510</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="dv">490</span> <span class="op">+</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">1490</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="dv">490</span> <span class="op">-</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">-510</span></a></code></pre></div>
 <p>Division is pretty straightfoward too:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="running-r-code.html#cb7-1"></a><span class="dv">24</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb7-2"><a href="running-r-code.html#cb7-2"></a>[<span class="dv">1</span>] <span class="dv">12</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="dv">24</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">12</span></a></code></pre></div>
 <p>For multiplication, use an asterisk (<code>*</code>):</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="running-r-code.html#cb8-1"></a><span class="dv">24</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb8-2"><a href="running-r-code.html#cb8-2"></a>[<span class="dv">1</span>] <span class="dv">48</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="dv">24</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">48</span></a></code></pre></div>
 <p>You denote exponents like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="running-r-code.html#cb9-1"></a><span class="dv">2</span> <span class="op">^</span><span class="dv">2</span></span>
-<span id="cb9-2"><a href="running-r-code.html#cb9-2"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="running-r-code.html#cb10-1"></a><span class="dv">2</span> <span class="op">^</span><span class="dv">3</span></span>
-<span id="cb10-2"><a href="running-r-code.html#cb10-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="running-r-code.html#cb11-1"></a><span class="dv">2</span> <span class="op">^</span><span class="dv">4</span></span>
-<span id="cb11-2"><a href="running-r-code.html#cb11-2"></a>[<span class="dv">1</span>] <span class="dv">16</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="dv">2</span> <span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">4</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="dv">2</span> <span class="op">^</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">8</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="dv">2</span> <span class="op">^</span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">16</span></a></code></pre></div>
 <p>Finally, note that <code>R</code> is fine with negative numbers:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="running-r-code.html#cb12-1"></a><span class="dv">9</span> <span class="op">+</span><span class="st"> </span><span class="dv">-100</span></span>
-<span id="cb12-2"><a href="running-r-code.html#cb12-2"></a>[<span class="dv">1</span>] <span class="dv">-91</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="dv">9</span> <span class="op">+</span><span class="st"> </span><span class="dv">-100</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">-91</span></a></code></pre></div>
 <div id="tip-text" class="tip">
 <p><strong>Instructor tip:</strong></p>
 <p>For a change of pace, call out complicated calculations and ask students to race to call out the correct result first.</p>
@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Incomplete commands</h3>
 <p><code>R</code> gets confused when you enter an incomplete command, and will wait for you to write the remainder of your command on the next line in the <em>Console</em> before doing anything.</p>
 <p>For example, try running this code in your <em>Console</em>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="running-r-code.html#cb13-1"></a><span class="dv">45</span> <span class="op">+</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="dv">45</span> <span class="op">+</span></a></code></pre></div>
 <p>You will find that <code>R</code> gives you a little <code>+</code> sign on the line under your command, which means it is waiting for you to complete your command.</p>
 <p>If you want to complete your command, add a number (e.g., <code>3)</code> and hit <code>Enter</code>. You should now be given an answer (e.g., <code>48</code>).</p>
 <p>Or, if instead you want <code>R</code> to stop waiting and stop running, just press the <code>Escape</code> key.</p>
@@ -446,97 +446,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="semicolons" class="section level3 unnumbered">
 <h3>Semicolons</h3>
 <p>Semicolons can be used to put two separate commands on the same line of code. For example, these two lines of commands …</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="running-r-code.html#cb14-1"></a><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></span>
-<span id="cb14-2"><a href="running-r-code.html#cb14-2"></a>[<span class="dv">1</span>] <span class="dv">9</span></span>
-<span id="cb14-3"><a href="running-r-code.html#cb14-3"></a><span class="dv">6</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span>
-<span id="cb14-4"><a href="running-r-code.html#cb14-4"></a>[<span class="dv">1</span>] <span class="dv">16</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">9</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="dv">6</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">[<span class="dv">1</span>] <span class="dv">16</span></a></code></pre></div>
 <p>.. will return the same results as this single line of commands:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="running-r-code.html#cb15-1"></a><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> ; <span class="dv">6</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span>
-<span id="cb15-2"><a href="running-r-code.html#cb15-2"></a>[<span class="dv">1</span>] <span class="dv">9</span></span>
-<span id="cb15-3"><a href="running-r-code.html#cb15-3"></a>[<span class="dv">1</span>] <span class="dv">16</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> ; <span class="dv">6</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">9</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">[<span class="dv">1</span>] <span class="dv">16</span></a></code></pre></div>
 <p>This will become a useful trick in a few modules downstream.</p>
 </div>
 <div id="getting-errors" class="section level3 unnumbered">
 <h3>Getting errors</h3>
 <p><code>R</code> only understands your commands if they follow the rules of the <code>R</code> language (often referred to as its <em>syntax</em>). If <code>R</code> does not understand your code, it will throw an error and give up on trying to execute that line of code.</p>
 <p>For example, try running this code in your <em>Console</em>:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="running-r-code.html#cb16-1"></a><span class="dv">4</span> <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span>y</a></code></pre></div>
 <p>You probably received a message in red font stating: <code>Error: object 'y' not found</code>. That is because <code>R</code> did know how to interpret the symbol <code>y</code> in this case, so it just gave up.</p>
 <p><strong>Get used to errors!</strong> They happen all the time, even (especially?) to professionals, and it is essential that you get used to reading your own code to find and fix its errors.</p>
 <p>Here’s another piece of code that will produce an error:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="running-r-code.html#cb17-1"></a>dfjkltr9fitwt985ut9e3</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">dfjkltr9fitwt985ut9e3</a></code></pre></div>
 </div>
 <div id="using-parentheses" class="section level3 unnumbered">
 <h3>Using parentheses</h3>
 <p><code>R</code> is usually great about following classic rules for Order of Operations, and you can use parentheses to exert control over that order. For example, these two commands produce different results:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="running-r-code.html#cb18-1"></a><span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb18-2"><a href="running-r-code.html#cb18-2"></a>[<span class="dv">1</span>] <span class="dv">9</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="running-r-code.html#cb19-1"></a>(<span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb19-2"><a href="running-r-code.html#cb19-2"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">9</span></a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">(<span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">2</span></a></code></pre></div>
 <p>Note that parentheses need to come in pairs: whenever you type an open parenthesis, <code>(</code>, eventually you need to provide a corresponding closed parenthesis, <code>)</code>.</p>
 <p>The following line of code will return a plus sign, <code>+</code>, since <code>R</code> is waiting for you to close the parenthetical before it processes your command:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="running-r-code.html#cb20-1"></a><span class="dv">4</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">5</span></a></code></pre></div>
 <p>Remember: <strong>parentheses come in pairs!</strong> The same goes for other types of brackets: <code>{...}</code> and <code>[...]</code>.</p>
 </div>
 <div id="using-operators-in-r" class="section level3 unnumbered">
 <h3>Using operators in R</h3>
 <p>You can ask <code>R</code> basic questions using <em>operators</em>.</p>
 <p>For example, you can ask whether two values are equal to each other.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="running-r-code.html#cb21-1"></a><span class="dv">96</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span></span>
-<span id="cb21-2"><a href="running-r-code.html#cb21-2"></a>[<span class="dv">1</span>] <span class="ot">FALSE</span></span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="running-r-code.html#cb22-1"></a><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb22-2"><a href="running-r-code.html#cb22-2"></a>[<span class="dv">1</span>] <span class="ot">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="dv">96</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">TRUE</span></a></code></pre></div>
 <p><code>R</code> is telling you that the first statement is <code>FALSE</code> (<code>96</code> is not, in fact, equal to <code>95</code>) and that the second statement is <code>TRUE</code> (<code>95 + 2</code> is, in fact, equal to itself).</p>
 <p><strong>Note the use of <em>double</em> equal signs here.</strong> You must use two of them in order for <code>R</code> to understand that you are asking for this logical test.</p>
 <p>You can also ask if two values are <em>NOT</em> equal to each other:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="running-r-code.html#cb23-1"></a><span class="dv">96</span> <span class="op">!=</span><span class="st"> </span><span class="dv">95</span></span>
-<span id="cb23-2"><a href="running-r-code.html#cb23-2"></a>[<span class="dv">1</span>] <span class="ot">TRUE</span></span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="running-r-code.html#cb24-1"></a><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb24-2"><a href="running-r-code.html#cb24-2"></a>[<span class="dv">1</span>] <span class="ot">FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="dv">96</span> <span class="op">!=</span><span class="st"> </span><span class="dv">95</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">FALSE</span></a></code></pre></div>
 <p>This test is a bit more difficult to understand: In the first statement, <code>R</code> is telling you that it is <code>TRUE</code> that <code>96</code> is different from <code>95</code>. In the second statement, <code>R</code> is saying that it is <code>FALSE</code> that <code>95 + 2</code> is not the same as itself.</p>
 <p>Note that <code>R</code> lets you write these tests another, even more confusing way:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="running-r-code.html#cb25-1"></a><span class="op">!</span><span class="st"> </span><span class="dv">96</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span></span>
-<span id="cb25-2"><a href="running-r-code.html#cb25-2"></a>[<span class="dv">1</span>] <span class="ot">TRUE</span></span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="running-r-code.html#cb26-1"></a><span class="op">!</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb26-2"><a href="running-r-code.html#cb26-2"></a>[<span class="dv">1</span>] <span class="ot">FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="op">!</span><span class="st"> </span><span class="dv">96</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="op">!</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">95</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">FALSE</span></a></code></pre></div>
 <p>The first line of code is asking <code>R</code> whether it is not true that <code>96</code> and <code>95</code> are equal to each other, which is <code>TRUE</code>. The second line of code is asking <code>R</code> whether it is not true that <code>95 + 2</code> is the same as itself, which is of course <code>FALSE</code>.</p>
 <p>Other commonly used operators in <code>R</code> include greater than / less than symbols (<code>&gt;</code> and <code>&lt;</code>, also known as the <em>left-facing alligator</em> and <em>right-facing alligator</em>), and greater/less than or equal to (<code>&gt;=</code> and <code>&lt;=</code>).</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="running-r-code.html#cb27-1"></a><span class="dv">100</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span></span>
-<span id="cb27-2"><a href="running-r-code.html#cb27-2"></a>[<span class="dv">1</span>] <span class="ot">FALSE</span></span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="running-r-code.html#cb28-1"></a><span class="dv">100</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span></span>
-<span id="cb28-2"><a href="running-r-code.html#cb28-2"></a>[<span class="dv">1</span>] <span class="ot">TRUE</span></span></code></pre></div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="running-r-code.html#cb29-1"></a>(<span class="dv">100</span> <span class="op">!=</span><span class="st"> </span><span class="dv">100</span>) <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span></span>
-<span id="cb29-2"><a href="running-r-code.html#cb29-2"></a>[<span class="dv">1</span>] <span class="ot">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="dv">100</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="dv">100</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">(<span class="dv">100</span> <span class="op">!=</span><span class="st"> </span><span class="dv">100</span>) <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">TRUE</span></a></code></pre></div>
 </div>
 <div id="use-built-in-r-functions" class="section level3 unnumbered">
 <h3>Use built-in <code>R</code> functions</h3>
 <p><code>R</code> has some built-in “functions” for common calculations, such as finding square roots and logarithms. Functions are packages of code that take a given value, transform it according to some internal code instructions, and provide an output. You will learn more about functions in a few modules.</p>
 <p>To find the square-root of a number, use the ‘squirt’ command, <code>sqrt()</code>:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="running-r-code.html#cb30-1"></a><span class="kw">sqrt</span>(<span class="dv">16</span>)</span>
-<span id="cb30-2"><a href="running-r-code.html#cb30-2"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">sqrt</span>(<span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">4</span></a></code></pre></div>
 <p>Note the use of parentheses here. When you are calling a function, when you see parentheses, think of the word ‘of’. You are taking the <code>sqrt</code> <strong>of</strong> the number inside the parenthetical.</p>
 <p>To get the log of a value:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="running-r-code.html#cb31-1"></a><span class="kw">log</span>(<span class="dv">4</span>)</span>
-<span id="cb31-2"><a href="running-r-code.html#cb31-2"></a>[<span class="dv">1</span>] <span class="fl">1.386294</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">1.386294</span></a></code></pre></div>
 <p>Note that the function <code>log()</code> is the <em>natural log</em> function (i.e., the value that <em>e</em> must be raised to in order to equal 4). To calculate a base-10 logarithm, use <code>log10( )</code>.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="running-r-code.html#cb32-1"></a><span class="kw">log</span>(<span class="dv">10</span>)</span>
-<span id="cb32-2"><a href="running-r-code.html#cb32-2"></a>[<span class="dv">1</span>] <span class="fl">2.302585</span></span></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="running-r-code.html#cb33-1"></a><span class="kw">log10</span>(<span class="dv">10</span>)</span>
-<span id="cb33-2"><a href="running-r-code.html#cb33-2"></a>[<span class="dv">1</span>] <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">2.302585</span></a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">log10</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">1</span></a></code></pre></div>
 <p>Another handy function is <code>round()</code>, for rounding numbers to a specific number of decimal places.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="running-r-code.html#cb34-1"></a><span class="dv">100</span><span class="op">/</span><span class="dv">3</span></span>
-<span id="cb34-2"><a href="running-r-code.html#cb34-2"></a>[<span class="dv">1</span>] <span class="fl">33.33333</span></span></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="running-r-code.html#cb35-1"></a><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>)</span>
-<span id="cb35-2"><a href="running-r-code.html#cb35-2"></a>[<span class="dv">1</span>] <span class="dv">33</span></span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="running-r-code.html#cb36-1"></a><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,<span class="dt">digits=</span><span class="dv">1</span>)</span>
-<span id="cb36-2"><a href="running-r-code.html#cb36-2"></a>[<span class="dv">1</span>] <span class="fl">33.3</span></span></code></pre></div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="running-r-code.html#cb37-1"></a><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,<span class="dt">digits=</span><span class="dv">2</span>)</span>
-<span id="cb37-2"><a href="running-r-code.html#cb37-2"></a>[<span class="dv">1</span>] <span class="fl">33.33</span></span></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="running-r-code.html#cb38-1"></a><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,<span class="dt">digits=</span><span class="dv">3</span>)</span>
-<span id="cb38-2"><a href="running-r-code.html#cb38-2"></a>[<span class="dv">1</span>] <span class="fl">33.333</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="dv">100</span><span class="op">/</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">33.33333</span></a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">33</span></a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,<span class="dt">digits=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">33.3</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,<span class="dt">digits=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">33.33</span></a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,<span class="dt">digits=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">33.333</span></a></code></pre></div>
 <p>Finally, <code>R</code> also comes with some built-in <em>values</em>, such as <code>pi</code>:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="running-r-code.html#cb39-1"></a>pi</span>
-<span id="cb39-2"><a href="running-r-code.html#cb39-2"></a>[<span class="dv">1</span>] <span class="fl">3.141593</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">pi</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">3.141593</span></a></code></pre></div>
 <div id="exercises" class="section level4 unnumbered">
 <h4>Exercises</h4>
 <p><strong>Use <code>R</code> like a calculator</strong></p>
@@ -552,11 +552,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><strong>Finding errors</strong></p>
 <p><strong>8.</strong> This line of code won’t run; instead, <code>R</code> will wait for more with a <code>+</code> symbol. Find the problem and re-write the code so that it works.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="running-r-code.html#cb40-1"></a><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="dv">6</span> <span class="op">+</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="dv">6</span> <span class="op">+</span></a></code></pre></div>
 <p><strong>9.</strong> The same goes for this line of code. Fix it, too.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="running-r-code.html#cb41-1"></a><span class="kw">sqrt</span>(<span class="dv">16</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">sqrt</span>(<span class="dv">16</span></a></code></pre></div>
 <p><strong>10.</strong> This line of code will trigger an error. Find the problem and re-write the code so that it works.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="running-r-code.html#cb42-1"></a><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,digits<span class="op">+</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,digits<span class="op">+</span><span class="dv">3</span>)</a></code></pre></div>
 <p><strong>11.</strong> Type a command of your own into R that throws an error, then recall the command and revise so that <code>R</code> can understand it.</p>
 <p> </p>
 <p><strong>Show that the following statements are TRUE:</strong></p>
@@ -566,9 +566,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><strong>Asking <code>TRUE</code> / <code>FALSE</code> questions</strong></p>
 <p><strong>15.</strong> Write and run a line of code that asks whether these two calculations return the same result:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="running-r-code.html#cb43-1"></a><span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="running-r-code.html#cb44-1"></a>(<span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb44-2"><a href="running-r-code.html#cb44-2"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">(<span class="dv">2</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">2</span></a></code></pre></div>
 <p><strong>16.</strong> Now write and run a line of code that asks whether the first calculation is larger than the second:</p>
 <p> </p>
 </div>
@@ -590,7 +590,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -609,6 +608,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -629,6 +629,10 @@ gitbook.start({
 "text": null
 },
 "download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

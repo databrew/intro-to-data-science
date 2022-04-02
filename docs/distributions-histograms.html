@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 19 Distributions &amp; histograms | www.datascience.pizza</title>
   <meta name="description" content="A resource &amp; workbook for the Sewanee DataLab" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 19 Distributions &amp; histograms | www.datascience.pizza" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,8 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="dplyr.html"/>
 <link rel="next" href="significance-statistics.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,24 +48,24 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.0.9000/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0.9000/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -73,16 +74,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -91,9 +90,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +124,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="calling-functions.html"><a href="calling-functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
+<li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
 <li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
@@ -307,8 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="saving-data-plots.html#saverds"><code>saveRDS()</code></a></li>
 <li><a href="saving-data-plots.html#pdf-and-png"><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining-datasets.html"><a href="joining-datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
-<li><a href="joining-datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
+<li><a href="joining_datasets.html#joining-with-dplyr">Joining with <code>dplyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
@@ -379,30 +379,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>Once you get your dataset into <code>R</code>, the first thing you will probably want to do is explore. Until you understand what your data look like, it is difficult to know how to analyze it. <strong>Exploratory data analysis</strong> is the process of becoming familiar with your data - its sample size, its distribution, its central tendencies, and its variation. This module shows you how.</p>
 <p>To practice exploring datasets, we will use one of <em>AirBnB</em> listings in Amsterdam (<a href="http://insideairbnb.com/get-the-data.html">go here</a> and download <code>listings.csv.gz</code> under the Amsterdam section).</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="distributions-histograms.html#cb278-1"></a><span class="co"># Checkout what the data look like</span></span>
-<span id="cb278-2"><a href="distributions-histograms.html#cb278-2"></a><span class="co"># use t() to make it easier to read (t = transpose)</span></span>
-<span id="cb278-3"><a href="distributions-histograms.html#cb278-3"></a><span class="kw">t</span>(<span class="kw">head</span>(df,<span class="dv">1</span>))</span>
-<span id="cb278-4"><a href="distributions-histograms.html#cb278-4"></a>                               <span class="dv">1</span>                                         </span>
-<span id="cb278-5"><a href="distributions-histograms.html#cb278-5"></a>id                             <span class="st">&quot;2818&quot;</span>                                    </span>
-<span id="cb278-6"><a href="distributions-histograms.html#cb278-6"></a>name                           <span class="st">&quot;Quiet Garden View Room &amp; Super Fast WiFi&quot;</span></span>
-<span id="cb278-7"><a href="distributions-histograms.html#cb278-7"></a>host_id                        <span class="st">&quot;3159&quot;</span>                                    </span>
-<span id="cb278-8"><a href="distributions-histograms.html#cb278-8"></a>host_name                      <span class="st">&quot;Daniel&quot;</span>                                  </span>
-<span id="cb278-9"><a href="distributions-histograms.html#cb278-9"></a>neighbourhood_group            <span class="ot">NA</span>                                        </span>
-<span id="cb278-10"><a href="distributions-histograms.html#cb278-10"></a>neighbourhood                  <span class="st">&quot;Oostelijk Havengebied - Indische Buurt&quot;</span>  </span>
-<span id="cb278-11"><a href="distributions-histograms.html#cb278-11"></a>latitude                       <span class="st">&quot;52.36435&quot;</span>                                </span>
-<span id="cb278-12"><a href="distributions-histograms.html#cb278-12"></a>longitude                      <span class="st">&quot;4.94358&quot;</span>                                 </span>
-<span id="cb278-13"><a href="distributions-histograms.html#cb278-13"></a>room_type                      <span class="st">&quot;Private room&quot;</span>                            </span>
-<span id="cb278-14"><a href="distributions-histograms.html#cb278-14"></a>price                          <span class="st">&quot;59&quot;</span>                                      </span>
-<span id="cb278-15"><a href="distributions-histograms.html#cb278-15"></a>minimum_nights                 <span class="st">&quot;3&quot;</span>                                       </span>
-<span id="cb278-16"><a href="distributions-histograms.html#cb278-16"></a>number_of_reviews              <span class="st">&quot;278&quot;</span>                                     </span>
-<span id="cb278-17"><a href="distributions-histograms.html#cb278-17"></a>last_review                    <span class="st">&quot;2020-02-14&quot;</span>                              </span>
-<span id="cb278-18"><a href="distributions-histograms.html#cb278-18"></a>reviews_per_month              <span class="st">&quot;1.9&quot;</span>                                     </span>
-<span id="cb278-19"><a href="distributions-histograms.html#cb278-19"></a>calculated_host_listings_count <span class="st">&quot;1&quot;</span>                                       </span>
-<span id="cb278-20"><a href="distributions-histograms.html#cb278-20"></a>availability_<span class="dv">365</span>               <span class="st">&quot;152&quot;</span>                                     </span>
-<span id="cb278-21"><a href="distributions-histograms.html#cb278-21"></a></span>
-<span id="cb278-22"><a href="distributions-histograms.html#cb278-22"></a><span class="co"># How much data do we have?</span></span>
-<span id="cb278-23"><a href="distributions-histograms.html#cb278-23"></a><span class="kw">nrow</span>(df)</span>
-<span id="cb278-24"><a href="distributions-histograms.html#cb278-24"></a>[<span class="dv">1</span>] <span class="dv">17825</span></span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="co"># Checkout what the data look like</span></a>
+<a class="sourceLine" id="cb279-2" data-line-number="2"><span class="co"># use t() to make it easier to read (t = transpose)</span></a>
+<a class="sourceLine" id="cb279-3" data-line-number="3"><span class="kw">t</span>(<span class="kw">head</span>(df,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb279-4" data-line-number="4">                               <span class="dv">1</span>                                         </a>
+<a class="sourceLine" id="cb279-5" data-line-number="5">id                             <span class="st">&quot;2818&quot;</span>                                    </a>
+<a class="sourceLine" id="cb279-6" data-line-number="6">name                           <span class="st">&quot;Quiet Garden View Room &amp; Super Fast WiFi&quot;</span></a>
+<a class="sourceLine" id="cb279-7" data-line-number="7">host_id                        <span class="st">&quot;3159&quot;</span>                                    </a>
+<a class="sourceLine" id="cb279-8" data-line-number="8">host_name                      <span class="st">&quot;Daniel&quot;</span>                                  </a>
+<a class="sourceLine" id="cb279-9" data-line-number="9">neighbourhood_group            <span class="ot">NA</span>                                        </a>
+<a class="sourceLine" id="cb279-10" data-line-number="10">neighbourhood                  <span class="st">&quot;Oostelijk Havengebied - Indische Buurt&quot;</span>  </a>
+<a class="sourceLine" id="cb279-11" data-line-number="11">latitude                       <span class="st">&quot;52.36435&quot;</span>                                </a>
+<a class="sourceLine" id="cb279-12" data-line-number="12">longitude                      <span class="st">&quot;4.94358&quot;</span>                                 </a>
+<a class="sourceLine" id="cb279-13" data-line-number="13">room_type                      <span class="st">&quot;Private room&quot;</span>                            </a>
+<a class="sourceLine" id="cb279-14" data-line-number="14">price                          <span class="st">&quot;59&quot;</span>                                      </a>
+<a class="sourceLine" id="cb279-15" data-line-number="15">minimum_nights                 <span class="st">&quot;3&quot;</span>                                       </a>
+<a class="sourceLine" id="cb279-16" data-line-number="16">number_of_reviews              <span class="st">&quot;278&quot;</span>                                     </a>
+<a class="sourceLine" id="cb279-17" data-line-number="17">last_review                    <span class="st">&quot;2020-02-14&quot;</span>                              </a>
+<a class="sourceLine" id="cb279-18" data-line-number="18">reviews_per_month              <span class="st">&quot;1.9&quot;</span>                                     </a>
+<a class="sourceLine" id="cb279-19" data-line-number="19">calculated_host_listings_count <span class="st">&quot;1&quot;</span>                                       </a>
+<a class="sourceLine" id="cb279-20" data-line-number="20">availability_<span class="dv">365</span>               <span class="st">&quot;152&quot;</span>                                     </a>
+<a class="sourceLine" id="cb279-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb279-22" data-line-number="22"><span class="co"># How much data do we have?</span></a>
+<a class="sourceLine" id="cb279-23" data-line-number="23"><span class="kw">nrow</span>(df)</a>
+<a class="sourceLine" id="cb279-24" data-line-number="24">[<span class="dv">1</span>] <span class="dv">17825</span></a></code></pre></div>
 </div>
 <div id="exploring-distributions" class="section level2 unnumbered">
 <h2>Exploring distributions</h2>
@@ -411,80 +411,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Histograms</h3>
 <p>A histogram sorts your data into bins and counts the number of data points in each bin.</p>
 <p>Make histograms in <code>R</code> using the <code>hist()</code> function:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="distributions-histograms.html#cb279-1"></a><span class="kw">hist</span>(df<span class="op">$</span>availability_<span class="dv">365</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="kw">hist</span>(df<span class="op">$</span>availability_<span class="dv">365</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-304-1.png" width="925.44" /></p>
 <p>This is a histogram of the number of nights the listings are available for reservation. In a quick glance, you can see that most listings are available for only a few nights, while a small portion have a wide variety of availabilities.</p>
 <p>Think about how much more helpul this image is than a simple sample mean. To illustrate that value, let’s plot the mean onto this histogram.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="distributions-histograms.html#cb280-1"></a><span class="kw">hist</span>(df<span class="op">$</span>availability_<span class="dv">365</span>)</span>
-<span id="cb280-2"><a href="distributions-histograms.html#cb280-2"></a><span class="kw">abline</span>(<span class="dt">v=</span> <span class="kw">mean</span>(df<span class="op">$</span>availability_<span class="dv">365</span>),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">hist</span>(df<span class="op">$</span>availability_<span class="dv">365</span>)</a>
+<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="kw">abline</span>(<span class="dt">v=</span> <span class="kw">mean</span>(df<span class="op">$</span>availability_<span class="dv">365</span>),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-305-1.png" width="925.44" /></p>
 <p>The average value of this dataset is nowhere near the most common values (1 - 20 nights), nor does it capture the fact that there are some listings available for the entire year. <strong>Punchline:</strong> a lot of rich insight is lost when taking an average, which is why a histogram is more useful for displaying distributions than bar graphs (which only show the mean).</p>
 <div id="prettifying-histograms" class="section level4 unnumbered">
 <h4>Prettifying histograms</h4>
 <p>Let’s take a look at another variable: the price of lodging per night.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="distributions-histograms.html#cb281-1"></a><span class="kw">hist</span>(df<span class="op">$</span>price)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="kw">hist</span>(df<span class="op">$</span>price)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-306-1.png" width="925.44" /></p>
 <p>Not a very pretty plot. Since the range in prices is so wide, the default parameters for the <code>hist()</code> will need some tweaking.</p>
 <p>To make this histogram prettier, first let’s manually set the number of “breaks”, i.e., the cutoff values for each bin along the x-axis.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="distributions-histograms.html#cb282-1"></a><span class="co"># Calculate breaks -- make each bin one day</span></span>
-<span id="cb282-2"><a href="distributions-histograms.html#cb282-2"></a>breaks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="kw">max</span>(df<span class="op">$</span>price),<span class="dt">by=</span><span class="dv">5</span>)</span>
-<span id="cb282-3"><a href="distributions-histograms.html#cb282-3"></a></span>
-<span id="cb282-4"><a href="distributions-histograms.html#cb282-4"></a><span class="kw">hist</span>(df<span class="op">$</span>price,</span>
-<span id="cb282-5"><a href="distributions-histograms.html#cb282-5"></a>     <span class="dt">breaks=</span>breaks)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="co"># Calculate breaks -- make each bin one day</span></a>
+<a class="sourceLine" id="cb283-2" data-line-number="2">breaks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="kw">max</span>(df<span class="op">$</span>price),<span class="dt">by=</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb283-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb283-4" data-line-number="4"><span class="kw">hist</span>(df<span class="op">$</span>price,</a>
+<a class="sourceLine" id="cb283-5" data-line-number="5">     <span class="dt">breaks=</span>breaks)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-307-1.png" width="925.44" /></p>
 <p>That’s better. Let’s zoom in on the most common values using <code>xlim()</code>.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="distributions-histograms.html#cb283-1"></a><span class="kw">hist</span>(df<span class="op">$</span>price,</span>
-<span id="cb283-2"><a href="distributions-histograms.html#cb283-2"></a>     <span class="dt">breaks=</span>breaks,</span>
-<span id="cb283-3"><a href="distributions-histograms.html#cb283-3"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="kw">hist</span>(df<span class="op">$</span>price,</a>
+<a class="sourceLine" id="cb284-2" data-line-number="2">     <span class="dt">breaks=</span>breaks,</a>
+<a class="sourceLine" id="cb284-3" data-line-number="3">     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>))</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-308-1.png" width="925.44" /></p>
 <p>Finally, let’s improve the labels and colors.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="distributions-histograms.html#cb284-1"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,.<span class="dv">5</span>,.<span class="dv">5</span>))</span>
-<span id="cb284-2"><a href="distributions-histograms.html#cb284-2"></a><span class="kw">hist</span>(df<span class="op">$</span>price,</span>
-<span id="cb284-3"><a href="distributions-histograms.html#cb284-3"></a>     <span class="dt">breaks=</span>breaks,</span>
-<span id="cb284-4"><a href="distributions-histograms.html#cb284-4"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>),</span>
-<span id="cb284-5"><a href="distributions-histograms.html#cb284-5"></a>     <span class="dt">xlab=</span><span class="st">&quot;Listing price ($)&quot;</span>,</span>
-<span id="cb284-6"><a href="distributions-histograms.html#cb284-6"></a>     <span class="dt">main=</span><span class="ot">NULL</span>,</span>
-<span id="cb284-7"><a href="distributions-histograms.html#cb284-7"></a>     <span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>),</span>
-<span id="cb284-8"><a href="distributions-histograms.html#cb284-8"></a>     <span class="dt">border=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">1</span>),</span>
-<span id="cb284-9"><a href="distributions-histograms.html#cb284-9"></a>     )</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,.<span class="dv">5</span>,.<span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb285-2" data-line-number="2"><span class="kw">hist</span>(df<span class="op">$</span>price,</a>
+<a class="sourceLine" id="cb285-3" data-line-number="3">     <span class="dt">breaks=</span>breaks,</a>
+<a class="sourceLine" id="cb285-4" data-line-number="4">     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>),</a>
+<a class="sourceLine" id="cb285-5" data-line-number="5">     <span class="dt">xlab=</span><span class="st">&quot;Listing price ($)&quot;</span>,</a>
+<a class="sourceLine" id="cb285-6" data-line-number="6">     <span class="dt">main=</span><span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb285-7" data-line-number="7">     <span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>),</a>
+<a class="sourceLine" id="cb285-8" data-line-number="8">     <span class="dt">border=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb285-9" data-line-number="9">     )</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-309-1.png" width="925.44" /></p>
 <p>Interesting spikes in the histogram. Why do you think those are occurring? That is a really interesting feature of the dataset that you might never have discovered if you had not plotted your histogram.</p>
 </div>
 <div id="histograms-in-ggplot2" class="section level4 unnumbered">
 <h4>Histograms in <code>ggplot2</code></h4>
 <p>To produce a histogram of the same data in <code>ggplot2</code>, use the following code:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="distributions-histograms.html#cb285-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb285-2"><a href="distributions-histograms.html#cb285-2"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>price)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb285-3"><a href="distributions-histograms.html#cb285-3"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="op">+</span></span>
-<span id="cb285-4"><a href="distributions-histograms.html#cb285-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>,</span>
-<span id="cb285-5"><a href="distributions-histograms.html#cb285-5"></a>                 <span class="dt">fill=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>),</span>
-<span id="cb285-6"><a href="distributions-histograms.html#cb285-6"></a>                 <span class="dt">color=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">1</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb286-2" data-line-number="2"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>price)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb286-3" data-line-number="3"><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb286-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb286-5" data-line-number="5">                 <span class="dt">fill=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>),</a>
+<a class="sourceLine" id="cb286-6" data-line-number="6">                 <span class="dt">color=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">1</span>)) </a></code></pre></div>
 <p><img src="figures/unnamed-chunk-310-1.png" width="925.44" /></p>
 <p><code>ggplot2</code> allows you to add some other nice features to histograms, such as a smoothed “density” line:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="distributions-histograms.html#cb286-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>price)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb286-2"><a href="distributions-histograms.html#cb286-2"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="op">+</span></span>
-<span id="cb286-3"><a href="distributions-histograms.html#cb286-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>,</span>
-<span id="cb286-4"><a href="distributions-histograms.html#cb286-4"></a>                 <span class="dt">fill=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>),</span>
-<span id="cb286-5"><a href="distributions-histograms.html#cb286-5"></a>                 <span class="dt">color=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">1</span>),</span>
-<span id="cb286-6"><a href="distributions-histograms.html#cb286-6"></a>                 <span class="kw">aes</span>(<span class="dt">y=</span>..density..)) <span class="op">+</span></span>
-<span id="cb286-7"><a href="distributions-histograms.html#cb286-7"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span>.<span class="dv">1</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;firebrick&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>price)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb287-2" data-line-number="2"><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb287-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb287-4" data-line-number="4">                 <span class="dt">fill=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;darkblue&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">6</span>),</a>
+<a class="sourceLine" id="cb287-5" data-line-number="5">                 <span class="dt">color=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;white&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb287-6" data-line-number="6">                 <span class="kw">aes</span>(<span class="dt">y=</span>..density..)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb287-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span>.<span class="dv">1</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="kw">adjustcolor</span>(<span class="st">&quot;firebrick&quot;</span>,<span class="dt">alpha.f=</span>.<span class="dv">5</span>))</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-311-1.png" width="925.44" /></p>
 </div>
 </div>
 <div id="violin-plots" class="section level3 unnumbered">
 <h3>Violin Plots</h3>
 <p>The second most valuable plot for exploring distributions is the <strong>violin plot</strong>.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="distributions-histograms.html#cb287-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>room_type,</span>
-<span id="cb287-2"><a href="distributions-histograms.html#cb287-2"></a>               <span class="dt">y=</span>price)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb287-3"><a href="distributions-histograms.html#cb287-3"></a><span class="st">  </span><span class="kw">geom_violin</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>room_type,</a>
+<a class="sourceLine" id="cb288-2" data-line-number="2">               <span class="dt">y=</span>price)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb288-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_violin</span>()</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-312-1.png" width="925.44" /></p>
 <p>Violin plots are like <em>vertical histograms</em>. Their width indicates where most of your data are clustered, and the shapes also take the shape of a violin – hence the name. Their height shows you your data’s range. Think of a violin plot as the beautiful child of bar graphs and histograms: the best of both worlds.</p>
 <p>A major advantage of violin plots is that they allow you two compare multiple distributions with ease. Let’s adjust our <code>ylim()</code> to zoom in:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="distributions-histograms.html#cb288-1"></a><span class="kw">ggplot</span>(df, </span>
-<span id="cb288-2"><a href="distributions-histograms.html#cb288-2"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>room_type,</span>
-<span id="cb288-3"><a href="distributions-histograms.html#cb288-3"></a>           <span class="dt">y=</span>price)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb288-4"><a href="distributions-histograms.html#cb288-4"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="op">+</span></span>
-<span id="cb288-5"><a href="distributions-histograms.html#cb288-5"></a><span class="st">  </span><span class="kw">geom_violin</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="kw">ggplot</span>(df, </a>
+<a class="sourceLine" id="cb289-2" data-line-number="2">       <span class="kw">aes</span>(<span class="dt">x=</span>room_type,</a>
+<a class="sourceLine" id="cb289-3" data-line-number="3">           <span class="dt">y=</span>price)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb289-4" data-line-number="4"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">500</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb289-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_violin</span>()</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-313-1.png" width="925.44" /></p>
 <p>If your research question were, “Which type of listing tends to be most affordable?”, think about how easy that is to answer using a plot like this!</p>
 </div>
@@ -500,14 +500,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Here are a few more:</p>
 <p><strong><code>var()</code></strong> provides the sample variance, which is related to standard deviation:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="distributions-histograms.html#cb289-1"></a><span class="kw">var</span>(df<span class="op">$</span>price)</span>
-<span id="cb289-2"><a href="distributions-histograms.html#cb289-2"></a>[<span class="dv">1</span>] <span class="fl">23766.1</span></span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="kw">var</span>(df<span class="op">$</span>price)</a>
+<a class="sourceLine" id="cb290-2" data-line-number="2">[<span class="dv">1</span>] <span class="fl">23766.1</span></a></code></pre></div>
 <p><strong><code>MeanCI()</code></strong>, from the package <code>DescTools</code>, provides 95% confidence intervals for the most common data distributions.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="distributions-histograms.html#cb290-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;DescTools&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="distributions-histograms.html#cb291-1"></a><span class="kw">library</span>(DescTools)</span>
-<span id="cb291-2"><a href="distributions-histograms.html#cb291-2"></a><span class="kw">MeanCI</span>(df<span class="op">$</span>price)</span>
-<span id="cb291-3"><a href="distributions-histograms.html#cb291-3"></a>    mean   lwr.ci   upr.ci </span>
-<span id="cb291-4"><a href="distributions-histograms.html#cb291-4"></a><span class="fl">154.4959</span> <span class="fl">152.2326</span> <span class="fl">156.7592</span> </span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;DescTools&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1"><span class="kw">library</span>(DescTools)</a>
+<a class="sourceLine" id="cb292-2" data-line-number="2"><span class="kw">MeanCI</span>(df<span class="op">$</span>price)</a>
+<a class="sourceLine" id="cb292-3" data-line-number="3">    mean   lwr.ci   upr.ci </a>
+<a class="sourceLine" id="cb292-4" data-line-number="4"><span class="fl">154.4959</span> <span class="fl">152.2326</span> <span class="fl">156.7592</span> </a></code></pre></div>
 <p>And here are some other useful functions that need not be introduced in detail now. You will encounter them soon.</p>
 <ul>
 <li><strong><code>table()</code></strong> Counts the number of instances of each unique value in a vector.</li>
@@ -517,8 +517,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="review-exercise" class="section level4 unnumbered">
 <h4>Review exercise</h4>
 <p>For this exercise, use this dataset on the sale prices of homes in the United States. You can download that dataset directly into <code>R</code> using the following code:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="distributions-histograms.html#cb292-1"></a><span class="kw">library</span>(readr)</span>
-<span id="cb292-2"><a href="distributions-histograms.html#cb292-2"></a>df &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/rashida048/Datasets/master/home_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb293-2" data-line-number="2">df &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/rashida048/Datasets/master/home_data.csv&quot;</span>)</a></code></pre></div>
 <div id="task-1" class="section level5 unnumbered">
 <h5>Task 1</h5>
 <p>Create a beautiful histogram of home prices included in this dataset. Only show houses that sold for less than $2 million USD.</p>
@@ -546,7 +546,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -565,6 +564,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -585,6 +585,10 @@ gitbook.start({
 "text": null
 },
 "download": ["intro-to-data-science.pdf", "intro-to-data-science.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
