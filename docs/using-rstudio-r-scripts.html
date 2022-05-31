@@ -57,31 +57,33 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -90,9 +92,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +127,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -142,29 +166,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">www.datascience.pizza</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-this-is-and-what-it-isnt"><i class="fa fa-check"></i>What this is, and what it isn’t</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-is-for"><i class="fa fa-check"></i>Who this is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What you will learn</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
 </ul></li>
 <li class="part"><span><b>I Core theory</b></span></li>
-<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a><ul>
+<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a>
+<ul>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i>What is the data life cycle?</a></li>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i>Data science ‘in the wild’</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a><ul>
+<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a>
+<ul>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-crisis"><i class="fa fa-check"></i>The crisis</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-reproducibility-movement"><i class="fa fa-check"></i>The ‘reproducibility’ movement</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#why-r"><i class="fa fa-check"></i>Why <code>R</code>?</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a><ul>
+<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a>
+<ul>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#a-few-principles"><i class="fa fa-check"></i>A few principles</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#warm-up-scenarios"><i class="fa fa-check"></i>Warm up scenarios</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#case-studies"><i class="fa fa-check"></i>Case studies</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#more-scenarios"><i class="fa fa-check"></i>More scenarios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a><ul>
+<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a>
+<ul>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#the-value-of-data-viz"><i class="fa fa-check"></i>The value of <em>data viz</em></a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#plot-gallery"><i class="fa fa-check"></i>Plot gallery</a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#chart-junk"><i class="fa fa-check"></i>Chart junk</a></li>
@@ -172,72 +201,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
 <li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
-<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a><ul>
+<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a>
+<ul>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#running-code-in-the-console"><i class="fa fa-check"></i>Running code in the <em>Console</em></a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-r-like-a-calculator"><i class="fa fa-check"></i>Use R like a calculator</a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#getting-along-with-r"><i class="fa fa-check"></i>Getting along with <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a><ul>
+<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a>
+<ul>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#scripts"><i class="fa fa-check"></i>Scripts</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#wd"><i class="fa fa-check"></i>Your working directory</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#typical-workflows"><i class="fa fa-check"></i>Typical workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a><ul>
+<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a>
+<ul>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#types-of-data-in-r"><i class="fa fa-check"></i>Types of data in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a><ul>
+<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#declaring-and-using-vectors"><i class="fa fa-check"></i>Declaring and using vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#math-with-two-vectors"><i class="fa fa-check"></i>Math with two vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
-<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
+<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a>
+<ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a><ul>
+<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a>
+<ul>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#creating-dataframes"><i class="fa fa-check"></i>Creating dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#modifying-dataframes"><i class="fa fa-check"></i>Modifying dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a><ul>
+<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a>
+<ul>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
-<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
+<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a>
+<ul>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#csv-files"><i class="fa fa-check"></i><code>.csv</code> files</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#prepping-your-data-for-r"><i class="fa fa-check"></i>Prepping your data for <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
+<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#most-common-types-of-plots"><i class="fa fa-check"></i>Most common types of plots</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#basic-plot-formatting"><i class="fa fa-check"></i>Basic plot formatting</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#plotting-with-data-frames"><i class="fa fa-check"></i>Plotting with data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a><ul>
+<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#what-is-ggplot2"><i class="fa fa-check"></i>What is <code>ggplot2</code>?</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#bar-plot"><i class="fa fa-check"></i>Bar plot</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a><ul>
+<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a>
+<ul>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-dplyr-package"><i class="fa fa-check"></i>The <code>dplyr</code> package</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-pipe"><i class="fa fa-check"></i>The <code>%&gt;%</code> pipe</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#dplyr-verbs"><i class="fa fa-check"></i><code>dplyr</code> verbs</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a><ul>
+<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a>
+<ul>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#exploring-distributions"><i class="fa fa-check"></i>Exploring distributions</a></li>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a><ul>
+<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-for-different-data-types"><i class="fa fa-check"></i>Tests for different data types</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#comparison-tests"><i class="fa fa-check"></i>Comparison tests</a></li>
@@ -245,7 +287,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
 </ul></li>
 <li class="part"><span><b>IV Reproducible research</b></span></li>
-<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a><ul>
+<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-set-up"><i class="fa fa-check"></i><code>Git</code> set up</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
@@ -253,23 +296,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-workflow-overview"><i class="fa fa-check"></i><code>Git</code> workflow: overview</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a><ul>
+<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a>
+<ul>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#what-is-markdown"><i class="fa fa-check"></i>What is <code>Markdown</code>?</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#raw-markdown-example"><i class="fa fa-check"></i>Raw <code>Markdown</code> example</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-12"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a><ul>
+<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#add-an-r-chunk"><i class="fa fa-check"></i>Add an <code>R</code> chunk</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#in-line-r-code"><i class="fa fa-check"></i>In-line <code>R</code> code</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a><ul>
+<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a>
+<ul>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#build-your-first-shiny-app"><i class="fa fa-check"></i>Build your first <code>shiny</code> app</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a><ul>
+<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a>
+<ul>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#mapping-with-leaflet"><i class="fa fa-check"></i>Mapping with <code>leaflet</code></a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-2"><i class="fa fa-check"></i>Final thoughts</a></li>
@@ -284,7 +331,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="32" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>32</b> Trump tweets</a></li>
 <li class="chapter" data-level="33" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>33</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
 <li class="part"><span><b>VI Presenting research</b></span></li>
-<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a><ul>
+<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a>
+<ul>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
@@ -293,7 +341,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a><ul>
+<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a>
+<ul>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
@@ -302,46 +351,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="36" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>36</b> Research talks</a></li>
 <li class="part"><span><b>VII Deep <code>R</code></b></span></li>
-<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a><ul>
+<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#write.csv"><i class="fa fa-check"></i><code>write.csv()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#saverds"><i class="fa fa-check"></i><code>saveRDS()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#pdf-and-png"><i class="fa fa-check"></i><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a>
+<ul>
 <li class="chapter" data-level="" data-path="joining_datasets.html"><a href="joining_datasets.html#joining-with-dplyr"><i class="fa fa-check"></i>Joining with <code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
+<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a>
+<ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a><ul>
+<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a>
+<ul>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#the-lubridate-package"><i class="fa fa-check"></i>The <code>lubridate()</code> package</a></li>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a><ul>
+<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a>
+<ul>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a>
+<ul>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#for-loop-exercises"><i class="fa fa-check"></i><code>for</code> loop exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a><ul>
+<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a>
+<ul>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a><ul>
+<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a>
+<ul>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
 </ul></li>
 <li class="chapter" data-level="45" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>45</b> Advanced base plots in <code>R</code></a></li>
-<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a><ul>
+<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a>
+<ul>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#geographic-data-structures"><i class="fa fa-check"></i>Geographic data structures</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors"><i class="fa fa-check"></i>Combining rasters &amp; vectors</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors-leaflet"><i class="fa fa-check"></i>Combining rasters, vectors, &amp; <code>leaflet</code></a></li>
 </ul></li>
-<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a><ul>
+<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-5"><i class="fa fa-check"></i>Review assignment</a></li>
@@ -367,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="using-rstudio-r-scripts" class="section level1 hasAnchor">
+<div id="using-rstudio-r-scripts" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Module 8</span> Using <code>RStudio</code> &amp; <code>R</code> scripts<a href="using-rstudio-r-scripts.html#using-rstudio-r-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="learning-goals-1" class="section level4 unnumbered hasAnchor">
 <h4>Learning goals<a href="using-rstudio-r-scripts.html#learning-goals-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -435,8 +494,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="img/rstudio_scripts.png" />
 You now have a blank script to work in!</p>
 <p>Now type some simple commands into your script:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="dv">2</span>  <span class="op">+</span><span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="dv">16</span> <span class="op">*</span><span class="st"> </span><span class="dv">32</span></a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="using-rstudio-r-scripts.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb46-2"><a href="using-rstudio-r-scripts.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="sc">*</span> <span class="dv">32</span></span></code></pre></div>
 <p>Notice that when you press <code>Enter</code> after each line of code, nothing happens in the <em>Console</em>. In order to send this code to the Console, press <code>Enter + Command</code> at the same time (or <code>Enter + Control</code>, if you are on Windows) for each line of code.</p>
 <p>To send both lines of code to the <em>Console</em> at once, select both lines of code and hit <code>Enter + Command</code>.</p>
 <p>(To select multiple lines of code, you can (1) click and drag with your mouse or (2) hold down your <code>Shift</code> key while clicking your down arrow key. To select <em>all</em> lines of code, press <code>Command + A</code>.)</p>
@@ -445,10 +504,10 @@ You now have a blank script to work in!</p>
 <p>Get all students to practice running code at this point. The act of typing the commands themselves helps them learn and overcome their hesitation about messing up.</p>
 </div>
 <p>So let’s build up this script. Add a few more lines to your script, such that your script now looks like this.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="dv">2</span>  <span class="op">+</span><span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="dv">16</span> <span class="op">*</span><span class="st"> </span><span class="dv">32</span></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="dv">1080</span> <span class="op">/</span><span class="st"> </span><span class="dv">360</span></a>
-<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="dv">500</span> <span class="op">-</span><span class="st"> </span><span class="dv">600</span></a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="using-rstudio-r-scripts.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb47-2"><a href="using-rstudio-r-scripts.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="sc">*</span> <span class="dv">32</span></span>
+<span id="cb47-3"><a href="using-rstudio-r-scripts.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1080</span> <span class="sc">/</span> <span class="dv">360</span></span>
+<span id="cb47-4"><a href="using-rstudio-r-scripts.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="dv">500</span> <span class="sc">-</span> <span class="dv">600</span></span></code></pre></div>
 <p>Run all of these lines of code at once.</p>
 <p>Now add <code>10</code> to the first number in each row, and re-run all of the code.</p>
 <p>Think about how much more efficient part (B) was thanks to your script! If you had typed all of that directly into your <em>Console</em>, you would have to recall or retype each line individually. That difference builds up when your number of commands grows into the hundreds.</p>
@@ -480,37 +539,37 @@ You now have a blank script to work in!</p>
 <p>Another advantage of scripts is that you can include <em>comments</em> throughout your code to explain what you are doing and why. A <em>comment</em> is just a part of your script that is useful to you but that is ignored by <code>R</code>.</p>
 <p>To add comments to your code, use the hashtag symbol (<code>#</code>). Any text following a <code>#</code> will be ignored by <code>R</code>.</p>
 <p>Here is the script above, now with comments added:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># Define variable x</span></a>
-<a class="sourceLine" id="cb48-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="dv">2</span> </a>
-<a class="sourceLine" id="cb48-3" data-line-number="3">x</a>
-<a class="sourceLine" id="cb48-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="co"># Make a new variable, y, based on x</span></a>
-<a class="sourceLine" id="cb48-6" data-line-number="6">y &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">56</span></a>
-<a class="sourceLine" id="cb48-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb48-8" data-line-number="8">z &lt;-<span class="st"> </span>y <span class="op">/</span><span class="st"> </span><span class="dv">23</span> <span class="co"># Make a third variable, z, based on y</span></a>
-<a class="sourceLine" id="cb48-9" data-line-number="9"> </a>
-<a class="sourceLine" id="cb48-10" data-line-number="10">x <span class="op">+</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span>z <span class="co"># Now get the sum of all three variables</span></a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="using-rstudio-r-scripts.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define variable x</span></span>
+<span id="cb48-2"><a href="using-rstudio-r-scripts.html#cb48-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> </span>
+<span id="cb48-3"><a href="using-rstudio-r-scripts.html#cb48-3" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb48-4"><a href="using-rstudio-r-scripts.html#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="using-rstudio-r-scripts.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a new variable, y, based on x</span></span>
+<span id="cb48-6"><a href="using-rstudio-r-scripts.html#cb48-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x<span class="sc">*</span><span class="dv">56</span></span>
+<span id="cb48-7"><a href="using-rstudio-r-scripts.html#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="using-rstudio-r-scripts.html#cb48-8" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> y <span class="sc">/</span> <span class="dv">23</span> <span class="co"># Make a third variable, z, based on y</span></span>
+<span id="cb48-9"><a href="using-rstudio-r-scripts.html#cb48-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb48-10"><a href="using-rstudio-r-scripts.html#cb48-10" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y <span class="sc">+</span> z <span class="co"># Now get the sum of all three variables</span></span></code></pre></div>
 <p>Adding comments can be more work, but in the end it saves you time and makes your code more effective. Comments might not seem necessary in the moment, but it is amazing how helpful they are when you come back to your code the next day. Frequent and helpful comments make the difference between good and great code. Comment early, comment often!</p>
 <p>You can also use lines of hashtags to visually organize your code. For example:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co">##############################################</span></a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co"># Setup</span></a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="co">##############################################</span></a>
-<a class="sourceLine" id="cb49-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="co"># Define variable x</span></a>
-<a class="sourceLine" id="cb49-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="dv">2</span> </a>
-<a class="sourceLine" id="cb49-7" data-line-number="7">x</a>
-<a class="sourceLine" id="cb49-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb49-9" data-line-number="9"><span class="co"># Make a new variable, y, based on x</span></a>
-<a class="sourceLine" id="cb49-10" data-line-number="10">y &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">56</span></a>
-<a class="sourceLine" id="cb49-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb49-12" data-line-number="12">z &lt;-<span class="st"> </span>y <span class="op">/</span><span class="st"> </span><span class="dv">23</span> <span class="co"># Make a third variable, z, based on y</span></a>
-<a class="sourceLine" id="cb49-13" data-line-number="13"> </a>
-<a class="sourceLine" id="cb49-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb49-15" data-line-number="15"><span class="co">##############################################</span></a>
-<a class="sourceLine" id="cb49-16" data-line-number="16"><span class="co"># Get result</span></a>
-<a class="sourceLine" id="cb49-17" data-line-number="17"><span class="co">##############################################</span></a>
-<a class="sourceLine" id="cb49-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb49-19" data-line-number="19">x <span class="op">+</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span>z <span class="co"># Now get the sum of all three variables</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="using-rstudio-r-scripts.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="do">##############################################</span></span>
+<span id="cb49-2"><a href="using-rstudio-r-scripts.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup</span></span>
+<span id="cb49-3"><a href="using-rstudio-r-scripts.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="do">##############################################</span></span>
+<span id="cb49-4"><a href="using-rstudio-r-scripts.html#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="using-rstudio-r-scripts.html#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define variable x</span></span>
+<span id="cb49-6"><a href="using-rstudio-r-scripts.html#cb49-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> </span>
+<span id="cb49-7"><a href="using-rstudio-r-scripts.html#cb49-7" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb49-8"><a href="using-rstudio-r-scripts.html#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="using-rstudio-r-scripts.html#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a new variable, y, based on x</span></span>
+<span id="cb49-10"><a href="using-rstudio-r-scripts.html#cb49-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x<span class="sc">*</span><span class="dv">56</span></span>
+<span id="cb49-11"><a href="using-rstudio-r-scripts.html#cb49-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-12"><a href="using-rstudio-r-scripts.html#cb49-12" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> y <span class="sc">/</span> <span class="dv">23</span> <span class="co"># Make a third variable, z, based on y</span></span>
+<span id="cb49-13"><a href="using-rstudio-r-scripts.html#cb49-13" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb49-14"><a href="using-rstudio-r-scripts.html#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-15"><a href="using-rstudio-r-scripts.html#cb49-15" aria-hidden="true" tabindex="-1"></a><span class="do">##############################################</span></span>
+<span id="cb49-16"><a href="using-rstudio-r-scripts.html#cb49-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Get result</span></span>
+<span id="cb49-17"><a href="using-rstudio-r-scripts.html#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="do">##############################################</span></span>
+<span id="cb49-18"><a href="using-rstudio-r-scripts.html#cb49-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-19"><a href="using-rstudio-r-scripts.html#cb49-19" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y <span class="sc">+</span> z <span class="co"># Now get the sum of all three variables</span></span></code></pre></div>
 <p>This might not seem necessary with a 5-line script, but adding visual breaks to your code becomes immensely helpful when your code grows to be hundreds of lines long.</p>
 </div>
 <div id="saving-your-work" class="section level3 unnumbered hasAnchor">
@@ -530,8 +589,8 @@ You now have a blank script to work in!</p>
 <h2>Your working directory<a href="using-rstudio-r-scripts.html#wd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When you work with data in <code>R</code>, <code>R</code> will need to know where in your computer to look for that data. The folder it looks in is known as your <strong>working directory</strong>.</p>
 <p>To find out which folder <code>R</code> is currently using as your working directory, use the function <code>getwd()</code>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb50-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;/home/joebrew/Documents/intro-to-data-science&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="using-rstudio-r-scripts.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb50-2"><a href="using-rstudio-r-scripts.html#cb50-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;/home/mbr/databrew/intro-to-data-science&quot;</span></span></code></pre></div>
 <p>Almost always, you want to set your working directory to the folder your <code>R</code> script is in.</p>
 <div id="how-to-set-your-working-directory" class="section level3 unnumbered hasAnchor">
 <h3>How to set your working directory<a href="using-rstudio-r-scripts.html#how-to-set-your-working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -542,18 +601,18 @@ You now have a blank script to work in!</p>
 </ol>
 <p><img src="img/rstudio_setwd.png" />
 This action sets your working directory to the same folder that your <code>R</code> script is in. When you do this, you will see that a command has been entered into your <em>Console</em>:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;~/Desktop/datalab&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="using-rstudio-r-scripts.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/Desktop/datalab&quot;</span>)</span></code></pre></div>
 <p>(Note that the filepath may be different on your machine.) This code is using the function <code>setwd()</code>, which is also used in the next option. Go ahead and copy this <code>setwd(...)</code> code and paste it into your script, so it will be easy to use next time.</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p><strong>Manually with code, using <code>setwd()</code></strong>: You can manually provide the filepath you want to set as your working directory. This option allows you to set your <code>wd</code> to whatever folder you want. The character string within the <code>setwd()</code> command is the path to a folder. The formatting of this string must be exact, otherwise <code>R</code> will throw an error. Use option 1 at first to get a sense of how your computer formats its folder paths. Copy, paste, and modify the output from option 1 in order to type your path correctly.</p></li>
 <li><p><strong>Automatically with code</strong>: There is a command you can run that automatically sets your working directory to the folder that your <code>R</code> script is in. This is the most efficient and useful method, in our experience.</p></li>
 </ol>
 <p>To use this command, you must first install a new package. Run this code:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;rstudioapi&quot;</span>)</a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="kw">library</span>(rstudioapi)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="using-rstudio-r-scripts.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rstudioapi&quot;</span>)</span>
+<span id="cb52-2"><a href="using-rstudio-r-scripts.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstudioapi)</span></code></pre></div>
 <p>For now, you do not need to understand what this code is doing. We will explain packages and the <code>library()</code> function in a later module.</p>
 <p>You can now copy, paste, and run this code to set your working directory automatically:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">setwd</span>(<span class="kw">dirname</span>(rstudioapi<span class="op">::</span><span class="kw">getActiveDocumentContext</span>()<span class="op">$</span>path))</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="using-rstudio-r-scripts.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span></code></pre></div>
 <p>This is a complicated line of code that you need not understand. As long as it works, it works! Confirm that <code>R</code> is using the correct working directory with the command <code>getwd()</code>.</p>
 </div>
 </div>
@@ -578,29 +637,29 @@ This action sets your working directory to the same folder that your <code>R</co
 <div id="template-r-script" class="section level3 unnumbered hasAnchor">
 <h3>Template <code>R</code> script<a href="using-rstudio-r-scripts.html#template-r-script" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here is a template you can use to copy and paste into each new script you create:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co">################################################################################</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co"># &lt; Add title here &gt;</span></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co">################################################################################</span></a>
-<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="co">#</span></a>
-<a class="sourceLine" id="cb54-5" data-line-number="5"><span class="co"># &lt; Add brief description here &gt;</span></a>
-<a class="sourceLine" id="cb54-6" data-line-number="6"><span class="co">#</span></a>
-<a class="sourceLine" id="cb54-7" data-line-number="7"><span class="co"># &lt; Author &gt;</span></a>
-<a class="sourceLine" id="cb54-8" data-line-number="8"><span class="co"># Created on &lt;add date here &gt;</span></a>
-<a class="sourceLine" id="cb54-9" data-line-number="9"><span class="co">#</span></a>
-<a class="sourceLine" id="cb54-10" data-line-number="10"><span class="co">################################################################################</span></a>
-<a class="sourceLine" id="cb54-11" data-line-number="11"><span class="co"># Set working directory</span></a>
-<a class="sourceLine" id="cb54-12" data-line-number="12"><span class="kw">setwd</span>(<span class="kw">dirname</span>(rstudioapi<span class="op">::</span><span class="kw">getActiveDocumentContext</span>()<span class="op">$</span>path))</a>
-<a class="sourceLine" id="cb54-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb54-14" data-line-number="14"><span class="co">################################################################################</span></a>
-<a class="sourceLine" id="cb54-15" data-line-number="15"><span class="co">################################################################################</span></a>
-<a class="sourceLine" id="cb54-16" data-line-number="16"><span class="co"># Code goes here</span></a>
-<a class="sourceLine" id="cb54-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb54-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb54-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb54-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb54-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb54-22" data-line-number="22"><span class="co">################################################################################</span></a>
-<a class="sourceLine" id="cb54-23" data-line-number="23"><span class="co"># (end of file)</span></a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="using-rstudio-r-scripts.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<span id="cb54-2"><a href="using-rstudio-r-scripts.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt; Add title here &gt;</span></span>
+<span id="cb54-3"><a href="using-rstudio-r-scripts.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<span id="cb54-4"><a href="using-rstudio-r-scripts.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb54-5"><a href="using-rstudio-r-scripts.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt; Add brief description here &gt;</span></span>
+<span id="cb54-6"><a href="using-rstudio-r-scripts.html#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb54-7"><a href="using-rstudio-r-scripts.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt; Author &gt;</span></span>
+<span id="cb54-8"><a href="using-rstudio-r-scripts.html#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Created on &lt;add date here &gt;</span></span>
+<span id="cb54-9"><a href="using-rstudio-r-scripts.html#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb54-10"><a href="using-rstudio-r-scripts.html#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<span id="cb54-11"><a href="using-rstudio-r-scripts.html#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set working directory</span></span>
+<span id="cb54-12"><a href="using-rstudio-r-scripts.html#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span>
+<span id="cb54-13"><a href="using-rstudio-r-scripts.html#cb54-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-14"><a href="using-rstudio-r-scripts.html#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<span id="cb54-15"><a href="using-rstudio-r-scripts.html#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<span id="cb54-16"><a href="using-rstudio-r-scripts.html#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Code goes here</span></span>
+<span id="cb54-17"><a href="using-rstudio-r-scripts.html#cb54-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-18"><a href="using-rstudio-r-scripts.html#cb54-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-19"><a href="using-rstudio-r-scripts.html#cb54-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-20"><a href="using-rstudio-r-scripts.html#cb54-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-21"><a href="using-rstudio-r-scripts.html#cb54-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-22"><a href="using-rstudio-r-scripts.html#cb54-22" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<span id="cb54-23"><a href="using-rstudio-r-scripts.html#cb54-23" aria-hidden="true" tabindex="-1"></a><span class="co"># (end of file)</span></span></code></pre></div>
 <div id="exercises-1" class="section level4 unnumbered hasAnchor">
 <h4>Exercises<a href="using-rstudio-r-scripts.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>1</strong> <em>(if not already complete)</em>. Create a working directory for this course. Call it whatever you like, but <code>datalab</code> could work great. Place it somewhere convenient on your computer, such as your Desktop.</p>

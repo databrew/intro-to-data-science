@@ -57,31 +57,33 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -90,9 +92,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +127,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -142,29 +166,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">www.datascience.pizza</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-this-is-and-what-it-isnt"><i class="fa fa-check"></i>What this is, and what it isn’t</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-is-for"><i class="fa fa-check"></i>Who this is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What you will learn</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
 </ul></li>
 <li class="part"><span><b>I Core theory</b></span></li>
-<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a><ul>
+<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a>
+<ul>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i>What is the data life cycle?</a></li>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i>Data science ‘in the wild’</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a><ul>
+<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a>
+<ul>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-crisis"><i class="fa fa-check"></i>The crisis</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-reproducibility-movement"><i class="fa fa-check"></i>The ‘reproducibility’ movement</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#why-r"><i class="fa fa-check"></i>Why <code>R</code>?</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a><ul>
+<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a>
+<ul>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#a-few-principles"><i class="fa fa-check"></i>A few principles</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#warm-up-scenarios"><i class="fa fa-check"></i>Warm up scenarios</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#case-studies"><i class="fa fa-check"></i>Case studies</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#more-scenarios"><i class="fa fa-check"></i>More scenarios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a><ul>
+<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a>
+<ul>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#the-value-of-data-viz"><i class="fa fa-check"></i>The value of <em>data viz</em></a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#plot-gallery"><i class="fa fa-check"></i>Plot gallery</a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#chart-junk"><i class="fa fa-check"></i>Chart junk</a></li>
@@ -172,72 +201,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
 <li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
-<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a><ul>
+<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a>
+<ul>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#running-code-in-the-console"><i class="fa fa-check"></i>Running code in the <em>Console</em></a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-r-like-a-calculator"><i class="fa fa-check"></i>Use R like a calculator</a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#getting-along-with-r"><i class="fa fa-check"></i>Getting along with <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a><ul>
+<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a>
+<ul>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#scripts"><i class="fa fa-check"></i>Scripts</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#wd"><i class="fa fa-check"></i>Your working directory</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#typical-workflows"><i class="fa fa-check"></i>Typical workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a><ul>
+<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a>
+<ul>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#types-of-data-in-r"><i class="fa fa-check"></i>Types of data in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a><ul>
+<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#declaring-and-using-vectors"><i class="fa fa-check"></i>Declaring and using vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#math-with-two-vectors"><i class="fa fa-check"></i>Math with two vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
-<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
+<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a>
+<ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a><ul>
+<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a>
+<ul>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#creating-dataframes"><i class="fa fa-check"></i>Creating dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#modifying-dataframes"><i class="fa fa-check"></i>Modifying dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a><ul>
+<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a>
+<ul>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
-<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
+<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a>
+<ul>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#csv-files"><i class="fa fa-check"></i><code>.csv</code> files</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#prepping-your-data-for-r"><i class="fa fa-check"></i>Prepping your data for <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
+<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#most-common-types-of-plots"><i class="fa fa-check"></i>Most common types of plots</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#basic-plot-formatting"><i class="fa fa-check"></i>Basic plot formatting</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#plotting-with-data-frames"><i class="fa fa-check"></i>Plotting with data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a><ul>
+<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#what-is-ggplot2"><i class="fa fa-check"></i>What is <code>ggplot2</code>?</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#bar-plot"><i class="fa fa-check"></i>Bar plot</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a><ul>
+<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a>
+<ul>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-dplyr-package"><i class="fa fa-check"></i>The <code>dplyr</code> package</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-pipe"><i class="fa fa-check"></i>The <code>%&gt;%</code> pipe</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#dplyr-verbs"><i class="fa fa-check"></i><code>dplyr</code> verbs</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a><ul>
+<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a>
+<ul>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#exploring-distributions"><i class="fa fa-check"></i>Exploring distributions</a></li>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a><ul>
+<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-for-different-data-types"><i class="fa fa-check"></i>Tests for different data types</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#comparison-tests"><i class="fa fa-check"></i>Comparison tests</a></li>
@@ -245,7 +287,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
 </ul></li>
 <li class="part"><span><b>IV Reproducible research</b></span></li>
-<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a><ul>
+<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-set-up"><i class="fa fa-check"></i><code>Git</code> set up</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
@@ -253,23 +296,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-workflow-overview"><i class="fa fa-check"></i><code>Git</code> workflow: overview</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a><ul>
+<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a>
+<ul>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#what-is-markdown"><i class="fa fa-check"></i>What is <code>Markdown</code>?</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#raw-markdown-example"><i class="fa fa-check"></i>Raw <code>Markdown</code> example</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-12"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a><ul>
+<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#add-an-r-chunk"><i class="fa fa-check"></i>Add an <code>R</code> chunk</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#in-line-r-code"><i class="fa fa-check"></i>In-line <code>R</code> code</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a><ul>
+<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a>
+<ul>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#build-your-first-shiny-app"><i class="fa fa-check"></i>Build your first <code>shiny</code> app</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a><ul>
+<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a>
+<ul>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#mapping-with-leaflet"><i class="fa fa-check"></i>Mapping with <code>leaflet</code></a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-2"><i class="fa fa-check"></i>Final thoughts</a></li>
@@ -284,7 +331,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="32" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>32</b> Trump tweets</a></li>
 <li class="chapter" data-level="33" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>33</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
 <li class="part"><span><b>VI Presenting research</b></span></li>
-<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a><ul>
+<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a>
+<ul>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
@@ -293,7 +341,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a><ul>
+<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a>
+<ul>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
@@ -302,46 +351,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="36" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>36</b> Research talks</a></li>
 <li class="part"><span><b>VII Deep <code>R</code></b></span></li>
-<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a><ul>
+<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#write.csv"><i class="fa fa-check"></i><code>write.csv()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#saverds"><i class="fa fa-check"></i><code>saveRDS()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#pdf-and-png"><i class="fa fa-check"></i><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a>
+<ul>
 <li class="chapter" data-level="" data-path="joining_datasets.html"><a href="joining_datasets.html#joining-with-dplyr"><i class="fa fa-check"></i>Joining with <code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
+<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a>
+<ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a><ul>
+<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a>
+<ul>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#the-lubridate-package"><i class="fa fa-check"></i>The <code>lubridate()</code> package</a></li>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a><ul>
+<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a>
+<ul>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a><ul>
+<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a>
+<ul>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#for-loop-exercises"><i class="fa fa-check"></i><code>for</code> loop exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a><ul>
+<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a>
+<ul>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a><ul>
+<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a>
+<ul>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
 </ul></li>
 <li class="chapter" data-level="45" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>45</b> Advanced base plots in <code>R</code></a></li>
-<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a><ul>
+<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a>
+<ul>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#geographic-data-structures"><i class="fa fa-check"></i>Geographic data structures</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors"><i class="fa fa-check"></i>Combining rasters &amp; vectors</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors-leaflet"><i class="fa fa-check"></i>Combining rasters, vectors, &amp; <code>leaflet</code></a></li>
 </ul></li>
-<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a><ul>
+<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-5"><i class="fa fa-check"></i>Review assignment</a></li>
@@ -367,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="text" class="section level1 hasAnchor">
+<div id="text" class="section level1 hasAnchor" number="39">
 <h1><span class="header-section-number">Module 39</span> Working with text<a href="text.html#text" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="learning-goal-1" class="section level4 unnumbered hasAnchor">
 <h4>Learning goal<a href="text.html#learning-goal-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -378,142 +437,142 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you do not learn how to edit and transform text-based fields within datasets, you will quickly get stuck in <code>R</code>. Think of dates, GPS coordinates, user IDs, group names, plot labels, <em>etc.</em> All of these forms of data can contain non-numeric text. Becoming comfortable working with text in <code>R</code> is an essential part of your <code>R</code> toolbag.</p>
 <p>Here we will present the most common functions for working with text. Remember that <code>R</code> has a special object class for text, known to as <strong>character</strong> class, and that character objects are often referred to as <strong>strings</strong>.</p>
 <p>Most of these functions come pre-installed in <code>R</code>. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the <strong><code>stringr</code> package</strong>. Go ahead an install <code>stringr</code> and load it using <code>library()</code>.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</a>
-<a class="sourceLine" id="cb442-2" data-line-number="2"><span class="kw">library</span>(stringr)</a></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="text.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span>
+<span id="cb431-2"><a href="text.html#cb431-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
 </div>
 <div id="most-common-tools" class="section level2 unnumbered hasAnchor">
 <h2>Most common tools<a href="text.html#most-common-tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="paste-paste0" class="section level4 unnumbered hasAnchor">
 <h4><code>paste()</code> &amp; <code>paste0()</code><a href="text.html#paste-paste0" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><code>paste()</code></strong> and <strong><code>paste0()</code></strong> combines two ore more strings together into a single object:</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb443-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">96</span></a>
-<a class="sourceLine" id="cb443-3" data-line-number="3">file_name &lt;-<span class="st"> &quot;this_file.csv&quot;</span></a>
-<a class="sourceLine" id="cb443-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb443-5" data-line-number="5"><span class="kw">paste</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>)</a>
-<a class="sourceLine" id="cb443-6" data-line-number="6">[<span class="dv">1</span>] <span class="st">&quot;10 of 96 : Processing this_file.csv . . . &quot;</span></a></code></pre></div>
-<p>Notice that <code>paste()</code> assumes each object is separated by a blank space. &quot; &quot;. <code>paste0()</code> assumes no space between objects. Here’s the same input but with <code>paste0()</code> instead.</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1"><span class="kw">paste0</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>) </a>
-<a class="sourceLine" id="cb444-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;10of96: Processingthis_file.csv. . . &quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="text.html#cb432-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb432-2"><a href="text.html#cb432-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">96</span></span>
+<span id="cb432-3"><a href="text.html#cb432-3" aria-hidden="true" tabindex="-1"></a>file_name <span class="ot">&lt;-</span> <span class="st">&quot;this_file.csv&quot;</span></span>
+<span id="cb432-4"><a href="text.html#cb432-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb432-5"><a href="text.html#cb432-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>)</span>
+<span id="cb432-6"><a href="text.html#cb432-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10 of 96 : Processing this_file.csv . . . &quot;</span></span></code></pre></div>
+<p>Notice that <code>paste()</code> assumes each object is separated by a blank space. ” “. <code>paste0()</code> assumes no space between objects. Here’s the same input but with <code>paste0()</code> instead.</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="text.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>) </span>
+<span id="cb433-2"><a href="text.html#cb433-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10of96: Processingthis_file.csv. . . &quot;</span></span></code></pre></div>
 <p>To replicate the original output with <code>paste()</code>, you manually add blank spaces like this:</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="kw">paste0</span>(i,<span class="st">&quot; of &quot;</span>,n,<span class="st">&quot;: Processing &quot;</span>,file_name,<span class="st">&quot; . . . &quot;</span>) </a>
-<a class="sourceLine" id="cb445-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;10 of 96: Processing this_file.csv . . . &quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="text.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(i,<span class="st">&quot; of &quot;</span>,n,<span class="st">&quot;: Processing &quot;</span>,file_name,<span class="st">&quot; . . . &quot;</span>) </span>
+<span id="cb434-2"><a href="text.html#cb434-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10 of 96: Processing this_file.csv . . . &quot;</span></span></code></pre></div>
 <p>You can also use <code>paste()</code> to <code>collapse</code> multiple objects into a single string.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb446-2" data-line-number="2"><span class="kw">paste</span>(x,<span class="dt">collapse=</span><span class="st">&quot;-&quot;</span>)</a>
-<a class="sourceLine" id="cb446-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;1-2-3-4-5-6-7-8-9-10&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="text.html#cb435-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb435-2"><a href="text.html#cb435-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(x,<span class="at">collapse=</span><span class="st">&quot;-&quot;</span>)</span>
+<span id="cb435-3"><a href="text.html#cb435-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1-2-3-4-5-6-7-8-9-10&quot;</span></span></code></pre></div>
 </div>
 <div id="tolower-toupper" class="section level4 unnumbered hasAnchor">
 <h4><code>tolower()</code> &amp; <code>toupper()</code><a href="text.html#tolower-toupper" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><code>tolower()</code></strong> and <strong><code>toupper()</code></strong> forces all text in a string to lower case or upper case, respectively:</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" data-line-number="1">x &lt;-<span class="st"> &quot;That Tree Is Far Away.&quot;</span></a>
-<a class="sourceLine" id="cb447-2" data-line-number="2"><span class="kw">tolower</span>(x)</a>
-<a class="sourceLine" id="cb447-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;that tree is far away.&quot;</span></a>
-<a class="sourceLine" id="cb447-4" data-line-number="4"><span class="kw">toupper</span>(x)</a>
-<a class="sourceLine" id="cb447-5" data-line-number="5">[<span class="dv">1</span>] <span class="st">&quot;THAT TREE IS FAR AWAY.&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="text.html#cb436-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;That Tree Is Far Away.&quot;</span></span>
+<span id="cb436-2"><a href="text.html#cb436-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(x)</span>
+<span id="cb436-3"><a href="text.html#cb436-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;that tree is far away.&quot;</span></span>
+<span id="cb436-4"><a href="text.html#cb436-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(x)</span>
+<span id="cb436-5"><a href="text.html#cb436-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;THAT TREE IS FAR AWAY.&quot;</span></span></code></pre></div>
 </div>
 <div id="nchar" class="section level4 unnumbered hasAnchor">
 <h4><code>nchar()</code><a href="text.html#nchar" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><code>nchar()</code></strong> returns the number of characters within a string:</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1">x &lt;-<span class="st"> &quot;That Tree Is Far Away.&quot;</span></a>
-<a class="sourceLine" id="cb448-2" data-line-number="2"><span class="kw">nchar</span>(x)</a>
-<a class="sourceLine" id="cb448-3" data-line-number="3">[<span class="dv">1</span>] <span class="dv">22</span></a></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="text.html#cb437-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;That Tree Is Far Away.&quot;</span></span>
+<span id="cb437-2"><a href="text.html#cb437-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(x)</span>
+<span id="cb437-3"><a href="text.html#cb437-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
 </div>
 <div id="substr" class="section level4 unnumbered hasAnchor">
 <h4><code>substr()</code><a href="text.html#substr" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><code>substr()</code></strong> trims a string according to a start and end character position:</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1">dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,</a>
-<a class="sourceLine" id="cb449-2" data-line-number="2">           <span class="st">&quot;2021-03-02&quot;</span>,</a>
-<a class="sourceLine" id="cb449-3" data-line-number="3">           <span class="st">&quot;2021-03-03&quot;</span>)</a>
-<a class="sourceLine" id="cb449-4" data-line-number="4"><span class="kw">substr</span>(dates,<span class="dv">1</span>,<span class="dv">4</span>) <span class="co"># years</span></a>
-<a class="sourceLine" id="cb449-5" data-line-number="5">[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span></a>
-<a class="sourceLine" id="cb449-6" data-line-number="6"><span class="kw">substr</span>(dates,<span class="dv">6</span>,<span class="dv">7</span>) <span class="co"># months</span></a>
-<a class="sourceLine" id="cb449-7" data-line-number="7">[<span class="dv">1</span>] <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span></a>
-<a class="sourceLine" id="cb449-8" data-line-number="8"><span class="kw">substr</span>(dates,<span class="dv">9</span>,<span class="dv">10</span>) <span class="co"># days</span></a>
-<a class="sourceLine" id="cb449-9" data-line-number="9">[<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="text.html#cb438-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,</span>
+<span id="cb438-2"><a href="text.html#cb438-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;2021-03-02&quot;</span>,</span>
+<span id="cb438-3"><a href="text.html#cb438-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;2021-03-03&quot;</span>)</span>
+<span id="cb438-4"><a href="text.html#cb438-4" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">1</span>,<span class="dv">4</span>) <span class="co"># years</span></span>
+<span id="cb438-5"><a href="text.html#cb438-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span></span>
+<span id="cb438-6"><a href="text.html#cb438-6" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">6</span>,<span class="dv">7</span>) <span class="co"># months</span></span>
+<span id="cb438-7"><a href="text.html#cb438-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span></span>
+<span id="cb438-8"><a href="text.html#cb438-8" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">9</span>,<span class="dv">10</span>) <span class="co"># days</span></span>
+<span id="cb438-9"><a href="text.html#cb438-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span></span></code></pre></div>
 </div>
 <div id="grep" class="section level4 unnumbered hasAnchor">
 <h4><code>grep()</code><a href="text.html#grep" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><code>grep()</code></strong> returns the elements in a character vector that contain a given pattern:</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1">years &lt;-<span class="st"> </span><span class="dv">1900</span><span class="op">:</span><span class="dv">1999</span></a>
-<a class="sourceLine" id="cb450-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb450-3" data-line-number="3"><span class="co"># Which elements correspond to the 1980s?</span></a>
-<a class="sourceLine" id="cb450-4" data-line-number="4">eighties &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;198&quot;</span>,years)</a>
-<a class="sourceLine" id="cb450-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb450-6" data-line-number="6">years[eighties]</a>
-<a class="sourceLine" id="cb450-7" data-line-number="7"> [<span class="dv">1</span>] <span class="dv">1980</span> <span class="dv">1981</span> <span class="dv">1982</span> <span class="dv">1983</span> <span class="dv">1984</span> <span class="dv">1985</span> <span class="dv">1986</span> <span class="dv">1987</span> <span class="dv">1988</span> <span class="dv">1989</span></a></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="text.html#cb439-1" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">1900</span><span class="sc">:</span><span class="dv">1999</span></span>
+<span id="cb439-2"><a href="text.html#cb439-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb439-3"><a href="text.html#cb439-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Which elements correspond to the 1980s?</span></span>
+<span id="cb439-4"><a href="text.html#cb439-4" aria-hidden="true" tabindex="-1"></a>eighties <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;198&quot;</span>,years)</span>
+<span id="cb439-5"><a href="text.html#cb439-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb439-6"><a href="text.html#cb439-6" aria-hidden="true" tabindex="-1"></a>years[eighties]</span>
+<span id="cb439-7"><a href="text.html#cb439-7" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">1980</span> <span class="dv">1981</span> <span class="dv">1982</span> <span class="dv">1983</span> <span class="dv">1984</span> <span class="dv">1985</span> <span class="dv">1986</span> <span class="dv">1987</span> <span class="dv">1988</span> <span class="dv">1989</span></span></code></pre></div>
 </div>
 <div id="gsub" class="section level4 unnumbered hasAnchor">
 <h4><code>gsub()</code><a href="text.html#gsub" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><code>gsub()</code></strong> replaces a given pattern with another in a character vector.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1">dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</a>
-<a class="sourceLine" id="cb451-2" data-line-number="2"><span class="kw">gsub</span>(<span class="st">&quot;-&quot;</span>,<span class="st">&quot;/&quot;</span>,dates)</a>
-<a class="sourceLine" id="cb451-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;2021/03/01&quot;</span> <span class="st">&quot;2021/03/02&quot;</span> <span class="st">&quot;2021/03/03&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="text.html#cb440-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
+<span id="cb440-2"><a href="text.html#cb440-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">&quot;-&quot;</span>,<span class="st">&quot;/&quot;</span>,dates)</span>
+<span id="cb440-3"><a href="text.html#cb440-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021/03/01&quot;</span> <span class="st">&quot;2021/03/02&quot;</span> <span class="st">&quot;2021/03/03&quot;</span></span></code></pre></div>
 </div>
 <div id="str_pad" class="section level4 unnumbered hasAnchor">
 <h4><code>str_pad()</code><a href="text.html#str_pad" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><code>stringr::str_pad()</code></strong>: standardize the lengths of strings by “padding” it (e.g., with zeroes) :</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1">days &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)</a>
-<a class="sourceLine" id="cb452-2" data-line-number="2">days</a>
-<a class="sourceLine" id="cb452-3" data-line-number="3"> [<span class="dv">1</span>] <span class="st">&quot;1&quot;</span>  <span class="st">&quot;2&quot;</span>  <span class="st">&quot;3&quot;</span>  <span class="st">&quot;4&quot;</span>  <span class="st">&quot;5&quot;</span>  <span class="st">&quot;6&quot;</span>  <span class="st">&quot;7&quot;</span>  <span class="st">&quot;8&quot;</span>  <span class="st">&quot;9&quot;</span>  <span class="st">&quot;10&quot;</span> <span class="st">&quot;11&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;13&quot;</span> <span class="st">&quot;14&quot;</span> <span class="st">&quot;15&quot;</span></a>
-<a class="sourceLine" id="cb452-4" data-line-number="4">stringr<span class="op">::</span><span class="kw">str_pad</span>(days,<span class="dt">width=</span><span class="dv">2</span>,<span class="dt">side=</span><span class="st">&quot;left&quot;</span>,<span class="dt">pad=</span><span class="st">&quot;0&quot;</span>)</a>
-<a class="sourceLine" id="cb452-5" data-line-number="5"> [<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;04&quot;</span> <span class="st">&quot;05&quot;</span> <span class="st">&quot;06&quot;</span> <span class="st">&quot;07&quot;</span> <span class="st">&quot;08&quot;</span> <span class="st">&quot;09&quot;</span> <span class="st">&quot;10&quot;</span> <span class="st">&quot;11&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;13&quot;</span> <span class="st">&quot;14&quot;</span> <span class="st">&quot;15&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="text.html#cb441-1" aria-hidden="true" tabindex="-1"></a>days <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)</span>
+<span id="cb441-2"><a href="text.html#cb441-2" aria-hidden="true" tabindex="-1"></a>days</span>
+<span id="cb441-3"><a href="text.html#cb441-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;1&quot;</span>  <span class="st">&quot;2&quot;</span>  <span class="st">&quot;3&quot;</span>  <span class="st">&quot;4&quot;</span>  <span class="st">&quot;5&quot;</span>  <span class="st">&quot;6&quot;</span>  <span class="st">&quot;7&quot;</span>  <span class="st">&quot;8&quot;</span>  <span class="st">&quot;9&quot;</span>  <span class="st">&quot;10&quot;</span> <span class="st">&quot;11&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;13&quot;</span> <span class="st">&quot;14&quot;</span> <span class="st">&quot;15&quot;</span></span>
+<span id="cb441-4"><a href="text.html#cb441-4" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_pad</span>(days,<span class="at">width=</span><span class="dv">2</span>,<span class="at">side=</span><span class="st">&quot;left&quot;</span>,<span class="at">pad=</span><span class="st">&quot;0&quot;</span>)</span>
+<span id="cb441-5"><a href="text.html#cb441-5" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;04&quot;</span> <span class="st">&quot;05&quot;</span> <span class="st">&quot;06&quot;</span> <span class="st">&quot;07&quot;</span> <span class="st">&quot;08&quot;</span> <span class="st">&quot;09&quot;</span> <span class="st">&quot;10&quot;</span> <span class="st">&quot;11&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;13&quot;</span> <span class="st">&quot;14&quot;</span> <span class="st">&quot;15&quot;</span></span></code></pre></div>
 </div>
 <div id="str_split" class="section level4 unnumbered hasAnchor">
 <h4><code>str_split()</code><a href="text.html#str_split" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><code>stringr::str_split()</code></strong>: split a string into several strings at the occurrence of a specified character.</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" data-line-number="1">dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</a>
-<a class="sourceLine" id="cb453-2" data-line-number="2">splits &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw">str_split</span>(dates,<span class="st">&quot;-&quot;</span>)</a>
-<a class="sourceLine" id="cb453-3" data-line-number="3">splits</a>
-<a class="sourceLine" id="cb453-4" data-line-number="4">[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb453-5" data-line-number="5">[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;01&quot;</span>  </a>
-<a class="sourceLine" id="cb453-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb453-7" data-line-number="7">[[<span class="dv">2</span>]]</a>
-<a class="sourceLine" id="cb453-8" data-line-number="8">[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;02&quot;</span>  </a>
-<a class="sourceLine" id="cb453-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb453-10" data-line-number="10">[[<span class="dv">3</span>]]</a>
-<a class="sourceLine" id="cb453-11" data-line-number="11">[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;03&quot;</span>  </a></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="text.html#cb442-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
+<span id="cb442-2"><a href="text.html#cb442-2" aria-hidden="true" tabindex="-1"></a>splits <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(dates,<span class="st">&quot;-&quot;</span>)</span>
+<span id="cb442-3"><a href="text.html#cb442-3" aria-hidden="true" tabindex="-1"></a>splits</span>
+<span id="cb442-4"><a href="text.html#cb442-4" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb442-5"><a href="text.html#cb442-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;01&quot;</span>  </span>
+<span id="cb442-6"><a href="text.html#cb442-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb442-7"><a href="text.html#cb442-7" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb442-8"><a href="text.html#cb442-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;02&quot;</span>  </span>
+<span id="cb442-9"><a href="text.html#cb442-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb442-10"><a href="text.html#cb442-10" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]]</span>
+<span id="cb442-11"><a href="text.html#cb442-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;03&quot;</span>   <span class="st">&quot;03&quot;</span>  </span></code></pre></div>
 <p>This function returns a <em>list</em> for every element in the original vector. A common need is to retrieve one item from each of the elements in this list. For example, let’s say you are trying to retrieve the months of each element in the <code>dates</code> vector. The list structure makes this tricky to retrieve.</p>
 <p>Here’s the way to do it by drawing upon the <code>apply()</code> family of functions:</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1"><span class="kw">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">1</span>) <span class="co"># years</span></a>
-<a class="sourceLine" id="cb454-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span></a>
-<a class="sourceLine" id="cb454-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb454-4" data-line-number="4"><span class="kw">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">2</span>) <span class="co"># Months</span></a>
-<a class="sourceLine" id="cb454-5" data-line-number="5">[<span class="dv">1</span>] <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span></a>
-<a class="sourceLine" id="cb454-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb454-7" data-line-number="7"><span class="kw">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">3</span>) <span class="co"># days</span></a>
-<a class="sourceLine" id="cb454-8" data-line-number="8">[<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="text.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">1</span>) <span class="co"># years</span></span>
+<span id="cb443-2"><a href="text.html#cb443-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span> <span class="st">&quot;2021&quot;</span></span>
+<span id="cb443-3"><a href="text.html#cb443-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb443-4"><a href="text.html#cb443-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">2</span>) <span class="co"># Months</span></span>
+<span id="cb443-5"><a href="text.html#cb443-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span> <span class="st">&quot;03&quot;</span></span>
+<span id="cb443-6"><a href="text.html#cb443-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb443-7"><a href="text.html#cb443-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">3</span>) <span class="co"># days</span></span>
+<span id="cb443-8"><a href="text.html#cb443-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;01&quot;</span> <span class="st">&quot;02&quot;</span> <span class="st">&quot;03&quot;</span></span></code></pre></div>
 </div>
 <div id="as.character" class="section level4 unnumbered hasAnchor">
 <h4><code>as.character()</code><a href="text.html#as.character" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><code>as.character()</code></strong>: converts a non-character object into a character string.</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb455-2" data-line-number="2"><span class="kw">as.character</span>(x)</a>
-<a class="sourceLine" id="cb455-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;1&quot;</span> <span class="st">&quot;2&quot;</span> <span class="st">&quot;3&quot;</span></a></code></pre></div>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;group1&quot;</span>,<span class="st">&quot;group2&quot;</span>,<span class="st">&quot;group3&quot;</span>))</a>
-<a class="sourceLine" id="cb456-2" data-line-number="2"><span class="kw">as.character</span>(x)</a>
-<a class="sourceLine" id="cb456-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;group1&quot;</span> <span class="st">&quot;group2&quot;</span> <span class="st">&quot;group3&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="text.html#cb444-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb444-2"><a href="text.html#cb444-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(x)</span>
+<span id="cb444-3"><a href="text.html#cb444-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1&quot;</span> <span class="st">&quot;2&quot;</span> <span class="st">&quot;3&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="text.html#cb445-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="st">&quot;group1&quot;</span>,<span class="st">&quot;group2&quot;</span>,<span class="st">&quot;group3&quot;</span>))</span>
+<span id="cb445-2"><a href="text.html#cb445-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(x)</span>
+<span id="cb445-3"><a href="text.html#cb445-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;group1&quot;</span> <span class="st">&quot;group2&quot;</span> <span class="st">&quot;group3&quot;</span></span></code></pre></div>
 <p>This can be particularly useful when trying to resolve problems caused by factors. One common issue occurs when <code>R</code> mistakes a set of numbers as a set of factors. Using <code>as.character()</code> can set things right:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>))</a>
-<a class="sourceLine" id="cb457-2" data-line-number="2">x</a>
-<a class="sourceLine" id="cb457-3" data-line-number="3">[<span class="dv">1</span>] <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></a>
-<a class="sourceLine" id="cb457-4" data-line-number="4">Levels<span class="op">:</span><span class="st"> </span><span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></a></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="text.html#cb446-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>))</span>
+<span id="cb446-2"><a href="text.html#cb446-2" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb446-3"><a href="text.html#cb446-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></span>
+<span id="cb446-4"><a href="text.html#cb446-4" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></span></code></pre></div>
 <p>If you try to convert straight to numeric, it does not work:</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1"><span class="kw">as.numeric</span>(x)</a>
-<a class="sourceLine" id="cb458-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="text.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(x)</span>
+<span id="cb447-2"><a href="text.html#cb447-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span></code></pre></div>
 <p>So convert to character firstL</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1"><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(x))</a>
-<a class="sourceLine" id="cb459-2" data-line-number="2">[<span class="dv">1</span>] <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="text.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(x))</span>
+<span id="cb448-2"><a href="text.html#cb448-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span></span></code></pre></div>
 </div>
 <div id="exercises-16" class="section level3 unnumbered hasAnchor">
 <h3>Exercises<a href="text.html#exercises-16" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To practice these tools, we will play with the results of a recent survey. View the raw results <a href="&#39;https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767&#39;">here</a>.</p>
 <p>Read the survey into <code>R</code> as follows:</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb460-2" data-line-number="2"><span class="kw">library</span>(gsheet)</a>
-<a class="sourceLine" id="cb460-3" data-line-number="3">survey &lt;-<span class="st"> </span><span class="kw">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="text.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb449-2"><a href="text.html#cb449-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb449-3"><a href="text.html#cb449-3" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767&#39;</span>)</span></code></pre></div>
 <p>To make this spreadsheet easier to work with, let’s rename the columns. Currently, the columns are:</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" data-line-number="1"><span class="kw">names</span>(survey)</a></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="text.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(survey)</span></code></pre></div>
 <pre><code> [1] &quot;Timestamp&quot;                                                    
  [2] &quot;What is your sex?&quot;                                            
  [3] &quot;How old are you (in years)?&quot;                                  
@@ -532,11 +591,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [16] &quot;first_name&quot;                                                   
 [17] &quot;last_name&quot;                                                    </code></pre>
 <p>Rename them like so:</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" data-line-number="1"><span class="kw">names</span>(survey) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;time&#39;</span>, <span class="st">&#39;sex&#39;</span>, <span class="st">&#39;age&#39;</span>,<span class="st">&#39;sib&#39;</span>, <span class="st">&#39;dad_mus&#39;</span>, </a>
-<a class="sourceLine" id="cb463-2" data-line-number="2">                   <span class="st">&#39;person_mus&#39;</span>, <span class="st">&#39;joe_mus_is&#39;</span>, <span class="st">&#39;eyesight&#39;</span>, </a>
-<a class="sourceLine" id="cb463-3" data-line-number="3">                   <span class="st">&#39;height&#39;</span>, <span class="st">&#39;shoe_size&#39;</span>, <span class="st">&#39;bday&#39;</span>, <span class="st">&#39;money_or_love&#39;</span>, </a>
-<a class="sourceLine" id="cb463-4" data-line-number="4">                   <span class="st">&#39;rps_skill&#39;</span>, <span class="st">&#39;num_pan&#39;</span>, <span class="st">&#39;cats_dogs&#39;</span>, </a>
-<a class="sourceLine" id="cb463-5" data-line-number="5">                   <span class="st">&#39;first_name&#39;</span>, <span class="st">&#39;last_name&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="text.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(survey) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;time&#39;</span>, <span class="st">&#39;sex&#39;</span>, <span class="st">&#39;age&#39;</span>,<span class="st">&#39;sib&#39;</span>, <span class="st">&#39;dad_mus&#39;</span>, </span>
+<span id="cb452-2"><a href="text.html#cb452-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&#39;person_mus&#39;</span>, <span class="st">&#39;joe_mus_is&#39;</span>, <span class="st">&#39;eyesight&#39;</span>, </span>
+<span id="cb452-3"><a href="text.html#cb452-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&#39;height&#39;</span>, <span class="st">&#39;shoe_size&#39;</span>, <span class="st">&#39;bday&#39;</span>, <span class="st">&#39;money_or_love&#39;</span>, </span>
+<span id="cb452-4"><a href="text.html#cb452-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&#39;rps_skill&#39;</span>, <span class="st">&#39;num_pan&#39;</span>, <span class="st">&#39;cats_dogs&#39;</span>, </span>
+<span id="cb452-5"><a href="text.html#cb452-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&#39;first_name&#39;</span>, <span class="st">&#39;last_name&#39;</span>)</span></code></pre></div>
 <p><strong>1.</strong> Create a new column named <code>full_name</code> that combines the first and last name of each respondent.</p>
 <p><strong>2.</strong> Simplify the <code>sex</code> column so that <code>m</code> (lowercase) stands for males, <code>f</code> (lowercase) stands for females, and <code>p</code> (lowercase) stands for ‘Prefer not to say’.</p>
 <p><strong>3.</strong> Modify the column <code>money_or_love</code> such that the first letter is always capitalized.</p>
