@@ -63,27 +63,25 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -92,9 +90,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,28 +125,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -166,34 +142,29 @@ div.csl-indent {
 <li><a href="./">www.datascience.pizza</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a>
-<ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-this-is-and-what-it-isnt"><i class="fa fa-check"></i>What this is, and what it isn’t</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-is-for"><i class="fa fa-check"></i>Who this is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What you will learn</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
 </ul></li>
 <li class="part"><span><b>I Core theory</b></span></li>
-<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a>
-<ul>
+<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a><ul>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i>What is the data life cycle?</a></li>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i>Data science ‘in the wild’</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a>
-<ul>
+<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a><ul>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-crisis"><i class="fa fa-check"></i>The crisis</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-reproducibility-movement"><i class="fa fa-check"></i>The ‘reproducibility’ movement</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#why-r"><i class="fa fa-check"></i>Why <code>R</code>?</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a>
-<ul>
+<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a><ul>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#a-few-principles"><i class="fa fa-check"></i>A few principles</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#warm-up-scenarios"><i class="fa fa-check"></i>Warm up scenarios</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#case-studies"><i class="fa fa-check"></i>Case studies</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#more-scenarios"><i class="fa fa-check"></i>More scenarios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a>
-<ul>
+<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a><ul>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#the-value-of-data-viz"><i class="fa fa-check"></i>The value of <em>data viz</em></a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#plot-gallery"><i class="fa fa-check"></i>Plot gallery</a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#chart-junk"><i class="fa fa-check"></i>Chart junk</a></li>
@@ -201,85 +172,72 @@ div.csl-indent {
 </ul></li>
 <li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
 <li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
-<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a>
-<ul>
+<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a><ul>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#running-code-in-the-console"><i class="fa fa-check"></i>Running code in the <em>Console</em></a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-r-like-a-calculator"><i class="fa fa-check"></i>Use R like a calculator</a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#getting-along-with-r"><i class="fa fa-check"></i>Getting along with <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a>
-<ul>
+<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a><ul>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#scripts"><i class="fa fa-check"></i>Scripts</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#wd"><i class="fa fa-check"></i>Your working directory</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#typical-workflows"><i class="fa fa-check"></i>Typical workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a>
-<ul>
+<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a><ul>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#types-of-data-in-r"><i class="fa fa-check"></i>Types of data in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a>
-<ul>
+<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a><ul>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#declaring-and-using-vectors"><i class="fa fa-check"></i>Declaring and using vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#math-with-two-vectors"><i class="fa fa-check"></i>Math with two vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
-<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a>
-<ul>
+<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a>
-<ul>
+<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a><ul>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#creating-dataframes"><i class="fa fa-check"></i>Creating dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#modifying-dataframes"><i class="fa fa-check"></i>Modifying dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a>
-<ul>
+<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a><ul>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
-<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a>
-<ul>
+<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#csv-files"><i class="fa fa-check"></i><code>.csv</code> files</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#prepping-your-data-for-r"><i class="fa fa-check"></i>Prepping your data for <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a>
-<ul>
+<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#most-common-types-of-plots"><i class="fa fa-check"></i>Most common types of plots</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#basic-plot-formatting"><i class="fa fa-check"></i>Basic plot formatting</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#plotting-with-data-frames"><i class="fa fa-check"></i>Plotting with data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a>
-<ul>
+<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a><ul>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#what-is-ggplot2"><i class="fa fa-check"></i>What is <code>ggplot2</code>?</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#bar-plot"><i class="fa fa-check"></i>Bar plot</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a>
-<ul>
+<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a><ul>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-dplyr-package"><i class="fa fa-check"></i>The <code>dplyr</code> package</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-pipe"><i class="fa fa-check"></i>The <code>%&gt;%</code> pipe</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#dplyr-verbs"><i class="fa fa-check"></i><code>dplyr</code> verbs</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a>
-<ul>
+<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a><ul>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#exploring-distributions"><i class="fa fa-check"></i>Exploring distributions</a></li>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a>
-<ul>
+<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a><ul>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-for-different-data-types"><i class="fa fa-check"></i>Tests for different data types</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#comparison-tests"><i class="fa fa-check"></i>Comparison tests</a></li>
@@ -287,8 +245,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
 </ul></li>
 <li class="part"><span><b>IV Reproducible research</b></span></li>
-<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a>
-<ul>
+<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a><ul>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-set-up"><i class="fa fa-check"></i><code>Git</code> set up</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
@@ -296,27 +253,23 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-workflow-overview"><i class="fa fa-check"></i><code>Git</code> workflow: overview</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a>
-<ul>
+<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a><ul>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#what-is-markdown"><i class="fa fa-check"></i>What is <code>Markdown</code>?</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#raw-markdown-example"><i class="fa fa-check"></i>Raw <code>Markdown</code> example</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-12"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a>
-<ul>
+<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a><ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#add-an-r-chunk"><i class="fa fa-check"></i>Add an <code>R</code> chunk</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#in-line-r-code"><i class="fa fa-check"></i>In-line <code>R</code> code</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a>
-<ul>
+<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a><ul>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#build-your-first-shiny-app"><i class="fa fa-check"></i>Build your first <code>shiny</code> app</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a>
-<ul>
+<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a><ul>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#mapping-with-leaflet"><i class="fa fa-check"></i>Mapping with <code>leaflet</code></a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-2"><i class="fa fa-check"></i>Final thoughts</a></li>
@@ -331,8 +284,7 @@ div.csl-indent {
 <li class="chapter" data-level="32" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>32</b> Trump tweets</a></li>
 <li class="chapter" data-level="33" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>33</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
 <li class="part"><span><b>VI Presenting research</b></span></li>
-<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a>
-<ul>
+<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a><ul>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
@@ -341,8 +293,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a>
-<ul>
+<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a><ul>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
@@ -351,56 +302,46 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="36" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>36</b> Research talks</a></li>
 <li class="part"><span><b>VII Deep <code>R</code></b></span></li>
-<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a>
-<ul>
+<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a><ul>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#write.csv"><i class="fa fa-check"></i><code>write.csv()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#saverds"><i class="fa fa-check"></i><code>saveRDS()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#pdf-and-png"><i class="fa fa-check"></i><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a>
-<ul>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
 <li class="chapter" data-level="" data-path="joining_datasets.html"><a href="joining_datasets.html#joining-with-dplyr"><i class="fa fa-check"></i>Joining with <code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a>
-<ul>
+<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a>
-<ul>
+<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a><ul>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#the-lubridate-package"><i class="fa fa-check"></i>The <code>lubridate()</code> package</a></li>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a>
-<ul>
+<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a><ul>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a>
-<ul>
+<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a><ul>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#for-loop-exercises"><i class="fa fa-check"></i><code>for</code> loop exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a>
-<ul>
+<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a><ul>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a>
-<ul>
+<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a><ul>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
 </ul></li>
 <li class="chapter" data-level="45" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>45</b> Advanced base plots in <code>R</code></a></li>
-<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a>
-<ul>
+<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a><ul>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#geographic-data-structures"><i class="fa fa-check"></i>Geographic data structures</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors"><i class="fa fa-check"></i>Combining rasters &amp; vectors</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors-leaflet"><i class="fa fa-check"></i>Combining rasters, vectors, &amp; <code>leaflet</code></a></li>
 </ul></li>
-<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a>
-<ul>
+<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a><ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-5"><i class="fa fa-check"></i>Review assignment</a></li>
@@ -426,7 +367,7 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="base-plots" class="section level1 hasAnchor" number="16">
+<div id="base-plots" class="section level1 hasAnchor">
 <h1><span class="header-section-number">Module 16</span> Base plots<a href="base-plots.html#base-plots" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="learning-goals-8" class="section level4 unnumbered hasAnchor">
 <h4>Learning goals<a href="base-plots.html#learning-goals-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -436,9 +377,9 @@ div.csl-indent {
 </ul>
 <p> </p>
 <p>To learn how to plot, let’s first create a dataset to work with:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="base-plots.html#cb204-1" aria-hidden="true" tabindex="-1"></a>country <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;Tanzania&quot;</span>,<span class="st">&quot;Japan&quot;</span>,<span class="st">&quot;Ctr. Africa Rep.&quot;</span>,<span class="st">&quot;China&quot;</span>,<span class="st">&quot;Norway&quot;</span>,<span class="st">&quot;India&quot;</span>)</span>
-<span id="cb204-2"><a href="base-plots.html#cb204-2" aria-hidden="true" tabindex="-1"></a>lifespan <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">79</span>,<span class="dv">65</span>,<span class="dv">84</span>,<span class="dv">53</span>,<span class="dv">77</span>,<span class="dv">82</span>,<span class="dv">69</span>)</span>
-<span id="cb204-3"><a href="base-plots.html#cb204-3" aria-hidden="true" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55335</span>,<span class="dv">2875</span>,<span class="dv">38674</span>,<span class="dv">623</span>,<span class="dv">13102</span>,<span class="dv">84500</span>,<span class="dv">6807</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">country &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;Tanzania&quot;</span>,<span class="st">&quot;Japan&quot;</span>,<span class="st">&quot;Ctr. Africa Rep.&quot;</span>,<span class="st">&quot;China&quot;</span>,<span class="st">&quot;Norway&quot;</span>,<span class="st">&quot;India&quot;</span>)</a>
+<a class="sourceLine" id="cb204-2" data-line-number="2">lifespan &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">65</span>,<span class="dv">84</span>,<span class="dv">53</span>,<span class="dv">77</span>,<span class="dv">82</span>,<span class="dv">69</span>)</a>
+<a class="sourceLine" id="cb204-3" data-line-number="3">gdp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">55335</span>,<span class="dv">2875</span>,<span class="dv">38674</span>,<span class="dv">623</span>,<span class="dv">13102</span>,<span class="dv">84500</span>,<span class="dv">6807</span>)</a></code></pre></div>
 <p>These data come from this <a href="https://datasets.iisg.amsterdam/dataset.xhtml?persistentId=hdl:10622/LKYT53" target="blank">publicly available database</a> that compares health and economic indices across countries in 2011.</p>
 <p>The <code>lifespan</code> column presents the average life expectancy for each country.</p>
 <p>The <code>gdp</code> column presents the average GDP per capita within that country, which is a common index for the income and wealth of average citizens.</p>
@@ -447,23 +388,23 @@ div.csl-indent {
 <div id="create-a-basic-plot" class="section level2 unnumbered hasAnchor">
 <h2>Create a basic plot<a href="base-plots.html#create-a-basic-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The simplest way to make a basic plot in <code>R</code> is to use its built-in <code>plot()</code> function:</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="base-plots.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-221-1.png" width="925.44" /></p>
 <p>This syntax is saying this: plot column <code>lifespan</code> as a function of <code>gdp</code>. The symbol <code>~</code> denotes <em>“as a function of”</em>. This frames <code>lifespan</code> as a dependent variable (y axis) that is affected by the independent variable (x axis), which in this case is <code>gdp</code>.</p>
 <p>Note that <code>R</code> uses the variable names you provided as the x- and y-axes. You can adjust these labels however you wish (see formatting section below).</p>
 <p>You can also produce this exact same plot using the following syntax:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="base-plots.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">y=</span>lifespan, <span class="at">x=</span>gdp)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">y=</span>lifespan, <span class="dt">x=</span>gdp)</a></code></pre></div>
 <p>Choose whichever one is most intuitive to you.</p>
 </div>
 <div id="most-common-types-of-plots" class="section level2 unnumbered hasAnchor">
 <h2>Most common types of plots<a href="base-plots.html#most-common-types-of-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The plot above is a <strong>scatter plot</strong>, and is one of the most common types of plots in data science.</p>
 <p>You can turn this into a <strong>line plot</strong> by adding a parameter to the <code>plot()</code> function:</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="base-plots.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp, <span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-223-1.png" width="925.44" /></p>
 <p><em>What a mess!</em> Rather than connecting these values in the order you might expect, <code>R</code> connects them in the order that they are listed in their source vectors. This is why line plots tend to be more useful in scenarios such as time series, which are inherently ordered.</p>
 <p>Another common plot is the <strong>bar plot</strong>, which uses a different <code>R</code> function:</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="base-plots.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height=</span>lifespan,<span class="at">names.arg=</span>country)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">barplot</span>(<span class="dt">height=</span>lifespan,<span class="dt">names.arg=</span>country)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-224-1.png" width="925.44" /></p>
 <p>In this command, the parameter <code>height</code> determines the height of the bars, and <code>names.arg</code> provides the labels to place beneath each bar.</p>
 <p>There are many more plot types out there, but let’s stop here for now.</p>
@@ -471,81 +412,81 @@ div.csl-indent {
 <div id="basic-plot-formatting" class="section level2 unnumbered hasAnchor">
 <h2>Basic plot formatting<a href="base-plots.html#basic-plot-formatting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can adjust the default formatting of plots by adding other inputs to your <code>plot()</code> command. To understand all the parameters you can adjust, bring up the help page for this function:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="base-plots.html#cb209-1" aria-hidden="true" tabindex="-1"></a>?plot</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">?plot</a></code></pre></div>
 <p>If multiple help page options are returned, select the <em>Generiz X-Y Plotting</em> page from the <code>base</code> package. This is the plot function that comes built-in to <code>R</code>.</p>
 <p>Here we demonstrate just a few of the most common formatting adjustments you are likely to use:</p>
 <p><strong>Set plot range</strong> using <code>xlim</code> (for the x axis) and <code>ylim</code> (for the y axis):</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="base-plots.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60000</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">60000</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-227-1.png" width="925.44" /></p>
 <p>In this command, you are defining axis limits using a 2-element vector (i.e., <code>c(min,max)</code>).</p>
 <p>Note that it can be easier to read your code if you put each input on a new line, like this:</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="base-plots.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,</span>
-<span id="cb211-2"><a href="base-plots.html#cb211-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60000</span>),</span>
-<span id="cb211-3"><a href="base-plots.html#cb211-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,</a>
+<a class="sourceLine" id="cb211-2" data-line-number="2">     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">60000</span>),</a>
+<a class="sourceLine" id="cb211-3" data-line-number="3">     <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</a></code></pre></div>
 <p>Make sure each input line within the function ends with a comma, otherwise you <code>R</code> will get confused and throw an error.</p>
 <p><strong>Set dot type</strong> using the input <code>pch</code>:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="base-plots.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-229-1.png" width="925.44" /></p>
-<p><strong>Set dot color</strong> using the input <code>col</code> (the default is <code>col="black"</code>)</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="base-plots.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><strong>Set dot color</strong> using the input <code>col</code> (the default is <code>col=&quot;black&quot;</code>)</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-230-1.png" width="925.44" /></p>
 <p><a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf?utm_source=twitterfeed&amp;utm_medium=twitter" target="blank">Here is a great resource</a> for color names in <code>R</code>.</p>
 <p><strong>Set dot size</strong> using the input <code>cex</code> (the default is <code>cex=1</code>):</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="base-plots.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">cex=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">cex=</span><span class="dv">3</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-231-1.png" width="925.44" /></p>
 <p><strong>Set axis labels</strong> using the inputs <code>xlab</code> and <code>ylab</code>:</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="base-plots.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp, <span class="at">xlab=</span><span class="st">&quot;Gross Domestic Product (GDP)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Life Expectancy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp, <span class="dt">xlab=</span><span class="st">&quot;Gross Domestic Product (GDP)&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Life Expectancy&quot;</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-232-1.png" width="925.44" /></p>
 <p><strong>Set axis number size</strong> using the input <code>cex.axis</code> (the default is <code>cex.axis=1</code>):</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="base-plots.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">cex.axis=</span>.<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">cex.axis=</span>.<span class="dv">5</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-233-1.png" width="925.44" /></p>
 <p><strong>Set axis label size</strong> using the input <code>cex.label</code> (the default is <code>cex.lab=1</code>):</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="base-plots.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">cex.lab=</span>.<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">cex.lab=</span>.<span class="dv">5</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-234-1.png" width="925.44" /></p>
 <p><strong>Set plot margins</strong> using the function <code>par(mar=c())</code> before you call <code>plot()</code>:</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="base-plots.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>))</span>
-<span id="cb218-2"><a href="base-plots.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>))</a>
+<a class="sourceLine" id="cb218-2" data-line-number="2"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-235-1.png" width="925.44" /></p>
 <p>In this command, the four numbers in the vector used to define <code>mar</code> correspond to the margin for the bottom, left, top, and right sides of the plot, respectively.</p>
 <p><strong>Create a multi-pane plot</strong> using the function <code>par(mfrow=c())</code> before you call <code>plot()</code>:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="base-plots.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb219-2"><a href="base-plots.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb219-3"><a href="base-plots.html#cb219-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb219-2" data-line-number="2"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb219-3" data-line-number="3"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-236-1.png" width="925.44" /></p>
 <p>In this command, the two numbers in the vector used to define <code>mfrow</code> correspond to the number of rows and columns, respectively, on the entire plot. In this case, you have 1 row of plots with two columns.</p>
 <p>Note that you will need to reset the number of panes when you are done with your multi-pane plot!</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="base-plots.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
 <p><strong>Plot dots and lines at once</strong> using the input <code>type</code>:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="base-plots.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb221-2"><a href="base-plots.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">type=</span><span class="st">&quot;b&quot;</span>)</span>
-<span id="cb221-3"><a href="base-plots.html#cb221-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">type=</span><span class="st">&quot;o&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb221-2" data-line-number="2"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">type=</span><span class="st">&quot;b&quot;</span>)</a>
+<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">type=</span><span class="st">&quot;o&quot;</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-238-1.png" width="925.44" /></p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="base-plots.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
 <p>Note the two slightly different formats here.</p>
 <p><strong>Use a logarithmic scale</strong> for one or of your axes using the input <code>log</code></p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="base-plots.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">log=</span><span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">log=</span><span class="st">&quot;x&quot;</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-239-1.png" width="925.44" /></p>
 </div>
 <div id="plotting-with-data-frames" class="section level2 unnumbered hasAnchor">
 <h2>Plotting with data frames<a href="base-plots.html#plotting-with-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far in this tutorial we have been using vectors to produce plots. This is nice for learning, but does not represent the real world very well. You will almost always be producing plots using dataframes.</p>
 <p>Let’s turn these vectors into a dataframe:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="base-plots.html#cb224-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(country,lifespan,gdp)</span>
-<span id="cb224-2"><a href="base-plots.html#cb224-2" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb224-3"><a href="base-plots.html#cb224-3" aria-hidden="true" tabindex="-1"></a>           country lifespan   gdp</span>
-<span id="cb224-4"><a href="base-plots.html#cb224-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>              USA       <span class="dv">79</span> <span class="dv">55335</span></span>
-<span id="cb224-5"><a href="base-plots.html#cb224-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         Tanzania       <span class="dv">65</span>  <span class="dv">2875</span></span>
-<span id="cb224-6"><a href="base-plots.html#cb224-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>            Japan       <span class="dv">84</span> <span class="dv">38674</span></span>
-<span id="cb224-7"><a href="base-plots.html#cb224-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Ctr. Africa Rep.       <span class="dv">53</span>   <span class="dv">623</span></span>
-<span id="cb224-8"><a href="base-plots.html#cb224-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>            China       <span class="dv">77</span> <span class="dv">13102</span></span>
-<span id="cb224-9"><a href="base-plots.html#cb224-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>           Norway       <span class="dv">82</span> <span class="dv">84500</span></span>
-<span id="cb224-10"><a href="base-plots.html#cb224-10" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>            India       <span class="dv">69</span>  <span class="dv">6807</span></span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(country,lifespan,gdp)</a>
+<a class="sourceLine" id="cb224-2" data-line-number="2">df</a>
+<a class="sourceLine" id="cb224-3" data-line-number="3">           country lifespan   gdp</a>
+<a class="sourceLine" id="cb224-4" data-line-number="4"><span class="dv">1</span>              USA       <span class="dv">79</span> <span class="dv">55335</span></a>
+<a class="sourceLine" id="cb224-5" data-line-number="5"><span class="dv">2</span>         Tanzania       <span class="dv">65</span>  <span class="dv">2875</span></a>
+<a class="sourceLine" id="cb224-6" data-line-number="6"><span class="dv">3</span>            Japan       <span class="dv">84</span> <span class="dv">38674</span></a>
+<a class="sourceLine" id="cb224-7" data-line-number="7"><span class="dv">4</span> Ctr. Africa Rep.       <span class="dv">53</span>   <span class="dv">623</span></a>
+<a class="sourceLine" id="cb224-8" data-line-number="8"><span class="dv">5</span>            China       <span class="dv">77</span> <span class="dv">13102</span></a>
+<a class="sourceLine" id="cb224-9" data-line-number="9"><span class="dv">6</span>           Norway       <span class="dv">82</span> <span class="dv">84500</span></a>
+<a class="sourceLine" id="cb224-10" data-line-number="10"><span class="dv">7</span>            India       <span class="dv">69</span>  <span class="dv">6807</span></a></code></pre></div>
 <p>To plot data within a dataframe, your <code>plot()</code> syntax changes slightly:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="base-plots.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp, <span class="at">data=</span>df)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp, <span class="dt">data=</span>df)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-241-1.png" width="925.44" /></p>
 <p>This syntax is saying this: using the dataframe named <code>df</code> as a source, plot column <code>lifespan</code> as a function of column <code>gdp</code>. The symbol <code>~</code> denotes <em>“as a function of”</em>. This frames <code>lifespan</code> as a dependent variable (y axis) that is affected by the independent variable (x axis), which in this case is <code>gdp</code>.</p>
 <p>Another way to write this command is as follows:</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="base-plots.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>lifespan <span class="sc">~</span> df<span class="sc">$</span>gdp)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a></code></pre></div>
 <p>In this command, as you learned in the dataframes module, the <code>$</code> symbol is saying, “give me the column in <code>df</code> named <code>lifespan</code>”. It is a handy way of referring to a column within a dataframe by name.</p>
 <div id="exercises-7" class="section level4 unnumbered hasAnchor">
 <h4>Exercises<a href="base-plots.html#exercises-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
