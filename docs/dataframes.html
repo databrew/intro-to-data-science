@@ -63,27 +63,25 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -92,9 +90,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,28 +125,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -166,34 +142,29 @@ div.csl-indent {
 <li><a href="./">www.datascience.pizza</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a>
-<ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-this-is-and-what-it-isnt"><i class="fa fa-check"></i>What this is, and what it isn’t</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-is-for"><i class="fa fa-check"></i>Who this is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What you will learn</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
 </ul></li>
 <li class="part"><span><b>I Core theory</b></span></li>
-<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a>
-<ul>
+<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a><ul>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i>What is the data life cycle?</a></li>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i>Data science ‘in the wild’</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a>
-<ul>
+<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a><ul>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-crisis"><i class="fa fa-check"></i>The crisis</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-reproducibility-movement"><i class="fa fa-check"></i>The ‘reproducibility’ movement</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#why-r"><i class="fa fa-check"></i>Why <code>R</code>?</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a>
-<ul>
+<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a><ul>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#a-few-principles"><i class="fa fa-check"></i>A few principles</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#warm-up-scenarios"><i class="fa fa-check"></i>Warm up scenarios</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#case-studies"><i class="fa fa-check"></i>Case studies</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#more-scenarios"><i class="fa fa-check"></i>More scenarios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a>
-<ul>
+<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a><ul>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#the-value-of-data-viz"><i class="fa fa-check"></i>The value of <em>data viz</em></a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#plot-gallery"><i class="fa fa-check"></i>Plot gallery</a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#chart-junk"><i class="fa fa-check"></i>Chart junk</a></li>
@@ -201,85 +172,72 @@ div.csl-indent {
 </ul></li>
 <li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
 <li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
-<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a>
-<ul>
+<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a><ul>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#running-code-in-the-console"><i class="fa fa-check"></i>Running code in the <em>Console</em></a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-r-like-a-calculator"><i class="fa fa-check"></i>Use R like a calculator</a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#getting-along-with-r"><i class="fa fa-check"></i>Getting along with <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a>
-<ul>
+<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a><ul>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#scripts"><i class="fa fa-check"></i>Scripts</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#wd"><i class="fa fa-check"></i>Your working directory</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#typical-workflows"><i class="fa fa-check"></i>Typical workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a>
-<ul>
+<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a><ul>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#types-of-data-in-r"><i class="fa fa-check"></i>Types of data in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a>
-<ul>
+<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a><ul>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#declaring-and-using-vectors"><i class="fa fa-check"></i>Declaring and using vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#math-with-two-vectors"><i class="fa fa-check"></i>Math with two vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
-<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a>
-<ul>
+<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a>
-<ul>
+<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a><ul>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#creating-dataframes"><i class="fa fa-check"></i>Creating dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#modifying-dataframes"><i class="fa fa-check"></i>Modifying dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a>
-<ul>
+<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a><ul>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
-<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a>
-<ul>
+<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#csv-files"><i class="fa fa-check"></i><code>.csv</code> files</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#prepping-your-data-for-r"><i class="fa fa-check"></i>Prepping your data for <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a>
-<ul>
+<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#most-common-types-of-plots"><i class="fa fa-check"></i>Most common types of plots</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#basic-plot-formatting"><i class="fa fa-check"></i>Basic plot formatting</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#plotting-with-data-frames"><i class="fa fa-check"></i>Plotting with data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a>
-<ul>
+<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a><ul>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#what-is-ggplot2"><i class="fa fa-check"></i>What is <code>ggplot2</code>?</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#bar-plot"><i class="fa fa-check"></i>Bar plot</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a>
-<ul>
+<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a><ul>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-dplyr-package"><i class="fa fa-check"></i>The <code>dplyr</code> package</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-pipe"><i class="fa fa-check"></i>The <code>%&gt;%</code> pipe</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#dplyr-verbs"><i class="fa fa-check"></i><code>dplyr</code> verbs</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a>
-<ul>
+<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a><ul>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#exploring-distributions"><i class="fa fa-check"></i>Exploring distributions</a></li>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a>
-<ul>
+<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a><ul>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-for-different-data-types"><i class="fa fa-check"></i>Tests for different data types</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#comparison-tests"><i class="fa fa-check"></i>Comparison tests</a></li>
@@ -287,8 +245,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
 </ul></li>
 <li class="part"><span><b>IV Reproducible research</b></span></li>
-<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a>
-<ul>
+<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a><ul>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-set-up"><i class="fa fa-check"></i><code>Git</code> set up</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
@@ -296,27 +253,23 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-workflow-overview"><i class="fa fa-check"></i><code>Git</code> workflow: overview</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a>
-<ul>
+<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a><ul>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#what-is-markdown"><i class="fa fa-check"></i>What is <code>Markdown</code>?</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#raw-markdown-example"><i class="fa fa-check"></i>Raw <code>Markdown</code> example</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-12"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a>
-<ul>
+<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a><ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#add-an-r-chunk"><i class="fa fa-check"></i>Add an <code>R</code> chunk</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#in-line-r-code"><i class="fa fa-check"></i>In-line <code>R</code> code</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a>
-<ul>
+<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a><ul>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#build-your-first-shiny-app"><i class="fa fa-check"></i>Build your first <code>shiny</code> app</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a>
-<ul>
+<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a><ul>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#mapping-with-leaflet"><i class="fa fa-check"></i>Mapping with <code>leaflet</code></a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-2"><i class="fa fa-check"></i>Final thoughts</a></li>
@@ -331,8 +284,7 @@ div.csl-indent {
 <li class="chapter" data-level="32" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>32</b> Trump tweets</a></li>
 <li class="chapter" data-level="33" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>33</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
 <li class="part"><span><b>VI Presenting research</b></span></li>
-<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a>
-<ul>
+<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a><ul>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
@@ -341,8 +293,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a>
-<ul>
+<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a><ul>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
@@ -351,56 +302,46 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="36" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>36</b> Research talks</a></li>
 <li class="part"><span><b>VII Deep <code>R</code></b></span></li>
-<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a>
-<ul>
+<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a><ul>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#write.csv"><i class="fa fa-check"></i><code>write.csv()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#saverds"><i class="fa fa-check"></i><code>saveRDS()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#pdf-and-png"><i class="fa fa-check"></i><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a>
-<ul>
+<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a><ul>
 <li class="chapter" data-level="" data-path="joining_datasets.html"><a href="joining_datasets.html#joining-with-dplyr"><i class="fa fa-check"></i>Joining with <code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a>
-<ul>
+<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a>
-<ul>
+<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a><ul>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#the-lubridate-package"><i class="fa fa-check"></i>The <code>lubridate()</code> package</a></li>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a>
-<ul>
+<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a><ul>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a>
-<ul>
+<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a><ul>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#for-loop-exercises"><i class="fa fa-check"></i><code>for</code> loop exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a>
-<ul>
+<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a><ul>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a>
-<ul>
+<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a><ul>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
 </ul></li>
 <li class="chapter" data-level="45" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>45</b> Advanced base plots in <code>R</code></a></li>
-<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a>
-<ul>
+<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a><ul>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#geographic-data-structures"><i class="fa fa-check"></i>Geographic data structures</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors"><i class="fa fa-check"></i>Combining rasters &amp; vectors</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors-leaflet"><i class="fa fa-check"></i>Combining rasters, vectors, &amp; <code>leaflet</code></a></li>
 </ul></li>
-<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a>
-<ul>
+<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a><ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-5"><i class="fa fa-check"></i>Review assignment</a></li>
@@ -426,7 +367,7 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dataframes" class="section level1 hasAnchor" number="13">
+<div id="dataframes" class="section level1 hasAnchor">
 <h1><span class="header-section-number">Module 13</span> Dataframes<a href="dataframes.html#dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="learning-goal" class="section level4 unnumbered hasAnchor">
 <h4>Learning goal<a href="dataframes.html#learning-goal" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -437,41 +378,42 @@ div.csl-indent {
 <p>A vector is the most basic data structure in <code>R</code>, and the other structures are built out of vectors. But, as a data scientist, the most common data structure you will be working with – by far – is a <strong>dataframe</strong>.</p>
 <p>A dataframe, essentially, is a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data.</p>
 <p>Here is what a dataframe looks like:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="dataframes.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using one of R&#39;s built-in datasets</span></span>
-<span id="cb137-2"><a href="dataframes.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span>
-<span id="cb137-3"><a href="dataframes.html#cb137-3" aria-hidden="true" tabindex="-1"></a>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
-<span id="cb137-4"><a href="dataframes.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>          <span class="fl">5.1</span>         <span class="fl">3.5</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb137-5"><a href="dataframes.html#cb137-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>          <span class="fl">4.9</span>         <span class="fl">3.0</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb137-6"><a href="dataframes.html#cb137-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>          <span class="fl">4.7</span>         <span class="fl">3.2</span>          <span class="fl">1.3</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb137-7"><a href="dataframes.html#cb137-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>          <span class="fl">4.6</span>         <span class="fl">3.1</span>          <span class="fl">1.5</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb137-8"><a href="dataframes.html#cb137-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>          <span class="fl">5.0</span>         <span class="fl">3.6</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb137-9"><a href="dataframes.html#cb137-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>          <span class="fl">5.4</span>         <span class="fl">3.9</span>          <span class="fl">1.7</span>         <span class="fl">0.4</span>  setosa</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="co"># Using one of R&#39;s built-in datasets</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">head</span>(iris)</a>
+<a class="sourceLine" id="cb137-3" data-line-number="3">  Sepal.Length Sepal.Width Petal.Length Petal.Width Species</a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="dv">1</span>          <span class="fl">5.1</span>         <span class="fl">3.5</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-5" data-line-number="5"><span class="dv">2</span>          <span class="fl">4.9</span>         <span class="fl">3.0</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-6" data-line-number="6"><span class="dv">3</span>          <span class="fl">4.7</span>         <span class="fl">3.2</span>          <span class="fl">1.3</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-7" data-line-number="7"><span class="dv">4</span>          <span class="fl">4.6</span>         <span class="fl">3.1</span>          <span class="fl">1.5</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-8" data-line-number="8"><span class="dv">5</span>          <span class="fl">5.0</span>         <span class="fl">3.6</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</a>
+<a class="sourceLine" id="cb137-9" data-line-number="9"><span class="dv">6</span>          <span class="fl">5.4</span>         <span class="fl">3.9</span>          <span class="fl">1.7</span>         <span class="fl">0.4</span>  setosa</a></code></pre></div>
 <p>In this dataframe, each row pertains to a unique iris plant. The columns contain related information about each individual plant.</p>
 <p>Here’s another data.frame, built from scratch, which shows that dataframes are just a group of vectors:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="dataframes.html#cb138-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">25</span><span class="sc">:</span><span class="dv">29</span></span>
-<span id="cb138-2"><a href="dataframes.html#cb138-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">55</span><span class="sc">:</span><span class="dv">59</span></span>
-<span id="cb138-3"><a href="dataframes.html#cb138-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y)</span>
-<span id="cb138-4"><a href="dataframes.html#cb138-4" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb138-5"><a href="dataframes.html#cb138-5" aria-hidden="true" tabindex="-1"></a>   x  y</span>
-<span id="cb138-6"><a href="dataframes.html#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">25</span> <span class="dv">55</span></span>
-<span id="cb138-7"><a href="dataframes.html#cb138-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">26</span> <span class="dv">56</span></span>
-<span id="cb138-8"><a href="dataframes.html#cb138-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">27</span> <span class="dv">57</span></span>
-<span id="cb138-9"><a href="dataframes.html#cb138-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">28</span> <span class="dv">58</span></span>
-<span id="cb138-10"><a href="dataframes.html#cb138-10" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="dv">29</span> <span class="dv">59</span></span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">25</span><span class="op">:</span><span class="dv">29</span></a>
+<a class="sourceLine" id="cb138-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">55</span><span class="op">:</span><span class="dv">59</span></a>
+<a class="sourceLine" id="cb138-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</a>
+<a class="sourceLine" id="cb138-4" data-line-number="4">df</a>
+<a class="sourceLine" id="cb138-5" data-line-number="5">   x  y</a>
+<a class="sourceLine" id="cb138-6" data-line-number="6"><span class="dv">1</span> <span class="dv">25</span> <span class="dv">55</span></a>
+<a class="sourceLine" id="cb138-7" data-line-number="7"><span class="dv">2</span> <span class="dv">26</span> <span class="dv">56</span></a>
+<a class="sourceLine" id="cb138-8" data-line-number="8"><span class="dv">3</span> <span class="dv">27</span> <span class="dv">57</span></a>
+<a class="sourceLine" id="cb138-9" data-line-number="9"><span class="dv">4</span> <span class="dv">28</span> <span class="dv">58</span></a>
+<a class="sourceLine" id="cb138-10" data-line-number="10"><span class="dv">5</span> <span class="dv">29</span> <span class="dv">59</span></a></code></pre></div>
 <p>In this command, we used the <code>data.frame()</code> function to combine two vectors into a dataframe with two columns named <code>x</code> and <code>y</code>. <code>R</code> then saved this result in a new variable named <code>df</code>. When we call <code>df</code>, <code>R</code> shows us the dataframe.</p>
 <p>The great thing about dataframes is that they allow you to relate different data types to each other.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="dataframes.html#cb139-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>),</span>
-<span id="cb139-2"><a href="dataframes.html#cb139-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">height=</span><span class="fu">c</span>(<span class="dv">75</span>,<span class="dv">73</span>,<span class="dv">80</span>))</span>
-<span id="cb139-3"><a href="dataframes.html#cb139-3" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb139-4"><a href="dataframes.html#cb139-4" aria-hidden="true" tabindex="-1"></a>  name height</span>
-<span id="cb139-5"><a href="dataframes.html#cb139-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  Ben     <span class="dv">75</span></span>
-<span id="cb139-6"><a href="dataframes.html#cb139-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  Joe     <span class="dv">73</span></span>
-<span id="cb139-7"><a href="dataframes.html#cb139-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Eric     <span class="dv">80</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>),</a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">                 <span class="dt">height=</span><span class="kw">c</span>(<span class="dv">75</span>,<span class="dv">73</span>,<span class="dv">80</span>))</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3">df</a>
+<a class="sourceLine" id="cb139-4" data-line-number="4">  name height</a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="dv">1</span>  Ben     <span class="dv">75</span></a>
+<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="dv">2</span>  Joe     <span class="dv">73</span></a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="dv">3</span> Eric     <span class="dv">80</span></a></code></pre></div>
 <p>This dataframe has one column of class <code>character</code> and another of class <code>numeric</code>.</p>
 </div>
 <div id="subsetting-exploring-dataframes" class="section level2 unnumbered hasAnchor">
 <h2>Subsetting &amp; exploring dataframes<a href="dataframes.html#subsetting-exploring-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To explore dataframes, let’s use a dataset on fuel mileage for all cars sold from 1985 to 2014.</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="dataframes.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># need to install first install.packages(&#39;fueleconomy&#39;)</span></span>
 <span id="cb140-2"><a href="dataframes.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fueleconomy)</span>
 <span id="cb140-3"><a href="dataframes.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(vehicles)</span>
@@ -490,13 +432,22 @@ div.csl-indent {
 <span id="cb140-16"><a href="dataframes.html#cb140-16" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">27</span>  <span class="dv">19</span></span>
 <span id="cb140-17"><a href="dataframes.html#cb140-17" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">29</span>  <span class="dv">21</span></span>
 <span id="cb140-18"><a href="dataframes.html#cb140-18" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">17</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="co"># need to install first install.packages(&#39;fueleconomy&#39;)</span></a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="kw">library</span>(fueleconomy)</a>
+<a class="sourceLine" id="cb140-3" data-line-number="3">Error <span class="cf">in</span> <span class="kw">library</span>(fueleconomy)<span class="op">:</span><span class="st"> </span>there is no package called <span class="st">&#39;fueleconomy&#39;</span></a>
+<a class="sourceLine" id="cb140-4" data-line-number="4"><span class="kw">data</span>(vehicles)</a>
+<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="kw">head</span>(vehicles)</a>
+<a class="sourceLine" id="cb140-6" data-line-number="6">Error <span class="cf">in</span> <span class="kw">head</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+>>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p>To look at this dataframe in full, you call display it in a separate tab within <code>RStudio</code> using the <code>View()</code> function:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="dataframes.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(vehicles)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">View</span>(vehicles)</a></code></pre></div>
 <p>A dataframe has rows of data organized into columns. In this dataframe, each row pertains to a single vehicle make/model – i.e., a single <em>observation</em>. Each column pertains to a single <em>type</em> of data. Columns are named in the <em>header</em> of the dataframe.</p>
 <p>All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes. In addition to those functions you already know, let’s add some new functions to your inventory of useful functions.</p>
 <div id="exploration" class="section level3 unnumbered hasAnchor">
 <h3>Exploration<a href="dataframes.html#exploration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong><code>head()</code></strong> and <strong><code>tail()</code></strong> summarize the beginning and end of the object:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="dataframes.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(vehicles) </span>
 <span id="cb142-2"><a href="dataframes.html#cb142-2" aria-hidden="true" tabindex="-1"></a>     id  make       model year           class           trans</span>
 <span id="cb142-3"><a href="dataframes.html#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="sc">-</span>spd</span>
@@ -558,16 +509,54 @@ div.csl-indent {
 <span id="cb147-15"><a href="dataframes.html#cb147-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">49</span>] <span class="dv">30026</span> <span class="dv">30027</span> <span class="dv">30028</span> <span class="dv">31063</span> <span class="dv">31064</span> <span class="dv">31065</span> <span class="dv">31066</span> <span class="dv">31067</span> <span class="dv">31068</span> <span class="dv">31069</span></span>
 <span id="cb147-16"><a href="dataframes.html#cb147-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb147-17"><a href="dataframes.html#cb147-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (lots of NAs in that column!)</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">head</span>(vehicles) </a>
+<a class="sourceLine" id="cb142-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">head</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a>
+<a class="sourceLine" id="cb142-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="kw">tail</span>(vehicles) </a>
+<a class="sourceLine" id="cb142-5" data-line-number="5">Error <span class="cf">in</span> <span class="kw">tail</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<p><strong><code>names()</code></strong> tells you the column names:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">names</span>(vehicles) </a>
+<a class="sourceLine" id="cb143-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<p><strong><code>nrow()</code></strong>, <strong><code>ncol()</code></strong>, and <strong><code>dim()</code></strong> tell you about the dimensions of your dataframe:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">nrow</span>(vehicles) </a>
+<a class="sourceLine" id="cb144-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">nrow</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="kw">ncol</span>(vehicles) </a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">ncol</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">dim</span>(vehicles) </a>
+<a class="sourceLine" id="cb146-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<p>Note that <strong><code>length()</code></strong> does not work the same on dataframes as it does with vectors. In dataframes, <code>length()</code> is the equivalent of <code>ncol()</code>; it will <em>not</em> give you the number of rows in a dataset.</p>
+<p>Importantly, you can use <strong><code>is.na()</code></strong> to ask whether columns or rows contain <code>NA</code>s:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="co"># Check for NAs</span></a>
+<a class="sourceLine" id="cb147-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="co"># Which rows in the `hwy` column have NA&#39;s?</span></a>
+<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>hwy))</a>
+<a class="sourceLine" id="cb147-5" data-line-number="5">Error <span class="cf">in</span> <span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>hwy))<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a>
+<a class="sourceLine" id="cb147-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb147-7" data-line-number="7"><span class="co"># (No NAs in that column!)</span></a>
+<a class="sourceLine" id="cb147-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb147-9" data-line-number="9"><span class="co"># What about rows in the `cyl` column?</span></a>
+<a class="sourceLine" id="cb147-10" data-line-number="10"><span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>cyl))</a>
+<a class="sourceLine" id="cb147-11" data-line-number="11">Error <span class="cf">in</span> <span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>cyl))<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a>
+<a class="sourceLine" id="cb147-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb147-13" data-line-number="13"><span class="co"># (lots of NAs in that column!)</span></a></code></pre></div>
+>>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 </div>
 <div id="subsetting" class="section level3 unnumbered hasAnchor">
 <h3>Subsetting<a href="dataframes.html#subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Recall that dataframes are filtered by row and/or column using this format: <strong><code>dataframe[rows,columns]</code></strong>. To get the third element of the second column, for example, you type <code>dataframe[3,2]</code>.</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="dataframes.html#cb148-1" aria-hidden="true" tabindex="-1"></a>vehicles[<span class="dv">3</span>,<span class="dv">2</span>]</span>
 <span id="cb148-2"><a href="dataframes.html#cb148-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Acura&quot;</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">vehicles[<span class="dv">3</span>,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb148-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+>>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p>Note that the comma is necessary even if you do not want to specify columns. If you try to type this …</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="dataframes.html#cb149-1" aria-hidden="true" tabindex="-1"></a>vehicles[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">vehicles[<span class="dv">3</span>]</a></code></pre></div>
 <p>…<code>R</code> will assume you are asking for the third column, not the third row.</p>
 <p>To filter a dataframe to multiple values, you can specify vectors for the <code>row</code> and <code>column</code></p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="dataframes.html#cb150-1" aria-hidden="true" tabindex="-1"></a>vehicles[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>] <span class="co"># can use colons</span></span>
 <span id="cb150-2"><a href="dataframes.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  hwy cty</span>
 <span id="cb150-3"><a href="dataframes.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">26</span>  <span class="dv">20</span></span>
@@ -581,10 +570,20 @@ div.csl-indent {
 <p>Columns can also be called according to their names. Use the <strong><code>$</code></strong> sign to specify a column.</p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="dataframes.html#cb151-1" aria-hidden="true" tabindex="-1"></a>vehicles<span class="sc">$</span>hwy[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
 <span id="cb151-2"><a href="dataframes.html#cb151-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">26</span> <span class="dv">28</span> <span class="dv">26</span> <span class="dv">27</span> <span class="dv">29</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">vehicles[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>] <span class="co"># can use colons</span></a>
+<a class="sourceLine" id="cb150-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a>
+<a class="sourceLine" id="cb150-3" data-line-number="3">vehicles[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>)]  <span class="co"># can use c()</span></a>
+<a class="sourceLine" id="cb150-4" data-line-number="4">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<p>Columns can also be called according to their names. Use the <strong><code>$</code></strong> sign to specify a column.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">vehicles<span class="op">$</span>hwy[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb151-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+>>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p>Note that when you use a <code>$</code>, you will not need to use a comma within your brackets. If you try to run this …</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="dataframes.html#cb152-1" aria-hidden="true" tabindex="-1"></a>vehicles<span class="sc">$</span>hwy[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">vehicles<span class="op">$</span>hwy[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a></code></pre></div>
 <p>…<code>R</code> will throw a fit.</p>
 <p>Also recall that you can use logical tests, which return boolean values <code>TRUE</code> or <code>FALSE</code>, to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="dataframes.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build your logical test</span></span>
 <span id="cb153-2"><a href="dataframes.html#cb153-2" aria-hidden="true" tabindex="-1"></a>verdicts <span class="ot">&lt;-</span> vehicles<span class="sc">$</span>hwy <span class="sc">&gt;</span> <span class="dv">100</span></span>
 <span id="cb153-3"><a href="dataframes.html#cb153-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -612,11 +611,24 @@ div.csl-indent {
 <span id="cb154-9"><a href="dataframes.html#cb154-9" aria-hidden="true" tabindex="-1"></a><span class="dv">24488</span>    Nissan     Leaf</span>
 <span id="cb154-10"><a href="dataframes.html#cb154-10" aria-hidden="true" tabindex="-1"></a><span class="dv">24489</span>    Nissan     Leaf</span>
 <span id="cb154-11"><a href="dataframes.html#cb154-11" aria-hidden="true" tabindex="-1"></a><span class="dv">28628</span>     Scion    iQ EV</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="co"># Build your logical test</span></a>
+<a class="sourceLine" id="cb153-2" data-line-number="2">verdicts &lt;-<span class="st"> </span>vehicles<span class="op">$</span>hwy <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb153-3" data-line-number="3">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a>
+<a class="sourceLine" id="cb153-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb153-5" data-line-number="5"><span class="co"># Subset with booleans</span></a>
+<a class="sourceLine" id="cb153-6" data-line-number="6">vehicles[verdicts,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb153-7" data-line-number="7">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<p>Or you can write all this in a single line, to be more efficient:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">vehicles[ vehicles<span class="op">$</span>hwy <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>  , <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb154-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+>>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p>Recall that the logical test is returning a bunch of <code>TRUE</code>’s and <code>FALSE</code>’s, one for each row of <code>vehicles</code>. Only the <code>TRUE</code> rows will be returned.</p>
 </div>
 <div id="summarizing" class="section level3 unnumbered hasAnchor">
 <h3>Summarizing<a href="dataframes.html#summarizing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The same summary functions that you have used for vectors work for the columns in dataframes, since each column is also a vector. Check it out:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="dataframes.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(vehicles<span class="sc">$</span>hwy)</span>
 <span id="cb155-2"><a href="dataframes.html#cb155-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">9</span></span></code></pre></div>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="dataframes.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(vehicles<span class="sc">$</span>hwy)</span>
@@ -688,6 +700,40 @@ div.csl-indent {
 <span id="cb164-8"><a href="dataframes.html#cb164-8" aria-hidden="true" tabindex="-1"></a><span class="dv">28628</span>     Scion    iQ EV <span class="dv">2013</span> Electricity <span class="dv">105</span> <span class="dv">138</span></span>
 <span id="cb164-9"><a href="dataframes.html#cb164-9" aria-hidden="true" tabindex="-1"></a><span class="dv">16430</span>     Honda   Fit EV <span class="dv">2014</span> Electricity <span class="dv">105</span> <span class="dv">132</span></span>
 <span id="cb164-10"><a href="dataframes.html#cb164-10" aria-hidden="true" tabindex="-1"></a><span class="dv">16429</span>     Honda   Fit EV <span class="dv">2013</span> Electricity <span class="dv">105</span> <span class="dv">132</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">min</span>(vehicles<span class="op">$</span>hwy)</a>
+<a class="sourceLine" id="cb155-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">max</span>(vehicles<span class="op">$</span>hwy)</a>
+<a class="sourceLine" id="cb156-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="kw">mean</span>(vehicles<span class="op">$</span>cty)</a>
+<a class="sourceLine" id="cb157-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">mean</span>(vehicles<span class="op">$</span>cty)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">sd</span>(vehicles<span class="op">$</span>cty)</a>
+<a class="sourceLine" id="cb158-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">is.data.frame</span>(x)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">str</span>(vehicles<span class="op">$</span>make)</a>
+<a class="sourceLine" id="cb159-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">str</span>(vehicles<span class="op">$</span>make)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">class</span>(vehicles<span class="op">$</span>hwy)</a>
+<a class="sourceLine" id="cb160-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<p>You can also use the <strong><code>summary()</code></strong> function, which provides summary statistics for each column in your dataframe:</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">summary</span>(vehicles)</a>
+<a class="sourceLine" id="cb161-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">summary</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<p>The function <strong><code>unique()</code></strong> returns unique values within a column:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">unique</span>(vehicles<span class="op">$</span>fuel)</a>
+<a class="sourceLine" id="cb162-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">unique</span>(vehicles<span class="op">$</span>fuel)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a></code></pre></div>
+<p>Finally, the <strong><code>order()</code></strong> function helps you sort a dataframe according to the values in one of its columns.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="co"># Sort dataframe by highway mileage</span></a>
+<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="co"># Only keep certain columns</span></a>
+<a class="sourceLine" id="cb163-3" data-line-number="3">vehicles_sorted &lt;-<span class="st"> </span>vehicles[<span class="kw">order</span>(vehicles<span class="op">$</span>hwy), </a>
+<a class="sourceLine" id="cb163-4" data-line-number="4">                            <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>)] </a>
+<a class="sourceLine" id="cb163-5" data-line-number="5">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a>
+<a class="sourceLine" id="cb163-6" data-line-number="6"><span class="kw">head</span>(vehicles_sorted)</a>
+<a class="sourceLine" id="cb163-7" data-line-number="7">Error <span class="cf">in</span> <span class="kw">head</span>(vehicles_sorted)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles_sorted&#39;</span> not found</a></code></pre></div>
+<p>Reverse the order by wrapping <strong><code>rev()</code></strong> around the <code>order()</code> call:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1">vehicles_sorted &lt;-<span class="st"> </span>vehicles[<span class="kw">rev</span>(<span class="kw">order</span>(vehicles<span class="op">$</span>hwy)),</a>
+<a class="sourceLine" id="cb164-2" data-line-number="2">                            <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>)]</a>
+<a class="sourceLine" id="cb164-3" data-line-number="3">Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a>
+<a class="sourceLine" id="cb164-4" data-line-number="4"><span class="kw">head</span>(vehicles_sorted)</a>
+<a class="sourceLine" id="cb164-5" data-line-number="5">Error <span class="cf">in</span> <span class="kw">head</span>(vehicles_sorted)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles_sorted&#39;</span> not found</a></code></pre></div>
+>>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 </div>
 </div>
 <div id="creating-dataframes" class="section level2 unnumbered hasAnchor">
@@ -703,10 +749,11 @@ div.csl-indent {
 106 Acura Legend      24       16</code></pre>
 <p>Note how the columns were named in the <code>data.frame()</code> call, and that each column is separated by a comma.</p>
 <p>You can also stage an empty dataframe, which sounds useless but will become very useful as you start working with <code>for</code> loops and other higher-order <code>R</code> tools.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="dataframes.html#cb166-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb166-2"><a href="dataframes.html#cb166-2" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb166-3"><a href="dataframes.html#cb166-3" aria-hidden="true" tabindex="-1"></a>data frame with <span class="dv">0</span> columns and <span class="dv">0</span> rows</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</a>
+<a class="sourceLine" id="cb166-2" data-line-number="2">df</a>
+<a class="sourceLine" id="cb166-3" data-line-number="3">data frame with <span class="dv">0</span> columns and <span class="dv">0</span> rows</a></code></pre></div>
 <p>To coerce an object into a format that <code>R</code> interprets as a dataframe, use <strong><code>as.dataframe()</code></strong>:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="dataframes.html#cb167-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(vehicles)</span>
 <span id="cb167-2"><a href="dataframes.html#cb167-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
 <span id="cb167-3"><a href="dataframes.html#cb167-3" aria-hidden="true" tabindex="-1"></a>     id  make       model year</span>
@@ -714,93 +761,99 @@ div.csl-indent {
 <span id="cb167-5"><a href="dataframes.html#cb167-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></span>
 <span id="cb167-6"><a href="dataframes.html#cb167-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></span>
 <span id="cb167-7"><a href="dataframes.html#cb167-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(vehicles)</a>
+<a class="sourceLine" id="cb167-2" data-line-number="2">Error <span class="cf">in</span> <span class="kw">as.data.frame</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</a>
+<a class="sourceLine" id="cb167-3" data-line-number="3">df[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb167-4" data-line-number="4">Error <span class="cf">in</span> <span class="st">`</span><span class="dt">[.data.frame</span><span class="st">`</span>(df, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)<span class="op">:</span><span class="st"> </span>undefined columns selected</a></code></pre></div>
+>>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 </div>
 <div id="modifying-dataframes" class="section level2 unnumbered hasAnchor">
 <h2>Modifying dataframes<a href="dataframes.html#modifying-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="combining-dataframes" class="section level3 unnumbered hasAnchor">
 <h3>Combining dataframes<a href="dataframes.html#combining-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To bind multiple dataframes together by row, use <strong><code>rbind()</code></strong>:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="dataframes.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build up a dataframe</span></span>
-<span id="cb168-2"><a href="dataframes.html#cb168-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
-<span id="cb168-3"><a href="dataframes.html#cb168-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">instrument=</span><span class="fu">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
-<span id="cb168-4"><a href="dataframes.html#cb168-4" aria-hidden="true" tabindex="-1"></a>df1</span>
-<span id="cb168-5"><a href="dataframes.html#cb168-5" aria-hidden="true" tabindex="-1"></a>      name instrument</span>
-<span id="cb168-6"><a href="dataframes.html#cb168-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>      Ben  Nose harp</span>
-<span id="cb168-7"><a href="dataframes.html#cb168-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>      Joe Concertina</span>
-<span id="cb168-8"><a href="dataframes.html#cb168-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Eric    Ukelele</span>
-<span id="cb168-9"><a href="dataframes.html#cb168-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Isabelle      Drums</span></code></pre></div>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="dataframes.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build up a second dataframe</span></span>
-<span id="cb169-2"><a href="dataframes.html#cb169-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Matthew&quot;</span>),</span>
-<span id="cb169-3"><a href="dataframes.html#cb169-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">instrument=</span><span class="fu">c</span>(<span class="st">&quot;Washboard&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="dataframes.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine those dataframes together</span></span>
-<span id="cb170-2"><a href="dataframes.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(df1,df2)</span>
-<span id="cb170-3"><a href="dataframes.html#cb170-3" aria-hidden="true" tabindex="-1"></a>      name instrument</span>
-<span id="cb170-4"><a href="dataframes.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>      Ben  Nose harp</span>
-<span id="cb170-5"><a href="dataframes.html#cb170-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>      Joe Concertina</span>
-<span id="cb170-6"><a href="dataframes.html#cb170-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Eric    Ukelele</span>
-<span id="cb170-7"><a href="dataframes.html#cb170-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Isabelle      Drums</span>
-<span id="cb170-8"><a href="dataframes.html#cb170-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  Matthew  Washboard</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="co"># Build up a dataframe</span></a>
+<a class="sourceLine" id="cb168-2" data-line-number="2">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</a>
+<a class="sourceLine" id="cb168-3" data-line-number="3">                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</a>
+<a class="sourceLine" id="cb168-4" data-line-number="4">df1</a>
+<a class="sourceLine" id="cb168-5" data-line-number="5">      name instrument</a>
+<a class="sourceLine" id="cb168-6" data-line-number="6"><span class="dv">1</span>      Ben  Nose harp</a>
+<a class="sourceLine" id="cb168-7" data-line-number="7"><span class="dv">2</span>      Joe Concertina</a>
+<a class="sourceLine" id="cb168-8" data-line-number="8"><span class="dv">3</span>     Eric    Ukelele</a>
+<a class="sourceLine" id="cb168-9" data-line-number="9"><span class="dv">4</span> Isabelle      Drums</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="co"># Build up a second dataframe</span></a>
+<a class="sourceLine" id="cb169-2" data-line-number="2">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Matthew&quot;</span>),</a>
+<a class="sourceLine" id="cb169-3" data-line-number="3">                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Washboard&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="co"># Combine those dataframes together</span></a>
+<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="kw">rbind</span>(df1,df2)</a>
+<a class="sourceLine" id="cb170-3" data-line-number="3">      name instrument</a>
+<a class="sourceLine" id="cb170-4" data-line-number="4"><span class="dv">1</span>      Ben  Nose harp</a>
+<a class="sourceLine" id="cb170-5" data-line-number="5"><span class="dv">2</span>      Joe Concertina</a>
+<a class="sourceLine" id="cb170-6" data-line-number="6"><span class="dv">3</span>     Eric    Ukelele</a>
+<a class="sourceLine" id="cb170-7" data-line-number="7"><span class="dv">4</span> Isabelle      Drums</a>
+<a class="sourceLine" id="cb170-8" data-line-number="8"><span class="dv">5</span>  Matthew  Washboard</a></code></pre></div>
 <p>Note that to be combined, two dataframes have to have the exact same number of columns and the exact same column names.</p>
 <p>The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the <strong>Deep <code>R</code></strong> modules ahead.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dataframes.html#cb171-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>() <span class="co"># stage empty dataframe</span></span>
-<span id="cb171-2"><a href="dataframes.html#cb171-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-3"><a href="dataframes.html#cb171-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
-<span id="cb171-4"><a href="dataframes.html#cb171-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">instrument=</span><span class="fu">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
-<span id="cb171-5"><a href="dataframes.html#cb171-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-6"><a href="dataframes.html#cb171-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df,df1)</span>
-<span id="cb171-7"><a href="dataframes.html#cb171-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-8"><a href="dataframes.html#cb171-8" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb171-9"><a href="dataframes.html#cb171-9" aria-hidden="true" tabindex="-1"></a>      name instrument</span>
-<span id="cb171-10"><a href="dataframes.html#cb171-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>      Ben  Nose harp</span>
-<span id="cb171-11"><a href="dataframes.html#cb171-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>      Joe Concertina</span>
-<span id="cb171-12"><a href="dataframes.html#cb171-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Eric    Ukelele</span>
-<span id="cb171-13"><a href="dataframes.html#cb171-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Isabelle      Drums</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>() <span class="co"># stage empty dataframe</span></a>
+<a class="sourceLine" id="cb171-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb171-3" data-line-number="3">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</a>
+<a class="sourceLine" id="cb171-4" data-line-number="4">                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</a>
+<a class="sourceLine" id="cb171-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb171-6" data-line-number="6">df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df,df1)</a>
+<a class="sourceLine" id="cb171-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb171-8" data-line-number="8">df</a>
+<a class="sourceLine" id="cb171-9" data-line-number="9">      name instrument</a>
+<a class="sourceLine" id="cb171-10" data-line-number="10"><span class="dv">1</span>      Ben  Nose harp</a>
+<a class="sourceLine" id="cb171-11" data-line-number="11"><span class="dv">2</span>      Joe Concertina</a>
+<a class="sourceLine" id="cb171-12" data-line-number="12"><span class="dv">3</span>     Eric    Ukelele</a>
+<a class="sourceLine" id="cb171-13" data-line-number="13"><span class="dv">4</span> Isabelle      Drums</a></code></pre></div>
 <p>You can also bind multiple dataframes together by column, using <strong><code>cbind()</code></strong>:</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="dataframes.html#cb172-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
-<span id="cb172-2"><a href="dataframes.html#cb172-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">instrument=</span><span class="fu">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
-<span id="cb172-3"><a href="dataframes.html#cb172-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-4"><a href="dataframes.html#cb172-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">age=</span><span class="fu">c</span>(<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">35</span>,<span class="dv">20</span>), <span class="at">home=</span><span class="fu">c</span>(<span class="st">&quot;Canada&quot;</span>,<span class="st">&quot;Spain&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;USA&quot;</span>))</span>
-<span id="cb172-5"><a href="dataframes.html#cb172-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-6"><a href="dataframes.html#cb172-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(df,df1)</span>
-<span id="cb172-7"><a href="dataframes.html#cb172-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-8"><a href="dataframes.html#cb172-8" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb172-9"><a href="dataframes.html#cb172-9" aria-hidden="true" tabindex="-1"></a>  age   home     name instrument</span>
-<span id="cb172-10"><a href="dataframes.html#cb172-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp</span>
-<span id="cb172-11"><a href="dataframes.html#cb172-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina</span>
-<span id="cb172-12"><a href="dataframes.html#cb172-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele</span>
-<span id="cb172-13"><a href="dataframes.html#cb172-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</a>
+<a class="sourceLine" id="cb172-2" data-line-number="2">                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</a>
+<a class="sourceLine" id="cb172-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb172-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">age=</span><span class="kw">c</span>(<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">35</span>,<span class="dv">20</span>), <span class="dt">home=</span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>,<span class="st">&quot;Spain&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;USA&quot;</span>))</a>
+<a class="sourceLine" id="cb172-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb172-6" data-line-number="6">df &lt;-<span class="st"> </span><span class="kw">cbind</span>(df,df1)</a>
+<a class="sourceLine" id="cb172-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb172-8" data-line-number="8">df</a>
+<a class="sourceLine" id="cb172-9" data-line-number="9">  age   home     name instrument</a>
+<a class="sourceLine" id="cb172-10" data-line-number="10"><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp</a>
+<a class="sourceLine" id="cb172-11" data-line-number="11"><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina</a>
+<a class="sourceLine" id="cb172-12" data-line-number="12"><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele</a>
+<a class="sourceLine" id="cb172-13" data-line-number="13"><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums</a></code></pre></div>
 <p>Note that to be combined, two dataframes have to have the exact same number of rows and the exact same column names.</p>
 </div>
 <div id="adding-columns" class="section level3 unnumbered hasAnchor">
 <h3>Adding columns<a href="dataframes.html#adding-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To create a new column for a dataframe, use the <code>$</code> symbol and provide the name of the new column:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="dataframes.html#cb173-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>x_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">20</span>,<span class="dv">60</span>,<span class="dv">40</span>)</span>
-<span id="cb173-2"><a href="dataframes.html#cb173-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb173-3"><a href="dataframes.html#cb173-3" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb173-4"><a href="dataframes.html#cb173-4" aria-hidden="true" tabindex="-1"></a>  age   home     name instrument x_factor</span>
-<span id="cb173-5"><a href="dataframes.html#cb173-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></span>
-<span id="cb173-6"><a href="dataframes.html#cb173-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></span>
-<span id="cb173-7"><a href="dataframes.html#cb173-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></span>
-<span id="cb173-8"><a href="dataframes.html#cb173-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">40</span></span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1">df<span class="op">$</span>x_factor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">20</span>,<span class="dv">60</span>,<span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb173-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb173-3" data-line-number="3">df</a>
+<a class="sourceLine" id="cb173-4" data-line-number="4">  age   home     name instrument x_factor</a>
+<a class="sourceLine" id="cb173-5" data-line-number="5"><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></a>
+<a class="sourceLine" id="cb173-6" data-line-number="6"><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></a>
+<a class="sourceLine" id="cb173-7" data-line-number="7"><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></a>
+<a class="sourceLine" id="cb173-8" data-line-number="8"><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">40</span></a></code></pre></div>
 </div>
 <div id="altering-values" class="section level3 unnumbered hasAnchor">
 <h3>Altering values<a href="dataframes.html#altering-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To alter certain values in the dataframe, you can assign new values to a subset of your dataframe.</p>
 <p>Here are four ways to do the same thing: upating Isabelle’s X-factor:</p>
 <p><strong>Option 1: Subsetting a single column</strong></p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="dataframes.html#cb174-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>x_factor[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">df<span class="op">$</span>x_factor[<span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">70</span></a></code></pre></div>
 <p><strong>Option 2: Subsetting both rows and columns</strong></p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="dataframes.html#cb175-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">4</span>,<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">df[<span class="dv">4</span>,<span class="dv">5</span>] &lt;-<span class="st"> </span><span class="dv">70</span></a></code></pre></div>
 <p><strong>Option 3: Subsetting a column based on a logical test</strong></p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="dataframes.html#cb176-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>x_factor[df<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&#39;Isabelle&#39;</span>] <span class="ot">&lt;-</span> <span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1">df<span class="op">$</span>x_factor[df<span class="op">$</span>name <span class="op">==</span><span class="st"> &#39;Isabelle&#39;</span>] &lt;-<span class="st"> </span><span class="dv">70</span></a></code></pre></div>
 <p><strong>Option 3: Subsetting row and columns using logical tests</strong></p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="dataframes.html#cb177-1" aria-hidden="true" tabindex="-1"></a>df[df<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&#39;Isabelle&#39;</span>, <span class="fu">names</span>(df) <span class="sc">==</span> <span class="st">&#39;x_factor&#39;</span>] <span class="ot">&lt;-</span> <span class="dv">70</span></span></code></pre></div>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="dataframes.html#cb178-1" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb178-2"><a href="dataframes.html#cb178-2" aria-hidden="true" tabindex="-1"></a>  age   home     name instrument x_factor</span>
-<span id="cb178-3"><a href="dataframes.html#cb178-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></span>
-<span id="cb178-4"><a href="dataframes.html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></span>
-<span id="cb178-5"><a href="dataframes.html#cb178-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></span>
-<span id="cb178-6"><a href="dataframes.html#cb178-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1">df[df<span class="op">$</span>name <span class="op">==</span><span class="st"> &#39;Isabelle&#39;</span>, <span class="kw">names</span>(df) <span class="op">==</span><span class="st"> &#39;x_factor&#39;</span>] &lt;-<span class="st"> </span><span class="dv">70</span></a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1">df</a>
+<a class="sourceLine" id="cb178-2" data-line-number="2">  age   home     name instrument x_factor</a>
+<a class="sourceLine" id="cb178-3" data-line-number="3"><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></a>
+<a class="sourceLine" id="cb178-4" data-line-number="4"><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></a>
+<a class="sourceLine" id="cb178-5" data-line-number="5"><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></a>
+<a class="sourceLine" id="cb178-6" data-line-number="6"><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">70</span></a></code></pre></div>
 <div id="exercises-5" class="section level4 unnumbered hasAnchor">
 <h4>Exercises<a href="dataframes.html#exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Reading for errors</strong></p>
