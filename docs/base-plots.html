@@ -57,9 +57,9 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -377,15 +377,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p> </p>
 <p>To learn how to plot, let’s first create a dataset to work with:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="base-plots.html#cb202-1" aria-hidden="true" tabindex="-1"></a>country <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;Tanzania&quot;</span>,<span class="st">&quot;Japan&quot;</span>,<span class="st">&quot;Ctr. Africa Rep.&quot;</span>,<span class="st">&quot;China&quot;</span>,<span class="st">&quot;Norway&quot;</span>,<span class="st">&quot;India&quot;</span>)</span>
-<span id="cb202-2"><a href="base-plots.html#cb202-2" aria-hidden="true" tabindex="-1"></a>lifespan <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">79</span>,<span class="dv">65</span>,<span class="dv">84</span>,<span class="dv">53</span>,<span class="dv">77</span>,<span class="dv">82</span>,<span class="dv">69</span>)</span>
-<span id="cb202-3"><a href="base-plots.html#cb202-3" aria-hidden="true" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55335</span>,<span class="dv">2875</span>,<span class="dv">38674</span>,<span class="dv">623</span>,<span class="dv">13102</span>,<span class="dv">84500</span>,<span class="dv">6807</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">country &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;Tanzania&quot;</span>,<span class="st">&quot;Japan&quot;</span>,<span class="st">&quot;Ctr. Africa Rep.&quot;</span>,<span class="st">&quot;China&quot;</span>,<span class="st">&quot;Norway&quot;</span>,<span class="st">&quot;India&quot;</span>)</a>
 <a class="sourceLine" id="cb204-2" data-line-number="2">lifespan &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">65</span>,<span class="dv">84</span>,<span class="dv">53</span>,<span class="dv">77</span>,<span class="dv">82</span>,<span class="dv">69</span>)</a>
 <a class="sourceLine" id="cb204-3" data-line-number="3">gdp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">55335</span>,<span class="dv">2875</span>,<span class="dv">38674</span>,<span class="dv">623</span>,<span class="dv">13102</span>,<span class="dv">84500</span>,<span class="dv">6807</span>)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p>These data come from this <a href="https://datasets.iisg.amsterdam/dataset.xhtml?persistentId=hdl:10622/LKYT53" target="blank">publicly available database</a> that compares health and economic indices across countries in 2011.</p>
 <p>The <code>lifespan</code> column presents the average life expectancy for each country.</p>
 <p>The <code>gdp</code> column presents the average GDP per capita within that country, which is a common index for the income and wealth of average citizens.</p>
@@ -394,39 +388,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="create-a-basic-plot" class="section level2 unnumbered hasAnchor">
 <h2>Create a basic plot<a href="base-plots.html#create-a-basic-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The simplest way to make a basic plot in <code>R</code> is to use its built-in <code>plot()</code> function:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="base-plots.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><img src="figures/unnamed-chunk-221-1.png" width="925.44" /></p>
 <p>This syntax is saying this: plot column <code>lifespan</code> as a function of <code>gdp</code>. The symbol <code>~</code> denotes <em>“as a function of”</em>. This frames <code>lifespan</code> as a dependent variable (y axis) that is affected by the independent variable (x axis), which in this case is <code>gdp</code>.</p>
 <p>Note that <code>R</code> uses the variable names you provided as the x- and y-axes. You can adjust these labels however you wish (see formatting section below).</p>
 <p>You can also produce this exact same plot using the following syntax:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="base-plots.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">y=</span>lifespan, <span class="at">x=</span>gdp)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">y=</span>lifespan, <span class="dt">x=</span>gdp)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p>Choose whichever one is most intuitive to you.</p>
 </div>
 <div id="most-common-types-of-plots" class="section level2 unnumbered hasAnchor">
 <h2>Most common types of plots<a href="base-plots.html#most-common-types-of-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The plot above is a <strong>scatter plot</strong>, and is one of the most common types of plots in data science.</p>
 <p>You can turn this into a <strong>line plot</strong> by adding a parameter to the <code>plot()</code> function:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="base-plots.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp, <span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-223-1.png" width="925.44" /></p>
-<p><em>What a mess!</em> Rather than connecting these values in the order you might expect, <code>R</code> connects them in the order that they are listed in their source vectors. This is why line plots tend to be more useful in scenarios such as time series, which are inherently ordered.</p>
-<p>Another common plot is the <strong>bar plot</strong>, which uses a different <code>R</code> function:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="base-plots.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height=</span>lifespan,<span class="at">names.arg=</span>country)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-223-1.png" width="925.44" /></p>
 <p><em>What a mess!</em> Rather than connecting these values in the order you might expect, <code>R</code> connects them in the order that they are listed in their source vectors. This is why line plots tend to be more useful in scenarios such as time series, which are inherently ordered.</p>
 <p>Another common plot is the <strong>bar plot</strong>, which uses a different <code>R</code> function:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">barplot</span>(<span class="dt">height=</span>lifespan,<span class="dt">names.arg=</span>country)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><img src="figures/unnamed-chunk-224-1.png" width="925.44" /></p>
 <p>In this command, the parameter <code>height</code> determines the height of the bars, and <code>names.arg</code> provides the labels to place beneath each bar.</p>
 <p>There are many more plot types out there, but let’s stop here for now.</p>
@@ -434,61 +412,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="basic-plot-formatting" class="section level2 unnumbered hasAnchor">
 <h2>Basic plot formatting<a href="base-plots.html#basic-plot-formatting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can adjust the default formatting of plots by adding other inputs to your <code>plot()</code> command. To understand all the parameters you can adjust, bring up the help page for this function:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="base-plots.html#cb207-1" aria-hidden="true" tabindex="-1"></a>?plot</span></code></pre></div>
-<p>If multiple help page options are returned, select the <em>Generiz X-Y Plotting</em> page from the <code>base</code> package. This is the plot function that comes built-in to <code>R</code>.</p>
-<p>Here we demonstrate just a few of the most common formatting adjustments you are likely to use:</p>
-<p><strong>Set plot range</strong> using <code>xlim</code> (for the x axis) and <code>ylim</code> (for the y axis):</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="base-plots.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60000</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-227-1.png" width="925.44" /></p>
-<p>In this command, you are defining axis limits using a 2-element vector (i.e., <code>c(min,max)</code>).</p>
-<p>Note that it can be easier to read your code if you put each input on a new line, like this:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="base-plots.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,</span>
-<span id="cb209-2"><a href="base-plots.html#cb209-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60000</span>),</span>
-<span id="cb209-3"><a href="base-plots.html#cb209-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</span></code></pre></div>
-<p>Make sure each input line within the function ends with a comma, otherwise you <code>R</code> will get confused and throw an error.</p>
-<p><strong>Set dot type</strong> using the input <code>pch</code>:</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="base-plots.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-229-1.png" width="925.44" /></p>
-<p><strong>Set dot color</strong> using the input <code>col</code> (the default is <code>col="black"</code>)</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="base-plots.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-230-1.png" width="925.44" /></p>
-<p><a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf?utm_source=twitterfeed&amp;utm_medium=twitter" target="blank">Here is a great resource</a> for color names in <code>R</code>.</p>
-<p><strong>Set dot size</strong> using the input <code>cex</code> (the default is <code>cex=1</code>):</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="base-plots.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">cex=</span><span class="dv">3</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-231-1.png" width="925.44" /></p>
-<p><strong>Set axis labels</strong> using the inputs <code>xlab</code> and <code>ylab</code>:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="base-plots.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp, <span class="at">xlab=</span><span class="st">&quot;Gross Domestic Product (GDP)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Life Expectancy&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-232-1.png" width="925.44" /></p>
-<p><strong>Set axis number size</strong> using the input <code>cex.axis</code> (the default is <code>cex.axis=1</code>):</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="base-plots.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">cex.axis=</span>.<span class="dv">5</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-233-1.png" width="925.44" /></p>
-<p><strong>Set axis label size</strong> using the input <code>cex.label</code> (the default is <code>cex.lab=1</code>):</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="base-plots.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">cex.lab=</span>.<span class="dv">5</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-234-1.png" width="925.44" /></p>
-<p><strong>Set plot margins</strong> using the function <code>par(mar=c())</code> before you call <code>plot()</code>:</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="base-plots.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>))</span>
-<span id="cb216-2"><a href="base-plots.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-235-1.png" width="925.44" /></p>
-<p>In this command, the four numbers in the vector used to define <code>mar</code> correspond to the margin for the bottom, left, top, and right sides of the plot, respectively.</p>
-<p><strong>Create a multi-pane plot</strong> using the function <code>par(mfrow=c())</code> before you call <code>plot()</code>:</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="base-plots.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb217-2"><a href="base-plots.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb217-3"><a href="base-plots.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-236-1.png" width="925.44" /></p>
-<p>In this command, the two numbers in the vector used to define <code>mfrow</code> correspond to the number of rows and columns, respectively, on the entire plot. In this case, you have 1 row of plots with two columns.</p>
-<p>Note that you will need to reset the number of panes when you are done with your multi-pane plot!</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="base-plots.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p><strong>Plot dots and lines at once</strong> using the input <code>type</code>:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="base-plots.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb219-2"><a href="base-plots.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">type=</span><span class="st">&quot;b&quot;</span>)</span>
-<span id="cb219-3"><a href="base-plots.html#cb219-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">type=</span><span class="st">&quot;o&quot;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-238-1.png" width="925.44" /></p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="base-plots.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p>Note the two slightly different formats here.</p>
-<p><strong>Use a logarithmic scale</strong> for one or of your axes using the input <code>log</code></p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="base-plots.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">log=</span><span class="st">&quot;x&quot;</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">?plot</a></code></pre></div>
 <p>If multiple help page options are returned, select the <em>Generiz X-Y Plotting</em> page from the <code>base</code> package. This is the plot function that comes built-in to <code>R</code>.</p>
 <p>Here we demonstrate just a few of the most common formatting adjustments you are likely to use:</p>
@@ -542,31 +465,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note the two slightly different formats here.</p>
 <p><strong>Use a logarithmic scale</strong> for one or of your axes using the input <code>log</code></p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">log=</span><span class="st">&quot;x&quot;</span>)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><img src="figures/unnamed-chunk-239-1.png" width="925.44" /></p>
 </div>
 <div id="plotting-with-data-frames" class="section level2 unnumbered hasAnchor">
 <h2>Plotting with data frames<a href="base-plots.html#plotting-with-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far in this tutorial we have been using vectors to produce plots. This is nice for learning, but does not represent the real world very well. You will almost always be producing plots using dataframes.</p>
 <p>Let’s turn these vectors into a dataframe:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="base-plots.html#cb222-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(country,lifespan,gdp)</span>
-<span id="cb222-2"><a href="base-plots.html#cb222-2" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb222-3"><a href="base-plots.html#cb222-3" aria-hidden="true" tabindex="-1"></a>           country lifespan   gdp</span>
-<span id="cb222-4"><a href="base-plots.html#cb222-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>              USA       <span class="dv">79</span> <span class="dv">55335</span></span>
-<span id="cb222-5"><a href="base-plots.html#cb222-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         Tanzania       <span class="dv">65</span>  <span class="dv">2875</span></span>
-<span id="cb222-6"><a href="base-plots.html#cb222-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>            Japan       <span class="dv">84</span> <span class="dv">38674</span></span>
-<span id="cb222-7"><a href="base-plots.html#cb222-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Ctr. Africa Rep.       <span class="dv">53</span>   <span class="dv">623</span></span>
-<span id="cb222-8"><a href="base-plots.html#cb222-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>            China       <span class="dv">77</span> <span class="dv">13102</span></span>
-<span id="cb222-9"><a href="base-plots.html#cb222-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>           Norway       <span class="dv">82</span> <span class="dv">84500</span></span>
-<span id="cb222-10"><a href="base-plots.html#cb222-10" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>            India       <span class="dv">69</span>  <span class="dv">6807</span></span></code></pre></div>
-<p>To plot data within a dataframe, your <code>plot()</code> syntax changes slightly:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="base-plots.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp, <span class="at">data=</span>df)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-241-1.png" width="925.44" /></p>
-<p>This syntax is saying this: using the dataframe named <code>df</code> as a source, plot column <code>lifespan</code> as a function of column <code>gdp</code>. The symbol <code>~</code> denotes <em>“as a function of”</em>. This frames <code>lifespan</code> as a dependent variable (y axis) that is affected by the independent variable (x axis), which in this case is <code>gdp</code>.</p>
-<p>Another way to write this command is as follows:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="base-plots.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>lifespan <span class="sc">~</span> df<span class="sc">$</span>gdp)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(country,lifespan,gdp)</a>
 <a class="sourceLine" id="cb224-2" data-line-number="2">df</a>
 <a class="sourceLine" id="cb224-3" data-line-number="3">           country lifespan   gdp</a>
@@ -583,7 +487,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This syntax is saying this: using the dataframe named <code>df</code> as a source, plot column <code>lifespan</code> as a function of column <code>gdp</code>. The symbol <code>~</code> denotes <em>“as a function of”</em>. This frames <code>lifespan</code> as a dependent variable (y axis) that is affected by the independent variable (x axis), which in this case is <code>gdp</code>.</p>
 <p>Another way to write this command is as follows:</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p>In this command, as you learned in the dataframes module, the <code>$</code> symbol is saying, “give me the column in <code>df</code> named <code>lifespan</code>”. It is a handy way of referring to a column within a dataframe by name.</p>
 <div id="exercises-7" class="section level4 unnumbered hasAnchor">
 <h4>Exercises<a href="base-plots.html#exercises-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>

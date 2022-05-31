@@ -57,9 +57,9 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -380,13 +380,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Overview<a href="shiny.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>Shiny</code> is a package that makes it easy to build interactive web applications and dashboards in <code>R</code>.</p>
 <p>First we need to install and load the package:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="shiny.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;shiny&#39;</span>)</span>
-<span id="cb354-2"><a href="shiny.html#cb354-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;shiny&#39;</span>)</a>
 <a class="sourceLine" id="cb365-2" data-line-number="2"><span class="kw">library</span>(shiny)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><code>Shiny</code> apps consists of two main parts:</p>
 <ol style="list-style-type: decimal">
 <li><p>The <strong>UI</strong>, which stands for User Interface. The UI controls what is being displayed on the application page and how the components are laid out. This may include text and other <code>markdown</code> elements, graphics, widgets that take in user input, or plots. You will also use the UI to define a navigation bar with multiple tabs in this tutorial.</p></li>
@@ -407,23 +402,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s break down each function to get a better understanding of the app’s guts.</p>
 <div id="the-ui" class="section level3 unnumbered hasAnchor">
 <h3>The <code>ui</code><a href="shiny.html#the-ui" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="shiny.html#cb355-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb355-2"><a href="shiny.html#cb355-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Old Faithful Geyser Data&quot;</span>),</span>
-<span id="cb355-3"><a href="shiny.html#cb355-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
-<span id="cb355-4"><a href="shiny.html#cb355-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sidebarPanel</span>(</span>
-<span id="cb355-5"><a href="shiny.html#cb355-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sliderInput</span>(<span class="st">&quot;bins&quot;</span>,</span>
-<span id="cb355-6"><a href="shiny.html#cb355-6" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Number of bins:&quot;</span>,</span>
-<span id="cb355-7"><a href="shiny.html#cb355-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">min =</span> <span class="dv">1</span>,</span>
-<span id="cb355-8"><a href="shiny.html#cb355-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max =</span> <span class="dv">50</span>,</span>
-<span id="cb355-9"><a href="shiny.html#cb355-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value =</span> <span class="dv">30</span>)</span>
-<span id="cb355-10"><a href="shiny.html#cb355-10" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb355-11"><a href="shiny.html#cb355-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mainPanel</span>(</span>
-<span id="cb355-12"><a href="shiny.html#cb355-12" aria-hidden="true" tabindex="-1"></a>           <span class="fu">plotOutput</span>(<span class="st">&quot;distPlot&quot;</span>)</span>
-<span id="cb355-13"><a href="shiny.html#cb355-13" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb355-14"><a href="shiny.html#cb355-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb355-15"><a href="shiny.html#cb355-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
 <a class="sourceLine" id="cb366-2" data-line-number="2">    <span class="kw">titlePanel</span>(<span class="st">&quot;Old Faithful Geyser Data&quot;</span>),</a>
 <a class="sourceLine" id="cb366-3" data-line-number="3">    <span class="kw">sidebarLayout</span>(</a>
@@ -439,7 +417,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb366-13" data-line-number="13">        )</a>
 <a class="sourceLine" id="cb366-14" data-line-number="14">    )</a>
 <a class="sourceLine" id="cb366-15" data-line-number="15">)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <ul>
 <li><p><code>fluidPage</code>: Gives us a flexible page to work with by making it easy to position elements of the app (inputs, text, plots, etc) beside each other (rows) and on top of each other (columns). Note that each nested function within the <code>fluidPage</code> function is separated by a comma.</p></li>
 <li><p><code>titlePanel</code>: An optional title.</p></li>
@@ -452,16 +429,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="the-server" class="section level3 unnumbered hasAnchor">
 <h3>The <code>server</code><a href="shiny.html#the-server" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="shiny.html#cb356-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb356-2"><a href="shiny.html#cb356-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-3"><a href="shiny.html#cb356-3" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb356-4"><a href="shiny.html#cb356-4" aria-hidden="true" tabindex="-1"></a>        x    <span class="ot">&lt;-</span> faithful[, <span class="dv">2</span>]</span>
-<span id="cb356-5"><a href="shiny.html#cb356-5" aria-hidden="true" tabindex="-1"></a>        bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> input<span class="sc">$</span>bins <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb356-6"><a href="shiny.html#cb356-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hist</span>(x, <span class="at">breaks =</span> bins, <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="at">border =</span> <span class="st">&#39;white&#39;</span>)</span>
-<span id="cb356-7"><a href="shiny.html#cb356-7" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb356-8"><a href="shiny.html#cb356-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
 <a class="sourceLine" id="cb367-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb367-3" data-line-number="3">    output<span class="op">$</span>distPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
@@ -470,7 +437,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb367-6" data-line-number="6">        <span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)</a>
 <a class="sourceLine" id="cb367-7" data-line-number="7">    })</a>
 <a class="sourceLine" id="cb367-8" data-line-number="8">}</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <ul>
 <li><p><code>output$distPlot</code>: An output of the app. In this case, that output is a plot. The output has a named, <code>distPlot</code>, so that it can be referred to in the <code>UI</code>.</p></li>
 <li><p><code>renderPlot</code>: A <code>shiny</code> function to builds the plot.</p></li>
@@ -488,27 +454,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The <code>ui</code> actually <em>outputs</em> the outputs that are rendered by <code>server</code>. In the server, you’ll find functions like <code>renderPlot</code>, but in the <code>ui</code> you will find functions like <code>plotOutput</code>. (Confusing, we know.)</p></li>
 </ol>
 <p>Every <code>shiny</code> app you build will follow the same basic format:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="shiny.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="do">####################################################################</span></span>
-<span id="cb357-2"><a href="shiny.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Shiny app template ###############################################</span></span>
-<span id="cb357-3"><a href="shiny.html#cb357-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-4"><a href="shiny.html#cb357-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add libraries here</span></span>
-<span id="cb357-5"><a href="shiny.html#cb357-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-6"><a href="shiny.html#cb357-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data here</span></span>
-<span id="cb357-7"><a href="shiny.html#cb357-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-8"><a href="shiny.html#cb357-8" aria-hidden="true" tabindex="-1"></a><span class="do">####################################################################</span></span>
-<span id="cb357-9"><a href="shiny.html#cb357-9" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb357-10"><a href="shiny.html#cb357-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-11"><a href="shiny.html#cb357-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb357-12"><a href="shiny.html#cb357-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-13"><a href="shiny.html#cb357-13" aria-hidden="true" tabindex="-1"></a><span class="do">####################################################################</span></span>
-<span id="cb357-14"><a href="shiny.html#cb357-14" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input,output){</span>
-<span id="cb357-15"><a href="shiny.html#cb357-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-16"><a href="shiny.html#cb357-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb357-17"><a href="shiny.html#cb357-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-18"><a href="shiny.html#cb357-18" aria-hidden="true" tabindex="-1"></a><span class="do">####################################################################</span></span>
-<span id="cb357-19"><a href="shiny.html#cb357-19" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1"><span class="co">####################################################################</span></a>
 <a class="sourceLine" id="cb368-2" data-line-number="2"><span class="co"># Shiny app template ###############################################</span></a>
 <a class="sourceLine" id="cb368-3" data-line-number="3"></a>
@@ -528,199 +473,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb368-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb368-18" data-line-number="18"><span class="co">####################################################################</span></a>
 <a class="sourceLine" id="cb368-19" data-line-number="19"><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 </div>
 </div>
 <div id="build-your-first-shiny-app" class="section level2 unnumbered hasAnchor">
 <h2>Build your first <code>shiny</code> app<a href="shiny.html#build-your-first-shiny-app" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First, delete the code currently in your <code>shiny</code> script and paste the template code above into the script. If you click ‘Run App’, a blank window should appear.</p>
 <p>Second, add some libraries to the top of your script:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="shiny.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb358-2"><a href="shiny.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb358-3"><a href="shiny.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb358-4"><a href="shiny.html#cb358-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
-<p>Next, load some data from the package <code>gapminder</code>, which provides country-level data on life expectancy, GDP per capita, and population for the last half century.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="shiny.html#cb359-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gapminder</span></code></pre></div>
-<p>Now, setup a layout for your <code>ui</code>. Add the following code inside the <code>fluidRow</code> parentheses:</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="shiny.html#cb360-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;The economics of global health&quot;</span>),</span>
-<span id="cb360-2"><a href="shiny.html#cb360-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
-<span id="cb360-3"><a href="shiny.html#cb360-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sidebarPanel</span>(</span>
-<span id="cb360-4"><a href="shiny.html#cb360-4" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb360-5"><a href="shiny.html#cb360-5" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb360-6"><a href="shiny.html#cb360-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mainPanel</span>(</span>
-<span id="cb360-7"><a href="shiny.html#cb360-7" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb360-8"><a href="shiny.html#cb360-8" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb360-9"><a href="shiny.html#cb360-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
-<p><code>Run App</code> and make sure everything still works. Repeat that action after each following step.</p>
-<p>(You will want to get in the habit of re-building the app everytime you make a change. It makes fixing errors much less of a headache.)</p>
-<p>Now add an input that allows the user to choose a country to plot. Add this code to the <code>sidebarPanel</code>:</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="shiny.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">&quot;country_name&quot;</span>,</span>
-<span id="cb361-2"><a href="shiny.html#cb361-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label =</span> <span class="st">&quot;Choose a country&quot;</span>,</span>
-<span id="cb361-3"><a href="shiny.html#cb361-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">choices =</span> <span class="fu">unique</span>(gm<span class="sc">$</span>country),</span>
-<span id="cb361-4"><a href="shiny.html#cb361-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">selected =</span> <span class="st">&#39;Mexico&#39;</span>)</span></code></pre></div>
-<p>Now add a plot to your app. Add this code to the <code>mainPanel</code> of your <code>ui</code>:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="shiny.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotOutput</span>(<span class="st">&quot;country_plot&quot;</span>)</span></code></pre></div>
-<p>And add this code to your <code>server</code>:</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="shiny.html#cb363-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>country_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb363-2"><a href="shiny.html#cb363-2" aria-hidden="true" tabindex="-1"></a>        cn <span class="ot">&lt;-</span> input<span class="sc">$</span>country_name</span>
-<span id="cb363-3"><a href="shiny.html#cb363-3" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb363-4"><a href="shiny.html#cb363-4" aria-hidden="true" tabindex="-1"></a>        pd <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(country <span class="sc">==</span> cn)</span>
-<span id="cb363-5"><a href="shiny.html#cb363-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(pd, <span class="fu">aes</span>(year, pop)) <span class="sc">+</span></span>
-<span id="cb363-6"><a href="shiny.html#cb363-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb363-7"><a href="shiny.html#cb363-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb363-8"><a href="shiny.html#cb363-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>()</span>
-<span id="cb363-9"><a href="shiny.html#cb363-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<p>Now run your app and try changing the country selected in the drop-down menu; does the plot react?</p>
-<p>Let’s add some more inputs to the <code>sidebarPanel</code>, to adjust the way the chart looks. First, make sure there is a comma after the <code>selectInput</code> that creates the country drop-down. Then add this code:</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="shiny.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">&quot;line_color&quot;</span>,</span>
-<span id="cb364-2"><a href="shiny.html#cb364-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">&quot;Choose a color for the line&quot;</span>,</span>
-<span id="cb364-3"><a href="shiny.html#cb364-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&#39;green&#39;</span>, <span class="st">&#39;blue&#39;</span>,<span class="st">&#39;red&#39;</span>, <span class="st">&#39;orange&#39;</span>),</span>
-<span id="cb364-4"><a href="shiny.html#cb364-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">selected =</span> <span class="st">&#39;green&#39;</span>),</span>
-<span id="cb364-5"><a href="shiny.html#cb364-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb364-6"><a href="shiny.html#cb364-6" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">&quot;point_color&quot;</span>,</span>
-<span id="cb364-7"><a href="shiny.html#cb364-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">&quot;Choose a color for the points&quot;</span>,</span>
-<span id="cb364-8"><a href="shiny.html#cb364-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&#39;green&#39;</span>, <span class="st">&#39;blue&#39;</span>,<span class="st">&#39;red&#39;</span>, <span class="st">&#39;orange&#39;</span>),</span>
-<span id="cb364-9"><a href="shiny.html#cb364-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">selected =</span> <span class="st">&#39;green&#39;</span>),</span>
-<span id="cb364-10"><a href="shiny.html#cb364-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb364-11"><a href="shiny.html#cb364-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="at">inputId =</span> <span class="st">&quot;line_size&quot;</span>,</span>
-<span id="cb364-12"><a href="shiny.html#cb364-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">&quot;Change the thickness of the line&quot;</span>,</span>
-<span id="cb364-13"><a href="shiny.html#cb364-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="dv">1</span>,</span>
-<span id="cb364-14"><a href="shiny.html#cb364-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="dv">10</span>,</span>
-<span id="cb364-15"><a href="shiny.html#cb364-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">value =</span><span class="dv">2</span>),</span>
-<span id="cb364-16"><a href="shiny.html#cb364-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb364-17"><a href="shiny.html#cb364-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="at">inputId =</span> <span class="st">&quot;point_size&quot;</span>,</span>
-<span id="cb364-18"><a href="shiny.html#cb364-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">&quot;Change the point size&quot;</span>,</span>
-<span id="cb364-19"><a href="shiny.html#cb364-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="dv">1</span>,</span>
-<span id="cb364-20"><a href="shiny.html#cb364-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="dv">10</span>,</span>
-<span id="cb364-21"><a href="shiny.html#cb364-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">value =</span><span class="dv">5</span>),</span>
-<span id="cb364-22"><a href="shiny.html#cb364-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb364-23"><a href="shiny.html#cb364-23" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="at">inputId =</span> <span class="st">&#39;alpha_value&#39;</span>,</span>
-<span id="cb364-24"><a href="shiny.html#cb364-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">&#39;Change transparency of line and points&#39;</span>,</span>
-<span id="cb364-25"><a href="shiny.html#cb364-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">min=</span> <span class="dv">0</span>,</span>
-<span id="cb364-26"><a href="shiny.html#cb364-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">max=</span><span class="dv">1</span>,</span>
-<span id="cb364-27"><a href="shiny.html#cb364-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">value =</span><span class="fl">0.5</span>)</span></code></pre></div>
-<p>Then update the <code>server</code> code to react to these new inputs:</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="shiny.html#cb365-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>country_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb365-2"><a href="shiny.html#cb365-2" aria-hidden="true" tabindex="-1"></a>    cn <span class="ot">&lt;-</span> input<span class="sc">$</span>country_name</span>
-<span id="cb365-3"><a href="shiny.html#cb365-3" aria-hidden="true" tabindex="-1"></a>    lc <span class="ot">&lt;-</span> input<span class="sc">$</span>line_color</span>
-<span id="cb365-4"><a href="shiny.html#cb365-4" aria-hidden="true" tabindex="-1"></a>    ps <span class="ot">&lt;-</span> input<span class="sc">$</span>point_size</span>
-<span id="cb365-5"><a href="shiny.html#cb365-5" aria-hidden="true" tabindex="-1"></a>    ls <span class="ot">&lt;-</span> input<span class="sc">$</span>line_size</span>
-<span id="cb365-6"><a href="shiny.html#cb365-6" aria-hidden="true" tabindex="-1"></a>    pc <span class="ot">&lt;-</span> input<span class="sc">$</span>point_color</span>
-<span id="cb365-7"><a href="shiny.html#cb365-7" aria-hidden="true" tabindex="-1"></a>    av <span class="ot">&lt;-</span> input<span class="sc">$</span>alpha_value</span>
-<span id="cb365-8"><a href="shiny.html#cb365-8" aria-hidden="true" tabindex="-1"></a>    pd <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(country <span class="sc">==</span> cn)</span>
-<span id="cb365-9"><a href="shiny.html#cb365-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb365-10"><a href="shiny.html#cb365-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(pd, <span class="fu">aes</span>(year, pop)) <span class="sc">+</span></span>
-<span id="cb365-11"><a href="shiny.html#cb365-11" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>(<span class="at">color =</span> pc, <span class="at">size =</span> ps, <span class="at">alpha=</span>av) <span class="sc">+</span></span>
-<span id="cb365-12"><a href="shiny.html#cb365-12" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_line</span>(<span class="at">color =</span> lc, <span class="at">size =</span> ls, <span class="at">alpha=</span>av) <span class="sc">+</span></span>
-<span id="cb365-13"><a href="shiny.html#cb365-13" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> cn)</span>
-<span id="cb365-14"><a href="shiny.html#cb365-14" aria-hidden="true" tabindex="-1"></a>    })</span></code></pre></div>
-<p>Now add an additional input to the sidebar that allows the user to choose which variable to plot:</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="shiny.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">&#39;plot_var&#39;</span>,</span>
-<span id="cb366-2"><a href="shiny.html#cb366-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">&#39;Choose a variable to plot&#39;</span>,</span>
-<span id="cb366-3"><a href="shiny.html#cb366-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&#39;lifeExp&#39;</span>, <span class="st">&#39;pop&#39;</span>, <span class="st">&#39;gdpPercap&#39;</span>),</span>
-<span id="cb366-4"><a href="shiny.html#cb366-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">selected =</span> <span class="st">&#39;pop&#39;</span>)</span></code></pre></div>
-<p>And update the <code>server</code> output:</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="shiny.html#cb367-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>country_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb367-2"><a href="shiny.html#cb367-2" aria-hidden="true" tabindex="-1"></a>    cn <span class="ot">&lt;-</span> input<span class="sc">$</span>country_name</span>
-<span id="cb367-3"><a href="shiny.html#cb367-3" aria-hidden="true" tabindex="-1"></a>    lc <span class="ot">&lt;-</span> input<span class="sc">$</span>line_color</span>
-<span id="cb367-4"><a href="shiny.html#cb367-4" aria-hidden="true" tabindex="-1"></a>    ps <span class="ot">&lt;-</span> input<span class="sc">$</span>point_size</span>
-<span id="cb367-5"><a href="shiny.html#cb367-5" aria-hidden="true" tabindex="-1"></a>    ls <span class="ot">&lt;-</span> input<span class="sc">$</span>line_size</span>
-<span id="cb367-6"><a href="shiny.html#cb367-6" aria-hidden="true" tabindex="-1"></a>    pc <span class="ot">&lt;-</span> input<span class="sc">$</span>point_color</span>
-<span id="cb367-7"><a href="shiny.html#cb367-7" aria-hidden="true" tabindex="-1"></a>    av <span class="ot">&lt;-</span> input<span class="sc">$</span>alpha_value</span>
-<span id="cb367-8"><a href="shiny.html#cb367-8" aria-hidden="true" tabindex="-1"></a>    pv <span class="ot">&lt;-</span> input<span class="sc">$</span>plot_var</span>
-<span id="cb367-9"><a href="shiny.html#cb367-9" aria-hidden="true" tabindex="-1"></a>    pd <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(country <span class="sc">==</span> cn)</span>
-<span id="cb367-10"><a href="shiny.html#cb367-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(pd, <span class="fu">aes_string</span>(<span class="st">&#39;year&#39;</span>, pv)) <span class="sc">+</span></span>
-<span id="cb367-11"><a href="shiny.html#cb367-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">color =</span> pc, <span class="at">size =</span> ps, <span class="at">alpha=</span>av) <span class="sc">+</span></span>
-<span id="cb367-12"><a href="shiny.html#cb367-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">color =</span> lc, <span class="at">size =</span> ls, <span class="at">alpha=</span>av) <span class="sc">+</span></span>
-<span id="cb367-13"><a href="shiny.html#cb367-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> cn)</span>
-<span id="cb367-14"><a href="shiny.html#cb367-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<p>Now let’s modify our app so that you can display multiple countries at once. First, modify the <code>selectInput</code> for the input <code>country_name</code>:</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="shiny.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">&quot;country_name&quot;</span>,</span>
-<span id="cb368-2"><a href="shiny.html#cb368-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label =</span> <span class="st">&quot;Choose a country&quot;</span>,</span>
-<span id="cb368-3"><a href="shiny.html#cb368-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">choices =</span> <span class="fu">unique</span>(gm<span class="sc">$</span>country),</span>
-<span id="cb368-4"><a href="shiny.html#cb368-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">multiple=</span><span class="cn">TRUE</span>,</span>
-<span id="cb368-5"><a href="shiny.html#cb368-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">selected =</span> <span class="st">&#39;Mexico&#39;</span>)</span></code></pre></div>
-<p>Now let’s modify these lines of code inside the <code>server</code>’s <code>renderPlot</code> call:</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="shiny.html#cb369-1" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(country <span class="sc">%in%</span> cn)</span>
-<span id="cb369-2"><a href="shiny.html#cb369-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggplot</span>(pd, <span class="fu">aes_string</span>(<span class="st">&#39;year&#39;</span>, pv, <span class="at">group=</span><span class="st">&#39;country&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb369-3"><a href="shiny.html#cb369-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">color =</span> pc, <span class="at">size =</span> ps, <span class="at">alpha=</span>av) <span class="sc">+</span></span>
-<span id="cb369-4"><a href="shiny.html#cb369-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">color =</span> lc, <span class="at">size =</span> ls, <span class="at">alpha=</span>av) <span class="sc">+</span></span>
-<span id="cb369-5"><a href="shiny.html#cb369-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> cn)</span></code></pre></div>
-<p>The final version of your app’s code should look like this:</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="shiny.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="do">####################################################################</span></span>
-<span id="cb370-2"><a href="shiny.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Shiny app template ###############################################</span></span>
-<span id="cb370-3"><a href="shiny.html#cb370-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-4"><a href="shiny.html#cb370-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add libraries here</span></span>
-<span id="cb370-5"><a href="shiny.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb370-6"><a href="shiny.html#cb370-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb370-7"><a href="shiny.html#cb370-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb370-8"><a href="shiny.html#cb370-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb370-9"><a href="shiny.html#cb370-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-10"><a href="shiny.html#cb370-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data here</span></span>
-<span id="cb370-11"><a href="shiny.html#cb370-11" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gapminder</span>
-<span id="cb370-12"><a href="shiny.html#cb370-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-13"><a href="shiny.html#cb370-13" aria-hidden="true" tabindex="-1"></a><span class="do">####################################################################</span></span>
-<span id="cb370-14"><a href="shiny.html#cb370-14" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb370-15"><a href="shiny.html#cb370-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;The economics of global health&quot;</span>),</span>
-<span id="cb370-16"><a href="shiny.html#cb370-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
-<span id="cb370-17"><a href="shiny.html#cb370-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sidebarPanel</span>(</span>
-<span id="cb370-18"><a href="shiny.html#cb370-18" aria-hidden="true" tabindex="-1"></a>            <span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">&#39;plot_var&#39;</span>,</span>
-<span id="cb370-19"><a href="shiny.html#cb370-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label =</span> <span class="st">&#39;Choose a variable to plot&#39;</span>,</span>
-<span id="cb370-20"><a href="shiny.html#cb370-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&#39;lifeExp&#39;</span>, <span class="st">&#39;pop&#39;</span>, <span class="st">&#39;gdpPercap&#39;</span>),</span>
-<span id="cb370-21"><a href="shiny.html#cb370-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">selected =</span> <span class="st">&#39;pop&#39;</span>),</span>
-<span id="cb370-22"><a href="shiny.html#cb370-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-23"><a href="shiny.html#cb370-23" aria-hidden="true" tabindex="-1"></a>            <span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">&quot;country_name&quot;</span>,</span>
-<span id="cb370-24"><a href="shiny.html#cb370-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label =</span> <span class="st">&quot;Choose a country&quot;</span>,</span>
-<span id="cb370-25"><a href="shiny.html#cb370-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">choices =</span> <span class="fu">unique</span>(gm<span class="sc">$</span>country),</span>
-<span id="cb370-26"><a href="shiny.html#cb370-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">multiple=</span><span class="cn">TRUE</span>,</span>
-<span id="cb370-27"><a href="shiny.html#cb370-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">selected =</span> <span class="st">&#39;Mexico&#39;</span>),</span>
-<span id="cb370-28"><a href="shiny.html#cb370-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-29"><a href="shiny.html#cb370-29" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sliderInput</span>(<span class="at">inputId =</span> <span class="st">&quot;line_size&quot;</span>,</span>
-<span id="cb370-30"><a href="shiny.html#cb370-30" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label =</span> <span class="st">&quot;Change the thickness of the line&quot;</span>,</span>
-<span id="cb370-31"><a href="shiny.html#cb370-31" aria-hidden="true" tabindex="-1"></a>                        <span class="at">min =</span> <span class="dv">1</span>,</span>
-<span id="cb370-32"><a href="shiny.html#cb370-32" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max =</span> <span class="dv">10</span>,</span>
-<span id="cb370-33"><a href="shiny.html#cb370-33" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value =</span><span class="dv">2</span>),</span>
-<span id="cb370-34"><a href="shiny.html#cb370-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-35"><a href="shiny.html#cb370-35" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sliderInput</span>(<span class="at">inputId =</span> <span class="st">&quot;point_size&quot;</span>,</span>
-<span id="cb370-36"><a href="shiny.html#cb370-36" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label =</span> <span class="st">&quot;Change the point size&quot;</span>,</span>
-<span id="cb370-37"><a href="shiny.html#cb370-37" aria-hidden="true" tabindex="-1"></a>                        <span class="at">min =</span> <span class="dv">1</span>,</span>
-<span id="cb370-38"><a href="shiny.html#cb370-38" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max =</span> <span class="dv">10</span>,</span>
-<span id="cb370-39"><a href="shiny.html#cb370-39" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value =</span><span class="dv">5</span>),</span>
-<span id="cb370-40"><a href="shiny.html#cb370-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-41"><a href="shiny.html#cb370-41" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sliderInput</span>(<span class="at">inputId =</span> <span class="st">&#39;alpha_value&#39;</span>,</span>
-<span id="cb370-42"><a href="shiny.html#cb370-42" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label =</span> <span class="st">&#39;Change transparency of line and points&#39;</span>,</span>
-<span id="cb370-43"><a href="shiny.html#cb370-43" aria-hidden="true" tabindex="-1"></a>                        <span class="at">min=</span> <span class="dv">0</span>,</span>
-<span id="cb370-44"><a href="shiny.html#cb370-44" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max=</span><span class="dv">1</span>,</span>
-<span id="cb370-45"><a href="shiny.html#cb370-45" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value =</span><span class="fl">0.5</span>)</span>
-<span id="cb370-46"><a href="shiny.html#cb370-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-47"><a href="shiny.html#cb370-47" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb370-48"><a href="shiny.html#cb370-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mainPanel</span>(</span>
-<span id="cb370-49"><a href="shiny.html#cb370-49" aria-hidden="true" tabindex="-1"></a>            <span class="fu">plotOutput</span>(<span class="st">&quot;country_plot&quot;</span>)</span>
-<span id="cb370-50"><a href="shiny.html#cb370-50" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb370-51"><a href="shiny.html#cb370-51" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb370-52"><a href="shiny.html#cb370-52" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb370-53"><a href="shiny.html#cb370-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-54"><a href="shiny.html#cb370-54" aria-hidden="true" tabindex="-1"></a><span class="do">####################################################################</span></span>
-<span id="cb370-55"><a href="shiny.html#cb370-55" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input,output){</span>
-<span id="cb370-56"><a href="shiny.html#cb370-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-57"><a href="shiny.html#cb370-57" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>country_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb370-58"><a href="shiny.html#cb370-58" aria-hidden="true" tabindex="-1"></a>        cn <span class="ot">&lt;-</span> input<span class="sc">$</span>country_name</span>
-<span id="cb370-59"><a href="shiny.html#cb370-59" aria-hidden="true" tabindex="-1"></a>        ps <span class="ot">&lt;-</span> input<span class="sc">$</span>point_size</span>
-<span id="cb370-60"><a href="shiny.html#cb370-60" aria-hidden="true" tabindex="-1"></a>        ls <span class="ot">&lt;-</span> input<span class="sc">$</span>line_size</span>
-<span id="cb370-61"><a href="shiny.html#cb370-61" aria-hidden="true" tabindex="-1"></a>        av <span class="ot">&lt;-</span> input<span class="sc">$</span>alpha_value</span>
-<span id="cb370-62"><a href="shiny.html#cb370-62" aria-hidden="true" tabindex="-1"></a>        pv <span class="ot">&lt;-</span> input<span class="sc">$</span>plot_var</span>
-<span id="cb370-63"><a href="shiny.html#cb370-63" aria-hidden="true" tabindex="-1"></a>        pd <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(country <span class="sc">==</span> cn)</span>
-<span id="cb370-64"><a href="shiny.html#cb370-64" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(pd, <span class="fu">aes_string</span>(<span class="st">&#39;year&#39;</span>, pv, <span class="at">color=</span><span class="st">&#39;country&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb370-65"><a href="shiny.html#cb370-65" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_point</span>(<span class="at">size =</span> ps, <span class="at">alpha=</span>av) <span class="sc">+</span></span>
-<span id="cb370-66"><a href="shiny.html#cb370-66" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_line</span>(<span class="at">size =</span> ls, <span class="at">alpha=</span>av) <span class="sc">+</span></span>
-<span id="cb370-67"><a href="shiny.html#cb370-67" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">title =</span> cn)</span>
-<span id="cb370-68"><a href="shiny.html#cb370-68" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb370-69"><a href="shiny.html#cb370-69" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb370-70"><a href="shiny.html#cb370-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-71"><a href="shiny.html#cb370-71" aria-hidden="true" tabindex="-1"></a><span class="do">####################################################################</span></span>
-<span id="cb370-72"><a href="shiny.html#cb370-72" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
 <a class="sourceLine" id="cb369-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
 <a class="sourceLine" id="cb369-3" data-line-number="3"><span class="kw">library</span>(gapminder)</a>
@@ -905,7 +663,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb381-70" data-line-number="70"></a>
 <a class="sourceLine" id="cb381-71" data-line-number="71"><span class="co">####################################################################</span></a>
 <a class="sourceLine" id="cb381-72" data-line-number="72"><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <div id="final-thoughts-1" class="section level3 unnumbered hasAnchor">
 <h3>Final thoughts<a href="shiny.html#final-thoughts-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>Shiny</code> apps are nifty and cool, but they are also an important tool for reproducible research.</p>
@@ -923,16 +680,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>3.</strong> Create a new folder named <code>covid_data</code> inside your <code>shiny_examples</code> repo.</p>
 <p><strong>4.</strong> Inside that folder, create a <code>shiny</code> file (<code>app.R</code>) and paste the app template from above.</p>
 <p><strong>5.</strong> Add these libraries to your script:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="shiny.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb371-2"><a href="shiny.html#cb371-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb371-3"><a href="shiny.html#cb371-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb371-4"><a href="shiny.html#cb371-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb371-5"><a href="shiny.html#cb371-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
-<p><strong>6.</strong> Add this code to read in the data on COVID-19.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="shiny.html#cb372-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/covid_data.csv&#39;</span>)</span>
-<span id="cb372-2"><a href="shiny.html#cb372-2" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/state_pop.csv&#39;</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
 <a class="sourceLine" id="cb382-2" data-line-number="2"><span class="kw">library</span>(readr)</a>
 <a class="sourceLine" id="cb382-3" data-line-number="3"><span class="kw">library</span>(dplyr)</a>
@@ -941,7 +688,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>6.</strong> Add this code to read in the data on COVID-19.</p>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/covid_data.csv&#39;</span>)</a>
 <a class="sourceLine" id="cb383-2" data-line-number="2">pop &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/state_pop.csv&#39;</span>)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><strong>7.</strong> Create a title for the app called “Covid-19 cases and deaths by state”.</p>
 <p><strong>8.</strong> In the side panel of your <code>ui</code>, create an input that allows the user to choose a state.</p>
 <p><strong>9.</strong> Create a bar chart called <code>cases_month</code> that plots a state’s Covid-19 cases by month.</p>

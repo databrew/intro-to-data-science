@@ -57,9 +57,9 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -377,32 +377,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>This module assumes you have already worked through the module on base plotting.</p>
 <p>Make sure you have this dataset from that module ready to go:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="advanced-base-plots-in-r.html#cb579-1" aria-hidden="true" tabindex="-1"></a>country <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;Tanzania&quot;</span>,<span class="st">&quot;Japan&quot;</span>,<span class="st">&quot;Ctr. Africa Rep.&quot;</span>,<span class="st">&quot;China&quot;</span>,<span class="st">&quot;Norway&quot;</span>,<span class="st">&quot;India&quot;</span>)</span>
-<span id="cb579-2"><a href="advanced-base-plots-in-r.html#cb579-2" aria-hidden="true" tabindex="-1"></a>lifespan <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">79</span>,<span class="dv">65</span>,<span class="dv">84</span>,<span class="dv">53</span>,<span class="dv">77</span>,<span class="dv">82</span>,<span class="dv">69</span>)</span>
-<span id="cb579-3"><a href="advanced-base-plots-in-r.html#cb579-3" aria-hidden="true" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">55335</span>,<span class="dv">2875</span>,<span class="dv">38674</span>,<span class="dv">623</span>,<span class="dv">13102</span>,<span class="dv">84500</span>,<span class="dv">6807</span>)</span>
-<span id="cb579-4"><a href="advanced-base-plots-in-r.html#cb579-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(country,lifespan,gdp)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb590-1" data-line-number="1">country &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;Tanzania&quot;</span>,<span class="st">&quot;Japan&quot;</span>,<span class="st">&quot;Ctr. Africa Rep.&quot;</span>,<span class="st">&quot;China&quot;</span>,<span class="st">&quot;Norway&quot;</span>,<span class="st">&quot;India&quot;</span>)</a>
 <a class="sourceLine" id="cb590-2" data-line-number="2">lifespan &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">65</span>,<span class="dv">84</span>,<span class="dv">53</span>,<span class="dv">77</span>,<span class="dv">82</span>,<span class="dv">69</span>)</a>
 <a class="sourceLine" id="cb590-3" data-line-number="3">gdp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">55335</span>,<span class="dv">2875</span>,<span class="dv">38674</span>,<span class="dv">623</span>,<span class="dv">13102</span>,<span class="dv">84500</span>,<span class="dv">6807</span>)</a>
 <a class="sourceLine" id="cb590-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(country,lifespan,gdp)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p>The possibilities for data visualization in <code>R</code> are pretty much limitless, and over time you will become fluent in making gorgeous plots. Here are a few common tools that can take your plots to the next level.</p>
 </div>
 <div id="adding-lines" class="section level3 unnumbered hasAnchor">
 <h3>Adding lines<a href="advanced-base-plots-in-r.html#adding-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In some cases it is useful to add reference lines to your plot. For example, what if we wanted to be able to quickly see which countries had life expectancies below 75 years?</p>
 <p>You can add a line at <code>lifespan = 75</code> using the function <code>abline()</code>.</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="advanced-base-plots-in-r.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>lifespan <span class="sc">~</span> df<span class="sc">$</span>gdp)</span>
-<span id="cb580-2"><a href="advanced-base-plots-in-r.html#cb580-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">75</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-600-1.png" width="925.44" /></p>
-<p>In this command, the <code>h</code> input means “place a horizontal line at this y value.”.</p>
-<p>Similarly, you can use <code>v</code> to specify vertical lines at certain x values.</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="advanced-base-plots-in-r.html#cb581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>lifespan <span class="sc">~</span> df<span class="sc">$</span>gdp)</span>
-<span id="cb581-2"><a href="advanced-base-plots-in-r.html#cb581-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(<span class="dv">25000</span>,<span class="dv">35000</span>),<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb591-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a>
 <a class="sourceLine" id="cb591-2" data-line-number="2"><span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">75</span>)</a></code></pre></div>
 <p><img src="figures/unnamed-chunk-600-1.png" width="925.44" /></p>
@@ -410,33 +394,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Similarly, you can use <code>v</code> to specify vertical lines at certain x values.</p>
 <div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb592-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a>
 <a class="sourceLine" id="cb592-2" data-line-number="2"><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="dv">25000</span>,<span class="dv">35000</span>),<span class="dt">lty=</span><span class="dv">3</span>)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><img src="figures/unnamed-chunk-601-1.png" width="925.44" /></p>
 <p>Note here that another input, <code>lty</code>, was used to change the type of line printed. (Refer to <code>?abline()</code> for more details).</p>
 </div>
 <div id="adding-text" class="section level3 unnumbered hasAnchor">
 <h3>Adding text<a href="advanced-base-plots-in-r.html#adding-text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Use the <code>text()</code> function to add labels to your plot:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="advanced-base-plots-in-r.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>lifespan <span class="sc">~</span> df<span class="sc">$</span>gdp)</span>
-<span id="cb582-2"><a href="advanced-base-plots-in-r.html#cb582-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="dv">30000</span>,<span class="at">y=</span><span class="dv">75</span>,<span class="at">labels=</span><span class="st">&quot;My text went here&quot;</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb593-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a>
 <a class="sourceLine" id="cb593-2" data-line-number="2"><span class="kw">text</span>(<span class="dt">x=</span><span class="dv">30000</span>,<span class="dt">y=</span><span class="dv">75</span>,<span class="dt">labels=</span><span class="st">&quot;My text went here&quot;</span>)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><img src="figures/unnamed-chunk-602-1.png" width="925.44" /></p>
 </div>
 <div id="highlighting-certain-data-points" class="section level3 unnumbered hasAnchor">
 <h3>Highlighting certain data points<a href="advanced-base-plots-in-r.html#highlighting-certain-data-points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It can be helpful to highlight a certain data point (or group of data points) using a different dot size, format, or color.</p>
 <p><strong>To highlight a single data point</strong>, here is one approach you can take: first, plot all points, <em>then</em> re-plot the point of interest using the <code>points()</code> function:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="advanced-base-plots-in-r.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>lifespan <span class="sc">~</span> df<span class="sc">$</span>gdp)</span>
-<span id="cb583-2"><a href="advanced-base-plots-in-r.html#cb583-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x=</span>df<span class="sc">$</span>gdp[<span class="dv">5</span>],<span class="at">y=</span>df<span class="sc">$</span>lifespan[<span class="dv">5</span>],<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">cex=</span><span class="fl">1.5</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb594-1" data-line-number="1"><span class="kw">plot</span>(df<span class="op">$</span>lifespan <span class="op">~</span><span class="st"> </span>df<span class="op">$</span>gdp)</a>
 <a class="sourceLine" id="cb594-2" data-line-number="2"><span class="kw">points</span>(<span class="dt">x=</span>df<span class="op">$</span>gdp[<span class="dv">5</span>],<span class="dt">y=</span>df<span class="op">$</span>lifespan[<span class="dv">5</span>],<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><img src="figures/unnamed-chunk-603-1.png" width="925.44" /></p>
 <p>In this example, we re-plotted the data for the fifth row in the dataframe (in this case, China).</p>
 <p><strong>To highlight a group of data points</strong>, try this approach:</p>
@@ -446,22 +419,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Third, use your vector of colors within your <code>plot()</code> command.</p></li>
 </ul>
 <p>For example, let’s highlight all countries whose life expectancy is greater than 75.</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="advanced-base-plots-in-r.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First</span></span>
-<span id="cb584-2"><a href="advanced-base-plots-in-r.html#cb584-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector of colors the length of vector `lifespan`</span></span>
-<span id="cb584-3"><a href="advanced-base-plots-in-r.html#cb584-3" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">&quot;grey&quot;</span>,<span class="at">times=</span><span class="fu">length</span>(lifespan)) </span>
-<span id="cb584-4"><a href="advanced-base-plots-in-r.html#cb584-4" aria-hidden="true" tabindex="-1"></a>cols</span>
-<span id="cb584-5"><a href="advanced-base-plots-in-r.html#cb584-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span> <span class="st">&quot;grey&quot;</span></span>
-<span id="cb584-6"><a href="advanced-base-plots-in-r.html#cb584-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb584-7"><a href="advanced-base-plots-in-r.html#cb584-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Second</span></span>
-<span id="cb584-8"><a href="advanced-base-plots-in-r.html#cb584-8" aria-hidden="true" tabindex="-1"></a>change_these <span class="ot">&lt;-</span> <span class="fu">which</span>(lifespan <span class="sc">&gt;</span> <span class="dv">75</span>) </span>
-<span id="cb584-9"><a href="advanced-base-plots-in-r.html#cb584-9" aria-hidden="true" tabindex="-1"></a>change_these <span class="co"># these are the elements that we want to highlight</span></span>
-<span id="cb584-10"><a href="advanced-base-plots-in-r.html#cb584-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">6</span></span>
-<span id="cb584-11"><a href="advanced-base-plots-in-r.html#cb584-11" aria-hidden="true" tabindex="-1"></a>cols[change_these] <span class="ot">&lt;-</span> <span class="st">&quot;red&quot;</span>  <span class="co"># change the color for these elements </span></span>
-<span id="cb584-12"><a href="advanced-base-plots-in-r.html#cb584-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb584-13"><a href="advanced-base-plots-in-r.html#cb584-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Third</span></span>
-<span id="cb584-14"><a href="advanced-base-plots-in-r.html#cb584-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifespan <span class="sc">~</span> gdp,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span>cols,<span class="at">log=</span><span class="st">&quot;x&quot;</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb595-1" data-line-number="1"><span class="co"># First</span></a>
 <a class="sourceLine" id="cb595-2" data-line-number="2"><span class="co"># create a vector of colors the length of vector `lifespan`</span></a>
 <a class="sourceLine" id="cb595-3" data-line-number="3">cols &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;grey&quot;</span>,<span class="dt">times=</span><span class="kw">length</span>(lifespan)) </a>
@@ -476,7 +433,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb595-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb595-13" data-line-number="13"><span class="co"># Third</span></a>
 <a class="sourceLine" id="cb595-14" data-line-number="14"><span class="kw">plot</span>(lifespan <span class="op">~</span><span class="st"> </span>gdp,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">col=</span>cols,<span class="dt">log=</span><span class="st">&quot;x&quot;</span>)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><img src="figures/unnamed-chunk-604-1.png" width="925.44" /></p>
 </div>
 <div id="building-a-plot-from-the-ground-up" class="section level3 unnumbered hasAnchor">
@@ -492,29 +448,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Add text labels</strong>, if you want, using <code>text()</code>.</p></li>
 </ol>
 <p>Here is an example of this process:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="advanced-base-plots-in-r.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Stage a blank canvas</span></span>
-<span id="cb585-2"><a href="advanced-base-plots-in-r.html#cb585-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb585-3"><a href="advanced-base-plots-in-r.html#cb585-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">axes=</span><span class="cn">FALSE</span>,<span class="at">ann=</span><span class="cn">FALSE</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</span>
-<span id="cb585-4"><a href="advanced-base-plots-in-r.html#cb585-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb585-5"><a href="advanced-base-plots-in-r.html#cb585-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Add axes</span></span>
-<span id="cb585-6"><a href="advanced-base-plots-in-r.html#cb585-6" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>,<span class="at">at=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20000</span>,<span class="dv">40000</span>,<span class="dv">60000</span>,<span class="dv">80000</span>,<span class="dv">100000</span>),</span>
-<span id="cb585-7"><a href="advanced-base-plots-in-r.html#cb585-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;$0&quot;</span>, <span class="st">&quot;$20&quot;</span>,<span class="st">&quot;$40&quot;</span>,<span class="st">&quot;$60&quot;</span>,<span class="st">&quot;$80&quot;</span>,<span class="st">&quot;$100&quot;</span>))</span>
-<span id="cb585-8"><a href="advanced-base-plots-in-r.html#cb585-8" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>,<span class="at">at=</span><span class="fu">seq</span>(<span class="dv">40</span>,<span class="dv">100</span>,<span class="at">by=</span><span class="dv">10</span>),<span class="at">las=</span><span class="dv">2</span>)</span>
-<span id="cb585-9"><a href="advanced-base-plots-in-r.html#cb585-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb585-10"><a href="advanced-base-plots-in-r.html#cb585-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Add axis titles</span></span>
-<span id="cb585-11"><a href="advanced-base-plots-in-r.html#cb585-11" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">xlab=</span><span class="st">&quot;Gross Domestic Product (GDP, in thousands) per Capita &quot;</span>,<span class="at">cex.lab=</span>.<span class="dv">9</span>)</span>
-<span id="cb585-12"><a href="advanced-base-plots-in-r.html#cb585-12" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">ylab=</span><span class="st">&quot;Average Life Expectancy&quot;</span>,<span class="at">cex.lab=</span>.<span class="dv">9</span>)</span>
-<span id="cb585-13"><a href="advanced-base-plots-in-r.html#cb585-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb585-14"><a href="advanced-base-plots-in-r.html#cb585-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Add reference lines</span></span>
-<span id="cb585-15"><a href="advanced-base-plots-in-r.html#cb585-15" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">70</span>,<span class="at">v=</span><span class="dv">50000</span>,<span class="at">lty=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">&quot;grey&quot;</span>)</span>
-<span id="cb585-16"><a href="advanced-base-plots-in-r.html#cb585-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb585-17"><a href="advanced-base-plots-in-r.html#cb585-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Add data</span></span>
-<span id="cb585-18"><a href="advanced-base-plots-in-r.html#cb585-18" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x=</span>gdp,<span class="at">y=</span>lifespan,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="st">&quot;firebrick&quot;</span>)</span>
-<span id="cb585-19"><a href="advanced-base-plots-in-r.html#cb585-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb585-20"><a href="advanced-base-plots-in-r.html#cb585-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Add text</span></span>
-<span id="cb585-21"><a href="advanced-base-plots-in-r.html#cb585-21" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>gdp[<span class="dv">6</span>],<span class="at">y=</span>lifespan[<span class="dv">6</span>],<span class="at">labels=</span><span class="st">&quot;Norway&quot;</span>,<span class="at">pos=</span><span class="dv">3</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb596-1" data-line-number="1"><span class="co"># 1. Stage a blank canvas</span></a>
 <a class="sourceLine" id="cb596-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb596-3" data-line-number="3"><span class="kw">plot</span>(<span class="dv">1</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>,<span class="dt">ann=</span><span class="ot">FALSE</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">100</span>))</a>
@@ -536,7 +469,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb596-19" data-line-number="19"></a>
 <a class="sourceLine" id="cb596-20" data-line-number="20"><span class="co"># 6. Add text</span></a>
 <a class="sourceLine" id="cb596-21" data-line-number="21"><span class="kw">text</span>(<span class="dt">x=</span>gdp[<span class="dv">6</span>],<span class="dt">y=</span>lifespan[<span class="dv">6</span>],<span class="dt">labels=</span><span class="st">&quot;Norway&quot;</span>,<span class="dt">pos=</span><span class="dv">3</span>)</a></code></pre></div>
->>>>>>> 4aaeb17baea01a02c8d5ca699f1537fb9d0d8073
 <p><img src="figures/unnamed-chunk-605-1.png" width="925.44" /></p>
 <div id="exercises-19" class="section level4 unnumbered hasAnchor">
 <h4>Exercises<a href="advanced-base-plots-in-r.html#exercises-19" class="anchor-section" aria-label="Anchor link to header"></a></h4>
