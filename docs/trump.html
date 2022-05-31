@@ -57,9 +57,9 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -435,18 +435,18 @@ div.csl-indent {
 </ul>
 <p> </p>
 <p>Let’s run the below to get started.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="trump.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb415-2"><a href="trump.html#cb415-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb415-3"><a href="trump.html#cb415-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb415-4"><a href="trump.html#cb415-4" aria-hidden="true" tabindex="-1"></a>trump <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/trumptweets.csv&#39;</span>)</span>
-<span id="cb415-5"><a href="trump.html#cb415-5" aria-hidden="true" tabindex="-1"></a>stop_words <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="trump.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb404-2"><a href="trump.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb404-3"><a href="trump.html#cb404-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb404-4"><a href="trump.html#cb404-4" aria-hidden="true" tabindex="-1"></a>trump <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/trumptweets.csv&#39;</span>)</span>
+<span id="cb404-5"><a href="trump.html#cb404-5" aria-hidden="true" tabindex="-1"></a>stop_words <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</span></code></pre></div>
 <p><strong>1.</strong> In the current format, one row of data is equal to one <what>?</p>
 <p><strong>2.</strong> Create a variable called <code>line</code>. This should be 1, 2, 3, 4, etc.</p>
 <p><strong>3.</strong> Create a variable called <code>text</code>. This should be an exact copy of <code>content</code>.</p>
 <p><strong>4.</strong> Use the <code>unnest_tokens</code> function to reshape the data for better text processing.</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="trump.html#cb416-1" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> trump <span class="sc">%&gt;%</span></span>
-<span id="cb416-2"><a href="trump.html#cb416-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>mentions, <span class="sc">-</span>hashtags, <span class="sc">-</span>geo, <span class="sc">-</span>content, <span class="sc">-</span>link, <span class="sc">-</span>id) <span class="sc">%&gt;%</span></span>
-<span id="cb416-3"><a href="trump.html#cb416-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, text)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="trump.html#cb405-1" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> trump <span class="sc">%&gt;%</span></span>
+<span id="cb405-2"><a href="trump.html#cb405-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>mentions, <span class="sc">-</span>hashtags, <span class="sc">-</span>geo, <span class="sc">-</span>content, <span class="sc">-</span>link, <span class="sc">-</span>id) <span class="sc">%&gt;%</span></span>
+<span id="cb405-3"><a href="trump.html#cb405-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, text)</span></code></pre></div>
 <p><strong>5.</strong> What format is the data in now (ie, one row is equal to <what>)?</p>
 <p><strong>6.</strong> Take a minute to read about the <code>tidytext</code> package at <a href="https://www.tidytextmining.com/tidytext.html" class="uri">https://www.tidytextmining.com/tidytext.html</a>.</p>
 <p> </p>
@@ -466,9 +466,9 @@ div.csl-indent {
 <p><strong>18.</strong> What is the <code>sentiments</code> dataset?</p>
 <p><strong>19.</strong> Create another dataset named <code>polarity</code> by running the following: <code>polarity &lt;- get_sentiments("afinn")</code></p>
 <p><strong>20.</strong> Use <code>left_join</code> to combine polarity and sentiments into one dataset named <code>emotions</code>.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="trump.html#cb417-1" aria-hidden="true" tabindex="-1"></a>emotions <span class="ot">&lt;-</span> <span class="fu">left_join</span>(sentiments, polarity) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(word))</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="trump.html#cb406-1" aria-hidden="true" tabindex="-1"></a>emotions <span class="ot">&lt;-</span> <span class="fu">left_join</span>(sentiments, polarity) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(word))</span></code></pre></div>
 <p><strong>21.</strong> Use <code>left_join</code> to combine the <code>trump</code> data and the <code>emotions</code> data.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="trump.html#cb418-1" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> <span class="fu">left_join</span>(simple, emotions)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="trump.html#cb407-1" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> <span class="fu">left_join</span>(simple, emotions)</span></code></pre></div>
 <p><strong>22.</strong> Have a look at the <code>simple</code> (Trump) data. What do you see?</p>
 <p><strong>23.</strong> Get an overall polarity score (using the <code>value</code> variable) for the entire dataset. Is it positive or negative?</p>
 <p> </p>
