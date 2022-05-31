@@ -461,7 +461,7 @@ div.csl-indent {
 <p>Get today’s date:</p>
 <div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="dates.html#cb468-1" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">today</span>()</span></code></pre></div>
 <div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="dates.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(today)</span>
-<span id="cb469-2"><a href="dates.html#cb469-2" aria-hidden="true" tabindex="-1"></a> Date[<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>], format<span class="sc">:</span> <span class="st">&quot;2022-05-27&quot;</span></span></code></pre></div>
+<span id="cb469-2"><a href="dates.html#cb469-2" aria-hidden="true" tabindex="-1"></a> Date[<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>], format<span class="sc">:</span> <span class="st">&quot;2022-05-30&quot;</span></span></code></pre></div>
 <p>This looks like a simple character string, but it is not. There are all sorts of date-time calculations in the background.</p>
 <p>To demonstrate this, let’s bring in a simple string:</p>
 <div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="dates.html#cb470-1" aria-hidden="true" tabindex="-1"></a>my_birthday <span class="ot">&lt;-</span> <span class="st">&#39;1985-11-07&#39;</span></span>
@@ -472,27 +472,27 @@ div.csl-indent {
 <p>… but this does not:</p>
 <div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="dates.html#cb472-1" aria-hidden="true" tabindex="-1"></a>my_birthday <span class="ot">&lt;-</span> <span class="fu">as_date</span>(my_birthday)</span>
 <span id="cb472-2"><a href="dates.html#cb472-2" aria-hidden="true" tabindex="-1"></a>today <span class="sc">-</span> my_birthday</span>
-<span id="cb472-3"><a href="dates.html#cb472-3" aria-hidden="true" tabindex="-1"></a>Time difference of <span class="dv">13350</span> days</span></code></pre></div>
+<span id="cb472-3"><a href="dates.html#cb472-3" aria-hidden="true" tabindex="-1"></a>Time difference of <span class="dv">13353</span> days</span></code></pre></div>
 </div>
 <div id="the-datetime-class" class="section level3 unnumbered hasAnchor">
 <h3>The <code>datetime</code> class<a href="dates.html#the-datetime-class" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When you are working with a <code>datetime</code> object, you can add and subtract time to it.</p>
 <div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="dates.html#cb473-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">now</span>() </span>
 <span id="cb473-2"><a href="dates.html#cb473-2" aria-hidden="true" tabindex="-1"></a>n</span>
-<span id="cb473-3"><a href="dates.html#cb473-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 18:27:22 CDT&quot;</span></span></code></pre></div>
+<span id="cb473-3"><a href="dates.html#cb473-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-30 21:09:20 CDT&quot;</span></span></code></pre></div>
 <p>Add or substract seconds:</p>
 <div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="dates.html#cb474-1" aria-hidden="true" tabindex="-1"></a>n <span class="sc">+</span> <span class="fu">seconds</span>(<span class="dv">1</span>)</span>
-<span id="cb474-2"><a href="dates.html#cb474-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 18:27:23 CDT&quot;</span></span></code></pre></div>
+<span id="cb474-2"><a href="dates.html#cb474-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-30 21:09:21 CDT&quot;</span></span></code></pre></div>
 <p>Add or subtract hours:</p>
 <div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="dates.html#cb475-1" aria-hidden="true" tabindex="-1"></a>n <span class="sc">-</span> <span class="fu">hours</span>(<span class="dv">5</span>)</span>
-<span id="cb475-2"><a href="dates.html#cb475-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 13:27:22 CDT&quot;</span></span></code></pre></div>
+<span id="cb475-2"><a href="dates.html#cb475-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-30 16:09:20 CDT&quot;</span></span></code></pre></div>
 <p>Simplify to just the date:</p>
 <div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="dates.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_date</span>(n)</span>
-<span id="cb476-2"><a href="dates.html#cb476-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27&quot;</span></span></code></pre></div>
+<span id="cb476-2"><a href="dates.html#cb476-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-30&quot;</span></span></code></pre></div>
 <p>See how time flies:</p>
 <div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="dates.html#cb477-1" aria-hidden="true" tabindex="-1"></a>later <span class="ot">&lt;-</span> <span class="fu">now</span>()</span>
 <span id="cb477-2"><a href="dates.html#cb477-2" aria-hidden="true" tabindex="-1"></a>later</span>
-<span id="cb477-3"><a href="dates.html#cb477-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 18:27:22 CDT&quot;</span></span></code></pre></div>
+<span id="cb477-3"><a href="dates.html#cb477-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-30 21:09:20 CDT&quot;</span></span></code></pre></div>
 </div>
 </div>
 <div id="common-tasks" class="section level2 unnumbered hasAnchor">
@@ -550,22 +550,22 @@ div.csl-indent {
 <p>Adjust timezones for dates:</p>
 <div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="dates.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Today&#39;s date where I am</span></span>
 <span id="cb492-2"><a href="dates.html#cb492-2" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span>
-<span id="cb492-3"><a href="dates.html#cb492-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27&quot;</span></span>
+<span id="cb492-3"><a href="dates.html#cb492-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-30&quot;</span></span>
 <span id="cb492-4"><a href="dates.html#cb492-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb492-5"><a href="dates.html#cb492-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Today&#39;s date in New Zealand</span></span>
 <span id="cb492-6"><a href="dates.html#cb492-6" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>(<span class="at">tzone=</span><span class="st">&#39;NZ&#39;</span>)</span>
-<span id="cb492-7"><a href="dates.html#cb492-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-28&quot;</span></span></code></pre></div>
+<span id="cb492-7"><a href="dates.html#cb492-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-31&quot;</span></span></code></pre></div>
 <p>Adjust time zones for date-times:</p>
 <div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="dates.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time where I am</span></span>
 <span id="cb493-2"><a href="dates.html#cb493-2" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span>
-<span id="cb493-3"><a href="dates.html#cb493-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 18:27:23 CDT&quot;</span></span>
+<span id="cb493-3"><a href="dates.html#cb493-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-30 21:09:21 CDT&quot;</span></span>
 <span id="cb493-4"><a href="dates.html#cb493-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb493-5"><a href="dates.html#cb493-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Time in UTC / GMT (which are synonymous)</span></span>
 <span id="cb493-6"><a href="dates.html#cb493-6" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>(<span class="st">&#39;UTC&#39;</span>)</span>
-<span id="cb493-7"><a href="dates.html#cb493-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 23:27:23 UTC&quot;</span></span>
+<span id="cb493-7"><a href="dates.html#cb493-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-31 02:09:21 UTC&quot;</span></span>
 <span id="cb493-8"><a href="dates.html#cb493-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb493-9"><a href="dates.html#cb493-9" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>(<span class="st">&#39;GMT&#39;</span>)</span>
-<span id="cb493-10"><a href="dates.html#cb493-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 23:27:23 GMT&quot;</span></span></code></pre></div>
+<span id="cb493-10"><a href="dates.html#cb493-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-31 02:09:21 GMT&quot;</span></span></code></pre></div>
 <p>Don’t know what time zone your computer is working in? Use this function:</p>
 <div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="dates.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.timezone</span>()</span></code></pre></div>
 <pre><code>[1] &quot;America/Chicago&quot;</code></pre>
@@ -592,11 +592,11 @@ div.csl-indent {
 <div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="dates.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get current time in UTC/GMT</span></span>
 <span id="cb498-2"><a href="dates.html#cb498-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">now</span>(<span class="st">&#39;UTC&#39;</span>)</span>
 <span id="cb498-3"><a href="dates.html#cb498-3" aria-hidden="true" tabindex="-1"></a>n</span>
-<span id="cb498-4"><a href="dates.html#cb498-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 23:27:23 UTC&quot;</span></span>
+<span id="cb498-4"><a href="dates.html#cb498-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-31 02:09:21 UTC&quot;</span></span>
 <span id="cb498-5"><a href="dates.html#cb498-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb498-6"><a href="dates.html#cb498-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Change timezone to Central Standard Time without changing time: </span></span>
 <span id="cb498-7"><a href="dates.html#cb498-7" aria-hidden="true" tabindex="-1"></a><span class="fu">force_tz</span>(n,<span class="at">tzone=</span><span class="st">&#39;America/Chicago&#39;</span>)</span>
-<span id="cb498-8"><a href="dates.html#cb498-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 23:27:23 CDT&quot;</span></span></code></pre></div>
+<span id="cb498-8"><a href="dates.html#cb498-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-31 02:09:21 CDT&quot;</span></span></code></pre></div>
 </div>
 <div id="using-timestamps-instead" class="section level3 unnumbered hasAnchor">
 <h3>Using timestamps instead<a href="dates.html#using-timestamps-instead" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -604,20 +604,20 @@ div.csl-indent {
 <p>Timesetamps record the number of seconds that have passed since midnight GMT on January 1, 1970. It doesn’t matter which timezone you are standing in; the seconds that have passed since that moment will be the same:</p>
 <div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="dates.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time where I am</span></span>
 <span id="cb499-2"><a href="dates.html#cb499-2" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>() <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()</span>
-<span id="cb499-3"><a href="dates.html#cb499-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1653694043</span></span>
+<span id="cb499-3"><a href="dates.html#cb499-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1653962961</span></span>
 <span id="cb499-4"><a href="dates.html#cb499-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb499-5"><a href="dates.html#cb499-5" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>(<span class="st">&#39;UTC&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()</span>
-<span id="cb499-6"><a href="dates.html#cb499-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1653694043</span></span></code></pre></div>
+<span id="cb499-6"><a href="dates.html#cb499-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1653962961</span></span></code></pre></div>
 <p>Timestamps can simplify things when you are doing a lot of adding and substracting with time. Timestamps are just seconds; they are just numbers. So they are much less of a black box than <code>datetime</code> objects.</p>
 <p>You can always convert from a timestamp back into a <code>datetime</code> object:</p>
 <div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="dates.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to timestamp</span></span>
 <span id="cb500-2"><a href="dates.html#cb500-2" aria-hidden="true" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">now</span>() <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()</span>
 <span id="cb500-3"><a href="dates.html#cb500-3" aria-hidden="true" tabindex="-1"></a>ts</span>
-<span id="cb500-4"><a href="dates.html#cb500-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1653694043</span></span>
+<span id="cb500-4"><a href="dates.html#cb500-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1653962961</span></span>
 <span id="cb500-5"><a href="dates.html#cb500-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb500-6"><a href="dates.html#cb500-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert back to datetime object</span></span>
 <span id="cb500-7"><a href="dates.html#cb500-7" aria-hidden="true" tabindex="-1"></a>ts <span class="sc">%&gt;%</span> <span class="fu">as_datetime</span>()</span>
-<span id="cb500-8"><a href="dates.html#cb500-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-27 23:27:23 UTC&quot;</span></span></code></pre></div>
+<span id="cb500-8"><a href="dates.html#cb500-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2022-05-31 02:09:21 UTC&quot;</span></span></code></pre></div>
 </div>
 <div id="exercises-17" class="section level3 unnumbered hasAnchor">
 <h3>Exercises<a href="dates.html#exercises-17" class="anchor-section" aria-label="Anchor link to header"></a></h3>
