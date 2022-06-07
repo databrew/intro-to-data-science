@@ -57,33 +57,31 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -92,9 +90,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,28 +125,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -166,34 +142,29 @@ div.csl-indent {
 <li><a href="./">www.datascience.pizza</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a>
-<ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-this-is-and-what-it-isnt"><i class="fa fa-check"></i>What this is, and what it isn’t</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-is-for"><i class="fa fa-check"></i>Who this is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What you will learn</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
 </ul></li>
 <li class="part"><span><b>I Core theory</b></span></li>
-<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a>
-<ul>
+<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a><ul>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i>What is the data life cycle?</a></li>
 <li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i>Data science ‘in the wild’</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a>
-<ul>
+<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a><ul>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-crisis"><i class="fa fa-check"></i>The crisis</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-reproducibility-movement"><i class="fa fa-check"></i>The ‘reproducibility’ movement</a></li>
 <li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#why-r"><i class="fa fa-check"></i>Why <code>R</code>?</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a>
-<ul>
+<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a><ul>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#a-few-principles"><i class="fa fa-check"></i>A few principles</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#warm-up-scenarios"><i class="fa fa-check"></i>Warm up scenarios</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#case-studies"><i class="fa fa-check"></i>Case studies</a></li>
 <li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#more-scenarios"><i class="fa fa-check"></i>More scenarios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a>
-<ul>
+<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a><ul>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#the-value-of-data-viz"><i class="fa fa-check"></i>The value of <em>data viz</em></a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#plot-gallery"><i class="fa fa-check"></i>Plot gallery</a></li>
 <li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#chart-junk"><i class="fa fa-check"></i>Chart junk</a></li>
@@ -201,85 +172,72 @@ div.csl-indent {
 </ul></li>
 <li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
 <li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
-<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a>
-<ul>
+<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a><ul>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#running-code-in-the-console"><i class="fa fa-check"></i>Running code in the <em>Console</em></a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-r-like-a-calculator"><i class="fa fa-check"></i>Use R like a calculator</a></li>
 <li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#getting-along-with-r"><i class="fa fa-check"></i>Getting along with <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a>
-<ul>
+<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a><ul>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#scripts"><i class="fa fa-check"></i>Scripts</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#wd"><i class="fa fa-check"></i>Your working directory</a></li>
 <li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#typical-workflows"><i class="fa fa-check"></i>Typical workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a>
-<ul>
+<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a><ul>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#types-of-data-in-r"><i class="fa fa-check"></i>Types of data in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a>
-<ul>
+<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a><ul>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#declaring-and-using-vectors"><i class="fa fa-check"></i>Declaring and using vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#math-with-two-vectors"><i class="fa fa-check"></i>Math with two vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="calling_functions.html"><a href="calling_functions.html"><i class="fa fa-check"></i><b>11</b> Calling functions</a></li>
-<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a>
-<ul>
+<li class="chapter" data-level="12" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html"><i class="fa fa-check"></i><b>12</b> Subsetting &amp; filtering</a><ul>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-indices"><i class="fa fa-check"></i>Subsetting with indices</a></li>
 <li class="chapter" data-level="" data-path="subsetting-filtering.html"><a href="subsetting-filtering.html#subsetting-with-booleans"><i class="fa fa-check"></i>Subsetting with booleans</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a>
-<ul>
+<li class="chapter" data-level="13" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>13</b> Dataframes</a><ul>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#creating-dataframes"><i class="fa fa-check"></i>Creating dataframes</a></li>
 <li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#modifying-dataframes"><i class="fa fa-check"></i>Modifying dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a>
-<ul>
+<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> Packages</a><ul>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
 </ul></li>
 <li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
-<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a>
-<ul>
+<li class="chapter" data-level="15" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>15</b> Importing data</a><ul>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#csv-files"><i class="fa fa-check"></i><code>.csv</code> files</a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#prepping-your-data-for-r"><i class="fa fa-check"></i>Prepping your data for <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a>
-<ul>
+<li class="chapter" data-level="16" data-path="base-plots.html"><a href="base-plots.html"><i class="fa fa-check"></i><b>16</b> Base plots</a><ul>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#create-a-basic-plot"><i class="fa fa-check"></i>Create a basic plot</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#most-common-types-of-plots"><i class="fa fa-check"></i>Most common types of plots</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#basic-plot-formatting"><i class="fa fa-check"></i>Basic plot formatting</a></li>
 <li class="chapter" data-level="" data-path="base-plots.html"><a href="base-plots.html#plotting-with-data-frames"><i class="fa fa-check"></i>Plotting with data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a>
-<ul>
+<li class="chapter" data-level="17" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>17</b> <code>ggplot</code></a><ul>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#what-is-ggplot2"><i class="fa fa-check"></i>What is <code>ggplot2</code>?</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
 <li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#bar-plot"><i class="fa fa-check"></i>Bar plot</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a>
-<ul>
+<li class="chapter" data-level="18" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>18</b> Dataframe wrangling</a><ul>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-dplyr-package"><i class="fa fa-check"></i>The <code>dplyr</code> package</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-pipe"><i class="fa fa-check"></i>The <code>%&gt;%</code> pipe</a></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#dplyr-verbs"><i class="fa fa-check"></i><code>dplyr</code> verbs</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a>
-<ul>
+<li class="chapter" data-level="19" data-path="distributions-histograms.html"><a href="distributions-histograms.html"><i class="fa fa-check"></i><b>19</b> Distributions &amp; histograms</a><ul>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#exploring-distributions"><i class="fa fa-check"></i>Exploring distributions</a></li>
 <li class="chapter" data-level="" data-path="distributions-histograms.html"><a href="distributions-histograms.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a>
-<ul>
+<li class="chapter" data-level="20" data-path="significance-statistics.html"><a href="significance-statistics.html"><i class="fa fa-check"></i><b>20</b> Significance statistics</a><ul>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#tests-for-different-data-types"><i class="fa fa-check"></i>Tests for different data types</a></li>
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#comparison-tests"><i class="fa fa-check"></i>Comparison tests</a></li>
@@ -287,8 +245,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="significance-statistics.html"><a href="significance-statistics.html#reporting-results"><i class="fa fa-check"></i>Reporting results</a></li>
 </ul></li>
 <li class="part"><span><b>IV Reproducible research</b></span></li>
-<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a>
-<ul>
+<li class="chapter" data-level="21" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>21</b> <code>Git</code> + <code>GitHub</code></a><ul>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why"><i class="fa fa-check"></i>Why?</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-set-up"><i class="fa fa-check"></i><code>Git</code> set up</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
@@ -296,27 +253,23 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
 <li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#git-workflow-overview"><i class="fa fa-check"></i><code>Git</code> workflow: overview</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a>
-<ul>
+<li class="chapter" data-level="22" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>22</b> <code>Markdown</code> documentation</a><ul>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#what-is-markdown"><i class="fa fa-check"></i>What is <code>Markdown</code>?</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#raw-markdown-example"><i class="fa fa-check"></i>Raw <code>Markdown</code> example</a></li>
 <li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-12"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a>
-<ul>
+<li class="chapter" data-level="23" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>23</b> <code>R Markdown</code></a><ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#add-an-r-chunk"><i class="fa fa-check"></i>Add an <code>R</code> chunk</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#in-line-r-code"><i class="fa fa-check"></i>In-line <code>R</code> code</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a>
-<ul>
+<li class="chapter" data-level="24" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>24</b> Interactive <code>shiny</code> dashboards</a><ul>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#build-your-first-shiny-app"><i class="fa fa-check"></i>Build your first <code>shiny</code> app</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a>
-<ul>
+<li class="chapter" data-level="25" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>25</b> Interactive maps</a><ul>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#mapping-with-leaflet"><i class="fa fa-check"></i>Mapping with <code>leaflet</code></a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
 <li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-2"><i class="fa fa-check"></i>Final thoughts</a></li>
@@ -330,9 +283,11 @@ div.csl-indent {
 <li class="chapter" data-level="31" data-path="shakespeare-text-mining.html"><a href="shakespeare-text-mining.html"><i class="fa fa-check"></i><b>31</b> Shakespeare text mining</a></li>
 <li class="chapter" data-level="32" data-path="trump.html"><a href="trump.html"><i class="fa fa-check"></i><b>32</b> Trump tweets</a></li>
 <li class="chapter" data-level="33" data-path="trump-shiny-git.html"><a href="trump-shiny-git.html"><i class="fa fa-check"></i><b>33</b> Trump, <code>Shiny</code>, &amp; <code>Git</code></a></li>
+<li class="chapter" data-level="34" data-path="dates-times-and-malaria.html"><a href="dates-times-and-malaria.html"><i class="fa fa-check"></i><b>34</b> Dates, times, and malaria</a></li>
+<li class="chapter" data-level="35" data-path="sentiment-analysis-with-survey-data.html"><a href="sentiment-analysis-with-survey-data.html"><i class="fa fa-check"></i><b>35</b> Sentiment analysis with survey data</a></li>
+<li class="chapter" data-level="36" data-path="sentiment-analysis-with-harry-potter.html"><a href="sentiment-analysis-with-harry-potter.html"><i class="fa fa-check"></i><b>36</b> Sentiment analysis with Harry Potter</a></li>
 <li class="part"><span><b>VI Presenting research</b></span></li>
-<li class="chapter" data-level="34" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>34</b> Writing a report</a>
-<ul>
+<li class="chapter" data-level="37" data-path="writing-a-report.html"><a href="writing-a-report.html"><i class="fa fa-check"></i><b>37</b> Writing a report</a><ul>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#overall-structure"><i class="fa fa-check"></i>Overall structure</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
@@ -341,66 +296,55 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="writing-a-report.html"><a href="writing-a-report.html#other-elements-of-a-report"><i class="fa fa-check"></i>Other elements of a report</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>35</b> Good research writing</a>
-<ul>
+<li class="chapter" data-level="38" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>38</b> Good research writing</a><ul>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#core-principles"><i class="fa fa-check"></i>Core principles</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#further-considerations"><i class="fa fa-check"></i>Further considerations</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#logistics-of-scientific-writing"><i class="fa fa-check"></i>Logistics of scientific writing</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-tables"><i class="fa fa-check"></i>Formatting tables</a></li>
 <li class="chapter" data-level="" data-path="style.html"><a href="style.html#formatting-figures"><i class="fa fa-check"></i>Formatting figures</a></li>
 </ul></li>
-<li class="chapter" data-level="36" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>36</b> Research talks</a></li>
+<li class="chapter" data-level="39" data-path="research-talks.html"><a href="research-talks.html"><i class="fa fa-check"></i><b>39</b> Research talks</a></li>
 <li class="part"><span><b>VII Deep <code>R</code></b></span></li>
-<li class="chapter" data-level="37" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>37</b> Saving data &amp; plots</a>
-<ul>
+<li class="chapter" data-level="40" data-path="saving-data-plots.html"><a href="saving-data-plots.html"><i class="fa fa-check"></i><b>40</b> Saving data &amp; plots</a><ul>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#write.csv"><i class="fa fa-check"></i><code>write.csv()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#saverds"><i class="fa fa-check"></i><code>saveRDS()</code></a></li>
 <li class="chapter" data-level="" data-path="saving-data-plots.html"><a href="saving-data-plots.html#pdf-and-png"><i class="fa fa-check"></i><code>pdf()</code> and <code>png()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>38</b> Joining datasets</a>
-<ul>
+<li class="chapter" data-level="41" data-path="joining_datasets.html"><a href="joining_datasets.html"><i class="fa fa-check"></i><b>41</b> Joining datasets</a><ul>
 <li class="chapter" data-level="" data-path="joining_datasets.html"><a href="joining_datasets.html#joining-with-dplyr"><i class="fa fa-check"></i>Joining with <code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>39</b> Working with text</a>
-<ul>
+<li class="chapter" data-level="42" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>42</b> Working with text</a><ul>
 <li class="chapter" data-level="" data-path="text.html"><a href="text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>40</b> Working with dates &amp; times</a>
-<ul>
+<li class="chapter" data-level="43" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>43</b> Working with dates &amp; times</a><ul>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#the-lubridate-package"><i class="fa fa-check"></i>The <code>lubridate()</code> package</a></li>
 <li class="chapter" data-level="" data-path="dates.html"><a href="dates.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>41</b> Writing functions</a>
-<ul>
+<li class="chapter" data-level="44" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>44</b> Writing functions</a><ul>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#first-steps"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#next-steps"><i class="fa fa-check"></i>Next steps</a></li>
 <li class="chapter" data-level="" data-path="writing-functions.html"><a href="writing-functions.html#sourcing-functions"><i class="fa fa-check"></i>Sourcing functions</a></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>42</b> <code>for</code> loops</a>
-<ul>
+<li class="chapter" data-level="45" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>45</b> <code>for</code> loops</a><ul>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#basics"><i class="fa fa-check"></i>Basics</a></li>
 <li class="chapter" data-level="" data-path="for-loops.html"><a href="for-loops.html#for-loop-exercises"><i class="fa fa-check"></i><code>for</code> loop exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>43</b> Conditional statements</a>
-<ul>
+<li class="chapter" data-level="46" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>46</b> Conditional statements</a><ul>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#first-steps-1"><i class="fa fa-check"></i>First steps</a></li>
 <li class="chapter" data-level="" data-path="conditional-statements.html"><a href="conditional-statements.html#next-steps-1"><i class="fa fa-check"></i>Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>44</b> Matrices &amp; lists</a>
-<ul>
+<li class="chapter" data-level="47" data-path="matrices-lists.html"><a href="matrices-lists.html"><i class="fa fa-check"></i><b>47</b> Matrices &amp; lists</a><ul>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 <li class="chapter" data-level="" data-path="matrices-lists.html"><a href="matrices-lists.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
 </ul></li>
-<li class="chapter" data-level="45" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>45</b> Advanced base plots in <code>R</code></a></li>
-<li class="chapter" data-level="46" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>46</b> Geographic Information Systems</a>
-<ul>
+<li class="chapter" data-level="48" data-path="advanced-base-plots-in-r.html"><a href="advanced-base-plots-in-r.html"><i class="fa fa-check"></i><b>48</b> Advanced base plots in <code>R</code></a></li>
+<li class="chapter" data-level="49" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html"><i class="fa fa-check"></i><b>49</b> Geographic Information Systems</a><ul>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#geographic-data-structures"><i class="fa fa-check"></i>Geographic data structures</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors"><i class="fa fa-check"></i>Combining rasters &amp; vectors</a></li>
 <li class="chapter" data-level="" data-path="geographic-information-systems.html"><a href="geographic-information-systems.html#combining-rasters-vectors-leaflet"><i class="fa fa-check"></i>Combining rasters, vectors, &amp; <code>leaflet</code></a></li>
 </ul></li>
-<li class="chapter" data-level="47" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>47</b> Randomization statistics</a>
-<ul>
+<li class="chapter" data-level="50" data-path="randomization-statistics.html"><a href="randomization-statistics.html"><i class="fa fa-check"></i><b>50</b> Randomization statistics</a><ul>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#basic-idea"><i class="fa fa-check"></i>Basic idea</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#common-use-cases"><i class="fa fa-check"></i>Common use cases</a></li>
 <li class="chapter" data-level="" data-path="randomization-statistics.html"><a href="randomization-statistics.html#review-assignment-5"><i class="fa fa-check"></i>Review assignment</a></li>
@@ -426,7 +370,7 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="importing-data" class="section level1 hasAnchor" number="15">
+<div id="importing-data" class="section level1 hasAnchor">
 <h1><span class="header-section-number">Module 15</span> Importing data<a href="importing-data.html#importing-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="learning-goals-7" class="section level4 unnumbered hasAnchor">
 <h4>Learning goals<a href="importing-data.html#learning-goals-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -456,31 +400,31 @@ div.csl-indent {
 <p>Reading in data is simple and easy if your data are saved as a <strong><code>.csv</code></strong>, a comma-separated file. You can find functions for reading all sorts of file types into <code>R</code>, but the quickest way to begin working with your own data in <code>R</code> is to maintain that data in <code>.csv</code>’s.</p>
 <p>The function <code>read_csv()</code>, from a package named <code>readr</code>, becomes useful when you begin working with (1) data from the internet, (2) data within the <code>tidyverse</code>, which you will be introduced to in the next module, and/or (2) very large dataset, since it reads data much more quickly and provides progress updates along the way.</p>
 <p>Here’s an example of reading a file directly from the internet …</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="importing-data.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb190-2"><a href="importing-data.html#cb190-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv&#39;</span>)</span>
-<span id="cb190-3"><a href="importing-data.html#cb190-3" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb190-4"><a href="importing-data.html#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 891 × 12</span></span>
-<span id="cb190-5"><a href="importing-data.html#cb190-5" aria-hidden="true" tabindex="-1"></a>   PassengerId Survived Pclass Name   Sex     Age SibSp Parch Ticket  Fare Cabin</span>
-<span id="cb190-6"><a href="importing-data.html#cb190-6" aria-hidden="true" tabindex="-1"></a>         <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>  <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span></span>
-<span id="cb190-7"><a href="importing-data.html#cb190-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>           <span class="dv">1</span>        <span class="dv">0</span>      <span class="dv">3</span> Braun… male     <span class="dv">22</span>     <span class="dv">1</span>     <span class="dv">0</span> A<span class="sc">/</span><span class="dv">5</span> 2…  <span class="fl">7.25</span> <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb190-8"><a href="importing-data.html#cb190-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>           <span class="dv">2</span>        <span class="dv">1</span>      <span class="dv">1</span> Cumin… fema…    <span class="dv">38</span>     <span class="dv">1</span>     <span class="dv">0</span> PC 17… <span class="fl">71.3</span>  C85  </span>
-<span id="cb190-9"><a href="importing-data.html#cb190-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>           <span class="dv">3</span>        <span class="dv">1</span>      <span class="dv">3</span> Heikk… fema…    <span class="dv">26</span>     <span class="dv">0</span>     <span class="dv">0</span> STON<span class="sc">/</span>…  <span class="fl">7.92</span> <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb190-10"><a href="importing-data.html#cb190-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>           <span class="dv">4</span>        <span class="dv">1</span>      <span class="dv">1</span> Futre… fema…    <span class="dv">35</span>     <span class="dv">1</span>     <span class="dv">0</span> <span class="dv">113803</span> <span class="fl">53.1</span>  C123 </span>
-<span id="cb190-11"><a href="importing-data.html#cb190-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>           <span class="dv">5</span>        <span class="dv">0</span>      <span class="dv">3</span> Allen… male     <span class="dv">35</span>     <span class="dv">0</span>     <span class="dv">0</span> <span class="dv">373450</span>  <span class="fl">8.05</span> <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb190-12"><a href="importing-data.html#cb190-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>           <span class="dv">6</span>        <span class="dv">0</span>      <span class="dv">3</span> Moran… male     <span class="cn">NA</span>     <span class="dv">0</span>     <span class="dv">0</span> <span class="dv">330877</span>  <span class="fl">8.46</span> <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb190-13"><a href="importing-data.html#cb190-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>           <span class="dv">7</span>        <span class="dv">0</span>      <span class="dv">1</span> McCar… male     <span class="dv">54</span>     <span class="dv">0</span>     <span class="dv">0</span> <span class="dv">17463</span>  <span class="fl">51.9</span>  E46  </span>
-<span id="cb190-14"><a href="importing-data.html#cb190-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>           <span class="dv">8</span>        <span class="dv">0</span>      <span class="dv">3</span> Palss… male      <span class="dv">2</span>     <span class="dv">3</span>     <span class="dv">1</span> <span class="dv">349909</span> <span class="fl">21.1</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb190-15"><a href="importing-data.html#cb190-15" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>           <span class="dv">9</span>        <span class="dv">1</span>      <span class="dv">3</span> Johns… fema…    <span class="dv">27</span>     <span class="dv">0</span>     <span class="dv">2</span> <span class="dv">347742</span> <span class="fl">11.1</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb190-16"><a href="importing-data.html#cb190-16" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>          <span class="dv">10</span>        <span class="dv">1</span>      <span class="dv">2</span> Nasse… fema…    <span class="dv">14</span>     <span class="dv">1</span>     <span class="dv">0</span> <span class="dv">237736</span> <span class="fl">30.1</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb190-17"><a href="importing-data.html#cb190-17" aria-hidden="true" tabindex="-1"></a><span class="co"># … with 881 more rows, and 1 more variable: Embarked &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb192-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb192-3" data-line-number="3">df</a>
+<a class="sourceLine" id="cb192-4" data-line-number="4"><span class="co"># A tibble: 891 × 12</span></a>
+<a class="sourceLine" id="cb192-5" data-line-number="5">   PassengerId Survived Pclass Name   Sex     Age SibSp Parch Ticket  Fare Cabin</a>
+<a class="sourceLine" id="cb192-6" data-line-number="6">         <span class="op">&lt;</span>dbl<span class="op">&gt;</span><span class="st">    </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st">  </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">  </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">  </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb192-7" data-line-number="7"><span class="st"> </span><span class="dv">1</span>           <span class="dv">1</span>        <span class="dv">0</span>      <span class="dv">3</span> Braun… male     <span class="dv">22</span>     <span class="dv">1</span>     <span class="dv">0</span> A<span class="op">/</span><span class="dv">5</span> 2…  <span class="fl">7.25</span> <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb192-8" data-line-number="8"><span class="st"> </span><span class="dv">2</span>           <span class="dv">2</span>        <span class="dv">1</span>      <span class="dv">1</span> Cumin… fema…    <span class="dv">38</span>     <span class="dv">1</span>     <span class="dv">0</span> PC 17… <span class="fl">71.3</span>  C85  </a>
+<a class="sourceLine" id="cb192-9" data-line-number="9"> <span class="dv">3</span>           <span class="dv">3</span>        <span class="dv">1</span>      <span class="dv">3</span> Heikk… fema…    <span class="dv">26</span>     <span class="dv">0</span>     <span class="dv">0</span> STON<span class="op">/</span>…  <span class="fl">7.92</span> <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb192-10" data-line-number="10"><span class="st"> </span><span class="dv">4</span>           <span class="dv">4</span>        <span class="dv">1</span>      <span class="dv">1</span> Futre… fema…    <span class="dv">35</span>     <span class="dv">1</span>     <span class="dv">0</span> <span class="dv">113803</span> <span class="fl">53.1</span>  C123 </a>
+<a class="sourceLine" id="cb192-11" data-line-number="11"> <span class="dv">5</span>           <span class="dv">5</span>        <span class="dv">0</span>      <span class="dv">3</span> Allen… male     <span class="dv">35</span>     <span class="dv">0</span>     <span class="dv">0</span> <span class="dv">373450</span>  <span class="fl">8.05</span> <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb192-12" data-line-number="12"><span class="st"> </span><span class="dv">6</span>           <span class="dv">6</span>        <span class="dv">0</span>      <span class="dv">3</span> Moran… male     <span class="ot">NA</span>     <span class="dv">0</span>     <span class="dv">0</span> <span class="dv">330877</span>  <span class="fl">8.46</span> <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb192-13" data-line-number="13"><span class="st"> </span><span class="dv">7</span>           <span class="dv">7</span>        <span class="dv">0</span>      <span class="dv">1</span> McCar… male     <span class="dv">54</span>     <span class="dv">0</span>     <span class="dv">0</span> <span class="dv">17463</span>  <span class="fl">51.9</span>  E46  </a>
+<a class="sourceLine" id="cb192-14" data-line-number="14"> <span class="dv">8</span>           <span class="dv">8</span>        <span class="dv">0</span>      <span class="dv">3</span> Palss… male      <span class="dv">2</span>     <span class="dv">3</span>     <span class="dv">1</span> <span class="dv">349909</span> <span class="fl">21.1</span>  <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb192-15" data-line-number="15"><span class="st"> </span><span class="dv">9</span>           <span class="dv">9</span>        <span class="dv">1</span>      <span class="dv">3</span> Johns… fema…    <span class="dv">27</span>     <span class="dv">0</span>     <span class="dv">2</span> <span class="dv">347742</span> <span class="fl">11.1</span>  <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb192-16" data-line-number="16"><span class="dv">10</span>          <span class="dv">10</span>        <span class="dv">1</span>      <span class="dv">2</span> Nasse… fema…    <span class="dv">14</span>     <span class="dv">1</span>     <span class="dv">0</span> <span class="dv">237736</span> <span class="fl">30.1</span>  <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb192-17" data-line-number="17"><span class="co"># … with 881 more rows, and 1 more variable: Embarked &lt;chr&gt;</span></a></code></pre></div>
 <p>Note that when you use <code>read_csv()</code> instead of <code>read.csv()</code>, your data are read in as a <code>tibble</code> instead of a dataframe. You will be introduced to <code>tibbles</code> in the next modules on dataframes; for the time being, think of a <code>tibble</code> as a fancy version of a dataframe that can be treated exactly as a regular dataframe.</p>
 </div>
 <div id="read.csv" class="section level4 unnumbered hasAnchor">
 <h4><code>read.csv()</code><a href="importing-data.html#read.csv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>This function, <code>read.csv()</code>, is the base function for reading in a <code>.csv</code>. It is strictly used for reading in local files (not from the internet).</p>
 <p>This function reads in your data file as a dataframe. Save your dataset into <code>R</code>’s memory using a variable (in this case, <code>df</code>).</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="importing-data.html#cb191-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</span>
-<span id="cb191-2"><a href="importing-data.html#cb191-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb193-2" data-line-number="2">df</a></code></pre></div>
 <pre><code>  patient_id height_in weight_lb                   comment
 1          1        74       135             not very nice
 2          2        56       112                kinda cute
@@ -493,56 +437,56 @@ div.csl-indent {
 <li><p>Use the <strong><code>stringsAsFactors</code></strong> input when you want to make absolutely sure that <code>R</code> interprets any non-numeric fields as characters rather than factors. We have not focused on factors yet, but it can be frustrating when <code>R</code> mistakes a column of character strings as a column factors. To avoid any possible confusion, use <code>stringsAsFactors=TRUE</code> as an input.</p></li>
 </ul>
 <p>For example, here is how to read in this data without column names:</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="importing-data.html#cb193-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>,<span class="at">skip=</span><span class="dv">1</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb193-2"><a href="importing-data.html#cb193-2" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb193-3"><a href="importing-data.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  V1 V2  V3                        V4</span>
-<span id="cb193-4"><a href="importing-data.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">1</span> <span class="dv">74</span> <span class="dv">135</span>             not very nice</span>
-<span id="cb193-5"><a href="importing-data.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">2</span> <span class="dv">56</span> <span class="dv">112</span>                kinda cute</span>
-<span id="cb193-6"><a href="importing-data.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">3</span> <span class="dv">59</span> <span class="dv">156</span> kinda cute but had a ring</span>
-<span id="cb193-7"><a href="importing-data.html#cb193-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">4</span> <span class="dv">43</span> <span class="dv">102</span>                 so small<span class="sc">!</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>,<span class="dt">skip=</span><span class="dv">1</span>,<span class="dt">header=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb195-2" data-line-number="2">df</a>
+<a class="sourceLine" id="cb195-3" data-line-number="3">  V1 V2  V3                        V4</a>
+<a class="sourceLine" id="cb195-4" data-line-number="4"><span class="dv">1</span>  <span class="dv">1</span> <span class="dv">74</span> <span class="dv">135</span>             not very nice</a>
+<a class="sourceLine" id="cb195-5" data-line-number="5"><span class="dv">2</span>  <span class="dv">2</span> <span class="dv">56</span> <span class="dv">112</span>                kinda cute</a>
+<a class="sourceLine" id="cb195-6" data-line-number="6"><span class="dv">3</span>  <span class="dv">3</span> <span class="dv">59</span> <span class="dv">156</span> kinda cute but had a ring</a>
+<a class="sourceLine" id="cb195-7" data-line-number="7"><span class="dv">4</span>  <span class="dv">4</span> <span class="dv">43</span> <span class="dv">102</span>                 so small<span class="op">!</span></a></code></pre></div>
 <p>If you do this without setting header to FALSE, your first row of data gets used as column names and it becomes a big ole mess:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="importing-data.html#cb194-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>,<span class="at">skip=</span><span class="dv">1</span>)</span>
-<span id="cb194-2"><a href="importing-data.html#cb194-2" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb194-3"><a href="importing-data.html#cb194-3" aria-hidden="true" tabindex="-1"></a>  X1 X74 X135             not.very.nice</span>
-<span id="cb194-4"><a href="importing-data.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">56</span>  <span class="dv">112</span>                kinda cute</span>
-<span id="cb194-5"><a href="importing-data.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">59</span>  <span class="dv">156</span> kinda cute but had a ring</span>
-<span id="cb194-6"><a href="importing-data.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">43</span>  <span class="dv">102</span>                 so small<span class="sc">!</span></span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>,<span class="dt">skip=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb196-2" data-line-number="2">df</a>
+<a class="sourceLine" id="cb196-3" data-line-number="3">  X1 X74 X135             not.very.nice</a>
+<a class="sourceLine" id="cb196-4" data-line-number="4"><span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">56</span>  <span class="dv">112</span>                kinda cute</a>
+<a class="sourceLine" id="cb196-5" data-line-number="5"><span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">59</span>  <span class="dv">156</span> kinda cute but had a ring</a>
+<a class="sourceLine" id="cb196-6" data-line-number="6"><span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">43</span>  <span class="dv">102</span>                 so small<span class="op">!</span></a></code></pre></div>
 </div>
 <div id="readxl" class="section level4 unnumbered hasAnchor">
 <h4><code>readxl()</code><a href="importing-data.html#readxl" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To read in an <em>Excel</em> spreadsheet, use the <code>read_xlsx()</code> function from the package <code>readxl</code>.</p>
 <p>If <code>super_data</code> were an <code>.xlsx</code> file, the command would look like this:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="importing-data.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb195-2"><a href="importing-data.html#cb195-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;super_data.xlsx&quot;</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb197-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;super_data.xlsx&quot;</span>,<span class="dt">sheet=</span><span class="dv">1</span>)</a></code></pre></div>
 </div>
 <div id="gsheet" class="section level4 unnumbered hasAnchor">
 <h4><code>gsheet()</code><a href="importing-data.html#gsheet" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To read in an <em>GoogleSheets</em> spreadsheet, use the <code>gsheet2tbl()</code> function from the package <code>gsheet</code>.</p>
 <p>Make sure link sharing is turned on for the <em>GoogleSheet</em> you are trying to access:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="importing-data.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
-<span id="cb196-2"><a href="importing-data.html#cb196-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1uQ5PfGITnjHngK41FWHeedioca30wpyEsBOpC_B6T3E/edit?usp=sharing&quot;</span>)</span>
-<span id="cb196-3"><a href="importing-data.html#cb196-3" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb196-4"><a href="importing-data.html#cb196-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 4 × 4</span></span>
-<span id="cb196-5"><a href="importing-data.html#cb196-5" aria-hidden="true" tabindex="-1"></a>  patient_id height_in weight_lb comment                  </span>
-<span id="cb196-6"><a href="importing-data.html#cb196-6" aria-hidden="true" tabindex="-1"></a>       <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>                    </span>
-<span id="cb196-7"><a href="importing-data.html#cb196-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>          <span class="dv">1</span>        <span class="dv">74</span>       <span class="dv">135</span> not very nice            </span>
-<span id="cb196-8"><a href="importing-data.html#cb196-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>          <span class="dv">2</span>        <span class="dv">56</span>       <span class="dv">112</span> kinda cute               </span>
-<span id="cb196-9"><a href="importing-data.html#cb196-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>          <span class="dv">3</span>        <span class="dv">59</span>       <span class="dv">156</span> kinda cute but had a ring</span>
-<span id="cb196-10"><a href="importing-data.html#cb196-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>          <span class="dv">4</span>        <span class="dv">43</span>       <span class="dv">102</span> so small                 </span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">library</span>(gsheet)</a>
+<a class="sourceLine" id="cb198-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1uQ5PfGITnjHngK41FWHeedioca30wpyEsBOpC_B6T3E/edit?usp=sharing&quot;</span>)</a>
+<a class="sourceLine" id="cb198-3" data-line-number="3">df</a>
+<a class="sourceLine" id="cb198-4" data-line-number="4"><span class="co"># A tibble: 4 × 4</span></a>
+<a class="sourceLine" id="cb198-5" data-line-number="5">  patient_id height_in weight_lb comment                  </a>
+<a class="sourceLine" id="cb198-6" data-line-number="6">       <span class="op">&lt;</span>dbl<span class="op">&gt;</span><span class="st">     </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st">     </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">                    </span></a>
+<a class="sourceLine" id="cb198-7" data-line-number="7"><span class="dv">1</span>          <span class="dv">1</span>        <span class="dv">74</span>       <span class="dv">135</span> not very nice            </a>
+<a class="sourceLine" id="cb198-8" data-line-number="8"><span class="dv">2</span>          <span class="dv">2</span>        <span class="dv">56</span>       <span class="dv">112</span> kinda cute               </a>
+<a class="sourceLine" id="cb198-9" data-line-number="9"><span class="dv">3</span>          <span class="dv">3</span>        <span class="dv">59</span>       <span class="dv">156</span> kinda cute but had a ring</a>
+<a class="sourceLine" id="cb198-10" data-line-number="10"><span class="dv">4</span>          <span class="dv">4</span>        <span class="dv">43</span>       <span class="dv">102</span> so small                 </a></code></pre></div>
 </div>
 <div id="readrds" class="section level4 unnumbered hasAnchor">
 <h4><code>readRDS()</code><a href="importing-data.html#readrds" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Another niche function for reading data is <code>readRDS()</code>. This function allows you to read in <em>R data objects</em>, which have the file extension <em>.rds</em>. These data objects need not be in the same format as a <code>.csv</code> or even a dataframe, and that is what makes them so handy. A colleague could send you an <code>.rds</code> object of a vector, a list, a plotting function, or any other kind of <code>R</code> object, and you can read it in with <code>readRDS()</code>.</p>
 <p>For example, <a href="data:application/octet-stream;base64,H4sIAAAAAAAAA9VSsU7DMBB1k5Y2RYVKndjMB9CZjS4wwYJAAgkpOLbbRHWSKnGo2PqpfAIfgBou8TmlEYiBiUjR+Z7fvXvy3cOQEOKSLnGI24Mj6d3fXZ2dAzaBpIKPqnjxTupvRjAOMI4RQN7sdmPwa7y/wfxys897fjP4E/I48h4b3rju3yUexFGSavois1eaRFwiOFxGiWCUF9oiJzuEBoWmIROU0SxKFkjw8pTmMVPqFLQdADp40UtYLHM4fO06XDEdyUT7kbD1oYwWIQCJBdYGUAECfZ7GMdS09blieVv/MF9J7utA+WKO0MFe5kJmvQim2XSegc2WtJel66m1P6qernrCsiw/WsRu1Q4H6wLNDNjkxHCdEi06WDPmqVKS6zTzRVoEyr601+CQbP+NyGQnwkOWMa5l9oNOVd8pW3v4t4341d7xzt6ikLAv31urp9wxP9o0Oq6dNBTY4r6Qc1Yo3SzBMlq12tsFGUCZb5akbrP9BERePggdBAAA" download="super_data.rds">super_data.rds</a>contains a <code>tibble</code> version of the dataframe above. When you read in that <code>.rds</code> file, it is already formatted as a <code>tibble</code>:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="importing-data.html#cb197-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;super_data.rds&quot;</span>)</span>
-<span id="cb197-2"><a href="importing-data.html#cb197-2" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb197-3"><a href="importing-data.html#cb197-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 4 × 4</span></span>
-<span id="cb197-4"><a href="importing-data.html#cb197-4" aria-hidden="true" tabindex="-1"></a>  patient_id height_in weight_lb comment                  </span>
-<span id="cb197-5"><a href="importing-data.html#cb197-5" aria-hidden="true" tabindex="-1"></a>       <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>                    </span>
-<span id="cb197-6"><a href="importing-data.html#cb197-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>          <span class="dv">1</span>        <span class="dv">74</span>       <span class="dv">135</span> not very nice            </span>
-<span id="cb197-7"><a href="importing-data.html#cb197-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>          <span class="dv">2</span>        <span class="dv">56</span>       <span class="dv">112</span> kinda cute               </span>
-<span id="cb197-8"><a href="importing-data.html#cb197-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>          <span class="dv">3</span>        <span class="dv">59</span>       <span class="dv">156</span> kinda cute but had a ring</span>
-<span id="cb197-9"><a href="importing-data.html#cb197-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>          <span class="dv">4</span>        <span class="dv">43</span>       <span class="dv">102</span> so small<span class="sc">!</span>                </span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;super_data.rds&quot;</span>)</a>
+<a class="sourceLine" id="cb199-2" data-line-number="2">df</a>
+<a class="sourceLine" id="cb199-3" data-line-number="3"><span class="co"># A tibble: 4 × 4</span></a>
+<a class="sourceLine" id="cb199-4" data-line-number="4">  patient_id height_in weight_lb comment                  </a>
+<a class="sourceLine" id="cb199-5" data-line-number="5">       <span class="op">&lt;</span>dbl<span class="op">&gt;</span><span class="st">     </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st">     </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">                    </span></a>
+<a class="sourceLine" id="cb199-6" data-line-number="6"><span class="dv">1</span>          <span class="dv">1</span>        <span class="dv">74</span>       <span class="dv">135</span> not very nice            </a>
+<a class="sourceLine" id="cb199-7" data-line-number="7"><span class="dv">2</span>          <span class="dv">2</span>        <span class="dv">56</span>       <span class="dv">112</span> kinda cute               </a>
+<a class="sourceLine" id="cb199-8" data-line-number="8"><span class="dv">3</span>          <span class="dv">3</span>        <span class="dv">59</span>       <span class="dv">156</span> kinda cute but had a ring</a>
+<a class="sourceLine" id="cb199-9" data-line-number="9"><span class="dv">4</span>          <span class="dv">4</span>        <span class="dv">43</span>       <span class="dv">102</span> so small<span class="op">!</span><span class="st">                </span></a></code></pre></div>
 </div>
 </div>
 </div>
@@ -579,14 +523,14 @@ This looks scary, but it is actually really simple. A <code>.csv</code> is a sim
 <div id="reading-data-from-other-folders" class="section level3 unnumbered hasAnchor">
 <h3>Reading data from other folders<a href="importing-data.html#reading-data-from-other-folders" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The data-reading functions above require only a single input: the <em>path</em> to your data file. This <em>path</em> is relative to the location of your working directory. When your data file is <em>inside</em> your working directory, the path simplifies to be the same as the filename of your data:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="importing-data.html#cb198-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;super_data.csv&quot;</span>)</a></code></pre></div>
 <p>Sometimes, though, you will want to keep your data somewhere nearby but not necessarily <em>within</em> your working directory. Consider the following scenario, in which three versions of the “super_data.csv” dataset occur near a working directory being used for this module:</p>
 <p><img src="img/csv_wd.png" /></p>
 <p>We have a version within the same directory as our <code>R</code> file (i.e., our working directory), another version within a <em>child</em> folder within the directory (i.e., a subfolder), and another version in the <em>parent</em> folder of the working directory.</p>
 <p><strong>To read a file from a <em>child</em> folder,</strong> add the prefix, <code>./&lt;child name&gt;/</code>, to your command:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="importing-data.html#cb199-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/super_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/super_data.csv&quot;</span>)</a></code></pre></div>
 <p><strong>To read a file from a <em>parent</em> folder,</strong> add the prefix, <code>../</code>, to your command:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="importing-data.html#cb200-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/super_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/super_data.csv&quot;</span>)</a></code></pre></div>
 </div>
 <div id="managing-files" class="section level3 unnumbered hasAnchor">
 <h3>Managing files<a href="importing-data.html#managing-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -603,7 +547,7 @@ This looks scary, but it is actually really simple. A <code>.csv</code> is a sim
 </ul>
 <p>Since your <code>R</code> code is going into the <code>R</code> child folder, that is what you should set your working directory for those <code>R</code> scripts to. In that case, <em>how to read data from the <code>data</code> folder</em>, which is a separate child folder of your parent folder?</p>
 <p>Here’s how:</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="importing-data.html#cb201-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../data/super_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../data/super_data.csv&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>
