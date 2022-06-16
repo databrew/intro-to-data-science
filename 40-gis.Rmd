@@ -58,8 +58,7 @@ pkg <- 'raster'    ; if(! pkg %in% installed.packages()){install.packages(pkg)}
 pkg <- 'sp'        ; if(! pkg %in% installed.packages()){install.packages(pkg)}
 pkg <- 'rasterVis' ; if(! pkg %in% installed.packages()){install.packages(pkg)}
 pkg <- 'htmltools' ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'RColorBrewer' 
-                     if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkg <- 'RColorBrewer' ; if(! pkg %in% installed.packages()){install.packages(pkg)}
 ```
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE, warning=FALSE}
@@ -503,3 +502,31 @@ leaf
 
 **22.** Create a function that takes an indicator name as an input and creates a map.
 
+## Tennessee zip codes
+
+```{r}
+library(tigris)
+tnz <- tigris::zctas()
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# TN zip codes
+library(dplyr)
+library(gsheet)
+################################################################################
+# Zip codes with population
+pop <- gsheet2tbl('https://docs.google.com/spreadsheets/d/18hc7HcDUQzaY3hiGqWxaqjUhYmweojZ4PwUbZA6KKLA/edit?usp=sharing')
+pop %>% head
+################################################################################
+# Zip codes with city/county information
+# https://www.zipcodestogo.com/Tennessee/
+counts <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1D4bpArRc-081sWhVAvBISVqvgHqBmmTF99zozNPj9UU/edit?usp=sharing')
+counts %>% head
+################################################################################
+# Join the two datasets together
+# https://www.tennessee-demographics.com/zip_codes_by_population
+tn <- full_join(counts, pop, by='zip')
+head(tn)
+nrow(tn)
+readr::write_csv(tn, file = 'data/tnzips.csv')
+```
