@@ -408,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Get today’s date:</p>
 <div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" data-line-number="1">today &lt;-<span class="st"> </span><span class="kw">today</span>()</a></code></pre></div>
 <div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1"><span class="kw">str</span>(today)</a>
-<a class="sourceLine" id="cb481-2" data-line-number="2"> Date[<span class="dv">1</span><span class="op">:</span><span class="dv">1</span>], format<span class="op">:</span><span class="st"> &quot;2022-06-09&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb481-2" data-line-number="2"> Date[<span class="dv">1</span><span class="op">:</span><span class="dv">1</span>], format<span class="op">:</span><span class="st"> &quot;2022-06-17&quot;</span></a></code></pre></div>
 <p>This looks like a simple character string, but it is not. There are all sorts of date-time calculations in the background.</p>
 <p>To demonstrate this, let’s bring in a simple string:</p>
 <div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" data-line-number="1">my_birthday &lt;-<span class="st"> &#39;1985-11-07&#39;</span></a>
@@ -419,27 +419,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>… but this does not:</p>
 <div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" data-line-number="1">my_birthday &lt;-<span class="st"> </span><span class="kw">as_date</span>(my_birthday)</a>
 <a class="sourceLine" id="cb484-2" data-line-number="2">today <span class="op">-</span><span class="st"> </span>my_birthday</a>
-<a class="sourceLine" id="cb484-3" data-line-number="3">Time difference of <span class="dv">13363</span> days</a></code></pre></div>
+<a class="sourceLine" id="cb484-3" data-line-number="3">Time difference of <span class="dv">13371</span> days</a></code></pre></div>
 </div>
 <div id="the-datetime-class" class="section level3 unnumbered hasAnchor">
 <h3>The <code>datetime</code> class<a href="dates.html#the-datetime-class" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When you are working with a <code>datetime</code> object, you can add and subtract time to it.</p>
 <div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="kw">now</span>() </a>
 <a class="sourceLine" id="cb485-2" data-line-number="2">n</a>
-<a class="sourceLine" id="cb485-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 12:36:46 CDT&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb485-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 13:02:29 CEST&quot;</span></a></code></pre></div>
 <p>Add or substract seconds:</p>
 <div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" data-line-number="1">n <span class="op">+</span><span class="st"> </span><span class="kw">seconds</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb486-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 12:36:47 CDT&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb486-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 13:02:30 CEST&quot;</span></a></code></pre></div>
 <p>Add or subtract hours:</p>
 <div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" data-line-number="1">n <span class="op">-</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb487-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 07:36:46 CDT&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb487-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 08:02:29 CEST&quot;</span></a></code></pre></div>
 <p>Simplify to just the date:</p>
 <div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" data-line-number="1"><span class="kw">as_date</span>(n)</a>
-<a class="sourceLine" id="cb488-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb488-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17&quot;</span></a></code></pre></div>
 <p>See how time flies:</p>
 <div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" data-line-number="1">later &lt;-<span class="st"> </span><span class="kw">now</span>()</a>
 <a class="sourceLine" id="cb489-2" data-line-number="2">later</a>
-<a class="sourceLine" id="cb489-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 12:36:46 CDT&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb489-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 13:02:29 CEST&quot;</span></a></code></pre></div>
 </div>
 </div>
 <div id="common-tasks" class="section level2 unnumbered hasAnchor">
@@ -497,25 +497,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Adjust timezones for dates:</p>
 <div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" data-line-number="1"><span class="co"># Today&#39;s date where I am</span></a>
 <a class="sourceLine" id="cb504-2" data-line-number="2"><span class="kw">today</span>()</a>
-<a class="sourceLine" id="cb504-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09&quot;</span></a>
+<a class="sourceLine" id="cb504-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17&quot;</span></a>
 <a class="sourceLine" id="cb504-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb504-5" data-line-number="5"><span class="co"># Today&#39;s date in New Zealand</span></a>
 <a class="sourceLine" id="cb504-6" data-line-number="6"><span class="kw">today</span>(<span class="dt">tzone=</span><span class="st">&#39;NZ&#39;</span>)</a>
-<a class="sourceLine" id="cb504-7" data-line-number="7">[<span class="dv">1</span>] <span class="st">&quot;2022-06-10&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb504-7" data-line-number="7">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17&quot;</span></a></code></pre></div>
 <p>Adjust time zones for date-times:</p>
 <div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb505-1" data-line-number="1"><span class="co"># Time where I am</span></a>
 <a class="sourceLine" id="cb505-2" data-line-number="2"><span class="kw">now</span>()</a>
-<a class="sourceLine" id="cb505-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 12:36:46 CDT&quot;</span></a>
+<a class="sourceLine" id="cb505-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 13:02:29 CEST&quot;</span></a>
 <a class="sourceLine" id="cb505-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb505-5" data-line-number="5"><span class="co"># Time in UTC / GMT (which are synonymous)</span></a>
 <a class="sourceLine" id="cb505-6" data-line-number="6"><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>)</a>
-<a class="sourceLine" id="cb505-7" data-line-number="7">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 17:36:46 UTC&quot;</span></a>
+<a class="sourceLine" id="cb505-7" data-line-number="7">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 11:02:29 UTC&quot;</span></a>
 <a class="sourceLine" id="cb505-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb505-9" data-line-number="9"><span class="kw">now</span>(<span class="st">&#39;GMT&#39;</span>)</a>
-<a class="sourceLine" id="cb505-10" data-line-number="10">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 17:36:46 GMT&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb505-10" data-line-number="10">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 11:02:30 GMT&quot;</span></a></code></pre></div>
 <p>Don’t know what time zone your computer is working in? Use this function:</p>
 <div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" data-line-number="1"><span class="kw">Sys.timezone</span>()</a></code></pre></div>
-<pre><code>[1] &quot;America/Indiana/Tell_City&quot;</code></pre>
+<pre><code>[1] &quot;Europe/Madrid&quot;</code></pre>
 <p>To get a list of time zones accepted in <code>R</code>, use the function <code>OlsonNames()</code> (there are about 500 options):</p>
 <div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" data-line-number="1"><span class="kw">OlsonNames</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">50</span>)</a></code></pre></div>
 <pre><code> [1] &quot;Africa/Abidjan&quot;       &quot;Africa/Accra&quot;         &quot;Africa/Addis_Ababa&quot;  
@@ -539,11 +539,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" data-line-number="1"><span class="co"># Get current time in UTC/GMT</span></a>
 <a class="sourceLine" id="cb510-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>)</a>
 <a class="sourceLine" id="cb510-3" data-line-number="3">n</a>
-<a class="sourceLine" id="cb510-4" data-line-number="4">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 17:36:46 UTC&quot;</span></a>
+<a class="sourceLine" id="cb510-4" data-line-number="4">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 11:02:30 UTC&quot;</span></a>
 <a class="sourceLine" id="cb510-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb510-6" data-line-number="6"><span class="co"># Change timezone to Central Standard Time without changing time: </span></a>
 <a class="sourceLine" id="cb510-7" data-line-number="7"><span class="kw">force_tz</span>(n,<span class="dt">tzone=</span><span class="st">&#39;America/Chicago&#39;</span>)</a>
-<a class="sourceLine" id="cb510-8" data-line-number="8">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 17:36:46 CDT&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb510-8" data-line-number="8">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 11:02:30 CDT&quot;</span></a></code></pre></div>
 </div>
 <div id="using-timestamps-instead" class="section level3 unnumbered hasAnchor">
 <h3>Using timestamps instead<a href="dates.html#using-timestamps-instead" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -551,20 +551,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Timesetamps record the number of seconds that have passed since midnight GMT on January 1, 1970. It doesn’t matter which timezone you are standing in; the seconds that have passed since that moment will be the same:</p>
 <div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" data-line-number="1"><span class="co"># Time where I am</span></a>
 <a class="sourceLine" id="cb511-2" data-line-number="2"><span class="kw">now</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</a>
-<a class="sourceLine" id="cb511-3" data-line-number="3">[<span class="dv">1</span>] <span class="dv">1654796207</span></a>
+<a class="sourceLine" id="cb511-3" data-line-number="3">[<span class="dv">1</span>] <span class="dv">1655463750</span></a>
 <a class="sourceLine" id="cb511-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb511-5" data-line-number="5"><span class="kw">now</span>(<span class="st">&#39;UTC&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</a>
-<a class="sourceLine" id="cb511-6" data-line-number="6">[<span class="dv">1</span>] <span class="dv">1654796207</span></a></code></pre></div>
+<a class="sourceLine" id="cb511-6" data-line-number="6">[<span class="dv">1</span>] <span class="dv">1655463750</span></a></code></pre></div>
 <p>Timestamps can simplify things when you are doing a lot of adding and substracting with time. Timestamps are just seconds; they are just numbers. So they are much less of a black box than <code>datetime</code> objects.</p>
 <p>You can always convert from a timestamp back into a <code>datetime</code> object:</p>
 <div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" data-line-number="1"><span class="co"># Convert to timestamp</span></a>
 <a class="sourceLine" id="cb512-2" data-line-number="2">ts &lt;-<span class="st"> </span><span class="kw">now</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</a>
 <a class="sourceLine" id="cb512-3" data-line-number="3">ts</a>
-<a class="sourceLine" id="cb512-4" data-line-number="4">[<span class="dv">1</span>] <span class="dv">1654796207</span></a>
+<a class="sourceLine" id="cb512-4" data-line-number="4">[<span class="dv">1</span>] <span class="dv">1655463750</span></a>
 <a class="sourceLine" id="cb512-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb512-6" data-line-number="6"><span class="co"># Convert back to datetime object</span></a>
 <a class="sourceLine" id="cb512-7" data-line-number="7">ts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_datetime</span>()</a>
-<a class="sourceLine" id="cb512-8" data-line-number="8">[<span class="dv">1</span>] <span class="st">&quot;2022-06-09 17:36:46 UTC&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb512-8" data-line-number="8">[<span class="dv">1</span>] <span class="st">&quot;2022-06-17 11:02:30 UTC&quot;</span></a></code></pre></div>
 </div>
 <div id="exercises-17" class="section level3 unnumbered hasAnchor">
 <h3>Exercises<a href="dates.html#exercises-17" class="anchor-section" aria-label="Anchor link to header"></a></h3>
