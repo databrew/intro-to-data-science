@@ -49,16 +49,11 @@ We interact with rasters all the time: think of smartphone screens and digital p
 To use `R` as a GIS, first download a bunch of libraries that are likely to be useful:  
 
 ```{r,echo=TRUE,collapse=TRUE, eval = FALSE}
-pkg <- 'dplyr'     ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'readr'     ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'ggplot2'   ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'leaflet'   ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'rgdal'     ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'raster'    ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'sp'        ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'rasterVis' ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'htmltools' ; if(! pkg %in% installed.packages()){install.packages(pkg)}
-pkg <- 'RColorBrewer' ; if(! pkg %in% installed.packages()){install.packages(pkg)}
+pkgs <- c('tigris', 'dplyr', 'readr', 'ggplot2', 'leaflet', 'rgdal', 'raster', 'sp', 'rasterVis',
+          'htmltools', 'RColorBrewer', 'leaflet.extras', 'geosphere')
+for(pkg in pkgs){
+  if(! pkg %in% installed.packages()){install.packages(pkg)}
+}
 ```
 
 ```{r,echo=TRUE,collapse=TRUE, eval = TRUE, message=FALSE, warning=FALSE}
@@ -72,6 +67,158 @@ library(sp)
 library(rasterVis)
 library(htmltools)
 library(RColorBrewer)
+library(geosphere)
+```
+
+### Some learning exercises with Tennessee zip codes {-}
+
+We're going to do some exercises with Tennessee zip codes. 
+
+1. What is a zip code? 
+
+2. What kind of data format is zip code data likely to be in?
+
+3. Load up some tabular data on zip codes by running the below:
+
+```{r}
+tn <- read_csv('https://github.com/databrew/intro-to-data-science/raw/main/data/tnzips.csv')
+```
+
+4. Inspect the data. What is the unit of observation.
+
+5. Make a histogram of population.
+
+6. Which zip code is the most populous?
+
+7. Which city has the most zip codes?
+
+8. What is the total population of Tennessee?
+
+9. Make a chart of the 5 most populous cities in Tennessee, showing their population.
+
+10. Load up some _geographic_ data on Tennessee zip codes by running the below:
+
+
+
+```{r}
+library(tigris)
+options(tigris_use_cache = TRUE)
+temp <- tigris::zctas(starts_with = 370:385)
+tnz <-  as(temp, 'Spatial')
+```
+
+11. Plot the map using the `plot` function
+
+12. Run the below in order to convert the format to a ggplot-friendly dataframe.
+
+```{r}
+tng <- fortify(tnz, region = 'GEOID20') %>%
+  mutate(zip = id)
+```
+
+13. Make a ggplot of the tng object.
+
+```{r, eval = FALSE, echo = FALSE}
+ggplot(data = tng) +
+  geom_polygon(aes(x = long,
+                   y = lat,
+                   group = group),
+               fill = NA,
+               color = 'black')
+```
+
+
+14. In `tnz`, make a new variable named `percent_water` which shows the percentage of each zip code that is water (in area).
+
+15. Bring data from `tnz` into `tng` by running the below:
+
+```{r}
+tng <- left_join(tng, tnz@data, by = c('zip' = 'GEOID20'))
+```
+
+
+16. Modify the above ggplot so that the filled color of each polygon reflects the new variable, `percent_water`.
+
+17. Make a leaflet map with no polygons on it.
+
+18. Add the Tennessee zip codes to the leaflet map.
+
+```{r, eval = FALSE, echo = FALSE}
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = tnz)
+```
+
+19. Make the width of the lines thinner and make the background totally transparent.
+
+20. Bring the `pop` column of `tn` into `tnz` using `left_join`. 
+
+```{r, eval = FALSE, echo = FALSE}
+tnz@data <- left_join(tnz@data, tn %>% mutate(zip = as.character(zip)), by = c('GEOID20' = 'zip'))
+```
+
+21. We want to make a map showing population density. We'll start by making a color palette:
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), 
+                            domain=tnz@data$pop, 
+                            na.color="#CECECE")
+```
+
+22. Make a choropleth of population in leaflet.
+
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+leaflet() %>%
+  addTiles() %>% 
+  addPolygons(data = tnz, fillColor = ~map_palette(pop),
+                             fillOpacity = 0.9,
+                             stroke=TRUE,
+                             color='black',
+                             weight=1,
+                             label = ~pop)
+```
+
+
+23. Make a choropleth of percentage water in leaflet. Make it blue.
+
+24. Create a dataframe of the "centroid" of each zip code by running the below:
+
+```{r}
+centroids <- coordinates(tnz) 
+```
+
+25. Define the location, in longitude, latitude, of Sewanee
+
+```{r}
+sewanee <- c(-85.9210899, 35.2031373)
+```
+
+26. Use `distm` from the `geosphere` package to get the distance from Sewanee to each zip code's centroid.
+
+```{r}
+km <- distm(x = sewanee, y = centroids)
+```
+
+27. Deposit the `distances` object as a column in the `tnz` object
+
+```{r}
+tnz@data$km <- km[1,]
+```
+
+28. Make a leaflet choropleth of distance to Sewanee.
+
+```{r,echo=TRUE,collapse=TRUE, eval = TRUE}
+map_palette <- colorNumeric(palette = brewer.pal(9, "Greens"), 
+                            domain=tnz@data$km, 
+                            na.color="#CECECE")
+leaflet() %>%
+  addTiles() %>% 
+  addPolygons(data = tnz, fillColor = ~map_palette(km),
+                             fillOpacity = 0.9,
+                             stroke=TRUE,
+                             color='black',
+                             weight=1)
 ```
 
 
@@ -502,12 +649,6 @@ leaf
 
 **22.** Create a function that takes an indicator name as an input and creates a map.
 
-## Tennessee zip codes
-
-```{r}
-library(tigris)
-tnz <- tigris::zctas()
-```
 
 ```{r, eval = FALSE, echo = FALSE}
 # TN zip codes
