@@ -1,0 +1,76 @@
+# Rmarkdown with Harry Potter
+
+
+&nbsp;  
+
+**1.** Start a new Rmarkdown file Name it "harry.Rmd".
+
+**2.** Set up your work space by loading the `ggplot2`, `dplyr`, `tidytext`, `gsheet`, `wordcloud2`, `sentimentr`, and `lubridate` packages.
+
+**3.** Read in your Harry Potter data by running the following:
+
+```{r, eval = FALSE}
+hp <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/harrypotter.csv')
+```
+
+**4.** Populate your Rmarkdown file with some section headers: Introduction, Methods, Results.
+
+**5.** Under each section header, write some text.
+
+**6.** Find a picture of Harry Potter from the internet. Save it in the same directory as your Rmarkdown file. Include it in your Rmarkdown. Then knit your Rmarkdown into an html file as a test.
+
+**7.** Use `unnest_tokens` to create a dataframe with one row per word.
+
+**8.** Create a variable named `word_length` with the number of characters in each word.
+
+**9.** Make a histogram of word length. Accompany it with some prior text explaining the chart.
+
+**10.** Replace the histogram with a density chart of word length.
+
+**11.** Make the density chart of word length have a different `fill` for each chapter.
+
+**12.** Get the average word length per chapter.
+
+**13.** Make a table of the average word length per chapter. Use the `kable` function from the `knitr` library.
+
+**14.** What is the longest word used in Harry Potter? Write some text about it.
+
+**15.** What is the most frequent word used in Harry Potter?
+
+**16.** Get the number of words per chapter.
+
+**17.** Plot the number of words per chapter.
+
+**18.** What's the longest chapter in Harry Potter?
+
+**19.** Run the below to create an object named `sw`.
+
+```{r, eval = FALSE}
+sw <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv')
+```
+
+**20.** Remove the stop words form your one-row-per-word dataframe.
+
+**21.** What is the most frequently used (non-stop) word in Harry Potter?
+
+**22.** Create an object called `sentiments` by running the following:
+
+```{r, eval = FALSE}
+sentiments <- get_sentiments('afinn')
+```
+
+**23.** Use `left_join` to bring a sentiment classification to each word.
+
+**24.** Is Harry Potter more negative or positive?
+
+**25.** Calculate the average sentimentality per chapter.
+
+**26.** Plot the average sentimentality per chapter.
+
+**27.** Create a variable called `cumulative_sentiment`. Use `cumsum` to get the cumulative sum sentimentality.
+
+**28.** Plot cumulative sentiment.
+
+**29.** Color your plot by chapter.
+
+

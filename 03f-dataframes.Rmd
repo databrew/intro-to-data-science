@@ -1,0 +1,414 @@
+# Dataframes
+
+#### Learning goal {-}
+
+* Practice exploring, summarizing, and filtering dataframes
+
+&nbsp;  
+
+A vector is the most basic data structure in `R`, and the other structures are built out of vectors. But, as a data scientist, the most common data structure you will be working with -- by far -- is a **dataframe**.  
+
+A dataframe, essentially, is a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data. 
+
+Here is what a dataframe looks like:
+
+```{r,echo=TRUE,collapse=TRUE}
+# Using one of R's built-in datasets
+head(iris)
+```
+
+In this dataframe, each row pertains to a unique iris plant. The columns contain related information about each individual plant. 
+
+Here's another data.frame, built from scratch, which shows that dataframes are just a group of vectors:
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- 25:29
+y <- 55:59
+df <- data.frame(x,y)
+df
+```
+
+In this command, we used the `data.frame()` function to combine two vectors into a dataframe with two columns named `x` and `y`. `R` then saved this result in a new variable named `df`. When we call `df`, `R` shows us the dataframe.
+
+The great thing about dataframes is that they allow you to relate different data types to each other.
+
+```{r,echo=TRUE,collapse=TRUE}
+df <- data.frame(name=c("Ben","Joe","Eric"),
+                 height=c(75,73,80))
+df
+```
+
+This dataframe has one column of class `character` and another of class `numeric`.
+
+## Subsetting & exploring dataframes {-} 
+
+To explore dataframes, let's use a dataset on fuel mileage for all cars sold from 1985 to 2014. 
+
+```{r,echo=TRUE,collapse=TRUE}
+# need to install first install.packages('fueleconomy')
+library(fueleconomy)
+data(vehicles)
+head(vehicles)
+```
+
+To look at this dataframe in full, you call display it in a separate tab within `RStudio` using the `View()` function:
+
+```{r,echo=TRUE,collapse=TRUE,eval=FALSE}
+View(vehicles)
+```
+
+A dataframe has rows of data organized into columns. In this dataframe, each row pertains to a single vehicle make/model -- i.e., a single *observation*. Each column pertains to a single *type* of data. Columns are named in the *header* of the dataframe. 
+
+All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes. In addition to those functions you already know, let's add some new functions to your inventory of useful functions.
+
+### Exploration {-}
+
+**`head()`** and **`tail()`** summarize the beginning and end of the object:  
+
+```{r,echo=TRUE,collapse=TRUE}
+head(vehicles) 
+
+tail(vehicles) 
+```
+
+**`names()`** tells you the column names:  
+
+```{r,echo=TRUE,collapse=TRUE}
+names(vehicles) 
+```
+
+**`nrow()`**, **`ncol()`**, and **`dim()`** tell you about the dimensions of your dataframe:  
+
+```{r,echo=TRUE,collapse=TRUE}
+nrow(vehicles) 
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+ncol(vehicles) 
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+dim(vehicles) 
+```
+
+Note that **`length()`** does not work the same on dataframes as it does with vectors. In dataframes, `length()` is the equivalent of `ncol()`; it will *not* give you the number of rows in a dataset.
+
+Importantly, you can use **`is.na()`** to ask whether columns or rows contain `NA`s:  
+
+```{r,echo=TRUE,collapse=TRUE, eval=TRUE}
+# Check for NAs
+
+# Which rows in the `hwy` column have NA's?
+which(is.na(vehicles$hwy))
+
+# (No NAs in that column!)
+
+# What about rows in the `cyl` column?
+which(is.na(vehicles$cyl))
+
+# (lots of NAs in that column!)
+```
+
+### Subsetting {-}
+
+Recall that dataframes are filtered by row and/or column using this format: **`dataframe[rows,columns]`**. To get the third element of the second column, for example, you type `dataframe[3,2]`.
+
+```{r,echo=TRUE,collapse=TRUE}
+vehicles[3,2]
+```
+
+Note that the comma is necessary even if you do not want to specify columns. If you try to type this ...
+
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
+vehicles[3]
+```
+
+...`R` will assume you are asking for the third column, not the third row.  
+
+To filter a dataframe to multiple values, you can specify vectors for the `row` and `column`
+
+```{r,echo=TRUE,collapse=TRUE}
+vehicles[1:3,11:12] # can use colons
+vehicles[1:3,c(1,11:12)]  # can use c()
+```
+
+Columns can also be called according to their names. Use the **`$`** sign to specify a column.
+
+```{r,echo=TRUE,collapse=TRUE}
+vehicles$hwy[1:5]
+```
+
+Note that when you use a `$`, you will not need to use a comma within your brackets. If you try to run this ...
+
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
+vehicles$hwy[1:5,]
+```
+
+...`R` will throw a fit.  
+
+Also recall that you can use logical tests, which return boolean values `TRUE` or `FALSE`, to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:
+
+```{r,echo=TRUE,collapse=TRUE}
+# Build your logical test
+verdicts <- vehicles$hwy > 100
+
+# Subset with booleans
+vehicles[verdicts,2:3]
+```
+
+Or you can write all this in a single line, to be more efficient:  
+
+```{r,echo=TRUE,collapse=TRUE}
+vehicles[ vehicles$hwy > 100  , 2:3]
+```
+
+Recall that the logical test is returning a bunch of `TRUE`'s and `FALSE`'s, one for each row of `vehicles`. Only the `TRUE` rows will be returned.  
+
+
+### Summarizing {-}
+
+The same summary functions that you have used for vectors work for the columns in dataframes, since each column is also a vector. Check it out: 
+
+```{r,echo=TRUE,collapse=TRUE}
+min(vehicles$hwy)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+max(vehicles$hwy)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+mean(vehicles$cty)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+sd(vehicles$cty)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+str(vehicles$make)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+class(vehicles$hwy)
+```
+
+You can also use the **`summary()`** function, which provides summary statistics for each column in your dataframe:
+
+```{r,echo=TRUE,collapse=TRUE}
+summary(vehicles)
+```
+
+The function **`unique()`** returns unique values within a column:
+
+```{r,echo=TRUE,collapse=TRUE}
+unique(vehicles$fuel)
+```
+
+Finally, the **`order()`** function helps you sort a dataframe according to the values in one of its columns.
+
+```{r,echo=TRUE,collapse=TRUE}
+# Sort dataframe by highway mileage
+# Only keep certain columns
+vehicles_sorted <- vehicles[order(vehicles$hwy), 
+                            c(2,3,4,10:12)] 
+head(vehicles_sorted)
+```
+
+Reverse the order by wrapping **`rev()`** around the `order()` call:
+
+```{r,echo=TRUE,collapse=TRUE}
+vehicles_sorted <- vehicles[rev(order(vehicles$hwy)),
+                            c(2,3,4,10:12)]
+head(vehicles_sorted)
+```
+
+## Creating dataframes {-}
+
+As shown above, to create a new dataframe, use the `data.frame()` function.
+
+```{r,collapse=TRUE}
+my_vehicles <- data.frame(car=paste(vehicles$make,vehicles$model),
+                          mgp_hwy=vehicles$hwy,
+                          mpg_city=vehicles$cty)
+my_vehicles[100:106,]
+```
+
+Note how the columns were named in the `data.frame()` call, and that each column is separated by a comma.
+
+You can also stage an empty dataframe, which sounds useless but will become very useful as you start working with `for` loops and other higher-order `R` tools.  
+
+```{r,echo=TRUE,collapse=TRUE}
+df <- data.frame()
+df
+```
+
+To coerce an object into a format that `R` interprets as a dataframe, use **`as.dataframe()`**: 
+
+```{r,echo=TRUE,collapse=TRUE}
+df <- as.data.frame(vehicles)
+df[1:4,1:4]
+```
+
+## Modifying dataframes {-}  
+
+### Combining dataframes {-}  
+
+To bind multiple dataframes together by row, use **`rbind()`**: 
+
+```{r,echo=TRUE,collapse=TRUE}
+# Build up a dataframe
+df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),
+                  instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+df1
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+# Build up a second dataframe
+df2 <- data.frame(name=c("Matthew"),
+                  instrument=c("Washboard"))
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+# Combine those dataframes together
+rbind(df1,df2)
+```
+
+Note that to be combined, two dataframes have to have the exact same number of columns and the exact same column names.
+
+The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the **Deep `R`** modules ahead.
+
+```{r,echo=TRUE,collapse=TRUE}
+df <- data.frame() # stage empty dataframe
+
+df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),
+                  instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+
+df <- rbind(df,df1)
+
+df
+```
+
+You can also bind multiple dataframes together by column, using **`cbind()`**: 
+
+```{r,echo=TRUE,collapse=TRUE}
+df1 <- data.frame(name=c("Ben","Joe","Eric","Isabelle"),
+                  instrument=c("Nose harp","Concertina","Ukelele","Drums"))
+
+df <- data.frame(age=c(33,35,35,20), home=c("Canada","Spain","USA","USA"))
+
+df <- cbind(df,df1)
+
+df
+```
+
+Note that to be combined, two dataframes have to have the exact same number of rows and the exact same column names.
+
+### Adding columns {-}  
+
+To create a new column for a dataframe, use the `$` symbol and provide the name of the new column:
+
+```{r,echo=TRUE,collapse=TRUE}
+df$x_factor <- c(3,20,60,40)
+
+df
+```
+
+### Altering values {-}  
+
+To alter certain values in the dataframe, you can assign new values to a subset of your dataframe. 
+
+Here are four ways to do the same thing: upating Isabelle's X-factor:
+
+**Option 1: Subsetting a single column**  
+
+```{r,echo=TRUE,collapse=TRUE}
+df$x_factor[4] <- 70
+```
+
+**Option 2: Subsetting both rows and columns**  
+
+```{r,echo=TRUE,collapse=TRUE}
+df[4,5] <- 70
+```
+
+**Option 3: Subsetting a column based on a logical test**  
+
+```{r,echo=TRUE,collapse=TRUE}
+df$x_factor[df$name == 'Isabelle'] <- 70
+```
+
+**Option 3: Subsetting row and columns using logical tests**  
+
+```{r,echo=TRUE,collapse=TRUE}
+df[df$name == 'Isabelle', names(df) == 'x_factor'] <- 70
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+df
+```
+
+#### Exercises {-}
+
+**Reading for errors**  
+
+What is wrong with these commands? Why will each of them throw an error if you run them, and how can you fix them?
+
+**1.** `vehicles[1,15,]`
+
+**2.** `vecihles[1:5,]`
+
+**3.** `vehicles$hwy[15,]`
+
+**4.** `vehicles[1:5,1:13]`
+
+&nbsp;  
+
+**Subsetting and filtering**
+
+**5. Subset one field according to a logical test:** With no more than two lines of code, get the number of Honda cars in the `vehicles` dataset.  
+
+**6. Subset one field according to a logical test for a different field:** In a single line of code, show the mileages of all the Toyotas in the dataset.
+
+**7. Subset a dataframe to a single subgroup:** In a single line of code, determine how many differet car makes/models were produced in 1995.
+
+**8. Get the mean value for a subgroup of data:** What is the average city mileage for Subaru cars in the dataset?
+
+**9. Subset a dataframe to only data from between two values:** According to this dataset, how many different car makes/models have been produced with highway mileages between 30 and 40 mpg?
+
+**10. Subset by removing `NA`s:** Create a new version of the `vehicles` dataframe that does not have any `NA`s in the `trans` column. 
+
+&nbsp;  
+
+**Creating dataframes**  
+
+**11.**  Create a vector called `people` of 5 peoples names from the class.
+
+**12.**  Show with code how many people are in your vector
+
+**13.**  Create another vector called `height` which is the number of centimeters tall each of those 5 people are.
+
+**14.**  Combine these two vectors into a data frame.
+
+
+Now let's create a new object named `animals`. This is going to be a dataframe with 4 different columns: `species`, `weight` (in kg), `color`, `veg` (whether or not the animal is a vegetarian / herbivore). 
+
+**15.** Come up with five species to add to your dataframe and list them in a vector named `species`. 
+
+**16.** Make the other vectors with details about those species in the correct order. 
+
+**17.** Combine these vectors into a dataframe named `animals`.
+
+&nbsp;  
+
+**Altering dataframes**  
+
+**18.** Add a column to your `animals` dataframe named `rank`, which ranks each animal from your least favorite (0) to your most favorite (5).  
+
+**19.** Now write code to manually switch the ranking for your top two favorite animals.   
+
+**20.** What is the mean weight of the herbivorous animals that you listed, if any?  
+
+**21.** What is the mean weight of the omnivorous/carnivorous animals that you listed?  
+
+

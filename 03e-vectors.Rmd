@@ -1,0 +1,426 @@
+# Vectors
+
+#### Learning goals {-}
+
+* Learn the various structures of data in `R`  
+* How to work with vectors in `R`  
+
+&nbsp;
+
+Data belong to different *classes*, as explained in the previous module, and they can be arranged into various **structures**. 
+
+So far we have been dealing only with variables that contain a single value, but the real value of `R` comes from assigning *entire sets* of data to a variable. 
+
+The simplest data structure in `R` is a **vector**. A vector is simply a set of values. A vector can contain only a single value, as we have been working with thus far, or it can contain many millions of values. 
+
+
+## Declaring and using vectors {-}
+
+To build up a vector in `R`, use the function `c()`, which is short for "concatenate".
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+x <- c(5,6,7,8)
+x
+```
+
+Whenever you use the `c()` function, you are telling `R`: 'Hey, get ready. I'm about to give you more than one value at once.'.  
+
+You can use the `c()` function to concatenate two vectors together:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+x <- c(5,6,7,8)
+y <- c(9,10,11,12)
+z <- c(x,y)
+z
+```
+
+You can also use `c()` to add values to a vector:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+x <- c(5,6,7,8)
+x <- c(x,9)
+x
+```
+
+You can also put vectors through logical tests:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+x <- c(1,2,3,4,5)
+4 == x
+```
+
+This command is asking `R` to tell you whether each element in `x` is equal to `4`. 
+
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'One way to demonstrate this concept: Ask a single student whether they are 22 years old (ask them to answer `TRUE` or `FALSE`). Then ask the room the same question. Each student will respond `TRUE` or `FALSE`. This is the same as comparing a single value to a long vector.'
+
+teacher_tip(tip)
+```
+
+You can create vectors of any data class (i.e., data type).
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+x <- c("Ben","Joe","Eric") 
+x
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+y <- c(TRUE,TRUE,FALSE)
+y
+```
+
+Note that all values within a vector *must* be of the same class. You can't combine numerics and characters into the same vector. If you did, `R` would try to convert the numbers to characters.  For example:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+x <- 4
+y <- "6"
+z <- c(x,y)
+z
+```
+
+## Math with two vectors {-}
+
+When two vectors are of the same length, you can do arithmetic with them:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+x <- c(5,6,7,8)
+y <- c(9,10,11,12)
+x + y
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+x - y
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+x * y
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+x / y
+```
+
+**What happens when two vectors are *not* the same length?**
+
+Well, it depends. If one vector is length 1 (i.e., a single number), then things usually work out well. 
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- 5
+y <- c(1,2,3,4,5,6,7,8,10)
+x + y
+```
+
+In this command, the single element of `x` gets added to each element of `y`. 
+
+Another example, which you already saw above:
+
+```{r,echo=TRUE,collapse=TRUE}
+a <- c(1,2,3,4,5)
+b <- 4
+a == b
+```
+
+In this command, the single element of `b` gets compared to each element of `a`.
+
+However, when both vectors contain multiple values but are not the same length, **be warned**: wonky things can happen. This is because `R` will start recycling the shorter vector:
+
+```{r,echo=TRUE,collapse=TRUE}
+a <- c(1,2,3,4,5)
+b <- c(3,4)
+a + b
+```
+
+As this warning implies, this doesn't make much sense. The command will still run, but do not trust the result. 
+
+
+## Functions for handling vectors  {-}
+
+We are about to list a bunch of core functions for working with vectors. Think of this like a toolbag. Each tool has a specific purpose and limited value: you can't quite build a house with just a hammer. But when you learn how to use all of the tools in your tool bag *together*, you can build almost anything. But you have to know how to use each tool individually first.
+
+
+**`length()`** tells you the number of elements in a vector:
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- c(5,6)
+length(x)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+y <- c(9,10,11,12)
+length(y)
+```
+
+The **colon symbol `:`** creates a vector with every integer occurring between a min and max:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+x <- 1:10
+x
+```
+
+**`seq()`** allows you to build a vector using evenly spaced *sequence* of values between a min and max:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+seq(0,100,length=11)
+```
+
+In this command, you are telling `R` to give you a sequence of values from `0` to `100`, and you want the length of that vector to be `11`. `R` then figures out the spacing required between each value in order to make that happen. 
+
+Alternatively, you can prescribe the interval between values instead of the length:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+seq(0,100,by=7)
+```
+
+**`rep()`** allows you to repeat a single value a specified number of times:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+rep("Hey!",times=5)
+```
+
+You can also use `rep()` to repeat each element of a vector a set number of times:
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+rep(c("Hey!","Wohoo!"),each=3)
+```
+
+**`head()`** and **`tail()`** can be used to retrieve the first 6 or last 6 elements in a vector, respectively.
+
+```{r,echo=TRUE,collapse=TRUE,collapse=TRUE}
+x <- 1:1000
+head(x)
+tail(x)
+```
+
+You can also adjust how many elements to return:
+
+```{r,echo=TRUE,collapse=TRUE}
+head(x,2)
+tail(x,10)
+```
+
+**`sort()`** allows you to order a vector from its smallest value to its largest:
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- c(4,8,1,6,9,2,7,5,3)
+sort(x)
+```
+
+**`rev()`** lets you reverse the order of elements within a vector:
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- c(4,8,1,6,9,2,7,5,3)
+rev(x)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+rev(sort(x))
+```
+
+**`min()`** and **`max()`** lets you find the smallest and largest value in a vector.
+
+```{r,echo=TRUE,collapse=TRUE}
+min(x)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+max(x)
+```
+
+**`which()`** allows you to ask, "For which elements of a vector is the following statement true?"
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- 1:10
+which(x==4)
+```
+
+If no values within the vector meet the condition, a vector of length zero will be returned:
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- 1:10
+which(x == 11)
+```
+
+**`which.min()`** and **`which.max()`** tells you which element is the smallest and largest in the vector, respectively:
+
+```{r,echo=TRUE,collapse=TRUE}
+which.min(x)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+which.max(x)
+```
+
+**`%in%`** is a handy operator that allows you to ask whether a value occurs *within* a vector:
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- 1:10
+4 %in% x
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+11 %in% x
+```
+
+**`is.na()`** is a way of asking whether a vector contains missing, broken, or erroneous values. In `R`, such values are referred to using the phrase `NA`. When you see `NA`, think of `R` telling you, *'Nah ah! Nope! Not Available!'*
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- c(3,5,7,NA,9,4)
+is.na(x)
+```
+
+This function is stepping through each element in the vector `x` and telling you whether that element is `NA`. 
+
+
+## Subsetting vectors {-}
+
+Since you will eventually be working with vectors that contain thousands of data points, it will be useful to have some tools for *subsetting* them -- that is, looking at only a few select elements at a time.
+
+You can subset a vector using square brackets `[ ]`. Whenever you use you use brackets, you are telling `R`: 'Hey, I want some numbers, but *not everything*: just certain ones.'
+
+```{r,echo=TRUE,collapse=TRUE}
+x <- 50:100
+x[10]
+```
+
+This command is asking `R` to return the 10th element in the vector `x`.
+
+```{r,echo=TRUE,collapse=TRUE}
+x[10:20]
+```
+
+This command is asking `R` to return elements `10:20` in the vector `x`. 
+
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'For a change of pace, call out complicated subsetting calculations and ask students to race to call out the correct result first. For example: <br> Make a vector of all integers, 51 to 151. <br> What is the 10th element divided by the 3rd element? <br> What is the seventieth element plus the thirty-first element? <br> What is the average of the fortieth through sixtieth elements? <br> Etc.  '
+
+teacher_tip(tip)
+```
+
+#### Exercises {-}
+
+**Creating sequences of numbers**  
+
+1. Use the colon symbol to create a vector of length 5 between a minimum and a maximum value of your choosing.    
+
+2. Create a second vector of length 5 using the `seq()` function. Use code to confirm that the length of this vector is 5.  
+
+3. Create a third vector of length 5 using the `rep()` function. Use code to confirm that the length of this vector is 5.  
+
+4. Finally, concatenate the three vectors and check that the length equals 15.  
+
+&nbsp;  
+
+**Basic vector math**
+
+5.  Create a variable `x` that is a list of numbers of any size. Create a variable `y` of the same length.  
+
+6. Check to see if each values of `x` is greater than each value of y.  
+  
+7. Check to see if the smallest value of `x` is greater than or equal to the average value of `y`.  
+
+&nbsp;  
+
+**Vectors and object classes**  
+
+8. Create a vector with at least one number, then a second vector with at least one character string, then a third vector with at least one logical value. Identify the class of all three vectors.  
+
+9. Now concatenate these three vectors into a fourth vector. Identify the class of this fourth vector.  
+
+
+&nbsp;  
+
+**Heads & tails**  
+
+10. Create a vector with at least 15 values.  
+
+11. Show the first six values of that vector using the `head()` function.   
+
+12. Figure out how to show the same result without a function, but instead with your new vector subsetting skills. 
+Now replicate the `tail()` function, using those same skills. You may need to call the `length()` function as well.  
+
+&nbsp;  
+
+**Shoe sizes**  
+
+13. Create a vector called `shoes`, which contains the shoe sizes of five people sitting near you. Use comments to keep track of which size is whose.  
+
+14. Arrange this set of shoe sizes in ascending order.  
+
+15. Arrange this set of shoe sizes in descending order.  
+
+16. Use code to find the the two largest shoe sizes in your vector. Don't use subsetting; instead, write a line of code that would work even if more shoes were added to your vector.  
+
+17. What is the shoe size is closest to the mean of these shoe sizes?  
+
+18. Use the `which()` function to figure out which of your five neighbors this shoe size belongs to.  
+
+&nbsp;  
+
+**Swimming timelines**  
+
+19. Now create a new vector called `swim_days`, which contains the number of days since those same five people last went swimming (in any body of water; estimating the days since is fine).  
+
+20. Use code to ask whether anyone went swimming less than five days ago.  
+
+21. Which of your neighbors, if any, went swimming in the last month?  
+
+22. Which of your neighbors, if any, have not been swimming the last month?  
+
+23. On average, how long has it been since these people have gone swimming?  
+
+&nbsp;  
+
+**Dealing with `NA`s**  
+
+24. Create a vector named `x` with these values: `c(4,7,1,NA,9,2,8)`.  
+
+25. Use a function to decide whether or not each element of `x` is `NA`.  
+
+26. Use another function to find out which element in `x` is `NA`.  
+
+27. Write code that will subset `x` only to those values that are `NA`.  
+
+28. Write code that will subset `x` only to those values that are *not* `NA`.  
+
+&nbsp;  
+
+**Sleep deficits**  
+
+29. Now create a vector called `sleep_time` with the number of hours you slept for each day in the last week.  
+
+30. Check if you slept more on day 3 than day 7. 
+
+31. Get the total number of hours slept in the last week.    
+
+32. Get the average number of hours slept in the last week.    
+
+33. Check if the total number of hours in the first 3 days is less than the total number of hours in the last 4 days.  
+
+34.  Now create an object named `over_under`. This should be the difference between how much you slept each night and 8 hours (ie, 1.5 means you slept 9.5 hours and -2 means you slept 8 hours).  
+
+35. Write code to use `over_under` to calculate your sleep deficit / surplus this week (ie, the total hours over/under the amount of sleep you would have gotten had you slept 8 hours every night).  
+
+36. Write code to get the minimum number of hours you slept this week.  
+
+37. Write code to calculate how many hours of sleep you would have gotten had you sleep the minimum number of hours every night.  
+
+38. Write code to calculate the average of the hours of sleep you got on the 3rd through 6th days of the week.  
+
+39. Write code to calculate how many hours of sleep you would get in a year if you were to sleep the same amount every night as the average amount you slept from the 3rd to 6th days of the week.  
+
+40. Write code to calculate how many hours of sleep per year someone who sleeps 8 hours a night gets.  
+
+41. How many hours more/less than the 8 hours per night sleeper do you get in a year, assuming you sleep every night the average of the amount you slept on the first and last day of this week?  
+
+42. What is your total sleep deficit for the last week?
+
+43. How many more hours per night, on average, do you need to sleep for the rest of the month so that, by the end of the month, you have a sleep deficit of zero?  
+
+
+
+
+

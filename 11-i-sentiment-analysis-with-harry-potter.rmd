@@ -1,0 +1,76 @@
+# Sentiment analysis with Harry Potter
+
+
+&nbsp;  
+
+**1.** Start a new R file Name it "harry.R".
+
+**2.** Set up your work space by loading the `ggplot2`, `dplyr`, `tidytext`, `gsheet`, `wordcloud2`, `sentimentr`, and `lubridate` packages.
+
+**3.** Read in your Harry Potter data by running the following:
+
+```{r, eval = FALSE}
+hp <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/harrypotter.csv')
+```
+
+**4.** Take a peek at the first few rows of the data. What is the unit of observation?
+
+**5.** Make all of the `text` column be lower case.
+
+**6.** Make all of the `text` column be upper case.
+
+**7.** Use `unnest_tokens` to create a dataframe with one row per word.
+
+**8.** Create a variable named `word_length` with the number of characters in each word.
+
+**9.** Make a histogram of word length.
+
+**10.** Make a density chart of word length.
+
+**11.** Make the density chart of word length have a different `fill` for each chapter.
+
+**12.** Get the average word length per chapter.
+
+**13.** Plot the average word length per chapter.
+
+**14.** What is the longest word used in Harry Potter?
+
+**15.** What is the most frequent word used in Harry Potter?
+
+**16.** Get the number of words per chapter.
+
+**17.** Plot the number of words per chapter.
+
+**18.** What's the longest chapter in Harry Potter?
+
+**19.** Run the below to create an object named `sw`.
+
+```{r, eval = FALSE}
+sw <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv')
+```
+
+**20.** Remove the stop words form your one-row-per-word dataframe.
+
+**21.** What is the most frequently used (non-stop) word in Harry Potter?
+
+**22.** Create an object called `sentiments` by running the following:
+
+```{r, eval = FALSE}
+sentiments <- get_sentiments('afinn')
+```
+
+**23.** Use `left_join` to bring a sentiment classification to each word.
+
+**24.** Is Harry Potter more negative or positive?
+
+**25.** Calculate the average sentimentality per chapter.
+
+**26.** Plot the average sentimentality per chapter.
+
+**27.** Create a variable called `cumulative_sentiment`. Use `cumsum` to get the cumulative sum sentimentality.
+
+**28.** Plot cumulative sentiment.
+
+**29.** Color your plot by chapter.
+
+

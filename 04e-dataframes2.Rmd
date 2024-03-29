@@ -1,0 +1,336 @@
+# Dataframe wrangling {#dplyr}
+
+#### Learning goals {-}
+
+* Understand the importance of *tidy* dataframes
+* Understand what the `tidyverse` is and why it is awesome
+* Feel comfortable working with dataframes using `dplyr` functions.
+
+
+## The `dplyr` package {-}
+
+Data scientists largely work in data frames and _do things_ to data. This is what the package `dplyr` is optimized for. It consists of a series of "verbs" which cover 95% of what you need to do for most basic data processing tasks. 
+
+```{r,echo=TRUE,collapse=TRUE,eval=FALSE}
+install.packages('dplyr') # if you haven't yet
+```
+
+```{r,echo=TRUE,message=FALSE}
+library(dplyr)
+```
+
+The `dplyr` package contains a set of `verbs`: things you do to dataframes. Those verbs are:
+
+- **`filter()`**  
+- **`arrange()`**  
+- **`select()`**   
+- **`rename()`**  
+- **`distinct()`**  
+- **`mutate()`**   
+- **`summarise()`**  
+
+## The `%>%` pipe {-}
+
+**`%>%`** is a "pipe". It is a way to write code without so many parentheses. For example, what if I want to find the square root of the sum of the first six elements of a sequence of 10 to 20 by 2?
+
+Here's what that command would look like in base `R`:  
+
+```{r,echo=TRUE,collapse=TRUE}
+sqrt(sum(head(seq(10, 20, 2))))
+```
+
+Pretty overwhelming, and pretty easy to make errors in writing it out. 
+
+But the above could also be written a simpler way:
+
+```{r,echo=TRUE,collapse=TRUE}
+seq(10, 20, 2) %>% head %>% sum %>% sqrt
+```
+
+When you see the **`%>%`** pipe symbol, think of the word **"then"**. 
+
+The above code could be read aloud like so: "First, get a sequence of every second number between 10 and 20. **Then**, take the first six values. **Then**, sum those samples together. **Then**, take the square root of that sum." 
+
+Using the `%>%` pipe framework, your code turns from a nonlinear series of parentheses and brackets to a linear progression of steps, which is a closer fit to how we tend to think about working with data. Instead of working from the inside of a command outward, we thinking linearly: take the data, **then** do things with it, **then** do more things with it, etc.
+
+Here's another example:
+
+```{r,echo=TRUE,collapse=TRUE}
+mean(sd(1:100))
+```
+
+... could also be written as:
+
+```{r,echo=TRUE,collapse=TRUE}
+1:100 %>% sd %>% mean
+```
+
+## `dplyr` verbs {-}
+
+To practice the `dplyr` verbs, let's make a small dataframe named `people`:
+
+```{r,echo=TRUE,collapse=TRUE}
+people <- data.frame(who = c('Joe', 'Ben', 'Xing', 'Coloma'),
+                    sex = c('Male', 'Male', 'Female', 'Female'),
+                    age = c(35, 33, 32, 34))
+people
+```
+
+### `filter()` {-}
+
+The `filter()` function is used to subset a dataframe, retaining all rows that satisfy your conditions. To be retained, the row must produce a value of `TRUE` for all conditions. 
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% filter(sex == 'Male')
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% filter(sex == 'Female')
+```
+
+You can also filter according to multiple conditions. Here are three ways to acheive the same thing:  
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% filter(sex == 'Female' & age < 33)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% filter(sex == 'Female', age < 33)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% filter(sex == 'Female') %>% filter(age < 33)
+```
+
+Note that when a condition evaluates to `NA`, its row will be dropped. This differ from the base subsetting works with `[ ... ]`.
+
+### `arrange()` {-}
+
+Arrange means putting things in order. That is, `arrange()` orders the rows of a data frame by the values of selected columns.
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% arrange(age)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% arrange(sex)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% arrange(who)
+```
+
+To reverse the order, use `desc()`: 
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% arrange(desc(age))
+```
+
+You can also arrange by multiple levels: 
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% arrange(sex, age)
+```
+
+
+### `select()` {-}
+
+Select only certain variables in a data frame, making the dataframe skinnier (fewer columns). 
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% select(age)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% select(sex, age)
+```
+
+As you select columns, you can rename them like so:  
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% select(sex, years = age)
+```
+
+You can also select a set of columns using the `:` notation:
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% select(who:sex)
+```
+
+
+### `rename()` {-}
+
+The function `rename()` changes the names of individual variables.  
+
+This verb takes the syntax `<new_name> = <old_name>` syntax.
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% rename(gender = sex, years = age, first_name = who)
+```
+
+
+### `mutate()` {-}
+
+The function `mutate()` adds new variables and preserves existing ones. 
+
+New variables overwrite existing variables of the same name. 
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% mutate(agein2020 = age - 1)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% mutate(is_male = sex == 'Male')
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% mutate(average_age = mean(age))
+```
+
+You can call `mutate()` multiple times in the same pipe:  
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% mutate(average_age = mean(age)) %>%
+  mutate(diff_from_avg = age - average_age)
+```
+
+You can also remove variables can be removed by setting their value to NULL.
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% mutate(age = NULL)
+```
+
+A similar function, `transmute()`, adds new variables and drops existing ones, kind of like a combination of `select()` and `mutate()`.
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% transmute(average_age = mean(age))
+```
+
+
+### `group_by()` {-}
+
+Most data operations are done on groups defined by variables. The function `group_by()` takes an existing table and converts it into a grouped one where operations are performed "by group". 
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% 
+  group_by(sex) %>%
+  mutate(average_age_for_sex = mean(age)) 
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% 
+  group_by(sex) %>%
+  mutate(average_age_for_sex = mean(age)) %>%
+  mutate(diff_from_avg_for_sex = age - average_age_for_sex)
+```
+
+Note that a similar verb, `ungroup()`, removes grouping.
+
+### `summarize()` {-} 
+
+`summarize()` or `summarize()` creates an entirely new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarizing all observations in the input. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% 
+  summarize(average_age = mean(age))
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% 
+  summarize(average_age = mean(age),
+            standard_dev_of_age = sd(age),
+            oldest_age = max(age),
+            youngest_age = min(age))
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>% 
+  group_by(sex) %>%
+  summarise(avg_age = mean(age),
+            oldest_age = max(age),
+            total_years = sum(age)) 
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+people %>%
+  group_by(sex) %>%
+  summarise(sample_size = n())
+```
+
+Note the use of the function, **`n()`**. This simple function counts up the number of records in each group.  
+
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'To illustrate these `dplyr` verbs and re-energize the room, ask everyone to stand. Tell the students that they represent a dataframe called `people`. Now, write a `dplyr` command into your R Console and ask them to act out the command. After each command, give them time to move around to act it out. If they move around too slowly, egg them on: "Come on, you all are like the slowest computer ever!" <br><br> `people %>% arrange(shoe_size)` <br> `people %>% arrange(shoe_size) %>% filter(sex == "female")` <br> `people %>% arrange(hair_length)` <br> `people %>% arrange(desc(hair_length))` <br> `people %>% group_by(sex) %>% arrange(hair_length))` <br>`people %>% arrange(country_of_birth, shirt_color, desc(shoe_size))` <br><br> etc.'
+
+teacher_tip(tip)
+```
+
+#### Exercises {-}
+
+Answer these questions using the new `dplyr` verbs you just learned:  
+
+**Baby names over time**  
+
+**1.** Run the below code to load a dataset about baby names given in the USA since the 1800's.  
+
+```{r,echo=TRUE,collapse=TRUE}
+library(dplyr)
+library(babynames)
+bn <- babynames
+```
+
+**2.**  Check out the first and last six rows of `bn`.  
+
+**3.**  What are the names of the variables in this dataset?  
+
+**4.**  How many rows are in this dataset?  
+
+**5.**  What is the earliest year in this dataset?  
+
+**6.**  Create a dataframe named `turn_of_century`, which contain data only for the year 1900. 
+
+**7.**  Create a dataframe named `boys`, containing only boys. 
+
+**8.**  Create a dataframe named `moms_gen`. This should be females born in the year of birth of your mom.
+
+**9.**  Order `moms_gen` by `n`, in ascending order (i.e., with the least popular name at top). Look at the result; what is the least popular name among women the year your mom was born?
+
+**10.**  Reverse the order and save the result into an object named `moms_gen_ordered`.
+
+**11.**  Create an object named `boys2k`. This should be all males born in the year 2000.
+
+**12.**  Arrange `boys2k` from most to least popular. What was the most popular boys name in 2000?
+
+**13.**  What percentage of boys were named `Joseph` in 2000?
+
+**14.**  Were there more Jims or Matthews in 2020?
+
+**15.** Create an object named `tot_names_by_year`, which contains the total counts for boy and girl names assigned in each year of the dataset. You should have four columns: `year`, `boys`, `girls`, and `tot`. 
+
+**16.**  How many people were born with _your_ name in 2020?
+
+**17.** Was your name more prevalent in 2020 than it was in the year you were born?
+
+**18.** What if you account for the changing overall population size? In other words, is the *proportional prevalence* of your name greater in 2020 or your birth year?
+
+**19.** In which year was your name the most prevalent?  
+
+**20.** Create a basic plot of the proportional prevalence of your name since the earliest year of this dataset.  
+
+**21.** Update this plot with lines for your parent's names and your siblings names, if you have any.
+
+**22.** Format that plot so that it is gorgeous and well-labelled. 
+
+**23.** Screenshot it and email it to your family.  
+
+
+```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
+source('teacher_tip.R')
+
+tip <- 'After completing the exercises here, it is worthwhile devoting time to the Review modules entitled, **"A `dplyr` mystery"**, **"A `dplyr` survey"**, and **"Global health and `ggplot`"**. Once students become comfortable with working with `dplyr`, they will be ready to work independently on projects, using the modules in the **Deep `R`** section for references.'
+
+teacher_tip(tip)
+```
+
